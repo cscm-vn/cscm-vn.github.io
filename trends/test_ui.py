@@ -34,7 +34,7 @@ with sync_playwright() as p:
         pg.locator("#l1 .chip").first.click(); pg.fill("#q", "phật sơn"); n2 = pg.locator("#list .card").count(); ok(f"{mode} trends search accent-insensitive", n2 >= 1, n2); sh("08_trends_search")
         links = pg.eval_on_selector_all("#list a[target=_blank]", "els=>els.map(e=>e.href)"); ok(f"{mode} trend links http", links and all(l.startswith("http") for l in links), len(links))
         pg.goto(B + "thi-truong.html"); pg.wait_for_selector("#list .card"); sh("09_market")
-        pg.locator("#rg button", has_text="TP.HCM").click(); ok(f"{mode} market region filter", all("TP.HCM" in t for t in pg.locator("#list .card .pill:first-child").all_inner_texts()))
+        pg.locator("#rg button[data-r='TP.HCM']").click(); ok(f"{mode} market region filter", all("TP.HCM" in t for t in pg.locator("#list .card .pill:first-child").all_inner_texts()))
         pg.goto(B + "thang.html"); pg.wait_for_selector("#cat tr"); sh("10_monthly"); ok(f"{mode} monthly table", pg.locator("#cat tr").count() > 1)
         pg.goto(B + "gia.html"); pg.wait_for_selector(".hn-bar"); pg.wait_for_timeout(800); sh("11_price_table_with_nav"); ok(f"{mode} gia.html nav", pg.locator(".hn-bar").count() == 1)
         pg.goto(B + "forecast.html"); pg.wait_for_selector(".hn-bar"); pg.wait_for_timeout(1200); sh("15_forecast_with_nav"); ok(f"{mode} forecast nav", pg.locator(".hn-bar").count() == 1)

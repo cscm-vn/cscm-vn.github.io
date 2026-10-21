@@ -48,7 +48,7 @@ table.t{width:100%;border-collapse:collapse;background:#fff;font-size:13.5px}
 .card,.trend>div,section{min-width:0}.card h3,.card a,.card p{overflow-wrap:anywhere}
 @media (max-width:560px){.wrap{padding:10px 8px 30px}.tabs button{padding:8px 9px;font-size:13px}.filters input{min-width:0;width:100%}.filters select{flex:1}.t{font-size:12.5px}.kpi{font-size:19px}}@media (max-width:560px){.grid.kpis{grid-template-columns:1fr 1fr}.kpis .tile{padding:9px}.kpis .kpi{font-size:16px}}
 .sig{display:inline-block;color:#fff;font-size:12px;font-weight:600;padding:2px 9px;border-radius:20px;white-space:nowrap;vertical-align:middle}
-.calc{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:6px 0 12px}
+.calc{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:6px 0 12px}
 .calc label,.filters label{display:flex;flex-direction:column;font-size:12.5px;color:var(--mute);gap:3px}
 .calc input,.filters label select{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:14px;color:var(--ink);background:#fff}
 .why{background:#fff8e6;border-left:3px solid var(--warn);padding:6px 10px;border-radius:4px;font-size:13.5px;margin:6px 0}

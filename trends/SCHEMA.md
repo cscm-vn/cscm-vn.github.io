@@ -41,3 +41,20 @@ git add trends data/taxonomy.json && git commit -m "trends: cập nhật 2026-10
 ```
 ## Hợp đồng với trang Dự báo
 `forecast/build.py` gắn `tax` (id cấp 2) cho mỗi chuỗi dự báo trong `site/forecast.json`; trang Danh mục & Mặt hàng hiển thị dự báo theo `tax`. Thêm danh mục mới: sửa `data/taxonomy.json` (không đổi id cũ).
+
+## v3 – Nhà thầu & Chủ đầu tư (trong `market.json`)
+Thêm vào mục `market`: `"org":"Coteccons"`, `"org_type":"contractor|developer"`, `"mseg":"hang-sang|cao-cap|trung-cap|noxh|thap-tang|nghi-duong|van-phong"` (tùy chọn).
+Tên `org` phải trùng tên trong `ORGS` của `trends/feeds.py` để bộ lọc gộp tin biên tập + tin RSS. Cùng một URL có thể dùng cho 2 đơn vị khác nhau (merge.py giữ cả hai nếu `org` và tiêu đề khác nhau).
+Thêm đơn vị theo dõi mới: thêm 1 dòng vào `ORGS` (tên, loại, truy vấn Google News, từ khóa không dấu khớp tiêu đề).
+
+## v3 – SCM (`trends/data/scm.json`, sinh từ `trends/seed/scm_YYYY-MM-DD.py`)
+Mỗi nhóm: `id, name, tax[], signal (du-cung|can-bang|khan-hiem|chua-du), trend (up|down|flat), headline, supply[], demand[], trade[], rec, rec_detail, clusters[{name,where,examples}], risks[], levers[], timing, calc{unit,fob,qty,cont,duty,ad,vat,logi,note,vn,vn_note}|null, sources[{name,url,date}]`.
+Quy tắc: mọi số liệu phải có trong nguồn ghi kèm; FOB/giả định ghi chữ **GIẢ ĐỊNH** trong `calc.note`. Cập nhật **hằng tháng** hoặc khi có biến động lớn (thuế CBPG mới, giá LME, báo cáo VSA/VNCA). Cước biển: `freight` (cập nhật hằng tháng).
+
+## v3 – Phân khúc (`trends/data/segments.json`, sinh từ `trends/seed/segments_YYYYQn.py`)
+7 phân khúc × {hn, hcm}: `price, trend, supply, absorption, inventory, projects, sources[]` + `spec, cost{structure,fitout,sources}, implications`. Cập nhật **hằng quý** khi CBRE/Savills/DKRA/VARS/NAI công bố (thường giữa tháng đầu quý sau). Dòng ước tính phải có chữ **ƯỚC TÍNH**.
+
+## Quy trình hằng ngày – bổ sung v3
+1. Tin nhà thầu/CĐT: thêm mục `market` có `org`/`org_type` vào seed ngày (trúng thầu, backlog, KQKD, mở bán, giá/m², tiêu chuẩn bàn giao, NCC được chỉ định).
+2. Nếu có thay đổi cung cầu đáng kể → sửa `trends/seed/scm_*.py`, chạy lại → commit `trends/data/scm.json`.
+3. Kiểm thử: `python3 trends/test_v3.py http://127.0.0.1:PORT/` (360/390/768/1366, ảnh `screenshots/v3_*.png`).
