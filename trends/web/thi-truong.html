@@ -1,34 +1,58 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Thị trường – Masterise Procurement Hub</title><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<title>Thị trường – Masterise Procurement Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
 <body class="hub" data-page="thitruong"><div id="hubnav"></div>
-<main class="wrap"><div class="crumb" id="crumb"></div>
- <h1>Thị trường xây dựng & bất động sản</h1><p class="sub">Tin biên tập (có nguồn) về Hà Nội, TP.HCM, chính sách, lãi suất, nhà thầu và thế giới; kèm tin tự động từ RSS.</p>
- <h2>🏙️ Hà Nội vs TP.HCM – căn hộ Q3/2026</h2><div class="grid g2" id="hvh"></div>
- <div class="filters"><span class="seg" id="rg"></span><select id="seg"><option value="">Mọi chủ đề</option></select><input id="q" type="search" placeholder="Tìm tin: savills, lãi suất, trúng thầu…"></div>
+<main class="wrap" id="main"><div class="crumb" id="crumb"></div>
+ <h1>Thị trường xây dựng & bất động sản</h1><p class="sub">Phân tích theo phân khúc (Hà Nội vs TP.HCM), tin biên tập có nguồn về thị trường, chính sách, lãi suất, nhà thầu, chủ đầu tư và thế giới; kèm tin tự động từ RSS.</p>
+ <h2>🏙️ Phân tích phân khúc – Hà Nội vs TP.HCM <span class="small mute" id="sgp"></span></h2>
+ <div class="ins" id="nat"></div>
+ <div class="filters" id="sgc" role="tablist" aria-label="Chọn phân khúc"></div>
+ <div id="sgd"><div class="empty">Đang tải…</div></div>
+ <h2>🏗️ Nhà thầu & chủ đầu tư <a class="small" href="nha-thau.html">trang theo dõi chi tiết →</a></h2><div class="grid g2" id="orgw"></div>
+ <h2>📰 Tin thị trường</h2><div class="ins" style="margin-top:0" id="hvh"></div>
+ <div class="filters"><span class="seg" id="rg"></span><select id="seg" aria-label="Chủ đề"><option value="">Mọi chủ đề</option></select><select id="ms" aria-label="Phân khúc"><option value="">Mọi phân khúc</option></select><input id="q" type="search" placeholder="Tìm tin: savills, lãi suất, trúng thầu…" aria-label="Tìm tin"></div>
  <div class="grid" id="list"></div>
- <h2 id="feed">🛰️ Tin tự động (VnExpress, CafeF, Google News)</h2><div class="filters"><input id="fq" type="search" placeholder="Lọc tin tự động…"></div><ul class="news card" id="fl"></ul>
+ <h2 id="feed">🛰️ Tin tự động (VnExpress, CafeF, Google News)</h2><div class="filters"><input id="fq" type="search" placeholder="Lọc tin tự động…" aria-label="Lọc tin tự động"></div><ul class="news card" id="fl"></ul>
  <div class="foot" id="foot"></div></main>
 <script>
 (async () => {
- const [mk, fd, t] = await Promise.all([HUB.get("market.json"), HUB.get("feed.json"), HUB.tax()]); const E = HUB.esc; HUB.crumb(["<b>Thị trường</b>"]);
+ const [mk, fd, t, sg] = await Promise.all([HUB.get("market.json"), HUB.get("feed.json"), HUB.tax(), HUB.get("segments.json")]); const E = HUB.esc; HUB.crumb(["<b>Thị trường</b>"]);
+ const SEG = Object.fromEntries((sg?.segments || []).map(s => [s.id, s.name])); const srcs = a => (a || []).map(s => `<a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.name)}${s.date ? " – " + HUB.date(s.date) : ""} ↗</a>`).join(" · ");
+ if (sg) { document.getElementById("sgp").textContent = `${sg.period} · cập nhật ${HUB.date(sg.updated)}`;
+  document.getElementById("nat").innerHTML = `<b>Toàn quốc:</b> ${E(sg.national.text)} <span class="small">${srcs(sg.national.sources)}</span>`;
+  let cs = HUB.qs("seg") && SEG[HUB.qs("seg")] ? HUB.qs("seg") : sg.segments[0].id;
+  const rows = [["price", "Giá"], ["trend", "Xu hướng (q/q, n/n)"], ["supply", "Nguồn cung mới"], ["absorption", "Hấp thụ"], ["inventory", "Tồn kho"], ["projects", "Dự án & chủ đầu tư tiêu biểu"]];
+  const dsg = () => { const s = sg.segments.find(x => x.id === cs);
+   document.getElementById("sgc").innerHTML = sg.segments.map(x => `<button class="chip ${x.id === cs ? "on" : ""}" role="tab" aria-selected="${x.id === cs}" data-s="${x.id}">${E(x.name)}</button>`).join("");
+   document.querySelectorAll("#sgc .chip").forEach(b => b.onclick = () => { cs = b.dataset.s; const p = new URLSearchParams(location.search); p.set("seg", cs); history.replaceState(null, "", "?" + p); dsg(); });
+   const nOrg = (mk.items || []).filter(x => x.mseg === cs).length + (fd?.items || []).filter(x => x.mseg === cs).length;
+   document.getElementById("sgd").innerHTML = `<div class="card"><p class="small mute" style="margin-top:0">${E(s.def)}</p>
+    <div class="tw" style="max-height:none"><table class="t segtbl"><tr><th>Chỉ tiêu</th><th><span class="pill hn">Hà Nội</span></th><th><span class="pill hcm">TP.HCM</span></th></tr>
+    ${rows.map(([k, l]) => `<tr><td>${l}</td><td>${E(s.hn[k])}</td><td>${E(s.hcm[k])}</td></tr>`).join("")}
+    <tr><td>Nguồn</td><td class="small">${srcs(s.hn.sources)}</td><td class="small">${srcs(s.hcm.sources)}</td></tr></table></div>
+    <div class="grid g3" style="margin-top:10px"><div><h3>Tiêu chuẩn bàn giao điển hình</h3><p>${E(s.spec)}</p></div>
+     <div><h3>Chi phí xây dựng / hoàn thiện ngụ ý</h3><p><b>Kết cấu + hoàn thiện cơ bản:</b> ${E(s.cost.structure)}<br><b>Hoàn thiện & thiết bị:</b> ${E(s.cost.fitout)}</p><p class="small">${srcs(s.cost.sources)}</p></div>
+     <div><h3>Hàm ý mua sắm cho Masterise</h3><div class="why">${E(s.implications)}</div></div></div>
+    <p class="small mute">${E(sg.note)} · <a href="#list" id="sg-go">Xem ${nOrg} tin thuộc phân khúc này →</a></p></div>`;
+   document.getElementById("sg-go").onclick = () => { const m = document.getElementById("ms"); m.value = cs; m.dispatchEvent(new Event("input")); }; };
+  dsg(); } else document.getElementById("sgd").innerHTML = '<div class="empty">Chưa có dữ liệu phân khúc (data/segments.json).</div>';
+ const ow = t => (mk.items || []).filter(x => x.org_type === t).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5).map(x => `<li><span class="pill cat">${E(x.org)}</span><a href="${E(x.sources[0].url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="small mute">${HUB.date(x.date)}</span></li>`).join("");
+ document.getElementById("orgw").innerHTML = `<div class="card"><h3>Tin nhà thầu <a class="small" href="nha-thau.html">xem tất cả →</a></h3><ul class="news">${ow("contractor") || "<li class=mute>Chưa có.</li>"}</ul></div><div class="card"><h3>Chủ đầu tư / đối thủ <a class="small" href="nha-thau.html?t=developer">xem tất cả →</a></h3><ul class="news">${ow("developer") || "<li class=mute>Chưa có.</li>"}</ul></div>`;
  const card = x => `<div class="card" id="m-${x.id}" ${x.id === HUB.qs("id") ? 'style="outline:2px solid var(--pri)"' : ""}><h3><a href="${E(x.sources[0].url)}" target="_blank" rel="noopener">${E(x.title)}</a></h3>
-  <div><span class="pill ${x.region === "Hà Nội" ? "hn" : x.region === "TP.HCM" ? "hcm" : ""}">${E(x.region)}</span><span class="pill cat">${E(x.segment)}</span><span class="small mute">${HUB.date(x.date)}</span></div>
+  <div><span class="pill ${x.region === "Hà Nội" ? "hn" : x.region === "TP.HCM" ? "hcm" : ""}">${E(x.region)}</span><span class="pill cat">${E(x.segment)}</span>${x.org ? `<span class="pill">${E(x.org)}</span>` : ""}${x.mseg ? `<span class="pill">${E(SEG[x.mseg] || "")}</span>` : ""}<span class="small mute">${HUB.date(x.date)}</span></div>
   <p style="margin:6px 0">${E(x.summary)}</p>${x.takeaway ? `<div class="why" style="background:#fff8e6;border-left:3px solid var(--warn);padding:6px 10px;font-size:13.5px"><b>Hàm ý:</b> ${E(x.takeaway)}</div>` : ""}
   <div class="small">Nguồn: ${x.sources.map(s => `<a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.name)} ↗</a>`).join(" · ")}</div></div>`;
- const hn = mk.items.filter(x => x.region === "Hà Nội" && x.segment === "Căn hộ").slice(0, 2), hc = mk.items.filter(x => x.region === "TP.HCM" && x.segment === "Căn hộ").slice(0, 2);
- document.getElementById("hvh").innerHTML = `<div class="card"><h3><span class="pill hn">Hà Nội</span></h3><ul class="news">${hn.map(x => `<li><b>${E(x.title)}</b><div class="small">${E(x.summary)}</div></li>`).join("")}</ul></div>
-  <div class="card"><h3><span class="pill hcm">TP.HCM</span></h3><ul class="news">${hc.map(x => `<li><b>${E(x.title)}</b><div class="small">${E(x.summary)}</div></li>`).join("")}</ul></div>
-  <div class="ins" style="grid-column:1/-1"><b>Nhận định chênh lệch:</b> Hà Nội Q3/2026 hấp thụ giảm mạnh (Savills 39%, CBRE: giao dịch thấp nhất từ 2024) và giá sơ cấp bắt đầu điều chỉnh (CBRE nội đô 102 tr/m², −6% q/q); TP.HCM hấp thụ ~45% với hạng sang tiếp tục kéo mặt bằng giá (Knight Frank 110 tr/m², +12% n/n). Với phân khúc cao cấp, áp lực giá bán ở Hà Nội cao hơn → ưu tiên tối ưu chi phí xây dựng cho dự án phía Bắc. Lưu ý: các đơn vị đo giá khác nhau (thông thủy/tim tường, có/không VAT, ranh giới sau sáp nhập).</div>`;
+ document.getElementById("hvh").innerHTML = `<b>Lưu ý so sánh:</b> các nguồn đo giá khác nhau (thông thủy/tim tường, có/không VAT, ranh giới hành chính sau sáp nhập) – chỉ so sánh số liệu trong cùng một nguồn. Lọc theo khu vực, chủ đề hoặc phân khúc bên dưới.`;
  const R = ["", ...new Set(mk.items.map(x => x.region))]; let rg = "";
  document.getElementById("rg").innerHTML = R.map(r => `<button data-r="${r}" class="${r ? "" : "on"}">${r || "Tất cả"}</button>`).join("");
- document.getElementById("seg").innerHTML += [...new Set(mk.items.map(x => x.segment))].map(s => `<option>${E(s)}</option>`).join("");
- const f = () => { const q = HUB.strip(document.getElementById("q").value).split(/\s+/).filter(Boolean), sg = document.getElementById("seg").value;
-  const L = mk.items.filter(x => (!rg || x.region === rg) && (!sg || x.segment === sg) && q.every(w => HUB.strip(x.title + " " + x.summary + " " + x.sources.map(s => s.name).join(" ")).includes(w)));
+ document.getElementById("seg").innerHTML += [...new Set(mk.items.map(x => x.segment))].sort((a, b) => a.localeCompare(b, "vi")).map(s => `<option>${E(s)}</option>`).join("");
+ document.getElementById("ms").innerHTML += Object.entries(SEG).map(([k, v]) => `<option value="${k}">${E(v)}</option>`).join("");
+ const f = () => { const q = HUB.strip(document.getElementById("q").value).split(/\s+/).filter(Boolean), sgv = document.getElementById("seg").value, ms = document.getElementById("ms").value;
+  const L = mk.items.filter(x => (!rg || x.region === rg) && (!sgv || x.segment === sgv) && (!ms || x.mseg === ms) && q.every(w => HUB.strip(x.title + " " + x.summary + " " + x.sources.map(s => s.name).join(" ")).includes(w)));
   document.getElementById("list").innerHTML = L.map(card).join("") || '<div class="empty">Không có tin phù hợp.</div>'; };
  document.querySelectorAll("#rg button").forEach(b => b.onclick = () => { rg = b.dataset.r; document.querySelectorAll("#rg button").forEach(z => z.classList.toggle("on", z === b)); f(); });
- ["q", "seg"].forEach(i => document.getElementById(i).addEventListener("input", f)); f();
+ ["q", "seg", "ms"].forEach(i => document.getElementById(i).addEventListener("input", f)); document.getElementById("ms").addEventListener("input", () => ff()); f();
  const ff = () => { const q = HUB.strip(document.getElementById("fq").value).split(/\s+/).filter(Boolean);
-  document.getElementById("fl").innerHTML = (fd?.items || []).filter(x => x.kind === "market" && q.every(w => HUB.strip(x.title + " " + x.source).includes(w))).slice(0, 60).map(x => `<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="small mute">${HUB.date(x.date)} · ${E(x.source)}</span></li>`).join("") || "<li class=mute>Không có.</li>"; };
+  document.getElementById("fl").innerHTML = (fd?.items || []).filter(x => ["market", "contractor", "developer"].includes(x.kind) && (!document.getElementById("ms").value || x.mseg === document.getElementById("ms").value) && q.every(w => HUB.strip(x.title + " " + x.source).includes(w))).slice(0, 60).map(x => `<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="small mute">${HUB.date(x.date)} · ${E(x.source)}</span></li>`).join("") || "<li class=mute>Không có.</li>"; };
  document.getElementById("fq").oninput = ff; ff(); if (HUB.qs("id")) document.getElementById("m-" + HUB.qs("id"))?.scrollIntoView({block: "center"}); HUB.foot();
 })();
 </script></body></html>

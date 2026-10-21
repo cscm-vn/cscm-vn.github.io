@@ -1,0 +1,978 @@
+{
+ "updated": "2026-10-22",
+ "freight": {
+  "text": "Cước biển Shanghai → TP.HCM 10/2026: 20GP 645–900 USD, 40HQ 1.190–1.600 USD; → Hải Phòng: 20GP 650–830 USD, 40HQ 1.060–1.560 USD (chưa phí địa phương).",
+  "d20": 780,
+  "d40": 1400,
+  "source": {
+   "name": "TSL – cước Shanghai → VN 10/2026",
+   "url": "https://tsl.com.vn/gia-cuoc-van-chuyen-tu-shanghai-ve-viet-nam/",
+   "date": "2026-10"
+  }
+ },
+ "assumptions": "Thuế NK mặc định 0% = GIẢ ĐỊNH hàng có C/O mẫu E (ACFTA); phải tra biểu thuế theo mã HS. VAT nhập khẩu mặc định 10% (một số mặt hàng được giảm còn 8% theo chính sách từng thời kỳ). Chi phí logistics nội địa & thông quan mặc định 3% giá CIF. FOB đánh dấu GIẢ ĐỊNH chỉ để minh họa.",
+ "signals": {
+  "du-cung": "Dư cung",
+  "can-bang": "Cân bằng",
+  "khan-hiem": "Khan hiếm",
+  "chua-du": "Chưa đủ dữ liệu"
+ },
+ "categories": [
+  {
+   "id": "thep",
+   "name": "Thép / cốt thép",
+   "tax": [
+    "xd.cot-thep",
+    "xd.thep-ket-cau"
+   ],
+   "signal": "can-bang",
+   "trend": "up",
+   "headline": "VN tự chủ thép cây; nhập khẩu từ TQ giảm, giá nội địa nhích tăng tháng 10.",
+   "supply": [
+    "Sản lượng thép thành phẩm VN 7T/2026: 21,4 triệu tấn (+17,9% n/n) – VSA qua PSI",
+    "VNSTEEL tiêu thụ 9T ước 3,46 triệu tấn"
+   ],
+   "demand": [
+    "Tiêu thụ thép xây dựng 7T/2026 gần 9,0 triệu tấn (+16,5% n/n)",
+    "worldsteel: nhu cầu thép TQ 2026 −2% → áp lực xuất khẩu"
+   ],
+   "trade": [
+    "Nhập khẩu thép 9T/2026: 11,58 triệu tấn (+3,5%), từ TQ 5,90 triệu tấn (−8,8%)",
+    "Thuế chống lẩn tránh 27,83% với HRC khổ rộng TQ; rà soát lần 4 CBPG thép hình H TQ",
+    "TQ siết giấy phép xuất khẩu thép 2026"
+   ],
+   "rec": "VN",
+   "rec_detail": "Mua thép cây từ nhà máy VN (giá giao tận công trình, không rủi ro phòng vệ thương mại). Thép hình/tấm: so sánh VN với nhập khẩu (Hàn Quốc/Nhật/ASEAN) sau thuế CBPG; TQ chỉ khi nhà xuất khẩu có mức thuế thấp.",
+   "clusters": [
+    {
+     "name": "Thép cây miền Bắc",
+     "where": "Hải Dương, Quảng Ninh, Thái Nguyên",
+     "examples": "Hòa Phát, Việt Đức, Việt Ý, Thái Nguyên (TISCO)"
+    },
+    {
+     "name": "Thép cây miền Nam",
+     "where": "Bà Rịa – Vũng Tàu, Bình Dương",
+     "examples": "Pomina, Miền Nam (VNSTEEL), Hòa Phát Dung Quất (miền Trung)"
+    }
+   ],
+   "risks": [
+    "Chênh lệch giá theo thương hiệu (HN vs HCM) — xem so sánh trên Bảng giá",
+    "Chứng chỉ TCVN 1651-2 / mác CB400-V, CB500-V phải có CO/CQ từng lô"
+   ],
+   "levers": [
+    "Chốt khung giá theo quý gắn chỉ số (giá niêm yết nhà máy − chiết khấu cố định)",
+    "Gom khối lượng nhiều dự án cùng vùng",
+    "Thanh toán sớm đổi chiết khấu"
+   ],
+   "timing": "Giá nhích tăng tháng 10/2026 → cân nhắc chốt khối lượng Q4–Q1 sớm khi nhà máy còn chiết khấu.",
+   "calc": {
+    "unit": "tấn",
+    "fob": 560,
+    "qty": 25,
+    "cont": "20GP",
+    "duty": 0,
+    "ad": 0,
+    "vat": 10,
+    "logi": 3,
+    "note": "Thép cây TQ: kiểm tra giấy phép xuất khẩu TQ & biện pháp PVTM hiện hành trước khi báo giá",
+    "vn": null,
+    "vn_note": "So với giá thép cây VN trên Bảng giá (đ/kg ×1.000)"
+   },
+   "sources": [
+    {
+     "name": "PSI – báo cáo ngành thép T9/2026",
+     "url": "https://static.fireant.vn/reports/content/84988",
+     "date": "2026-10"
+    },
+    {
+     "name": "SteelOrbis – nhập khẩu thép VN 9/2026",
+     "url": "https://www.steelorbis.com/steel-news/latest-news/vietnamssteelimportsdown-110-percent-in-september-2026-from-august-1482643.htm",
+     "date": "2026-10"
+    },
+    {
+     "name": "VNSTEEL – tiêu thụ 9T/2026",
+     "url": "https://www.vnsteel.vn/tin-thi-truong-thep/tieu-thu-thep-thanh-pham-9-thang-2026-cua-vnsteel-uoc-dat-3-46-trieu-tan-7662.html",
+     "date": "2026-10"
+    },
+    {
+     "name": "worldsteel SRO 10/2026",
+     "url": "https://worldsteel.org/media/press-releases/2026/worldsteel-short-range-outlook-october-2026/",
+     "date": "2026-10"
+    },
+    {
+     "name": "Tuổi Trẻ – thuế 27,83% HRC TQ",
+     "url": "https://news.tuoitre.vn/vietnam-slaps-2783-duty-on-chinese-wide-width-hrc-steel-103260403172320735.htm",
+     "date": "2026-04"
+    }
+   ]
+  },
+  {
+   "id": "xi-mang",
+   "name": "Xi măng",
+   "tax": [
+    "xd.xi-mang"
+   ],
+   "signal": "du-cung",
+   "trend": "flat",
+   "headline": "Công suất toàn ngành ~125–130 triệu tấn/năm vượt xa cầu nội địa → dư cung, cạnh tranh giá.",
+   "supply": [
+    "Công suất ~125–130 triệu tấn/năm",
+    "VICEM 9T/2026 tiêu thụ 20,692 triệu tấn (+14%)"
+   ],
+   "demand": [
+    "Tiêu thụ xi măng & clinker toàn ngành 6T/2026: 60,98 triệu tấn (+15,7%)",
+    "Đầu tư công + NOXH kéo cầu"
+   ],
+   "trade": [
+    "TQ: sản lượng xi măng 9T/2026 −8,6% (BĐS TQ suy giảm) → không có lý do nhập khẩu"
+   ],
+   "rec": "VN",
+   "rec_detail": "100% nội địa; tận dụng dư cung để đàm phán giá & điều khoản giao hàng (xi măng rời qua trạm trộn).",
+   "clusters": [
+    {
+     "name": "Miền Bắc",
+     "where": "Hà Nam, Ninh Bình, Hải Phòng, Thanh Hóa",
+     "examples": "VICEM (Bút Sơn, Hoàng Thạch…), Vissai, Long Sơn, INSEE"
+    },
+    {
+     "name": "Miền Nam",
+     "where": "Kiên Giang, Bà Rịa – Vũng Tàu (trạm nghiền)",
+     "examples": "INSEE, VICEM Hà Tiên, Fico"
+    }
+   ],
+   "risks": [
+    "Chất lượng phụ thuộc lô; yêu cầu PCB40 theo TCVN 6260"
+   ],
+   "levers": [
+    "Đấu thầu cạnh tranh 3+ nhà máy",
+    "Gắn giá xi măng vào hợp đồng bê tông (cost-plus)"
+   ],
+   "timing": "Không gấp — thị trường dư cung, ký hợp đồng ngắn hạn theo quý.",
+   "calc": null,
+   "sources": [
+    {
+     "name": "VICEM – sơ kết 9T/2026",
+     "url": "https://vicem.vn/tong-cong-ty-xi-mang-viet-nam-to-chuc-hoi-nghi-so-ket-san-xuat-kinh-doanh-quy-iii-9-thang-nam-2026-2162.html",
+     "date": "2026-10"
+    },
+    {
+     "name": "Ximang.vn – báo cáo 6T/2026",
+     "url": "http://csdl.ximang.vn/xuat-ban-bao-cao-tong-hop-san-xuat-va-tieu-thu-xi-mang-6-thang-dau-nam-2026",
+     "date": "2026-07"
+    },
+    {
+     "name": "Ximang.vn – 125 triệu tấn công suất",
+     "url": "https://muaban.ximang.vn/phan-hoa-canh-tranh-trong-125-trieu-tan-cong-suat-xi-mang",
+     "date": ""
+    },
+    {
+     "name": "NBS Trung Quốc 9T/2026",
+     "url": "https://www.stats.gov.cn/english/PressRelease/202610/t20261020_1965663.html",
+     "date": "2026-10-20"
+    }
+   ]
+  },
+  {
+   "id": "cat-da",
+   "name": "Cát / đá / cấp phối",
+   "tax": [
+    "xd.cat-da"
+   ],
+   "signal": "khan-hiem",
+   "trend": "up",
+   "headline": "Hà Nội thiếu cát nghiêm trọng: thiếu ~320 triệu m³ giai đoạn 2026–2030.",
+   "supply": [
+    "Nguồn cát tại chỗ HN ~56,58 triệu m³ so với nhu cầu 477,46 triệu m³ (đề án TP)",
+    "HN phê duyệt 16 mỏ cát không đấu giá cho dự án trọng điểm"
+   ],
+   "demand": [
+    "Đầu tư công (cao tốc, sân bay, vành đai) hút cát/đá",
+    "6 tỉnh/thành thiếu vật liệu cho công trình trọng điểm (Bộ NN&MT)"
+   ],
+   "trade": [
+    "Không nhập khẩu (hàng cồng kềnh, giá trị thấp)"
+   ],
+   "rec": "VN",
+   "rec_detail": "Nội địa bắt buộc. Ưu tiên cát nghiền (đá xay) thay cát vàng cho bê tông, hợp đồng khung với mỏ có giấy phép.",
+   "clusters": [
+    {
+     "name": "Cát sông/cát nghiền miền Bắc",
+     "where": "Sông Hồng, Sông Lô; mỏ đá Hà Nam, Ninh Bình, Hòa Bình",
+     "examples": "Các mỏ được UBND cấp phép — kiểm tra danh sách KH 267/KH-UBND"
+    },
+    {
+     "name": "Đá/cấp phối miền Nam",
+     "where": "Biên Hòa, Bình Dương, Bà Rịa",
+     "examples": "Biên Hòa (BHC), Hóa An (DHA)"
+    }
+   ],
+   "risks": [
+    "Nguồn gốc pháp lý (cát lậu)",
+    "Chất lượng: hàm lượng bùn sét, mô đun độ lớn theo TCVN 7570"
+   ],
+   "levers": [
+    "Đặt cọc giữ sản lượng mỏ",
+    "Chuyển sang cát nghiền (thay đổi thiết kế cấp phối)",
+    "Gộp vận chuyển thủy"
+   ],
+   "timing": "Rủi ro tăng giá cao → khóa nguồn cát cho dự án HN khởi công 2027 ngay từ Q4/2026.",
+   "calc": null,
+   "sources": [
+    {
+     "name": "Dân Việt – 6 tỉnh thiếu vật liệu",
+     "url": "https://danviet.vn/6-tinh-thanh-pho-dang-thieu-nguyen-vat-lieu-phuc-vu-cac-cong-trinh-trong-diem-quoc-gia-bo-nnmt-bao-cao-thu-tuong-d1459487.html",
+     "date": "2026"
+    },
+    {
+     "name": "Báo Tin tức – quỹ mỏ VLXD đến 2045",
+     "url": "https://baotintuc.vn/chu-dong-quy-mo-vat-lieu-xay-dung-cho-cac-du-an-den-nam-2045-post983835.html",
+     "date": "2026"
+    },
+    {
+     "name": "Kế hoạch 267/KH-UBND Hà Nội",
+     "url": "https://thuvienphapluat.vn/van-ban/Xay-dung-Do-thi/Ke-hoach-267-KH-UBND-2026-phat-trien-nguon-cung-khoang-san-lam-vat-lieu-xay-dung-Ha-Noi-714282.aspx",
+     "date": "2026"
+    },
+    {
+     "name": "Sở XD Hà Nội – công bố giá VLXD Q2/2026",
+     "url": "https://cdn.thuvienphapluat.vn/uploads/nhadat/2026/NTTU/01072026/phu-luc-vlxd-ha-noi.pdf",
+     "date": "2026-07-01"
+    }
+   ]
+  },
+  {
+   "id": "be-tong",
+   "name": "Bê tông thương phẩm",
+   "tax": [
+    "xd.be-tong"
+   ],
+   "signal": "can-bang",
+   "trend": "up",
+   "headline": "Giá bê tông theo cát/đá & xi măng: xi măng dư cung nhưng cát HN khan hiếm → áp lực tăng ở HN.",
+   "supply": [
+    "Trạm trộn phân tán, bán kính giao ~20–30 km; công suất đủ"
+   ],
+   "demand": [
+    "Cao tầng dùng M350–M500"
+   ],
+   "trade": [
+    "Không giao thương quốc tế"
+   ],
+   "rec": "VN",
+   "rec_detail": "Đấu thầu theo cụm trạm gần công trường; giá M400 tham khảo: HN 1,21–1,66 triệu đ/m³, TP.HCM 1,35–1,42 triệu đ/m³ (bảng giá NCC 10/2026, xem Bảng giá).",
+   "clusters": [
+    {
+     "name": "Hà Nội",
+     "where": "Đông Anh, Long Biên, Hà Đông",
+     "examples": "Bê tông Hà Nội (betonghanoi), Chèm (betongtuoichem), Việt Đức, Lilama"
+    },
+    {
+     "name": "TP.HCM",
+     "where": "Thủ Đức, Bình Chánh, Nhà Bè",
+     "examples": "Bê tông Đông Nam, Mekong Thương Tín, Lê Phan, Fico"
+    }
+   ],
+   "risks": [
+    "Chất lượng: thí nghiệm mẫu R28, độ sụt, phụ gia",
+    "Giờ cấm tải nội đô"
+   ],
+   "levers": [
+    "Tách giá vật liệu khỏi phí bơm/vận chuyển",
+    "Điều chỉnh giá theo chỉ số xi măng & cát của Sở XD"
+   ],
+   "timing": "Chốt giá theo quý; với dự án HN 2027 nên ràng buộc nguồn cát của trạm.",
+   "calc": null,
+   "sources": [
+    {
+     "name": "Bê tông Hà Nội – bảng giá",
+     "url": "https://betonghanoi.com/",
+     "date": "2026-10"
+    },
+    {
+     "name": "Bê tông Đông Nam – bảng giá TP.HCM",
+     "url": "https://betongdongnam.com/cap-nhat-gia-be-tong-tuoi-tphcm-nhanh/",
+     "date": "2026-10"
+    },
+    {
+     "name": "Mekong Thương Tín – giá bê tông tươi",
+     "url": "https://mekongthuongtin.com/gia-be-tong-tuoi/",
+     "date": "2026-10"
+    }
+   ]
+  },
+  {
+   "id": "nhom-kinh",
+   "name": "Nhôm / kính mặt dựng",
+   "tax": [
+    "md.nhom",
+    "md.kinh",
+    "md.mat-dung"
+   ],
+   "signal": "du-cung",
+   "trend": "down",
+   "headline": "Kính float TQ yếu (~1.058–1.060 NDT/tấn giữa 10/2026); nhôm LME hạ về ~3.000 USD/tấn; nhôm định hình TQ chịu CBPG 2,85–35,58% đến 2029.",
+   "supply": [
+    "Kính float TQ: giá giao ngay yếu, một số dây chuyền Tây Nam ngừng (10/2026)",
+    "Nhôm LME ~3.001,5 USD/tấn (tuần 12–16/10), giảm từ đỉnh 3.855 USD/tấn (6/2026)"
+   ],
+   "demand": [
+    "Cầu mặt dựng cao tầng VN ổn định; BĐS TQ suy yếu → dư cung kính TQ"
+   ],
+   "trade": [
+    "VN áp thuế CBPG nhôm định hình TQ (QĐ 2531/QĐ-BCT, HS 7604) 2,85–35,58%, hiệu lực đến 02/10/2029",
+    "TQ bỏ hoàn thuế xuất khẩu một số kính (PV) từ 01/04/2026"
+   ],
+   "rec": "VN + TQ",
+   "rec_detail": "Nhôm định hình: VN (hoặc nhà xuất khẩu TQ có mức CBPG thấp, kiểm tra tên trong QĐ 2531). Kính hộp Low-E: so sánh VN (Viglacera, CFG) với TQ — TQ đang dư cung, chưa thấy CBPG kính TQ của VN; chi phí vỡ/hỏng vận chuyển cần tính vào.",
+   "clusters": [
+    {
+     "name": "Kính TQ",
+     "where": "Quảng Đông, Hà Bắc, Hồ Bắc",
+     "examples": "CSG, Xinyi, Taiwan Glass (TQ)"
+    },
+    {
+     "name": "Nhôm & kính VN",
+     "where": "Hưng Yên, Bình Dương, Bắc Ninh",
+     "examples": "Austdoor, Yngsa, Viglacera kính, Chu Lai – CFG"
+    }
+   ],
+   "risks": [
+    "Chứng nhận kính an toàn TCVN 7455, thông số Low-E (U, SHGC) phải test độc lập",
+    "Lead time kính hộp nhập 8–12 tuần (ƯỚC TÍNH)"
+   ],
+   "levers": [
+    "Đấu thầu theo hệ (system) + tách vật tư kính/nhôm",
+    "Gắn giá nhôm vào LME + phí gia công"
+   ],
+   "timing": "Nhôm/kính đang mềm → thời điểm tốt để chốt gói mặt dựng 2027.",
+   "calc": {
+    "unit": "m² kính hộp Low-E",
+    "fob": 28,
+    "qty": 700,
+    "cont": "40HQ",
+    "duty": 0,
+    "ad": 0,
+    "vat": 10,
+    "logi": 3,
+    "note": "FOB là GIẢ ĐỊNH minh họa — thay bằng báo giá thực",
+    "vn": 3100000,
+    "vn_note": "Kính hộp Low-E hoàn thiện VN 3,1–3,8 triệu đ/m² (pswindow, gồm lắp)"
+   },
+   "sources": [
+    {
+     "name": "Jubo – giá kính & nhôm 16/10/2026",
+     "url": "https://jbgy.atjubo.com/en-US/News/Detail/5797?category=%E4%BA%A7%E5%93%81%E8%B5%84%E8%AE%AF",
+     "date": "2026-10-16"
+    },
+    {
+     "name": "LME Weekly 12–16/10/2026",
+     "url": "https://www.lmeinsight.com/the-lme-weekly-review-12-16-october-2026/",
+     "date": "2026-10"
+    },
+    {
+     "name": "QĐ 2531/QĐ-BCT – CBPG nhôm TQ",
+     "url": "https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-2531-QD-BCT-2024-ket-qua-ra-soat-ap-dung-chong-ban-pha-gia-nhom-xuat-xu-Trung-Hoa-626320.aspx",
+     "date": "2024"
+    },
+    {
+     "name": "Chongbanphagia.vn – rà soát AD05",
+     "url": "https://chongbanphagia.vn/cuc-pvtm-thong-bao-ve-viec-tiep-nhan-ho-so-yeu-cau-ra-soat-bien-phap-cbpg-doi-voi-mot-so-san-pham-nh-n31404.html",
+     "date": "2026"
+    },
+    {
+     "name": "PS Window – kính Low-E",
+     "url": "https://pswindow.vn/mat-dung-kinh-low-e.html",
+     "date": "2026"
+    }
+   ]
+  },
+  {
+   "id": "cap-dien",
+   "name": "Cáp điện / đồng",
+   "tax": [
+    "mep.cap-dien",
+    "mep.dong-nhom"
+   ],
+   "signal": "khan-hiem",
+   "trend": "up",
+   "headline": "Đồng LME lập đỉnh ~14.533 USD/tấn (08/09/2026) → giá cáp tăng; Cadivi điều chỉnh bảng giá từ 06/04/2026.",
+   "supply": [
+    "Nhà máy cáp VN đủ công suất (Cadivi, LS-VINA, Trần Phú, Daphaco)"
+   ],
+   "demand": [
+    "Data center, lưới điện, BĐS kéo cầu đồng toàn cầu"
+   ],
+   "trade": [
+    "EU đề xuất CBPG tạm thời 12,4–14,4% ống đồng VN (ảnh hưởng ngành đồng VN)"
+   ],
+   "rec": "VN",
+   "rec_detail": "Cáp hạ thế/trung thế: nhà máy VN (giá chiết khấu đại lý 30–40% tham khảo). Ký giá gắn LME đồng + phí gia công; hedge khối lượng lớn.",
+   "clusters": [
+    {
+     "name": "Cáp VN",
+     "where": "TP.HCM, Hải Dương, Hà Nội",
+     "examples": "Cadivi, LS-VINA, Trần Phú, Daphaco"
+    }
+   ],
+   "risks": [
+    "Hàng giả nhãn, tiết diện thiếu — kiểm tra điện trở ruột dẫn theo TCVN 6612"
+   ],
+   "levers": [
+    "Công thức giá = LME Cu bình quân tháng × hàm lượng + phí gia công cố định",
+    "Chốt khối lượng khi LME điều chỉnh"
+   ],
+   "timing": "Đồng ở vùng đỉnh → tránh chốt giá cố định dài hạn; dùng công thức gắn LME.",
+   "calc": null,
+   "sources": [
+    {
+     "name": "VietnamFinance – giá đồng lập đỉnh",
+     "url": "https://vietnamfinance.vn/gia-dong-lap-dinh-lich-su-gee-va-tya-doi-mat-ap-luc-d150310.html",
+     "date": "2026-09"
+    },
+    {
+     "name": "Cadivi – bảng giá",
+     "url": "https://cadivi.vn/vn/bang-gia.html",
+     "date": "2026-04-06"
+    },
+    {
+     "name": "KTH Electric – chiết khấu dây cáp",
+     "url": "https://kth-electric.com/gia-day-dien/",
+     "date": "2026"
+    }
+   ]
+  },
+  {
+   "id": "ong-nhua",
+   "name": "Ống nhựa PVC/HDPE/PPR",
+   "tax": [
+    "mep.ong-nuoc"
+   ],
+   "signal": "can-bang",
+   "trend": "up",
+   "headline": "Giá hạt nhựa PVC/HDPE tăng 2026; Tiền Phong, Bình Minh điều chỉnh bảng giá.",
+   "supply": [
+    "Ống nhựa VN đủ công suất, thị trường tập trung (Bình Minh, Tiền Phong, Hoa Sen, Đệ Nhất)"
+   ],
+   "demand": [
+    "Theo tiến độ MEP"
+   ],
+   "trade": [
+    "Nguyên liệu hạt nhựa nhập khẩu (TQ, Hàn Quốc, Trung Đông)"
+   ],
+   "rec": "VN",
+   "rec_detail": "Nhà máy VN; ống PPR cao cấp có thể so với hàng TQ/Đức. Giá gắn bảng giá công bố − chiết khấu.",
+   "clusters": [
+    {
+     "name": "Ống nhựa VN",
+     "where": "Hải Phòng, Bình Dương",
+     "examples": "Tiền Phong, Bình Minh, Hoa Sen, Dekko"
+    }
+   ],
+   "risks": [
+    "Áp lực danh định PN, chứng chỉ TCVN 8491/ISO 4427"
+   ],
+   "levers": [
+    "Chiết khấu theo bảng giá, khóa bảng giá 6 tháng"
+   ],
+   "timing": "Theo bảng giá mới — đàm phán khóa giá trước đợt điều chỉnh kế tiếp.",
+   "calc": null,
+   "sources": [
+    {
+     "name": "Tiền Phong – bảng giá HDPE",
+     "url": "https://tienphongnam.vn/catalogue/bang-gia-hdpe/",
+     "date": "2026"
+    }
+   ]
+  },
+  {
+   "id": "dieu-hoa",
+   "name": "Điều hòa / HVAC",
+   "tax": [
+    "mep.hvac"
+   ],
+   "signal": "can-bang",
+   "trend": "flat",
+   "headline": "VN nhập điều hòa chủ yếu từ Thái Lan & Malaysia; Daikin, Panasonic có nhà máy tại VN.",
+   "supply": [
+    "Nhà máy Daikin (Hưng Yên), Panasonic (Hà Nội)"
+   ],
+   "demand": [
+    "Căn hộ cao cấp chuyển sang VRV/VRF"
+   ],
+   "trade": [
+    "9T/2025: nhập khẩu điều hòa từ Thái Lan 57%, Malaysia 27,3%, TQ 8,3% (CRI)"
+   ],
+   "rec": "ASEAN / VN",
+   "rec_detail": "Mua theo hãng qua nhà phân phối/dự án; ưu tiên hàng sản xuất VN/Thái (thuế ATIGA 0%). TQ cho dàn VRF thương hiệu nội địa TQ (Gree, Midea) nếu chấp nhận rủi ro bảo hành.",
+   "clusters": [
+    {
+     "name": "Hãng Nhật/Hàn",
+     "where": "VN, Thái Lan, Malaysia",
+     "examples": "Daikin, Panasonic, Mitsubishi Electric, LG, Samsung"
+    },
+    {
+     "name": "Hãng TQ",
+     "where": "Quảng Đông",
+     "examples": "Gree, Midea"
+    }
+   ],
+   "risks": [
+    "Bảo hành & dịch vụ sau bán (trạm bảo hành tại VN)",
+    "Môi chất R-32/R-410A theo quy định HFC"
+   ],
+   "levers": [
+    "Giá dự án (project price) theo số lượng; tách thiết bị và lắp đặt"
+   ],
+   "timing": "Mua trước mùa nóng (Q1) để có giá dự án tốt.",
+   "calc": {
+    "unit": "bộ (multi 2 chiều)",
+    "fob": 450,
+    "qty": 90,
+    "cont": "40HQ",
+    "duty": 0,
+    "ad": 0,
+    "vat": 10,
+    "logi": 3,
+    "note": "FOB GIẢ ĐỊNH minh họa; giả định C/O mẫu E/D (thuế 0%) — kiểm tra mã HS 8415",
+    "vn": null,
+    "vn_note": ""
+   },
+   "sources": [
+    {
+     "name": "CRI – nhập khẩu điều hòa VN",
+     "url": "https://www.cri-report.com/vietnam-air-conditioner-import-guide-2023-2025/",
+     "date": "2025"
+    },
+    {
+     "name": "Daikin – nhà máy VN",
+     "url": "https://www.daikin.com/press/2018/180518",
+     "date": "2018"
+    }
+   ]
+  },
+  {
+   "id": "thang-may",
+   "name": "Thang máy",
+   "tax": [
+    "mep.thang-may"
+   ],
+   "signal": "du-cung",
+   "trend": "down",
+   "headline": "Cuộc chiến giá thang máy TQ lan ra xuất khẩu; nhập khẩu thang máy của VN tăng gần 50% năm 2025.",
+   "supply": [
+    "TQ: thị trường lắp mới đã qua đỉnh (12,3 triệu thang đang vận hành)",
+    "VN 40–45 nghìn thang/năm"
+   ],
+   "demand": [
+    "Cao tầng VN + hạ tầng"
+   ],
+   "trade": [
+    "VN nhập khẩu thang máy +~50% (2025), chủ yếu từ TQ"
+   ],
+   "rec": "TQ (thương hiệu toàn cầu sản xuất tại TQ)",
+   "rec_detail": "Dự án trung–cao cấp: thang của hãng toàn cầu sản xuất tại TQ (Otis, Schindler, KONE, Hitachi, Mitsubishi) — giá cạnh tranh, có dịch vụ VN. Hạng sang/siêu cao tầng: giữ dòng cao cấp Nhật/EU. Thương hiệu TQ nội địa chỉ cho thấp tầng.",
+   "clusters": [
+    {
+     "name": "Nhà máy hãng toàn cầu tại TQ",
+     "where": "Thượng Hải, Hàng Châu, Quảng Châu",
+     "examples": "Otis, Schindler, KONE, Hitachi, Mitsubishi Electric"
+    },
+    {
+     "name": "Thương hiệu TQ",
+     "where": "Chiết Giang, Giang Tô",
+     "examples": "Canny, Express Lift (đối chiếu năng lực bảo trì tại VN)"
+    }
+   ],
+   "risks": [
+    "Bảo trì 10–20 năm, phụ tùng",
+    "Kiểm định QCVN 02:2019/BLĐTBXH"
+   ],
+   "levers": [
+    "Gói thiết bị + bảo trì dài hạn; so sánh tổng chi phí vòng đời"
+   ],
+   "timing": "Giá đang giảm → đàm phán mạnh, chốt cho các dự án 2027.",
+   "calc": null,
+   "sources": [
+    {
+     "name": "Tạp chí Thang máy – 'race to the bottom'",
+     "url": "https://tapchithangmay.vn/en/the-race-to-the-bottom-in-chinas-elevator-industry-p2026090816083455.html",
+     "date": "2026-09"
+    },
+    {
+     "name": "Tạp chí Thang máy – VN là thị trường nhập khẩu quan trọng",
+     "url": "https://tapchithangmay.vn/en/vietnam-is-becoming-an-important-elevator-import-market-for-china-p20260803081112232.html",
+     "date": "2026-08"
+    },
+    {
+     "name": "Tianxia Gongchang – ngành thang máy TQ 2026",
+     "url": "https://faxiangongchang.com/en/reports/china-elevator-industry-2026",
+     "date": "2026"
+    }
+   ]
+  },
+  {
+   "id": "mba-may-phat",
+   "name": "Máy biến áp / máy phát",
+   "tax": [
+    "mep.may-phat"
+   ],
+   "signal": "khan-hiem",
+   "trend": "up",
+   "headline": "Thiếu hụt máy biến áp toàn cầu: lead time MBA lực 36–48 tháng; MBA phân phối 12–24 tháng; xuất khẩu MBA TQ kỷ lục.",
+   "supply": [
+    "TQ xuất khẩu MBA 2025 kỷ lục 64,6 tỷ NDT (+36%)"
+   ],
+   "demand": [
+    "AI/data center, lưới điện toàn cầu"
+   ],
+   "trade": [
+    "Giá xuất khẩu MBA TQ sang Mỹ +112% n/n (8/2026)"
+   ],
+   "rec": "VN + TQ",
+   "rec_detail": "MBA phân phối (≤2.500 kVA): nhà sản xuất VN (giao nhanh hơn), TQ làm giá đối chứng (4–6 tuần cho hàng tiêu chuẩn). Máy phát: hãng (Cummins, Mitsubishi, Perkins) qua nhà lắp ráp VN. Đặt hàng sớm.",
+   "clusters": [
+    {
+     "name": "MBA VN",
+     "where": "Hà Nội, TP.HCM",
+     "examples": "THIBIDI, EEMC (Đông Anh), ABB Việt Nam"
+    },
+    {
+     "name": "MBA TQ",
+     "where": "Giang Tô, Chiết Giang",
+     "examples": "Nhiều nhà máy — kiểm tra test type theo IEC 60076"
+    }
+   ],
+   "risks": [
+    "Thử nghiệm điển hình, tổn hao không tải",
+    "Lead time & bảo hành"
+   ],
+   "levers": [
+    "Đặt cọc slot sản xuất; chuẩn hóa công suất cho nhiều dự án"
+   ],
+   "timing": "Khan hiếm → đặt hàng sớm ≥6–9 tháng trước khi cần.",
+   "calc": {
+    "unit": "máy (MBA 1.600 kVA)",
+    "fob": 28000,
+    "qty": 2,
+    "cont": "40HQ",
+    "duty": 0,
+    "ad": 0,
+    "vat": 10,
+    "logi": 3,
+    "note": "FOB GIẢ ĐỊNH (giá đơn vị TB xuất khẩu TQ ~28.200 USD/máy 2025)",
+    "vn": null,
+    "vn_note": ""
+   },
+   "sources": [
+    {
+     "name": "Bloomberg – MBA TQ xuất khẩu kỷ lục",
+     "url": "https://www.bloomberg.com/news/articles/2026-01-19/china-transformer-exports-hit-record-value-on-global-shortage",
+     "date": "2026-01-19"
+    },
+    {
+     "name": "Yicai – xuất khẩu MBA kỷ lục",
+     "url": "https://www.yicaiglobal.com/news/china-logs-record-transformer-exports-driven-by-ai-computing-boom",
+     "date": "2026"
+    },
+    {
+     "name": "INNO – chuỗi cung ứng MBA 2026",
+     "url": "https://www.fjinno.net/global-transformer-supply-chain-report-2026/",
+     "date": "2026"
+    },
+    {
+     "name": "FIJ – xuất khẩu MBA sang ĐNA",
+     "url": "https://www.fijtech.com/transformer-export-to-southeast-asia-guide/",
+     "date": "2026"
+    }
+   ]
+  },
+  {
+   "id": "tbvs",
+   "name": "Thiết bị vệ sinh",
+   "tax": [
+    "ht.tbvs"
+   ],
+   "signal": "du-cung",
+   "trend": "down",
+   "headline": "Giá xuất khẩu sứ vệ sinh TQ lao dốc: Q2/2026 TB 23,06 USD/chiếc (−58,2% n/n) sau khi TQ bỏ hoàn thuế VAT xuất khẩu từ 01/04/2026.",
+   "supply": [
+    "TQ H1/2026 xuất 53,51 triệu chiếc (+6,4%), giá trị −34,2% còn 1,689 tỷ USD"
+   ],
+   "demand": [
+    "Cao cấp VN: chuẩn ngầm Kohler/Grohe/TOTO"
+   ],
+   "trade": [
+    "Chỉ số giá sứ vệ sinh Phật Sơn −9,47% m/m (6/2026)"
+   ],
+   "rec": "TQ (OEM) + thương hiệu",
+   "rec_detail": "Thiết bị mang nhãn (bàn cầu, sen vòi chính): giữ thương hiệu, đàm phán khung. Hạng mục không nhãn (chậu phụ, phụ kiện, vách tắm): OEM Triều Châu/Phật Sơn với kiểm định độc lập.",
+   "clusters": [
+    {
+     "name": "Triều Châu",
+     "where": "Quảng Đông",
+     "examples": "Cụm sứ vệ sinh xuất khẩu (OEM)"
+    },
+    {
+     "name": "Phật Sơn / Khai Bình",
+     "where": "Quảng Đông",
+     "examples": "Sen vòi, vách tắm, phụ kiện"
+    },
+    {
+     "name": "VN",
+     "where": "Hà Nội, Bình Dương",
+     "examples": "TOTO VN, Inax (Lixil VN), Viglacera, Caesar"
+    }
+   ],
+   "risks": [
+    "Men, độ hút nước, chứng nhận TCVN 6073; bảo hành nhà sản xuất tại VN"
+   ],
+   "levers": [
+    "Giá FOB đang giảm sâu → yêu cầu báo giá lại",
+    "Mua trọn gói theo phòng tắm"
+   ],
+   "timing": "Canton Fair GĐ2 23–27/10/2026 → thời điểm lấy báo giá đối chứng.",
+   "calc": {
+    "unit": "bộ bàn cầu 1 khối",
+    "fob": 60,
+    "qty": 180,
+    "cont": "40HQ",
+    "duty": 0,
+    "ad": 0,
+    "vat": 10,
+    "logi": 3,
+    "note": "FOB GIẢ ĐỊNH minh họa cho hàng OEM tầm trung",
+    "vn": null,
+    "vn_note": ""
+   },
+   "sources": [
+    {
+     "name": "BRG – xuất khẩu sứ vệ sinh TQ 2026",
+     "url": "https://news.brgbuildingsolutions.com/post/china-s-sanitary-ceramics-exports-rise-in-volume-as-prices-plunge-in-2026",
+     "date": "2026"
+    },
+    {
+     "name": "JC68 – chỉ số giá Phật Sơn 6/2026",
+     "url": "https://www.jc68.com/news/show-25243.html",
+     "date": "2026-06"
+    },
+    {
+     "name": "Kingdoir – Canton Fair GĐ2",
+     "url": "https://www.kingdoir.com/news/2026-canton-fair-phase-2-a-sourcing-checklist-85638359.html",
+     "date": "2026-10"
+    }
+   ]
+  },
+  {
+   "id": "gach-da",
+   "name": "Gạch ốp lát / đá nung kết",
+   "tax": [
+    "ht.gach-da"
+   ],
+   "signal": "du-cung",
+   "trend": "down",
+   "headline": "Ngành gạch VN chỉ chạy ~50% công suất, tồn kho +30%; gạch Ấn Độ chiếm gần 60% nhập khẩu, bị CBPG 5,55–45,30%.",
+   "supply": [
+    "Viglacera ~43 triệu m²/năm (thị phần ~30%)",
+    "Prime (SCG) mở rộng porcelain thêm 6,6 triệu m² cuối 2026"
+   ],
+   "demand": [
+    "Cầu hoàn thiện yếu theo BĐS"
+   ],
+   "trade": [
+    "Nhập khẩu gạch Ấn Độ ~11,5 triệu m² (~60% nhập khẩu)",
+    "Đá nung kết Phật Sơn 9,5–36 USD/m² FOB"
+   ],
+   "rec": "VN (gạch) + TQ (đá nung kết)",
+   "rec_detail": "Gạch porcelain: nhà máy VN dư công suất → đấu thầu ép giá. Đá nung kết khổ lớn (mặt bếp, ốp tường): TQ (Phật Sơn).",
+   "clusters": [
+    {
+     "name": "Gạch VN",
+     "where": "Bắc Ninh, Phú Thọ, Bình Dương",
+     "examples": "Viglacera, Prime, Đồng Tâm, Taicera"
+    },
+    {
+     "name": "Đá nung kết TQ",
+     "where": "Phật Sơn (Quảng Đông)",
+     "examples": "Nhiều nhà máy — kiểm tra độ hút nước & phẳng"
+    }
+   ],
+   "risks": [
+    "Sai màu giữa lô (lot/shade)",
+    "Vỡ khi vận chuyển tấm khổ lớn"
+   ],
+   "levers": [
+    "Đặt lô sản xuất riêng (1 lot) cho dự án",
+    "Bảo lưu hàng dự phòng 3–5%"
+   ],
+   "timing": "Dư cung → chốt giá 12 tháng ngay.",
+   "calc": {
+    "unit": "m² đá nung kết 12 mm",
+    "fob": 18,
+    "qty": 550,
+    "cont": "20GP",
+    "duty": 0,
+    "ad": 0,
+    "vat": 10,
+    "logi": 3,
+    "note": "FOB trong khoảng 9,5–36 USD/m² (made-in-china); khối lượng/container GIẢ ĐỊNH",
+    "vn": null,
+    "vn_note": ""
+   },
+   "sources": [
+    {
+     "name": "Vietnam.vn – gạch nhập khẩu gây sức ép",
+     "url": "https://www.vietnam.vn/gach-nhap-khau-loi-the-gia-suc-ep-lon-doi-voi-doanh-nghiep-gach-trong-nuoc",
+     "date": "2026"
+    },
+    {
+     "name": "Báo Xây dựng – gạch Ấn Độ",
+     "url": "https://dangcongsan.vn/boxaydung/tin-tuc/hoat-dong/gach-op-lat-kem-chat-luong-tu-an-do-tran-ngap-gia-re-keo-sap-thi-truong.html",
+     "date": "2026"
+    },
+    {
+     "name": "SCGD – Prime analyst trip",
+     "url": "https://scgd.listedcompany.com/misc/presentation/20260326-scgd-analyst-trip-2026.pdf",
+     "date": "2026-03-26"
+    },
+    {
+     "name": "Made-in-China – đá nung kết Phật Sơn",
+     "url": "https://bright-link.en.made-in-china.com/product-group/voZaTbqOruhA/Sintered-Stone-catalog-1.html",
+     "date": "2026"
+    }
+   ]
+  },
+  {
+   "id": "tu-bep",
+   "name": "Tủ bếp / nội thất liền tường",
+   "tax": [
+    "ht.tu-bep"
+   ],
+   "signal": "du-cung",
+   "trend": "down",
+   "headline": "Nhà sản xuất TQ (OPPEIN) và nhà thầu fit-out TQ (Gold Mantis) đẩy mạnh B2B Đông Nam Á; BĐS TQ suy giảm → dư công suất.",
+   "supply": [
+    "Đầu tư BĐS TQ 9T/2026 −20,6% → dư công suất nội thất"
+   ],
+   "demand": [
+    "Chuẩn bàn giao cao cấp: phụ kiện Hafele/Blum, bếp Bosch"
+   ],
+   "trade": [
+    "Gold Mantis trúng 4 gói nội thất khách sạn tại VN"
+   ],
+   "rec": "TQ (thùng tủ) + VN (lắp đặt)",
+   "rec_detail": "Thùng tủ & cánh: OEM TQ hoặc nhà máy VN (Bình Dương); phụ kiện EU mua khung; lắp đặt bởi nhà thầu VN.",
+   "clusters": [
+    {
+     "name": "TQ",
+     "where": "Quảng Châu, Phật Sơn",
+     "examples": "OPPEIN, Gold Mantis (fit-out)"
+    },
+    {
+     "name": "VN",
+     "where": "Bình Dương, Đồng Nai",
+     "examples": "Các nhà máy nội thất xuất khẩu"
+    }
+   ],
+   "risks": [
+    "Phát thải formaldehyde (E1/E0)",
+    "Dung sai đo đạc, bảo hành tại chỗ"
+   ],
+   "levers": [
+    "Tách gói vật tư/phụ kiện/lắp đặt",
+    "Mẫu nhà mẫu trước khi sản xuất hàng loạt"
+   ],
+   "timing": "Chốt mẫu & giá trước khi nhà máy TQ vào mùa cao điểm Q1.",
+   "calc": {
+    "unit": "bộ bếp (căn 2PN)",
+    "fob": 1800,
+    "qty": 25,
+    "cont": "40HQ",
+    "duty": 0,
+    "ad": 0,
+    "vat": 10,
+    "logi": 3,
+    "note": "FOB GIẢ ĐỊNH minh họa",
+    "vn": null,
+    "vn_note": ""
+   },
+   "sources": [
+    {
+     "name": "OPPEIN – dự án châu Á",
+     "url": "https://www.oppeinhome.com/projects/asia-cases_stories",
+     "date": "2026"
+    },
+    {
+     "name": "Sina – Gold Mantis trúng thầu VN",
+     "url": "https://finance.sina.com.cn/stock/aigc/zdht/2026-06-02/doc-inhzzqcm1536332.shtml",
+     "date": "2026-06-02"
+    },
+    {
+     "name": "NBS Trung Quốc 9T/2026",
+     "url": "https://www.stats.gov.cn/english/PressRelease/202610/t20261020_1965663.html",
+     "date": "2026-10-20"
+    }
+   ]
+  },
+  {
+   "id": "cua",
+   "name": "Cửa (gỗ, chống cháy, khóa)",
+   "tax": [
+    "ht.cua"
+   ],
+   "signal": "chua-du",
+   "trend": "flat",
+   "headline": "Chưa có số liệu cung–cầu công khai đáng tin cậy cho phân khúc cửa; đánh giá định tính.",
+   "supply": [
+    "n/a"
+   ],
+   "demand": [
+    "Theo tiến độ hoàn thiện"
+   ],
+   "trade": [
+    "n/a"
+   ],
+   "rec": "VN (cửa chống cháy) + TQ (cửa gỗ công nghiệp)",
+   "rec_detail": "Cửa chống cháy phải có kiểm định PCCC VN → ưu tiên NCC VN có chứng nhận; cửa gỗ công nghiệp có thể OEM TQ; khóa/phụ kiện mua khung (Hafele, Yale).",
+   "clusters": [
+    {
+     "name": "VN",
+     "where": "Hà Nội, Bình Dương",
+     "examples": "Nhà sản xuất cửa chống cháy có kiểm định C07"
+    },
+    {
+     "name": "TQ",
+     "where": "Chiết Giang (Vĩnh Khang)",
+     "examples": "Cụm cửa gỗ/thép công nghiệp"
+    }
+   ],
+   "risks": [
+    "Chứng nhận chống cháy (EI 45/60/70) do Cục C07 kiểm định"
+   ],
+   "levers": [
+    "Tách cửa và phụ kiện khóa",
+    "Mua khung khóa theo danh mục dự án"
+   ],
+   "timing": "Theo tiến độ.",
+   "calc": {
+    "unit": "bộ cửa gỗ công nghiệp",
+    "fob": 120,
+    "qty": 120,
+    "cont": "40HQ",
+    "duty": 0,
+    "ad": 0,
+    "vat": 10,
+    "logi": 3,
+    "note": "FOB GIẢ ĐỊNH minh họa",
+    "vn": null,
+    "vn_note": ""
+   },
+   "sources": [
+    {
+     "name": "The Privé – vật liệu bàn giao (khóa, phụ kiện)",
+     "url": "https://canhotheprive.com.vn/danh-muc-vat-lieu-ban-giao/",
+     "date": "2026"
+    }
+   ]
+  }
+ ]
+}

@@ -15,6 +15,7 @@ LB_PER_T = 2204.62262
 NOW = dt.datetime.now(TZ)
 
 import unicodedata
+def _vn(v): return f"{v:,.0f}".replace(",", ".")  # Vietnamese thousands separator
 def slug(t):
     t = unicodedata.normalize("NFKD", t.replace("đ", "d").replace("Đ", "D")).encode("ascii", "ignore").decode().lower()
     return re.sub(r"[^a-z0-9]+", "_", t).strip("_")
@@ -49,7 +50,7 @@ def src_vcb():
         buy, tr, sell = [num(v) if v.strip() not in ("-", "") else None for v in m.groups()]
         out.append(item(f"fx_{code.lower()}_vnd", "vn", "Tỷ giá", f"{code}/VND Vietcombank (chuyển khoản)",
                         f"VND/{code}", "VND", tr or buy, "Vietcombank", "https://www.vietcombank.com.vn/vi-VN/KHCN/Cong-cu-Tien-ich/Ty-gia",
-                        note=f"Mua {buy:,.0f} · Bán {sell:,.0f}" if buy and sell else None, sell=sell))
+                        note=f"Mua {_vn(buy)} · Bán {_vn(sell)}" if buy and sell else None, sell=sell))
     if not out: raise RuntimeError("VCB XML parse failed")
     return out
 
@@ -157,11 +158,11 @@ def src_sjc():
         if name.startswith("Vàng SJC 1L") and "sjc_bar" not in [o["id"] for o in out]:
             buy, sell = num(c[-2], "."), num(c[-1], ".")
             out.append(item("sjc_bar", "vn", "Vàng trong nước", "Vàng miếng SJC 1L-10L (giá bán ra)", "VND/lượng", "VND",
-                            sell * 1000, "giavang.org (giá SJC)", url, note=f"Mua vào {buy*1000:,.0f}", buy=buy*1000))
+                            sell * 1000, "giavang.org (giá SJC)", url, note=f"Mua vào {_vn(buy*1000)}", buy=buy*1000))
         if name.startswith("Vàng nhẫn SJC 99,99% 1 chỉ") and "sjc_ring" not in [o["id"] for o in out]:
             buy, sell = num(c[-2], "."), num(c[-1], ".")
             out.append(item("sjc_ring", "vn", "Vàng trong nước", "Vàng nhẫn SJC 99,99% (giá bán ra)", "VND/lượng", "VND",
-                            sell * 1000, "giavang.org (giá SJC)", url, note=f"Mua vào {buy*1000:,.0f}", buy=buy*1000))
+                            sell * 1000, "giavang.org (giá SJC)", url, note=f"Mua vào {_vn(buy*1000)}", buy=buy*1000))
     if not out: raise RuntimeError("SJC parse failed")
     return out
 

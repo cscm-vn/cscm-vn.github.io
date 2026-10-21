@@ -1,0 +1,50 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nhà thầu & Chủ đầu tư – Masterise Procurement Hub</title><meta name="description" content="Theo dõi tin nhà thầu (trúng thầu, backlog, tài chính, hành vi giá) và chủ đầu tư đối thủ (mở bán, giá/m², tiêu chuẩn bàn giao, nhà cung cấp).">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<body class="hub" data-page="nhathau"><div id="hubnav"></div>
+<main class="wrap" id="main"><div class="crumb" id="crumb"></div>
+ <h1>Nhà thầu & Chủ đầu tư đối thủ</h1>
+ <p class="sub">Tin biên tập có nguồn + tin tự động (Google News, cập nhật hằng ngày) về tổng thầu, nhà thầu MEP/fit-out và các chủ đầu tư cạnh tranh: trúng thầu, backlog, tài chính, hành vi giá, mở bán, giá/m², tiêu chuẩn bàn giao, nhà cung cấp được chỉ định.</p>
+ <div class="tabs" id="tabs" role="tablist"><button data-k="contractor" role="tab">🏗️ Tin nhà thầu</button><button data-k="developer" role="tab">🏢 Chủ đầu tư / Đối thủ</button></div>
+ <div id="orgs" class="filters" aria-label="Lọc theo đơn vị"></div>
+ <div class="filters"><select id="mseg" aria-label="Phân khúc"><option value="">Mọi phân khúc</option></select><span class="seg" id="rg" aria-label="Khu vực"></span><input id="q" type="search" placeholder="Tìm: trúng thầu, backlog, mở bán, Kohler…" aria-label="Tìm trong tin"></div>
+ <div id="sum" class="small mute"></div>
+ <h2 id="h-ed">📌 Tin biên tập (đã kiểm chứng nguồn)</h2><div class="grid g2" id="ed"><div class="empty">Đang tải…</div></div>
+ <h2>🛰️ Tin tự động 30 ngày (Google News)</h2><ul class="news card" id="rss"><li class="mute">Đang tải…</li></ul>
+ <div class="foot" id="foot"></div></main>
+<script>
+(async () => {
+ const [mk, fd, sg] = await Promise.all([HUB.get("market.json"), HUB.get("feed.json"), HUB.get("segments.json")]); const E = HUB.esc;
+ const SEG = Object.fromEntries((sg?.segments || []).map(s => [s.id, s.name]));
+ let kind = HUB.qs("t") === "developer" ? "developer" : "contractor", org = HUB.qs("org") || "", rg = "";
+ const ED = (mk?.items || []).filter(x => x.org_type), RS = (fd?.items || []).filter(x => x.org_type);
+ document.getElementById("mseg").innerHTML += Object.entries(SEG).map(([k, v]) => `<option value="${k}">${E(v)}</option>`).join("");
+ if (HUB.qs("seg")) document.getElementById("mseg").value = HUB.qs("seg");
+ const RG = [["", "Mọi khu vực"], ["Hà Nội", "Hà Nội"], ["TP.HCM", "TP.HCM"]];
+ document.getElementById("rg").innerHTML = RG.map(([k, l]) => `<button data-r="${k}" class="${k ? "" : "on"}">${l}</button>`).join("");
+ const card = x => `<div class="card"><h3><a href="${E(x.sources[0].url)}" target="_blank" rel="noopener">${E(x.title)}</a></h3>
+  <div><span class="pill cat">${E(x.org)}</span><span class="pill ${x.region === "Hà Nội" ? "hn" : x.region === "TP.HCM" ? "hcm" : ""}">${E(x.region)}</span>${x.mseg ? `<span class="pill">${E(SEG[x.mseg] || x.mseg)}</span>` : ""}<span class="small mute">${HUB.date(x.date)}</span></div>
+  <p style="margin:6px 0">${E(x.summary)}</p>${x.takeaway ? `<div class="why"><b>Hàm ý cho mua sắm:</b> ${E(x.takeaway)}</div>` : ""}
+  <div class="small">Nguồn: ${x.sources.map(s => `<a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.name)} ↗</a>`).join(" · ")}</div></div>`;
+ const draw = () => {
+  document.querySelectorAll("#tabs button").forEach(b => { b.classList.toggle("on", b.dataset.k === kind); b.setAttribute("aria-selected", b.dataset.k === kind); });
+  const names = [...new Set([...ED, ...RS].filter(x => x.org_type === kind).map(x => x.org))].sort((a, b) => a.localeCompare(b, "vi"));
+  const cnt = n => ED.filter(x => x.org === n).length + RS.filter(x => x.org === n).length;
+  document.getElementById("orgs").innerHTML = `<button class="chip ${org ? "" : "on"}" data-o="">Tất cả</button>` + names.map(n => `<button class="chip ${n === org ? "on" : ""}" data-o="${E(n)}">${E(n)} <span class="${n === org ? "" : "mute"}">${cnt(n)}</span></button>`).join("");
+  document.querySelectorAll("#orgs .chip").forEach(b => b.onclick = () => { org = b.dataset.o; sync(); draw(); });
+  const sgv = document.getElementById("mseg").value, q = HUB.strip(document.getElementById("q").value).split(/\s+/).filter(Boolean);
+  const ok = (x, txt) => x.org_type === kind && (!org || x.org === org) && (!sgv || x.mseg === sgv) && q.every(w => HUB.strip(txt).includes(w));
+  const L = ED.filter(x => ok(x, x.title + " " + x.summary + " " + x.org) && (!rg || x.region === rg || (x.region || "").includes(rg))).sort((a, b) => b.date.localeCompare(a.date));
+  const F = RS.filter(x => ok(x, x.title + " " + x.source + " " + x.org) && (!rg || HUB.strip(x.title).includes(HUB.strip(rg === "TP.HCM" ? "hcm" : rg)))).sort((a, b) => b.date.localeCompare(a.date));
+  document.getElementById("sum").textContent = `${L.length} tin biên tập · ${F.length} tin tự động${org ? " · " + org : ""}`;
+  document.getElementById("ed").innerHTML = L.map(card).join("") || `<div class="empty">Chưa có tin biên tập phù hợp bộ lọc. Thử bỏ bớt bộ lọc hoặc xem tin tự động bên dưới.</div>`;
+  document.getElementById("rss").innerHTML = F.slice(0, 80).map(x => `<li><span class="pill cat">${E(x.org)}</span><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="small mute">${HUB.date(x.date)} · ${E(x.source)}</span></li>`).join("") || '<li class="mute">Chưa có tin tự động phù hợp (nguồn RSS cập nhật mỗi ngày).</li>';
+ };
+ const sync = () => { const p = new URLSearchParams(); if (kind !== "contractor") p.set("t", kind); if (org) p.set("org", org); const s = document.getElementById("mseg").value; if (s) p.set("seg", s); history.replaceState(null, "", "?" + p); };
+ document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { kind = b.dataset.k; org = ""; sync(); draw(); });
+ document.querySelectorAll("#rg button").forEach(b => b.onclick = () => { rg = b.dataset.r; document.querySelectorAll("#rg button").forEach(z => z.classList.toggle("on", z === b)); draw(); });
+ document.getElementById("mseg").oninput = () => { sync(); draw(); }; document.getElementById("q").oninput = draw;
+ HUB.crumb(["<b>Nhà thầu & Chủ đầu tư</b>"]); draw();
+ HUB.foot(`Tin tự động lấy từ Google News (truy vấn theo tên đơn vị, gắn nhãn theo tiêu đề – có thể lẫn tin không liên quan). Cập nhật: ${HUB.date(fd?.updated)}.`);
+})();
+</script></body></html>

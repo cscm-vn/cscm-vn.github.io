@@ -1,0 +1,67 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SCM – Cung cầu & Sourcing – Masterise Procurement Hub</title><meta name="description" content="Phân tích cung cầu, tín hiệu cân bằng thị trường, khuyến nghị nguồn VN/Trung Quốc và tính chi phí nhập khẩu cho 14 nhóm vật tư chính.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<body class="hub" data-page="scm"><div id="hubnav"></div>
+<main class="wrap" id="main"><div class="crumb" id="crumb"></div>
+ <h1>SCM – Cung cầu & Sourcing</h1>
+ <p class="sub">Cho từng nhóm vật tư chính: tín hiệu cân bằng thị trường (dư cung / cân bằng / khan hiếm), số liệu cung–cầu có nguồn, khuyến nghị nguồn mua Việt Nam vs Trung Quốc, cụm nhà cung cấp, rủi ro, đòn bẩy đàm phán và công cụ tính giá về kho (landed cost). <b>Số liệu ước tính/giả định được ghi rõ.</b></p>
+ <div class="grid g4 kpis" id="sig"></div>
+ <div class="filters"><span class="seg" id="sf" aria-label="Lọc theo tín hiệu"></span><input id="q" type="search" placeholder="Tìm nhóm: thép, kính, thang máy…" aria-label="Tìm nhóm vật tư"></div>
+ <div class="tw" style="max-height:none"><table class="t" id="ov"><tr><td class="mute">Đang tải…</td></tr></table></div>
+ <div id="detail"></div>
+ <h2 id="calc">🧮 Tính giá về kho Trung Quốc → Việt Nam (landed cost)</h2>
+ <div class="card" id="calcbox"><div class="empty">Đang tải…</div></div>
+ <div class="foot" id="foot"></div></main>
+<script>
+(async () => {
+ const [d, h] = await Promise.all([HUB.get("scm.json"), HUB.get("hub.json")]); const E = HUB.esc; HUB.crumb(["<b>SCM – Cung cầu & Sourcing</b>"]);
+ if (!d) { document.getElementById("ov").innerHTML = '<tr><td class="empty">Không tải được dữ liệu SCM (data/scm.json).</td></tr>'; return; }
+ const SIG = {"du-cung": ["Dư cung", "#1e8449"], "can-bang": ["Cân bằng", "#b7791f"], "khan-hiem": ["Khan hiếm", "#c0392b"], "chua-du": ["Chưa đủ dữ liệu", "#667085"]};
+ const TR = {up: "↑ giá có xu hướng tăng", down: "↓ giá có xu hướng giảm", flat: "→ đi ngang"};
+ const badge = s => `<span class="sig" style="background:${SIG[s][1]}">${SIG[s][0]}</span>`;
+ const C = d.categories; let sf = "", cur = HUB.qs("c");
+ document.getElementById("sig").innerHTML = Object.keys(SIG).map(k => { const n = C.filter(c => c.signal === k); return `<div class="tile"><b>${badge(k)}</b><div class="kpi">${n.length} <small>nhóm</small></div><div class="small">${n.map(c => E(c.name)).join(", ") || "–"}</div></div>`; }).join("");
+ document.getElementById("sf").innerHTML = `<button data-s="" class="on">Tất cả (${C.length})</button>` + Object.keys(SIG).map(k => `<button data-s="${k}">${SIG[k][0]}</button>`).join("");
+ const ov = () => { const q = HUB.strip(document.getElementById("q").value);
+  const L = C.filter(c => (!sf || c.signal === sf) && (!q || HUB.strip(c.name + " " + c.headline).includes(q)));
+  document.getElementById("ov").innerHTML = `<tr><th>Nhóm vật tư</th><th>Tín hiệu</th><th>Xu hướng giá</th><th>Nguồn khuyến nghị</th><th>Điểm chính</th></tr>` + L.map(c => `<tr id="r-${c.id}"><td><a href="#c-${c.id}" data-c="${c.id}"><b>${E(c.name)}</b></a></td><td>${badge(c.signal)}</td><td class="small">${TR[c.trend]}</td><td><b>${E(c.rec)}</b></td><td class="small">${E(c.headline)}</td></tr>`).join("") + (L.length ? "" : '<tr><td colspan=5 class="mute">Không có nhóm phù hợp.</td></tr>');
+  document.querySelectorAll("#ov a[data-c]").forEach(a => a.onclick = e => { e.preventDefault(); show(a.dataset.c, true); }); };
+ document.querySelectorAll("#sf button").forEach(b => b.onclick = () => { sf = b.dataset.s; document.querySelectorAll("#sf button").forEach(z => z.classList.toggle("on", z === b)); ov(); });
+ document.getElementById("q").oninput = ov; ov();
+ const li = a => a && a.length ? `<ul>${a.map(x => `<li>${E(x)}</li>`).join("")}</ul>` : '<p class="mute">n/a</p>';
+ function show(id, scroll) { const c = C.find(x => x.id === id) || C[0]; cur = c.id; history.replaceState(null, "", "?c=" + c.id);
+  document.getElementById("detail").innerHTML = `<div class="card" id="c-${c.id}" style="margin-top:14px"><h2 style="margin-top:0">${E(c.name)} ${badge(c.signal)} <span class="small mute">${TR[c.trend]} · cập nhật ${HUB.date(d.updated)}</span></h2>
+   <div class="ins"><b>Khuyến nghị nguồn: ${E(c.rec)}.</b> ${E(c.rec_detail)}</div>
+   <div class="grid g3" style="margin-top:10px"><div><h3>Cung</h3>${li(c.supply)}</div><div><h3>Cầu</h3>${li(c.demand)}</div><div><h3>Thương mại, thuế & phòng vệ</h3>${li(c.trade)}</div></div>
+   <h3>Cụm nhà cung cấp</h3><div class="tw" style="max-height:none"><table class="t"><tr><th>Cụm</th><th>Khu vực</th><th>Ví dụ nhà cung cấp</th></tr>${c.clusters.map(k => `<tr><td>${E(k.name)}</td><td>${E(k.where)}</td><td>${E(k.examples)}</td></tr>`).join("")}</table></div>
+   <p class="small mute">Ví dụ nhà cung cấp chỉ để định hướng khảo sát, không phải danh sách đã thẩm định.</p>
+   <div class="grid g3"><div><h3>Rủi ro (chất lượng, lead time, bảo hành, TCVN)</h3>${li(c.risks)}</div><div><h3>Đòn bẩy đàm phán</h3>${li(c.levers)}</div><div><h3>Thời điểm</h3><p>${E(c.timing)}</p></div></div>
+   <div class="small">Nguồn: ${c.sources.map(s => `<a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.name)}${s.date ? " (" + E(s.date) + ")" : ""} ↗</a>`).join(" · ")}</div>
+   <p class="small" style="margin-top:8px"><a href="danh-muc.html?c=${c.tax[0]}">→ Giá & tin của nhóm này</a>${c.calc ? ` · <a href="#calc" onclick="HUB_CALC('${c.id}')">→ Tính landed cost với giả định của nhóm</a>` : ""}</p></div>`;
+  document.querySelectorAll("#ov tr").forEach(r => r.style.background = r.id === "r-" + c.id ? "#f0f6fc" : "");
+  if (scroll) document.getElementById("c-" + c.id).scrollIntoView({behavior: "smooth", block: "start"}); }
+ show(cur || C[0].id, !!cur);
+ // ---- landed-cost calculator
+ const fx = h?.usd_vnd || 26300; const fxNote = h?.usd_vnd ? `tỷ giá USD/VND từ Bảng giá (${HUB.date(h.updated)})` : "tỷ giá giả định — nhập tỷ giá thực";
+ const CC = C.filter(c => c.calc);
+ document.getElementById("calcbox").innerHTML = `<div class="filters"><label>Nhóm <select id="k-cat">${CC.map(c => `<option value="${c.id}">${E(c.name)}</option>`).join("")}</select></label></div>
+  <div class="calc">${[["fob", "Giá FOB (USD / đơn vị)"], ["qty", "Số đơn vị / container"], ["frt", "Cước biển (USD / container)"], ["ins", "Bảo hiểm (% FOB)"], ["duty", "Thuế nhập khẩu (%)"], ["ad", "Thuế chống bán phá giá / tự vệ (%)"], ["vat", "VAT nhập khẩu (%)"], ["logi", "Logistics nội địa + thông quan (% CIF)"], ["fx", "Tỷ giá (VND / USD)"], ["vn", "Giá mua trong nước để so sánh (VND / đơn vị, tùy chọn)"]].map(([k, l]) => `<label>${l}<input id="k-${k}" type="number" inputmode="decimal" step="any" min="0"></label>`).join("")}</div>
+  <div id="k-out" class="ins" aria-live="polite"></div><p class="small mute" id="k-note"></p>
+  <p class="small"><b>Giả định chung:</b> ${E(d.assumptions)} ${E(d.freight.text)} Nguồn cước: <a href="${E(d.freight.source.url)}" target="_blank" rel="noopener">${E(d.freight.source.name)} ↗</a>. VAT được tính trên (CIF + thuế NK + thuế CBPG) và thường được khấu trừ — bảng hiển thị cả giá có và không VAT.</p>`;
+ const $ = k => document.getElementById("k-" + k); const V = k => parseFloat($(k).value) || 0;
+ const fmt = v => Math.round(v).toLocaleString("vi-VN");
+ window.HUB_CALC = id => { const c = C.find(x => x.id === id); if (!c?.calc) return; const k = c.calc; $("cat").value = id;
+  Object.entries({fob: k.fob, qty: k.qty, frt: k.cont === "20GP" ? d.freight.d20 : d.freight.d40, ins: 0.3, duty: k.duty, ad: k.ad, vat: k.vat, logi: k.logi, fx, vn: k.vn || ""}).forEach(([a, b]) => $(a).value = b);
+  $("note").innerHTML = `Đơn vị: <b>${E(k.unit)}</b> · container ${E(k.cont)} · ${E(k.note)}${k.vn_note ? " · " + E(k.vn_note) : ""} · ${fxNote}.`; calc(); };
+ function calc() { const fob = V("fob"), q = Math.max(V("qty"), 1), fr = V("frt") / q, ins = fob * V("ins") / 100, cif = fob + fr + ins;
+  const duty = cif * V("duty") / 100, ad = cif * V("ad") / 100, vat = (cif + duty + ad) * V("vat") / 100, logi = cif * V("logi") / 100, fxv = V("fx");
+  const ex = (cif + duty + ad + logi) * fxv, inc = ex + vat * fxv, vn = V("vn"); const unit = C.find(x => x.id === $("cat").value)?.calc?.unit || "đơn vị";
+  const row = (l, u, b) => `<tr><td>${l}</td><td class="n">${u.toLocaleString("vi-VN", {maximumFractionDigits: 2})} USD</td><td class="n">${b ? "<b>" : ""}${fmt(u * fxv)} đ${b ? "</b>" : ""}</td></tr>`;
+  $("out").innerHTML = `<table class="t"><tr><th>Cấu phần (trên 1 ${E(unit)})</th><th class="n">USD</th><th class="n">VND</th></tr>${row("FOB", fob)}${row("Cước biển phân bổ", fr)}${row("Bảo hiểm", ins)}${row("= CIF", cif, 1)}${row("Thuế nhập khẩu", duty)}${row("Thuế CBPG / tự vệ", ad)}${row("Logistics nội địa + thông quan", logi)}
+   <tr><td><b>Giá về kho chưa VAT</b></td><td></td><td class="n"><b>${fmt(ex)} đ</b></td></tr>${row("VAT nhập khẩu (được khấu trừ)", vat)}<tr><td>Giá về kho gồm VAT</td><td></td><td class="n">${fmt(inc)} đ</td></tr>
+   ${vn ? `<tr><td><b>So với giá mua trong nước</b> (${fmt(vn)} đ)</td><td></td><td class="n"><b class="${ex < vn ? "down" : "up"}">${ex < vn ? "Nhập rẻ hơn " : "Nhập đắt hơn "}${Math.abs((ex / vn - 1) * 100).toLocaleString("vi-VN", {maximumFractionDigits: 1})}%</b></td></tr>` : ""}</table>`; }
+ document.querySelectorAll(".calc input").forEach(i => i.oninput = calc); $("cat").onchange = () => HUB_CALC($("cat").value);
+ HUB_CALC(C.find(c => c.id === cur)?.calc ? cur : CC[0].id);
+ HUB.foot("Tín hiệu cân bằng thị trường là đánh giá của nhóm mua sắm dựa trên số liệu có nguồn ghi kèm; cần cập nhật khi có số liệu mới.");
+})();
+</script></body></html>

@@ -1,10 +1,14 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Masterise Procurement Hub – Tổng quan hôm nay</title><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<title>Masterise Procurement Hub – Tổng quan hôm nay</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
 <body class="hub" data-page="home" data-hub-page><div id="hubnav"></div>
-<main class="wrap">
- <h1>Tổng quan hôm nay <span class="mute small" id="upd"></span></h1>
- <p class="sub">Điểm tin mỗi sáng cho nhóm đấu thầu: biến động giá, Hà Nội vs TP.HCM, xu hướng & cơ hội nhà cung cấp, tin thị trường. Bấm vào nhóm danh mục để đi sâu.</p>
- <div class="grid g4 kpis" id="kpi"></div>
+<main class="wrap" id="main">
+ <section class="hero"><div class="hero-in">
+  <div class="eyebrow" id="today">Bản tin mua sắm</div>
+  <h1>Tổng quan hôm nay</h1>
+  <p class="sub">Điểm tin mỗi sáng cho nhóm đấu thầu: giá vật tư then chốt, tín hiệu cung cầu, nhà thầu & đối thủ, xu hướng. <span id="upd"></span></p>
+  <div class="grid kpis" id="kpi"></div>
+  <div class="hstrip" id="hstrip"></div>
+ </div></section>
  <h2>Danh mục mua sắm</h2><div class="grid g4" id="tiles"></div>
  <div class="grid g2" style="margin-top:6px">
   <section><h2>🔥 Top 5 xu hướng & cơ hội <a class="small" href="xu-huong.html">xem tất cả →</a></h2><div id="top5" class="grid"></div></section>
@@ -17,16 +21,29 @@
   <section><h2>📰 Tin thị trường nổi bật <a class="small" href="thi-truong.html">xem tất cả →</a></h2><ul class="news card" id="mk"></ul></section>
   <section><h2>🛰️ Tin tự động mới nhất (RSS) <a class="small" href="thi-truong.html#feed">xem thêm →</a></h2><ul class="news card" id="feed"></ul></section>
  </div>
+ <div class="grid g2">
+  <section><h2>⚖️ Tín hiệu cung cầu (SCM) <a class="small" href="scm.html">phân tích & tính landed cost →</a></h2><div class="tw" style="max-height:none"><table class="t" id="scmw"><tr><td class="mute">Đang tải…</td></tr></table></div></section>
+  <section><h2>🏗️ Nhà thầu & chủ đầu tư <a class="small" href="nha-thau.html">xem tất cả →</a></h2>
+   <div class="seg" id="orgseg"><button data-k="contractor" class="on">Tin nhà thầu</button><button data-k="developer">Chủ đầu tư / Đối thủ</button></div><ul class="news card" id="orgl" style="margin-top:8px"></ul></section>
+ </div>
  <div class="foot" id="foot"></div>
 </main>
 <script>
 (async () => {
  const [h, tr, mk, fd, t] = await Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.get("feed.json"), HUB.tax()]);
  const E = HUB.esc, by = id => h.items.find(x => x.id === id);
- document.getElementById("upd").textContent = "· cập nhật giá " + (h.updated || "").replace("T", " ").slice(0, 16) + " (giờ VN)";
- const K = [["fx_usd_vnd", "USD/VND (VCB)"], ["lme_copper", "Đồng LME"], ["lme_aluminium", "Nhôm LME"], ["vnsteel_hoa_phat_mien_bac_cb300_d10", "Thép HPG CB300 D10 – Bắc"]];
- document.getElementById("kpi").innerHTML = K.map(([id, l]) => { const x = by(id); if (!x) return ""; return `<a class="tile" href="mat-hang.html?id=${id}"><span class="small">${l}</span>
-   <div class="kpi">${HUB.num(x.price)} <small>${E(x.unit)}</small></div><span class="small">Phiên: ${HUB.pct(x.d1)} · Tháng: ${HUB.pct(x.mom)}</span></a>`; }).join("");
+ const up = (h.updated || "").replace("T", " ").slice(0, 16);
+ document.getElementById("today").textContent = "Bản tin mua sắm · " + new Date().toLocaleDateString("vi-VN", {weekday: "long", day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Asia/Ho_Chi_Minh"});
+ document.getElementById("upd").textContent = up ? `Giá cập nhật ${up.slice(11)} ngày ${HUB.date(up)} (giờ VN).` : "";
+ const K = [["fx_usd_vnd", "USD/VND · Vietcombank"], ["lme_copper", "Đồng LME · cash"], ["lme_aluminium", "Nhôm LME · cash"], ["yf_ironore", "Quặng sắt 62% Fe"], ["vnsteel_hoa_phat_mien_bac_cb300_d10", "Thép Hòa Phát CB300 D10 · Bắc"], ["rmc_hn_btHN_m400", "Bê tông M400 · Hà Nội"]];
+ const spark = a => { if (!a || a.length < 10) return '<svg aria-hidden="true"></svg>'; const mn = Math.min(...a), mx = Math.max(...a), w = 120, hh = 30, r = mx - mn || 1;
+  const pts = a.map((v, i) => `${(i / (a.length - 1) * w).toFixed(1)},${(hh - 3 - (v - mn) / r * (hh - 6)).toFixed(1)}`).join(" "); const c = a[a.length - 1] >= a[0] ? "#fda29b" : "#75e0a7";
+  return `<svg viewBox="0 0 ${w} ${hh}" preserveAspectRatio="none" role="img" aria-label="Xu hướng ${a.length} phiên gần nhất"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>`; };
+ document.getElementById("kpi").innerHTML = K.map(([id, l]) => { const x = by(id); if (!x) return ""; const n = x.spark ? x.spark.length : 0;
+  const chg = n ? ((x.spark[n - 1] / x.spark[0] - 1) * 100) : null;
+  return `<a class="hk" href="mat-hang.html?id=${id}" title="${E(x.name)} – ${E(x.src || "")}, ngày ${HUB.date(x.as_of)}"><span class="l">${l}</span>
+   <div class="v">${x.price_high ? "<small>từ</small> " : ""}${HUB.num(x.price)} <small>${E(x.unit)}</small></div>
+   <span class="c">${n ? `${n} phiên: ${HUB.pct(chg)}` : x.d1 != null ? `Phiên: ${HUB.pct(x.d1)}` : "Giá niêm yết NCC"} · ${HUB.date(x.as_of)}</span>${spark(x.spark)}</a>`; }).join("");
  const cnt = {}; const add = (k, f) => { cnt[k] ||= {p: 0, t: 0, m: 0}; cnt[k][f]++; };
  h.items.forEach(x => add(t.byId[x.tax].parent.id, "p")); tr.items.forEach(x => add(x.l1, "t"));
  mk.items.forEach(x => (x.tax || []).slice(0, 1).forEach(id => add(t.byId[id].parent.id, "m")));
@@ -43,6 +60,24 @@
   <div class="small mute">${E(c.unit)} · chênh TP.HCM so với Hà Nội</div><div class="ins">${E(c.insight)}</div></div>`).join("") || '<div class="empty">Chưa có cặp dữ liệu.</div>';
  document.getElementById("mk").innerHTML = mk.items.slice(0, 7).map(x => `<li><a href="${x.sources[0].url}" target="_blank" rel="noopener"><b>${E(x.title)}</b></a> <span class="pill">${E(x.region)}</span><span class="small mute">${HUB.date(x.date)} · ${E(x.sources[0].name)}</span></li>`).join("");
  document.getElementById("feed").innerHTML = (fd?.items || []).slice().sort((a, b) => b.date.localeCompare(a.date) || b.score - a.score).slice(0, 8).map(x => `<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="small mute">${HUB.date(x.date)} · ${E(x.source)}</span></li>`).join("") || "<li class=mute>Chưa có.</li>";
+ const [scm, sg] = await Promise.all([HUB.get("scm.json"), HUB.get("segments.json")]);
+ { const tight = (scm?.categories || []).filter(c => c.signal === "khan-hiem"), loose = (scm?.categories || []).filter(c => c.signal === "du-cung");
+   const wk = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10); const orgN = mk.items.filter(x => x.org_type && x.date >= wk).length + (fd?.items || []).filter(x => x.org_type && x.date >= wk).length;
+   const m4 = h.compare.find(c => /M400/.test(c.label));
+   document.getElementById("hstrip").innerHTML = [
+    tight.length && `<a href="scm.html?c=${tight[0].id}"><span class="dot" style="background:#f04438"></span>Khan hiếm: <b>${tight.map(c => E(c.name)).join(", ")}</b></a>`,
+    loose.length && `<a href="scm.html"><span class="dot" style="background:#17b26a"></span>Dư cung – thời điểm ép giá: <b>${loose.length} nhóm</b></a>`,
+    m4 && `<a href="danh-muc.html?c=xd.be-tong&tab=cmp"><span class="dot" style="background:#c9a96e"></span>Bê tông M400: TP.HCM ${m4.diff_pct < 0 ? "thấp" : "cao"} hơn HN <b>${Math.abs(m4.diff_pct).toLocaleString("vi-VN", {maximumFractionDigits: 1})}%</b></a>`,
+    `<a href="nha-thau.html"><span class="dot" style="background:#7cd4fd"></span>Tin nhà thầu & CĐT 7 ngày: <b>${orgN}</b></a>`,
+    `<a href="xu-huong.html"><span class="dot" style="background:#fdb022"></span>Xu hướng theo dõi: <b>${tr.items.length}</b></a>`].filter(Boolean).join(""); }
+ const SIGC = {"du-cung": ["Dư cung", "#1e8449"], "can-bang": ["Cân bằng", "#b7791f"], "khan-hiem": ["Khan hiếm", "#c0392b"], "chua-du": ["Chưa đủ dữ liệu", "#667085"]};
+ const ORDER = {"khan-hiem": 0, "du-cung": 1, "can-bang": 2, "chua-du": 3};
+ document.getElementById("scmw").innerHTML = scm ? `<tr><th>Nhóm</th><th>Tín hiệu</th><th>Nguồn mua</th></tr>` + scm.categories.slice().sort((a, b) => ORDER[a.signal] - ORDER[b.signal]).map(c => `<tr><td><a href="scm.html?c=${c.id}">${E(c.name)}</a></td><td><span class="sig" style="background:${SIGC[c.signal][1]}">${SIGC[c.signal][0]}</span> <span class="small mute">${{up: "↑", down: "↓", flat: "→"}[c.trend]}</span></td><td class="small">${E(c.rec)}</td></tr>`).join("") : '<tr><td class="mute">Chưa có dữ liệu SCM.</td></tr>';
+ const SEGN = Object.fromEntries((sg?.segments || []).map(s => [s.id, s.name]));
+ const orgl = k => { const ed = mk.items.filter(x => x.org_type === k).map(x => ({t: x.title, u: x.sources[0].url, d: x.date, o: x.org, s: x.sources[0].name, ed: 1}));
+  const rs = (fd?.items || []).filter(x => x.org_type === k).map(x => ({t: x.title, u: x.url, d: x.date, o: x.org, s: x.source}));
+  document.getElementById("orgl").innerHTML = [...ed, ...rs].sort((a, b) => b.d.localeCompare(a.d) || (b.ed || 0) - (a.ed || 0)).slice(0, 8).map(x => `<li><span class="pill cat">${E(x.o)}</span><a href="${E(x.u)}" target="_blank" rel="noopener">${E(x.t)}</a> <span class="small mute">${HUB.date(x.d)} · ${E(x.s)}</span></li>`).join("") || '<li class="mute">Chưa có tin.</li>'; };
+ document.querySelectorAll("#orgseg button").forEach(b => b.onclick = () => { document.querySelectorAll("#orgseg button").forEach(z => z.classList.toggle("on", z === b)); orgl(b.dataset.k); }); orgl("contractor");
  HUB.foot();
 })();
 </script></body></html>

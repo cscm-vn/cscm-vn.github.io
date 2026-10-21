@@ -1,18 +1,18 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Danh mục – Masterise Procurement Hub</title><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<title>Danh mục – Masterise Procurement Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
 <body class="hub" data-page="cat"><div id="hubnav"></div>
-<main class="wrap"><div class="crumb" id="crumb"></div>
+<main class="wrap" id="main"><div class="crumb" id="crumb"></div>
 <div class="layout"><aside class="side" id="side"></aside><section>
  <h1 id="title"></h1><p class="sub" id="desc"></p><div id="subs" class="filters"></div>
  <div class="tabs" id="tabs"></div><div id="pane"></div>
 </section></div><div class="foot" id="foot"></div></main>
 <script>
 (async () => {
- const [h, tr, mk, fd, t, fc] = await Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.get("feed.json"), HUB.tax(), fetch("forecast.json").then(r => r.ok ? r.json() : null).catch(() => null)]);
+ const [h, tr, mk, fd, t, scm, fc] = await Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.get("feed.json"), HUB.tax(), HUB.get("scm.json"), fetch("forecast.json").then(r => r.ok ? r.json() : null).catch(() => null)]);
  const E = HUB.esc; let c = HUB.qs("c"); if (!t.byId[c]) c = t.tree[0].id; const node = t.byId[c];
  const ids = node.level === 1 ? node.children.map(x => x.id) : [c]; const inC = arr => (arr || []).some(x => ids.includes(x));
  const P = h.items.filter(x => ids.includes(x.tax)), T = tr.items.filter(x => inC(x.tax)), M = mk.items.filter(x => inC(x.tax)), F = (fd?.items || []).filter(x => inC(x.tax));
- const C = h.compare.filter(x => ids.includes(x.tax)); const FC = (fc?.items || []).filter(x => ids.includes(x.tax));
+ const C = h.compare.filter(x => ids.includes(x.tax)); const S = (scm?.categories || []).filter(x => x.tax.some(id => ids.includes(id))); const FC = (fc?.items || []).filter(x => ids.includes(x.tax));
  const counts = {}; h.items.forEach(x => counts[x.tax] = (counts[x.tax] || 0) + 1); tr.items.forEach(x => x.tax.forEach(id => counts[id] = (counts[id] || 0) + 1));
  HUB.sidebar(document.getElementById("side"), c, counts);
  document.title = node.name + " – Masterise Procurement Hub";
@@ -20,7 +20,7 @@
  document.getElementById("title").textContent = (node.icon || node.parent.icon) + " " + node.name;
  document.getElementById("desc").textContent = `${P.length} mã giá · ${C.length} so sánh Hà Nội/TP.HCM · ${T.length} xu hướng · ${M.length + F.length} tin`;
  if (node.level === 1) document.getElementById("subs").innerHTML = node.children.map(x => `<a class="chip" href="danh-muc.html?c=${x.id}">${E(x.name)} <span class="mute">${counts[x.id] || 0}</span></a>`).join("");
- const tabs = [["gia", `Giá (${P.length})`], ["cmp", `Hà Nội vs TP.HCM (${C.length})`], ["trend", `Xu hướng (${T.length})`], ["news", `Tin (${M.length + F.length})`], ["fc", "Dự báo"]];
+ const tabs = [["gia", `Giá (${P.length})`], ["cmp", `Hà Nội vs TP.HCM (${C.length})`], ["trend", `Xu hướng (${T.length})`], ["news", `Tin (${M.length + F.length})`], ["fc", "Dự báo"], ["scm", `SCM – Cung cầu (${S.length})`]];
  let tab = HUB.qs("tab") || (P.length ? "gia" : T.length ? "trend" : "news");
  const R = {
   gia() { if (!P.length) return `<div class="empty">Chưa có nguồn giá tự động cho mục này. Xem tab <b>Xu hướng</b>/<b>Tin</b>, hoặc đề xuất nguồn giá để bổ sung.</div>`;
@@ -37,6 +37,11 @@
     <div><span class="pill">${E(x.region)}</span><span class="small mute">${HUB.date(x.date)}</span></div><div class="small">${E(x.summary)}</div><div class="why"><b>Ý nghĩa với Masterise:</b> ${E(x.why)}</div></div></div></div>`).join("")}</div>` : `<div class="empty">Chưa có xu hướng cho mục này.</div>`; },
   news() { const L = [...M.map(x => ({t: x.title, u: x.sources[0].url, s: x.sources[0].name, d: x.date, r: x.region, cur: 1})), ...F.map(x => ({t: x.title, u: x.url, s: x.source, d: x.date}))].sort((a, b) => b.d.localeCompare(a.d));
    return L.length ? `<ul class="news card">${L.slice(0, 60).map(x => `<li>${x.cur ? '<span class="pill cat">Biên tập</span>' : ""}<a href="${E(x.u)}" target="_blank" rel="noopener">${E(x.t)}</a> <span class="small mute">${HUB.date(x.d)} · ${E(x.s)}</span></li>`).join("")}</ul>` : `<div class="empty">Chưa có tin.</div>`; },
+  scm() { if (!S.length) return `<div class="empty">Chưa có phân tích cung cầu cho mục này. Xem <a href="scm.html">trang SCM</a> cho 14 nhóm vật tư chính.</div>`;
+   const SG = {"du-cung": ["Dư cung", "#1e8449"], "can-bang": ["Cân bằng", "#b7791f"], "khan-hiem": ["Khan hiếm", "#c0392b"], "chua-du": ["Chưa đủ dữ liệu", "#667085"]};
+   return `<div class="grid">${S.map(c => `<div class="card"><h3>${E(c.name)} <span class="sig" style="background:${SG[c.signal][1]}">${SG[c.signal][0]}</span></h3><p style="margin:4px 0">${E(c.headline)}</p>
+    <div class="ins"><b>Khuyến nghị nguồn: ${E(c.rec)}.</b> ${E(c.rec_detail)}</div><p class="small"><b>Thời điểm:</b> ${E(c.timing)}</p>
+    <p class="small"><a href="scm.html?c=${c.id}">→ Phân tích đầy đủ: cung–cầu, cụm nhà cung cấp, rủi ro, đòn bẩy đàm phán${c.calc ? ", tính landed cost" : ""}</a></p></div>`).join("")}</div>`; },
   fc() { if (!FC.length) return `<div class="empty">Chưa có dự báo cho mục này. Xem trang <a href="forecast.html">Dự báo</a> (dùng chung cây danh mục <code>data/taxonomy.json</code>).</div>`;
    const hz = fc.horizons || [3, 6, 12];
    return `<div class="tw"><table class="t"><tr><th>Mặt hàng</th><th>Khu vực</th><th class="n">Hiện tại</th>${hz.map(h => `<th class="n">${h} tháng (cơ sở)</th>`).join("")}<th>Độ tin cậy</th></tr>${FC.map(x => `<tr><td>${E(x.name)}</td><td>${HUB.regPill(/hn|bac/i.test(x.region || "") ? "hn" : /hcm|nam/i.test(x.region || "") ? "hcm" : "")}${E(x.region || "")}</td><td class="n">${HUB.num(x.now)} <span class="small mute">${E(x.unit)}</span></td>${hz.map(h => { const f = x.fc?.[h]; return `<td class="n">${f ? HUB.num(f.base) + " " + HUB.pct(f.pct) : "–"}</td>`; }).join("")}<td class="small">${E(x.confidence || "")}</td></tr>`).join("")}</table></div><p class="small"><a href="forecast.html">→ Xem phương pháp, khoảng tin cậy & chiến lược mua tại trang Dự báo</a></p>`; },

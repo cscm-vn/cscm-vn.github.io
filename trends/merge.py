@@ -39,7 +39,11 @@ def merge(db, items, kind):
         it.setdefault("added", today()); it.setdefault("origin", "manual"); it["type"] = kind
         it["id"] = it.get("id") or hashlib.sha1(norm_url(it["sources"][0]["url"]).encode()).hexdigest()[:12]
         if kind == "trend": it["score"] = score(it)
-        old = by_url.get(norm_url(it["sources"][0]["url"])) or by_title.get(norm_title(it["title"]))
+        old = by_url.get(norm_url(it["sources"][0]["url"]))
+        if old is not None and old.get("org", "") != it.get("org", "") and norm_title(old["title"]) != norm_title(it["title"]):
+            old = None  # same article cited for two different organisations → keep both items
+            it["id"] = hashlib.sha1((norm_url(it["sources"][0]["url"]) + norm_title(it["title"])).encode()).hexdigest()[:12]
+        old = old or by_title.get(norm_title(it["title"]))
         if old:
             if it.get("origin") == "rss" and old.get("origin") == "manual": continue  # never let feeds overwrite curated items
             urls = {norm_url(s["url"]) for s in old["sources"]}

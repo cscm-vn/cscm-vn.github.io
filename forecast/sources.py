@@ -14,13 +14,14 @@ def _get(u):
     except requests.exceptions.SSLError:  # một số site VN lỗi TLS với requests -> dùng curl
         import subprocess
         return subprocess.run(["curl", "-sL", "-m", "30", "-A", UA["User-Agent"], u], capture_output=True, text=True, check=True).stdout
+def _vnf(v): return f"{v:,.0f}".replace(",", ".")  # Vietnamese thousands separator
 def _vn(s):  # '1.430.000' / '1650.000' -> 1430000
     s = re.sub(r"[^\d]", "", str(s)); return float(s) if s else None
 def _it(id, cat, name, unit, cur, price, src, url, region=None, grp="vn", **kw):
     d = dict(id=id, grp=grp, category=cat, name=name, unit=unit, currency=cur, price=price, src=src, url=url,
              as_of=TODAY, region=region); d.update(kw); return d
 
-def _concrete_table(url, src, prefix, region, grades=("250", "300")):
+def _concrete_table(url, src, prefix, region, grades=("250", "300", "350", "400", "450", "500")):
     t = pd.read_html(io.StringIO(_get(url)))[0]
     out = []
     for _, r in t.iterrows():
@@ -31,7 +32,7 @@ def _concrete_table(url, src, prefix, region, grades=("250", "300")):
                 if not lo or not (500_000 < lo < 5_000_000): continue
                 out.append(_it(f"{prefix}_m{g}", "Bê tông thương phẩm", f"Bê tông tươi M{g} đá 1x2, sụt 12±2 ({src})",
                                "VND/m³", "VND", lo, src, url, region, price_high=hi,
-                               note=f"Cát thường {lo:,.0f} – cát vàng {hi:,.0f} đ/m³; chưa VAT, gồm vận chuyển nội thành; báo giá NCC"))
+                               note=f"Cát thường {_vnf(lo)} – cát vàng {_vnf(hi)} đ/m³; chưa VAT, gồm vận chuyển nội thành; báo giá NCC"))
     if not out: raise RuntimeError(f"{src}: không thấy dòng M250/M300")
     return out
 
@@ -46,11 +47,11 @@ def src_concrete():
         t = pd.read_html(io.StringIO(_get(u)))[0]
         for _, r in t.iterrows():
             g = re.sub(r"\D", "", str(r.iloc[0]))
-            if g in ("250", "300"):
+            if g in ("250", "300", "350", "400", "450", "500"):
                 lo, hi = [_vn(x) for x in str(r.iloc[1]).split("~")]
                 out.append(_it(f"rmc_hcm_dvc_m{g}", "Bê tông thương phẩm", f"Bê tông tươi M{g} đá 1x2 (betongdvc.com)",
                                "VND/m³", "VND", lo, "betongdvc.com", u, "TP.HCM", price_high=hi,
-                               note=f"Khoảng {lo:,.0f} – {hi:,.0f} đ/m³; báo giá NCC tham khảo"))
+                               note=f"Khoảng {_vnf(lo)} – {_vnf(hi)} đ/m³; báo giá NCC tham khảo"))
     except Exception as e: errs.append(f"dvc: {e}")
     if errs: print("concrete partial errors:", errs)
     if not out: raise RuntimeError("; ".join(errs))
@@ -106,7 +107,36 @@ def src_hdpe_pipe():
     if not out: raise RuntimeError("HDPE table parse failed")
     return out
 
-NEW_SOURCES = [("Bê tông thương phẩm (NCC)", src_concrete), ("Nhựa PE/PVC/PP (TE)", src_plastics),
+def _rmc_grade_table(url, src, prefix, region, note, vat=False):
+    """Bảng giá kiểu 'M400R28 … đơn giá' (cột cuối là giá) – lấy bảng đầu tiên có dòng M400."""
+    out = []
+    for t in pd.read_html(io.StringIO(_get(url))):
+        for _, r in t.iterrows():
+            cells = [str(c) for c in r.tolist()]
+            m = re.search(r"M(?:ác)?\s*(\d{3})\s*R?28", " ".join(cells[:3]), re.I)
+            if not m or m.group(1) not in ("250", "300", "350", "400", "450", "500"): continue
+            nums = [_vn(c) for c in cells if re.fullmatch(r"[\d.]{7,9}", c.strip())]
+            p = next((v for v in reversed(nums) if v and 500_000 < v < 5_000_000), None)
+            if p and f"{prefix}_m{m.group(1)}" not in {o["id"] for o in out}:
+                out.append(_it(f"{prefix}_m{m.group(1)}", "Bê tông thương phẩm", f"Bê tông tươi M{m.group(1)} đá 1x2, sụt 10±2 ({src})",
+                               "VND/m³", "VND", p, src, url, region, note=note))
+        if any(o["id"].endswith("m400") for o in out): break
+    if not out: raise RuntimeError(f"{src}: không thấy bảng mác bê tông")
+    return out
+
+def src_concrete_hcm2():
+    out, errs = [], []
+    for args in [("https://betongdongnam.com/cap-nhat-gia-be-tong-tuoi-tphcm-nhanh/", "betongdongnam.com", "rmc_hcm_dn", "TP.HCM",
+                  "Báo giá NCC tham khảo (bảng chung TP.HCM), chưa gồm bơm; VAT theo NCC"),
+                 ("https://mekongthuongtin.com/gia-be-tong-tuoi/", "mekongthuongtin.com", "rmc_hcm_mk", "TP.HCM",
+                  "Báo giá NCC tham khảo, ĐÃ gồm VAT 8%, chưa gồm bơm")]:
+        try: out += _rmc_grade_table(*args)
+        except Exception as e: errs.append(str(e))
+    if errs: print("concrete HCM2 partial errors:", errs)
+    if not out: raise RuntimeError("; ".join(errs))
+    return out
+
+NEW_SOURCES = [("Bê tông thương phẩm (NCC)", src_concrete), ("Bê tông TP.HCM mác cao (NCC)", src_concrete_hcm2), ("Nhựa PE/PVC/PP (TE)", src_plastics),
                ("Ống HDPE Tiền Phong", src_hdpe_pipe)]
 
 if __name__ == "__main__":
