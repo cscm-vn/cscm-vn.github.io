@@ -17,6 +17,9 @@ jobs:
       - name: Fetch prices (failed sources keep last good value, flagged stale)
         run: python fetcher.py | tee fetch.log
       - run: python export_static.py
+      - name: Build forecasts (Dự báo) – non-blocking
+        continue-on-error: true
+        run: python forecast/build.py --site site 2>&1 | grep -v Warning | tail -20
       - name: Commit price history
         continue-on-error: true
         run: |

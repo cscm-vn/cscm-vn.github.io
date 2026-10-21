@@ -1,0 +1,138 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dự báo giá vật tư 3–6–12 tháng</title>
+<script src="static/chart.umd.min.js"></script>
+<style>
+:root{--b:#0b5cad;--up:#c62828;--dn:#2e7d32;--mut:#667;--bg:#f6f8fb}
+*{box-sizing:border-box}body{font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:var(--bg);color:#1b2330}
+header{background:#0b2545;color:#fff;padding:14px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header h1{font-size:19px;margin:0}header a{color:#cfe3ff}nav a{margin-right:12px}
+main{max-width:1320px;margin:auto;padding:14px}
+.card{background:#fff;border-radius:10px;box-shadow:0 1px 3px #0002;padding:14px 16px;margin-bottom:14px}
+h2{font-size:17px;margin:0 0 10px}h3{font-size:15px;margin:12px 0 6px}
+.warn{background:#fff7e0;border-left:4px solid #f2a900;padding:10px 12px;border-radius:6px}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.seg button{border:1px solid var(--b);background:#fff;color:var(--b);padding:6px 12px;cursor:pointer}
+.seg button:first-child{border-radius:6px 0 0 6px}.seg button:last-child{border-radius:0 6px 6px 0}
+.seg button.on{background:var(--b);color:#fff}
+select,input{padding:6px 8px;border:1px solid #bbc;border-radius:6px;font:inherit}
+table{border-collapse:collapse;width:100%}th,td{padding:6px 8px;border-bottom:1px solid #e6e9ef;text-align:right;vertical-align:top}
+th{background:#eef2f8;position:sticky;top:0;font-weight:600;font-size:13px}td:first-child,th:first-child{text-align:left}
+tr.row:hover{background:#f0f6ff;cursor:pointer}tr.sel{background:#e3efff}
+.up{color:var(--up)}.dn{color:var(--dn)}.mut{color:var(--mut);font-size:12px}.path{font-size:11px;color:#5a6b85}
+.pill{display:inline-block;padding:1px 7px;border-radius:9px;font-size:11px;background:#eef}
+.c-Cao{background:#d7f5dd}.c-Trung{background:#fff0c2}.c-Thấp{background:#ffe0e0}
+.scroll{overflow-x:auto}.drv{border-left:4px solid #ccd;padding:6px 10px;margin:8px 0}.drv.up{border-color:var(--up)}.drv.down{border-color:var(--dn)}.drv.mixed{border-color:#f2a900}
+.drv p{margin:4px 0;color:#333}
+.big{font-size:20px;font-weight:700}.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:10px}
+.kpi div{background:#f4f7fc;border-radius:8px;padding:10px}
+.tree button{border:1px solid #ccd;background:#fff;border-radius:16px;padding:4px 10px;margin:2px;cursor:pointer}.tree button.on{background:#0b2545;color:#fff;border-color:#0b2545}
+@media(max-width:900px){th,td{padding:5px 4px;font-size:12px}header h1{font-size:16px}}
+</style></head><body>
+<header><h1>📈 Dự báo giá vật tư (3 – 6 – 12 tháng)</h1><nav><a href="index.html">← Bảng giá</a><a href="#hnhcm">Hà Nội vs TP.HCM</a><a href="#mep">MEP</a><a href="#drivers">Yếu tố rủi ro</a><a href="#strategy">Chiến lược</a><a href="#method">Phương pháp & sai số</a></nav>
+<span class="mut" id="gen" style="color:#cfe3ff"></span></header>
+<main>
+<div class="card warn"><b>Lưu ý:</b> Dự báo là ước lượng xác suất dựa trên dữ liệu thật và mô hình thống kê, <b>không phải cam kết hay chắc chắn</b>. Khoảng giá = vùng 80% (P10–P90). Sai số kiểm định lịch sử (MAPE) công bố ở cuối trang – kỳ hạn 6–12 tháng, sai số kim loại thường 12–20%. Dùng để định hướng mua sắm, kết hợp báo giá thực tế của nhà cung cấp.</div>
+<div class="card">
+ <div class="ctl"><b>Kịch bản:</b><span class="seg" id="scen"><button data-s="bear">Giảm (bear)</button><button data-s="base" class="on">Cơ sở</button><button data-s="bull">Tăng (bull)</button></span><span class="mut" id="scenNote"></span></div>
+ <div class="ctl tree" id="tree"></div>
+ <div class="ctl"><input id="q" placeholder="Tìm (không dấu): thep, dong, be tong..." style="min-width:240px"><label><input type="checkbox" id="onlyLocal"> Chỉ vật tư tại VN</label></div>
+ <div class="scroll"><table id="tbl"><thead><tr><th>Vật tư / phân loại</th><th>KV</th><th>Giá hiện tại</th><th>MoM / YoY</th><th>3 tháng</th><th>6 tháng</th><th>12 tháng</th><th>Khoảng 12T (P10–P90)</th><th>Tin cậy</th><th style="text-align:left">Động lực chính</th></tr></thead><tbody></tbody></table></div>
+ <p class="mut">Bấm một dòng để xem biểu đồ lịch sử + dải dự báo. ▲ tăng >2%, ▼ giảm >2%, ► đi ngang. Đỏ = bất lợi cho bên mua (giá tăng).</p>
+</div>
+<div class="card"><h2 id="chTitle">Biểu đồ</h2><div style="height:340px"><canvas id="ch"></canvas></div><div id="chInfo" class="mut"></div></div>
+<div class="card" id="hnhcm"><h2>🏙️ Hà Nội vs TP.HCM – so sánh song song</h2><div class="scroll"><table id="pairs"><thead><tr><th>Vật tư</th><th>Hà Nội</th><th>HN 12T</th><th>TP.HCM</th><th>HCM 12T</th><th>Chênh HCM/HN</th><th style="text-align:left">Nhận định</th></tr></thead><tbody></tbody></table></div></div>
+<div class="card" id="mep"><h2>⚡ MEP – chỉ số chi phí đầu vào thiết bị</h2><p class="mut">Không có chuỗi giá công khai cho điều hòa, thang máy, MBA… nên hiển thị <b>chỉ số chi phí đầu vào</b> (nay = 100) tổng hợp từ dự báo đồng, nhôm, thép, dầu, tỷ giá – để đánh giá áp lực điều chỉnh giá của NCC, <b>không phải giá thiết bị</b>.</p><div class="scroll"><table id="mepT"><thead><tr><th>Hạng mục</th><th>3T</th><th>6T</th><th>12T</th><th>Khoảng 12T</th><th style="text-align:left">Cấu phần chi phí</th></tr></thead><tbody></tbody></table></div></div>
+<div class="card" id="drivers"><h2>🌍 Yếu tố vĩ mô / địa chính trị (điều chỉnh kịch bản minh bạch)</h2><p class="mut" id="drvNote"></p><div id="drvList"></div><h3>Bình luận thị trường mới nhất (tự động lấy mỗi lần chạy)</h3><div id="te"></div></div>
+<div class="card" id="strategy"><h2>🧭 Chiến lược mua sắm & phòng ngừa rủi ro – Thép</h2>
+ <div class="ctl">Nhu cầu năm (tấn): <input id="qty" type="number" value="250000" step="10000" style="width:120px">
+ Khu vực: <select id="sreg"><option value="HN">Hà Nội / Miền Bắc</option><option value="HCM">TP.HCM / Miền Nam</option></select>
+ Tỷ lệ chốt giá trước: <input id="fwd" type="range" min="0" max="100" step="5" value="40"><b id="fwdv">40%</b>
+ Phụ phí HĐ giá cố định: <input id="prem" type="number" value="1.5" step="0.5" style="width:60px">%</div>
+ <div class="kpi" id="kpi"></div>
+ <div class="scroll"><table id="stT"><thead><tr><th>Phương án</th><th>Cơ sở</th><th>Tăng (bull)</th><th>Giảm (bear)</th><th>Chênh vs mua hàng tháng (Cơ sở)</th><th>Tốt nhất – tệ nhất</th></tr></thead><tbody></tbody></table></div>
+ <div id="reco"></div><h3>Kim loại MEP (đồng/nhôm)</h3><div id="recoMep"></div>
+</div>
+<div class="card" id="method"><h2>🔬 Phương pháp, kiểm định & nguồn</h2><div id="meth"></div>
+ <h3>Sai số kiểm định lịch sử (rolling-origin, 60 tháng gần nhất, MAPE %)</h3><div class="scroll"><table id="bt"><thead><tr><th>Chuỗi</th><th>n</th><th>3T: ensemble / random walk</th><th>6T</th><th>12T</th><th>ETS 12T</th><th>ARIMA 12T</th></tr></thead><tbody></tbody></table></div>
+ <p class="mut">Ghi chú trung thực: ở kỳ hạn 3–12 tháng, mô hình thống kê <b>không vượt trội so với random walk</b> (giữ nguyên giá hiện tại) – điều phổ biến với giá hàng hóa. Vì vậy dự báo cơ sở bám sát giá hiện tại/giá futures; giá trị chính của trang là <b>khoảng rủi ro + kịch bản</b>, không phải điểm dự báo.</p>
+ <div id="srcs" class="mut"></div></div>
+</main>
+<script>
+const fmt=v=>{if(v==null||isNaN(v))return'–';const d=Math.abs(v)>=1000?0:(Math.abs(v)>=10?1:2);return v.toLocaleString('vi-VN',{maximumFractionDigits:d})};
+const pc=v=>v==null?'–':(v>0?'+':'')+v.toFixed(1)+'%';
+const arrow=p=>p>2?'<span class="up">▲</span>':(p<-2?'<span class="dn">▼</span>':'<span class="mut">►</span>');
+const cls=p=>p>2?'up':(p<-2?'dn':'');
+const strip=s=>(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
+let D,S='base',SEL=null,PATH='Tất cả',chart;
+const GN={copper:'Đồng',aluminium:'Nhôm',steel_world:'Thép TG',ironore:'Quặng sắt',steel_vn:'Thép VN',energy:'Dầu',coal:'Than',plastics:'Nhựa',cement:'Xi măng',sand_stone:'Cát/đá',concrete:'Bê tông',fx:'Tỷ giá',mep_index:'MEP'};
+const val=(it,h)=>{const f=it.fc[h];return S==='base'?f.base:f[S]};
+function drvFor(it){return D.drivers.drivers.filter(d=>{const imp=Object.assign({},d.impact||{},d.impact_up||{},d.impact_down||{});return imp[it.group]!=null})}
+function load(){fetch('forecast.json?'+Date.now()).then(r=>r.json()).then(d=>{D=d;document.getElementById('gen').textContent='Cập nhật: '+d.generated.replace('T',' ').slice(0,16)+' (giờ VN)';buildTree();render();pairs();mep();drivers();strategy();method();sel(D.items.find(i=>i.id==='rebar_HN')||D.items[0])})}
+function buildTree(){const ps=['Tất cả'];D.items.filter(i=>i.group!=='mep_index').forEach(i=>{[i.path[0],i.path[1]?i.path[0]+' › '+i.path[1]:null].forEach(p=>{if(p&&!ps.includes(p))ps.push(p)})});
+ const t=document.getElementById('tree');t.innerHTML='<b>Phân loại:</b> '+ps.map(p=>`<button data-p="${p}" class="${p===PATH?'on':''}">${p}</button>`).join('');
+ t.querySelectorAll('button').forEach(b=>b.onclick=()=>{PATH=b.dataset.p;buildTree();render()})}
+function rowHTML(it){const ds=drvFor(it).slice(0,3).map(d=>`<span class="${d.dir==='up'?'up':(d.dir==='down'?'dn':'')}" title="${d.summary.replace(/"/g,"'")}">${d.dir==='up'?'↑':(d.dir==='down'?'↓':'↕')} ${d.title.split(/[–(:]/)[0]}</span>`).join('<br>');
+ const cell=h=>{if(!it.fc)return'–';const v=val(it,h),p=100*(v/it.now-1);return `${fmt(v)}<br><span class="${cls(p)}">${arrow(p)} ${pc(p)}</span>`};
+ const tr=it.trend?`${pc(it.trend.mom)} / ${pc(it.trend.yoy)}`:'<span class="mut">đang tích lũy</span>';
+ const c=(it.confidence||'').split(/[ –(]/)[0];
+ return `<tr class="row ${SEL&&SEL.id===it.id?'sel':''}" data-id="${it.id}"><td><b>${it.name}</b><div class="path">${it.path.join(' › ')} · ${it.unit}</div></td><td>${it.region||'TG'}</td><td>${fmt(it.now)}<div class="mut">${it.as_of||''}</div></td><td>${tr}</td><td>${cell('3')}</td><td>${cell('6')}</td><td>${cell('12')}</td><td>${it.fc?fmt(it.fc['12'].lo)+' – '+fmt(it.fc['12'].hi):'–'}</td><td><span class="pill c-${c}">${it.confidence}</span></td><td style="text-align:left;font-size:12px">${ds||'<span class="mut">–</span>'}</td></tr>`}
+function render(){const q=strip(document.getElementById('q').value),loc=document.getElementById('onlyLocal').checked;
+ const its=D.items.filter(i=>i.group!=='mep_index').filter(i=>PATH==='Tất cả'||i.path.join(' › ').startsWith(PATH)).filter(i=>!q||strip(i.name+' '+i.path.join(' ')+' '+(i.region||'')).includes(q)).filter(i=>!loc||i.region||/VND/.test(i.unit));
+ const tb=document.querySelector('#tbl tbody');tb.innerHTML=its.map(rowHTML).join('')||'<tr><td colspan=10 class="mut">Không có mục phù hợp</td></tr>';
+ tb.querySelectorAll('tr.row').forEach(r=>r.onclick=()=>{sel(D.items.find(i=>i.id===r.dataset.id));document.getElementById('chTitle').scrollIntoView({behavior:'smooth'})});
+ document.getElementById('scenNote').textContent={base:'Mô hình thống kê + futures, không cộng yếu tố rủi ro.',bull:'Cơ sở + các yếu tố đẩy giá tăng (mục Yếu tố rủi ro).',bear:'Cơ sở + các yếu tố kéo giá giảm.'}[S]}
+function addM(ym,k){let [y,m]=ym.split('-').map(Number);m+=k;y+=Math.floor((m-1)/12);m=((m-1)%12+12)%12+1;return y+'-'+String(m).padStart(2,'0')}
+function sel(it){if(!it)return;SEL=it;render();const h=it.hist||[];const last=h.length?h[h.length-1][0]:new Date().toISOString().slice(0,7);
+ const fl=[3,6,12].map(k=>addM(last,k));let labs,ds=[];
+ if(h.length){labs=h.map(x=>x[0]).concat(fl);ds.push({label:'Lịch sử (tháng)',data:h.map(x=>x[1]),borderColor:'#0b2545',pointRadius:0,borderWidth:2})}else labs=['nay'].concat(fl);
+ const pad=Array(Math.max(h.length-1,0)).fill(null),mk=f=>pad.concat([it.now].concat(['3','6','12'].map(f)));
+ if(it.fc){ds.push({label:'Vùng 80%',data:mk(k=>it.fc[k].hi),borderColor:'transparent',backgroundColor:'rgba(11,92,173,.15)',fill:'+1',pointRadius:0});
+ ds.push({label:'P10',data:mk(k=>it.fc[k].lo),borderColor:'transparent',pointRadius:0,fill:false});
+ ds.push({label:'Cơ sở',data:mk(k=>it.fc[k].base),borderColor:'#0b5cad',borderDash:[6,4],pointRadius:3});
+ ds.push({label:'Tăng (bull)',data:mk(k=>it.fc[k].bull),borderColor:'#c62828',borderDash:[2,3],pointRadius:2,hidden:S==='bear'});
+ ds.push({label:'Giảm (bear)',data:mk(k=>it.fc[k].bear),borderColor:'#2e7d32',borderDash:[2,3],pointRadius:2,hidden:S==='bull'})}
+ document.getElementById('chTitle').textContent='Biểu đồ: '+it.name+(it.region?' – '+it.region:'')+' ('+it.unit+')';
+ if(chart)chart.destroy();chart=new Chart(document.getElementById('ch'),{type:'line',data:{labels:labs,datasets:ds},options:{maintainAspectRatio:false,animation:false,spanGaps:true,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{filter:l=>l.text!=='P10'}}},scales:{y:{ticks:{callback:v=>fmt(v)}}}}});
+ const b=it.backtest;document.getElementById('chInfo').innerHTML=`<b>Mô hình:</b> ${it.method}<br><b>Nguồn:</b> ${it.src}`+(b?`<br><b>Sai số lịch sử (MAPE)</b>: 3T ${b['3'].ens}% · 6T ${b['6'].ens}% · 12T ${b['12'].ens}% (random walk: ${b['3'].rw}/${b['6'].rw}/${b['12'].rw}%)`:'<br>Không có lịch sử đủ dài để kiểm định – độ tin cậy thấp.')+(it.brands?'<br><b>Giá từng hãng:</b> '+Object.entries(it.brands).map(([k,v])=>k+' '+fmt(v)).join(' · '):'')+(h.length?'':'<br>Chưa có lịch sử tháng cho mục này (đang tích lũy từ 10/2026) – biểu đồ chỉ hiển thị dự báo.')}
+function pairs(){document.querySelector('#pairs tbody').innerHTML=D.pairs.map(p=>{const a=D.items.find(i=>i.id===p.hn),b=D.items.find(i=>i.id===p.hcm);const pa=a.fc['12'].pct,pb=b.fc['12'].pct;
+ return `<tr><td><b>${p.name}</b><div class="path">${a.unit}</div></td><td>${fmt(a.now)}</td><td>${fmt(a.fc['12'].base)} <span class="${cls(pa)}">${pc(pa)}</span></td><td>${fmt(b.now)}</td><td>${fmt(b.fc['12'].base)} <span class="${cls(pb)}">${pc(pb)}</span></td><td class="${p.diff_pct>0?'up':'dn'}"><b>${pc(p.diff_pct)}</b></td><td style="text-align:left;font-size:12px">${p.insight}<div class="mut">HN: ${a.src}<br>HCM: ${b.src}</div></td></tr>`}).join('')}
+function mep(){document.querySelector('#mepT tbody').innerHTML=D.items.filter(i=>i.group==='mep_index').map(it=>{const c=h=>{const v=val(it,h);return `<span class="${cls(v-100)}">${arrow(v-100)} ${fmt(v)}</span>`};return `<tr><td><b>${it.name}</b><div class="path">${it.path.join(' › ')}</div></td><td>${c('3')}</td><td>${c('6')}</td><td>${c('12')}</td><td>${fmt(it.fc['12'].lo)} – ${fmt(it.fc['12'].hi)}</td><td style="text-align:left;font-size:12px">${it.why}<div class="mut">${it.method}</div></td></tr>`}).join('')}
+function drivers(){document.getElementById('drvNote').textContent=D.drivers.note+' Rà soát: '+D.drivers.reviewed;
+ document.getElementById('drvList').innerHTML=D.drivers.drivers.map(d=>{const imp=d.impact?Object.entries(d.impact).map(([k,v])=>`${GN[k]||k} ${v>0?'+':''}${v}%`).join(', '):('Tăng: '+Object.entries(d.impact_up).map(([k,v])=>`${GN[k]||k} +${v}%`).join(', ')+' · Giảm: '+Object.entries(d.impact_down).map(([k,v])=>`${GN[k]||k} ${v}%`).join(', '));
+ return `<div class="drv ${d.dir}"><b>${d.dir==='up'?'▲ Rủi ro tăng giá':(d.dir==='down'?'▼ Rủi ro giảm giá':'↕ Hai chiều')}: ${d.title}</b><p>${d.summary}</p><div class="mut">Điều chỉnh kịch bản (12T): ${imp} · Nguồn: ${d.links.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]}</a>`).join(' · ')}</div></div>`}).join('');
+ document.getElementById('te').innerHTML=Object.entries(D.te_comments).map(([k,v])=>`<p><b>${k}</b>: ${v.text} <a href="${v.url}" target="_blank" rel="noopener">(Trading Economics)</a></p>`).join('')||'<p class="mut">Không lấy được bình luận lần chạy này.</p>'}
+const vnd=v=>(v/1e9).toLocaleString('vi-VN',{maximumFractionDigits:0})+' tỷ đ';
+function pth(it,sc,m){const pts=[[0,it.now],[3,it.fc['3'][sc]],[6,it.fc['6'][sc]],[12,it.fc['12'][sc]]];for(let i=1;i<pts.length;i++)if(m<=pts[i][0]){const [a,pa]=pts[i-1],[b,pb]=pts[i];return pa*Math.exp(Math.log(pb/pa)*(m-a)/(b-a))}return pts[3][1]}
+function strategy(){const go=()=>{const it=D.items.find(i=>i.id==='rebar_'+document.getElementById('sreg').value);if(!it)return;const Q=+document.getElementById('qty').value||0,f=+document.getElementById('fwd').value/100,pr=+document.getElementById('prem').value/100;document.getElementById('fwdv').textContent=Math.round(f*100)+'%';
+ const P0=it.now*1000,sc=['base','bull','bear'];
+ const monthly=s=>Q/12*[...Array(12)].reduce((a,_,i)=>a+pth(it,s,i+1)*1000,0);
+ const fwd=s=>Q*f*P0*(1+pr)+(1-f)*monthly(s);
+ const staged=s=>Q/4*[0,3,6,9].reduce((a,m)=>a+(m===0?P0:pth(it,s,m)*1000)*(1+pr/2),0);
+ const full=s=>Q*P0*(1+pr);
+ const rows=[['A. Mua giao ngay hàng tháng (1/12 mỗi tháng)',monthly],[`B. Chốt giá trước ${Math.round(f*100)}% + phần còn lại mua hàng tháng`,fwd],['C. Chốt giá theo quý (4 đợt × 25%)',staged],['D. Chốt 100% ngay (HĐ khung giá cố định 12T)',full]];
+ const base=monthly('base');
+ document.querySelector('#stT tbody').innerHTML=rows.map(([n,fn])=>{const v=sc.map(fn),d=v[0]-base,mx=Math.max(...v),mn=Math.min(...v);return `<tr><td>${n}</td>${v.map(x=>`<td>${vnd(x)}</td>`).join('')}<td class="${d>0?'up':(d<0?'dn':'')}">${d>0?'+':''}${vnd(d)} (${pc(100*d/base)})</td><td>${vnd(mn)} – ${vnd(mx)}<div class="mut">biên rủi ro ${vnd(mx-mn)}</div></td></tr>`}).join('');
+ const F=it.fc['12'],p12=F.pct,up=100*(F.bull/it.now-1),dn=100*(F.bear/it.now-1),hiP=100*(F.hi/it.now-1),loP=100*(F.lo/it.now-1);
+ document.getElementById('kpi').innerHTML=`<div>Giá hiện tại (${it.region_label||it.region})<div class="big">${fmt(it.now)} đ/kg</div><span class="mut">TB ${Object.keys(it.brands||{}).length} hãng CB300 D10, chưa VAT</span></div><div>Cơ sở 12T<div class="big ${cls(p12)}">${pc(p12)}</div><span class="mut">P10–P90: ${pc(loP)} … ${pc(hiP)}</span></div><div>Kịch bản tăng / giảm 12T<div class="big"><span class="up">${pc(up)}</span> / <span class="dn">${pc(dn)}</span></div></div><div>Giá trị mua năm (cơ sở, mua tháng)<div class="big">${vnd(base)}</div><span class="mut">${Q.toLocaleString('vi-VN')} tấn</span></div>`;
+ const asym=(hiP+up)-(-loP-dn);let rec=p12>3?55:(p12>0?40:25);rec+=asym>5?10:(asym<-5?-10:0);rec=Math.max(15,Math.min(70,rec));
+ document.getElementById('reco').innerHTML=`<h3>Khuyến nghị (tự tính từ dự báo hiện tại)</h3><ul>
+ <li><b>Tỷ lệ chốt giá/kỳ hạn đề xuất: ~${rec}% nhu cầu 12 tháng</b> (${(Q*rec/100).toLocaleString('vi-VN')} tấn). Căn cứ: cơ sở 12T ${pc(p12)}; độ lệch rủi ro (tăng − giảm) ${asym>0?'+':''}${asym.toFixed(1)} điểm %. <button onclick="const e=document.getElementById('fwd');e.value=${rec};e.oninput()">Áp dụng</button></li>
+ <li><b>Mua theo đợt</b>: phần còn lại chia theo quý/tháng để giảm rủi ro thời điểm; ưu tiên chốt khi giá niêm yết đi ngang hoặc nhà máy có chính sách hỗ trợ (đầu quý, sau Tết).</li>
+ <li><b>HĐ khung giá cố định / công thức giá</b> với 2–3 nhà máy theo miền (Hòa Phát, Việt Ý/Việt Đức, Kyoei, Pomina/Miền Nam): giá cố định cho phần chốt; phần còn lại theo <i>giá niêm yết nhà máy tại ngày giao ± chiết khấu</i>, có trần/sàn (vd ±5%). Quy mô 200–300 nghìn t/năm đủ để đàm phán mua trực tiếp nhà máy thay vì đại lý.</li>
+ <li><b>Phòng ngừa tài chính</b>: thép thanh VN không có phái sinh trực tiếp. Có thể hedge chéo một phần bằng LME Steel Rebar (FOB Turkey), SGX/CME quặng sắt 62% hoặc SHFE rebar qua ngân hàng/môi giới – rủi ro basis lớn (giá VN tương quan yếu với quốc tế ở kỳ hạn ngắn). Chỉ nên hedge ≤20–30% phần chưa chốt và khi có quy trình quản trị rủi ro; công cụ hiệu quả nhất vẫn là HĐ giá cố định với nhà máy.</li>
+ <li><b>Ngưỡng kích hoạt tăng tỷ lệ chốt</b>: quặng sắt > 105 USD/t, than cốc > 300 USD/t, Hòa Phát tăng giá niêm yết 2 tháng liên tiếp, kết luận rà soát CBPG HRC (AR01.AD20) theo hướng giữ/tăng thuế, Brent > 120 USD.</li></ul>`};
+ ['qty','sreg','fwd','prem'].forEach(i=>{const e=document.getElementById(i);e.oninput=go;e.onchange=go});go();
+ const cu=D.items.find(i=>i.key==='cu_vnd'),al=D.items.find(i=>i.key==='al_vnd');if(cu&&al){const c=cu.fc['12'],a=al.fc['12'];
+ document.getElementById('recoMep').innerHTML=`<ul><li>Đồng (cáp điện): cơ sở 12T <b class="${cls(c.pct)}">${pc(c.pct)}</b>, vùng 80% ${pc(100*(c.lo/cu.now-1))} … ${pc(100*(c.hi/cu.now-1))}. Gói cáp lớn: yêu cầu NCC báo giá <b>công thức LME đồng + phí gia công</b> và cho phép <b>chốt giá đồng theo đợt đặt hàng</b>; NCC/ngân hàng hedge LME 3M thay chủ đầu tư.</li><li>Nhôm: cơ sở 12T <b class="${cls(a.pct)}">${pc(a.pct)}</b> – áp dụng tương tự cho cáp nhôm/thanh cái/vỏ HVAC.</li><li>Thiết bị (thang máy, MBA, chiller): xem bảng chỉ số chi phí MEP; khi chỉ số 12T > +5% nên chốt giá sớm và khóa tỷ giá USD trong HĐ nhập khẩu.</li></ul>`}}
+function method(){document.querySelector('#bt tbody').innerHTML=D.items.filter(i=>i.backtest).map(i=>{const b=i.backtest;return `<tr><td>${i.name}</td><td>${b['3'].n}</td><td>${b['3'].ens} / ${b['3'].rw}</td><td>${b['6'].ens} / ${b['6'].rw}</td><td>${b['12'].ens} / ${b['12'].rw}</td><td>${b['12'].ets}</td><td>${b['12'].arima}</td></tr>`}).join('');
+ document.getElementById('meth').innerHTML=`<ul><li><b>Kim loại/năng lượng thế giới</b>: chuỗi tháng World Bank Pink Sheet nối với giá Yahoo Finance; trung bình hình học của Random walk, ETS (xu hướng tắt dần), ARIMA(1,1,0) và ARIMAX (Brent & USD index trễ 1 tháng). Nếu có futures (LME 3M, COMEX, ICE Brent) thì trộn 50/50 với giá hàm ý từ đường cong futures.</li>
+ <li><b>Khoảng P10–P90</b>: phân phối thực nghiệm thay đổi giá h tháng từ 2010.</li>
+ <li><b>Thép VN</b>: pass-through ${D.assumptions.steel_beta} × chỉ số đầu vào (45% quặng, 35% phế, 20% HRC) + ${D.assumptions.fx_beta_steel} × tỷ giá. Hệ số là giả định (chưa có chuỗi giá VN dài để ước lượng) – sẽ ước lượng lại khi lịch sử ≥ 24 tháng.</li>
+ <li><b>Xi măng, cát, đá, bê tông, ống nhựa</b>: mô hình chi phí cấu thành (tỷ trọng ghi trong từng dòng), phần "khác" tăng theo lạm phát giả định ${(D.assumptions.infl*100).toFixed(1)}%/năm; chưa backtest được.</li>
+ <li><b>Kịch bản</b>: Cơ sở = mô hình; Tăng/Giảm = Cơ sở + tổng điều chỉnh của các yếu tố rủi ro (×√(h/12)), công khai ở mục Yếu tố rủi ro.</li>
+ <li><b>Tự cập nhật</b>: chạy cùng pipeline giá (GitHub Actions) – dự báo làm mới mỗi lần chạy; danh sách yếu tố rủi ro rà soát thủ công hằng tuần (forecast/drivers.json).</li></ul>`;
+ document.getElementById('srcs').innerHTML='<b>Nguồn chuỗi lịch sử:</b><br>'+Object.entries(D.sources).map(([k,v])=>`${k}: ${v}`).join('<br>')+(D.notes.length?'<br><b>Ghi chú lần chạy:</b> '+D.notes.join('; '):'')}
+document.querySelectorAll('#scen button').forEach(b=>b.onclick=()=>{S=b.dataset.s;document.querySelectorAll('#scen button').forEach(x=>x.classList.toggle('on',x===b));mep();sel(SEL)});
+document.getElementById('q').oninput=render;document.getElementById('onlyLocal').onchange=render;
+load();
+</script></body></html>

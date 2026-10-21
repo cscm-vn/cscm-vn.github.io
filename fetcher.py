@@ -268,6 +268,13 @@ SOURCES = [("Vietcombank", src_vcb), ("Westmetall/LME", src_westmetall), ("Yahoo
            ("steelonline.vn", src_steelonline), ("thitruonghanghoa.com", src_tthh),
            ("Sở XD Hà Nội Q3/2026 (tĩnh)", src_hanoi_static)]
 
+# Nguồn bổ sung (bê tông thương phẩm, nhựa PE/PVC/PP, ống HDPE) – module forecast/sources.py
+try:
+    from forecast.sources import NEW_SOURCES
+    SOURCES += NEW_SOURCES
+except Exception as _e:
+    print("forecast.sources not loaded:", _e, file=sys.stderr)
+
 SCHEMA = """
 create table if not exists items(id text primary key, meta text, last_ok text, last_try text, status text);
 create table if not exists obs(id text, fetched_at text, as_of text, price real, price_high real, change_pct real,

@@ -51,3 +51,14 @@ Quick tunnel Cloudflare **không chạy được trên box này** (mạng chặn
 - Scraper phụ thuộc cấu trúc HTML của từng site; nếu site đổi giao diện, nguồn đó báo "Lỗi" trong bảng trạng thái và giá giữ ở lần tốt gần nhất.
 - Lịch sử: LME (~90 phiên) và Yahoo (~3 tháng) được nạp sẵn; các nguồn khác tích lũy từ 21/10/2026.
 - HRC (CME) tính theo short ton; đã quy đổi sang VND/tấn mét. Đồng COMEX USD/lb → VND/tấn. Vàng USD/oz → VND/lượng (37,5 g).
+
+## 📈 Dự báo & Chiến lược (`forecast/`, trang `forecast.html`)
+- `forecast/sources.py` – nguồn giá giao ngay bổ sung, đã cắm vào `fetcher.py` (`SOURCES += NEW_SOURCES`): bê tông tươi M250/M300 Hà Nội (betonghanoi.com.vn, betongtuoichem.com) & TP.HCM (betongdvc.com); PE/PVC/PP (Trading Economics, CNY/t); ống HDPE PE100 Tiền Phong (ongnuoctienphong.vn).
+- `forecast/build.py` – chạy SAU `export_static.py`: `python forecast/build.py --site site` → `site/forecast.json` + `site/forecast.html`.
+  Lịch sử tháng: World Bank Pink Sheet + Yahoo Finance (HG, ALI, TIO, HRC, BUS, BZ, MTF, VND=X, DXY) + đường cong futures (LME 3M, COMEX, ICE Brent).
+  Mô hình: ensemble RW/ETS/ARIMA/ARIMAX + futures; pass-through cho thép VN; mô hình chi phí cấu thành cho xi măng/cát/đá/bê tông/ống nhựa; chỉ số chi phí đầu vào MEP.
+  Backtest rolling-origin (60 tháng) → MAPE hiển thị trên trang.
+- `forecast/drivers.json` – yếu tố vĩ mô/địa chính trị (link nguồn, chiều tác động, % điều chỉnh kịch bản). **Rà soát thủ công mỗi tuần.**
+- `forecast/test_ui.py` – kiểm thử headless (Playwright) + chụp màn hình.
+- Workflow: bước "Build forecasts" chạy sau export, `continue-on-error` (lỗi dự báo không chặn deploy bảng giá). Pink Sheet cache 7 ngày trong `forecast/raw/` (không commit).
+- Hạn chế: thép VN/xi măng/cát/đá/bê tông chưa có lịch sử dài → hệ số pass-through/tỷ trọng chi phí là giả định, độ tin cậy thấp; ước lượng lại khi `data/prices.db` tích lũy ≥ 24 tháng.
