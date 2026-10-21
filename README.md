@@ -62,3 +62,7 @@ Quick tunnel Cloudflare **không chạy được trên box này** (mạng chặn
 - `forecast/test_ui.py` – kiểm thử headless (Playwright) + chụp màn hình.
 - Workflow: bước "Build forecasts" chạy sau export, `continue-on-error` (lỗi dự báo không chặn deploy bảng giá). Pink Sheet cache 7 ngày trong `forecast/raw/` (không commit).
 - Hạn chế: thép VN/xi măng/cát/đá/bê tông chưa có lịch sử dài → hệ số pass-through/tỷ trọng chi phí là giả định, độ tin cậy thấp; ước lượng lại khi `data/prices.db` tích lũy ≥ 24 tháng.
+
+## Hub hằng ngày (Trang chủ · Danh mục · Xu hướng & Cơ hội · Thị trường · Diễn biến tháng/năm)
+- Trang chủ `index.html` (bảng giá cũ chuyển sang `gia.html`, dự báo `forecast.html`), cây danh mục dùng chung `data/taxonomy.json`.
+- Mã nguồn & dữ liệu: `trends/` – `merge.py` (gộp mục mới, chống trùng), `feeds.py` (RSS/Google News miễn phí, chạy trong Actions), `build.py` (sinh trang + `site/data/hub.json`), `test_ui.py` (kiểm thử headless). Schema & quy trình: `trends/SCHEMA.md`.

@@ -123,21 +123,20 @@ def conf_label(mape):
     return "Cao" if mape < 4 else ("Trung bình" if mape < 9 else "Thấp")
 
 # ---------------- build ----------------
-TAX = {  # đường dẫn phân loại (đồng bộ data/taxonomy.json nếu có)
- "copper": ["MEP", "Cáp điện / cáp đồng"], "alu": ["MEP", "Cáp nhôm, thanh dẫn, vỏ điều hòa"],
- "ironore": ["Xây dựng", "Cốt thép", "Đầu vào thế giới"], "hrc": ["Xây dựng", "Thép kết cấu"],
- "scrap": ["Xây dựng", "Cốt thép", "Đầu vào thế giới"], "coking": ["Xây dựng", "Cốt thép", "Đầu vào thế giới"],
- "brent": ["Động lực vĩ mô", "Năng lượng"], "coal": ["Động lực vĩ mô", "Năng lượng"], "usdvnd": ["Động lực vĩ mô", "Tỷ giá"],
- "rebar": ["Xây dựng", "Cốt thép"], "cement": ["Xây dựng", "Xi măng"], "sand": ["Xây dựng", "Cát/đá"], "stone": ["Xây dựng", "Cát/đá"],
- "rmc250": ["Xây dựng", "Bê tông thương phẩm"], "rmc300": ["Xây dựng", "Bê tông thương phẩm"],
- "pe": ["MEP", "Ống nhựa PVC/HDPE", "Nguyên liệu"], "pp": ["MEP", "Ống nhựa PVC/HDPE", "Nguyên liệu"], "pvc": ["MEP", "Ống nhựa PVC/HDPE", "Nguyên liệu"],
- "hdpe_pipe": ["MEP", "Ống nhựa PVC/HDPE"], "cu_vnd": ["MEP", "Cáp điện / cáp đồng"], "al_vnd": ["MEP", "Cáp nhôm, thanh dẫn, vỏ điều hòa"],
- "idx_transformer": ["MEP", "Máy biến áp"], "idx_elevator": ["MEP", "Thang máy"], "idx_hvac": ["MEP", "Điều hòa (HVAC)"],
- "idx_switchboard": ["MEP", "Tủ điện / rack"], "idx_genset": ["MEP", "Máy phát điện"], "idx_cable": ["MEP", "Cáp điện / cáp đồng"],
+TAX = {  # key -> id cấp 2 trong data/taxonomy.json (cây danh mục dùng chung toàn site)
+ "copper": "mep.dong-nhom", "alu": "mep.dong-nhom", "cu_vnd": "mep.cap-dien", "al_vnd": "mep.dong-nhom", "idx_cable": "mep.cap-dien",
+ "ironore": "xd.thep-ket-cau", "hrc": "xd.thep-ket-cau", "scrap": "xd.thep-ket-cau", "coking": "xd.thep-ket-cau",
+ "rebar": "xd.cot-thep", "cement": "xd.xi-mang", "sand": "xd.cat-da", "stone": "xd.cat-da", "rmc250": "xd.be-tong", "rmc300": "xd.be-tong",
+ "pe": "mep.ong-nuoc", "pp": "mep.ong-nuoc", "pvc": "mep.ong-nuoc", "hdpe_pipe": "mep.ong-nuoc",
+ "brent": "tt.nang-luong", "coal": "tt.nang-luong", "usdvnd": "tt.ty-gia",
+ "idx_transformer": "mep.may-phat", "idx_elevator": "mep.thang-may", "idx_hvac": "mep.hvac", "idx_switchboard": "mep.tu-dien", "idx_genset": "mep.may-phat",
 }
 def tax_path(k, taxonomy):
-    p = TAX.get(k, ["Khác"])
-    return p
+    tid = TAX.get(k)
+    for n in (taxonomy or {}).get("tree", []):
+        for c in n["children"]:
+            if c["id"] == tid: return [n["name"], c["name"]]
+    return ["Khác"]
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--site", default=os.path.join(ROOT, "site"))
@@ -220,7 +219,7 @@ def main():
             b, sd = fc_pct[h]
             f[str(h)] = {"base": now * (1 + b), "lo": now * (1 + b) * math.exp(-1.2816 * sd), "hi": now * (1 + b) * math.exp(1.2816 * sd), "pct": 100 * b}
         d = dict(id=key + ("_" + region if region else ""), key=key, group=group, name=name, region=region, unit=unit, now=now, as_of=as_of,
-                 fc=f, method=method, src=src_, confidence=conf, backtest=bt, trend=trend, hist=hist, path=tax_path(key, taxonomy), pair=pair)
+                 fc=f, method=method, src=src_, confidence=conf, backtest=bt, trend=trend, hist=hist, path=tax_path(key, taxonomy), tax=TAX.get(key), pair=pair)
         if extra: d.update(extra)
         out_items.append(d)
     def wfc(k):  # world fc -> (pct, sd) incl. empirical band -> convert lo/hi to sd-equivalent
@@ -241,7 +240,7 @@ def main():
         it = items["te_cokingcoal"]
         out_items.append(dict(id="coking", key="coking", group="steel_world", name="Than cốc luyện kim", region=None, unit="USD/tấn", now=it["price"],
                               as_of=it.get("as_of"), fc=None, method="Không có lịch sử miễn phí đủ dài → chỉ hiển thị giá & động lực", src="Trading Economics",
-                              confidence="—", path=tax_path("coking", taxonomy), trend={"mom": 0.38, "yoy": 36.76, "src": "TE 21/10/2026"}))
+                              confidence="—", path=tax_path("coking", taxonomy), tax=TAX.get("coking"), trend={"mom": 0.38, "yoy": 36.76, "src": "TE 21/10/2026"}))
     # ---- VN steel (pass-through) ----
     # Chi phí thép thanh lò cao/lò điện: quặng (~1,6t), than cốc, phế; giá VN thực tế bám chậm & ít biến động hơn đầu vào.
     # β pass-through 0,45 trên chỉ số đầu vào quy VND (giả định, đối chiếu: VN rebar 2021–2025 dao động ~±25%/năm khi quặng ±50%).

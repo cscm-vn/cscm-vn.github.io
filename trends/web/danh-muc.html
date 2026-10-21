@@ -1,0 +1,55 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Danh mục – Masterise Procurement Hub</title><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<body class="hub" data-page="cat"><div id="hubnav"></div>
+<main class="wrap"><div class="crumb" id="crumb"></div>
+<div class="layout"><aside class="side" id="side"></aside><section>
+ <h1 id="title"></h1><p class="sub" id="desc"></p><div id="subs" class="filters"></div>
+ <div class="tabs" id="tabs"></div><div id="pane"></div>
+</section></div><div class="foot" id="foot"></div></main>
+<script>
+(async () => {
+ const [h, tr, mk, fd, t, fc] = await Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.get("feed.json"), HUB.tax(), fetch("forecast.json").then(r => r.ok ? r.json() : null).catch(() => null)]);
+ const E = HUB.esc; let c = HUB.qs("c"); if (!t.byId[c]) c = t.tree[0].id; const node = t.byId[c];
+ const ids = node.level === 1 ? node.children.map(x => x.id) : [c]; const inC = arr => (arr || []).some(x => ids.includes(x));
+ const P = h.items.filter(x => ids.includes(x.tax)), T = tr.items.filter(x => inC(x.tax)), M = mk.items.filter(x => inC(x.tax)), F = (fd?.items || []).filter(x => inC(x.tax));
+ const C = h.compare.filter(x => ids.includes(x.tax)); const FC = (fc?.items || []).filter(x => ids.includes(x.tax));
+ const counts = {}; h.items.forEach(x => counts[x.tax] = (counts[x.tax] || 0) + 1); tr.items.forEach(x => x.tax.forEach(id => counts[id] = (counts[id] || 0) + 1));
+ HUB.sidebar(document.getElementById("side"), c, counts);
+ document.title = node.name + " – Masterise Procurement Hub";
+ HUB.crumb(node.level === 1 ? [`<b>${node.icon} ${E(node.name)}</b>`] : [HUB.catLink(node.parent.id, node.parent.icon + " " + node.parent.name), `<b>${E(node.name)}</b>`]);
+ document.getElementById("title").textContent = (node.icon || node.parent.icon) + " " + node.name;
+ document.getElementById("desc").textContent = `${P.length} mã giá · ${C.length} so sánh Hà Nội/TP.HCM · ${T.length} xu hướng · ${M.length + F.length} tin`;
+ if (node.level === 1) document.getElementById("subs").innerHTML = node.children.map(x => `<a class="chip" href="danh-muc.html?c=${x.id}">${E(x.name)} <span class="mute">${counts[x.id] || 0}</span></a>`).join("");
+ const tabs = [["gia", `Giá (${P.length})`], ["cmp", `Hà Nội vs TP.HCM (${C.length})`], ["trend", `Xu hướng (${T.length})`], ["news", `Tin (${M.length + F.length})`], ["fc", "Dự báo"]];
+ let tab = HUB.qs("tab") || (P.length ? "gia" : T.length ? "trend" : "news");
+ const R = {
+  gia() { if (!P.length) return `<div class="empty">Chưa có nguồn giá tự động cho mục này. Xem tab <b>Xu hướng</b>/<b>Tin</b>, hoặc đề xuất nguồn giá để bổ sung.</div>`;
+   const regs = [...new Set(P.map(x => x.reg))]; return `<div class="filters"><input id="q" type="search" placeholder="Lọc trong ${E(node.name)}… (vd: hòa phát, d16, pcb40)">
+   ${regs.length > 1 ? `<span class="seg" id="rg"><button data-r="" class="on">Tất cả</button>${regs.map(r => `<button data-r="${r}">${{hn: "Hà Nội/Bắc", hcm: "TP.HCM/Nam", world: "Thế giới", vn: "VN khác"}[r]}</button>`).join("")}</span>` : ""}</div>
+   <div class="tw"><table class="t" id="pt"></table></div><p class="small mute">MoM = so với ~30 ngày trước; YoY = so với ~1 năm trước (cần đủ lịch sử – nhiều nguồn VN mới tích lũy từ 21/10/2026). Bấm tên để xem lịch sử, biểu đồ tháng.</p>`; },
+  cmp() { if (!C.length) return `<div class="empty">Chưa có cặp dữ liệu Hà Nội – TP.HCM cùng quy cách cho mục này.</div>`;
+   let s = C.map(x => `<div class="card"><div class="cmp"><b>${E(x.label)}</b><span class="pill hn">Hà Nội ${HUB.num(x.hn)}</span><span class="pill hcm">TP.HCM ${HUB.num(x.hcm)}</span><span>${HUB.pct(x.diff_pct)}</span></div>
+     <div class="small mute">${E(x.unit)} · % = TP.HCM so với Hà Nội · HN: ${x.hn_ids.length} mã, HCM: ${x.hcm_ids.length} mã</div><div class="ins">${E(x.insight)}</div></div>`).join("");
+   if (ids.includes("xd.cot-thep") && h.steel_brand_pairs.length) s += `<h2>Theo hãng (miền Bắc vs miền Nam, cùng ngày)</h2><div class="tw"><table class="t"><tr><th>Hãng / quy cách</th><th class="n">Bắc</th><th class="n">Nam</th><th class="n">Nam vs Bắc</th></tr>
+     ${h.steel_brand_pairs.map(x => `<tr><td>${E(x.name)}</td><td class="n">${HUB.num(x.hn)}</td><td class="n">${HUB.num(x.hcm)}</td><td class="n">${HUB.pct(x.diff_pct)}</td></tr>`).join("")}</table></div>`;
+   return `<div class="grid">${s}</div>`; },
+  trend() { return T.length ? `<div class="grid">${T.map(x => `<div class="card"><div class="trend"><span class="score">${Math.round(x.score)}</span><div><a href="xu-huong.html?id=${x.id}"><b>${E(x.title)}</b></a>
+    <div><span class="pill">${E(x.region)}</span><span class="small mute">${HUB.date(x.date)}</span></div><div class="small">${E(x.summary)}</div><div class="why"><b>Ý nghĩa với Masterise:</b> ${E(x.why)}</div></div></div></div>`).join("")}</div>` : `<div class="empty">Chưa có xu hướng cho mục này.</div>`; },
+  news() { const L = [...M.map(x => ({t: x.title, u: x.sources[0].url, s: x.sources[0].name, d: x.date, r: x.region, cur: 1})), ...F.map(x => ({t: x.title, u: x.url, s: x.source, d: x.date}))].sort((a, b) => b.d.localeCompare(a.d));
+   return L.length ? `<ul class="news card">${L.slice(0, 60).map(x => `<li>${x.cur ? '<span class="pill cat">Biên tập</span>' : ""}<a href="${E(x.u)}" target="_blank" rel="noopener">${E(x.t)}</a> <span class="small mute">${HUB.date(x.d)} · ${E(x.s)}</span></li>`).join("")}</ul>` : `<div class="empty">Chưa có tin.</div>`; },
+  fc() { if (!FC.length) return `<div class="empty">Chưa có dự báo cho mục này. Xem trang <a href="forecast.html">Dự báo</a> (dùng chung cây danh mục <code>data/taxonomy.json</code>).</div>`;
+   const hz = fc.horizons || [3, 6, 12];
+   return `<div class="tw"><table class="t"><tr><th>Mặt hàng</th><th>Khu vực</th><th class="n">Hiện tại</th>${hz.map(h => `<th class="n">${h} tháng (cơ sở)</th>`).join("")}<th>Độ tin cậy</th></tr>${FC.map(x => `<tr><td>${E(x.name)}</td><td>${HUB.regPill(/hn|bac/i.test(x.region || "") ? "hn" : /hcm|nam/i.test(x.region || "") ? "hcm" : "")}${E(x.region || "")}</td><td class="n">${HUB.num(x.now)} <span class="small mute">${E(x.unit)}</span></td>${hz.map(h => { const f = x.fc?.[h]; return `<td class="n">${f ? HUB.num(f.base) + " " + HUB.pct(f.pct) : "–"}</td>`; }).join("")}<td class="small">${E(x.confidence || "")}</td></tr>`).join("")}</table></div><p class="small"><a href="forecast.html">→ Xem phương pháp, khoảng tin cậy & chiến lược mua tại trang Dự báo</a></p>`; },
+ };
+ const draw = () => { document.getElementById("tabs").innerHTML = tabs.map(([k, l]) => `<button data-k="${k}" class="${k === tab ? "on" : ""}">${l}</button>`).join("");
+  document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { tab = b.dataset.k; history.replaceState(null, "", `?c=${c}&tab=${tab}`); draw(); });
+  document.getElementById("pane").innerHTML = R[tab](); if (tab === "gia" && P.length) table(); };
+ function table() { let rg = ""; const q = document.getElementById("q");
+  const f = () => { const s = HUB.strip(q.value).split(/\s+/).filter(Boolean); const L = P.filter(x => (!rg || x.reg === rg) && s.every(w => HUB.strip(x.name + " " + (x.region || "") + " " + x.src).includes(w)));
+   document.getElementById("pt").innerHTML = `<tr><th>Mặt hàng</th><th>Khu vực</th><th class="n">Giá</th><th>ĐVT</th><th class="n">Phiên</th><th class="n">MoM</th><th class="n">YoY</th><th>Ngày</th></tr>` +
+    L.map(x => `<tr><td><a href="mat-hang.html?id=${encodeURIComponent(x.id)}">${E(x.name)}</a>${x.stale ? ' <span class="pill" title="Nguồn lỗi – giữ giá tốt gần nhất">dữ liệu cũ</span>' : ""}</td><td>${HUB.regPill(x.reg)}<span class="small mute">${E(x.region || "")}</span></td>
+    <td class="n">${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""}</td><td class="small">${E(x.unit)}</td><td class="n">${HUB.pct(x.d1)}</td><td class="n">${HUB.pct(x.mom)}</td><td class="n">${HUB.pct(x.yoy)}</td><td class="small">${HUB.date(x.as_of)}</td></tr>`).join("") + (L.length ? "" : `<tr><td colspan=8 class="mute">Không có kết quả.</td></tr>`); };
+  q.oninput = f; document.querySelectorAll("#rg button").forEach(b => b.onclick = () => { rg = b.dataset.r; document.querySelectorAll("#rg button").forEach(x => x.classList.toggle("on", x === b)); f(); }); f(); }
+ draw(); HUB.foot();
+})();
+</script></body></html>

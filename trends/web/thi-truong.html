@@ -1,0 +1,34 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thị trường – Masterise Procurement Hub</title><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<body class="hub" data-page="thitruong"><div id="hubnav"></div>
+<main class="wrap"><div class="crumb" id="crumb"></div>
+ <h1>Thị trường xây dựng & bất động sản</h1><p class="sub">Tin biên tập (có nguồn) về Hà Nội, TP.HCM, chính sách, lãi suất, nhà thầu và thế giới; kèm tin tự động từ RSS.</p>
+ <h2>🏙️ Hà Nội vs TP.HCM – căn hộ Q3/2026</h2><div class="grid g2" id="hvh"></div>
+ <div class="filters"><span class="seg" id="rg"></span><select id="seg"><option value="">Mọi chủ đề</option></select><input id="q" type="search" placeholder="Tìm tin: savills, lãi suất, trúng thầu…"></div>
+ <div class="grid" id="list"></div>
+ <h2 id="feed">🛰️ Tin tự động (VnExpress, CafeF, Google News)</h2><div class="filters"><input id="fq" type="search" placeholder="Lọc tin tự động…"></div><ul class="news card" id="fl"></ul>
+ <div class="foot" id="foot"></div></main>
+<script>
+(async () => {
+ const [mk, fd, t] = await Promise.all([HUB.get("market.json"), HUB.get("feed.json"), HUB.tax()]); const E = HUB.esc; HUB.crumb(["<b>Thị trường</b>"]);
+ const card = x => `<div class="card" id="m-${x.id}" ${x.id === HUB.qs("id") ? 'style="outline:2px solid var(--pri)"' : ""}><h3><a href="${E(x.sources[0].url)}" target="_blank" rel="noopener">${E(x.title)}</a></h3>
+  <div><span class="pill ${x.region === "Hà Nội" ? "hn" : x.region === "TP.HCM" ? "hcm" : ""}">${E(x.region)}</span><span class="pill cat">${E(x.segment)}</span><span class="small mute">${HUB.date(x.date)}</span></div>
+  <p style="margin:6px 0">${E(x.summary)}</p>${x.takeaway ? `<div class="why" style="background:#fff8e6;border-left:3px solid var(--warn);padding:6px 10px;font-size:13.5px"><b>Hàm ý:</b> ${E(x.takeaway)}</div>` : ""}
+  <div class="small">Nguồn: ${x.sources.map(s => `<a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.name)} ↗</a>`).join(" · ")}</div></div>`;
+ const hn = mk.items.filter(x => x.region === "Hà Nội" && x.segment === "Căn hộ").slice(0, 2), hc = mk.items.filter(x => x.region === "TP.HCM" && x.segment === "Căn hộ").slice(0, 2);
+ document.getElementById("hvh").innerHTML = `<div class="card"><h3><span class="pill hn">Hà Nội</span></h3><ul class="news">${hn.map(x => `<li><b>${E(x.title)}</b><div class="small">${E(x.summary)}</div></li>`).join("")}</ul></div>
+  <div class="card"><h3><span class="pill hcm">TP.HCM</span></h3><ul class="news">${hc.map(x => `<li><b>${E(x.title)}</b><div class="small">${E(x.summary)}</div></li>`).join("")}</ul></div>
+  <div class="ins" style="grid-column:1/-1"><b>Nhận định chênh lệch:</b> Hà Nội Q3/2026 hấp thụ giảm mạnh (Savills 39%, CBRE: giao dịch thấp nhất từ 2024) và giá sơ cấp bắt đầu điều chỉnh (CBRE nội đô 102 tr/m², −6% q/q); TP.HCM hấp thụ ~45% với hạng sang tiếp tục kéo mặt bằng giá (Knight Frank 110 tr/m², +12% n/n). Với phân khúc cao cấp, áp lực giá bán ở Hà Nội cao hơn → ưu tiên tối ưu chi phí xây dựng cho dự án phía Bắc. Lưu ý: các đơn vị đo giá khác nhau (thông thủy/tim tường, có/không VAT, ranh giới sau sáp nhập).</div>`;
+ const R = ["", ...new Set(mk.items.map(x => x.region))]; let rg = "";
+ document.getElementById("rg").innerHTML = R.map(r => `<button data-r="${r}" class="${r ? "" : "on"}">${r || "Tất cả"}</button>`).join("");
+ document.getElementById("seg").innerHTML += [...new Set(mk.items.map(x => x.segment))].map(s => `<option>${E(s)}</option>`).join("");
+ const f = () => { const q = HUB.strip(document.getElementById("q").value).split(/\s+/).filter(Boolean), sg = document.getElementById("seg").value;
+  const L = mk.items.filter(x => (!rg || x.region === rg) && (!sg || x.segment === sg) && q.every(w => HUB.strip(x.title + " " + x.summary + " " + x.sources.map(s => s.name).join(" ")).includes(w)));
+  document.getElementById("list").innerHTML = L.map(card).join("") || '<div class="empty">Không có tin phù hợp.</div>'; };
+ document.querySelectorAll("#rg button").forEach(b => b.onclick = () => { rg = b.dataset.r; document.querySelectorAll("#rg button").forEach(z => z.classList.toggle("on", z === b)); f(); });
+ ["q", "seg"].forEach(i => document.getElementById(i).addEventListener("input", f)); f();
+ const ff = () => { const q = HUB.strip(document.getElementById("fq").value).split(/\s+/).filter(Boolean);
+  document.getElementById("fl").innerHTML = (fd?.items || []).filter(x => x.kind === "market" && q.every(w => HUB.strip(x.title + " " + x.source).includes(w))).slice(0, 60).map(x => `<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="small mute">${HUB.date(x.date)} · ${E(x.source)}</span></li>`).join("") || "<li class=mute>Không có.</li>"; };
+ document.getElementById("fq").oninput = ff; ff(); if (HUB.qs("id")) document.getElementById("m-" + HUB.qs("id"))?.scrollIntoView({block: "center"}); HUB.foot();
+})();
+</script></body></html>

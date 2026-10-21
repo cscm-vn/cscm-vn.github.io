@@ -1,0 +1,42 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xu hướng & Cơ hội – Masterise Procurement Hub</title><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<body class="hub" data-page="xuhuong"><div id="hubnav"></div>
+<main class="wrap"><div class="crumb" id="crumb"></div>
+ <h1>Xu hướng & Cơ hội mua sắm</h1>
+ <p class="sub">Xếp hạng theo điểm tổng hợp /100 = Mới (15%) + Tiết kiệm chi phí (30%) + Nâng chất lượng (20%) + Phù hợp căn hộ cao cấp VN (25%) + Sẵn nhà cung cấp (10%), mỗi tiêu chí chấm 1–5. Mỗi mục có nguồn để kiểm chứng.</p>
+ <div class="filters" id="l1"></div>
+ <div class="filters"><input id="q" type="search" placeholder="Tìm: smart toilet, Phật Sơn, Low-E, thuế…">
+  <select id="l2"><option value="">Mọi nhóm cấp 2</option></select><select id="rg"><option value="">Mọi khu vực</option></select>
+  <select id="imp"><option value="">Mọi loại tác động</option><option value="cost">Tiết kiệm chi phí</option><option value="quality">Nâng chất lượng</option><option value="risk">Rủi ro</option></select>
+  <select id="sort"><option value="score">Xếp theo điểm</option><option value="date">Mới nhất</option></select></div>
+ <p class="small mute" id="cnt"></p><div class="grid" id="list"></div>
+ <h2 id="feedh">🛰️ Tin tự động theo từ khóa (Google News vi/en/zh, cập nhật mỗi lần chạy workflow)</h2><p class="small mute">Xếp hạng tự động bằng từ khóa – dùng làm đầu mối, chưa được biên tập.</p><ul class="news card" id="feed"></ul>
+ <div class="foot" id="foot"></div></main>
+<script>
+(async () => {
+ const [tr, fd, t] = await Promise.all([HUB.get("trends.json"), HUB.get("feed.json"), HUB.tax()]); const E = HUB.esc;
+ HUB.crumb(["<b>Xu hướng & Cơ hội</b>"]);
+ const KIND = {cost: "💰 Tiết kiệm chi phí", quality: "⭐ Nâng chất lượng", risk: "⚠️ Rủi ro"}; const LBL = {novelty: "Mới", cost_saving: "Tiết kiệm", quality: "Chất lượng", applicability: "Phù hợp", supplier: "Sẵn NCC"};
+ let l1 = HUB.qs("c") || ""; const focus = HUB.qs("id");
+ const l1s = t.tree.filter(n => tr.items.some(x => x.tax.some(id => t.byId[id].parent.id === n.id)));
+ const drawL1 = () => { document.getElementById("l1").innerHTML = `<button class="chip ${l1 ? "" : "on"}" data-c="">Tất cả (${tr.items.length})</button>` + l1s.map(n => `<button class="chip ${l1 === n.id ? "on" : ""}" data-c="${n.id}">${n.icon} ${E(n.name)} (${tr.items.filter(x => x.tax.some(id => t.byId[id].parent.id === n.id)).length})</button>`).join("");
+  document.querySelectorAll("#l1 .chip").forEach(b => b.onclick = () => { l1 = b.dataset.c; document.getElementById("l2").value = ""; drawL1(); fillL2(); f(); }); };
+ const fillL2 = () => { const s = new Set(tr.items.flatMap(x => x.tax)); document.getElementById("l2").innerHTML = '<option value="">Mọi nhóm cấp 2</option>' + [...s].filter(id => !l1 || t.byId[id].parent.id === l1).map(id => `<option value="${id}">${E(t.byId[id].name)}</option>`).join(""); };
+ document.getElementById("rg").innerHTML += [...new Set(tr.items.map(x => x.region))].sort().map(r => `<option>${E(r)}</option>`).join("");
+ const card = (x, i) => `<div class="card" id="t-${x.id}" ${x.id === focus ? 'style="outline:2px solid var(--pri)"' : ""}><div class="trend"><div style="text-align:center"><span class="score">${Math.round(x.score)}</span><div class="small mute">#${i + 1}</div></div><div>
+  <h3>${E(x.title)}</h3><div>${x.tax.map(id => HUB.catLink(id, t.byId[id].name).replace("<a", '<a class="pill cat"')).join("")}<span class="pill">${E(x.region)}</span><span class="pill">${KIND[x.impact.kind] || ""} · ${E(x.impact.level)}</span><span class="small mute">${HUB.date(x.date)}</span></div>
+  <p style="margin:6px 0">${E(x.summary)}</p><div class="why"><b>Ý nghĩa với Masterise:</b> ${E(x.why)}</div>
+  <div class="small"><b>Ước tính tác động:</b> ${E(x.impact.estimate)}</div>
+  <div class="bars" style="margin:4px 0">${Object.entries(LBL).map(([k, l]) => `<span>${l} <b>${x.scores[k]}</b>/5</span>`).join(" · ")}</div>
+  <div class="src">Nguồn: ${x.sources.map(s => `<a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.name)} ↗</a>`).join("")}</div></div></div></div>`;
+ const f = () => { const q = HUB.strip(document.getElementById("q").value).split(/\s+/).filter(Boolean), l2 = document.getElementById("l2").value, rg = document.getElementById("rg").value, im = document.getElementById("imp").value, so = document.getElementById("sort").value;
+  let L = tr.items.filter(x => (!l1 || x.tax.some(id => t.byId[id].parent.id === l1)) && (!l2 || x.tax.includes(l2)) && (!rg || x.region === rg) && (!im || x.impact.kind === im) && q.every(w => HUB.strip([x.title, x.summary, x.why, x.region, ...x.tax.map(id => t.byId[id].name), ...(x.tags || [])].join(" ")).includes(w)));
+  if (so === "date") L = L.slice().sort((a, b) => b.date.localeCompare(a.date));
+  document.getElementById("cnt").textContent = `${L.length} / ${tr.items.length} mục · cập nhật ${(tr.updated || "").replace("T", " ")}`;
+  document.getElementById("list").innerHTML = L.map(card).join("") || '<div class="empty">Không có mục phù hợp – thử bỏ bớt bộ lọc.</div>';
+  const fl = (fd?.items || []).filter(x => x.kind === "trend" && (!l1 || x.tax.some(id => t.byId[id]?.parent.id === l1)) && q.every(w => HUB.strip(x.title).includes(w))).sort((a, b) => b.score - a.score).slice(0, 25);
+  document.getElementById("feed").innerHTML = fl.map(x => `<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="small mute">${HUB.date(x.date)} · ${E(x.source)} · điểm ${x.score.toFixed(0)}</span> ${x.tax.map(id => `<span class="pill">${E(t.byId[id]?.name || "")}</span>`).join("")}</li>`).join("") || "<li class=mute>Không có.</li>"; };
+ ["q", "l2", "rg", "imp", "sort"].forEach(i => document.getElementById(i).addEventListener("input", f));
+ drawL1(); fillL2(); f(); if (focus) document.getElementById("t-" + focus)?.scrollIntoView({block: "center"}); HUB.foot();
+})();
+</script></body></html>

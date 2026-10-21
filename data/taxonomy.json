@@ -1,0 +1,625 @@
+{
+ "version": 1,
+ "note": "Cây danh mục mua sắm dùng chung cho mọi trang (Giá, Dự báo, Xu hướng, Thị trường). Mỗi mục giá/dự báo/xu hướng/tin gắn 'tax' = id cấp 2 (vd 'xd.cot-thep'). Quy tắc 'match' cho phép tự gán theo category/id/từ khóa (regex, không phân biệt hoa thường, so trên tên không dấu).",
+ "tree": [
+  {
+   "id": "xd",
+   "name": "Xây dựng (phần thô)",
+   "icon": "🏗️",
+   "children": [
+    {
+     "id": "xd.cot-thep",
+     "name": "Cốt thép",
+     "match": {
+      "cats": [
+       "Thép xây dựng"
+      ],
+      "kw": [
+       "cb240",
+       "cb300",
+       "cb400",
+       "cb500",
+       "thep thanh",
+       "thep cuon",
+       "rebar"
+      ]
+     }
+    },
+    {
+     "id": "xd.thep-ket-cau",
+     "name": "Thép kết cấu & thép tấm (HRC, hình)",
+     "match": {
+      "ids": [
+       "hrc",
+       "rebar_shfe",
+       "ironore",
+       "cokingcoal",
+       "scrap"
+      ],
+      "kw": [
+       "hrc",
+       "h-section",
+       "thep hinh",
+       "quang sat",
+       "than coc",
+       "phe lieu",
+       "thep tam"
+      ]
+     }
+    },
+    {
+     "id": "xd.xi-mang",
+     "name": "Xi măng",
+     "match": {
+      "cats": [
+       "Xi măng"
+      ],
+      "kw": [
+       "xi mang",
+       "cement",
+       "clinker",
+       "lc3"
+      ]
+     }
+    },
+    {
+     "id": "xd.be-tong",
+     "name": "Bê tông thương phẩm",
+     "match": {
+      "kw": [
+       "be tong thuong pham",
+       "ready-mix",
+       "beton"
+      ],
+      "cats": [
+       "Bê tông thương phẩm"
+      ]
+     }
+    },
+    {
+     "id": "xd.cat-da",
+     "name": "Cát, đá, cấp phối",
+     "match": {
+      "cats": [
+       "Cát",
+       "Đá xây dựng"
+      ],
+      "kw": [
+       "cat vang",
+       "cat den",
+       "da 1x2",
+       "cap phoi"
+      ]
+     }
+    },
+    {
+     "id": "xd.gach-xay",
+     "name": "Gạch xây, AAC/ALC",
+     "match": {
+      "cats": [
+       "Gạch xây"
+      ],
+      "kw": [
+       "gach block",
+       "aac",
+       "alc",
+       "be tong khi",
+       "tuong nhe"
+      ]
+     }
+    },
+    {
+     "id": "xd.van-khuon",
+     "name": "Ván khuôn, giàn giáo",
+     "match": {
+      "kw": [
+       "van khuon",
+       "cop pha",
+       "nhom dinh hinh",
+       "formwork",
+       "gian giao"
+      ]
+     }
+    },
+    {
+     "id": "xd.lap-ghep",
+     "name": "Cấu kiện đúc sẵn / lắp ghép",
+     "match": {
+      "kw": [
+       "precast",
+       "duc san",
+       "lap ghep",
+       "modular"
+      ]
+     }
+    },
+    {
+     "id": "xd.chong-tham",
+     "name": "Chống thấm, phụ gia",
+     "match": {
+      "kw": [
+       "chong tham",
+       "phu gia",
+       "waterproof"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "mep",
+   "name": "MEP",
+   "icon": "⚡",
+   "children": [
+    {
+     "id": "mep.hvac",
+     "name": "Điều hòa / HVAC",
+     "match": {
+      "kw": [
+       "dieu hoa",
+       "hvac",
+       "vrv",
+       "vrf",
+       "chiller",
+       "heat pump",
+       "r-32"
+      ]
+     }
+    },
+    {
+     "id": "mep.thang-may",
+     "name": "Thang máy",
+     "match": {
+      "kw": [
+       "thang may",
+       "elevator",
+       "escalator",
+       "thang cuon"
+      ]
+     }
+    },
+    {
+     "id": "mep.cap-dien",
+     "name": "Dây & cáp điện",
+     "match": {
+      "kw": [
+       "cap dien",
+       "day dien",
+       "cadivi",
+       "cable",
+       "cxv",
+       "cvv"
+      ]
+     }
+    },
+    {
+     "id": "mep.dong-nhom",
+     "name": "Nguyên liệu đồng, nhôm, kim loại màu",
+     "match": {
+      "cats": [
+       "Kim loại màu"
+      ],
+      "ids": [
+       "copper",
+       "aluminium",
+       "zinc",
+       "nickel",
+       "tin",
+       "lead"
+      ],
+      "kw": [
+       "dong lme",
+       "copper",
+       "aluminium",
+       "nhom lme"
+      ]
+     }
+    },
+    {
+     "id": "mep.ong-nuoc",
+     "name": "Ống nước PVC/HDPE/PPR",
+     "match": {
+      "kw": [
+       "pvc",
+       "hdpe",
+       "ppr",
+       "ong nhua",
+       "tien phong",
+       "binh minh"
+      ],
+      "cats": [
+       "Nhựa (nguyên liệu)",
+       "Ống nhựa (MEP)"
+      ]
+     }
+    },
+    {
+     "id": "mep.tu-dien",
+     "name": "Tủ điện, tủ rack, thiết bị đóng cắt",
+     "match": {
+      "kw": [
+       "tu dien",
+       "tu rack",
+       "switchgear",
+       "mcb",
+       "acb"
+      ]
+     }
+    },
+    {
+     "id": "mep.may-phat",
+     "name": "Máy phát điện, máy biến áp",
+     "match": {
+      "kw": [
+       "may phat",
+       "may bien ap",
+       "transformer",
+       "generator"
+      ]
+     }
+    },
+    {
+     "id": "mep.pccc",
+     "name": "PCCC",
+     "match": {
+      "kw": [
+       "pccc",
+       "sprinkler",
+       "bao chay",
+       "chua chay"
+      ]
+     }
+    },
+    {
+     "id": "mep.nang-luong",
+     "name": "Điện mặt trời áp mái, sạc xe điện",
+     "match": {
+      "kw": [
+       "dien mat troi",
+       "solar",
+       "sac xe",
+       "ev charger"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "ht",
+   "name": "Hoàn thiện",
+   "icon": "🛁",
+   "children": [
+    {
+     "id": "ht.tbvs",
+     "name": "Thiết bị vệ sinh",
+     "match": {
+      "kw": [
+       "thiet bi ve sinh",
+       "bon cau",
+       "toilet",
+       "washlet",
+       "sanitary",
+       "lavabo",
+       "sen tam"
+      ]
+     }
+    },
+    {
+     "id": "ht.tu-bep",
+     "name": "Tủ bếp & nội thất liền tường",
+     "match": {
+      "kw": [
+       "tu bep",
+       "kitchen",
+       "cabinet",
+       "wardrobe",
+       "noi that lien tuong",
+       "oppein",
+       "hanssem"
+      ]
+     }
+    },
+    {
+     "id": "ht.gach-da",
+     "name": "Gạch ốp lát, đá, đá nung kết",
+     "match": {
+      "kw": [
+       "gach op lat",
+       "ceramic",
+       "tile",
+       "sintered",
+       "da nung ket",
+       "slab",
+       "porcelain",
+       "granite"
+      ]
+     }
+    },
+    {
+     "id": "ht.san",
+     "name": "Sàn gỗ / SPC / vinyl",
+     "match": {
+      "kw": [
+       "spc",
+       "san go",
+       "vinyl",
+       "lvt",
+       "flooring"
+      ]
+     }
+    },
+    {
+     "id": "ht.son",
+     "name": "Sơn & phủ bề mặt",
+     "match": {
+      "kw": [
+       "son nuoc",
+       "son ",
+       "paint",
+       "coating"
+      ]
+     }
+    },
+    {
+     "id": "ht.cua",
+     "name": "Cửa đi, cửa gỗ, khóa & phụ kiện",
+     "match": {
+      "kw": [
+       "cua go",
+       "cua chong chay",
+       "khoa",
+       "hafele",
+       "phu kien"
+      ]
+     }
+    },
+    {
+     "id": "ht.thiet-bi-bep",
+     "name": "Thiết bị bếp",
+     "match": {
+      "kw": [
+       "bep tu",
+       "may hut mui",
+       "thiet bi bep",
+       "appliance"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "md",
+   "name": "Mặt dựng & cửa nhôm kính",
+   "icon": "🏢",
+   "children": [
+    {
+     "id": "md.kinh",
+     "name": "Kính (Low-E, hộp, an toàn)",
+     "match": {
+      "kw": [
+       "kinh",
+       "low-e",
+       "glass",
+       "igu"
+      ]
+     }
+    },
+    {
+     "id": "md.nhom",
+     "name": "Hệ nhôm cửa sổ / vách",
+     "match": {
+      "kw": [
+       "nhom xingfa",
+       "nhom kinh",
+       "aluminium window",
+       "cua so nhom"
+      ]
+     }
+    },
+    {
+     "id": "md.mat-dung",
+     "name": "Mặt dựng (curtain wall, ACP, lam)",
+     "match": {
+      "kw": [
+       "mat dung",
+       "facade",
+       "curtain wall",
+       "acp",
+       "lam chan nang"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "elv",
+   "name": "Smart home & ELV",
+   "icon": "📶",
+   "children": [
+    {
+     "id": "elv.smart-home",
+     "name": "Nhà thông minh",
+     "match": {
+      "kw": [
+       "smart home",
+       "nha thong minh",
+       "smartthings",
+       "matter",
+       "knx"
+      ]
+     }
+    },
+    {
+     "id": "elv.an-ninh",
+     "name": "An ninh, kiểm soát ra vào, camera",
+     "match": {
+      "kw": [
+       "faceid",
+       "camera",
+       "kiem soat ra vao",
+       "access control",
+       "video intercom"
+      ]
+     }
+    },
+    {
+     "id": "elv.bms",
+     "name": "BMS, mạng, viễn thông",
+     "match": {
+      "kw": [
+       "bms",
+       "wifi",
+       "mang lan",
+       "vien thong"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "cq",
+   "name": "Cảnh quan & tiện ích",
+   "icon": "🌳",
+   "children": [
+    {
+     "id": "cq.cay-xanh",
+     "name": "Cây xanh, tưới, sân vườn",
+     "match": {
+      "kw": [
+       "canh quan",
+       "cay xanh",
+       "landscape",
+       "tuoi"
+      ]
+     }
+    },
+    {
+     "id": "cq.ho-boi",
+     "name": "Hồ bơi, tiện ích ngoài trời",
+     "match": {
+      "kw": [
+       "ho boi",
+       "pool"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "esg",
+   "name": "ESG & công trình xanh",
+   "icon": "♻️",
+   "children": [
+    {
+     "id": "esg.chung-nhan",
+     "name": "Chứng nhận xanh (EDGE, LEED, LOTUS)",
+     "match": {
+      "kw": [
+       "edge",
+       "leed",
+       "lotus",
+       "green mark",
+       "cong trinh xanh"
+      ]
+     }
+    },
+    {
+     "id": "esg.carbon",
+     "name": "Carbon vật liệu, CBAM, thép/xi măng xanh",
+     "match": {
+      "kw": [
+       "cbam",
+       "carbon",
+       "green steel",
+       "thep xanh",
+       "phat thai"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "tt",
+   "name": "Vĩ mô & thương mại",
+   "icon": "🌏",
+   "children": [
+    {
+     "id": "tt.ty-gia",
+     "name": "Tỷ giá & vàng",
+     "match": {
+      "cats": [
+       "Tỷ giá",
+       "Vàng trong nước",
+       "Kim loại quý"
+      ]
+     }
+    },
+    {
+     "id": "tt.nang-luong",
+     "name": "Năng lượng (dầu, than)",
+     "match": {
+      "ids": [
+       "brent",
+       "coal"
+      ],
+      "kw": [
+       "dau brent",
+       "than nhiet",
+       "brent"
+      ]
+     }
+    },
+    {
+     "id": "tt.thue-quan",
+     "name": "Phòng vệ thương mại, thuế quan",
+     "match": {
+      "kw": [
+       "chong ban pha gia",
+       "anti-dumping",
+       "thue quan",
+       "tariff",
+       "phong ve"
+      ]
+     }
+    },
+    {
+     "id": "tt.trung-quoc",
+     "name": "Nguồn cung Trung Quốc",
+     "match": {
+      "kw": [
+       "canton",
+       "foshan",
+       "trung quoc",
+       "china"
+      ]
+     }
+    },
+    {
+     "id": "tt.bds",
+     "name": "Thị trường BĐS & xây dựng",
+     "match": {
+      "kw": [
+       "can ho",
+       "bat dong san",
+       "nguon cung",
+       "hap thu",
+       "nha thau",
+       "trung thau"
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "regions": {
+  "hn": [
+   "Hà Nội",
+   "Miền Bắc"
+  ],
+  "hcm": [
+   "TP. Hồ Chí Minh",
+   "TP.HCM",
+   "Miền Nam"
+  ]
+ }
+}

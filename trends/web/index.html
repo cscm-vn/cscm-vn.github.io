@@ -1,0 +1,48 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Masterise Procurement Hub – Tổng quan hôm nay</title><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<body class="hub" data-page="home" data-hub-page><div id="hubnav"></div>
+<main class="wrap">
+ <h1>Tổng quan hôm nay <span class="mute small" id="upd"></span></h1>
+ <p class="sub">Điểm tin mỗi sáng cho nhóm đấu thầu: biến động giá, Hà Nội vs TP.HCM, xu hướng & cơ hội nhà cung cấp, tin thị trường. Bấm vào nhóm danh mục để đi sâu.</p>
+ <div class="grid g4 kpis" id="kpi"></div>
+ <h2>Danh mục mua sắm</h2><div class="grid g4" id="tiles"></div>
+ <div class="grid g2" style="margin-top:6px">
+  <section><h2>🔥 Top 5 xu hướng & cơ hội <a class="small" href="xu-huong.html">xem tất cả →</a></h2><div id="top5" class="grid"></div></section>
+  <section><h2>📈 Biến động giá đáng chú ý <a class="small" href="gia.html">bảng giá →</a></h2>
+   <div class="seg" id="mvseg"><button data-k="d1" class="on">Phiên gần nhất</button><button data-k="vn">Giá VN</button><button data-k="mom">So với tháng trước</button></div>
+   <div class="tw" style="margin-top:8px;max-height:none"><table class="t" id="movers"></table></div>
+   <h2>🏙️ Hà Nội vs TP.HCM <a class="small" href="danh-muc.html?c=xd&tab=cmp">chi tiết →</a></h2><div id="cmp" class="grid"></div></section>
+ </div>
+ <div class="grid g2">
+  <section><h2>📰 Tin thị trường nổi bật <a class="small" href="thi-truong.html">xem tất cả →</a></h2><ul class="news card" id="mk"></ul></section>
+  <section><h2>🛰️ Tin tự động mới nhất (RSS) <a class="small" href="thi-truong.html#feed">xem thêm →</a></h2><ul class="news card" id="feed"></ul></section>
+ </div>
+ <div class="foot" id="foot"></div>
+</main>
+<script>
+(async () => {
+ const [h, tr, mk, fd, t] = await Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.get("feed.json"), HUB.tax()]);
+ const E = HUB.esc, by = id => h.items.find(x => x.id === id);
+ document.getElementById("upd").textContent = "· cập nhật giá " + (h.updated || "").replace("T", " ").slice(0, 16) + " (giờ VN)";
+ const K = [["fx_usd_vnd", "USD/VND (VCB)"], ["lme_copper", "Đồng LME"], ["lme_aluminium", "Nhôm LME"], ["vnsteel_hoa_phat_mien_bac_cb300_d10", "Thép HPG CB300 D10 – Bắc"]];
+ document.getElementById("kpi").innerHTML = K.map(([id, l]) => { const x = by(id); if (!x) return ""; return `<a class="tile" href="mat-hang.html?id=${id}"><span class="small">${l}</span>
+   <div class="kpi">${HUB.num(x.price)} <small>${E(x.unit)}</small></div><span class="small">Phiên: ${HUB.pct(x.d1)} · Tháng: ${HUB.pct(x.mom)}</span></a>`; }).join("");
+ const cnt = {}; const add = (k, f) => { cnt[k] ||= {p: 0, t: 0, m: 0}; cnt[k][f]++; };
+ h.items.forEach(x => add(t.byId[x.tax].parent.id, "p")); tr.items.forEach(x => add(x.l1, "t"));
+ mk.items.forEach(x => (x.tax || []).slice(0, 1).forEach(id => add(t.byId[id].parent.id, "m")));
+ document.getElementById("tiles").innerHTML = t.tree.map(n => { const c = cnt[n.id] || {p: 0, t: 0, m: 0}; return `<a class="tile" href="danh-muc.html?c=${n.id}"><span class="ic">${n.icon}</span><b>${E(n.name)}</b>
+  <span class="small">${c.p} mã giá · ${c.t} xu hướng · ${c.m} tin</span><div class="small" style="margin-top:4px">${n.children.slice(0, 4).map(x => E(x.name)).join(" · ")}${n.children.length > 4 ? " …" : ""}</div></a>`; }).join("");
+ document.getElementById("top5").innerHTML = tr.items.slice(0, 5).map((x, i) => `<div class="card"><div class="trend"><span class="score" title="Điểm tổng hợp /100">${Math.round(x.score)}</span>
+  <div><a href="xu-huong.html?id=${x.id}"><b>${i + 1}. ${E(x.title)}</b></a><div>${HUB.catLink(x.tax[0], x.category).replace("<a", '<a class="pill cat"')} <span class="pill">${E(x.region)}</span> <span class="small mute">${HUB.date(x.date)}</span></div>
+  <div class="small" style="margin-top:4px">${E(x.why)}</div></div></div></div>`).join("");
+ const mv = k0 => { const vn = k0 === "vn", k = vn ? "d1" : k0; const L = h.items.filter(x => (!vn || x.grp === "vn") && x[k] != null && Math.abs(x[k]) > 0 && !x.stale).sort((a, b) => Math.abs(b[k]) - Math.abs(a[k])).slice(0, 8);
+  document.getElementById("movers").innerHTML = `<tr><th>Mặt hàng</th><th class="n">Giá</th><th class="n">${k === "d1" ? "Phiên" : "MoM"}</th></tr>` + (L.length ? L.map(x => `<tr><td><a href="mat-hang.html?id=${x.id}">${E(x.name)}</a> ${HUB.regPill(x.reg)}</td>
+   <td class="n">${HUB.num(x.price)} <span class="small mute">${E(x.unit)}</span></td><td class="n">${HUB.pct(x[k])}</td></tr>`).join("") : `<tr><td colspan=3 class="mute">${vn ? "Giá VN hôm nay chưa thay đổi so với phiên trước (nhiều nguồn cập nhật theo tháng/quý)." : "Chưa đủ lịch sử để tính."}</td></tr>`); };
+ document.querySelectorAll("#mvseg button").forEach(b => b.onclick = () => { document.querySelectorAll("#mvseg button").forEach(x => x.classList.toggle("on", x === b)); mv(b.dataset.k); }); mv("d1");
+ document.getElementById("cmp").innerHTML = (() => { const seen = new Set(); return h.compare.slice().sort((a, b) => Math.abs(b.diff_pct) - Math.abs(a.diff_pct)).filter(c => !seen.has(c.tax) && seen.add(c.tax)); })().map(c => `<div class="card"><div class="cmp"><b>${E(c.label)}</b><span class="pill hn">HN ${HUB.num(c.hn)}</span><span class="pill hcm">HCM ${HUB.num(c.hcm)}</span>${HUB.pct(c.diff_pct)}</div>
+  <div class="small mute">${E(c.unit)} · chênh TP.HCM so với Hà Nội</div><div class="ins">${E(c.insight)}</div></div>`).join("") || '<div class="empty">Chưa có cặp dữ liệu.</div>';
+ document.getElementById("mk").innerHTML = mk.items.slice(0, 7).map(x => `<li><a href="${x.sources[0].url}" target="_blank" rel="noopener"><b>${E(x.title)}</b></a> <span class="pill">${E(x.region)}</span><span class="small mute">${HUB.date(x.date)} · ${E(x.sources[0].name)}</span></li>`).join("");
+ document.getElementById("feed").innerHTML = (fd?.items || []).slice().sort((a, b) => b.date.localeCompare(a.date) || b.score - a.score).slice(0, 8).map(x => `<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="small mute">${HUB.date(x.date)} · ${E(x.source)}</span></li>`).join("") || "<li class=mute>Chưa có.</li>";
+ HUB.foot();
+})();
+</script></body></html>

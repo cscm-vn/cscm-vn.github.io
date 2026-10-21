@@ -1,0 +1,41 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mặt hàng – Masterise Procurement Hub</title><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script><script src="static/chart.umd.min.js"></script></head>
+<body class="hub" data-page="item"><div id="hubnav"></div>
+<main class="wrap"><div class="crumb" id="crumb"></div>
+<div class="layout"><aside class="side" id="side"></aside><section id="main"></section></div><div class="foot" id="foot"></div></main>
+<script>
+(async () => {
+ const [h, tr, mk, t, fc] = await Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.tax(), fetch("forecast.json").then(r => r.ok ? r.json() : null).catch(() => null)]);
+ const E = HUB.esc, id = HUB.qs("id"), x = h.items.find(i => i.id === id), main = document.getElementById("main");
+ if (!x) { main.innerHTML = `<div class="empty">Không tìm thấy mặt hàng “${E(id)}”. <a href="gia.html">Về bảng giá</a></div>`; HUB.sidebar(document.getElementById("side")); return; }
+ const n = t.byId[x.tax]; HUB.sidebar(document.getElementById("side"), x.tax);
+ HUB.crumb([HUB.catLink(n.parent.id, n.parent.icon + " " + n.parent.name), HUB.catLink(n.id, n.name), `<b>${E(x.name)}</b>`]); document.title = x.name + " – Hub";
+ const hist = await fetch("history/" + encodeURIComponent(id) + ".json").then(r => r.json()).catch(() => ({points: []}));
+ const pairs = h.compare.filter(c => c.hn_ids.includes(id) || c.hcm_ids.includes(id));
+ const sib = h.items.filter(i => i.tax === x.tax && i.id !== id && i.name === x.name);
+ const T = tr.items.filter(i => i.tax.includes(x.tax)).slice(0, 5), M = mk.items.filter(i => (i.tax || []).includes(x.tax)).slice(0, 5);
+ const F = (fc?.items || []).filter(i => i.tax === x.tax && (!i.region || x.reg === "world" || (/hn|bac/i.test(i.region) ? "hn" : /hcm|nam/i.test(i.region) ? "hcm" : x.reg) === x.reg));
+ main.innerHTML = `<h1>${E(x.name)}</h1><p class="sub">${HUB.regPill(x.reg)} ${E(x.region || "")} · Nguồn: <a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.src)}</a> · ngày giá ${HUB.date(x.as_of)} ${x.stale ? '· <b class="up">dữ liệu cũ (nguồn lỗi)</b>' : ""}</p>
+  <div class="grid g4"><div class="card"><span class="small mute">Giá hiện tại</span><div class="kpi">${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""} <small>${E(x.unit)}</small></div>${x.vnd && x.unit.indexOf("VND") < 0 ? `<span class="small">≈ ${HUB.num(x.vnd)} ${E(x.vnd_unit)}</span>` : ""}</div>
+   <div class="card"><span class="small mute">So với phiên trước</span><div class="kpi">${HUB.pct(x.d1)}</div></div>
+   <div class="card"><span class="small mute">So với ~1 tháng (MoM)</span><div class="kpi">${HUB.pct(x.mom)}</div></div>
+   <div class="card"><span class="small mute">So với ~1 năm (YoY)</span><div class="kpi">${HUB.pct(x.yoy)}</div><span class="small mute">${x.n_hist} điểm lịch sử từ ${HUB.date(x.first_date)}</span></div></div>
+  ${x.note ? `<p class="small mute">${E(x.note)}</p>` : ""}
+  <h2>Lịch sử giá <span class="seg" id="vw"><button data-v="d" class="on">Theo ngày</button><button data-v="m">Theo tháng</button></span></h2>
+  <div class="card" style="height:300px"><canvas id="ch"></canvas></div>
+  <h2>Tổng hợp theo tháng</h2><div class="tw"><table class="t"><tr><th>Tháng</th><th class="n">Giá cuối tháng</th><th class="n">% so với tháng trước</th></tr>
+   ${x.monthly.slice().reverse().map(m => `<tr><td>${m.m.split("-").reverse().join("/")}</td><td class="n">${HUB.num(m.p)}</td><td class="n">${HUB.pct(m.chg)}</td></tr>`).join("") || "<tr><td colspan=3 class=mute>Chưa có.</td></tr>"}</table></div>
+  ${pairs.length || sib.length ? `<h2>🏙️ Hà Nội vs TP.HCM</h2>${pairs.map(c => `<div class="card"><div class="cmp"><b>${E(c.label)}</b><span class="pill hn">HN ${HUB.num(c.hn)}</span><span class="pill hcm">HCM ${HUB.num(c.hcm)}</span>${HUB.pct(c.diff_pct)}</div><div class="ins">${E(c.insight)}</div></div>`).join("")}
+   ${sib.length ? `<div class="tw" style="margin-top:8px"><table class="t"><tr><th>Cùng quy cách ở miền khác</th><th class="n">Giá</th><th class="n">Chênh so với mục này</th></tr>${sib.map(s => `<tr><td><a href="mat-hang.html?id=${s.id}">${E(s.name)}</a> ${HUB.regPill(s.reg)} ${E(s.region || "")}</td><td class="n">${HUB.num(s.price)}</td><td class="n">${HUB.pct(x.price ? (s.price / x.price - 1) * 100 : null)}</td></tr>`).join("")}</table></div>` : ""}` : ""}
+  <h2>🔮 Dự báo</h2>${F.length ? `<div class="tw"><table class="t"><tr><th>Chuỗi dự báo (cùng danh mục)</th>${(fc.horizons || [3, 6, 12]).map(h => `<th class="n">${h}T</th>`).join("")}</tr>${F.map(f => `<tr><td>${E(f.name)} <span class="small mute">${E(f.region || "")} · ${E(f.unit)}</span></td>${(fc.horizons || [3, 6, 12]).map(h => `<td class="n">${f.fc?.[h] ? HUB.num(f.fc[h].base) + " " + HUB.pct(f.fc[h].pct) : "–"}</td>`).join("")}</tr>`).join("")}</table></div><p class="small"><a href="forecast.html">→ Chi tiết dự báo & khoảng tin cậy</a></p>` : `<div class="empty small">Chưa có dự báo cho danh mục này – xem <a href="forecast.html">trang Dự báo</a>.</div>`}
+  <h2>💡 Xu hướng liên quan (${E(n.name)})</h2>${T.length ? `<ul class="news card">${T.map(i => `<li><a href="xu-huong.html?id=${i.id}"><b>${E(i.title)}</b></a> <span class="score" style="height:20px;min-width:30px;font-size:11px">${Math.round(i.score)}</span></li>`).join("")}</ul>` : '<div class="empty small">Chưa có.</div>'}
+  ${M.length ? `<h2>📰 Tin liên quan</h2><ul class="news card">${M.map(i => `<li><a href="${E(i.sources[0].url)}" target="_blank" rel="noopener">${E(i.title)}</a> <span class="small mute">${HUB.date(i.date)}</span></li>`).join("")}</ul>` : ""}
+  <p><a href="danh-muc.html?c=${x.tax}">← Về danh mục ${E(n.name)}</a> · <a href="gia.html">Bảng giá đầy đủ</a></p>`;
+ const pts = (hist.points || []).filter(p => p.price != null); let chart;
+ const draw = v => { const L = v === "m" ? x.monthly.map(m => [m.m, m.p]) : pts.map(p => [p.date, p.price]); chart && chart.destroy();
+  if (!window.Chart) return; chart = new Chart(document.getElementById("ch"), {type: v === "m" ? "bar" : "line", data: {labels: L.map(a => a[0]), datasets: [{label: x.unit, data: L.map(a => a[1]), borderColor: "#0b4f8a", backgroundColor: "#0b4f8a55", pointRadius: L.length < 3 ? 4 : 0, tension: .2}]},
+   options: {maintainAspectRatio: false, plugins: {legend: {display: false}}, scales: {y: {ticks: {callback: v => HUB.num(v)}}}}}); };
+ document.querySelectorAll("#vw button").forEach(b => b.onclick = () => { document.querySelectorAll("#vw button").forEach(z => z.classList.toggle("on", z === b)); draw(b.dataset.v); }); draw("d");
+ HUB.foot();
+})();
+</script></body></html>
