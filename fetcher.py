@@ -240,7 +240,22 @@ def src_tthh():
         except Exception as e:
             errs.append(f"{pslug}: {e}")
     if errs: print("tthh errors", errs, file=sys.stderr)
-    if not out: raise RuntimeError("; ".join(errs))
+    snap = os.path.join(BASE, "data", "tthh_snapshot.json")
+    if out and not errs:
+        old = json.load(open(snap, encoding="utf-8"))["items"] if os.path.exists(snap) else None
+        if old != out:
+            json.dump({"saved_at": now_iso(), "items": out}, open(snap, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+    if not out or errs:
+        # e.g. site blocks GitHub runner IPs: fall back to the snapshot relayed from the always-on box
+        if os.path.exists(snap):
+            d = json.load(open(snap, encoding="utf-8"))
+            for r in d["items"]:
+                r["note"] = (r.get("note") or "") + f" · lấy qua bản chụp lúc {d['saved_at'][:16].replace('T', ' ')} (nguồn chặn máy chủ GitHub)"
+                r["src"] = r["src"].split(" [")[0] + " [relay]"
+            have = {r["id"] for r in out}
+            out += [r for r in d["items"] if r["id"] not in have]
+            print("tthh: using snapshot", d["saved_at"], file=sys.stderr)
+        if not out: raise RuntimeError("; ".join(errs))
     return out
 
 def src_hanoi_static():
