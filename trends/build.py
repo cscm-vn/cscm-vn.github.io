@@ -113,7 +113,7 @@ def build():
     movers = sorted([x for x in items if x["mom"] is not None], key=lambda x: -abs(x["mom"]))[:12]
     hub = dict(updated=prices.get("updated_at"), built=dt.datetime.now(TZ).isoformat(timespec="minutes"), usd_vnd=prices.get("usd_vnd"),
                items=items, compare=comps, steel_brand_pairs=brand_pairs, digest=digest, mom_movers=[x["id"] for x in movers])
-    json.dump(hub, open(os.path.join(OUT, "hub.json"), "w", encoding="utf-8"), ensure_ascii=False)
+    json.dump(hub, open(os.path.join(OUT, "hub.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     return len(items), len(comps)
 def main():
     os.makedirs(OUT, exist_ok=True)
@@ -131,6 +131,10 @@ def main():
     for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json"):
         if os.path.exists(os.path.join(H, "data", f)): shutil.copy(os.path.join(H, "data", f), OUT)
     shutil.copy(TAXF, os.path.join(OUT, "taxonomy.json"))
+    fd = J(os.path.join(OUT, "feed.json"))  # slim the public feed (UI never shows snippets) for faster first load
+    if fd:
+        for x in fd.get("items", []): x.pop("snippet", None); x.pop("origin", None)
+        json.dump(fd, open(os.path.join(OUT, "feed.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     # forecast page detection (built by the forecast worker): first match wins
     fc = next((p for p in ("du-bao.html", "du-bao/index.html", "forecast.html", "forecast/index.html") if os.path.exists(os.path.join(SITE, p))), None)
     json.dump(dict(forecast_page=fc), open(os.path.join(OUT, "site-config.json"), "w"))
