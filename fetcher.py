@@ -140,6 +140,7 @@ def src_te():
         id, name, cat = TE_MAP[m.group(1)]
         cur, u = m.group(2).split("/")
         unit = {"T": "tấn", "Lbs": "lb", "t.oz": "oz"}.get(u, u)
+        if id == "te_hrc" and u == "T": unit, name = "short ton", "Thép HRC (CME US Midwest, tham chiếu TE)"  # TE quotes CME HRC per short ton (907 kg)
         try: pct = float(c[3].replace("%", ""))
         except: pct = None
         out.append(item(id, "world", cat, name, f"{cur}/{unit}", cur, num(c[1]), "Trading Economics",

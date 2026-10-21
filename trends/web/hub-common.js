@@ -20,7 +20,7 @@ HUB.nav = async () => {
   const host = document.getElementById("hubnav"); if (!host) return;
   const page = document.body.dataset.page || ""; const t = await HUB.tax(); const cfg = await HUB.get("site-config.json") || {};
   const fc = cfg.forecast_page;
-  const L = [["gia.html","Bảng giá","gia"],[fc || "#", "Dự báo" + (fc ? "" : " (sắp có)"),"dubao"],["xu-huong.html","Xu hướng","xuhuong"],["thi-truong.html","Thị trường","thitruong"],["scm.html","SCM","scm"],["nha-thau.html","Nhà thầu & CĐT","nhathau"],["thang.html","Tháng/năm","thang"]];
+  const L = [["gia.html","Bảng giá","gia"],[fc || "#", "Dự báo" + (fc ? "" : " (sắp có)"),"dubao"],["xu-huong.html","Xu hướng","xuhuong"],["thi-truong.html","Thị trường","thitruong"],["scm.html","SCM","scm"],["nha-thau.html","Nhà thầu & CĐT","nhathau"],["thang.html","Tháng/năm","thang"],["huong-dan.html","Hướng dẫn","huongdan"]];
   host.innerHTML = `<div class="hn-bar"><div class="hn-in"><a class="skip" href="#main">Bỏ qua điều hướng</a><button class="hn-burger" aria-label="Mở menu" aria-expanded="false">☰</button>
    <a class="hn-logo" href="index.html" aria-label="Trang chủ – Masterise Procurement Hub"><i>M</i><span><b>Masterise</b><small>Procurement Hub</small></span></a>
    <nav class="hn-links" aria-label="Điều hướng chính"><button class="hn-mega-btn" aria-expanded="false" aria-haspopup="true">Danh mục ▾</button>${L.map(([h,l,k]) => `<a href="${h}" class="${k===page?"on":""}">${l}</a>`).join("")}</nav>
@@ -49,7 +49,7 @@ HUB.nav = async () => {
   inp.onkeydown = e => { if (e.key === "Enter") { const a = res.querySelector("a"); if (a) location.href = a.href; } };
 };
 HUB.sidebar = async (el, active, counts) => {
-  const t = await HUB.tax(); const act = t.byId[active]; const open = act ? (act.level === 1 ? act.id : act.parent.id) : null;
+  if (!el) return; const t = await HUB.tax(); if (!t) return; const act = t.byId[active]; const open = act ? (act.level === 1 ? act.id : act.parent.id) : null;
   el.innerHTML = `<button class="chip side-toggle" onclick="this.nextElementSibling.hidden=!this.nextElementSibling.hidden">☰ Cây danh mục</button><div>` + t.tree.map(n => {
     const c = n.children.reduce((s, x) => s + (counts?.[x.id] || 0), 0);
     return `<details ${n.id === open ? "open" : ""}><summary class="${n.id === active ? "on" : ""}">${n.icon} ${HUB.esc(n.name)}</summary>

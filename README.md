@@ -66,3 +66,6 @@ Quick tunnel Cloudflare **không chạy được trên box này** (mạng chặn
 ## Hub hằng ngày (Trang chủ · Danh mục · Xu hướng & Cơ hội · Thị trường · Diễn biến tháng/năm)
 - Trang chủ `index.html` (bảng giá cũ chuyển sang `gia.html`, dự báo `forecast.html`), cây danh mục dùng chung `data/taxonomy.json`.
 - Mã nguồn & dữ liệu: `trends/` – `merge.py` (gộp mục mới, chống trùng), `feeds.py` (RSS/Google News miễn phí, chạy trong Actions), `build.py` (sinh trang + `site/data/hub.json`), `test_ui.py` (kiểm thử headless). Schema & quy trình: `trends/SCHEMA.md`.
+
+## Hướng dẫn sử dụng
+Xem trang `huong-dan.html` trên site (mục "Hướng dẫn" trên thanh điều hướng).

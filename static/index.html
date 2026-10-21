@@ -2,7 +2,7 @@
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bảng giá kim loại & vật liệu xây dựng</title>
 <style>
-:root{--bg:#f5f6f8;--card:#fff;--b:#e3e6ea;--t:#1d2733;--m:#6b7785;--up:#0a8a3a;--dn:#c62828;--acc:#8a6d3b}
+:root{--bg:#f5f6f8;--card:#fff;--b:#e3e6ea;--t:#1d2733;--m:#6b7785;--up:#b42318;--dn:#067647;--acc:#8a6d3b}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--t);font-size:14px}
 header{background:#1d2733;color:#fff;padding:14px 20px}header h1{margin:0;font-size:20px}header .sub{color:#c9d1da;font-size:13px;margin-top:4px}
 .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:5}
@@ -24,8 +24,8 @@ td.name{white-space:normal;min-width:220px}tr:hover td{background:#fbfaf6}.up{co
 .src{font-size:12px;color:var(--m)}footer{padding:16px 20px;color:var(--m);font-size:12px}
 @media(max-width:700px){th:nth-child(n+7),td:nth-child(n+7){display:none}header h1{font-size:17px}}
 </style></head><body>
-<header><h1>Bảng giá kim loại &amp; vật liệu xây dựng – Thế giới &amp; Việt Nam</h1><a href="forecast.html" style="color:#ffd54f;font-weight:600;margin-left:12px">📈 Dự báo &amp; Chiến lược →</a>
-<div class="sub">Phục vụ bộ phận Mua sắm/Đấu thầu · Cập nhật tự động · <span id="upd">đang tải…</span></div></header>
+<header><h1>Bảng giá kim loại &amp; vật liệu xây dựng – Thế giới &amp; Việt Nam</h1>
+<div class="sub">Phục vụ bộ phận Mua sắm/Đấu thầu · Cập nhật tự động 5 lần/ngày · ▲ đỏ = giá tăng (bất lợi bên mua), ▼ xanh = giá giảm · <span id="upd">đang tải…</span></div></header>
 <div class="bar">
  <input type="search" id="q" placeholder="Tìm kiếm: đồng, thép Hòa Phát, xi măng PCB40, cát, Hà Nội…">
  <button data-g="" class="on">Tất cả</button><button data-g="world">Thế giới</button><button data-g="vn">Việt Nam</button>
@@ -47,7 +47,8 @@ const tz=s=>s?new Date(s).toLocaleString("vi-VN",{timeZone:"Asia/Ho_Chi_Minh",ho
 const dfmt=s=>s?s.split("-").reverse().join("/"):"–";
 const esc=s=>(s??"").toString().replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const PERIODIC=r=>/thitruonghanghoa|Sở Xây dựng/.test(r.src);
-async function load(){let r=null;try{r=await fetch("api/prices");if(!r.ok)throw 0;}catch(e){r=null}
+const HOSTED=/github\.io$|netlify\.app$|pages\.dev$/.test(location.hostname)||location.protocol=="file:";
+async function load(){let r=null;if(!HOSTED){try{r=await fetch("api/prices");if(!r.ok)throw 0;}catch(e){r=null}}
  if(!r){STATIC=true;r=await fetch("prices.json",{cache:"no-store"})}DATA=await r.json();
  document.getElementById("upd").textContent="Lần cập nhật gần nhất: "+tz(DATA.updated_at)+" (giờ VN)";
  const cats=[...new Set(DATA.items.map(i=>i.category))].sort(),regs=[...new Set(DATA.items.map(i=>i.region).filter(Boolean))].sort();
@@ -80,7 +81,7 @@ function srcs(){document.getElementById("srcs").innerHTML="<tr><th>Nguồn</th><
 async function hist(id){const it=DATA.items.find(i=>i.id==id);const r=await(await fetch(STATIC?"history/"+encodeURIComponent(id)+".json":"api/history/"+encodeURIComponent(id))).json();
  mt.textContent=it.name+(it.region?" · "+it.region:"")+" ("+it.unit+")";ms.innerHTML=`Nguồn: <a href="${esc(it.url)}" target="_blank">${esc(it.src)}</a> · ${r.points.length} điểm dữ liệu (lịch sử được tích lũy từ ngày bắt đầu chạy hệ thống)`;
  modal.style.display="flex";if(chart)chart.destroy();
- chart=new Chart(ch,{type:"line",data:{labels:r.points.map(p=>dfmt(p.date)),datasets:[{label:it.unit,data:r.points.map(p=>p.price),borderColor:"#8a6d3b",tension:.2,pointRadius:3}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>nf(v)}}}}})}
+ chart=new Chart(ch,{type:"line",data:{labels:r.points.map(p=>dfmt(p.date)),datasets:[{label:it.unit,data:r.points.map(p=>p.price),borderColor:"#14325a",backgroundColor:"#b08d5722",fill:true,tension:.2,pointRadius:3}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>nf(v)}}}}})}
 function closeM(){modal.style.display="none"}
 modal.addEventListener("click",e=>{if(e.target.id=="modal")closeM()});
 document.addEventListener("click",e=>{const b=e.target.closest(".hist");if(b)hist(b.dataset.id);const g=e.target.closest("button[data-g]");
