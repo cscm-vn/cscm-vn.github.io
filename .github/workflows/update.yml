@@ -1,0 +1,30 @@
+name: update-prices
+on:
+  schedule: [{cron: "5 23,2,5,8,11 * * *"}]   # UTC -> 06:05, 09:05, 12:05, 15:05, 18:05 Asia/Saigon
+  workflow_dispatch:
+  push: {branches: [main], paths-ignore: ["data/prices.db"]}
+permissions: {contents: write, pages: write, id-token: write}
+concurrency: {group: pages, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: {name: github-pages, url: "${{ steps.deploy.outputs.page_url }}"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - name: Fetch prices (failed sources keep last good value, flagged stale)
+        run: python fetcher.py | tee fetch.log
+      - run: python export_static.py
+      - name: Commit price history
+        run: |
+          git config user.name "price-bot" && git config user.email "price-bot@users.noreply.github.com"
+          git add data/prices.db
+          git commit -m "prices $(TZ=Asia/Ho_Chi_Minh date +%F' '%H:%M) [skip ci]" || exit 0
+          git push
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: site}
+      - id: deploy
+        uses: actions/deploy-pages@v4

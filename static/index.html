@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bảng giá kim loại & vật liệu xây dựng</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--b:#e3e6ea;--t:#1d2733;--m:#6b7785;--up:#0a8a3a;--dn:#c62828;--acc:#8a6d3b}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--t);font-size:14px}
+header{background:#1d2733;color:#fff;padding:14px 20px}header h1{margin:0;font-size:20px}header .sub{color:#c9d1da;font-size:13px;margin-top:4px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:5}
+.bar input[type=search],.bar select{padding:7px 10px;border:1px solid var(--b);border-radius:6px;font-size:14px}.bar input[type=search]{flex:1;min-width:180px}
+button,.btn{padding:7px 12px;border:1px solid var(--b);border-radius:6px;background:#fff;cursor:pointer;font-size:14px;color:var(--t);text-decoration:none}
+button.on{background:#1d2733;color:#fff;border-color:#1d2733}
+main{padding:12px 20px 40px}.kpis{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.kpi{background:var(--card);border:1px solid var(--b);border-radius:8px;padding:10px 14px;min-width:170px}.kpi .l{color:var(--m);font-size:12px}.kpi .v{font-size:18px;font-weight:600}
+h2{font-size:17px;margin:22px 0 6px}h3{font-size:14px;margin:14px 0 4px;color:var(--acc)}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--b);border-radius:8px}
+table{border-collapse:collapse;width:100%}th,td{padding:7px 9px;border-bottom:1px solid var(--b);text-align:left;white-space:nowrap}
+th{background:#fafbfc;font-weight:600;font-size:12px;color:var(--m)}td.n{text-align:right;font-variant-numeric:tabular-nums}
+td.name{white-space:normal;min-width:220px}tr:hover td{background:#fbfaf6}.up{color:var(--up)}.dn{color:var(--dn)}
+.tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:9px;background:#eef1f4;color:var(--m);margin-left:4px}
+.stale{background:#fdecea;color:var(--dn)}.per{background:#fff4e0;color:#9a6200}
+.note{color:var(--m);font-size:12px}a{color:#2257a6}
+#modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;align-items:center;justify-content:center}
+#modal .box{background:#fff;border-radius:10px;padding:16px;width:min(900px,94vw)}#modal .hd{display:flex;justify-content:space-between;align-items:center}
+.src{font-size:12px;color:var(--m)}footer{padding:16px 20px;color:var(--m);font-size:12px}
+@media(max-width:700px){th:nth-child(n+7),td:nth-child(n+7){display:none}header h1{font-size:17px}}
+</style></head><body>
+<header><h1>Bảng giá kim loại &amp; vật liệu xây dựng – Thế giới &amp; Việt Nam</h1>
+<div class="sub">Phục vụ bộ phận Mua sắm/Đấu thầu · Cập nhật tự động · <span id="upd">đang tải…</span></div></header>
+<div class="bar">
+ <input type="search" id="q" placeholder="Tìm kiếm: đồng, thép Hòa Phát, xi măng PCB40, cát, Hà Nội…">
+ <button data-g="" class="on">Tất cả</button><button data-g="world">Thế giới</button><button data-g="vn">Việt Nam</button>
+ <select id="cat"><option value="">Mọi danh mục</option></select>
+ <select id="reg"><option value="">Mọi khu vực</option></select>
+ <label class="note"><input type="checkbox" id="staleOnly"> chỉ dữ liệu cũ</label>
+ <a class="btn" id="csv" href="api/export.csv">⬇ CSV</a><a class="btn" id="xlsx" href="api/export.xlsx">⬇ Excel</a>
+</div>
+<main><div class="kpis" id="kpis"></div><div id="out"></div>
+<h2>Trạng thái nguồn dữ liệu (lần cập nhật gần nhất)</h2><div class="tw"><table id="srcs"></table></div></main>
+<footer>Giá mang tính tham khảo, tổng hợp tự động từ các nguồn công khai ghi rõ ở từng dòng; không phải báo giá chính thức. Giá thế giới quy đổi VND theo tỷ giá chuyển khoản Vietcombank (chưa gồm thuế, phí, vận chuyển). Dòng gắn nhãn <span class="tag stale">dữ liệu cũ</span> là giá tốt gần nhất do nguồn lỗi/không cập nhật; <span class="tag per">định kỳ</span> là giá công bố theo tháng/quý.</footer>
+<div id="modal"><div class="box"><div class="hd"><b id="mt"></b><button onclick="closeM()">✕ Đóng</button></div>
+<canvas id="ch" height="110"></canvas><div class="src" id="ms"></div></div></div>
+<script src="static/chart.umd.min.js"></script>
+<script>
+let DATA=null,G="",chart=null,STATIC=false;
+const nf=(v,d)=>v==null?"–":Number(v).toLocaleString("vi-VN",{maximumFractionDigits:d??(Math.abs(v)<10000?2:0)});
+const tz=s=>s?new Date(s).toLocaleString("vi-VN",{timeZone:"Asia/Ho_Chi_Minh",hour12:false}):"–";
+const dfmt=s=>s?s.split("-").reverse().join("/"):"–";
+const esc=s=>(s??"").toString().replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const PERIODIC=r=>/thitruonghanghoa|Sở Xây dựng/.test(r.src);
+async function load(){let r=null;try{r=await fetch("api/prices");if(!r.ok)throw 0;}catch(e){r=null}
+ if(!r){STATIC=true;r=await fetch("prices.json",{cache:"no-store"})}DATA=await r.json();
+ document.getElementById("upd").textContent="Lần cập nhật gần nhất: "+tz(DATA.updated_at)+" (giờ VN)";
+ const cats=[...new Set(DATA.items.map(i=>i.category))].sort(),regs=[...new Set(DATA.items.map(i=>i.region).filter(Boolean))].sort();
+ cat.innerHTML='<option value="">Mọi danh mục</option>'+cats.map(c=>`<option>${esc(c)}</option>`).join("");
+ reg.innerHTML='<option value="">Mọi khu vực</option>'+regs.map(c=>`<option>${esc(c)}</option>`).join("");
+ kpis();render();srcs();}
+function kpis(){const k=["fx_usd_vnd","lme_copper","lme_aluminium","te_rebar_shfe","te_ironore","vnsteel_hoa_phat_mien_bac_cb300_d10","sjc_bar"];
+ document.getElementById("kpis").innerHTML=k.map(id=>DATA.items.find(i=>i.id==id)).filter(Boolean).map(i=>`<div class="kpi"><div class="l">${esc(i.name)}${i.region?" · "+esc(i.region):""}</div><div class="v">${nf(i.price)} <span class="note">${esc(i.unit)}</span></div>${chg(i.change_pct)}</div>`).join("");}
+function chg(c){if(c==null)return'<span class="note">–</span>';const cl=c>0?"up":c<0?"dn":"";return`<span class="${cl}">${c>0?"▲ +":c<0?"▼ ":""}${c.toFixed(2)}%</span>`}
+function match(i){const q=document.getElementById("q").value.trim().toLowerCase();
+ if(G&&i.group!=G)return false;if(cat.value&&i.category!=cat.value)return false;if(reg.value&&i.region!=reg.value)return false;
+ if(staleOnly.checked&&!i.stale)return false;
+ if(q){const h=(i.name+" "+i.category+" "+(i.region||"")+" "+i.src+" "+(i.brand||"")).toLowerCase();
+  const strip=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d");if(!q.split(/\s+/).every(w=>strip(h).includes(strip(w))))return false}
+ return true}
+function render(){const rows=DATA.items.filter(match);let h="";
+ for(const g of[["world","🌐 Thị trường thế giới"],["vn","🇻🇳 Thị trường Việt Nam"]]){const gr=rows.filter(r=>r.group==g[0]);if(!gr.length)continue;
+  h+=`<h2>${g[1]} <span class="note">(${gr.length} mặt hàng)</span></h2>`;
+  for(const c of[...new Set(gr.map(r=>r.category))]){const cr=gr.filter(r=>r.category==c);
+   h+=`<h3>${esc(c)}</h3><div class="tw"><table><tr><th>Mặt hàng</th><th>Khu vực</th><th style="text-align:right">Giá</th><th>Đơn vị</th><th style="text-align:right">Thay đổi</th><th style="text-align:right">Quy đổi VND</th><th>Ngày giá</th><th>Cập nhật</th><th>Nguồn</th><th></th></tr>`;
+   for(const r of cr){h+=`<tr><td class="name">${esc(r.name)}${r.stale?'<span class="tag stale">dữ liệu cũ</span>':""}${PERIODIC(r)?'<span class="tag per">định kỳ</span>':""}${r.note?`<div class="note">${esc(r.note)}</div>`:""}</td>
+<td>${esc(r.region||"")}</td><td class="n"><b>${nf(r.price)}${r.price_high?" – "+nf(r.price_high):""}</b></td><td>${esc(r.unit)}</td><td class="n">${chg(r.change_pct)}</td>
+<td class="n">${r.vnd!=null?nf(r.vnd,0)+' <span class="note">'+esc(r.vnd_unit)+"</span>":"–"}</td><td>${dfmt(r.as_of)}</td><td class="note">${tz(r.last_ok)}</td>
+<td><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.src)}</a></td><td><button class="hist" data-id="${esc(r.id)}">📈 Lịch sử</button></td></tr>`}
+   h+="</table></div>"}}
+ document.getElementById("out").innerHTML=h||'<p>Không có mặt hàng phù hợp.</p>';
+ const p=new URLSearchParams();if(G)p.set("group",G);const qv=document.getElementById("q").value.trim();if(qv)p.set("q",qv);
+ if(STATIC){csv.href="bang-gia.csv";xlsx.href="bang-gia.xlsx"}else{csv.href="api/export.csv?"+p;xlsx.href="api/export.xlsx?"+p}}
+function srcs(){document.getElementById("srcs").innerHTML="<tr><th>Nguồn</th><th>Kết quả</th><th>Số mục</th><th>Thời điểm</th><th>Lỗi</th></tr>"+DATA.sources.map(s=>`<tr><td>${esc(s.source)}</td><td>${s.ok?'<span class="up">✔ OK</span>':'<span class="dn">✖ Lỗi</span>'}</td><td>${s.n}</td><td>${tz(s.fetched_at)}</td><td class="note">${esc(s.error||"")}</td></tr>`).join("")}
+async function hist(id){const it=DATA.items.find(i=>i.id==id);const r=await(await fetch(STATIC?"history/"+encodeURIComponent(id)+".json":"api/history/"+encodeURIComponent(id))).json();
+ mt.textContent=it.name+(it.region?" · "+it.region:"")+" ("+it.unit+")";ms.innerHTML=`Nguồn: <a href="${esc(it.url)}" target="_blank">${esc(it.src)}</a> · ${r.points.length} điểm dữ liệu (lịch sử được tích lũy từ ngày bắt đầu chạy hệ thống)`;
+ modal.style.display="flex";if(chart)chart.destroy();
+ chart=new Chart(ch,{type:"line",data:{labels:r.points.map(p=>dfmt(p.date)),datasets:[{label:it.unit,data:r.points.map(p=>p.price),borderColor:"#8a6d3b",tension:.2,pointRadius:3}]},options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>nf(v)}}}}})}
+function closeM(){modal.style.display="none"}
+modal.addEventListener("click",e=>{if(e.target.id=="modal")closeM()});
+document.addEventListener("click",e=>{const b=e.target.closest(".hist");if(b)hist(b.dataset.id);const g=e.target.closest("button[data-g]");
+ if(g){G=g.dataset.g;document.querySelectorAll("button[data-g]").forEach(x=>x.classList.toggle("on",x==g));render()}});
+["q","cat","reg","staleOnly"].forEach(id=>document.getElementById(id).addEventListener("input",render));
+load();setInterval(load,15*60*1000);
+</script></body></html>
