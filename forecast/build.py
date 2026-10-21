@@ -126,7 +126,7 @@ def conf_label(mape):
 TAX = {  # key -> id cấp 2 trong data/taxonomy.json (cây danh mục dùng chung toàn site)
  "copper": "mep.dong-nhom", "alu": "mep.dong-nhom", "cu_vnd": "mep.cap-dien", "al_vnd": "mep.dong-nhom", "idx_cable": "mep.cap-dien",
  "ironore": "xd.thep-ket-cau", "hrc": "xd.thep-ket-cau", "scrap": "xd.thep-ket-cau", "coking": "xd.thep-ket-cau",
- "rebar": "xd.cot-thep", "cement": "xd.xi-mang", "sand": "xd.cat-da", "stone": "xd.cat-da", "rmc250": "xd.be-tong", "rmc300": "xd.be-tong",
+ "rebar": "xd.cot-thep", "cement": "xd.xi-mang", "sand": "xd.cat-da", "stone": "xd.cat-da", "rmc250": "xd.be-tong", "rmc300": "xd.be-tong", "rmc400": "xd.be-tong",
  "pe": "mep.ong-nuoc", "pp": "mep.ong-nuoc", "pvc": "mep.ong-nuoc", "hdpe_pipe": "mep.ong-nuoc",
  "brent": "tt.nang-luong", "coal": "tt.nang-luong", "usdvnd": "tt.ty-gia",
  "idx_transformer": "mep.may-phat", "idx_elevator": "mep.thang-may", "idx_hvac": "mep.hvac", "idx_switchboard": "mep.tu-dien", "idx_genset": "mep.may-phat",
@@ -289,11 +289,13 @@ def main():
     if not rmc:
         try: rmc = {r["id"]: r for r in S.src_concrete()}
         except Exception as e: notes.append(f"Bê tông: lỗi nguồn {e}")
-    for gr in ("250", "300"):
-        hn = [m["price"] for i, m in rmc.items() if i.startswith("rmc_hn") and i.endswith(gr)]
-        hc = [m["price"] for i, m in rmc.items() if i.startswith("rmc_hcm") and i.endswith(gr)]
+    for gr in ("250", "300", "400"):
+        novat = lambda m: "gồm VAT" not in (m.get("note") or "")  # compare like with like: ex-VAT price lists only
+        hn = [m["price"] for i, m in rmc.items() if i.startswith("rmc_hn") and i.endswith(gr) and novat(m)]
+        hc = [m["price"] for i, m in rmc.items() if i.startswith("rmc_hcm") and i.endswith(gr) and novat(m)]
+        hcs = ", ".join(sorted({{"dvc": "betongdvc.com", "dn": "betongdongnam.com"}.get(i.split("_")[2], i.split("_")[2]) for i, m in rmc.items() if i.startswith("rmc_hcm") and i.endswith(gr) and novat(m)}))
         local.append((f"rmc{gr}", "concrete", f"Bê tông tươi M{gr} đá 1x2", [("HN", float(np.mean(hn)) if hn else None, f"TB {len(hn)} NCC Hà Nội (betonghanoi.com.vn, betongtuoichem.com), cát thường"),
-                      ("HCM", float(np.mean(hc)) if hc else None, "betongdvc.com (cận dưới khoảng giá)")], "VND/m³", ccp,
+                      ("HCM", float(np.mean(hc)) if hc else None, f"TB {len(hc)} NCC TP.HCM ({hcs}), giá chưa VAT")], "VND/m³", ccp,
                       "Chi phí cấu thành: 32% xi măng + 10% cát + 18% đá + 8% nhiên liệu + 32% khác (lạm phát)"))
     for key, grp, nm, regs, unit, fp, meth in local:
         for reg, v, s_ in regs:
@@ -364,7 +366,8 @@ def main():
            "sand": "Cát miền Nam phụ thuộc nguồn ĐBSCL/Campuchia; HN dùng cát sông Lô/sông Hồng – cả hai đều chịu siết khai thác, HN biến động mạnh ở cát đen.",
            "stone": "HCM phải vận chuyển đá từ Bình Dương/Đồng Nai/Vũng Tàu xa hơn; HN có mỏ gần (Hòa Bình, Hà Nam) nên giá thấp hơn.",
            "rmc250": "Bê tông HCM đắt hơn chủ yếu do giá cát, đá và xi măng tại chỗ cao hơn; NCC HN chênh nhau lớn (cát thường/cát vàng, mức chiết khấu).",
-           "rmc300": "Như M250 – chênh lệch cấp phối M300 so với M250 ~40–100k đ/m³ ở cả hai miền."}
+           "rmc300": "Như M250 – chênh lệch cấp phối M300 so với M250 ~40–100k đ/m³ ở cả hai miền.",
+           "rmc400": "Mác cao dùng cho cột/vách cao tầng: nhiều xi măng hơn nên nhạy với giá xi măng; khoảng giá HN rộng (cát thường vs cát vàng, chênh NCC), nên so sánh vùng phụ thuộc mốc giá chọn."}
     pairs = {}
     for it in out_items:
         if it.get("pair") and it.get("region"): pairs.setdefault(it["pair"], {})[it["region"]] = it

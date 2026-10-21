@@ -43,7 +43,7 @@
   const chg = n ? ((x.spark[n - 1] / x.spark[0] - 1) * 100) : null;
   return `<a class="hk" href="mat-hang.html?id=${id}" title="${E(x.name)} – ${E(x.src || "")}, ngày ${HUB.date(x.as_of)}"><span class="l">${l}</span>
    <div class="v">${x.price_high ? "<small>từ</small> " : ""}${HUB.num(x.price)} <small>${E(x.unit)}</small></div>
-   <span class="c">${n ? `${n} phiên: ${HUB.pct(chg)}` : x.d1 != null ? `Phiên: ${HUB.pct(x.d1)}` : "Giá niêm yết NCC"} · ${HUB.date(x.as_of)}</span>${spark(x.spark)}</a>`; }).join("");
+   <span class="c">${n ? `${n} phiên: ${HUB.pct(chg)}` : x.d1 != null ? `Phiên: ${HUB.pct(x.d1)}` : "Giá niêm yết"} · ${HUB.date(x.as_of)}</span>${spark(x.spark)}</a>`; }).join("");
  const cnt = {}; const add = (k, f) => { cnt[k] ||= {p: 0, t: 0, m: 0}; cnt[k][f]++; };
  h.items.forEach(x => add(t.byId[x.tax].parent.id, "p")); tr.items.forEach(x => add(x.l1, "t"));
  mk.items.forEach(x => (x.tax || []).slice(0, 1).forEach(id => add(t.byId[id].parent.id, "m")));
