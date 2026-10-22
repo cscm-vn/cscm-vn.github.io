@@ -38,7 +38,7 @@ S = {  # source registry: key -> (name, url)
  "CTD_SG2": ("Vietnambiz – Coteccons thu hồi nợ Saigon Glory", "https://vietnambiz.vn/coteccons-da-thu-hoi-no-saigon-glory-loi-nhuan-len-cao-nhat-22-quy-202581102928423.htm"),
  "METRO": ("Lao Động – Metro số 1 bị nhà thầu Nhật đòi chi phí phát sinh", "https://laodong.vn/xa-hoi/metro-so-1-bi-cac-nha-thau-nhat-ban-doi-hon-324-trieu-usd-chi-phi-phat-sinh-1671773.ldo"),
  "METRO2": ("Thanh Niên – 300 khiếu nại tại metro số 1", "https://thanhnien.vn/300-khieu-nai-co-can-buoc-metro-so-1-ve-dich-185240603233407556.htm"),
- "OHL": ("BAILII – Obrascon Huarte Lain v AG Gibraltar [2015] EWCA Civ 712", "http://www.bailii.org/ew/cases/EWCA/Civ/2015/712.html"),
+ "OHL": ("BAILII – Obrascon Huarte Lain v AG Gibraltar [2015] EWCA Civ 712", "https://www.bailii.org/ew/cases/EWCA/Civ/2015/712.html"),
  "OHL2": ("Fenwick Elliott – phân tích vụ Obrascon", "https://www.fenwickelliott.com/knowledge-hub/international-quarterlies/issue-14/unforeseeable-ground-conditions-the-obrascon-case-reaches-the-court-of-appeal/"),
  "PGN": ("Singapore eLitigation – [2015] SGCA 30 (PGN v CRW)", "https://www.elitigation.sg/gd/s/2015_SGCA_30"),
  "PGN2": ("Kluwer Arbitration Blog – thi hành quyết định DAB", "https://legalblogs.wolterskluwer.com/arbitration-blog/another-unsuccessful-challenge-to-the-finality-of-interim-arbitral-awards-in-singapore-and-enforcing-dab-decisions-on-international-projects-under-fidic/"),
@@ -170,7 +170,7 @@ FIDIC = [
   tip="Xem vụ OHL v Gibraltar (chấm dứt hợp lệ) và NHIC v NIPDEC (nhà thầu chấm dứt do thiếu bằng chứng tài chính).", sources=src("ND210_X","NHIC2","OHL2")),
  dict(clause="Sub-Clause 4.12", topic="Điều kiện vật chất không lường trước (Unforeseeable Physical Conditions)", books="Red / Yellow (Silver: rủi ro thuộc nhà thầu)",
   fidic="Nhà thầu được gia hạn/chi phí nếu gặp điều kiện vật chất mà nhà thầu có kinh nghiệm không thể lường trước tại ngày nộp thầu; Silver Book chuyển phần lớn rủi ro này cho nhà thầu.",
-  vn="Không có cơ chế tương đương chi tiết trong NĐ 210; xử lý qua điều khoản điều chỉnh và phân bổ rủi ro do các bên thỏa thuận.", tip="Đính kèm báo cáo khảo sát địa chất vào HĐ và nói rõ giá trị pháp lý.", sources=src("OHL","OHL2")),
+  vn="Không có cơ chế tương đương chi tiết trong NĐ 210; xử lý qua điều khoản điều chỉnh và phân bổ rủi ro do các bên thỏa thuận.", tip="Đính kèm báo cáo khảo sát địa chất vào HĐ và nói rõ giá trị pháp lý.", sources=src("OHL2","OHL")),
 ]
 
 DISPUTES = [
@@ -190,7 +190,7 @@ DISPUTES = [
   outcome="Đang đàm phán; báo chí đưa các con số đề xuất khác nhau, chưa có phán quyết.", lesson="Dự án ODA dùng FIDIC: quản lý sự kiện & thông báo đúng hạn quyết định giá trị khiếu nại.", sources=src("METRO","METRO2")),
  dict(id="ohl-gibraltar", title="Obrascon Huarte Lain v AG Gibraltar [2015] EWCA Civ 712", region="Quốc tế (Anh)", forum="Court of Appeal (Anh & xứ Wales)", year="2015",
   parties="OHL (nhà thầu) vs Chính phủ Gibraltar", issue="FIDIC Yellow 1999: điều kiện địa chất ô nhiễm (Sub-Clause 4.12), tạm ngừng thi công, chấm dứt HĐ (15.2).",
-  outcome="Bác kháng cáo của OHL: điều kiện có thể lường trước với nhà thầu có kinh nghiệm; việc ngừng thi công gây vi phạm, Employer chấm dứt hợp lệ.", lesson="Nhà thầu phải tự đánh giá thông tin địa chất; Employer cần quy trình chấm dứt chặt chẽ, có thông báo.", sources=src("OHL","OHL2")),
+  outcome="Bác kháng cáo của OHL: điều kiện có thể lường trước với nhà thầu có kinh nghiệm; việc ngừng thi công gây vi phạm, Employer chấm dứt hợp lệ.", lesson="Nhà thầu phải tự đánh giá thông tin địa chất; Employer cần quy trình chấm dứt chặt chẽ, có thông báo.", sources=src("OHL2","OHL")),
  dict(id="pgn-crw", title="PT Perusahaan Gas Negara v CRW Joint Operation [2015] SGCA 30", region="Quốc tế (Singapore)", forum="Court of Appeal Singapore", year="2015",
   parties="PGN (Employer) vs CRW (nhà thầu)", issue="Thi hành quyết định DAB (FIDIC Red 1999) đã bị phản đối nhưng chưa chung thẩm.",
   outcome="Xác nhận phán quyết tạm thời buộc thanh toán theo quyết định DAB; nội dung tranh chấp vẫn có thể xem xét lại sau.", lesson="Quyết định của ban xử lý tranh chấp ‘ràng buộc ngay’ – soạn rõ cơ chế thi hành.", sources=src("PGN","PGN2")),
