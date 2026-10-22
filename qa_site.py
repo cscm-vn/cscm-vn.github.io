@@ -26,7 +26,7 @@ with sync_playwright() as p:
             pg.evaluate("() => { const b = document.querySelector('.hn-views'); if (b) b.click(); }"); pg.wait_for_timeout(1500)
             r = pg.evaluate("""(sel) => { const c = {}; for (const k in sel) c[k] = document.querySelectorAll(sel[k]).length;
               const t = document.body.innerText; return {c, ov: document.documentElement.scrollWidth - innerWidth,
-              moj: (t.match(/Ã.|Æ.|á»|Â·|\\uFFFD/g) || []).slice(0, 3), tip: (document.querySelector('.vc-tip')||{}).textContent || "",
+              moj: (t.match(/Ã[\\u0080-\\u00BF]|Æ[\\u0080-\\u00BF]|á»|áº|Ä‘|Â·|\\uFFFD/g) || []).slice(0, 3), tip: (document.querySelector('.vc-tip')||{}).textContent || "",
               links: [...new Set([...document.querySelectorAll('a[href]')].map(a => a.href).filter(h => h.startsWith(location.origin)).map(h => h.split('#')[0]))]}; }""", {**ONCE, **MAXONE})
             for k in ONCE:
                 if k.startswith("views") and r["c"][k] == 0: continue  # widget hides itself if counter API unreachable

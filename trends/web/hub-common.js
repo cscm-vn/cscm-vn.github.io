@@ -64,20 +64,24 @@ HUB.views = async () => {
   const ymd = d => new Intl.DateTimeFormat("en-CA", {timeZone: "Asia/Ho_Chi_Minh"}).format(d);  // ngày giờ VN
   const day = ymd(new Date()), next = ymd(new Date(Date.now() + 864e5));
   const home = /(^|\/)(index\.html)?$/.test(location.pathname);
-  const [tot, today, p1, p2] = await Promise.all([get(`TOTAL.json?start=${SINCE}&end=${next}`), get(`TOTAL.json?start=${day}&end=${next}`),
-    home ? get("%2F.json") : null, home ? get("%2Findex.html.json") : null]);
+  const snapP = get("views-daily.json?t=" + Math.floor(Date.now() / 6e5), true);
+  let [tot, today, p1, p2, snap] = await Promise.all([get(`TOTAL.json?start=${SINCE}&end=${next}`), get(`TOTAL.json?start=${day}&end=${next}`),
+    home ? get("%2F.json") : null, home ? get("%2Findex.html.json") : null, snapP]);
+  // Bộ đếm công khai GoatCounter có cache, bản chụp views-daily.json có thể mới hơn: luôn lấy số lớn hơn để nút & biểu đồ khớp nhau.
+  const sd = Array.isArray(snap?.days) ? snap.days : [], sT = sd.reduce((a, x) => a + (x.d >= SINCE ? x.n || 0 : 0), 0), sN = sd.find(x => x.d === day)?.n;
+  if (sd.length) { tot = Math.max(tot ?? 0, sT); if (sN != null) today = Math.max(today ?? 0, sN); }
   if (tot == null || document.querySelector(".hn-views-wrap")) return;
   const wrap = document.createElement("div"); wrap.className = "hn-views-wrap";
   const it = (l, v, tip) => v == null ? "" : `<span title="${tip || ""}"><small>${l}</small><b>${nf.format(v)}</b></span>`;
   wrap.innerHTML = `<button type="button" class="hn-views" aria-expanded="false" aria-controls="hn-vchart" title="Xem xu hướng 30 ngày">
-    <i aria-hidden="true">◉</i>${it("Lượt xem hôm nay", today, "Theo ngày giờ Việt Nam")}${it("Tổng lượt xem", tot, "Trực tiếp (GoatCounter), toàn trang, từ 22/10/2026")}${home && (p1 != null || p2 != null) ? it("Trang chủ", (p1 || 0) + (p2 || 0)) : ""}<em aria-hidden="true">▾</em></button>
+    <i aria-hidden="true">◉</i>${it("Lượt xem hôm nay", today, "Theo ngày giờ Việt Nam")}${it("Tổng lượt xem", tot, "Toàn trang, từ 22/10/2026 (số mới nhất giữa bộ đếm trực tiếp và bản chụp)")}${home && (p1 != null || p2 != null) ? it("Trang chủ", (p1 || 0) + (p2 || 0)) : ""}<em aria-hidden="true">▾</em></button>
     <div class="hn-vchart" id="hn-vchart" hidden></div>`;
   document.body.appendChild(wrap);
   const btn = wrap.querySelector("button"), box = wrap.querySelector(".hn-vchart"); let loaded = false;
   btn.onclick = async () => {
     const open = box.hidden; box.hidden = !open; btn.setAttribute("aria-expanded", open);
     if (!open || loaded) return; loaded = true; box.innerHTML = '<div class="vc-empty">Đang tải…</div>';
-    const d = await get("views-daily.json?t=" + Math.floor(Date.now() / 6e5), true);
+    const d = await snapP;
     if (!d || !Array.isArray(d.days) || !d.days.length) { box.innerHTML = '<div class="vc-empty">Chưa có dữ liệu xu hướng.</div>'; return; }
     const D = d.days.map(x => x.d < SINCE ? {...x, pre: true, n: null} : x), max = Math.max(1, ...D.map(x => x.n || 0)), W = 600, H = 120, bw = W / D.length;
     const lab = s => { const [y, m, dd] = s.split("-"); return `${dd}/${m}`; };
@@ -92,7 +96,7 @@ HUB.views = async () => {
     box.innerHTML = `<div class="vc-h"><b>Lượt xem theo ngày</b><span>30 ngày gần nhất · ${nf.format(sum)} lượt${updL ? ` (bản chụp ${updL})` : ""}</span></div>
       <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Biểu đồ lượt xem 30 ngày">${bars}</svg>
       <div class="vc-x"><span>${lab(D[0].d)}</span><span class="vc-tip" aria-live="polite">${HINT}</span><span>${lab(D[D.length - 1].d)}</span></div>
-      <div class="vc-f">Theo giờ Việt Nam · biểu đồ là bản chụp lúc ${updL || "–"}; số “Tổng lượt xem” ở trên là trực tiếp nên có thể cao hơn${D.some(x => x.pre) ? " · vạch mờ: chưa bắt đầu đo" : ""}</div>`;
+      <div class="vc-f">Theo giờ Việt Nam · biểu đồ là bản chụp lúc ${updL || "–"}${tot > sum ? `; nút ở trên đã có số trực tiếp mới hơn (${nf.format(tot)})` : ""}${D.some(x => x.pre) ? " · vạch mờ: chưa bắt đầu đo" : ""}</div>`;
     const tip = box.querySelector(".vc-tip");
     box.querySelectorAll(".vb").forEach(g => { const x = D[+g.dataset.k];
       const show = () => { box.querySelectorAll(".vb.on").forEach(e => e.classList.remove("on")); g.classList.add("on");
