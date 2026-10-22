@@ -1,0 +1,762 @@
+{
+ "schema_version": 1,
+ "desc": "Ánh xạ mặt hàng HĐ (miền|mã) → chuỗi giá thị trường trong data/history/prices. method: median (trung vị các nguồn sau quy đổi), ratio/interp/norm (suy diễn – ghi rõ), none (thiếu dữ liệu). use: price|mid|high; role=check: nguồn đối chiếu (chỉ vào khoảng giá, không vào giá thị trường); factor: hệ số quy đổi đơn vị; vat_incl: giá nguồn đã gồm VAT 8% → chia 1,08. quality: A cùng quy cách & NCC cập nhật; B công bố giá/bảng tham khảo/quy đổi định mức; C suy diễn.",
+ "vat_rate": 0.08,
+ "near_pp": 1.0,
+ "infl": 0.035,
+ "forecast_profiles": {
+  "concrete": {
+   "model": "rmc400",
+   "cement_kg_per_m3": {
+    "100": 230,
+    "150": 270,
+    "200": 300,
+    "250": 340,
+    "300": 370,
+    "350": 410,
+    "400": 450,
+    "450": 480,
+    "500": 510,
+    "550": 530,
+    "600": 550,
+    "650": 570,
+    "700": 590
+   },
+   "note": "Mô hình chi phí cấu thành bê tông (forecast.json – rmc400) + truyền dẫn đợt tăng giá xi măng rời 10/2026 (+100.000 đ/tấn gồm VAT) theo lượng xi măng ước tính/m³ của từng mác (giả định NCC chưa điều chỉnh bảng giá)."
+  },
+  "cement": {
+   "model": "cement",
+   "step_vnd_per_t": 70000,
+   "step_vat_incl": true,
+   "step_date": "2026-10-05",
+   "note": "Mô hình xi măng (forecast.json) + bước tăng 70.000 đ/tấn xi măng bao (gồm VAT) từ 05/10/2026 vì giá công bố là trước đợt tăng."
+  },
+  "sand": {
+   "model": "sand",
+   "note": "Mô hình cát/đá (forecast.json)."
+  },
+  "aac": {
+   "proxy": {
+    "cement": 0.25,
+    "coal": 0.15
+   },
+   "note": "Proxy chi phí: 25% xi măng/vôi + 15% năng lượng (than) + 60% chi phí khác theo lạm phát 3,5%/năm (giả định)."
+  },
+  "drymix": {
+   "proxy": {
+    "cement": 0.35,
+    "sand": 0.25
+   },
+   "note": "Proxy vữa khô/skimcoat: 35% xi măng + 25% cát + 40% khác theo lạm phát (giả định)."
+  },
+  "brick": {
+   "proxy": {
+    "coal": 0.3
+   },
+   "note": "Proxy gạch nung tuynel: 30% than + 70% khác theo lạm phát (giả định)."
+  },
+  "polymer": {
+   "proxy": {
+    "pe": 0.35,
+    "usdvnd": 0.25
+   },
+   "note": "Proxy Sika Latex (nhũ tương SBR nhập khẩu): 35% giá polymer (PE) + 25% tỷ giá USD/VND + 40% khác theo lạm phát (giả định)."
+  }
+ },
+ "forecast_by_code": {
+  "XM": "cement",
+  "CATTO": "sand",
+  "V50": "norm",
+  "V75": "norm",
+  "VX-AAC": "drymix",
+  "AAC>=100": "aac",
+  "AAC<100": "aac",
+  "B12": "brick",
+  "B10": "brick",
+  "B8": "brick",
+  "B9": "brick",
+  "SKIMCOAT": "drymix",
+  "PLA": "polymer"
+ },
+ "forecast_by_group": {
+  "BÊ TÔNG": "concrete"
+ },
+ "items": {
+  "bac|AAC<100": {
+   "method": "median",
+   "series": [
+    {
+     "id": "aac_hn_viglacera_d75",
+     "use": "mid",
+     "label": "AAC Viglacera 600×200×50/75 (điểm giữa khoảng)"
+    }
+   ],
+   "quality": "A",
+   "note": "Đại lý Viglacera Hà Nội, điểm giữa khoảng giá công bố (đ/m³)."
+  },
+  "bac|AAC>=100": {
+   "method": "median",
+   "series": [
+    {
+     "id": "aac_hn_viglacera_d100",
+     "use": "mid",
+     "label": "AAC Viglacera 600×200×100–200 (điểm giữa khoảng)"
+    }
+   ],
+   "quality": "A",
+   "note": "Đại lý Viglacera Hà Nội, điểm giữa khoảng giá công bố (đ/m³)."
+  },
+  "bac|B10": {
+   "method": "none",
+   "note": "Chưa tìm được nguồn công khai cho gạch đặc 205×150×55 tại miền Bắc."
+  },
+  "bac|B12": {
+   "method": "median",
+   "series": [
+    {
+     "id": "brick_solid_a1_205x95x55_hn",
+     "use": "mid",
+     "label": "Gạch đặc A1 205×95×55 – HN (điểm giữa khoảng)"
+    }
+   ],
+   "quality": "B",
+   "note": "Bảng giá tham khảo theo khu vực (anx.vn), điểm giữa khoảng; cập nhật không định kỳ."
+  },
+  "bac|CATTO": {
+   "method": "none",
+   "refs_info": [
+    {
+     "id": "hn_sxd_q3_00",
+     "label": "Cát đen bãi Trung Hà (tại bãi)"
+    }
+   ],
+   "note": "Chưa có giá cát xây tô giao đến công trình tại Hà Nội. Công bố giá Sở XD HN chỉ có giá tại bãi (cát đen Trung Hà 281.818 đ/m³) – khác điều kiện giao nên không dùng để so."
+  },
+  "bac|CF.VT.CA.9MM": {
+   "method": "none",
+   "refs_info": [
+    {
+     "id": "ceiling_vinhtuong_mr_tika",
+     "label": "Vĩnh Tường tấm siêu chịu ẩm + khung Tika (giá hãng)"
+    }
+   ],
+   "note": "Như trần tiêu chuẩn: chỉ có giá tham khảo hệ trần của hãng, không tính vượt ngưỡng."
+  },
+  "bac|CF.VT.TC.9MM": {
+   "method": "none",
+   "refs_info": [
+    {
+     "id": "ceiling_vinhtuong_std_tika",
+     "label": "Vĩnh Tường tấm tiêu chuẩn + khung Tika (giá hãng)"
+    }
+   ],
+   "note": "Vĩnh Tường chỉ công bố giá tham khảo hệ trần (tấm + khung, đ/m²); tấm lẻ 'báo giá ngay'. Khác phạm vi đơn giá HĐ nên chỉ hiển thị tham khảo, không tính vượt ngưỡng."
+  },
+  "bac|M100": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hn_btHN_m100",
+     "label": "Bê tông Hà Nội (cát công trình)"
+    },
+    {
+     "id": "rmc_hn_chem_m100",
+     "label": "Bê tông Chèm (cát thường)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Hà Nội (betonghanoi.com.vn) – nguồn duy nhất công bố đủ M100–M450 cùng quy cách HĐ (đá 1×2, sụt 12±2, cát công trình, chưa VAT, gồm vận chuyển nội thành, chưa bơm). Bê tông Chèm (cát thường, rẻ hơn ~20–25%) chỉ dùng đối chiếu – khoảng giá thể hiện ở cột nguồn."
+  },
+  "bac|M150": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hn_btHN_m150",
+     "label": "Bê tông Hà Nội (cát công trình)"
+    },
+    {
+     "id": "rmc_hn_chem_m150",
+     "label": "Bê tông Chèm (cát thường)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Hà Nội (betonghanoi.com.vn) – nguồn duy nhất công bố đủ M100–M450 cùng quy cách HĐ (đá 1×2, sụt 12±2, cát công trình, chưa VAT, gồm vận chuyển nội thành, chưa bơm). Bê tông Chèm (cát thường, rẻ hơn ~20–25%) chỉ dùng đối chiếu – khoảng giá thể hiện ở cột nguồn."
+  },
+  "bac|M200": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hn_btHN_m200",
+     "label": "Bê tông Hà Nội (cát công trình)"
+    },
+    {
+     "id": "rmc_hn_chem_m200",
+     "label": "Bê tông Chèm (cát thường)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Hà Nội (betonghanoi.com.vn) – nguồn duy nhất công bố đủ M100–M450 cùng quy cách HĐ (đá 1×2, sụt 12±2, cát công trình, chưa VAT, gồm vận chuyển nội thành, chưa bơm). Bê tông Chèm (cát thường, rẻ hơn ~20–25%) chỉ dùng đối chiếu – khoảng giá thể hiện ở cột nguồn."
+  },
+  "bac|M250": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hn_btHN_m250",
+     "label": "Bê tông Hà Nội (cát công trình)"
+    },
+    {
+     "id": "rmc_hn_chem_m250",
+     "label": "Bê tông Chèm (cát thường)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Hà Nội (betonghanoi.com.vn) – nguồn duy nhất công bố đủ M100–M450 cùng quy cách HĐ (đá 1×2, sụt 12±2, cát công trình, chưa VAT, gồm vận chuyển nội thành, chưa bơm). Bê tông Chèm (cát thường, rẻ hơn ~20–25%) chỉ dùng đối chiếu – khoảng giá thể hiện ở cột nguồn."
+  },
+  "bac|M300": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hn_btHN_m300",
+     "label": "Bê tông Hà Nội (cát công trình)"
+    },
+    {
+     "id": "rmc_hn_chem_m300",
+     "label": "Bê tông Chèm (cát thường)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Hà Nội (betonghanoi.com.vn) – nguồn duy nhất công bố đủ M100–M450 cùng quy cách HĐ (đá 1×2, sụt 12±2, cát công trình, chưa VAT, gồm vận chuyển nội thành, chưa bơm). Bê tông Chèm (cát thường, rẻ hơn ~20–25%) chỉ dùng đối chiếu – khoảng giá thể hiện ở cột nguồn."
+  },
+  "bac|M350": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hn_btHN_m350",
+     "label": "Bê tông Hà Nội (cát công trình)"
+    },
+    {
+     "id": "rmc_hn_chem_m350",
+     "label": "Bê tông Chèm (cát thường)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Hà Nội (betonghanoi.com.vn) – nguồn duy nhất công bố đủ M100–M450 cùng quy cách HĐ (đá 1×2, sụt 12±2, cát công trình, chưa VAT, gồm vận chuyển nội thành, chưa bơm). Bê tông Chèm (cát thường, rẻ hơn ~20–25%) chỉ dùng đối chiếu – khoảng giá thể hiện ở cột nguồn."
+  },
+  "bac|M400": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hn_btHN_m400",
+     "label": "Bê tông Hà Nội (cát công trình)"
+    },
+    {
+     "id": "rmc_hn_chem_m400",
+     "label": "Bê tông Chèm (cát thường)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Hà Nội (betonghanoi.com.vn) – nguồn duy nhất công bố đủ M100–M450 cùng quy cách HĐ (đá 1×2, sụt 12±2, cát công trình, chưa VAT, gồm vận chuyển nội thành, chưa bơm). Bê tông Chèm (cát thường, rẻ hơn ~20–25%) chỉ dùng đối chiếu – khoảng giá thể hiện ở cột nguồn."
+  },
+  "bac|M450": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hn_btHN_m450",
+     "label": "Bê tông Hà Nội (cát công trình)"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Hà Nội (betonghanoi.com.vn) – nguồn duy nhất công bố đủ M100–M450 cùng quy cách HĐ (đá 1×2, sụt 12±2, cát công trình, chưa VAT, gồm vận chuyển nội thành, chưa bơm). Bê tông Chèm (cát thường, rẻ hơn ~20–25%) chỉ dùng đối chiếu – khoảng giá thể hiện ở cột nguồn."
+  },
+  "bac|M500": {
+   "method": "ratio",
+   "ref": "bac|M450",
+   "quality": "C",
+   "note": "Chưa có NCC Hà Nội công bố giá M500. Ước tính = giá thị trường M450 × (đơn giá CTD M500 ÷ đơn giá CTD M450), tức giả định chênh lệch mác giữ như trong HĐ. % lệch vs CTD vì vậy bằng của M450."
+  },
+  "bac|M600": {
+   "method": "ratio",
+   "ref": "bac|M450",
+   "quality": "C",
+   "note": "Chưa có NCC Hà Nội công bố giá M600. Ước tính = giá thị trường M450 × (đơn giá CTD M600 ÷ đơn giá CTD M450), tức giả định chênh lệch mác giữ như trong HĐ. % lệch vs CTD vì vậy bằng của M450."
+  },
+  "bac|M650": {
+   "method": "ratio",
+   "ref": "bac|M450",
+   "quality": "C",
+   "note": "Chưa có NCC Hà Nội công bố giá M650. Ước tính = giá thị trường M450 × (đơn giá CTD M650 ÷ đơn giá CTD M450), tức giả định chênh lệch mác giữ như trong HĐ. % lệch vs CTD vì vậy bằng của M450."
+  },
+  "bac|M700": {
+   "method": "ratio",
+   "ref": "bac|M450",
+   "quality": "C",
+   "note": "Chưa có NCC Hà Nội công bố giá M700. Ước tính = giá thị trường M450 × (đơn giá CTD M700 ÷ đơn giá CTD M450), tức giả định chênh lệch mác giữ như trong HĐ. % lệch vs CTD vì vậy bằng của M450."
+  },
+  "bac|PHD": {
+   "method": "none",
+   "note": "Hạng mục thi công (đ/m²), không có giá thị trường công khai."
+  },
+  "bac|PLA": {
+   "method": "median",
+   "series": [
+    {
+     "id": "sika_latex_th_25l",
+     "label": "Sika Latex TH can 25 L – đại lý Chính Tiến (TP.HCM)"
+    }
+   ],
+   "quality": "B",
+   "note": "Sika bán giá thống nhất toàn quốc; tạm dùng báo giá đại lý TP.HCM cho miền Bắc."
+  },
+  "bac|PLU": {
+   "method": "none",
+   "refs_info": [
+    {
+     "id": "mesh_fiberglass_eblock",
+     "label": "Lưới sợi thủy tinh – chỉ vật tư (đ/m)"
+    }
+   ],
+   "note": "Đơn giá HĐ gồm nhân công + vật tư; chỉ có giá vật tư lưới công khai (tham khảo), không so được."
+  },
+  "bac|SKIMCOAT": {
+   "method": "median",
+   "series": [
+    {
+     "id": "skimcoat_mater_401",
+     "label": "Skimcoat Mater 401 (đ/kg × 1 kg/m²)"
+    }
+   ],
+   "quality": "B",
+   "note": "Quy đổi theo định mức HĐ 1 kg/m²: giá bột skimcoat (đ/kg, tổng kho HN) × 1."
+  },
+  "bac|V50": {
+   "method": "norm",
+   "inputs": {
+    "XM": 176,
+    "CATTO": 1.11
+   },
+   "index_base": "ntc",
+   "quality": "C",
+   "note": "Suy ra từ định mức cấp phối vữa xi măng cát mịn (ML 1,5–2,0) dùng PCB40, mã 12.10243 (QĐ 1329/QĐ-BXD, nay TT 12/2021/TT-BXD): 176 kg xi măng + 1,11 m³ cát / 1 m³ vữa. Giá thị trường = đơn giá NTC × (chi phí vật liệu theo giá thị trường ÷ chi phí vật liệu theo đơn giá NTC của XM và CATTO), tức chỉ điều chỉnh theo biến động xi măng + cát."
+  },
+  "bac|V75": {
+   "method": "norm",
+   "inputs": {
+    "XM": 247,
+    "CATTO": 1.09
+   },
+   "index_base": "ntc",
+   "quality": "C",
+   "note": "Suy ra từ định mức cấp phối vữa xi măng cát mịn (ML 1,5–2,0) dùng PCB40, mã 12.10244 (QĐ 1329/QĐ-BXD, nay TT 12/2021/TT-BXD): 247 kg xi măng + 1,09 m³ cát / 1 m³ vữa. Giá thị trường = đơn giá NTC × (chi phí vật liệu theo giá thị trường ÷ chi phí vật liệu theo đơn giá NTC của XM và CATTO), tức chỉ điều chỉnh theo biến động xi măng + cát."
+  },
+  "bac|VX-AAC": {
+   "method": "median",
+   "series": [
+    {
+     "id": "mortar_aac_mater_m75",
+     "factor": 70,
+     "label": "Vữa xây AAC Mater M75 × 70 kg"
+    },
+    {
+     "id": "mortar_aac_sako_m75_s900",
+     "factor": 70,
+     "label": "Vữa xây AAC Sako M75 S900 × 70 kg"
+    }
+   ],
+   "quality": "B",
+   "note": "Quy đổi theo định mức HĐ 70 kg vữa khô/m³ tường: giá vữa khô (đ/kg, giá bán lẻ tổng kho HN) × 70. Giá dự án thường có chiết khấu."
+  },
+  "bac|XM": {
+   "method": "median",
+   "series": [
+    {
+     "id": "hn_sxd_q3_08",
+     "factor": 0.001,
+     "label": "Vicem Bút Sơn PCB40 bao (tại NM)"
+    },
+    {
+     "id": "hn_sxd_q3_11",
+     "factor": 0.001,
+     "label": "Thành Thắng PCB40 bao"
+    },
+    {
+     "id": "hn_sxd_q3_12",
+     "factor": 0.001,
+     "label": "Hoàng Long PCB40 bao (đến CT)"
+    },
+    {
+     "id": "hn_sxd_q3_13",
+     "factor": 0.001,
+     "label": "Bỉm Sơn PCB40"
+    }
+   ],
+   "quality": "B",
+   "note": "Công bố giá Sở XD Hà Nội Quý III/2026 (cập nhật theo quý), quy VND/tấn → VND/kg. Trung vị 4 nhãn PCB40. Chưa phản ánh đợt tăng giá xi măng từ 05/10/2026 (+70.000 đ/tấn bao) – xem dự báo."
+  },
+  "nam|AAC<100": {
+   "method": "median",
+   "series": [
+    {
+     "id": "aac_hcm_eblock_b3_d75",
+     "label": "EBLOCK B3 600×200×75"
+    }
+   ],
+   "quality": "A",
+   "note": "Bảng giá niêm yết nhà máy EBLOCK (B3 – 3,5 MPa), chưa VAT & vận chuyển."
+  },
+  "nam|AAC>=100": {
+   "method": "median",
+   "series": [
+    {
+     "id": "aac_hcm_eblock_b3_d100",
+     "label": "EBLOCK B3 600×200×100"
+    }
+   ],
+   "quality": "A",
+   "note": "Bảng giá niêm yết nhà máy EBLOCK (B3 – 3,5 MPa), chưa VAT & vận chuyển."
+  },
+  "nam|B10": {
+   "method": "none",
+   "note": "Chưa có nguồn công khai; HĐ cũng chưa có đơn giá CTD/NTC."
+  },
+  "nam|B12": {
+   "method": "none",
+   "note": "Chưa có nguồn công khai cho gạch đặc 205×95×55 tại miền Nam (miền Nam dùng phổ biến quy cách 180×80×40)."
+  },
+  "nam|B8": {
+   "method": "median",
+   "series": [
+    {
+     "id": "vnmat_gach_xay_gach_dinh_180x80x40_mm",
+     "label": "Gạch đinh 180×80×40 – BQ TP.HCM"
+    }
+   ],
+   "quality": "B",
+   "note": "Công bố giá Sở XD TP.HCM (hàng tháng). Gạch đặc nung 180×80×40 ở miền Nam gọi là 'gạch đinh'; dòng 'gạch đặc 180×80×40' (981 đ) trong công bố có thể là gạch không nung nên không dùng."
+  },
+  "nam|B9": {
+   "method": "median",
+   "series": [
+    {
+     "id": "vnmat_gach_xay_gach_ong_180x80x80_mm",
+     "label": "Gạch ống 180×80×80 – BQ TP.HCM"
+    }
+   ],
+   "quality": "B",
+   "note": "Công bố giá Sở XD TP.HCM (hàng tháng), giá bình quân khu vực."
+  },
+  "nam|CATTO": {
+   "method": "median",
+   "series": [
+    {
+     "id": "vnmat_cat_cat_xay_to_gia_binh_quan_khu_vuc",
+     "label": "Cát xây tô – BQ khu vực TP.HCM"
+    }
+   ],
+   "quality": "B",
+   "note": "Công bố giá Sở XD TP.HCM (hàng tháng), giá bình quân khu vực."
+  },
+  "nam|CF.VT.CA.9MM": {
+   "method": "none",
+   "refs_info": [
+    {
+     "id": "ceiling_vinhtuong_mr_tika",
+     "label": "Vĩnh Tường tấm siêu chịu ẩm + khung Tika (giá hãng)"
+    }
+   ],
+   "note": "Như trần tiêu chuẩn: chỉ có giá tham khảo hệ trần của hãng, không tính vượt ngưỡng."
+  },
+  "nam|CF.VT.TC.9MM": {
+   "method": "none",
+   "refs_info": [
+    {
+     "id": "ceiling_vinhtuong_std_tika",
+     "label": "Vĩnh Tường tấm tiêu chuẩn + khung Tika (giá hãng)"
+    }
+   ],
+   "note": "Vĩnh Tường chỉ công bố giá tham khảo hệ trần (tấm + khung, đ/m²); tấm lẻ 'báo giá ngay'. Khác phạm vi đơn giá HĐ nên chỉ hiển thị tham khảo, không tính vượt ngưỡng."
+  },
+  "nam|M100": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m100",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    },
+    {
+     "id": "rmc_hcm_mk_m100",
+     "vat_incl": true,
+     "label": "Mekong Thương Tín (đã gồm VAT 8% → quy chưa VAT)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M150": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m150",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    },
+    {
+     "id": "rmc_hcm_mk_m150",
+     "vat_incl": true,
+     "label": "Mekong Thương Tín (đã gồm VAT 8% → quy chưa VAT)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M200": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m200",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    },
+    {
+     "id": "rmc_hcm_mk_m200",
+     "vat_incl": true,
+     "label": "Mekong Thương Tín (đã gồm VAT 8% → quy chưa VAT)",
+     "role": "check"
+    },
+    {
+     "id": "rmc_hcm_dvc_m200",
+     "use": "mid",
+     "label": "Bê tông DVC (điểm giữa khoảng giá)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M250": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m250",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    },
+    {
+     "id": "rmc_hcm_mk_m250",
+     "vat_incl": true,
+     "label": "Mekong Thương Tín (đã gồm VAT 8% → quy chưa VAT)",
+     "role": "check"
+    },
+    {
+     "id": "rmc_hcm_dvc_m250",
+     "use": "mid",
+     "label": "Bê tông DVC (điểm giữa khoảng giá)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M300": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m300",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    },
+    {
+     "id": "rmc_hcm_mk_m300",
+     "vat_incl": true,
+     "label": "Mekong Thương Tín (đã gồm VAT 8% → quy chưa VAT)",
+     "role": "check"
+    },
+    {
+     "id": "rmc_hcm_dvc_m300",
+     "use": "mid",
+     "label": "Bê tông DVC (điểm giữa khoảng giá)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M350": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m350",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    },
+    {
+     "id": "rmc_hcm_mk_m350",
+     "vat_incl": true,
+     "label": "Mekong Thương Tín (đã gồm VAT 8% → quy chưa VAT)",
+     "role": "check"
+    },
+    {
+     "id": "rmc_hcm_dvc_m350",
+     "use": "mid",
+     "label": "Bê tông DVC (điểm giữa khoảng giá)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M400": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m400",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    },
+    {
+     "id": "rmc_hcm_mk_m400",
+     "vat_incl": true,
+     "label": "Mekong Thương Tín (đã gồm VAT 8% → quy chưa VAT)",
+     "role": "check"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M450": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m450",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M500": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m500",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M600": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m600",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|M650": {
+   "method": "interp",
+   "refs": [
+    "nam|M600",
+    "nam|M700"
+   ],
+   "quality": "C",
+   "note": "Không NCC nào công bố M650. Ước tính = trung bình giá thị trường M600 và M700 (nội suy tuyến tính)."
+  },
+  "nam|M700": {
+   "method": "median",
+   "series": [
+    {
+     "id": "rmc_hcm_dn_m700",
+     "label": "Bê tông Đông Nam (sụt 10±2)"
+    }
+   ],
+   "quality": "A",
+   "note": "Giá thị trường = bảng giá Bê tông Đông Nam (betongdongnam.com) – nguồn duy nhất công bố đủ M100–M700 (đá 1×2, chưa VAT, chưa bơm). Mekong Thương Tín (đã gồm VAT 8%, quy về chưa VAT) và DVC (điểm giữa khoảng) chỉ dùng đối chiếu. Lưu ý: NCC báo độ sụt 10±2 (HĐ 12±2, tăng sụt thường +10–50 nghìn đ/m³ tùy NCC – chưa cộng)."
+  },
+  "nam|PHD": {
+   "method": "none",
+   "note": "Hạng mục thi công (đ/m²), không có giá thị trường công khai."
+  },
+  "nam|PLA": {
+   "method": "median",
+   "series": [
+    {
+     "id": "sika_latex_th_25l",
+     "label": "Sika Latex TH can 25 L – đại lý Chính Tiến"
+    }
+   ],
+   "quality": "A",
+   "note": "Báo giá đại lý Sika (TP.HCM), đơn giá theo lít, chưa VAT."
+  },
+  "nam|PLU": {
+   "method": "none",
+   "refs_info": [
+    {
+     "id": "mesh_fiberglass_eblock",
+     "label": "Lưới sợi thủy tinh – chỉ vật tư (đ/m)"
+    }
+   ],
+   "note": "Đơn giá HĐ gồm nhân công + vật tư; chỉ có giá vật tư lưới công khai (tham khảo), không so được."
+  },
+  "nam|SKIMCOAT": {
+   "method": "median",
+   "series": [
+    {
+     "id": "skimcoat_eblock_ebs302",
+     "label": "Skimcoat EBLOCK EBS 302 (đ/kg × 1 kg/m²)"
+    }
+   ],
+   "quality": "B",
+   "note": "Quy đổi theo định mức HĐ 1 kg/m²: giá niêm yết nhà máy (đ/kg) × 1."
+  },
+  "nam|V50": {
+   "method": "norm",
+   "inputs": {
+    "XM": 176,
+    "CATTO": 1.11
+   },
+   "index_base": "ntc",
+   "quality": "C",
+   "note": "Suy ra từ định mức cấp phối vữa xi măng cát mịn (ML 1,5–2,0) dùng PCB40, mã 12.10243 (QĐ 1329/QĐ-BXD, nay TT 12/2021/TT-BXD): 176 kg xi măng + 1,11 m³ cát / 1 m³ vữa. Giá thị trường = đơn giá NTC × (chi phí vật liệu theo giá thị trường ÷ chi phí vật liệu theo đơn giá NTC của XM và CATTO), tức chỉ điều chỉnh theo biến động xi măng + cát."
+  },
+  "nam|V75": {
+   "method": "norm",
+   "inputs": {
+    "XM": 247,
+    "CATTO": 1.09
+   },
+   "index_base": "ntc",
+   "quality": "C",
+   "note": "Suy ra từ định mức cấp phối vữa xi măng cát mịn (ML 1,5–2,0) dùng PCB40, mã 12.10244 (QĐ 1329/QĐ-BXD, nay TT 12/2021/TT-BXD): 247 kg xi măng + 1,09 m³ cát / 1 m³ vữa. Giá thị trường = đơn giá NTC × (chi phí vật liệu theo giá thị trường ÷ chi phí vật liệu theo đơn giá NTC của XM và CATTO), tức chỉ điều chỉnh theo biến động xi măng + cát."
+  },
+  "nam|VX-AAC": {
+   "method": "median",
+   "series": [
+    {
+     "id": "mortar_aac_eblock_ebs301",
+     "factor": 70,
+     "label": "Vữa xây mỏng EBLOCK EBS 301 × 70 kg"
+    }
+   ],
+   "quality": "B",
+   "note": "Quy đổi theo định mức HĐ 70 kg/m³: giá niêm yết nhà máy EBLOCK (đ/kg) × 70. Giá niêm yết chưa chiết khấu dự án."
+  },
+  "nam|XM": {
+   "method": "median",
+   "series": [
+    {
+     "id": "vnmat_xi_mang_xi_mang_pcb40_bao",
+     "factor": 0.001,
+     "label": "Xi măng PCB40 bao – BQ TP.HCM"
+    }
+   ],
+   "quality": "B",
+   "note": "Công bố giá Sở XD TP.HCM (tổng hợp hàng tháng qua thitruonghanghoa.com), quy VND/tấn → VND/kg. Chưa phản ánh đợt tăng giá 05/10/2026."
+  }
+ }
+}
