@@ -42,7 +42,7 @@ HUB._nav = async () => {
       idx.push({k: "Trang", t: "Điều chỉnh giá HĐ tổng thầu – giá thị trường vs đơn giá CTD/NTC, vượt ngưỡng", u: "dieu-chinh.html"});
       idx.push({k: "Trang", t: "Hợp đồng & Pháp lý – luật xây dựng, NĐ 210/2026, FIDIC, chống bán phá giá, tranh chấp, hỏi đáp", u: "hop-dong.html"});
       if (t) for (const id in t.byId) idx.push({k: "Danh mục", t: t.byId[id].name, u: `danh-muc.html?c=${id}`});
-      const mt = await (window.MT ? window.MT.load() : new Promise(r => { const sc = document.createElement("script"); sc.src = "mt-group.js"; sc.onload = () => r(window.MT.load()); sc.onerror = () => r(null); document.head.appendChild(sc); })); const MT = window.MT;
+      const mt = await (window.MT ? window.MT.load() : new Promise(r => { const sc = document.createElement("script"); sc.src = "mt-group.js?v=20261022b"; sc.onload = () => r(window.MT.load()); sc.onerror = () => r(null); document.head.appendChild(sc); })); const MT = window.MT;
       if (mt) for (const n of mt.nodes) if (n.level >= 2 && h?.items?.some(x => MT.path(x.id, x.category).some(p => p.code === n.code))) idx.push({k: "Nhóm giá", t: MT.chain(n.code).map(p => p.name_vi).join(" › "), u: `gia.html?nhom=${encodeURIComponent(n.code)}`});
       for (const x of h?.items || []) idx.push({k: "Giá", t: `${x.name}${x.region ? " – " + x.region : ""}`, g: mt ? MT.text(x.id, x.category) : "", u: `mat-hang.html?id=${encodeURIComponent(x.id)}`});
       for (const x of tr?.items || []) idx.push({k: "Xu hướng", t: x.title, u: `xu-huong.html?id=${x.id}`});
