@@ -4,6 +4,7 @@ from playwright.sync_api import sync_playwright
 B = (sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8765/").rstrip("/") + "/"
 S = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "screenshots"); os.makedirs(S, exist_ok=True)
 R, errs = [], []
+PFX = os.environ.get("SHOT_PREFIX", "")
 def ok(n, c, info=""): R.append((n, bool(c))); print(("PASS " if c else "FAIL ") + n, info)
 with sync_playwright() as p:
     b = p.chromium.launch()
@@ -11,7 +12,7 @@ with sync_playwright() as p:
         ctx = b.new_context(viewport=vp, is_mobile=mode == "mobile", has_touch=mode == "mobile", accept_downloads=True)
         pg = ctx.new_page()
         pg.on("pageerror", lambda e, m=mode: errs.append(f"{m}: {e}")); pg.on("console", lambda x, m=mode: x.type == "error" and errs.append(f"{m} console: {x.text}"))
-        sh = lambda n, full=True: pg.screenshot(path=f"{S}/dieuchinh_{mode}_{n}.png", full_page=full)
+        sh = lambda n, full=True: pg.screenshot(path=f"{S}/dieuchinh_{PFX}{mode}_{n}.png", full_page=full)
         pg.goto(B + "dieu-chinh.html", wait_until="domcontentloaded"); pg.wait_for_selector("#tbl tr.r"); pg.wait_for_timeout(500)
         ok(f"{mode} kpis", pg.locator("#kpi .hk").count() == 4)
         nb = pg.locator("#tbl tr.r").count(); ok(f"{mode} rows Bắc", nb == 27, nb)
@@ -23,15 +24,16 @@ with sync_playwright() as p:
         chk = """async (sc) => { const D = await (await fetch('data/dieu-chinh.json')).json(); const bad = [];
           for (const r of D.contracts[0].rows.filter(r => r.region === 'bac')) { const tr = document.querySelector(`#tbl tr.r[data-k="bac|${r.code}"]`); if (!tr) continue;
             const b = tr.querySelectorAll('td')[7].querySelector('.bd'); const want = r.evals[sc].ctd.status; if (!b.classList.contains(want)) bad.push(r.code + ':' + want); } return bad; }"""
-        ok(f"{mode} VAT default=unknown shows alt lines", pg.locator("#vat button.on").get_attribute("data-k") == "unknown" and pg.locator("#tbl .alt").count() >= 10, pg.locator("#tbl .alt").count())
+        ok(f"{mode} VAT default=excl (confirmed), no 'Chưa rõ'", pg.locator("#vat button.on").get_attribute("data-k") == "excl" and pg.locator("#vat button[data-k=unknown]").count() == 0 and "Xác nhận" in pg.inner_text("#vatset"), pg.inner_text("#vatset")[:80])
         nv = pg.evaluate("[...document.querySelectorAll('#tbl tr.r')].filter(t => !t.querySelector('.bd.missing')).length")
         ok(f"{mode} basis chip on every priced row", pg.locator("#tbl .basis").count() == nv, (pg.locator("#tbl .basis").count(), nv))
-        ok(f"{mode} unknown→status = excl scenario", pg.evaluate(chk, "excl") == [], pg.evaluate(chk, "excl"))
+        ok(f"{mode} default status = excl scenario", pg.evaluate(chk, "excl") == [], pg.evaluate(chk, "excl"))
         pg.click("#vat button[data-k=incl]"); pg.wait_for_timeout(200)
-        ok(f"{mode} VAT incl recomputes statuses", pg.evaluate(chk, "incl") == [] and pg.locator("#tbl .alt").count() < 10, pg.evaluate(chk, "incl"))
+        ok(f"{mode} VAT incl recomputes statuses", pg.evaluate(chk, "incl") == [] and "xem thử" in pg.inner_text("#vathint").lower(), pg.evaluate(chk, "incl"))
         sh("01b_bac_vat_incl")
         pg.click("#vat button[data-k=excl]"); pg.wait_for_timeout(200); ok(f"{mode} VAT excl", pg.evaluate(chk, "excl") == [])
-        pg.click("#vat button[data-k=unknown]"); pg.wait_for_timeout(200)
+        pg.evaluate("localStorage.setItem('dc_vat_tong-thau-2026','unknown')"); pg.reload(); pg.wait_for_selector("#tbl tr.r"); pg.wait_for_timeout(300)
+        ok(f"{mode} legacy 'unknown' migrates to excl", pg.locator("#vat button.on").get_attribute("data-k") == "excl" and pg.evaluate("localStorage.getItem('dc_vat_tong-thau-2026')") == "excl" and pg.evaluate(chk, "excl") == [])
         pg.click("#rg button[data-k=nam]"); pg.wait_for_timeout(200); nn = pg.locator("#tbl tr.r").count(); ok(f"{mode} rows Nam", nn == 29, nn); sh("02_nam")
         pg.click("#sf button[data-k=down]"); pg.wait_for_timeout(150); nd = pg.locator("#tbl tr.r").count(); ok(f"{mode} filter down", 0 < nd < nn, nd)
         ok(f"{mode} filter consistency", pg.locator("#tbl tr.r").filter(has=pg.locator(".bd.down")).count() == nd)

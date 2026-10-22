@@ -99,8 +99,8 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
  <label class="chk"><input type="checkbox" id="onlyw"> Chỉ mục có tỷ trọng</label>
  <input type="search" id="q" placeholder="Tìm mã, mô tả… (không dấu)" aria-label="Tìm mặt hàng">
 </div>
-<div class="vatset" id="vatset"><b>⚖️ Đơn giá HĐ (CTD/NTC) đã gồm VAT?</b>
- <div class="seg" id="vat" aria-label="Cơ sở VAT của đơn giá HĐ"><button data-k="unknown">Chưa rõ – xem cả 2</button><button data-k="excl">Chưa gồm VAT</button><button data-k="incl">Đã gồm VAT</button></div>
+<div class="vatset" id="vatset"><b>✅ Xác nhận: đơn giá HĐ (CTD/NTC) chưa gồm VAT</b>
+ <div class="seg" id="vat" aria-label="Cơ sở VAT của đơn giá HĐ"><button data-k="excl">Chưa gồm VAT (đã xác nhận)</button><button data-k="incl">Xem thử: nếu đã gồm VAT</button></div>
  <span class="hint" id="vathint"></span></div>
 <div class="lgrow"><div class="legend" id="legend"></div><div class="exp no-print">
  <button class="btn" id="bcsv" title="Tải bảng đang xem (CSV, mở được bằng Excel)">⬇ CSV</button>
@@ -132,8 +132,9 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
  const ST = D.status_vi, NEAR = D.near_pp;
  const st = {r: ["bac", "nam", "cmp"].includes(HUB.qs("r")) ? HUB.qs("r") : "bac", f: "", q: "", w: false, fh: "6", fb: "ctd", fr: "all"};
  const VR = C.vat_rate || 0.08, VK = "dc_vat_" + C.id;
- st.v = ["unknown", "excl", "incl"].includes(HUB.qs("vat")) ? HUB.qs("vat") : (() => { try { return localStorage.getItem(VK); } catch (e) { return null; } })() || C.contract_vat_default || "unknown";
- if (!["unknown", "excl", "incl"].includes(st.v)) st.v = "unknown";
+ const VDEF = ["excl", "incl"].includes(C.vat_basis) ? C.vat_basis : (["excl", "incl"].includes(C.contract_vat_default) ? C.contract_vat_default : "excl");
+ st.v = ["excl", "incl"].includes(HUB.qs("vat")) ? HUB.qs("vat") : (() => { try { return localStorage.getItem(VK); } catch (e) { return null; } })() || VDEF;
+ if (!["excl", "incl"].includes(st.v)) { st.v = VDEF; try { localStorage.setItem(VK, st.v); } catch (e) {} }   // migrate cũ 'unknown' → cơ sở đã xác nhận
  const scen = () => st.v === "incl" ? "incl" : "excl";
  const applyVat = () => { ROWS.forEach(r => { if (r.evals) r.eval = r.evals[scen()]; }); if (C.summaries) C.summary = C.summaries[scen()]; };
  const bx = (r, b) => r[b] == null ? null : (st.v === "incl" ? r[b] / (1 + VR) : r[b]);   // đơn giá HĐ quy về chưa VAT
@@ -261,7 +262,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const fcRows = ["3", "6", "12"].map(h => fh[h] ? `<tr><td>${h} tháng</td><td class="n"><b>${num(fh[h].base)}</b></td><td>${pc(fh[h].pct)}</td><td class="n">${num(fh[h].lo)} – ${num(fh[h].hi)}</td>
    <td class="n">${pk(fh[h], "p_down_ctd") != null ? `<span class="down">${pk(fh[h], "p_down_ctd").toFixed(0)}%</span> / <span class="up">${pk(fh[h], "p_up_ctd").toFixed(0)}%</span>` : "–"}</td>
    <td class="n">${pk(fh[h], "p_down_ntc") != null ? `<span class="down">${pk(fh[h], "p_down_ntc").toFixed(0)}%</span> / <span class="up">${pk(fh[h], "p_up_ntc").toFixed(0)}%</span>` : "–"}</td></tr>` : "").join("");
-  const B = m.basis, bbox = m.value == null ? "" : `<div class="bbox"><b>Cơ sở so sánh</b> <span class="small mute">(${st.v === "incl" ? "đơn giá HĐ coi là ĐÃ gồm VAT → so với đơn giá ÷ 1,08" : st.v === "excl" ? "đơn giá HĐ coi là chưa VAT" : "chưa rõ đơn giá HĐ có VAT không – bảng chính coi là chưa VAT, dòng phụ hiện kết quả nếu đã gồm VAT"})</span><ul>
+  const B = m.basis, bbox = m.value == null ? "" : `<div class="bbox"><b>Cơ sở so sánh</b> <span class="small mute">(${st.v === "incl" ? "xem thử: đơn giá HĐ coi như ĐÃ gồm VAT → so với đơn giá ÷ 1,08" : st.v === "excl" ? "đơn giá HĐ chưa VAT – đã xác nhận" : "chưa rõ đơn giá HĐ có VAT không – bảng chính coi là chưa VAT, dòng phụ hiện kết quả nếu đã gồm VAT"})</span><ul>
    <li>${E(r.basis_text || "")}</li>${(B?.ev || []).map(x => `<li class="small">Bằng chứng VAT: ${E(x)}</li>`).join("")}
    <li class="small">Đơn giá CTD/NTC trên trang hiển thị nguyên giá trị HĐ; ${st.v === "incl" ? `khi so sánh dùng CTD ${num(bx(r, "ctd"))} / NTC ${num(bx(r, "ntc"))} (đã ÷1,08).` : "so sánh trực tiếp."}</li></ul></div>`;
   $("#dlg-b").innerHTML = `<div class="kv"><div><span>Giá thị trường (chưa VAT)</span><b>${num(m.value)}</b> ${m.quality ? `<span class="q ${m.quality}" title="${E(QT[m.quality])}">${m.quality}</span>` : ""}<div class="small mute">${m.value != null ? "ngày giá " + date(m.as_of) : "Thiếu dữ liệu"}</div></div>
@@ -326,7 +327,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   <li><b>Tác động</b> = tỷ trọng × % lệch (điểm % giá trị HĐ nếu điều chỉnh toàn bộ chênh lệch); rê chuột để xem phương án chỉ điều chỉnh phần vượt ngưỡng. Tỷ trọng chỉ có ở các dòng HĐ có ghi.</li>
   <li><b>Độ tin cậy dữ liệu:</b> <span class="q A">A</span> ${E(QT.A.slice(4))}; <span class="q B">B</span> ${E(QT.B.slice(4))}; <span class="q C">C</span> ${E(QT.C.slice(4))}. Giá web là giá tham khảo, chưa chiết khấu dự án.</li>
   <li><b>Cơ sở VAT & quy cách:</b> mọi giá thị trường được quy về <b>chưa VAT</b>: nguồn ghi “đã gồm VAT” chia 1,08 (${E(C.vat_note || "")}); nguồn không nêu VAT được coi là chưa VAT và hiện thêm dòng “nếu nguồn đã gồm VAT”. Bê tông miền Nam báo độ sụt 10±2 được cộng phụ phí tăng sụt của chính NCC để về 12±2 như HĐ. Vữa AAC = đ/kg × 70 kg/m³, skimcoat = đ/kg × 1 kg/m², phụ gia Latex theo lít, gạch AAC theo m³ – đúng đơn vị HĐ. Điều kiện giao (đến công trình / tại nhà máy / tại kho) ghi ở từng dòng (ⓘ) – giá tại nhà máy/kho chưa gồm cước nên có thể thấp hơn giá giao đến công trình trong HĐ.</li>
-  <li><b>Đơn giá HĐ có VAT hay không?</b> Chưa xác nhận. Dùng nút <i>“Đơn giá HĐ đã gồm VAT?”</i> phía trên bảng: “Chưa gồm VAT” so trực tiếp; “Đã gồm VAT” so với đơn giá ÷ 1,08; “Chưa rõ” hiển thị cả hai (bảng chính theo giả định chưa VAT). Lựa chọn được ghi nhớ trên trình duyệt này.</li>
+  <li><b>Đơn giá HĐ có VAT hay không?</b> <b>Đã xác nhận: đơn giá CTD và NTC chưa gồm VAT</b>${C.vat_basis_confirmed ? " (" + E(C.vat_basis_confirmed.split("-").reverse().join("/")) + ")" : ""} – mặc định so trực tiếp với giá thị trường chưa VAT. Nút <i>“Xem thử: nếu đã gồm VAT”</i> chỉ để tham khảo (so với đơn giá ÷ 1,08). Cơ sở bơm/cước vận chuyển vẫn chưa xác nhận – xem ghi chú điều kiện giao ở từng dòng.</li>
   <li><b>Tần suất:</b> bảng giá NCC/nhà máy được lấy tự động 5 lần/ngày (06:05–18:05 giờ VN) nhưng NCC chỉ đổi bảng giá theo đợt; công bố giá Sở XD TP.HCM theo tháng, Sở XD Hà Nội theo quý (nhập tay). Chuỗi ngày tích lũy từ khi bắt đầu theo dõi (10/2026) nên đồ thị còn ngắn.</li>
   <li><b>Suy diễn:</b> M500–M700 miền Bắc theo tỷ lệ mác trong HĐ × giá M450; M650 miền Nam nội suy M600–M700; vữa M50/M75 theo định mức cấp phối (176 kg XM + 1,11 m³ cát; 247 kg + 1,09 m³ – vữa XM cát mịn, PCB40) áp vào đơn giá NTC; vữa AAC × 70 kg/m³ và skimcoat × 1 kg/m² theo định mức ghi trong HĐ.</li>
   <li><b>Thiếu dữ liệu (${MISS.length} dòng):</b> ${MISS.map(r => `${r.region_name} ${E(r.code)}`).join(", ")}. Không bao giờ tự điền giá khi không có nguồn.</li>
@@ -341,14 +342,15 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const s = e => e.status === "na" ? ST.na : ST[e.status] + (e.near ? " (sắp chạm)" : "");
   const L = rows.map(r => [r.region_name, r.group, r.code, r.desc, r.unit, r.weight_pct ?? "", r.ctd ?? "", r.ntc ?? "", r.market.value != null ? Math.round(r.market.value * 100) / 100 : "", r.market.as_of || "",
    r.market.value != null ? (r.market.method === "median" ? (r.market.sources || []).filter(x => !x.missing && x.role !== "check").map(x => x.src).join("; ") : METH[r.market.method]) : "Thiếu dữ liệu", r.market.quality || "",
-   r.eval.ctd.dev ?? "", r.thr_ctd_pct, s(r.eval.ctd), r.eval.ntc.dev ?? "", r.thr_ntc_pct, s(r.eval.ntc), r.eval.ctd.impact ?? "", r.eval.ntc.impact ?? "", r.basis_text || "", st.v === "incl" ? "đã gồm VAT (÷1,08)" : st.v === "excl" ? "chưa gồm VAT" : "chưa rõ (bảng theo giả định chưa VAT)", r.evals?.incl.ctd.dev ?? "", r.evals?.incl.ntc.dev ?? ""]);
+   r.eval.ctd.dev ?? "", r.thr_ctd_pct, s(r.eval.ctd), r.eval.ntc.dev ?? "", r.thr_ntc_pct, s(r.eval.ntc), r.eval.ctd.impact ?? "", r.eval.ntc.impact ?? "", r.basis_text || "", st.v === "incl" ? "đã gồm VAT (÷1,08)" : "chưa gồm VAT (đã xác nhận)", r.evals?.incl.ctd.dev ?? "", r.evals?.incl.ntc.dev ?? ""]);
   const csv = "\ufeff" + [H, ...L].map(a => a.map(v => { v = String(v); return /[",\n;]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; }).join(",")).join("\r\n");
   const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], {type: "text/csv;charset=utf-8"})); a.download = `dieu-chinh-gia-${reg || "2-mien"}-${D.generated.slice(0, 10)}.csv`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
  };
  $("#bprint").onclick = () => print();
  const seg = (id, key, cb) => $(id).addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; $(id).querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); st[key] = b.dataset.k; cb(); });
  const vatHint = () => { $("#vathint").innerHTML = st.v === "unknown" ? `Đang hiển thị theo giả định <b>đơn giá HĐ chưa VAT</b>; dòng nhỏ “Nếu HĐ gồm VAT” cho kết quả nếu đơn giá đã gồm VAT 8%. Giá thị trường luôn được quy về chưa VAT.`
-   : st.v === "incl" ? `So sánh với đơn giá HĐ ÷ 1,08 (bỏ VAT 8%). Giá thị trường đã quy về chưa VAT.` : `So sánh trực tiếp đơn giá HĐ với giá thị trường chưa VAT.`;
+   : st.v === "incl" ? `<b>Chế độ xem thử</b> (không phải cơ sở HĐ): so với đơn giá HĐ ÷ 1,08 như thể đã gồm VAT 8%. <a href="#" id="vatback">Quay về cơ sở đã xác nhận</a>.` : `So sánh trực tiếp đơn giá HĐ (chưa VAT – đã xác nhận) với giá thị trường quy về chưa VAT.`;
+  const bk = $("#vatback"); if (bk) bk.onclick = ev => { ev.preventDefault(); $("#vat button[data-k=excl]").click(); };
   $("#vat").querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.k === st.v)); };
  const render = () => { applyVat(); vatHint(); kpis(); table(); };
  seg("#vat", "v", () => { try { localStorage.setItem(VK, st.v); } catch (e) {} render(); fcTable(); });

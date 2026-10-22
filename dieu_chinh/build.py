@@ -225,7 +225,7 @@ def build_contract(c, MAP, prices, H, FC, today):
                                 impact_down=round(sum(E_(x).get("impact") or 0 for x in S("down")), 3), impact_up=round(sum(E_(x).get("impact") or 0 for x in S("up")), 3),
                                 impact_down_beyond=round(sum(E_(x).get("impact_beyond") or 0 for x in S("down")), 3))
     meta = {k: v for k, v in c.items() if k != "items"}
-    return dict(meta, rows=rows, summary=summs["excl"], summaries=summs, contract_vat_default=MAP.get("contract_vat_default", "unknown"), vat_rate=vat,
+    return dict(meta, rows=rows, summary=summs["excl"], summaries=summs, contract_vat_default=c.get("vat_basis") or MAP.get("contract_vat_default", "excl"), vat_rate=vat,
                 vat_note=MAP.get("basis_vat_rate_note"))
 
 def export_tables(data, site):
@@ -296,8 +296,8 @@ def main():
                 top.append(dict(code=r["code"], region=r["region"], region_name=r["region_name"], hits=hits, status=hits[0]["status"],
                                 weight=r.get("weight_pct"), quality=r["market"].get("quality")))
         top.sort(key=lambda x: (x["status"] != "down", -(x["weight"] or 0), min(h["dev"] for h in x["hits"])))
-        summ.append(dict(id=c["id"], name=c["name"], version=c["version"], summary=c["summary"], summary_if_contract_incl_vat=c["summaries"]["incl"], top=top[:8],
-                         basis="Giá thị trường quy về chưa VAT; giả định đơn giá HĐ chưa gồm VAT (chưa xác nhận)"))
+        summ.append(dict(id=c["id"], name=c["name"], version=c["version"], summary=c["summary"], summary_if_contract_incl_vat=c["summaries"]["incl"], vat_basis=c.get("vat_basis"), vat_basis_note=c.get("vat_basis_note"), top=top[:8],
+                         basis="Giá thị trường quy về chưa VAT; đơn giá HĐ chưa gồm VAT" + (" (đã xác nhận)" if c.get("vat_basis") == "excl" else " (giả định, chưa xác nhận)")))
     open(os.path.join(a.site, "data", "dieu-chinh-summary.json"), "w", encoding="utf-8").write(NFC(json.dumps(dict(generated=data["generated"], contracts=summ), ensure_ascii=False, separators=(",", ":"))))
     for c in data["contracts"]:
         S = c["summary"]["all"]; print(f"{c['id']} v{c['version']}: {len(c['rows'])} dòng | CTD ↓{S['ctd']['down']} ↑{S['ctd']['up']} ≈{S['ctd']['within']} ?{S['ctd']['missing']} | NTC ↓{S['ntc']['down']} ↑{S['ntc']['up']} ≈{S['ntc']['within']} ?{S['ntc']['missing']}")
