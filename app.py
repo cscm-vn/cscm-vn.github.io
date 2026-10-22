@@ -12,6 +12,7 @@ STALE_HOURS = 30  # a successfully fetched item not refreshed in this long is sh
 app = Flask(__name__, static_folder=None)
 
 def db():
+    import store; store.ensure_db(DB)
     c = sqlite3.connect(DB); c.row_factory = sqlite3.Row; return c
 
 def build_rows():
@@ -78,7 +79,31 @@ def history(iid):
     # one point per source date (last fetch of that day)
     byday = {}
     for r in rows: byday[r["as_of"] or r["fetched_at"][:10]] = dict(r)
-    return jsonify(id=iid, points=[dict(date=k, **v) for k, v in sorted(byday.items())])
+    # compact: charts only need date + price (price_high only for range-priced items)
+    pts = []
+    for k, v in sorted(byday.items()):
+        p = {"date": k, "price": round(v["price"], 6) if v["price"] is not None else None}
+        if v["price_high"] is not None: p["price_high"] = round(v["price_high"], 6)
+        pts.append(p)
+    return Response(json.dumps(dict(id=iid, points=pts), ensure_ascii=False, separators=(",", ":")), mimetype="application/json")
+
+@app.get("/api/history.csv")
+def history_csv():
+    """Full price history (all items, 1 row/item/day) for download."""
+    c = db(); meta = {r["id"]: json.loads(r["meta"]) for r in c.execute("select id, meta from items")}
+    buf = io.StringIO(); w = csv.writer(buf)
+    w.writerow(["Ngày giá", "Mã", "Mặt hàng", "Danh mục", "Khu vực", "Giá", "Giá cao (khoảng)", "Đơn vị", "Tiền tệ", "Nguồn"])
+    rows = c.execute("""select id, coalesce(as_of, substr(fetched_at,1,10)) d, price, price_high from (
+        select o.*, row_number() over (partition by id, coalesce(as_of, substr(fetched_at,1,10)) order by fetched_at desc) rn
+        from obs o) where rn=1 order by d, id""")
+    for r in rows:
+        m = meta.get(r["id"], {})
+        if m.get("hidden"): continue
+        w.writerow([r["d"], r["id"], m.get("name", ""), m.get("category", ""), m.get("region") or "", r["price"],
+                    "" if r["price_high"] is None else r["price_high"], m.get("unit", ""), m.get("currency", ""),
+                    (m.get("src") or "").split(" [")[0]])
+    return Response("\ufeff" + buf.getvalue(), mimetype="text/csv; charset=utf-8",
+                    headers={"Content-Disposition": "attachment; filename=lich-su-gia-vat-lieu.csv"})
 
 @app.get("/api/sources")
 def sources():

@@ -284,7 +284,8 @@ create table if not exists obs(id text, fetched_at text, as_of text, price real,
 create table if not exists runs(source text, fetched_at text, ok int, n int, error text);
 """
 def main():
-    con = sqlite3.connect(DB); con.executescript(SCHEMA)
+    import store
+    con = store.build(DB); con.executescript(SCHEMA)  # SQLite = working copy rebuilt from data/history CSV
     ts = now_iso(); seen = set()
     for name, fn in SOURCES:
         try:
@@ -307,7 +308,9 @@ def main():
     for (iid,) in con.execute("select id from items").fetchall():
         if iid not in seen:
             con.execute("update items set status='stale', last_try=? where id=?", (ts, iid))
-    con.commit(); con.close()
+    con.commit()
+    store.dump(con)  # canonical git-tracked text: data/registry + data/history
+    con.close()
 
 if __name__ == "__main__":
     main()

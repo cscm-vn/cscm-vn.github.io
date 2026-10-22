@@ -2,7 +2,7 @@ name: update-prices
 on:
   schedule: [{cron: "5 23,2,5,8,11 * * *"}]   # UTC -> 06:05, 09:05, 12:05, 15:05, 18:05 Asia/Saigon
   workflow_dispatch:
-  push: {branches: [main], paths-ignore: ["data/prices.db", "trends/data/feed.json"]}
+  push: {branches: [main], paths-ignore: ["data/history/**", "data/registry/**", "trends/data/feed.json"]}
 permissions: {contents: write, pages: write, id-token: write}
 concurrency: {group: pages, cancel-in-progress: false}
 jobs:
@@ -16,6 +16,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Fetch prices (failed sources keep last good value, flagged stale)
         run: python fetcher.py | tee fetch.log
+      - name: Validate canonical history CSV
+        run: python store.py check
       - run: python export_static.py
       - name: Build forecasts (Dự báo) – non-blocking
         continue-on-error: true
@@ -29,7 +31,7 @@ jobs:
         continue-on-error: true
         run: |
           git config user.name "price-bot" && git config user.email "price-bot@users.noreply.github.com"
-          git add data/prices.db trends/data/feed.json
+          git add data/history data/registry trends/data/feed.json
           git commit -m "prices $(TZ=Asia/Ho_Chi_Minh date +%F' '%H:%M) [skip ci]" || exit 0
           git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
       - uses: actions/configure-pages@v5

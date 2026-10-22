@@ -1,0 +1,45 @@
+{
+ "schema_version": 1,
+ "datasets": {
+  "prices": {
+   "path": "history/prices/{YYYY-MM}.csv",
+   "partition": "month of date",
+   "key": [
+    "item_id",
+    "date"
+   ],
+   "columns": [
+    "date",
+    "item_id",
+    "region",
+    "source",
+    "price",
+    "price_high",
+    "unit",
+    "currency",
+    "change_pct",
+    "fetched_at"
+   ],
+   "desc": "Giá quan sát (1 dòng/mặt hàng/ngày giá, lần lấy muộn nhất thắng)"
+  },
+  "runs": {
+   "path": "history/runs/{YYYY-MM}.csv",
+   "partition": "month of fetched_at",
+   "key": [
+    "fetched_at",
+    "source"
+   ],
+   "columns": [
+    "fetched_at",
+    "source",
+    "ok",
+    "n",
+    "error"
+   ],
+   "desc": "Nhật ký mỗi lần chạy nguồn"
+  }
+ },
+ "registries": {
+  "items": "registry/items.json"
+ }
+}

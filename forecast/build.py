@@ -144,6 +144,7 @@ def main():
     taxonomy = None
     tp = os.path.join(ROOT, "data", "taxonomy.json")
     if os.path.exists(tp): taxonomy = json.load(open(tp, encoding="utf-8"))
+    sys.path.insert(0, ROOT); import store; store.ensure_db(a.db) if os.path.abspath(a.db) == os.path.abspath(store.DB) else None
     items, obs = db_items(a.db)
     drivers = json.load(open(os.path.join(HERE, "drivers.json"), encoding="utf-8"))
     P = pink(); notes = []

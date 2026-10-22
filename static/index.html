@@ -32,7 +32,7 @@ td.name{white-space:normal;min-width:220px}tr:hover td{background:#fbfaf6}.up{co
  <select id="cat"><option value="">Mọi danh mục</option></select>
  <select id="reg"><option value="">Mọi khu vực</option></select>
  <label class="note"><input type="checkbox" id="staleOnly"> chỉ dữ liệu cũ</label>
- <a class="btn" id="csv" href="api/export.csv">⬇ CSV</a><a class="btn" id="xlsx" href="api/export.xlsx">⬇ Excel</a>
+ <a class="btn" id="csv" href="api/export.csv">⬇ CSV</a><a class="btn" id="xlsx" href="api/export.xlsx">⬇ Excel</a><a class="btn" id="hcsv" href="api/history.csv" title="Tải CSV toàn bộ lịch sử giá (mỗi mặt hàng 1 dòng/ngày)" download>⬇ Tải CSV lịch sử</a>
 </div>
 <main><div class="kpis" id="kpis"></div><div id="out"></div>
 <h2>Trạng thái nguồn dữ liệu (lần cập nhật gần nhất)</h2><div class="tw"><table id="srcs"></table></div></main>
@@ -76,7 +76,7 @@ function render(){const rows=DATA.items.filter(match);let h="";
    h+="</table></div>"}}
  document.getElementById("out").innerHTML=h||'<p>Không có mặt hàng phù hợp.</p>';
  const p=new URLSearchParams();if(G)p.set("group",G);const qv=document.getElementById("q").value.trim();if(qv)p.set("q",qv);
- if(STATIC){csv.href="bang-gia.csv";xlsx.href="bang-gia.xlsx"}else{csv.href="api/export.csv?"+p;xlsx.href="api/export.xlsx?"+p}}
+ if(STATIC){csv.href="bang-gia.csv";xlsx.href="bang-gia.xlsx";hcsv.href="lich-su-gia.csv"}else{csv.href="api/export.csv?"+p;xlsx.href="api/export.xlsx?"+p}}
 function srcs(){document.getElementById("srcs").innerHTML="<tr><th>Nguồn</th><th>Kết quả</th><th>Số mục</th><th>Thời điểm</th><th>Lỗi</th></tr>"+DATA.sources.map(s=>`<tr><td>${esc(s.source)}</td><td>${s.ok?'<span class="up">✔ OK</span>':'<span class="dn">✖ Lỗi</span>'}</td><td>${s.n}</td><td>${tz(s.fetched_at)}</td><td class="note">${esc(s.error||"")}</td></tr>`).join("")}
 async function hist(id){const it=DATA.items.find(i=>i.id==id);const r=await(await fetch(STATIC?"history/"+encodeURIComponent(id)+".json":"api/history/"+encodeURIComponent(id))).json();
  mt.textContent=it.name+(it.region?" · "+it.region:"")+" ("+it.unit+")";ms.innerHTML=`Nguồn: <a href="${esc(it.url)}" target="_blank">${esc(it.src)}</a> · ${r.points.length} điểm dữ liệu (lịch sử được tích lũy từ ngày bắt đầu chạy hệ thống)`;

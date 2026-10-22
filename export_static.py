@@ -12,6 +12,7 @@ json.dump(d, open(os.path.join(OUT, "prices.json"), "w"), ensure_ascii=False)
 for it in d["items"]:
     open(os.path.join(OUT, "history", it["id"] + ".json"), "wb").write(c.get(f"/api/history/{it['id']}").data)
 open(os.path.join(OUT, "bang-gia.csv"), "wb").write(c.get("/api/export.csv").data)
+open(os.path.join(OUT, "lich-su-gia.csv"), "wb").write(c.get("/api/history.csv").data)
 open(os.path.join(OUT, "bang-gia.xlsx"), "wb").write(c.get("/api/export.xlsx").data)
 open(os.path.join(OUT, ".nojekyll"), "w").close()
 print("static site ->", OUT, len(d["items"]), "items")
