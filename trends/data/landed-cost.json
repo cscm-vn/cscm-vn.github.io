@@ -1,0 +1,1772 @@
+{
+ "schema_version": 1,
+ "title": "So sánh landed cost Trung Quốc vs mua nội địa",
+ "updated": "2026-10-22",
+ "fx": {
+  "usd_vnd": 25660,
+  "cny_vnd": 3836.0,
+  "src": {
+   "name": "Bảng giá Hub (USD/VND) + open.er-api.com (USD/CNY)",
+   "url": "https://open.er-api.com/v6/latest/USD",
+   "date": "2026-10-22"
+  },
+  "asof": "2026-10-22T20:41",
+  "text": "USD/VND từ Bảng giá Hub · USD/CNY từ open.er-api.com"
+ },
+ "freight": {
+  "hn": {
+   "port": "Hải Phòng",
+   "d20": 740,
+   "d40": 1310
+  },
+  "hcm": {
+   "port": "Cát Lái (TP.HCM)",
+   "d20": 772,
+   "d40": 1395
+  },
+  "text": "",
+  "src": {
+   "name": "TSL – cước Shanghai → VN 10/2026",
+   "url": "https://tsl.com.vn/gia-cuoc-van-chuyen-tu-shanghai-ve-viet-nam/",
+   "date": "2026-10"
+  },
+  "note": "Trung bình khoảng giá Shanghai → HP (20GP 650–830, 40HQ 1.060–1.560) và → HCM (20GP 645–900, 40HQ 1.190–1.600). Foshan/Xiamen/Ningbo dùng cùng mức (GIẢ ĐỊNH – cảng Nam Trung Quốc thường tương đương hoặc thấp hơn).",
+  "stale": false
+ },
+ "port": {
+  "thc_usd": {
+   "d20": 135,
+   "d40": 200
+  },
+  "do_vnd": 1000000,
+  "broker_vnd": 1450000,
+  "src": [
+   {
+    "name": "Project Shipping – Local charges VN 2026 (THC 135/20', 195–210/40'; D/O 0,85–1,1 tr/bill)",
+    "url": "https://projectshipping.vn/tra-cuu-local-charges-hang-tau/",
+    "date": "2026-10"
+   },
+   {
+    "name": "TSL – dịch vụ hải quan (luồng vàng 1,45–1,85 tr/tờ khai)",
+    "url": "https://tsl.com.vn/dich-vu-hai-quan/",
+    "date": "2026-10"
+   }
+  ]
+ },
+ "truck": {
+  "hn": {
+   "d20": 4200000,
+   "d40": 4950000,
+   "text": "HP → Hà Nội 40': 4,2–5,7 tr (TB 4,95 tr); 20' GIẢ ĐỊNH 85%"
+  },
+  "hcm": {
+   "d20": 2420000,
+   "d40": 2850000,
+   "text": "Cát Lái → nội thành/Thủ Đức 40': 2,5–3,2 tr (TB 2,85 tr); 20' GIẢ ĐỊNH 85%"
+  },
+  "src": [
+   {
+    "name": "TTL Cargo Max – trucking Hải Phòng 10/2026",
+    "url": "https://mlc-ttl.com/bang-gia-trucking-container-khu-vuc-hai-phong-moi-nhat/",
+    "date": "2026-10"
+   },
+   {
+    "name": "Door to Door Việt – cước container khu vực HCM",
+    "url": "https://doortodoorviet.com/bang-gia-cuoc-van-chuyen-container-khu-vuc-hcm/",
+    "date": "2026-10"
+   }
+  ]
+ },
+ "ins_pct": {
+  "v": 0.3,
+  "basis": "GIẢ ĐỊNH 0,3% giá trị FOB+cước (bảo hiểm mọi rủi ro ICC-A thường 0,1–0,3%)"
+ },
+ "fin_pct": {
+  "v": 9,
+  "basis": "GIẢ ĐỊNH chi phí vốn 9%/năm × số ngày từ thanh toán (đặt cọc/LC) đến nhận hàng"
+ },
+ "local_delivery": {
+  "v": 0,
+  "basis": "Giá nội địa tham khảo đã gồm giao hàng nội thành/công trình (theo ghi chú nguồn) – GIẢ ĐỊNH 0"
+ },
+ "thresholds": {
+  "opp": 20,
+  "consider": 5,
+  "text": "Tiết kiệm ≥ 20% → Cơ hội nhập khẩu; 5–20% → Cân nhắc; < 5% → Mua nội địa (trước yếu tố phi giá)."
+ },
+ "tax_sources": [
+  {
+   "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+   "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+   "date": "2022-12-30"
+  },
+  {
+   "name": "Caselaw – tra cứu mã HS 2026 (MFN, VAT, PVTM)",
+   "url": "https://caselaw.vn/chi-tiet-ma-hs/69072193",
+   "date": "2026-10-22"
+  },
+  {
+   "name": "Thư viện Pháp luật – NQ 204/2025/QH15 giảm VAT 8% đến 31/12/2026",
+   "url": "https://thuvienphapluat.vn/van-ban/Thue-Phi-Le-Phi/Nghi-quyet-204-2025-QH15-giam-thue-gia-tri-gia-tang-662685.aspx",
+   "date": "2026-10"
+  }
+ ],
+ "items": [
+  {
+   "id": "gach-6060",
+   "group": "Gạch ốp lát",
+   "name": "Gạch porcelain men bóng 60×60",
+   "tier": "Porcelain tráng men, hút nước ≤0,5%, AAA, in kỹ thuật số vân đá – tầm phổ thông-khá (≈ tier 130–220 nghìn đ/m² nội địa)",
+   "unit": "m²",
+   "tax": {
+    "hs": "6907.21.93",
+    "mfn": 35,
+    "acfta": 50,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "ACFTA 50% > MFN 35% (dòng nhạy cảm): Form E KHÔNG có lợi → áp MFN 35%. AD23 (QĐ 2174/QĐ-BCT) chỉ áp hàng Ấn Độ, không áp Trung Quốc.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 69072193 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/69072193",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 3.0,
+    "hi": 4.9,
+    "mid": 4.0,
+    "src": [
+     {
+      "name": "Tradewheel – Foshan Grand Ceramics 600×600 AAA, FOB 3–4,9 USD/m²",
+      "url": "https://www.tradewheel.com/p/600x600-aaa-grade-polished-ceramic-floor-599911/",
+      "date": "2026-10"
+     },
+     {
+      "name": "Made-in-China – Foshan Well SCM 600×600, 4,0 USD/m²",
+      "url": "https://wellscm.en.made-in-china.com/product/cZDarhidMNYO/China-Foshan-Factory-Polished-Glazed-Tile-Porcelain-Tiles-600X600-mm.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Foshan",
+   "cont": "20GP",
+   "qty": {
+    "v": 1195,
+    "basis": "Đóng gói 1,44 m²/thùng, 830 thùng = 1.195,2 m²/cont 20' (Tradewheel – Foshan Ebro, gạch 600×600)"
+   },
+   "local": {
+    "lo": 135000,
+    "hi": 220000,
+    "mid": 170000,
+    "vat_incl": true,
+    "what": "Giá bán lẻ Prime 60×60 vân đá (đại lý, gồm VAT)",
+    "src": [
+     {
+      "name": "Ngôi Nhà Lớn – bảng giá Prime 60×60 2026",
+      "url": "https://ngoinhalon.vn/gia-gach-lat-nen-60x60-prime/",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 15,
+    "basis": "GIẢ ĐỊNH chiết khấu dự án so với giá bán lẻ đại lý – xác nhận bằng báo giá dự án Prime/Viglacera"
+   },
+   "breakage": {
+    "v": 1.5,
+    "basis": "GIẢ ĐỊNH vỡ/sứt khi vận chuyển & dỡ hàng"
+   },
+   "inspect": {
+    "v": 12000000,
+    "basis": "GIẢ ĐỊNH phí thử nghiệm + chứng nhận hợp quy QCVN 16:2023/BXD mỗi lô"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 60,
+    "basis": "GIẢ ĐỊNH: sản xuất 20–30 ngày + biển 7–12 ngày + thông quan/hợp quy"
+   },
+   "np": {
+    "warranty": "Nhà máy TQ thường không có bảo hành tại VN; phải quy định trong HĐ (đổi hàng lỗi, dự phòng 2–3%).",
+    "moq": "100–500 m²/mẫu; nên ≥ 1 cont/mẫu để đồng lô màu (shade/caliber).",
+    "lead": "≈ 2 tháng vs 1–2 tuần nội địa.",
+    "brand": "Spec bàn giao thường ghi 'Prime/Viglacera/Đồng Tâm hoặc tương đương' – cần chủ đầu tư chấp thuận mẫu tương đương."
+   },
+   "conf": "cao",
+   "conf_note": "FOB & giá nội địa từ nhiều listing/bảng giá; thuế tra theo NĐ 118/2022."
+  },
+  {
+   "id": "gach-8080",
+   "group": "Gạch ốp lát",
+   "name": "Gạch porcelain vân đá khổ lớn 80×80",
+   "tier": "Full-glazed polished, vân đá marble, hút nước ≤0,5% – tầm khá-cao cấp (Prime 80×80 vân đá)",
+   "unit": "m²",
+   "tax": {
+    "hs": "6907.21.93",
+    "mfn": 35,
+    "acfta": 50,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Như gạch 60×60: áp MFN 35%; không có thuế CBPG với hàng TQ.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 69072193 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/69072193",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 3.9,
+    "hi": 9.4,
+    "mid": 5.5,
+    "src": [
+     {
+      "name": "Made-in-China – Foshan Kent 800×800 full glazed, 3,9–4,8 USD/m²",
+      "url": "https://fskent.en.made-in-china.com/product/NObfPKsxZnph/China-Modern-800X800-Full-Glazed-Polished-Porcelain-Tile.html",
+      "date": "2026-10"
+     },
+     {
+      "name": "BuildMost – 800×800 marble look 6–7 USD/m²",
+      "url": "https://www.buildmost.com/product/product_87941_14812.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Foshan",
+   "cont": "20GP",
+   "qty": {
+    "v": 1030,
+    "basis": "Đóng gói 1,96 m²/thùng, 47,5 kg/thùng (Made-in-China Well SCM) → 24,2 kg/m²; tải 25 tấn/cont 20' (GIẢ ĐỊNH) ≈ 1.030 m²"
+   },
+   "local": {
+    "lo": 230000,
+    "hi": 360000,
+    "mid": 300000,
+    "vat_incl": true,
+    "what": "Giá bán lẻ Prime 80×80 vân đá (gồm VAT)",
+    "src": [
+     {
+      "name": "Ngôi Nhà Lớn – Prime 80×80 2026",
+      "url": "https://ngoinhalon.vn/gia-gach-prime-80x80/",
+      "date": "2026-10"
+     },
+     {
+      "name": "Prime Việt – bảng giá 80×80 Prime/Viglacera",
+      "url": "https://primeviet.com/bao-gia-gach-lat-nen-prime-80x80.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 15,
+    "basis": "GIẢ ĐỊNH chiết khấu dự án"
+   },
+   "breakage": {
+    "v": 2,
+    "basis": "GIẢ ĐỊNH (khổ lớn dễ sứt cạnh hơn)"
+   },
+   "inspect": {
+    "v": 12000000,
+    "basis": "GIẢ ĐỊNH hợp quy QCVN 16:2023/BXD mỗi lô"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 60,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Như trên; yêu cầu biên bản kiểm tra trước xuất hàng (PSI) gồm độ phẳng, cong vênh, kích thước.",
+    "moq": "500–1.000 m²/mẫu",
+    "lead": "≈ 2 tháng",
+    "brand": "Mẫu vân đá TQ đa dạng, thẩm mỹ tốt; cần duyệt mẫu thật (không chỉ ảnh)."
+   },
+   "conf": "trung bình",
+   "conf_note": "Khoảng FOB rộng (3,9–9,4 USD/m²); số m²/cont tính từ trọng lượng."
+  },
+  {
+   "id": "bon-cau",
+   "group": "Thiết bị vệ sinh",
+   "name": "Bàn cầu 1 khối nắp đóng êm",
+   "tier": "Sứ trắng, xả siphon/xoáy, nắp PP đóng êm – tầm trung (tương đương Viglacera 1 khối)",
+   "unit": "bộ",
+   "tax": {
+    "hs": "6910.10.00",
+    "mfn": 35,
+    "acfta": 15,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Form E: 15% (thay vì MFN 35%) – tiết kiệm 20 điểm %. Không có thuế CBPG.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 69101000 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/69101000",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 35,
+    "hi": 60,
+    "mid": 45,
+    "src": [
+     {
+      "name": "Made-in-China – Chaozhou Bath Friend, bàn cầu 1 khối 35–60 USD",
+      "url": "https://bathfriend.en.made-in-china.com/product-group/ebsTAnlxTPta/One-Piece-Toilet-1.html",
+      "date": "2026-10"
+     },
+     {
+      "name": "Tradewheel – Chaozhou Xin Qun Y8036, 45–47 USD, 0,205 CBM",
+      "url": "https://www.tradewheel.com/p/china-sanitary-ware-one-piece-toilet-254395/",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Shantou/Shenzhen",
+   "cont": "40HQ",
+   "qty": {
+    "v": 300,
+    "basis": "0,205 CBM/bộ (Tradewheel Y8036); 40HQ ≈ 62 CBM sử dụng (GIẢ ĐỊNH) → ~300 bộ"
+   },
+   "local": {
+    "lo": 2650000,
+    "hi": 4650000,
+    "mid": 3300000,
+    "vat_incl": true,
+    "what": "Giá bán lẻ bồn cầu 1 khối Viglacera (gồm VAT, giao nội thành)",
+    "src": [
+     {
+      "name": "Viglacera Việt Nam – báo giá bồn cầu 22/10/2026",
+      "url": "https://www.viglaceravietnam.com/bao-gia/bon-cau-viglacera",
+      "date": "2026-10-22"
+     }
+    ]
+   },
+   "disc": {
+    "v": 25,
+    "basis": "GIẢ ĐỊNH chiết khấu dự án TBVS so với giá bán lẻ"
+   },
+   "breakage": {
+    "v": 2,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 12000000,
+    "basis": "GIẢ ĐỊNH hợp quy QCVN 16:2023/BXD (sứ vệ sinh) mỗi lô"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 60,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Bảo hành 2 năm (theo listing) nhưng không có trạm bảo hành VN – cần dự phòng 1–2% & phụ kiện thay thế (bộ xả, nắp).",
+    "moq": "50–200 bộ/mẫu",
+    "lead": "≈ 2 tháng",
+    "brand": "Nhiều spec căn hộ cao cấp chỉ định TOTO/INAX/Kohler – hàng OEM TQ phù hợp phân khúc trung/ở xã hội, hoặc phải được chủ đầu tư duyệt."
+   },
+   "conf": "trung bình",
+   "conf_note": "Chiết khấu dự án Viglacera là giả định; FOB OEM tầm trung."
+  },
+  {
+   "id": "lavabo",
+   "group": "Thiết bị vệ sinh",
+   "name": "Chậu lavabo đặt bàn",
+   "tier": "Sứ trắng đặt bàn (vessel), kích thước ~450–500 mm – tầm trung (Viglacera CD)",
+   "unit": "cái",
+   "tax": {
+    "hs": "6910.10.00",
+    "mfn": 35,
+    "acfta": 15,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Form E 15%.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 69101000 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/69101000",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 19.17,
+    "hi": 24.55,
+    "mid": 22,
+    "src": [
+     {
+      "name": "Tradewheel – Chaoan Zhongtao top-mount basin 19,17–24,55 USD",
+      "url": "https://www.tradewheel.com/p/new-design-top-mount-ceramic-bathroom-314503/",
+      "date": "2026-10"
+     },
+     {
+      "name": "BuildMost – Wash basin listings",
+      "url": "https://www.buildmost.com/supplier/supplier_product/product_category_6080_14634.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Shantou/Shenzhen",
+   "cont": "40HQ",
+   "qty": {
+    "v": 900,
+    "basis": "GIẢ ĐỊNH ~0,07 CBM/cái đóng thùng → ~900 cái/40HQ (thường đóng ghép cùng bàn cầu)"
+   },
+   "local": {
+    "lo": 830000,
+    "hi": 1440000,
+    "mid": 1000000,
+    "vat_incl": true,
+    "what": "Giá bán lẻ lavabo đặt bàn Viglacera CD/V (gồm VAT)",
+    "src": [
+     {
+      "name": "Viglacera Việt Nam – báo giá chậu rửa 2026",
+      "url": "https://viglaceravietnam.com/bao-gia/chau-rua-viglacera",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 25,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "breakage": {
+    "v": 2,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 6000000,
+    "basis": "GIẢ ĐỊNH (chia sẻ lô với bàn cầu)"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 60,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Như bàn cầu",
+    "moq": "50–100 cái/mẫu",
+    "lead": "≈ 2 tháng",
+    "brand": "Chậu đặt bàn là hạng mục thẩm mỹ – hàng TQ có nhiều mẫu đẹp; ghép cont với bàn cầu."
+   },
+   "conf": "trung bình",
+   "conf_note": "Số cái/cont là giả định (thường đóng ghép)."
+  },
+  {
+   "id": "voi-lavabo",
+   "group": "Vòi & sen",
+   "name": "Vòi lavabo nóng lạnh 1 tay gạt",
+   "tier": "Thân đồng thau, mạ Cr-Ni, lõi ceramic 35/40 mm – tầm trung",
+   "unit": "bộ",
+   "tax": {
+    "hs": "8481.80.59",
+    "mfn": 20,
+    "acfta": 0,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Vòi có khoang pha trộn: MFN 20%, Form E 0%.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 84818059 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/84818059",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 28.5,
+    "hi": 45,
+    "mid": 32,
+    "src": [
+     {
+      "name": "Tradewheel – Wenzhou Yidian brass basin mixer 30–45 USD",
+      "url": "https://www.tradewheel.com/p/hotcold-water-mixer-polished-metered-faucets-573023/",
+      "date": "2026-10"
+     },
+     {
+      "name": "Made-in-China – Wenzhou Huadiao basin mixer 2026",
+      "url": "https://sg-faucet.en.made-in-china.com/product/NwJGazHCAZAS/China-Wenzhou-Huadiao-Factory-Supplier-Basin-Mixer-2026.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Ningbo/Shanghai",
+   "cont": "20GP",
+   "qty": {
+    "v": 5000,
+    "basis": "GIẢ ĐỊNH ~0,004–0,005 CBM/bộ; thực tế thường đi LCL/ghép cont – cước phân bổ rất nhỏ"
+   },
+   "local": {
+    "lo": 1380000,
+    "hi": 2610000,
+    "mid": 1630000,
+    "vat_incl": true,
+    "what": "Giá bán lẻ INAX LFV-1112S/2012S/1002S (gồm VAT) – thương hiệu Nhật, sản xuất tại VN",
+    "src": [
+     {
+      "name": "TDM – bảng giá vòi lavabo 2026",
+      "url": "https://www.tdm.vn/voi-lavabo",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 30,
+    "basis": "GIẢ ĐỊNH chiết khấu dự án INAX"
+   },
+   "breakage": {
+    "v": 0.5,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 5000000,
+    "basis": "GIẢ ĐỊNH (thử nghiệm chì/áp lực theo yêu cầu dự án)"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 55,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "INAX bảo hành 2–5 năm tại VN; OEM TQ phải ký bảo hành lõi & lớp mạ, giữ 2% hàng dự phòng.",
+    "moq": "200–500 bộ/mẫu",
+    "lead": "≈ 2 tháng",
+    "brand": "So sánh khác thương hiệu (OEM vs INAX) – chỉ hợp lệ nếu spec cho phép 'tương đương'. Kiểm tra hàm lượng chì (đồng thau)."
+   },
+   "conf": "trung bình",
+   "conf_note": "So sánh OEM với INAX – khác thương hiệu."
+  },
+  {
+   "id": "tu-bep",
+   "group": "Tủ bếp",
+   "name": "Tủ bếp melamine (trên + dưới)",
+   "tier": "Thùng & cánh melamine trên cốt chống ẩm, bản lề giảm chấn – tầm phổ thông-khá",
+   "unit": "mét dài",
+   "tax": {
+    "hs": "9403.40.00",
+    "mfn": 25,
+    "acfta": 5,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Form E 5% (MFN 25%).",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 94034000 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/94034000",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 50,
+    "hi": 90,
+    "mid": 70,
+    "src": [
+     {
+      "name": "Moyisi – Kitchen cabinet prices from China (2026): melamine 50–90 USD/m dài",
+      "url": "https://www.moyisihome.com/news/News/kitchen-cabinet-prices-from-china-published-ranges.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Foshan",
+   "cont": "40HQ",
+   "qty": {
+    "v": 180,
+    "basis": "GIẢ ĐỊNH flat-pack ~0,35 CBM/m dài (trên+dưới) → ~180 m/40HQ"
+   },
+   "local": {
+    "lo": 6000000,
+    "hi": 7500000,
+    "mid": 6750000,
+    "vat_incl": true,
+    "what": "Báo giá tủ bếp MDF chống ẩm An Cường melamine (trên 2,9–3,55 tr + dưới 3,1–3,95 tr /md, gồm lắp đặt)",
+    "src": [
+     {
+      "name": "Nội thất Caco – giá tủ bếp An Cường 2026",
+      "url": "https://noithatcaco.vn/cam-nang-noi-that/bao-gia-tu-bep-go-an-cuong-1796.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 10,
+    "basis": "GIẢ ĐỊNH chiết khấu số lượng"
+   },
+   "breakage": {
+    "v": 1,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 3000000,
+    "basis": "GIẢ ĐỊNH (kiểm tra formaldehyde E1/E0 theo yêu cầu dự án)"
+   },
+   "extra": {
+    "v": 600000,
+    "basis": "GIẢ ĐỊNH chi phí lắp đặt/căn chỉnh tại VN cho hàng nhập (giá nội địa đã gồm lắp)"
+   },
+   "lead": {
+    "v": 75,
+    "basis": "GIẢ ĐỊNH: đo đạc–bản vẽ–sản xuất 30–40 ngày + vận chuyển"
+   },
+   "np": {
+    "warranty": "Hàng nội địa có bảo hành & sửa chữa tại chỗ; hàng nhập cần nhà thầu lắp đặt chịu bảo hành.",
+    "moq": "Theo dự án (≥ 1 cont)",
+    "lead": "2,5 tháng; khó xử lý sai lệch kích thước hiện trường",
+    "brand": "Giá FOB TQ là ván dăm/MDF thường – yêu cầu cốt chống ẩm tương đương mới so sánh được; độ tin cậy dữ liệu THẤP."
+   },
+   "conf": "thấp",
+   "conf_note": "FOB TQ là khoảng chung cho melamine/ván dăm, không rõ phạm vi (trên+dưới, phụ kiện); giá nội địa gồm lắp đặt. Cần RFQ theo bản vẽ căn hộ mẫu."
+  },
+  {
+   "id": "khoa-dien-tu",
+   "group": "Cửa & khóa",
+   "name": "Khóa điện tử căn hộ (vân tay/mã/thẻ/app)",
+   "tier": "Khóa thân hợp kim, vân tay + mã + thẻ + app (Tuya/TTLock) – tầm trung",
+   "unit": "bộ",
+   "tax": {
+    "hs": "8301.40.20",
+    "mfn": 25,
+    "acfta": 5,
+    "vat": 10,
+    "excise": 0,
+    "ad": null,
+    "note": "Form E 5% (MFN 25%). VAT 10%.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 83014020 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/83014020",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 48,
+    "hi": 80,
+    "mid": 55,
+    "src": [
+     {
+      "name": "Tradewheel – Zhongshan Yongding apartment smart lock 48–54,2 USD",
+      "url": "https://www.tradewheel.com/p/fingerprint-wireless-apartment-security-locks-and-2071181/",
+      "date": "2026-10"
+     },
+     {
+      "name": "Made-in-China – Deli DZ098B 60–80 USD",
+      "url": "https://delilock.en.made-in-china.com/product/KazrfevoYPYH/China-Automatic-Smart-Door-Lock-with-APP-Control-and-Fingerprint.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Zhongshan/Shenzhen",
+   "cont": "20GP",
+   "qty": {
+    "v": 2000,
+    "basis": "GIẢ ĐỊNH ~0,012 CBM/bộ"
+   },
+   "local": {
+    "lo": 4400000,
+    "hi": 5200000,
+    "mid": 4800000,
+    "vat_incl": true,
+    "what": "Giá bán lẻ Kaadas M7-W / S10-5W / S500-C5 (gồm VAT)",
+    "src": [
+     {
+      "name": "Kaadas Việt Nam – danh mục sản phẩm",
+      "url": "https://kaadasvietnam.com.vn/danh-muc/san-pham/",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 25,
+    "basis": "GIẢ ĐỊNH chiết khấu dự án"
+   },
+   "breakage": {
+    "v": 0.5,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 15000000,
+    "basis": "GIẢ ĐỊNH thử nghiệm điện-điện tử/RF theo QCVN Bộ KH&CN (xác nhận mã QCVN)"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 50,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Kaadas/Hafele có bảo hành 1–2 năm & kỹ thuật tại VN; khóa OEM cần đối tác lắp đặt-bảo hành tại VN, app phải hỗ trợ tiếng Việt.",
+    "moq": "200–500 bộ",
+    "lead": "≈ 7 tuần",
+    "brand": "Rủi ro bảo mật/firmware & app – yêu cầu chứng nhận, cam kết cập nhật phần mềm."
+   },
+   "conf": "trung bình",
+   "conf_note": "So sánh OEM TQ với Kaadas (thương hiệu bán lẻ); tính năng tương đương nhưng dịch vụ khác."
+  },
+  {
+   "id": "den-downlight",
+   "group": "Chiếu sáng",
+   "name": "Đèn LED downlight âm trần 9–12 W",
+   "tier": "Downlight phổ thông 9–12 W, Ø110, CRI ≥ 80 – tầm phổ thông",
+   "unit": "cái",
+   "tax": {
+    "hs": "9405.11.99",
+    "mfn": 30,
+    "acfta": 0,
+    "vat": 10,
+    "excise": 0,
+    "ad": null,
+    "note": "Form E 0% (MFN 30%) – chênh lệch thuế lớn nhất trong nhóm điện.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 94051199 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/94051199",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 0.97,
+    "hi": 1.81,
+    "mid": 1.4,
+    "src": [
+     {
+      "name": "Made-in-China – Ningbo Sellwell COB downlight 7–12 W, 0,97–1,81 USD (MOQ 3.000)",
+      "url": "https://nbsellwell.en.made-in-china.com/product/MnjUrqtdZBkz/China-3-Year-Warranty-Anti-Glare-7W-9W-12W-COB-Ceiling-Lamp-Angle-Adjustable-Recessed-LED-Down-Light-Dob-Downlight.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Ningbo",
+   "cont": "20GP",
+   "qty": {
+    "v": 10000,
+    "basis": "GIẢ ĐỊNH ~0,0025 CBM/cái"
+   },
+   "local": {
+    "lo": 134500,
+    "hi": 143000,
+    "mid": 138000,
+    "vat_incl": true,
+    "what": "Giá niêm yết Rạng Đông AT04 9 W/12 W Ø110 (gồm VAT)",
+    "src": [
+     {
+      "name": "Ắc quy Chính Văn – bảng giá Rạng Đông",
+      "url": "https://acquychinhvan.com/bang-gia-rang-dong",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 30,
+    "basis": "GIẢ ĐỊNH chiết khấu dự án Rạng Đông"
+   },
+   "breakage": {
+    "v": 0.5,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 15000000,
+    "basis": "GIẢ ĐỊNH thử nghiệm an toàn/EMC theo QCVN Bộ KH&CN (xác nhận mã QCVN)"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 50,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Rạng Đông bảo hành 2 năm, đổi tại đại lý; OEM TQ ghi 3 năm nhưng phải ký kết đổi hàng tại VN.",
+    "moq": "3.000 cái",
+    "lead": "≈ 7 tuần",
+    "brand": "Nên đo quang thông/CRI/độ nhấp nháy mẫu thực; tier giá FOB thấp thường kém tuổi thọ driver."
+   },
+   "conf": "trung bình",
+   "conf_note": "Tier FOB thấp; cần đo mẫu."
+  },
+  {
+   "id": "san-spc",
+   "group": "Sàn",
+   "name": "Sàn SPC hèm khóa 5 mm",
+   "tier": "SPC 5 mm, lớp chống mài mòn ~0,3–0,5 mm, hèm click – tầm phổ thông-khá",
+   "unit": "m²",
+   "tax": {
+    "hs": "3918.10.11",
+    "mfn": 27,
+    "acfta": 0,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Form E 0% (MFN 27%).",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 39181011 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/39181011",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 4.1,
+    "hi": 8.5,
+    "mid": 6,
+    "src": [
+     {
+      "name": "Made-in-China – ZJ Flooring 5 mm SPC 4,1–8,5 USD/m²",
+      "url": "https://zj-flooring.en.made-in-china.com/product/ranUGEXHDlYA/China-5mm-Vinyl-Plank-Click-Lock-Waterproof-Spc-Flooring-Rigid-Vinyl-Floor-Manufacturer.html",
+      "date": "2026-10"
+     },
+     {
+      "name": "Shuchan – SPC price guide (bulk 5,5–7 USD/m²)",
+      "url": "https://shuchanflooring.com/knowledge/spc-flooring-price-guide",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Shanghai/Qingdao",
+   "cont": "20GP",
+   "qty": {
+    "v": 2400,
+    "basis": "GIẢ ĐỊNH ~10,5 kg/m², tải 25 tấn/cont 20'"
+   },
+   "local": {
+    "lo": 190000,
+    "hi": 315000,
+    "mid": 250000,
+    "vat_incl": true,
+    "what": "Giá vật tư SPC 5 mm (Matfloor/Kosmos/EcoClick, gồm VAT, chưa thi công)",
+    "src": [
+     {
+      "name": "Kosmos – sàn nhựa hèm khóa",
+      "url": "https://kosmos.vn/vat-lieu/san-nhua/hem-khoa/",
+      "date": "2026-10"
+     },
+     {
+      "name": "Thế giới vật liệu – Matfloor 5 mm",
+      "url": "https://thegioivatlieu.net/san-pham/san-nhua-hem-khoa-gia-go-5mm/",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 10,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "breakage": {
+    "v": 0.5,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 5000000,
+    "basis": "GIẢ ĐỊNH (thử nghiệm phát thải/chống cháy theo yêu cầu dự án)"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 55,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Phần lớn SPC bán tại VN cũng là hàng nhập TQ – lợi thế thuộc về bên nhập trực tiếp.",
+    "moq": "1.000–3.000 m²",
+    "lead": "≈ 2 tháng",
+    "brand": "Yêu cầu chứng nhận hèm click có bản quyền (Unilin/Välinge) để tránh tranh chấp."
+   },
+   "conf": "trung bình"
+  },
+  {
+   "id": "pin-mat-troi",
+   "group": "Năng lượng",
+   "name": "Tấm pin mặt trời TOPCon 580–620 Wp",
+   "tier": "Mono TOPCon N-type, tier-1 (Jinko/LONGi/Trina…) – mái tòa nhà",
+   "unit": "Wp",
+   "tax": {
+    "hs": "8541.43.00",
+    "mfn": 0,
+    "acfta": 0,
+    "vat": 10,
+    "excise": 0,
+    "ad": null,
+    "note": "MFN 0% và Form E 0% – không cần C/O để hưởng 0%. VAT 10%.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 85414300 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/85414300",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 0.1,
+    "hi": 0.12,
+    "mid": 0.114,
+    "src": [
+     {
+      "name": "InfoLink – PV spot price 21/10/2026: TOPCon ngoài TQ TB 0,114 USD/W",
+      "url": "https://www.infolink-group.com/energy-article/pv-spot-price-20261021",
+      "date": "2026-10-21"
+     }
+    ]
+   },
+   "port": "Shanghai/Ningbo",
+   "cont": "40HQ",
+   "qty": {
+    "v": 384000,
+    "basis": "GIẢ ĐỊNH 620 tấm × 620 Wp/40HQ"
+   },
+   "local": {
+    "lo": 3629,
+    "hi": 3931,
+    "mid": 3780,
+    "vat_incl": true,
+    "what": "Giá bán lẻ theo tấm Jinko 620 W / LONGi 620 W quy đổi đ/Wp (gồm VAT)",
+    "src": [
+     {
+      "name": "Phân phối Solar – tấm pin Jinko",
+      "url": "https://phanphoisolar.com/tam-pin-nang-luong-mat-troi-jinko/",
+      "date": "2026-10"
+     },
+     {
+      "name": "TC Energy – bảng giá tấm pin 10/2026",
+      "url": "https://tcenergy.vn/danh-muc/tam-pin-nang-luong-mat-troi/",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 10,
+    "basis": "GIẢ ĐỊNH giá pallet/container thấp hơn giá lẻ"
+   },
+   "breakage": {
+    "v": 0.5,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 5000000,
+    "basis": "GIẢ ĐỊNH (kiểm tra EL/flash test mẫu)"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 40,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Bảo hành sản phẩm 12–15 năm/hiệu suất 30 năm do hãng – như nhau nếu cùng hãng tier-1.",
+    "moq": "1 cont (~380 kWp)",
+    "lead": "≈ 6 tuần",
+    "brand": "Cùng thương hiệu → so sánh hợp lệ; chênh lệch chủ yếu là lợi nhuận phân phối."
+   },
+   "conf": "cao",
+   "conf_note": "Cùng thương hiệu tier-1; FOB từ chỉ số InfoLink tuần 15–21/10/2026."
+  },
+  {
+   "id": "kinh-hop-lowe",
+   "group": "Nhôm kính & mặt dựng",
+   "name": "Kính hộp Low-E 6+12A+6 cường lực",
+   "tier": "Low-E phủ mềm, cường lực, khí/không khí 12 mm – mặt dựng/cửa sổ căn hộ",
+   "unit": "m²",
+   "tax": {
+    "hs": "7008.00.00",
+    "mfn": 25,
+    "acfta": 0,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Kính hộp nhiều lớp: Form E 0% (MFN 25%). AD22 chỉ áp kính nổi KHÔNG màu (7005.29) từ Indonesia/Malaysia; kính nổi 7005.29.90 có ACFTA 50% > MFN 40%.",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 70080000 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/70080000",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 29,
+    "hi": 39,
+    "mid": 34,
+    "src": [
+     {
+      "name": "Made-in-China – China North Glass 6/12/6 double silver Low-E 29–39 USD/m²",
+      "url": "https://chinanorthglass.en.made-in-china.com/product/ibZnqpVEgmIv/China-6-12-6-8-12-8-Insulating-Glazing-Double-Silver-Low-E-Glass.html",
+      "date": "2026-10"
+     },
+     {
+      "name": "Tradewheel – Foshan Chenyang 6Low-E+12A+6 35,5 USD/m²",
+      "url": "https://www.tradewheel.com/p/6mmlow-ecy-xedg-6012a6mmc-safety-tempered-insulating-glass-insulated-1888499/",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Foshan/Qingdao",
+   "cont": "40HQ",
+   "qty": {
+    "v": 700,
+    "basis": "GIẢ ĐỊNH ~30 kg/m² trên giá A-frame (giữ như máy tính SCM hiện có)"
+   },
+   "local": {
+    "lo": 1100000,
+    "hi": 1300000,
+    "mid": 1200000,
+    "vat_incl": false,
+    "what": "Giá vật tư kính hộp Low-E 6+12+6 (chưa VAT, chưa khung/lắp)",
+    "src": [
+     {
+      "name": "Kính Việt Nhật Hải Long – bảng giá kính hộp 9/2026",
+      "url": "https://kinhvietnhathailong.vn/bang-bao-gia-kinh-hop-hai-long-cap-nhat-ppdate/",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 5,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "breakage": {
+    "v": 2,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "inspect": {
+    "v": 12000000,
+    "basis": "GIẢ ĐỊNH hợp quy QCVN 16:2023/BXD (kính xây dựng) mỗi lô"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 60,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Kính hộp nhập phải theo kích thước cắt sẵn – sai số hiện trường khó xử lý; bảo hành đọng sương 5–10 năm cần cam kết.",
+    "moq": "Theo dự án",
+    "lead": "≈ 2 tháng + thời gian đo đạc",
+    "brand": "Hệ số U/SHGC phải khớp hồ sơ năng lượng (QCVN 09:2017/BXD)."
+   },
+   "conf": "trung bình"
+  },
+  {
+   "id": "da-granite",
+   "group": "Đá tự nhiên",
+   "name": "Đá granite tấm 2 cm đánh bóng",
+   "tier": "Granite xám/trắng phổ thông (G603 TQ vs granite Bình Định trắng/xám)",
+   "unit": "m²",
+   "tax": {
+    "hs": "6802.93.10",
+    "mfn": 12,
+    "acfta": 0,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Form E 0% (MFN 12%).",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 68029310 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/68029310",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 18,
+    "hi": 32,
+    "mid": 25,
+    "src": [
+     {
+      "name": "Phoenix Stone – Natural stone price guide 2026 (G603 18–32 USD/m²)",
+      "url": "https://www.stone-phoenix.com/en/knowledge-base/natural-stone-price-guide-2026.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Xiamen",
+   "cont": "20GP",
+   "qty": {
+    "v": 480,
+    "basis": "GIẢ ĐỊNH 54 kg/m² (2 cm), tải 26 tấn/cont 20'"
+   },
+   "local": {
+    "lo": 280000,
+    "hi": 455000,
+    "mid": 370000,
+    "vat_incl": false,
+    "what": "Giá granite Bình Định trắng/xám tự nhiên (chưa VAT, chưa thi công)",
+    "src": [
+     {
+      "name": "Thanh Thanh Tùng Stone – báo giá granite 2026",
+      "url": "https://thanhthanhtungstone.com/tin-tuc/bao-gia-da-granite-tu-nhien-moi-nhat-2024",
+      "date": "2026-10"
+     },
+     {
+      "name": "Đá hoa cương Vương Sơn – granite Trung Quốc tại VN 700–950 nghìn đ/m²",
+      "url": "https://www.dahoacuongvuongson.com/kim-sa-trung-phan-biet-da-trung-quoc-va-an-do-de-chon-dung-loai",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 0,
+    "basis": "Giá đã là giá công trình tham khảo"
+   },
+   "breakage": {
+    "v": 3,
+    "basis": "GIẢ ĐỊNH (vỡ/mẻ tấm khổ lớn)"
+   },
+   "inspect": {
+    "v": 3000000,
+    "basis": "GIẢ ĐỊNH (phóng xạ/độ bền theo yêu cầu dự án)"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 50,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Màu sắc theo mỏ – phải duyệt tấm (slab) theo lô.",
+    "moq": "1 cont",
+    "lead": "≈ 7 tuần",
+    "brand": "Thị trường VN bán granite TQ 700–950 nghìn đ/m² (Đá hoa cương Vương Sơn) – nhập trực tiếp rẻ hơn, nhưng granite Bình Định cùng tier vẫn rẻ nhất."
+   },
+   "conf": "trung bình",
+   "conf_note": "Khác mỏ đá (G603 vs Bình Định) – tier màu/vân tương tự, không đồng nhất."
+  },
+  {
+   "id": "may-phat-500",
+   "group": "Máy phát điện",
+   "name": "Máy phát điện diesel 500 kVA (open frame)",
+   "tier": "Động cơ Cummins/Weichai, đầu phát Stamford/tương đương, bộ điều khiển Deepsea – dự phòng tòa nhà",
+   "unit": "máy",
+   "tax": {
+    "hs": "8502.13.90",
+    "mfn": 5,
+    "acfta": 0,
+    "vat": 8,
+    "excise": 0,
+    "ad": null,
+    "note": "Form E 0% (MFN 5%).",
+    "src": [
+     {
+      "name": "Caselaw – mã HS 85021390 (MFN theo NĐ 26/2023 sửa đổi; VAT)",
+      "url": "https://caselaw.vn/chi-tiet-ma-hs/85021390",
+      "date": "2026-10-22"
+     },
+     {
+      "name": "NĐ 118/2022/NĐ-CP – Biểu thuế ACFTA 2022–2027 (bản PDF)",
+      "url": "https://thaison.vn/BieuTHue/VBPL-Bieuthue/B05%20Bieu%20thue%20B05%20ASEAN-TQ%20118_2022_N%C4%90_CP.pdf",
+      "date": "2022-12-30"
+     }
+    ]
+   },
+   "fob": {
+    "lo": 31200,
+    "hi": 46107,
+    "mid": 36000,
+    "src": [
+     {
+      "name": "Made-in-China – XHC 500 kVA Cummins 31.200–33.300 USD",
+      "url": "https://xhcpower.en.made-in-china.com/product/layrBdGcMjWC/China-High-Performance-500kVA-Cummins-Diesel-Generator-Set-with-Vibration-Resistance.html",
+      "date": "2026-10"
+     },
+     {
+      "name": "Made-in-China – Weichai 500 kVA open frame 35.467–46.107 USD",
+      "url": "https://cintercreation.en.made-in-china.com/product/EnrYWVxdBApG/China-Prp400kw-500kVA-400V-230V-50Hz-Open-Frame-Large-Generator-Sets-Weichai-Factory-Direct-Sales.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "port": "Shanghai/Fuzhou",
+   "cont": "40HQ",
+   "qty": {
+    "v": 2,
+    "basis": "GIẢ ĐỊNH 2 tổ máy open frame (~4,0 × 1,6 × 2,1 m)/40HQ"
+   },
+   "local": {
+    "lo": 750000000,
+    "hi": 950000000,
+    "mid": 850000000,
+    "vat_incl": false,
+    "what": "Báo giá Cummins 500 kVA lắp ráp VN (QSZ13-G5, Stamford, Deepsea; chưa VAT, chưa vỏ cách âm)",
+    "src": [
+     {
+      "name": "Máy phát điện Việt Nhật – Cummins 500 kVA 2026",
+      "url": "https://mayphatdienvietnhat.vn/san-pham/may-phat-dien-cummins-500kva-vng500cs.html",
+      "date": "2026-10"
+     }
+    ]
+   },
+   "disc": {
+    "v": 5,
+    "basis": "GIẢ ĐỊNH đàm phán"
+   },
+   "breakage": {
+    "v": 0,
+    "basis": "Không đáng kể"
+   },
+   "inspect": {
+    "v": 20000000,
+    "basis": "GIẢ ĐỊNH kiểm định/thử tải tại công trường + giám định C/O, CQ hãng"
+   },
+   "extra": {
+    "v": 0,
+    "basis": "Không có"
+   },
+   "lead": {
+    "v": 60,
+    "basis": "GIẢ ĐỊNH"
+   },
+   "np": {
+    "warranty": "Nhà lắp ráp VN bảo hành 12–24 tháng/1.000–2.000 giờ, có kỹ thuật trực; hàng nhập cần đại lý dịch vụ động cơ chính hãng tại VN.",
+    "moq": "1 máy",
+    "lead": "≈ 2 tháng",
+    "brand": "Spec MEP thường yêu cầu CO/CQ động cơ & đầu phát chính hãng – kiểm tra số serial động cơ (Cummins DCEC/CCEC)."
+   },
+   "conf": "trung bình",
+   "conf_note": "Listing TQ không nêu rõ đầu phát/điều khiển; cần RFQ cùng cấu hình (Stamford, Deepsea)."
+  }
+ ],
+ "gaps": [
+  {
+   "group": "Nhôm định hình (mặt dựng, cửa)",
+   "hs": "7604.21.90",
+   "mfn": 10,
+   "acfta": 0,
+   "ad": "AD05 – CBPG 2,85%–35,58% theo NSX TQ (QĐ 2531/QĐ-BCT, đến 02/10/2029)",
+   "note": "Giá FOB phụ thuộc giá nhôm LME/SHFE + phí gia công & sơn – cần RFQ theo hệ profile."
+  },
+  {
+   "group": "Kính nổi (phôi gia công)",
+   "hs": "7005.29.90",
+   "mfn": 40,
+   "acfta": 50,
+   "ad": "AD22 áp Indonesia/Malaysia, không áp TQ",
+   "note": "ACFTA 50% > MFN 40% → nhập TQ chịu 40%."
+  },
+  {
+   "group": "Aptomat MCCB 3P 250A",
+   "hs": "8536.20.13",
+   "mfn": 15,
+   "acfta": 0,
+   "ad": "Không",
+   "note": "Chưa có FOB cùng mã 3P; đại lý VN chào Chint NM8N-250S 3P 250A 3,10 triệu đ sau CK 30% (DGP) – thấp hơn listing FOB 4P (218 USD) → ưu tiên mua nội địa/đại lý."
+  },
+  {
+   "group": "Cáp điện hạ thế Cu/XLPE/PVC 0,6/1 kV",
+   "hs": "8544.49.41",
+   "mfn": 10,
+   "acfta": 5,
+   "ad": "Không",
+   "note": "Giá theo đồng LME; ngành cáp VN (Cadivi, Trần Phú, LS-Vina) cạnh tranh – cần RFQ cùng tiết diện."
+  },
+  {
+   "group": "Bơm ly tâm (cửa hút ≤ 200 mm, điện)",
+   "hs": "8413.70.42",
+   "mfn": 10,
+   "acfta": 0,
+   "ad": "Không",
+   "note": "Cần RFQ theo lưu lượng/cột áp."
+  },
+  {
+   "group": "Thang máy chở người",
+   "hs": "8428.10.31",
+   "mfn": 10,
+   "acfta": 0,
+   "ad": "Không",
+   "note": "Giá phụ thuộc tải/tốc độ/tầng; dịch vụ bảo trì là yếu tố quyết định – cần RFQ."
+  },
+  {
+   "group": "Chiller / thiết bị làm lạnh khác",
+   "hs": "8418.69.90",
+   "mfn": 10,
+   "acfta": 0,
+   "ad": "Không",
+   "note": "Cần RFQ theo công suất (RT) và hiệu suất (IPLV)."
+  },
+  {
+   "group": "Điều hòa (kèm bộ làm lạnh, loại khác)",
+   "hs": "8415.81.19",
+   "mfn": 0,
+   "acfta": 0,
+   "ad": "Không",
+   "note": "Thuế TTĐB áp với điều hòa ≤ 90.000 BTU – kiểm tra theo công suất."
+  },
+  {
+   "group": "Sàn gỗ kỹ thuật nhiều lớp",
+   "hs": "4418.75.00",
+   "mfn": 5,
+   "acfta": 0,
+   "ad": "Không",
+   "note": "Cần RFQ."
+  },
+  {
+   "group": "Thép mạ / tôn / HRC / thép hình H",
+   "hs": "7210.x, 7208.x, 7216.33",
+   "mfn": null,
+   "acfta": null,
+   "ad": "AD19 37,13%, AD20 23,10–27,83%, AD04, AD03 – xem trang Hợp đồng",
+   "note": "Thuế PVTM cao → thường mua nội địa."
+  }
+ ],
+ "results": {
+  "gach-6060": {
+   "hn": {
+    "landed": 183783,
+    "local": 133796,
+    "saving": -0.3736,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.4364,
+     "fx_dn": -0.3108,
+     "frt_x2": -0.5392,
+     "worst": -1.0328,
+     "best": 0.1452
+    }
+   },
+   "hcm": {
+    "landed": 183251,
+    "local": 133796,
+    "saving": -0.3696,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.4328,
+     "fx_dn": -0.3064,
+     "frt_x2": -0.5424,
+     "worst": -1.0278,
+     "best": 0.1483
+    }
+   }
+  },
+  "gach-8080": {
+   "hn": {
+    "landed": 245047,
+    "local": 236111,
+    "saving": -0.0378,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.0859,
+     "fx_dn": 0.0102,
+     "frt_x2": -0.1472,
+     "worst": -1.1283,
+     "best": 0.3382
+    }
+   },
+   "hcm": {
+    "landed": 244436,
+    "local": 236111,
+    "saving": -0.0353,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.0836,
+     "fx_dn": 0.013,
+     "frt_x2": -0.1494,
+     "worst": -1.125,
+     "best": 0.3403
+    }
+   }
+  },
+  "bon-cau": {
+   "hn": {
+    "landed": 1593744,
+    "local": 2291667,
+    "saving": 0.3045,
+    "verdict": "co-hoi",
+    "sens": {
+     "fx_up": 0.2712,
+     "fx_dn": 0.3379,
+     "frt_x2": 0.2462,
+     "worst": -0.1157,
+     "best": 0.6013
+    }
+   },
+   "hcm": {
+    "landed": 1595422,
+    "local": 2291667,
+    "saving": 0.3038,
+    "verdict": "co-hoi",
+    "sens": {
+     "fx_up": 0.2703,
+     "fx_dn": 0.3374,
+     "frt_x2": 0.2417,
+     "worst": -0.1166,
+     "best": 0.6008
+    }
+   }
+  },
+  "lavabo": {
+   "hn": {
+    "landed": 738973,
+    "local": 694444,
+    "saving": -0.0641,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.1163,
+     "fx_dn": -0.012,
+     "frt_x2": -0.1283,
+     "worst": -0.4176,
+     "best": 0.3477
+    }
+   },
+   "hcm": {
+    "landed": 739532,
+    "local": 694444,
+    "saving": -0.0649,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.1173,
+     "fx_dn": -0.0126,
+     "frt_x2": -0.1333,
+     "worst": -0.4185,
+     "best": 0.3471
+    }
+   }
+  },
+  "voi-lavabo": {
+   "hn": {
+    "landed": 845773,
+    "local": 1056481,
+    "saving": 0.1994,
+    "verdict": "can-nhac",
+    "sens": {
+     "fx_up": 0.1595,
+     "fx_dn": 0.2394,
+     "frt_x2": 0.1958,
+     "worst": -0.3266,
+     "best": 0.5543
+    }
+   },
+   "hcm": {
+    "landed": 845585,
+    "local": 1056481,
+    "saving": 0.1996,
+    "verdict": "can-nhac",
+    "sens": {
+     "fx_up": 0.1597,
+     "fx_dn": 0.2395,
+     "frt_x2": 0.1958,
+     "worst": -0.3264,
+     "best": 0.5544
+    }
+   }
+  },
+  "tu-bep": {
+   "hn": {
+    "landed": 2834134,
+    "local": 5625000,
+    "saving": 0.4962,
+    "verdict": "co-hoi",
+    "sens": {
+     "fx_up": 0.4768,
+     "fx_dn": 0.5155,
+     "frt_x2": 0.4602,
+     "worst": 0.322,
+     "best": 0.6355
+    }
+   },
+   "hcm": {
+    "landed": 2835592,
+    "local": 5625000,
+    "saving": 0.4959,
+    "verdict": "co-hoi",
+    "sens": {
+     "fx_up": 0.4764,
+     "fx_dn": 0.5154,
+     "frt_x2": 0.4576,
+     "worst": 0.3217,
+     "best": 0.6352
+    }
+   }
+  },
+  "khoa-dien-tu": {
+   "hn": {
+    "landed": 1534796,
+    "local": 3272727,
+    "saving": 0.531,
+    "verdict": "co-hoi",
+    "sens": {
+     "fx_up": 0.5078,
+     "fx_dn": 0.5543,
+     "frt_x2": 0.5279,
+     "worst": 0.2593,
+     "best": 0.6214
+    }
+   },
+   "hcm": {
+    "landed": 1534346,
+    "local": 3272727,
+    "saving": 0.5312,
+    "verdict": "co-hoi",
+    "sens": {
+     "fx_up": 0.5079,
+     "fx_dn": 0.5545,
+     "frt_x2": 0.5279,
+     "worst": 0.2595,
+     "best": 0.6215
+    }
+   }
+  },
+  "den-downlight": {
+   "hn": {
+    "landed": 41105,
+    "local": 87818,
+    "saving": 0.5319,
+    "verdict": "co-hoi",
+    "sens": {
+     "fx_up": 0.5098,
+     "fx_dn": 0.5541,
+     "frt_x2": 0.5099,
+     "worst": 0.3943,
+     "best": 0.672
+    }
+   },
+   "hcm": {
+    "landed": 41011,
+    "local": 87818,
+    "saving": 0.533,
+    "verdict": "co-hoi",
+    "sens": {
+     "fx_up": 0.5108,
+     "fx_dn": 0.5552,
+     "frt_x2": 0.51,
+     "worst": 0.3954,
+     "best": 0.6731
+    }
+   }
+  },
+  "san-spc": {
+   "hn": {
+    "landed": 171669,
+    "local": 208333,
+    "saving": 0.176,
+    "verdict": "can-nhac",
+    "sens": {
+     "fx_up": 0.136,
+     "fx_dn": 0.216,
+     "frt_x2": 0.1372,
+     "worst": -0.4981,
+     "best": 0.5358
+    }
+   },
+   "hcm": {
+    "landed": 171276,
+    "local": 208333,
+    "saving": 0.1779,
+    "verdict": "can-nhac",
+    "sens": {
+     "fx_up": 0.1378,
+     "fx_dn": 0.218,
+     "frt_x2": 0.1374,
+     "worst": -0.4957,
+     "best": 0.5373
+    }
+   }
+  },
+  "pin-mat-troi": {
+   "hn": {
+    "landed": 3112,
+    "local": 3093,
+    "saving": -0.0064,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.0562,
+     "fx_dn": 0.0434,
+     "frt_x2": -0.0352,
+     "worst": -0.101,
+     "best": 0.146
+    }
+   },
+   "hcm": {
+    "landed": 3113,
+    "local": 3093,
+    "saving": -0.0065,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.0563,
+     "fx_dn": 0.0434,
+     "frt_x2": -0.0371,
+     "worst": -0.1011,
+     "best": 0.1459
+    }
+   }
+  },
+  "kinh-hop-lowe": {
+   "hn": {
+    "landed": 990391,
+    "local": 1140000,
+    "saving": 0.1312,
+    "verdict": "can-nhac",
+    "sens": {
+     "fx_up": 0.089,
+     "fx_dn": 0.1735,
+     "frt_x2": 0.0875,
+     "worst": -0.0752,
+     "best": 0.3059
+    }
+   },
+   "hcm": {
+    "landed": 990625,
+    "local": 1140000,
+    "saving": 0.131,
+    "verdict": "can-nhac",
+    "sens": {
+     "fx_up": 0.0887,
+     "fx_dn": 0.1734,
+     "frt_x2": 0.0845,
+     "worst": -0.0754,
+     "best": 0.3057
+    }
+   }
+  },
+  "da-granite": {
+   "hn": {
+    "landed": 739338,
+    "local": 370000,
+    "saving": -0.9982,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -1.0954,
+     "fx_dn": -0.901,
+     "frt_x2": -1.11,
+     "worst": -2.3112,
+     "best": -0.2122
+    }
+   },
+   "hcm": {
+    "landed": 737418,
+    "local": 370000,
+    "saving": -0.993,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -1.0905,
+     "fx_dn": -0.8956,
+     "frt_x2": -1.1096,
+     "worst": -2.3043,
+     "best": -0.208
+    }
+   }
+  },
+  "may-phat-500": {
+   "hn": {
+    "landed": 973611990,
+    "local": 807500000,
+    "saving": -0.2057,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.2651,
+     "fx_dn": -0.1463,
+     "frt_x2": -0.2269,
+     "worst": -0.737,
+     "best": 0.0601
+    }
+   },
+   "hcm": {
+    "landed": 973671994,
+    "local": 807500000,
+    "saving": -0.2058,
+    "verdict": "noi-dia",
+    "sens": {
+     "fx_up": -0.2653,
+     "fx_dn": -0.1463,
+     "frt_x2": -0.2283,
+     "worst": -0.737,
+     "best": 0.06
+    }
+   }
+  }
+ },
+ "built": "2026-10-22T23:01+07:00"
+}

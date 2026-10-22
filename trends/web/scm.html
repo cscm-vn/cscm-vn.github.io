@@ -1,5 +1,5 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SCM – Cung cầu & Sourcing – Masterise Construction SCM Hub</title><meta name="description" content="Phân tích cung cầu, tín hiệu cân bằng thị trường, khuyến nghị nguồn VN/Trung Quốc và tính chi phí nhập khẩu cho 14 nhóm vật tư chính.">
+<title>SCM – Cung cầu & Sourcing – Masterise Construction SCM Hub</title><meta name="description" content="Phân tích cung cầu, tín hiệu cân bằng thị trường, khuyến nghị nguồn VN/Trung Quốc tính chi phí nhập khẩu và bảng so sánh landed cost Trung Quốc vs mua nội địa (Hà Nội/TP.HCM).">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
 <body class="hub" data-page="scm"><div id="hubnav"></div>
 <main class="wrap" id="main"><div class="crumb" id="crumb"></div>
@@ -9,9 +9,13 @@
  <div class="filters"><span class="seg" id="sf" aria-label="Lọc theo tín hiệu"></span><input id="q" type="search" placeholder="Tìm nhóm: thép, kính, thang máy…" aria-label="Tìm nhóm vật tư"></div>
  <div class="tw" style="max-height:none"><table class="t" id="ov"><tr><td class="mute">Đang tải…</td></tr></table></div>
  <div id="detail"></div>
+ <h2 id="landed">⚖️ Bảng so sánh landed cost Trung Quốc vs mua nội địa</h2>
+ <p class="sub">So sánh cùng tier chất lượng/thẩm mỹ: giá về đến công trình (Hà Nội qua Hải Phòng, TP.HCM qua Cát Lái) khi nhập từ Trung Quốc so với mua nội địa – <b>cùng cơ sở chưa VAT</b> (VAT nhập khẩu được khấu trừ). Mọi giá/thuế có nguồn; ô <span class="lc-asm">GIẢ ĐỊNH</span> cần xác nhận.</p>
+ <div class="card" id="lcbox"><div class="empty">Đang tải…</div></div>
  <h2 id="calc">🧮 Tính giá về kho Trung Quốc → Việt Nam (landed cost)</h2>
  <div class="card" id="calcbox"><div class="empty">Đang tải…</div></div>
  <div class="foot" id="foot"></div></main>
+<script src="landed.js"></script>
 <script>
 (async () => {
  const [d, h] = await Promise.all([HUB.get("scm.json"), HUB.get("hub.json")]); const E = HUB.esc; HUB.crumb(["<b>SCM – Cung cầu & Sourcing</b>"]);
@@ -50,12 +54,13 @@
   <p class="small"><b>Giả định chung:</b> ${E(d.assumptions)} ${E(d.freight.text)} Nguồn cước: <a href="${E(d.freight.source.url)}" target="_blank" rel="noopener">${E(d.freight.source.name)} ↗</a>. VAT được tính trên (CIF + thuế NK + thuế CBPG) và thường được khấu trừ — bảng hiển thị cả giá có và không VAT.</p>`;
  const $ = k => document.getElementById("k-" + k); const V = k => parseFloat($(k).value) || 0;
  const fmt = v => Math.round(v).toLocaleString("vi-VN");
- window.HUB_CALC = id => { const c = C.find(x => x.id === id); if (!c?.calc) return; const k = c.calc; $("cat").value = id;
+ window.HUB_CALC_SET = (o, note, unit) => { window.HUB_CALC_UNIT = unit; if (!$("cat").querySelector('option[value="_lc"]')) $("cat").insertAdjacentHTML("afterbegin", '<option value="_lc">— Từ bảng so sánh landed cost —</option>'); $("cat").value = "_lc"; Object.entries(o).forEach(([a, b]) => $(a).value = b); $("note").innerHTML = note; calc(); document.getElementById("calc").scrollIntoView({behavior: "smooth"}); };
+ window.HUB_CALC = id => { const c = C.find(x => x.id === id); if (!c?.calc) return; window.HUB_CALC_UNIT = null; const k = c.calc; $("cat").value = id;
   Object.entries({fob: k.fob, qty: k.qty, frt: k.cont === "20GP" ? d.freight.d20 : d.freight.d40, ins: 0.3, duty: k.duty, ad: k.ad, vat: k.vat, logi: k.logi, fx, vn: k.vn || ""}).forEach(([a, b]) => $(a).value = b);
   $("note").innerHTML = `Đơn vị: <b>${E(k.unit)}</b> · container ${E(k.cont)} · ${E(k.note)}${k.vn_note ? " · " + E(k.vn_note) : ""} · ${fxNote}.`; calc(); };
  function calc() { const fob = V("fob"), q = Math.max(V("qty"), 1), fr = V("frt") / q, ins = fob * V("ins") / 100, cif = fob + fr + ins;
   const duty = cif * V("duty") / 100, ad = cif * V("ad") / 100, vat = (cif + duty + ad) * V("vat") / 100, logi = cif * V("logi") / 100, fxv = V("fx");
-  const ex = (cif + duty + ad + logi) * fxv, inc = ex + vat * fxv, vn = V("vn"); const unit = C.find(x => x.id === $("cat").value)?.calc?.unit || "đơn vị";
+  const ex = (cif + duty + ad + logi) * fxv, inc = ex + vat * fxv, vn = V("vn"); const unit = window.HUB_CALC_UNIT || C.find(x => x.id === $("cat").value)?.calc?.unit || "đơn vị";
   const row = (l, u, b) => `<tr><td>${l}</td><td class="n">${u.toLocaleString("vi-VN", {maximumFractionDigits: 2})} USD</td><td class="n">${b ? "<b>" : ""}${fmt(u * fxv)} đ${b ? "</b>" : ""}</td></tr>`;
   $("out").innerHTML = `<table class="t"><tr><th>Cấu phần (trên 1 ${E(unit)})</th><th class="n">USD</th><th class="n">VND</th></tr>${row("FOB", fob)}${row("Cước biển phân bổ", fr)}${row("Bảo hiểm", ins)}${row("= CIF", cif, 1)}${row("Thuế nhập khẩu", duty)}${row("Thuế CBPG / tự vệ", ad)}${row("Logistics nội địa + thông quan", logi)}
    <tr><td><b>Giá về kho chưa VAT</b></td><td></td><td class="n"><b>${fmt(ex)} đ</b></td></tr>${row("VAT nhập khẩu (được khấu trừ)", vat)}<tr><td>Giá về kho gồm VAT</td><td></td><td class="n">${fmt(inc)} đ</td></tr>

@@ -33,6 +33,9 @@ jobs:
         run: python trends/legal_feed.py
       - name: Build hub pages (Trang chủ, Danh mục, Xu hướng, Thị trường) + shared nav
         run: python trends/build.py
+      - name: SCM landed cost TQ vs nội địa – refresh FX, recompute (non-blocking)
+        continue-on-error: true
+        run: python trends/landed.py --site site
       - name: Daily page views (GoatCounter API, Vietnam days) – non-blocking
         continue-on-error: true
         env: {GOATCOUNTER_TOKEN: "${{ secrets.GOATCOUNTER_TOKEN }}"}
