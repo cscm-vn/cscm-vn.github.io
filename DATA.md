@@ -8,6 +8,8 @@ data/
   registry/
     datasets.json          # danh mục dataset: schema_version, đường dẫn, khoá, cột
     items.json             # registry mặt hàng: 1 object/dòng {id,status,last_ok,last_try,meta{...}}
+    contract_baselines.json   # đơn giá nguyên tắc HĐ tổng thầu (CTD/NTC), ngưỡng, tỷ trọng – nhiều HĐ/phiên bản
+    contract_market_map.json  # ánh xạ dòng HĐ (miền|mã) → chuỗi giá thị trường + cách suy diễn + hồ sơ dự báo
   history/
     prices/YYYY-MM.csv     # giá, dạng long: 1 dòng / (item_id, date); lần lấy muộn nhất trong ngày thắng
     runs/YYYY-MM.csv       # nhật ký chạy từng nguồn (fetched_at, source, ok, n, error)
@@ -44,3 +46,11 @@ Không cần đổi schema: viết hàm `src_xxx()` trả `item(...)` (đặt `r
 - SQLite: `python store.py build --db x.db`.
 - DuckDB (không cần code): `CREATE TABLE prices AS SELECT * FROM read_csv_auto('data/history/prices/*.csv', header=true);`
 - Postgres: `\copy prices FROM PROGRAM 'tail -q -n +2 data/history/prices/*.csv' CSV` (tạo bảng theo `datasets.json`).
+
+## Điều chỉnh giá HĐ tổng thầu (`dieu-chinh.html`)
+- `data/registry/contract_baselines.json`: `{schema_version, contracts:[{id, name, version, effective_date, currency, note, bases{CTD,NTC}, source_file, items:[{region: bac|nam, group, code, desc, unit, weight_pct, thr_ctd_pct, thr_ntc_pct, ctd, ntc}]}]}`.
+  Ô trống trong HĐ = `null` (không bịa). Nhiều HĐ: thêm `id` khác; sửa giá: nhập `version` mới (bản có `effective_date` ≤ hôm nay và version lớn nhất được dùng).
+  Nhập từ Excel/TSV: `python dieu_chinh/import_tsv.py FILE.tsv --id tong-thau-2026 --name "…" --version YYYY-MM-DD --effective YYYY-MM-DD`.
+- `data/registry/contract_market_map.json`: mỗi khóa `miền|mã` → `method` (`median` | `ratio` | `interp` | `norm` | `none`), `series[{id, use: price|mid|high, factor, vat_incl, role: check}]`, `quality` (A/B/C), `note` (giải thích hiển thị trên trang).
+- `dieu_chinh/build.py --site site` (chạy sau forecast, trước trends/build) → `site/data/dieu-chinh.json`, `site/data/dieu-chinh-summary.json` (thanh điều hướng + trang chủ), `site/dieu-chinh.csv`, `site/dieu-chinh.xlsx`.
+- Lưu ý: push chỉ sửa `data/registry/**` không kích hoạt workflow (paths-ignore) → trang cập nhật ở lần chạy theo lịch kế tiếp hoặc chạy tay `workflow_dispatch`.

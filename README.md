@@ -69,5 +69,8 @@ Quick tunnel Cloudflare **không chạy được trên box này** (mạng chặn
 - Trang chủ `index.html` (bảng giá cũ chuyển sang `gia.html`, dự báo `forecast.html`), cây danh mục dùng chung `data/taxonomy.json`.
 - Mã nguồn & dữ liệu: `trends/` – `merge.py` (gộp mục mới, chống trùng), `feeds.py` (RSS/Google News miễn phí, chạy trong Actions), `build.py` (sinh trang + `site/data/hub.json`), `test_ui.py` (kiểm thử headless). Schema & quy trình: `trends/SCHEMA.md`.
 
+## ⚖️ Điều chỉnh giá HĐ tổng thầu (`dieu-chinh.html`)
+Theo dõi hằng ngày giá thị trường so với đơn giá nguyên tắc CTD/NTC (ngưỡng CTD ±3%; NTC ±3% bê tông, ±5% vật tư khác): trạng thái vượt ngưỡng GIẢM/TĂNG, sắp chạm, thiếu dữ liệu; tác động theo tỷ trọng; đồ thị ngày/tháng với dải ngưỡng; dự báo 3/6/12 tháng + xác suất vượt ngưỡng; xuất CSV/Excel, in A4 ngang. Dữ liệu & cấu hình: xem **DATA.md** mục “Điều chỉnh giá HĐ”. Nguồn bổ sung (AAC Viglacera/EBLOCK, vữa khô & skimcoat, Sika Latex TH, gạch đặc, trần Vĩnh Tường, bê tông M100–M700) trong `forecast/sources.py: src_contract_materials` và bảng bê tông mở rộng. Kiểm thử: `python dieu_chinh/test_ui.py URL`.
+
 ## Hướng dẫn sử dụng
 Xem trang `huong-dan.html` trên site (mục "Hướng dẫn" trên thanh điều hướng).

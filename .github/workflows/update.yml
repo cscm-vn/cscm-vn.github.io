@@ -22,6 +22,9 @@ jobs:
       - name: Build forecasts (Dự báo) – non-blocking
         continue-on-error: true
         run: python forecast/build.py --site site 2>&1 | grep -v Warning | tail -20
+      - name: Contract price-adjustment monitor (Điều chỉnh giá HĐ) – non-blocking
+        continue-on-error: true
+        run: python dieu_chinh/build.py --site site
       - name: Pull free news feeds (RSS/Google News) – non-blocking
         continue-on-error: true
         run: python trends/feeds.py
