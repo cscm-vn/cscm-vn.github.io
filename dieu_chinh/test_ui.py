@@ -20,6 +20,18 @@ with sync_playwright() as p:
         ok(f"{mode} nav link", pg.locator(".hn-links a.hot").count() == 1)
         ok(f"{mode} no h-overflow", pg.evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), pg.evaluate("[document.documentElement.scrollWidth, innerWidth]"))
         sh("01_bac")
+        chk = """async (sc) => { const D = await (await fetch('data/dieu-chinh.json')).json(); const bad = [];
+          for (const r of D.contracts[0].rows.filter(r => r.region === 'bac')) { const tr = document.querySelector(`#tbl tr.r[data-k="bac|${r.code}"]`); if (!tr) continue;
+            const b = tr.querySelectorAll('td')[7].querySelector('.bd'); const want = r.evals[sc].ctd.status; if (!b.classList.contains(want)) bad.push(r.code + ':' + want); } return bad; }"""
+        ok(f"{mode} VAT default=unknown shows alt lines", pg.locator("#vat button.on").get_attribute("data-k") == "unknown" and pg.locator("#tbl .alt").count() >= 10, pg.locator("#tbl .alt").count())
+        nv = pg.evaluate("[...document.querySelectorAll('#tbl tr.r')].filter(t => !t.querySelector('.bd.missing')).length")
+        ok(f"{mode} basis chip on every priced row", pg.locator("#tbl .basis").count() == nv, (pg.locator("#tbl .basis").count(), nv))
+        ok(f"{mode} unknown→status = excl scenario", pg.evaluate(chk, "excl") == [], pg.evaluate(chk, "excl"))
+        pg.click("#vat button[data-k=incl]"); pg.wait_for_timeout(200)
+        ok(f"{mode} VAT incl recomputes statuses", pg.evaluate(chk, "incl") == [] and pg.locator("#tbl .alt").count() < 10, pg.evaluate(chk, "incl"))
+        sh("01b_bac_vat_incl")
+        pg.click("#vat button[data-k=excl]"); pg.wait_for_timeout(200); ok(f"{mode} VAT excl", pg.evaluate(chk, "excl") == [])
+        pg.click("#vat button[data-k=unknown]"); pg.wait_for_timeout(200)
         pg.click("#rg button[data-k=nam]"); pg.wait_for_timeout(200); nn = pg.locator("#tbl tr.r").count(); ok(f"{mode} rows Nam", nn == 29, nn); sh("02_nam")
         pg.click("#sf button[data-k=down]"); pg.wait_for_timeout(150); nd = pg.locator("#tbl tr.r").count(); ok(f"{mode} filter down", 0 < nd < nn, nd)
         ok(f"{mode} filter consistency", pg.locator("#tbl tr.r").filter(has=pg.locator(".bd.down")).count() == nd)
@@ -29,6 +41,7 @@ with sync_playwright() as p:
         pg.click("#rg button[data-k=bac]"); pg.wait_for_timeout(150)
         pg.locator("#tbl tr.r[data-k='bac|M400']").click(); pg.wait_for_selector("#dlg[open] canvas"); pg.wait_for_timeout(500)
         ok(f"{mode} dialog sources", pg.locator("#dlg-b table").first.locator("tbody tr").count() >= 2)
+        ok(f"{mode} dialog basis box", "Cơ sở so sánh" in pg.inner_text("#dlg-b .bbox") and "1,08" in pg.inner_text("#dlg-b"))
         sh("04_detail_daily", False)
         pg.click("#cg button[data-k=m]"); pg.wait_for_timeout(400); sh("05_detail_monthly_forecast", False)
         ok(f"{mode} forecast rows in dialog", pg.locator("#dlg-b table").nth(1).locator("tbody tr").count() == 3)

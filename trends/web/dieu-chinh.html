@@ -76,6 +76,12 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
  .bd{border:1px solid #999}
  @page{size:A4 landscape;margin:10mm}
 }
+.vatset{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:12px 0 4px;padding:10px 14px;background:#fff8e6;border:1px solid #e9cf96;border-left:4px solid #b08d57;border-radius:12px;font-size:13.5px}
+.vatset b{color:#14325a}.vatset .seg button{font-size:12.5px}.vatset .hint{flex:1 1 320px;color:#5b6676;font-size:12.5px}
+.alt{font-size:11.5px;color:#5b6676;margin-top:3px;line-height:1.35}.alt .bd{font-size:10.5px;padding:0 5px}
+.basis{font-size:11.5px;color:#6b5a3a;margin-top:3px;cursor:help;border-bottom:1px dotted #b08d57;display:inline-block;line-height:1.35}
+.bbox{background:#f7f3ea;border:1px solid #e8dcc3;border-radius:10px;padding:9px 12px;margin:8px 0;font-size:13px}.bbox ul{margin:4px 0 0;padding-left:18px}
+@media print{.vatset{border:1px solid #999;background:#fff}.vatset .seg button:not(.on){display:none}}
 </style></head>
 <body class="hub" data-page="dieuchinh" data-hub-page><div id="hubnav"></div>
 <main class="wrap" id="main"><div class="crumb" id="crumb"></div>
@@ -93,6 +99,9 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
  <label class="chk"><input type="checkbox" id="onlyw"> Chỉ mục có tỷ trọng</label>
  <input type="search" id="q" placeholder="Tìm mã, mô tả… (không dấu)" aria-label="Tìm mặt hàng">
 </div>
+<div class="vatset" id="vatset"><b>⚖️ Đơn giá HĐ (CTD/NTC) đã gồm VAT?</b>
+ <div class="seg" id="vat" aria-label="Cơ sở VAT của đơn giá HĐ"><button data-k="unknown">Chưa rõ – xem cả 2</button><button data-k="excl">Chưa gồm VAT</button><button data-k="incl">Đã gồm VAT</button></div>
+ <span class="hint" id="vathint"></span></div>
 <div class="lgrow"><div class="legend" id="legend"></div><div class="exp no-print">
  <button class="btn" id="bcsv" title="Tải bảng đang xem (CSV, mở được bằng Excel)">⬇ CSV</button>
  <a class="btn" id="bxls" href="dieu-chinh.xlsx" download title="Tải toàn bộ 2 miền (Excel .xlsx)">⬇ Excel</a>
@@ -122,6 +131,22 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
  const C = D.contracts[0], ROWS = C.rows;
  const ST = D.status_vi, NEAR = D.near_pp;
  const st = {r: ["bac", "nam", "cmp"].includes(HUB.qs("r")) ? HUB.qs("r") : "bac", f: "", q: "", w: false, fh: "6", fb: "ctd", fr: "all"};
+ const VR = C.vat_rate || 0.08, VK = "dc_vat_" + C.id;
+ st.v = ["unknown", "excl", "incl"].includes(HUB.qs("vat")) ? HUB.qs("vat") : (() => { try { return localStorage.getItem(VK); } catch (e) { return null; } })() || C.contract_vat_default || "unknown";
+ if (!["unknown", "excl", "incl"].includes(st.v)) st.v = "unknown";
+ const scen = () => st.v === "incl" ? "incl" : "excl";
+ const applyVat = () => { ROWS.forEach(r => { if (r.evals) r.eval = r.evals[scen()]; }); if (C.summaries) C.summary = C.summaries[scen()]; };
+ const bx = (r, b) => r[b] == null ? null : (st.v === "incl" ? r[b] / (1 + VR) : r[b]);   // đơn giá HĐ quy về chưa VAT
+ const pk = (f, k) => f[k + (st.v === "incl" ? "_vi" : "")];
+ const VATS = {excl: "chưa VAT", incl: "đã gồm VAT → ÷1,08", unknown: "nguồn không nêu VAT → coi là chưa VAT", mixed: "nhiều nguồn – đều quy về chưa VAT"};
+ const bShort = r => { const b = r.market.basis; if (!b) return "";
+  const dl = (b.delivery || []).join("; "), dshort = /nhà máy/.test(dl) ? "tại nhà máy" : /kho|đại lý/.test(dl) ? "tại kho/đại lý" : /đến CT|giao đến/.test(dl) ? "giao đến CT" : /bình quân/.test(dl) ? "giá BQ khu vực" : "giao: không nêu";
+  return ["chưa VAT" + (b.vat === "incl" ? " (đã ÷1,08)" : b.vat === "unknown" ? " (giả định)" : ""), dshort, ...(b.adj || []).map(x => x.split(" ")[0] + " " + x.split(" ")[1] + " độ sụt"), ...(b.conv || []).filter(x => /×|TB|chỉ số/.test(x))].join(" · "); };
+ const altLine = (r, b) => { const out = [];
+  if (st.v === "unknown" && r.evals && r.evals.incl[b].status !== "na" && r.evals.incl[b].dev != null) { const e2 = r.evals.incl[b];
+   out.push(`<div class="alt" title="Nếu đơn giá ${b.toUpperCase()} đã gồm VAT 8%: so với ${b.toUpperCase()} ÷ 1,08">Nếu HĐ gồm VAT: ${pcT(e2.dev)} <span class="bd ${e2.status}">${ST[e2.status]}</span></div>`); }
+  const e = r.eval[b]; if (e && e.dev_if_src_incl != null) out.push(`<div class="alt" title="Nguồn không nêu VAT – đang coi là chưa VAT. Nếu nguồn thực ra đã gồm VAT thì % lệch là:">Nếu nguồn đã gồm VAT: ${pcT(e.dev_if_src_incl)}</div>`);
+  return out.join(""); };
  const num = (v, u) => v == null ? "–" : Number(v).toLocaleString("vi-VN", {maximumFractionDigits: Math.abs(v) < 100 ? 2 : (Math.abs(v) < 10000 && u !== "m3" && u !== "m³" ? 0 : 0)});
  const pc = (v, d = 2) => v == null ? '<span class="mute2">–</span>' : `<span class="dv ${v > 0 ? "up" : v < 0 ? "down" : ""}">${v > 0 ? "▲ +" : v < 0 ? "▼ −" : ""}${Math.abs(v).toFixed(d).replace(".", ",")}%</span>`;
  const pcT = (v, d = 2) => v == null ? "" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d).replace(".", ",") + "%";
@@ -138,7 +163,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
  const spark = (r, w = 80, h = 28) => {
   const s = (r.series?.d || []).slice(-90).map(x => x[1]);
   if (s.length < 2) return `<span class="small mute2" title="Mới bắt đầu theo dõi – chuỗi giá tích lũy hằng ngày">${s.length ? "mới" : "–"}</span>`;
-  const ref = [r.ctd, r.ntc].filter(Boolean), all = s.concat(ref), mn = Math.min(...all), mx = Math.max(...all), k = mx - mn || 1;
+  const ref = [bx(r, "ctd"), bx(r, "ntc")].filter(Boolean), all = s.concat(ref), mn = Math.min(...all), mx = Math.max(...all), k = mx - mn || 1;
   const X = i => (i / (s.length - 1)) * (w - 4) + 2, Y = v => h - 3 - ((v - mn) / k) * (h - 6);
   const last = s[s.length - 1], first = s[0], col = last < first ? "#067647" : last > first ? "#b42318" : "#14325a";
   const bl = ref.map((v, i) => `<line x1="2" x2="${w - 2}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" stroke="${i ? "#b08d57" : "#14325a"}" stroke-dasharray="3 2" stroke-width="1" opacity=".55"/>`).join("");
@@ -157,7 +182,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const srcTxt = m.method === "median" ? [...new Set(main.map(x => short(x.src || x.label)))].map(E).join(", ") : METH[m.method];
   const rng = m.n > 1 && Math.round(m.lo) !== Math.round(m.hi) ? `<div class="src">Khoảng các nguồn: ${num(m.lo)} – ${num(m.hi)}</div>` : "";
   return `<b class="n" title="${E(m.note || "")}">${num(m.value)}</b><span class="q ${m.quality}" title="${E(QT[m.quality] || "")}">${m.quality || ""}</span>
-   <div class="src">${srcTxt} · ${date(m.as_of)}${m.stale ? ' · <span class="stale">dữ liệu cũ</span>' : ""}</div>${rng}`;
+   <div class="src">${srcTxt} · ${date(m.as_of)}${m.stale ? ' · <span class="stale">dữ liệu cũ</span>' : ""}</div>${rng}<span class="basis" title="Cơ sở so sánh: ${E(r.basis_text || "")}">ⓘ ${E(bShort(r))}</span>`;
  };
  const match = r => {
   if (st.w && !r.weight_pct) return false;
@@ -194,8 +219,8 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   <td class="n" data-l="Tỷ trọng">${r.weight_pct != null ? `<span class="w ${wcls(r.weight_pct)}">${String(r.weight_pct.toFixed(2)).replace(".", ",")}%</span>` : '<span class="mute2">–</span>'}</td>
   <td class="n" data-l="Đơn giá CTD">${num(r.ctd)}</td><td class="n" data-l="Đơn giá NTC">${num(r.ntc)}</td>
   <td class="mk" data-l="Giá thị trường">${mkCell(r)}</td>
-  <td data-l="Lệch vs CTD">${r.eval.ctd.status === "na" ? "" : pc(e.ctd.dev)}<br>${badge(e.ctd, r.thr_ctd_pct)}</td>
-  <td data-l="Lệch vs NTC">${r.eval.ntc.status === "na" ? "" : pc(e.ntc.dev)}<br>${badge(e.ntc, r.thr_ntc_pct)}</td>
+  <td data-l="Lệch vs CTD">${r.eval.ctd.status === "na" ? "" : pc(e.ctd.dev)}<br>${badge(e.ctd, r.thr_ctd_pct)}${altLine(r, "ctd")}</td>
+  <td data-l="Lệch vs NTC">${r.eval.ntc.status === "na" ? "" : pc(e.ntc.dev)}<br>${badge(e.ntc, r.thr_ntc_pct)}${altLine(r, "ntc")}</td>
   <td class="n" data-l="Ngưỡng CTD / NTC">±${r.thr_ctd_pct}% / ±${r.thr_ntc_pct}%</td>
   <td class="sp" data-l="Diễn biến">${spark(r)}</td>
   <td class="n" data-l="Tác động (điểm % giá trị HĐ)">${imp || '<span class="mute2">–</span>'}</td></tr>`;
@@ -216,8 +241,8 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const list = codes.map(c => [c, by("bac", c), by("nam", c)]).filter(([c, a, b]) => (a && match(a)) || (b && match(b)));
   const cell = (r, l) => !r ? `<td data-l="${l}" colspan="1" class="mute2">không có trong HĐ</td><td></td><td></td>` :
    `<td class="n" data-l="${l} – giá TT">${r.market.value != null ? `<a href="#" data-open="${r.region}|${E(r.code)}">${num(r.market.value)}</a><span class="q ${r.market.quality}">${r.market.quality}</span>` : '<span class="bd missing">Thiếu dữ liệu</span>'}</td>
-    <td data-l="${l} – vs CTD">${r.eval.ctd.status === "na" ? '<span class="mute2">–</span>' : pc(r.eval.ctd.dev) + "<br>" + badge(r.eval.ctd, r.thr_ctd_pct)}</td>
-    <td data-l="${l} – vs NTC">${r.eval.ntc.status === "na" ? '<span class="mute2">–</span>' : pc(r.eval.ntc.dev) + "<br>" + badge(r.eval.ntc, r.thr_ntc_pct)}</td>`;
+    <td data-l="${l} – vs CTD">${r.eval.ctd.status === "na" ? '<span class="mute2">–</span>' : pc(r.eval.ctd.dev) + "<br>" + badge(r.eval.ctd, r.thr_ctd_pct) + altLine(r, "ctd")}</td>
+    <td data-l="${l} – vs NTC">${r.eval.ntc.status === "na" ? '<span class="mute2">–</span>' : pc(r.eval.ntc.dev) + "<br>" + badge(r.eval.ntc, r.thr_ntc_pct) + altLine(r, "ntc")}</td>`;
   tbl.innerHTML = `<thead><tr><th rowspan="2">Mã</th><th rowspan="2">Mô tả</th><th rowspan="2">ĐVT</th><th rowspan="2" class="n">Tỷ trọng</th><th colspan="3" class="reg">Miền Bắc</th><th colspan="3" class="reg">Miền Nam</th><th rowspan="2" class="n" title="Giá thị trường Miền Nam so với Miền Bắc">Nam vs Bắc</th></tr>
    <tr><th class="n">Giá TT</th><th>vs CTD</th><th>vs NTC</th><th class="n">Giá TT</th><th>vs CTD</th><th>vs NTC</th></tr></thead><tbody>` +
    list.map(([c, a, b]) => { const r0 = a || b, d = a?.market.value && b?.market.value ? (b.market.value / a.market.value - 1) * 100 : null;
@@ -230,19 +255,23 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const m = r.market, dlg = $("#dlg");
   $("#dlg-e").textContent = `${r.region_name} · ${r.group} · ${r.unit}`; $("#dlg-t").textContent = `${r.code} – ${r.desc}`;
   const fh = r.fc?.h || {};
-  const srcRows = (m.sources || []).map(s => s.derived ? `<tr><td colspan="5">${E(s.label)} → <b>${num(s.value)}</b></td></tr>` : s.missing ? `<tr><td>${E(s.label)}</td><td colspan="4" class="mute">nguồn chưa có giá</td></tr>` :
-   `<tr><td>${E(s.label)}${s.role === "check" ? ' <span class="pill">đối chiếu</span>' : ""}</td><td class="n">${num(s.raw)}${s.raw_high && s.raw_high !== s.raw ? " – " + num(s.raw_high) : ""} <span class="small mute">${E(s.unit || "")}</span></td><td class="n"><b>${num(s.value)}</b>${s.conv ? `<div class="small mute">${E(s.conv)}</div>` : ""}</td><td>${date(s.as_of)}${s.stale ? ' <span class="stale">cũ</span>' : ""}</td><td><a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.src || "nguồn")}</a>${s.note ? `<div class="small mute">${E(s.note)}</div>` : ""}</td></tr>`).join("");
-  const refRows = (m.refs || []).map(s => `<tr><td>${E(s.label)} <span class="pill">tham khảo</span></td><td class="n">${num(s.value)} <span class="small mute">${E(s.unit || "")}</span></td><td></td><td>${date(s.as_of)}</td><td><a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.src || "nguồn")}</a></td></tr>`).join("");
+  const srcRows = (m.sources || []).map(s => s.derived ? `<tr><td colspan="6">${E(s.label)} → <b>${num(s.value)}</b></td></tr>` : s.missing ? `<tr><td>${E(s.label)}</td><td colspan="5" class="mute">nguồn chưa có giá</td></tr>` :
+   `<tr><td>${E(s.label)}${s.role === "check" ? ' <span class="pill">đối chiếu</span>' : ""}</td><td class="n">${num(s.raw)}${s.raw_high && s.raw_high !== s.raw ? " – " + num(s.raw_high) : ""} <span class="small mute">${E(s.unit || "")}</span></td><td class="n"><b>${num(s.value)}</b>${s.conv ? `<div class="small mute">${E(s.conv)}</div>` : ""}</td><td class="small">${E(VATS[s.vat] || "–")}${s.delivery ? `<div class="mute">${E(s.delivery)}</div>` : ""}</td><td>${date(s.as_of)}${s.stale ? ' <span class="stale">cũ</span>' : ""}</td><td><a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.src || "nguồn")}</a>${s.note ? `<div class="small mute">${E(s.note)}</div>` : ""}</td></tr>`).join("");
+  const refRows = (m.refs || []).map(s => `<tr><td>${E(s.label)} <span class="pill">tham khảo</span></td><td class="n">${num(s.value)} <span class="small mute">${E(s.unit || "")}</span></td><td></td><td></td><td>${date(s.as_of)}</td><td><a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.src || "nguồn")}</a></td></tr>`).join("");
   const fcRows = ["3", "6", "12"].map(h => fh[h] ? `<tr><td>${h} tháng</td><td class="n"><b>${num(fh[h].base)}</b></td><td>${pc(fh[h].pct)}</td><td class="n">${num(fh[h].lo)} – ${num(fh[h].hi)}</td>
-   <td class="n">${fh[h].p_down_ctd != null ? `<span class="down">${fh[h].p_down_ctd.toFixed(0)}%</span> / <span class="up">${fh[h].p_up_ctd.toFixed(0)}%</span>` : "–"}</td>
-   <td class="n">${fh[h].p_down_ntc != null ? `<span class="down">${fh[h].p_down_ntc.toFixed(0)}%</span> / <span class="up">${fh[h].p_up_ntc.toFixed(0)}%</span>` : "–"}</td></tr>` : "").join("");
-  $("#dlg-b").innerHTML = `<div class="kv"><div><span>Giá thị trường</span><b>${num(m.value)}</b> ${m.quality ? `<span class="q ${m.quality}" title="${E(QT[m.quality])}">${m.quality}</span>` : ""}<div class="small mute">${m.value != null ? "ngày giá " + date(m.as_of) : "Thiếu dữ liệu"}</div></div>
-    <div><span>Đơn giá CTD (ngưỡng ±${r.thr_ctd_pct}%)</span><b>${num(r.ctd)}</b><div>${r.eval.ctd.status === "na" ? "" : pc(r.eval.ctd.dev)} ${badge(r.eval.ctd, r.thr_ctd_pct)}</div></div>
-    <div><span>Đơn giá NTC (ngưỡng ±${r.thr_ntc_pct}%)</span><b>${num(r.ntc)}</b><div>${r.eval.ntc.status === "na" ? "" : pc(r.eval.ntc.dev)} ${badge(r.eval.ntc, r.thr_ntc_pct)}</div></div>
+   <td class="n">${pk(fh[h], "p_down_ctd") != null ? `<span class="down">${pk(fh[h], "p_down_ctd").toFixed(0)}%</span> / <span class="up">${pk(fh[h], "p_up_ctd").toFixed(0)}%</span>` : "–"}</td>
+   <td class="n">${pk(fh[h], "p_down_ntc") != null ? `<span class="down">${pk(fh[h], "p_down_ntc").toFixed(0)}%</span> / <span class="up">${pk(fh[h], "p_up_ntc").toFixed(0)}%</span>` : "–"}</td></tr>` : "").join("");
+  const B = m.basis, bbox = m.value == null ? "" : `<div class="bbox"><b>Cơ sở so sánh</b> <span class="small mute">(${st.v === "incl" ? "đơn giá HĐ coi là ĐÃ gồm VAT → so với đơn giá ÷ 1,08" : st.v === "excl" ? "đơn giá HĐ coi là chưa VAT" : "chưa rõ đơn giá HĐ có VAT không – bảng chính coi là chưa VAT, dòng phụ hiện kết quả nếu đã gồm VAT"})</span><ul>
+   <li>${E(r.basis_text || "")}</li>${(B?.ev || []).map(x => `<li class="small">Bằng chứng VAT: ${E(x)}</li>`).join("")}
+   <li class="small">Đơn giá CTD/NTC trên trang hiển thị nguyên giá trị HĐ; ${st.v === "incl" ? `khi so sánh dùng CTD ${num(bx(r, "ctd"))} / NTC ${num(bx(r, "ntc"))} (đã ÷1,08).` : "so sánh trực tiếp."}</li></ul></div>`;
+  $("#dlg-b").innerHTML = `<div class="kv"><div><span>Giá thị trường (chưa VAT)</span><b>${num(m.value)}</b> ${m.quality ? `<span class="q ${m.quality}" title="${E(QT[m.quality])}">${m.quality}</span>` : ""}<div class="small mute">${m.value != null ? "ngày giá " + date(m.as_of) : "Thiếu dữ liệu"}</div></div>
+    <div><span>Đơn giá CTD (ngưỡng ±${r.thr_ctd_pct}%)</span><b>${num(r.ctd)}</b>${st.v === "incl" && r.ctd ? `<div class="small mute">chưa VAT: ${num(bx(r, "ctd"))}</div>` : ""}<div>${r.eval.ctd.status === "na" ? "" : pc(r.eval.ctd.dev)} ${badge(r.eval.ctd, r.thr_ctd_pct)}</div></div>
+    <div><span>Đơn giá NTC (ngưỡng ±${r.thr_ntc_pct}%)</span><b>${num(r.ntc)}</b>${st.v === "incl" && r.ntc ? `<div class="small mute">chưa VAT: ${num(bx(r, "ntc"))}</div>` : ""}<div>${r.eval.ntc.status === "na" ? "" : pc(r.eval.ntc.dev)} ${badge(r.eval.ntc, r.thr_ntc_pct)}</div></div>
     <div><span>Tỷ trọng trong HĐ</span><b>${r.weight_pct != null ? r.weight_pct.toFixed(2).replace(".", ",") + "%" : "–"}</b><div class="small mute">${["ctd", "ntc"].filter(b => r.eval[b].impact != null).map(b => `${b.toUpperCase()}: ${pp(r.eval[b].impact)}`).join(" · ") || "&nbsp;"}</div></div></div>
-   ${m.note ? `<div class="note"><b>Cách xác định giá thị trường${m.method ? " (" + METH[m.method] + ")" : ""}:</b> ${E(m.note)}</div>` : ""}
+   ${st.v === "unknown" && m.value != null ? `<div class="small mute" style="margin:-2px 0 6px">${["ctd", "ntc"].map(b => altLine(r, b).replace(/<div class="alt"[^>]*>/g, `<span>${b.toUpperCase()} · `).replace(/<\/div>/g, "</span> ")).join(" ")}</div>` : ""}
+   ${bbox}${m.note ? `<div class="note"><b>Cách xác định giá thị trường${m.method ? " (" + METH[m.method] + ")" : ""}:</b> ${E(m.note)}</div>` : ""}
    ${m.value != null ? `<div class="tb no-print" style="margin:6px 0"><div class="seg" id="cg"><button data-k="d" class="on">Theo ngày</button><button data-k="m">Theo tháng + dự báo</button></div><span class="small mute">Đường đậm: giá thị trường · nét đứt: đơn giá CTD/NTC · dải mờ: ±ngưỡng</span></div><div class="cbox"><canvas id="cv"></canvas></div>` : ""}
-   <h3 style="margin-top:14px">Nguồn giá</h3><div class="tw" style="max-height:none"><table class="t"><thead><tr><th>Chuỗi</th><th class="n">Giá nguồn</th><th class="n">Quy đổi</th><th>Ngày giá</th><th>Nguồn</th></tr></thead><tbody>${srcRows + refRows || '<tr><td colspan="5" class="mute">Chưa có nguồn công khai phù hợp.</td></tr>'}</tbody></table></div>
+   <h3 style="margin-top:14px">Nguồn giá</h3><div class="tw" style="max-height:none"><table class="t"><thead><tr><th>Chuỗi</th><th class="n">Giá nguồn</th><th class="n">Quy đổi (chưa VAT, đ/${E(r.unit)})</th><th>VAT · điều kiện giao</th><th>Ngày giá</th><th>Nguồn</th></tr></thead><tbody>${srcRows + refRows || '<tr><td colspan="6" class="mute">Chưa có nguồn công khai phù hợp.</td></tr>'}</tbody></table></div>
    ${fcRows ? `<h3 style="margin-top:14px">Dự báo & xác suất vượt ngưỡng</h3><div class="tw" style="max-height:none"><table class="t"><thead><tr><th>Kỳ hạn</th><th class="n">Giá dự báo</th><th>% so với nay</th><th class="n">Khoảng 80%</th><th class="n">P(giảm/tăng vượt ngưỡng) CTD</th><th class="n">P(giảm/tăng vượt ngưỡng) NTC</th></tr></thead><tbody>${fcRows}</tbody></table></div><p class="small mute">${E(r.fc.note)} Xác suất tính từ phân phối log-chuẩn của dự báo (khoảng 80% ↔ ±1,28σ), so với đơn giá HĐ ± ngưỡng. Độ tin cậy thấp – dùng để ưu tiên theo dõi, không thay thế báo giá.</p>` : '<p class="small mute">Chưa có dự báo cho mục này.</p>'}`;
   dlg.showModal(); if (push) history.replaceState(null, "", `?r=${st.r === "cmp" ? reg : st.r}&code=${encodeURIComponent(code)}`);
   if (m.value != null) { drawChart(r, "d"); $("#cg").onclick = e => { const b = e.target.closest("button"); if (!b) return; $("#cg").querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); drawChart(r, b.dataset.k); }; }
@@ -252,6 +281,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   if (chart) chart.destroy();
   let pts = mode === "d" ? r.series.d.map(([d, v]) => [HUB.date(d), v]) : r.series.m.map(([m, v]) => [m.slice(5) + "/" + m.slice(0, 4), v]);
   if (!pts.length) pts = [[HUB.date(r.market.as_of), r.market.value]];
+  if (pts.length === 1) pts = [[pts[0][0], pts[0][1]], [pts[0][0] + " ", pts[0][1]]];  // 1 điểm: nhân đôi để vẽ được đường đơn giá/ngưỡng
   const labels = pts.map(p => p[0]), n0 = labels.length; let fc = [];
   if (mode === "m" && r.fc?.h) {
    const lastM = r.series.m.length ? r.series.m[r.series.m.length - 1][0] : (r.market.as_of || "").slice(0, 7);
@@ -262,7 +292,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const band = (base, thr, col, name) => { if (!base) return; ds.push({label: `${name} +${thr}%`, data: flat(base * (1 + thr / 100)), borderWidth: 0, pointRadius: 0, fill: false},
    {label: `${name} −${thr}%`, data: flat(base * (1 - thr / 100)), borderWidth: 0, pointRadius: 0, backgroundColor: col, fill: "-1"},
    {label: `Đơn giá ${name}`, data: flat(base), borderColor: col.slice(0, 7), borderDash: [6, 4], borderWidth: 1.6, pointRadius: 0, fill: false}); };
-  band(r.ctd, r.thr_ctd_pct, "#14325a22", "CTD"); band(r.ntc, r.thr_ntc_pct, "#b08d5733", "NTC");
+  band(bx(r, "ctd"), r.thr_ctd_pct, "#14325a22", st.v === "incl" ? "CTD ÷1,08" : "CTD"); band(bx(r, "ntc"), r.thr_ntc_pct, "#b08d5733", st.v === "incl" ? "NTC ÷1,08" : "NTC");
   ds.push({label: "Giá thị trường", data: pts.map(p => p[1]).concat(Array(N - n0).fill(null)), borderColor: "#0e1a2b", backgroundColor: "#0e1a2b", borderWidth: 2.4, pointRadius: n0 < 40 ? 3 : 0, tension: .2, fill: false});
   if (fc.length) {
    const lead = Array(n0 - 1).fill(null).concat([pts[n0 - 1][1]]);
@@ -285,8 +315,8 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const h = st.fh, b = st.fb, rows = ROWS.filter(r => r.fc?.h?.[h] && r[b] && (st.fr === "all" || r.region === st.fr)).sort((x, y) => y.fc.h[h].pct - x.fc.h[h].pct);
   $("#fc-sub").innerHTML = `Xếp theo % thay đổi dự báo ${h} tháng (cao nhất = sắp tăng nhất). Xác suất = khả năng giá ${h} tháng tới vượt ngưỡng so với đơn giá ${b.toUpperCase()}. Dự báo xây dựng ${D.forecast_generated ? "lúc " + D.forecast_generated.replace("T", " ") : ""} từ mô hình trang <a href="forecast.html">Dự báo</a> + yếu tố đã biết (xi măng tăng 70.000 đ/tấn bao, 100.000 đ/tấn rời từ 05/10/2026).`;
   $("#fct").innerHTML = `<thead><tr><th>#</th><th>Mã</th><th>Miền</th><th>Mô tả</th><th class="n">Giá TT nay</th><th class="n">Dự báo ${h}T</th><th>% thay đổi</th><th class="n">Khoảng 80%</th><th class="n">Lệch dự báo vs ${b.toUpperCase()}</th><th class="n">P(vượt ngưỡng TĂNG)</th><th class="n">P(vượt ngưỡng GIẢM)</th><th class="n">Tỷ trọng</th></tr></thead><tbody>` +
-   (rows.map((r, i) => { const f = r.fc.h[h], dv = (f.base / r[b] - 1) * 100; return `<tr><td>${i + 1}</td><td><a href="#" data-open="${r.region}|${E(r.code)}"><b>${E(r.code)}</b></a></td><td>${r.region_name}</td><td>${E(r.desc)}</td><td class="n">${num(r.market.value)}</td><td class="n">${num(f.base)}</td><td>${pc(f.pct)}</td><td class="n small">${num(f.lo)} – ${num(f.hi)}</td><td class="n">${pc(dv)}</td>
-    <td class="n"><b class="${f["p_up_" + b] >= 50 ? "up" : ""}">${f["p_up_" + b].toFixed(0)}%</b></td><td class="n"><b class="${f["p_down_" + b] >= 50 ? "down" : ""}">${f["p_down_" + b].toFixed(0)}%</b></td><td class="n">${r.weight_pct != null ? r.weight_pct.toFixed(2).replace(".", ",") + "%" : "–"}</td></tr>`; }).join("") || '<tr><td colspan="12" class="empty">Chưa có dự báo.</td></tr>') + "</tbody>";
+   (rows.map((r, i) => { const f = r.fc.h[h], dv = (f.base / bx(r, b) - 1) * 100; return `<tr><td>${i + 1}</td><td><a href="#" data-open="${r.region}|${E(r.code)}"><b>${E(r.code)}</b></a></td><td>${r.region_name}</td><td>${E(r.desc)}</td><td class="n">${num(r.market.value)}</td><td class="n">${num(f.base)}</td><td>${pc(f.pct)}</td><td class="n small">${num(f.lo)} – ${num(f.hi)}</td><td class="n">${pc(dv)}</td>
+    <td class="n"><b class="${pk(f, "p_up_" + b) >= 50 ? "up" : ""}">${(pk(f, "p_up_" + b) ?? 0).toFixed(0)}%</b></td><td class="n"><b class="${pk(f, "p_down_" + b) >= 50 ? "down" : ""}">${(pk(f, "p_down_" + b) ?? 0).toFixed(0)}%</b></td><td class="n">${r.weight_pct != null ? r.weight_pct.toFixed(2).replace(".", ",") + "%" : "–"}</td></tr>`; }).join("") || '<tr><td colspan="12" class="empty">Chưa có dự báo.</td></tr>') + "</tbody>";
  };
  // Methodology
  const MISS = ROWS.filter(r => r.market.value == null);
@@ -294,7 +324,9 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   <li><b>Hợp đồng:</b> ${E(C.name)} · phiên bản ${E(C.version)} · hiệu lực ${date(C.effective_date)} · ${ROWS.length} dòng (${E(C.note || "")}). Đơn giá lưu tại <code>data/registry/contract_baselines.json</code> (sửa/nhập phiên bản mới bằng <code>dieu_chinh/import_tsv.py</code>); ánh xạ nguồn giá tại <code>data/registry/contract_market_map.json</code>.</li>
   <li><b>Quy tắc:</b> % lệch = giá thị trường ÷ đơn giá HĐ − 1. <span class="bd down">Vượt ngưỡng GIẢM</span> khi % lệch &lt; −ngưỡng → Chủ đầu tư có cơ sở đề nghị điều chỉnh giảm; <span class="bd up">Vượt ngưỡng TĂNG</span> khi % lệch &gt; +ngưỡng; <span class="near">⚠ sắp chạm</span> khi còn ≤ ${String(NEAR).replace(".", ",")} điểm %. Ô đơn giá trống trong HĐ → “không áp dụng”.</li>
   <li><b>Tác động</b> = tỷ trọng × % lệch (điểm % giá trị HĐ nếu điều chỉnh toàn bộ chênh lệch); rê chuột để xem phương án chỉ điều chỉnh phần vượt ngưỡng. Tỷ trọng chỉ có ở các dòng HĐ có ghi.</li>
-  <li><b>Độ tin cậy dữ liệu:</b> <span class="q A">A</span> ${E(QT.A.slice(4))}; <span class="q B">B</span> ${E(QT.B.slice(4))}; <span class="q C">C</span> ${E(QT.C.slice(4))}. Giá web là giá tham khảo, thường chưa VAT, chưa chiết khấu dự án.</li>
+  <li><b>Độ tin cậy dữ liệu:</b> <span class="q A">A</span> ${E(QT.A.slice(4))}; <span class="q B">B</span> ${E(QT.B.slice(4))}; <span class="q C">C</span> ${E(QT.C.slice(4))}. Giá web là giá tham khảo, chưa chiết khấu dự án.</li>
+  <li><b>Cơ sở VAT & quy cách:</b> mọi giá thị trường được quy về <b>chưa VAT</b>: nguồn ghi “đã gồm VAT” chia 1,08 (${E(C.vat_note || "")}); nguồn không nêu VAT được coi là chưa VAT và hiện thêm dòng “nếu nguồn đã gồm VAT”. Bê tông miền Nam báo độ sụt 10±2 được cộng phụ phí tăng sụt của chính NCC để về 12±2 như HĐ. Vữa AAC = đ/kg × 70 kg/m³, skimcoat = đ/kg × 1 kg/m², phụ gia Latex theo lít, gạch AAC theo m³ – đúng đơn vị HĐ. Điều kiện giao (đến công trình / tại nhà máy / tại kho) ghi ở từng dòng (ⓘ) – giá tại nhà máy/kho chưa gồm cước nên có thể thấp hơn giá giao đến công trình trong HĐ.</li>
+  <li><b>Đơn giá HĐ có VAT hay không?</b> Chưa xác nhận. Dùng nút <i>“Đơn giá HĐ đã gồm VAT?”</i> phía trên bảng: “Chưa gồm VAT” so trực tiếp; “Đã gồm VAT” so với đơn giá ÷ 1,08; “Chưa rõ” hiển thị cả hai (bảng chính theo giả định chưa VAT). Lựa chọn được ghi nhớ trên trình duyệt này.</li>
   <li><b>Tần suất:</b> bảng giá NCC/nhà máy được lấy tự động 5 lần/ngày (06:05–18:05 giờ VN) nhưng NCC chỉ đổi bảng giá theo đợt; công bố giá Sở XD TP.HCM theo tháng, Sở XD Hà Nội theo quý (nhập tay). Chuỗi ngày tích lũy từ khi bắt đầu theo dõi (10/2026) nên đồ thị còn ngắn.</li>
   <li><b>Suy diễn:</b> M500–M700 miền Bắc theo tỷ lệ mác trong HĐ × giá M450; M650 miền Nam nội suy M600–M700; vữa M50/M75 theo định mức cấp phối (176 kg XM + 1,11 m³ cát; 247 kg + 1,09 m³ – vữa XM cát mịn, PCB40) áp vào đơn giá NTC; vữa AAC × 70 kg/m³ và skimcoat × 1 kg/m² theo định mức ghi trong HĐ.</li>
   <li><b>Thiếu dữ liệu (${MISS.length} dòng):</b> ${MISS.map(r => `${r.region_name} ${E(r.code)}`).join(", ")}. Không bao giờ tự điền giá khi không có nguồn.</li>
@@ -305,17 +337,21 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
  // CSV export of current view
  $("#bcsv").onclick = () => {
   const reg = st.r === "cmp" ? null : st.r, rows = ROWS.filter(r => (!reg || r.region === reg) && match(r));
-  const H = ["Miền", "Nhóm", "Mã", "Mô tả", "ĐVT", "Tỷ trọng (%)", "Đơn giá CTD", "Đơn giá NTC", "Giá thị trường", "Ngày giá", "Nguồn/cách xác định", "Độ tin cậy", "% lệch vs CTD", "Ngưỡng CTD (±%)", "Trạng thái CTD", "% lệch vs NTC", "Ngưỡng NTC (±%)", "Trạng thái NTC", "Tác động CTD (điểm %)", "Tác động NTC (điểm %)"];
+  const H = ["Miền", "Nhóm", "Mã", "Mô tả", "ĐVT", "Tỷ trọng (%)", "Đơn giá CTD", "Đơn giá NTC", "Giá thị trường", "Ngày giá", "Nguồn/cách xác định", "Độ tin cậy", "% lệch vs CTD", "Ngưỡng CTD (±%)", "Trạng thái CTD", "% lệch vs NTC", "Ngưỡng NTC (±%)", "Trạng thái NTC", "Tác động CTD (điểm %)", "Tác động NTC (điểm %)", "Cơ sở so sánh", "Giả định VAT đơn giá HĐ", "% lệch vs CTD nếu HĐ gồm VAT", "% lệch vs NTC nếu HĐ gồm VAT"];
   const s = e => e.status === "na" ? ST.na : ST[e.status] + (e.near ? " (sắp chạm)" : "");
   const L = rows.map(r => [r.region_name, r.group, r.code, r.desc, r.unit, r.weight_pct ?? "", r.ctd ?? "", r.ntc ?? "", r.market.value != null ? Math.round(r.market.value * 100) / 100 : "", r.market.as_of || "",
    r.market.value != null ? (r.market.method === "median" ? (r.market.sources || []).filter(x => !x.missing && x.role !== "check").map(x => x.src).join("; ") : METH[r.market.method]) : "Thiếu dữ liệu", r.market.quality || "",
-   r.eval.ctd.dev ?? "", r.thr_ctd_pct, s(r.eval.ctd), r.eval.ntc.dev ?? "", r.thr_ntc_pct, s(r.eval.ntc), r.eval.ctd.impact ?? "", r.eval.ntc.impact ?? ""]);
+   r.eval.ctd.dev ?? "", r.thr_ctd_pct, s(r.eval.ctd), r.eval.ntc.dev ?? "", r.thr_ntc_pct, s(r.eval.ntc), r.eval.ctd.impact ?? "", r.eval.ntc.impact ?? "", r.basis_text || "", st.v === "incl" ? "đã gồm VAT (÷1,08)" : st.v === "excl" ? "chưa gồm VAT" : "chưa rõ (bảng theo giả định chưa VAT)", r.evals?.incl.ctd.dev ?? "", r.evals?.incl.ntc.dev ?? ""]);
   const csv = "\ufeff" + [H, ...L].map(a => a.map(v => { v = String(v); return /[",\n;]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; }).join(",")).join("\r\n");
   const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], {type: "text/csv;charset=utf-8"})); a.download = `dieu-chinh-gia-${reg || "2-mien"}-${D.generated.slice(0, 10)}.csv`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
  };
  $("#bprint").onclick = () => print();
  const seg = (id, key, cb) => $(id).addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; $(id).querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); st[key] = b.dataset.k; cb(); });
- const render = () => { kpis(); table(); };
+ const vatHint = () => { $("#vathint").innerHTML = st.v === "unknown" ? `Đang hiển thị theo giả định <b>đơn giá HĐ chưa VAT</b>; dòng nhỏ “Nếu HĐ gồm VAT” cho kết quả nếu đơn giá đã gồm VAT 8%. Giá thị trường luôn được quy về chưa VAT.`
+   : st.v === "incl" ? `So sánh với đơn giá HĐ ÷ 1,08 (bỏ VAT 8%). Giá thị trường đã quy về chưa VAT.` : `So sánh trực tiếp đơn giá HĐ với giá thị trường chưa VAT.`;
+  $("#vat").querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.k === st.v)); };
+ const render = () => { applyVat(); vatHint(); kpis(); table(); };
+ seg("#vat", "v", () => { try { localStorage.setItem(VK, st.v); } catch (e) {} render(); fcTable(); });
  seg("#rg", "r", () => { history.replaceState(null, "", `?r=${st.r}`); render(); }); seg("#sf", "f", table); seg("#fh", "fh", fcTable); seg("#fb", "fb", fcTable); seg("#fr", "fr", fcTable);
  $("#rg").querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.k === st.r));
  $("#q").oninput = () => { st.q = $("#q").value.trim(); table(); }; $("#onlyw").onchange = () => { st.w = $("#onlyw").checked; table(); };

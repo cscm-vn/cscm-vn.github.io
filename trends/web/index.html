@@ -59,7 +59,8 @@
   el.innerHTML = `<h2>⚖️ Điều chỉnh giá HĐ tổng thầu <a class="small" href="dieu-chinh.html">mở bảng theo dõi →</a></h2>
    <div class="g">${(S.bac ? box("bac", "Miền Bắc") : "") + (S.nam ? box("nam", "Miền Nam") : "")}</div>
    ${c.top.length ? `<ul>${c.top.slice(0, 4).map(x => `<li><a href="dieu-chinh.html?r=${x.region}&code=${encodeURIComponent(x.code)}"><b>${E(x.code)}</b></a> ${x.region_name}${x.weight ? ` (tỷ trọng ${String(x.weight).replace(".", ",")}%)` : ""}: thị trường ${x.hits.map(h => `<span class="${h.dev < 0 ? "down" : "up"}">${f(h.dev)}</span> so với ${h.base}`).join(", ")} → ${x.status === "down" ? "vượt ngưỡng GIẢM" : "vượt ngưỡng TĂNG"} <span class="mute small">(dữ liệu ${x.quality})</span></li>`).join("")}</ul>` : ""}
-   <div class="small mute" style="margin-top:6px">HĐ ${E(c.name)} v${E(c.version)} · so sánh giá thị trường với đơn giá CTD/NTC, ngưỡng ±3% / ±5%.</div>`;
+   <div class="small mute" style="margin-top:6px">HĐ ${E(c.name)} v${E(c.version)} · so sánh giá thị trường (quy về chưa VAT) với đơn giá CTD/NTC, ngưỡng ±3% / ±5%.</div>
+   ${c.summary_if_contract_incl_vat ? `<div class="small" style="margin-top:4px;color:#8a5a00">⚠ Số trên giả định đơn giá HĐ <b>chưa gồm VAT</b> (chưa xác nhận). Nếu đơn giá HĐ đã gồm VAT: vượt ngưỡng GIẢM ${c.summary_if_contract_incl_vat.all.ctd.down} CTD · ${c.summary_if_contract_incl_vat.all.ntc.down} NTC; TĂNG ${c.summary_if_contract_incl_vat.all.ctd.up} CTD · ${c.summary_if_contract_incl_vat.all.ntc.up} NTC – <a href="dieu-chinh.html">chọn cơ sở VAT trên trang</a>.</div>` : ""}`;
   el.hidden = false; });
  const cnt = {}; const add = (k, f) => { cnt[k] ||= {p: 0, t: 0, m: 0}; cnt[k][f]++; };
  h.items.forEach(x => add(t.byId[x.tax].parent.id, "p")); tr.items.forEach(x => add(x.l1, "t"));
