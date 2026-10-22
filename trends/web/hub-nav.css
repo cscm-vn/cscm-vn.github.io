@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&display=swap&subset=vietnamese");
-/* Shared header – Masterise Procurement Hub design system (also injected into gia.html & forecast.html) */
+/* Shared header – Masterise Construction SCM Hub design system (also injected into gia.html & forecast.html) */
 :root{--serif:"Lora","Noto Serif","Times New Roman",serif;--pri:#14325a;--pri2:#eef2f8;--gold:#b08d57;--gold2:#f6efe3;--navy:#0e1a2b;--line:#e7e3da;--ink:#1a2233;--mute:#6b7280}
 .hn-bar{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1a2b,#12233b);color:#fff;box-shadow:0 1px 0 #b08d5733,0 6px 20px #0e1a2b26;font:14px/1.5 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
 .hn-bar a{text-decoration:none}
 .hn-in{max-width:1320px;margin:auto;display:flex;align-items:center;gap:6px;padding:0 16px;height:58px}
 .hn-logo{display:flex;align-items:center;gap:9px;color:#fff;margin-right:14px;white-space:nowrap;font-weight:600;letter-spacing:.2px}
 .hn-logo i{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#c9a96e,#8f6f3e);color:#0e1a2b;font-style:normal;font-weight:800;font-family:"Lora","Noto Serif","Times New Roman",serif;font-size:17px}
-.hn-logo span{display:flex;flex-direction:column;line-height:1.1}.hn-logo b{font-family:"Lora","Noto Serif","Times New Roman",serif;font-size:16px;font-weight:600;letter-spacing:.4px}
+.hn-logo .hn-word{display:flex;flex-direction:column;line-height:1.1}.hn-logo .hn-word small{white-space:nowrap}.hn-logo b{font-family:"Lora","Noto Serif","Times New Roman",serif;font-size:16px;font-weight:600;letter-spacing:.4px}
 .hn-logo small{font-size:10.5px;font-weight:500;color:#c9a96e;letter-spacing:1.6px;text-transform:uppercase;margin-top:2px}
 .hn-links{display:flex;gap:1px;flex:1;align-items:center}
 .hn-links a,.hn-links button{color:#cdd6e3;padding:7px 10px;border-radius:7px;font-size:13.5px;background:none;border:0;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s,color .15s}
@@ -39,4 +39,14 @@
 .hn-vchart svg{display:block;width:100%;height:120px;background:linear-gradient(#f6f4ef 1px,transparent 1px) 0 0/100% 30px}.hn-vchart .vb rect+rect,.hn-vchart .vb rect:nth-child(2){fill:#14325a}.hn-vchart .vb rect.na{fill:#d9d3c6!important}.hn-vchart .vb.on rect:nth-child(2),.hn-vchart .vb:hover rect:nth-child(2){fill:#b08d57}
 .hn-vchart .vc-x{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:12px;color:var(--mute)}.hn-vchart .vc-tip{color:#14325a;font-weight:600;text-align:center}.hn-vchart .vc-f{margin-top:4px;text-align:right}.hn-vchart .vc-empty{color:var(--mute);text-align:center;padding:14px}
 @media (max-width:560px){.hn-views{border-radius:14px;gap:6px 14px;padding:9px 14px}.hn-views small{font-size:10px;letter-spacing:.3px}}
+/* Logo crest + periodic light sweep (masked to the crest shape) */
+.hn-mark{position:relative;display:inline-block;width:27px;height:38px;flex:none}
+.hn-mark img{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1.5px #0008)}
+.hn-glint{position:absolute;inset:0;pointer-events:none;-webkit-mask:url(masterise-logo.svg) center/contain no-repeat;mask:url(masterise-logo.svg) center/contain no-repeat;
+ background:linear-gradient(115deg,transparent 38%,#fff7e000 42%,#fff8e6d9 50%,#fff7e000 58%,transparent 62%);background-size:300% 100%;background-position:120% 0;mix-blend-mode:screen;animation:hnglint 5.2s ease-in-out 1.2s infinite}
+.hn-logo:hover .hn-glint,.hn-logo:focus-visible .hn-glint{animation:hnglint-h .9s ease-out 1}
+@keyframes hnglint{0%,72%{background-position:120% 0}100%{background-position:-20% 0}}
+@keyframes hnglint-h{from{background-position:120% 0}to{background-position:-20% 0}}
+.hn-logo .hn-word b{font-size:17px;letter-spacing:.5px}.hn-logo .hn-word small{font-family:var(--serif);letter-spacing:1.3px;font-size:10px}
+@media (max-width:560px){.hn-logo small{display:block!important}.hn-logo .hn-long{display:none}.hn-mark{width:22px;height:31px}.hn-logo .hn-word b{font-size:15px}.hn-logo .hn-word small{font-size:9px;letter-spacing:1.4px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

@@ -148,5 +148,7 @@ def main():
             t = open(f, encoding="utf-8", errors="strict").read(); n = unicodedata.normalize("NFC", t)
             if f.endswith(".html") and "data-goatcounter" not in n and "</head>" in n:  # page-view analytics on every page
                 n = n.replace("</head>", GC + "</head>", 1)
+            if f.endswith(".html") and "apple-touch-icon" not in n and "</head>" in n:  # brand icons on every page
+                n = n.replace("</head>", '<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#0e1a2b"></head>', 1)
             if n != t: open(f, "w", encoding="utf-8").write(n)
 if __name__ == "__main__": main()

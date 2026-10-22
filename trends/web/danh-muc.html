@@ -1,5 +1,5 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Danh mục – Masterise Procurement Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<title>Danh mục – Masterise Construction SCM Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
 <body class="hub" data-page="cat"><div id="hubnav"></div>
 <main class="wrap" id="main"><div class="crumb" id="crumb"></div>
 <div class="layout"><aside class="side" id="side"></aside><section>
@@ -15,7 +15,7 @@
  const C = h.compare.filter(x => ids.includes(x.tax)); const S = (scm?.categories || []).filter(x => x.tax.some(id => ids.includes(id))); const FC = (fc?.items || []).filter(x => ids.includes(x.tax));
  const counts = {}; h.items.forEach(x => counts[x.tax] = (counts[x.tax] || 0) + 1); tr.items.forEach(x => x.tax.forEach(id => counts[id] = (counts[id] || 0) + 1));
  HUB.sidebar(document.getElementById("side"), c, counts);
- document.title = node.name + " – Masterise Procurement Hub";
+ document.title = node.name + " – Masterise Construction SCM Hub";
  HUB.crumb(node.level === 1 ? [`<b>${node.icon} ${E(node.name)}</b>`] : [HUB.catLink(node.parent.id, node.parent.icon + " " + node.parent.name), `<b>${E(node.name)}</b>`]);
  document.getElementById("title").textContent = (node.icon || node.parent.icon) + " " + node.name;
  document.getElementById("desc").textContent = `${P.length} mã giá · ${C.length} so sánh Hà Nội/TP.HCM · ${T.length} xu hướng · ${M.length + F.length} tin`;

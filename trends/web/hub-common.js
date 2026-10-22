@@ -22,7 +22,7 @@ HUB.nav = async () => {
   const fc = cfg.forecast_page;
   const L = [["gia.html","Bảng giá","gia"],[fc || "#", "Dự báo" + (fc ? "" : " (sắp có)"),"dubao"],["xu-huong.html","Xu hướng","xuhuong"],["thi-truong.html","Thị trường","thitruong"],["scm.html","SCM","scm"],["nha-thau.html","Nhà thầu & CĐT","nhathau"],["thang.html","Tháng/năm","thang"],["huong-dan.html","Hướng dẫn","huongdan"]];
   host.innerHTML = `<div class="hn-bar"><div class="hn-in"><a class="skip" href="#main">Bỏ qua điều hướng</a><button class="hn-burger" aria-label="Mở menu" aria-expanded="false">☰</button>
-   <a class="hn-logo" href="index.html" aria-label="Trang chủ – Masterise Procurement Hub"><i>M</i><span><b>Masterise</b><small>Procurement Hub</small></span></a>
+   <a class="hn-logo" href="index.html" aria-label="Trang chủ – Masterise Construction SCM Hub"><span class="hn-mark" aria-hidden="true"><img src="masterise-logo.svg" alt="" width="27" height="38" decoding="async"><span class="hn-glint"></span></span><span class="hn-word"><b>Masterise</b><small><span class="hn-long">Construction </span>SCM Hub</small></span></a>
    <nav class="hn-links" aria-label="Điều hướng chính"><button class="hn-mega-btn" aria-expanded="false" aria-haspopup="true">Danh mục ▾</button>${L.map(([h,l,k]) => `<a href="${h}" class="${k===page?"on":""}">${l}</a>`).join("")}</nav>
    <div class="hn-search"><input type="search" placeholder="Tìm vật tư, tin… (/)" aria-label="Tìm kiếm"><div class="hn-res"></div></div></div>
    <div class="mega"><div class="mega-in">${t ? t.tree.map(n => `<div><h4>${n.icon} ${HUB.catLink(n.id, n.name)}</h4><ul>${n.children.map(c => `<li>${HUB.catLink(c.id, c.name)}</li>`).join("")}</ul></div>`).join("") : ""}</div></div></div>`;
