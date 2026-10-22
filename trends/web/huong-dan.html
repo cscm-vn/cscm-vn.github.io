@@ -11,6 +11,7 @@
 <div class="grid g2">
  <div class="card"><h3><a href="index.html">🏠 Trang chủ</a></h3>Bức tranh 5 giây: chỉ số chính (tỷ giá, đồng, nhôm, thép, quặng sắt, vàng), top xu hướng, biến động giá lớn nhất tháng, so sánh Hà Nội – TP.HCM, tín hiệu cung–cầu.</div>
  <div class="card"><h3><a href="gia.html">💲 Bảng giá</a></h3>Toàn bộ giá theo nguồn: thế giới (LME, CME, SHFE…) và Việt Nam (thép, xi măng, cát, đá, công bố giá Sở XD). Tìm kiếm không dấu, lọc nhóm/khu vực, xem lịch sử, tải CSV/Excel.</div>
+ <div class="card"><h3><a href="dieu-chinh.html">⚖️ Điều chỉnh giá HĐ</a></h3>Theo dõi hằng ngày giá thị trường so với đơn giá nguyên tắc HĐ tổng thầu (CTD / NTC) theo miền; báo mục vượt ngưỡng điều chỉnh, tác động lên giá trị HĐ và xác suất vượt ngưỡng 3–12 tháng. Xem mục 5 bên dưới.</div>
  <div class="card"><h3><a href="forecast.html">📈 Dự báo</a></h3>Ước lượng 3–6–12 tháng kèm khoảng P10–P90, độ tin cậy và động lực chính; so sánh HN/HCM; chỉ số chi phí đầu vào MEP; sai số kiểm định (MAPE).</div>
  <div class="card"><h3><a href="danh-muc.html">🗂️ Danh mục / Mặt hàng</a></h3>Đi sâu từng nhóm vật tư (VD: cốt thép, xi măng, MEP): bảng giá, so sánh HN/HCM, tin liên quan; trang mặt hàng có biểu đồ và bảng giá theo tháng.</div>
  <div class="card"><h3><a href="xu-huong.html">🧭 Xu hướng</a> · <a href="thi-truong.html">🏙️ Thị trường</a></h3>Xu hướng vật liệu/thiết kế/công nghệ và tin thị trường BĐS theo phân khúc (hạng sang, cao cấp…) – có nguồn và "hàm ý cho mua sắm".</div>
@@ -38,7 +39,18 @@
  <li>Xu hướng, Thị trường, Nhà thầu: tin biên tập có nguồn + tin tự động (Google News) cập nhật hằng ngày.</li>
 </ul></div>
 
-<h2>4. Lưu ý quan trọng</h2>
+<h2 id="dieu-chinh">4. Trang Điều chỉnh giá HĐ – đọc và dùng thế nào</h2>
+<div class="card"><ul>
+ <li><b>Mục đích:</b> phát hiện vật tư mà giá thị trường đã lệch khỏi đơn giá HĐ quá ngưỡng – <span class="down">▼ Vượt ngưỡng GIẢM</span> (Chủ đầu tư có cơ sở đề nghị điều chỉnh giảm) hoặc <span class="up">▲ Vượt ngưỡng TĂNG</span> (rủi ro nhà thầu đề nghị tăng). Ngưỡng: CTD ±3%; NTC ±3% với bê tông, ±5% vật tư khác. <b>⚠ sắp chạm</b> = còn ≤ 1 điểm % tới ngưỡng.</li>
+ <li><b>Bước 1 – chọn cơ sở VAT của đơn giá HĐ</b> (nút “Đơn giá HĐ (CTD/NTC) đã gồm VAT?” phía trên bảng). Đây là yếu tố quyết định: chênh 8% VAT lớn hơn cả ngưỡng 3%. “Chưa gồm VAT” so trực tiếp; “Đã gồm VAT” so với đơn giá ÷ 1,08; “Chưa rõ” hiện cả hai kết quả (bảng chính theo giả định chưa VAT, dòng nhỏ “Nếu HĐ gồm VAT”). Trang ghi nhớ lựa chọn trên trình duyệt.</li>
+ <li><b>Bước 2 – đọc “Cơ sở so sánh” (ⓘ dưới giá thị trường, rê chuột để xem đủ):</b> giá thị trường luôn được quy về <b>chưa VAT</b> (nguồn ghi đã gồm VAT → ÷ 1,08; nguồn không nêu VAT → coi là chưa VAT và có dòng “Nếu nguồn đã gồm VAT”); điều kiện giao (giao đến công trình / tại nhà máy / tại kho – giá tại nhà máy, kho chưa gồm cước); điều chỉnh quy cách (VD bê tông miền Nam báo độ sụt 10±2 được cộng phụ phí tăng sụt của NCC để về 12±2 như HĐ); quy đổi đơn vị (vữa AAC = đ/kg × 70 kg/m³, skimcoat = đ/kg × 1 kg/m², Latex theo lít, gạch AAC theo m³).</li>
+ <li><b>Bước 3 – kiểm tra độ tin cậy:</b> <span class="pill">A</span> cùng quy cách, bảng giá NCC/nhà máy; <span class="pill">B</span> công bố giá Sở XD, bảng tham khảo, quy đổi định mức, hoặc nguồn có điểm bất thường; <span class="pill">C</span> suy diễn từ chuỗi khác (VD M500–M700 miền Bắc theo tỷ lệ mác). Bấm một dòng để xem nguồn gốc, VAT, quy đổi, đồ thị ngày/tháng với dải ngưỡng và dự báo.</li>
+ <li><b>Bước 4 – trước khi gửi đề nghị điều chỉnh:</b> xin ≥2 báo giá cùng quy cách, cùng điều kiện giao, cùng cơ sở VAT; đối chiếu điều khoản HĐ (kỳ so sánh, chứng từ). Mục chỉ có 1 nguồn hoặc khác chủng loại (VD vữa xây mỏng chuyên dụng vs vữa HĐ) được ghi chú ⚠ – không dùng làm căn cứ duy nhất.</li>
+ <li><b>“Thiếu dữ liệu”:</b> không có nguồn công khai so sánh được (VD đơn giá gồm nhân công, hoặc chỉ có giá hệ trần trọn bộ) – trang không bao giờ tự điền giá.</li>
+ <li><b>Xuất dữ liệu:</b> CSV (bảng đang xem, kèm cơ sở so sánh và kết quả nếu HĐ gồm VAT), Excel (toàn bộ 2 miền), In (A4 ngang). Đơn giá HĐ lưu có phiên bản tại <code>data/registry/contract_baselines.json</code>.</li>
+</ul></div>
+
+<h2>5. Lưu ý quan trọng</h2>
 <div class="card"><ul>
  <li>Mọi giá là <b>tham khảo</b> từ nguồn công khai, <b>không phải báo giá chính thức</b>; giá thế giới quy đổi VND theo tỷ giá chuyển khoản Vietcombank, <b>chưa gồm thuế, phí, vận chuyển</b>.</li>
  <li>Chú ý đơn vị: VND/kg vs VND/tấn; USD/tấn (mét) vs USD/short ton (907 kg, giá CME Mỹ); USD/lb (đồng COMEX). Cột "Quy đổi VND" đã chuẩn hóa về VND/tấn.</li>
