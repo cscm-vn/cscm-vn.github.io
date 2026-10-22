@@ -100,3 +100,6 @@ main.wrap>*{animation:fadein .35s ease both}@keyframes fadein{from{opacity:0;tra
 .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
 @media (max-width:900px){.hero .grid.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:560px){h1{font-size:22px}.hero{padding:18px 12px 16px;border-radius:16px}.hero h1{font-size:23px}.hero .grid.kpis{grid-template-columns:1fr 1fr}.hk .v{font-size:17px}.hk{padding:10px 11px}.hk svg{height:24px}}
+
+/* no horizontal overflow on narrow screens (KPI tiles with long labels, inline code) */
+.grid.kpis>*{min-width:0;overflow-wrap:anywhere}code{overflow-wrap:anywhere}

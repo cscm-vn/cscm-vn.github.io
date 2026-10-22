@@ -58,3 +58,17 @@ Quy tắc: mọi số liệu phải có trong nguồn ghi kèm; FOB/giả địn
 1. Tin nhà thầu/CĐT: thêm mục `market` có `org`/`org_type` vào seed ngày (trúng thầu, backlog, KQKD, mở bán, giá/m², tiêu chuẩn bàn giao, NCC được chỉ định).
 2. Nếu có thay đổi cung cầu đáng kể → sửa `trends/seed/scm_*.py`, chạy lại → commit `trends/data/scm.json`.
 3. Kiểm thử: `python3 trends/test_v3.py http://127.0.0.1:PORT/` (360/390/768/1366, ảnh `screenshots/v3_*.png`).
+
+## Hợp đồng & Pháp lý (`hop-dong.html`)
+| Tệp | Nội dung | Ai ghi |
+|---|---|---|
+| `trends/data/legal.json` | Văn bản pháp luật (số hiệu, ban hành, hiệu lực, tóm tắt, tác động HĐ, nguồn) | `trends/hopdong/build_data.py` (biên tập) |
+| `trends/data/fidic.json` | Điều khoản FIDIC 2017 tóm tắt + so sánh quy định VN (không trích nguyên văn) | như trên |
+| `trends/data/trade-remedies.json` | Vụ việc PVTM: mã vụ, sản phẩm, xuất xứ, QĐ, ngày, mức thuế, mã HS, `status` = dang-ap-dung / dang-ra-soat / dang-dieu-tra / da-ket-thuc | như trên |
+| `trends/data/disputes.json` | Tranh chấp & án lệ: các bên, vấn đề, kết quả, bài học | như trên |
+| `trends/data/quiz.json` | Ngân hàng câu hỏi (≥60), `answer` = chỉ số đáp án, `sources` | như trên |
+| `trends/data/checklist.json` | Checklist rà soát HĐ | như trên |
+| `trends/data/legal-feed.json` | Tin quét tự động, `reviewed:false` – KHÔNG phải nội dung biên tập | `trends/legal_feed.py` (GitHub Actions) |
+
+Mọi tệp có `schema_version`, `reviewed` (ngày biên tập gần nhất). Quy tắc: mỗi mục phải có `sources` là URL đã mở và kiểm chứng; không kiểm chứng được thì bỏ. Thêm nguồn quét: sửa `Q`/`OFFICIAL` trong `legal_feed.py`.
+QA: `python trends/hopdong/qa.py <BASE_URL> [--shots]` (tràn ngang mọi trang ở 360–1920px, hỏi đáp, xoay vòng câu hỏi).
