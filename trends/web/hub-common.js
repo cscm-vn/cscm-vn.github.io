@@ -47,6 +47,25 @@ HUB.nav = async () => {
     res.style.display = "block";
   };
   inp.onkeydown = e => { if (e.key === "Enter") { const a = res.querySelector("a"); if (a) location.href = a.href; } };
+  HUB.views();
+};
+// Lượt xem (GoatCounter public counter API). Lỗi mạng => ẩn widget, không ném lỗi.
+HUB.views = async () => {
+  if (document.querySelector(".hn-views")) return;
+  const GC = "https://cscm-vn.goatcounter.com/counter/", nf = new Intl.NumberFormat("vi-VN");
+  const get = async p => { try { const c = new AbortController(); const t = setTimeout(() => c.abort(), 6000);
+    const r = await fetch(GC + p, {signal: c.signal, credentials: "omit"}); clearTimeout(t); if (!r.ok) return null;
+    const j = await r.json(); return +String(j.count).replace(/\D/g, "") || 0; } catch (e) { return null; } };
+  const day = new Date().toISOString().slice(0, 10);  // GoatCounter tính theo ngày UTC (từ 07:00 giờ VN)
+  const home = /(^|\/)(index\.html)?$/.test(location.pathname);
+  const [tot, today, p1, p2] = await Promise.all([get("TOTAL.json"), get("TOTAL.json?start=" + day),
+    home ? get("%2F.json") : null, home ? get("%2Findex.html.json") : null]);
+  if (tot == null) return;
+  const el = document.createElement("div"); el.className = "hn-views"; el.setAttribute("aria-label", "Thống kê lượt xem");
+  const it = (l, v, tip) => v == null ? "" : `<span title="${tip || ""}"><small>${l}</small><b>${nf.format(v)}</b></span>`;
+  el.innerHTML = `<i aria-hidden="true">◉</i>` + it("Lượt xem hôm nay", today, "Tính từ 07:00 giờ Việt Nam (ngày UTC)") + it("Tổng lượt xem", tot, "Toàn trang, từ 22/10/2026") +
+    (home && (p1 != null || p2 != null) ? it("Trang chủ", (p1 || 0) + (p2 || 0)) : "");
+  document.body.appendChild(el);
 };
 HUB.sidebar = async (el, active, counts) => {
   if (!el) return; const t = await HUB.tax(); if (!t) return; const act = t.byId[active]; const open = act ? (act.level === 1 ? act.id : act.parent.id) : null;
