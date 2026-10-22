@@ -1,0 +1,646 @@
+{
+ "schema_version": 1,
+ "updated": "2026-10-22",
+ "groups": [
+  "Tổng thầu xây dựng",
+  "MEP",
+  "Hoàn thiện–nội thất",
+  "Thiết bị vệ sinh–bếp",
+  "Thiết bị điện",
+  "Vật liệu"
+ ],
+ "orgs": [
+  {
+   "name": "Duy Hòa Phát",
+   "type": "contractor",
+   "query": "\"Duy Hòa Phát\"",
+   "kws": [
+    "duy hoa phat"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN DUY HÒA PHÁT",
+   "short": "DUY HÒA PHÁT",
+   "group": "Thiết bị điện",
+   "official": true,
+   "brands": [
+    "Âm thanh – hình ảnh (AV)"
+   ],
+   "website": "https://duyhoaphat.vn",
+   "trust_query": true
+  },
+  {
+   "name": "Coteccons",
+   "type": "contractor",
+   "query": "\"Coteccons\"",
+   "kws": [
+    "coteccons"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "legal": "CÔNG TY CỔ PHẦN XÂY DỰNG COTECCONS",
+   "short": "COTECCONS",
+   "official": true,
+   "website": "https://coteccons.vn"
+  },
+  {
+   "name": "Newtecons",
+   "type": "contractor",
+   "query": "\"Newtecons\"",
+   "kws": [
+    "newtecons"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "legal": "CÔNG TY CỔ PHẦN ĐẦU TƯ XÂY DỰNG NEWTECONS",
+   "short": "NEWTECONS",
+   "official": true,
+   "website": "https://newtecons.vn",
+   "trust_query": true
+  },
+  {
+   "name": "Ricons",
+   "type": "contractor",
+   "query": "\"Ricons\"",
+   "kws": [
+    "ricons"
+   ],
+   "group": "Tổng thầu xây dựng"
+  },
+  {
+   "name": "Hòa Bình",
+   "type": "contractor",
+   "query": "\"Xây dựng Hòa Bình\" OR HBC tổng thầu",
+   "kws": [
+    "xay dung hoa binh",
+    "hoa binh corporation",
+    "hbc "
+   ],
+   "group": "Tổng thầu xây dựng"
+  },
+  {
+   "name": "Hawee",
+   "type": "contractor",
+   "query": "\"Hawee\"",
+   "kws": [
+    "hawee"
+   ],
+   "group": "MEP",
+   "legal": "CÔNG TY CỔ PHẦN HAWEE CƠ ĐIỆN",
+   "short": "HAWEE",
+   "official": true,
+   "website": "https://hawee.com.vn",
+   "trust_query": true
+  },
+  {
+   "name": "Sigma",
+   "type": "contractor",
+   "query": "\"Sigma Engineering\" OR \"cơ điện Sigma\"",
+   "kws": [
+    "sigma engineering",
+    "co dien sigma",
+    "ky thuat sigma"
+   ],
+   "group": "MEP",
+   "legal": "CÔNG TY CỔ PHẦN KỸ THUẬT SIGMA",
+   "short": "SIGMA",
+   "official": true
+  },
+  {
+   "name": "Gold Mantis",
+   "type": "contractor",
+   "query": "\"Gold Mantis\" OR \"Kim Thập Tán\" OR 金螳螂 越南",
+   "kws": [
+    "gold mantis",
+    "kim thap tan",
+    "金螳螂"
+   ],
+   "group": "Hoàn thiện–nội thất"
+  },
+  {
+   "name": "TTT Corp",
+   "type": "contractor",
+   "query": "\"TTT Corp\" OR \"TTT Corporation\" cơ điện",
+   "kws": [
+    "ttt corp",
+    "ttt corporation"
+   ],
+   "group": "MEP"
+  },
+  {
+   "name": "DELTA",
+   "type": "contractor",
+   "query": "\"Delta Group\" xây dựng",
+   "kws": [
+    "delta group",
+    "tap doan xay dung delta"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "legal": "CÔNG TY TNHH TẬP ĐOÀN XÂY DỰNG DELTA",
+   "short": "DELTA",
+   "official": true,
+   "website": "https://deltagroup.vn"
+  },
+  {
+   "name": "Unicons",
+   "type": "contractor",
+   "query": "\"Unicons\"",
+   "kws": [
+    "unicons"
+   ],
+   "group": "Tổng thầu xây dựng"
+  },
+  {
+   "name": "REE M&E",
+   "type": "contractor",
+   "query": "\"REE M&E\" OR \"Cơ điện lạnh REE\"",
+   "kws": [
+    "ree m&e",
+    "co dien lanh ree",
+    "ree me"
+   ],
+   "group": "MEP"
+  },
+  {
+   "name": "Searefico",
+   "type": "contractor",
+   "query": "\"Searefico\"",
+   "kws": [
+    "searefico"
+   ],
+   "group": "MEP"
+  },
+  {
+   "name": "Vinaconex",
+   "type": "contractor",
+   "query": "\"Vinaconex\"",
+   "kws": [
+    "vinaconex"
+   ],
+   "group": "Tổng thầu xây dựng"
+  },
+  {
+   "name": "MIK Group",
+   "type": "developer",
+   "query": "\"MIK Group\"",
+   "kws": [
+    "mik group",
+    "mikgroup"
+   ]
+  },
+  {
+   "name": "Sun Group",
+   "type": "developer",
+   "query": "\"Sun Group\" bất động sản",
+   "kws": [
+    "sun group",
+    "sungroup",
+    "sun property"
+   ]
+  },
+  {
+   "name": "Vingroup / Vinhomes",
+   "type": "developer",
+   "query": "\"Vinhomes\"",
+   "kws": [
+    "vinhomes"
+   ]
+  },
+  {
+   "name": "Ecopark",
+   "type": "developer",
+   "query": "\"Ecopark\"",
+   "kws": [
+    "ecopark"
+   ]
+  },
+  {
+   "name": "CapitaLand",
+   "type": "developer",
+   "query": "\"CapitaLand\" Việt Nam",
+   "kws": [
+    "capitaland"
+   ]
+  },
+  {
+   "name": "Gamuda Land",
+   "type": "developer",
+   "query": "\"Gamuda Land\"",
+   "kws": [
+    "gamuda"
+   ]
+  },
+  {
+   "name": "Novaland",
+   "type": "developer",
+   "query": "\"Novaland\"",
+   "kws": [
+    "novaland"
+   ]
+  },
+  {
+   "name": "Nam Long",
+   "type": "developer",
+   "query": "\"Nam Long\" bất động sản",
+   "kws": [
+    "nam long"
+   ]
+  },
+  {
+   "name": "Văn Phú",
+   "type": "developer",
+   "query": "\"Văn Phú Invest\" OR \"Văn Phú – Invest\"",
+   "kws": [
+    "van phu invest",
+    "van phu - invest",
+    "van phu – invest"
+   ]
+  },
+  {
+   "name": "BRG",
+   "type": "developer",
+   "query": "\"BRG\" bất động sản",
+   "kws": [
+    "brg"
+   ]
+  },
+  {
+   "name": "Keppel",
+   "type": "developer",
+   "query": "\"Keppel\" Việt Nam bất động sản",
+   "kws": [
+    "keppel"
+   ]
+  },
+  {
+   "name": "Masterise Homes",
+   "type": "developer",
+   "query": "\"Masterise\"",
+   "kws": [
+    "masterise"
+   ]
+  },
+  {
+   "name": "SOL E&C",
+   "type": "contractor",
+   "query": "\"SOL E&C\"",
+   "kws": [
+    "sol e&c",
+    "sol e & c",
+    "xay dung sol"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN ĐẦU TƯ XÂY DỰNG SOL E&C",
+   "short": "SOL E&C",
+   "group": "Tổng thầu xây dựng",
+   "official": true,
+   "website": "https://solenc.vn",
+   "trust_query": true
+  },
+  {
+   "name": "CENTRAL",
+   "type": "contractor",
+   "query": "\"Xây dựng Central\" OR \"Central Cons\"",
+   "kws": [
+    "xay dung central",
+    "central cons",
+    "centralcons"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN XÂY DỰNG CENTRAL",
+   "short": "CENTRAL",
+   "group": "Tổng thầu xây dựng",
+   "official": true,
+   "website": "https://centralcons.vn",
+   "trust_query": true
+  },
+  {
+   "name": "Phước Thành",
+   "type": "contractor",
+   "query": "\"Xây dựng Phước Thành\"",
+   "kws": [
+    "xay dung phuoc thanh",
+    "phuoc thanh e&c"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN XÂY DỰNG PHƯỚC THÀNH",
+   "short": "PHƯỚC THÀNH",
+   "group": "Tổng thầu xây dựng",
+   "official": true,
+   "website": "https://phuocthanh.vn",
+   "trust_query": true
+  },
+  {
+   "name": "ECOBA",
+   "type": "contractor",
+   "query": "\"Ecoba Việt Nam\" OR \"Ecoba Vietnam\" OR \"Ecoba E&C\"",
+   "kws": [
+    "ecoba viet nam",
+    "ecoba vietnam",
+    "ecoba e&c",
+    "tap doan ecoba"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN ECOBA VIỆT NAM",
+   "short": "ECOBA",
+   "group": "Tổng thầu xây dựng",
+   "official": true,
+   "trust_query": true
+  },
+  {
+   "name": "Woodsland",
+   "type": "contractor",
+   "query": "\"Woodsland\"",
+   "kws": [
+    "woodsland"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN WOODSLAND",
+   "short": "WOODSLAND",
+   "group": "Hoàn thiện–nội thất",
+   "official": true,
+   "website": "https://woodsland.com",
+   "trust_query": true
+  },
+  {
+   "name": "Phương Trung",
+   "type": "contractor",
+   "query": "\"Gỗ Phương Trung\" OR \"Phuong Trung Woodwork\"",
+   "kws": [
+    "go phuong trung",
+    "phuong trung wood",
+    "che bien go phuong trung"
+   ],
+   "legal": "CÔNG TY TNHH CHẾ BIẾN GỖ PHƯƠNG TRUNG",
+   "short": "PHƯƠNG TRUNG",
+   "group": "Hoàn thiện–nội thất",
+   "official": true,
+   "trust_query": true
+  },
+  {
+   "name": "NAMIN (DURAVIT)",
+   "type": "contractor",
+   "query": "\"Duravit\" Việt Nam OR \"Namin\" thiết bị vệ sinh",
+   "kws": [
+    "duravit",
+    "namin "
+   ],
+   "legal": "CÔNG TY TNHH THƯƠNG MẠI NAM NAM",
+   "short": "NAMIN (DURAVIT)",
+   "group": "Thiết bị vệ sinh–bếp",
+   "official": true,
+   "brands": [
+    "Duravit"
+   ],
+   "website": "https://duravit.vn",
+   "note": "Website là của thương hiệu Duravit tại VN",
+   "trust_query": true
+  },
+  {
+   "name": "LIXIL (GROHE)",
+   "type": "contractor",
+   "query": "\"LIXIL\" Việt Nam OR \"GROHE\" Việt Nam",
+   "kws": [
+    "lixil",
+    "grohe",
+    " inax "
+   ],
+   "legal": "CÔNG TY TNHH LIXIL VIỆT NAM",
+   "short": "LIXIL (GROHE)",
+   "group": "Thiết bị vệ sinh–bếp",
+   "official": true,
+   "brands": [
+    "GROHE",
+    "American Standard",
+    "INAX",
+    "TOSTEM"
+   ],
+   "website": "https://lixil.com.vn",
+   "trust_query": true
+  },
+  {
+   "name": "KB HOME (MOEN)",
+   "type": "contractor",
+   "query": "\"KB Home\" Moen OR \"Moen\" Việt Nam",
+   "kws": [
+    "kb home",
+    "kbhome",
+    " moen "
+   ],
+   "legal": "CÔNG TY CỔ PHẦN ĐẦU TƯ KB HOME",
+   "short": "KB HOME (MOEN)",
+   "group": "Thiết bị vệ sinh–bếp",
+   "official": true,
+   "brands": [
+    "Moen"
+   ],
+   "website": "https://kbhome.vn",
+   "trust_query": true
+  },
+  {
+   "name": "Häfele",
+   "type": "contractor",
+   "query": "\"Hafele\" Việt Nam",
+   "kws": [
+    "hafele"
+   ],
+   "legal": "CÔNG TY TNHH HAFELE VIỆT NAM",
+   "short": "HAFELE",
+   "group": "Thiết bị vệ sinh–bếp",
+   "official": true,
+   "brands": [
+    "Häfele"
+   ],
+   "website": "https://www.hafele.com.vn",
+   "trust_query": true
+  },
+  {
+   "name": "Tân Phát (cơ điện lạnh)",
+   "type": "contractor",
+   "query": "\"Cơ điện lạnh Tân Phát\"",
+   "kws": [
+    "co dien lanh tan phat"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN THƯƠNG MẠI CƠ ĐIỆN LẠNH TÂN PHÁT",
+   "short": "TÂN PHÁT",
+   "group": "MEP",
+   "official": true,
+   "trust_query": true
+  },
+  {
+   "name": "THIBIDI",
+   "type": "contractor",
+   "query": "\"Thibidi\"",
+   "kws": [
+    "thibidi"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN THIẾT BỊ ĐIỆN (THIBIDI)",
+   "short": "THIBIDI",
+   "group": "Thiết bị điện",
+   "official": true,
+   "brands": [
+    "THIBIDI (máy biến áp)"
+   ],
+   "website": "https://thibidi.com",
+   "trust_query": true
+  },
+  {
+   "name": "Thành An (KT&TM)",
+   "type": "contractor",
+   "query": "\"Kỹ thuật và Thương mại Thành An\"",
+   "kws": [
+    "ky thuat va thuong mai thanh an"
+   ],
+   "legal": "CÔNG TY TNHH KỸ THUẬT VÀ THƯƠNG MẠI THÀNH AN",
+   "short": "THÀNH AN",
+   "group": "MEP",
+   "official": true,
+   "note": "Nhóm vai trò chưa xác minh"
+  },
+  {
+   "name": "DHL (Công nghệ)",
+   "type": "contractor",
+   "query": "\"Công nghệ DHL Việt Nam\"",
+   "kws": [
+    "cong nghe dhl"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN CÔNG NGHỆ DHL VIỆT NAM",
+   "short": "DHL",
+   "group": "MEP",
+   "official": true,
+   "note": "Không phải DHL chuyển phát; nhóm vai trò chưa xác minh"
+  },
+  {
+   "name": "Picenza",
+   "type": "contractor",
+   "query": "\"Picenza\"",
+   "kws": [
+    "picenza"
+   ],
+   "legal": "CÔNG TY TNHH SẢN XUẤT & THƯƠNG MẠI PICENZA VIỆT NAM",
+   "short": "PICENZA",
+   "group": "Thiết bị vệ sinh–bếp",
+   "official": true,
+   "brands": [
+    "Picenza (bình nóng lạnh, chậu rửa inox)"
+   ],
+   "website": "https://picenza.vn",
+   "trust_query": true
+  },
+  {
+   "name": "INNO",
+   "type": "contractor",
+   "query": "\"Công ty Cổ phần INNO\" OR \"INNO JSC\" nội thất",
+   "kws": [
+    "cong ty co phan inno",
+    "inno jsc"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN INNO",
+   "short": "INNO",
+   "group": "Hoàn thiện–nội thất",
+   "official": true,
+   "note": "Nhóm vai trò chưa xác minh"
+  },
+  {
+   "name": "Kiến Trúc Việt",
+   "type": "contractor",
+   "query": "\"Kiến Trúc Việt\" thi công",
+   "kws": [
+    "cong ty kien truc viet",
+    "kien truc viet jsc"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN KIẾN TRÚC VIỆT",
+   "short": "KIẾN TRÚC VIỆT",
+   "group": "Hoàn thiện–nội thất",
+   "official": true,
+   "note": "Nhóm vai trò chưa xác minh"
+  },
+  {
+   "name": "Cường Lâm",
+   "type": "contractor",
+   "query": "\"Cường Lâm\" thiết bị vệ sinh",
+   "kws": [
+    "cuong lam"
+   ],
+   "legal": "CÔNG TY TNHH CƯỜNG LÂM",
+   "short": "CƯỜNG LÂM",
+   "group": "Thiết bị vệ sinh–bếp",
+   "official": true,
+   "brands": [
+    "Nhà phân phối TBVS, sơn, gia dụng"
+   ],
+   "website": "https://cuonglam.com"
+  },
+  {
+   "name": "Terracons",
+   "type": "contractor",
+   "query": "\"Terracons\"",
+   "kws": [
+    "terracons"
+   ],
+   "legal": "CÔNG TY TNHH ĐẦU TƯ VÀ XÂY DỰNG TERRACONS",
+   "short": "TERRACONS",
+   "group": "MEP",
+   "official": true,
+   "brands": [
+    "Máy phát điện, thang máy, điều hòa"
+   ],
+   "website": "https://terracons.com.vn",
+   "trust_query": true
+  },
+  {
+   "name": "Ferroli",
+   "type": "contractor",
+   "query": "\"Ferroli\" Việt Nam",
+   "kws": [
+    "ferroli"
+   ],
+   "legal": "CÔNG TY TNHH FERROLI ASEAN",
+   "short": "FERROLI",
+   "group": "Thiết bị điện",
+   "official": true,
+   "brands": [
+    "Ferroli (bình nóng lạnh, nồi hơi)"
+   ]
+  },
+  {
+   "name": "Minh Anh (VLXD)",
+   "type": "contractor",
+   "query": "\"Vật liệu xây dựng Minh Anh\"",
+   "kws": [
+    "vat lieu xay dung minh anh"
+   ],
+   "legal": "CÔNG TY TNHH VẬT LIỆU XÂY DỰNG MINH ANH",
+   "short": "MINH ANH",
+   "group": "Vật liệu",
+   "official": true,
+   "note": "Nhóm vai trò chưa xác minh"
+  },
+  {
+   "name": "Hòa Phát",
+   "type": "contractor",
+   "query": "\"Hòa Phát\" thép",
+   "kws": [
+    "hoa phat"
+   ],
+   "legal": "CÔNG TY CỔ PHẦN HÒA PHÁT",
+   "short": "HÒA PHÁT",
+   "group": "Vật liệu",
+   "official": true,
+   "brands": [
+    "Thép Hòa Phát"
+   ],
+   "website": "https://www.hoaphat.com.vn"
+  },
+  {
+   "name": "Schneider Electric",
+   "type": "contractor",
+   "query": "\"Schneider Electric\" Việt Nam",
+   "kws": [
+    "schneider electric",
+    "schneider"
+   ],
+   "legal": "CÔNG TY TNHH SCHNEIDER ELECTRIC VIỆT NAM",
+   "short": "SCHNEIDER ELECTRIC",
+   "group": "Thiết bị điện",
+   "official": true,
+   "brands": [
+    "Schneider Electric",
+    "APC",
+    "Clipsal"
+   ],
+   "website": "https://www.se.com/vn/vi/"
+  }
+ ]
+}

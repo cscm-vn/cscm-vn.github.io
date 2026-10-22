@@ -131,7 +131,7 @@ def main():
             s = s.replace("</head>", '<link rel="stylesheet" href="legacy-theme.css"></head>', 1)
         open(page, "w", encoding="utf-8").write(s)
     for f in glob.glob(os.path.join(H, "web", "*")): shutil.copy(f, SITE)
-    for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json"):
+    for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json", "orgs.json"):
         if os.path.exists(os.path.join(H, "data", f)): shutil.copy(os.path.join(H, "data", f), OUT)
     shutil.copy(TAXF, os.path.join(OUT, "taxonomy.json"))
     fd = J(os.path.join(OUT, "feed.json"))  # slim the public feed (UI never shows snippets) for faster first load

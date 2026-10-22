@@ -20,23 +20,13 @@ Q = [  # (query, hl, gl, lang, kind)
  ("佛山 陶瓷 出口 when:14d", "zh-CN", "CN", "zh-Hans", "trend"), ("智能马桶 出口 when:14d", "zh-CN", "CN", "zh-Hans", "trend"),
  ("建材 出口 越南 when:30d", "zh-CN", "CN", "zh-Hans", "trend"),
 ]
-ORGS = [  # (display name, type, Google News query, accent-free match keywords) – contractor & developer tracker
- ("Coteccons", "contractor", '"Coteccons"', ["coteccons"]), ("Newtecons", "contractor", '"Newtecons"', ["newtecons"]),
- ("Ricons", "contractor", '"Ricons"', ["ricons"]), ("Hòa Bình", "contractor", '"Xây dựng Hòa Bình" OR HBC tổng thầu', ["xay dung hoa binh", "hoa binh corporation", "hbc "]),
- ("Hawee", "contractor", '"Hawee"', ["hawee"]), ("Sigma", "contractor", '"Sigma Engineering" OR "cơ điện Sigma"', ["sigma engineering", "co dien sigma", "ky thuat sigma"]),
- ("Gold Mantis", "contractor", '"Gold Mantis" OR "Kim Thập Tán" OR 金螳螂 越南', ["gold mantis", "kim thap tan", "金螳螂"]),
- ("TTT Corp", "contractor", '"TTT Corp" OR "TTT Corporation" cơ điện', ["ttt corp", "ttt corporation"]),
- ("DELTA", "contractor", '"Delta Group" xây dựng', ["delta group", "tap doan xay dung delta"]), ("Unicons", "contractor", '"Unicons"', ["unicons"]),
- ("REE M&E", "contractor", '"REE M&E" OR "Cơ điện lạnh REE"', ["ree m&e", "co dien lanh ree", "ree me"]), ("Searefico", "contractor", '"Searefico"', ["searefico"]),
- ("Vinaconex", "contractor", '"Vinaconex"', ["vinaconex"]),
- ("MIK Group", "developer", '"MIK Group"', ["mik group", "mikgroup"]), ("Sun Group", "developer", '"Sun Group" bất động sản', ["sun group", "sungroup", "sun property"]),
- ("Vingroup / Vinhomes", "developer", '"Vinhomes"', ["vinhomes"]), ("Ecopark", "developer", '"Ecopark"', ["ecopark"]),
- ("CapitaLand", "developer", '"CapitaLand" Việt Nam', ["capitaland"]), ("Gamuda Land", "developer", '"Gamuda Land"', ["gamuda"]),
- ("Novaland", "developer", '"Novaland"', ["novaland"]), ("Nam Long", "developer", '"Nam Long" bất động sản', ["nam long"]),
- ("Văn Phú", "developer", '"Văn Phú Invest" OR "Văn Phú – Invest"', ["van phu invest", "van phu - invest", "van phu – invest"]),
- ("BRG", "developer", '"BRG" bất động sản', ["brg"]), ("Keppel", "developer", '"Keppel" Việt Nam bất động sản', ["keppel"]),
- ("Masterise Homes", "developer", '"Masterise"', ["masterise"]),
-]
+def load_orgs():
+    """Registry of tracked contractors / suppliers / developers: trends/data/orgs.json (name, legal, short, type, group, brands, website, query, kws)."""
+    p = os.path.join(D, "orgs.json")
+    R = [o for o in json.load(open(p, encoding="utf-8"))["orgs"] if o.get("query") and o.get("kws")]
+    return [(o["name"], o["type"], o["query"], o["kws"]) for o in R], {o["name"]: o["type"] for o in R if o.get("trust_query")}
+VI = re.compile("[ăâđêôơưĂÂĐÊÔƠƯàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]")
+ORGS, TRUST = load_orgs()  # TRUST: distinctive quoted query => a hit from that org's own query is tagged to it even if the headline omits the name  # (display name, type, Google News query, accent-free headline keywords)
 MSEG = [  # market segment tags (accent-free keywords) – same ids as trends/data/segments.json
  ("hang-sang", ["hang sang", "sieu sang", "hang hieu", "branded residence", "luxury"]), ("cao-cap", ["cao cap"]), ("trung-cap", ["trung cap", "vua tui tien"]),
  ("noxh", ["nha o xa hoi", "noxh", "binh dan"]), ("thap-tang", ["biet thu", "lien ke", "thap tang", "nha pho", "shophouse"]),
@@ -74,26 +64,32 @@ def main():
     old = json.load(open(OUT, encoding="utf-8"))["items"] if os.path.exists(OUT) else []
     rules = tax_rules(); new = []; errs = []
     jobs = [(GN.format(q=urllib.parse.quote(q), hl=hl, gl=gl, lang=lang), "Google News", k) for q, hl, gl, lang, k in Q] + [(u, n, k) for n, u, k in RSS]
-    jobs += [(GN.format(q=urllib.parse.quote(q + " when:30d"), hl="vi", gl="VN", lang="vi"), "Google News", typ) for _, typ, q, _ in ORGS]
-    for url, src, kind in jobs:
-        try: new += parse(fetch(url), src, kind); time.sleep(0.5)
+    jobs = [(u, s_, k, None) for u, s_, k in jobs]
+    jobs += [(GN.format(q=urllib.parse.quote(q + " when:30d"), hl="vi", gl="VN", lang="vi"), "Google News", typ, n) for n, typ, q, _ in ORGS]
+    for url, src, kind, qorg in jobs:
+        try:
+            got = parse(fetch(url), src, kind)
+            if qorg in TRUST: [x.__setitem__("q_org", qorg) for x in got]
+            new += got; time.sleep(0.5)
         except Exception as e: errs.append(f"{src}: {type(e).__name__}")
     cutoff = (dt.datetime.now(TZ) - dt.timedelta(days=45)).date().isoformat(); seen = set(); items = []
+    new.sort(key=lambda x: x.get("kind") not in ("contractor", "developer"))  # org-query hits first so dedupe keeps their org tag
     for x in new + old:
         key = re.sub(r"\W+", " ", strip(x["title"])).strip()[:80]
         if x["date"] < cutoff or key in seen or x["url"] in seen: continue
-        if x.get("kind") in ("contractor", "developer") and not any(k in " " + strip(x["title"]) + " " for _, _, _, kws in ORGS for k in kws): continue  # org query hit but headline names nobody we track
+        if x.get("kind") in ("contractor", "developer") and not any(k in " " + strip(x["title"]) + " " for _, _, _, kws in ORGS for k in kws) and not (x.get("q_org") in TRUST and VI.search(x["title"])): continue  # org query hit but headline names nobody we track
         seen.update([key, x["url"]]); t = strip(x["title"] + " " + x.get("snippet", ""))
         x["tax"] = [cid for cid, kws in rules if any(k and k in t for k in kws)][:3]
         tt = " " + strip(x["title"]) + " "  # organisation tag from the headline only (avoids false hits in snippets)
         org = next(((n, typ) for n, typ, _, kws in ORGS if any(k in tt for k in kws)), None)
+        if not org and x.get("q_org") in TRUST and VI.search(x["title"]): org = (x["q_org"], TRUST[x["q_org"]])  # Vietnamese headlines only (GN also returns machine translations)
         if org: x["org"], x["org_type"] = org; x["kind"] = org[1]
         elif x.get("kind") in ("contractor", "developer"): x.pop("org", None)
         x["mseg"] = next((sid for sid, kws in MSEG if any(k in t for k in kws)), "")
         age = (dt.date.fromisoformat(dt.datetime.now(TZ).date().isoformat()) - dt.date.fromisoformat(x["date"])).days
         x["score"] = sum(w for k, w in KW.items() if k in t) + 2 * len(x["tax"]) - age * 0.3
         x["id"] = hashlib.sha1(x["url"].encode()).hexdigest()[:12]; x["origin"] = "rss"; items.append(x)
-    items.sort(key=lambda x: (x["date"], x["score"]), reverse=True); items = items[:900]
+    items.sort(key=lambda x: (x["date"], x["score"]), reverse=True); items = items[:1200]
     import unicodedata; items = json.loads(unicodedata.normalize("NFC", json.dumps(items, ensure_ascii=False)))  # NFC: decomposed marks render detached
     json.dump(dict(updated=dt.datetime.now(TZ).isoformat(timespec="minutes"), errors=errs, count=len(items), items=items),
               open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
