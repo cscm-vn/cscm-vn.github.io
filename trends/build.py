@@ -115,6 +115,7 @@ def build():
                items=items, compare=comps, steel_brand_pairs=brand_pairs, digest=digest, mom_movers=[x["id"] for x in movers])
     json.dump(hub, open(os.path.join(OUT, "hub.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     return len(items), len(comps)
+GC = '<script data-goatcounter="https://cscm-vn.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
 def main():
     os.makedirs(OUT, exist_ok=True)
     idx, gia = os.path.join(SITE, "index.html"), os.path.join(SITE, "gia.html")
@@ -145,5 +146,7 @@ def main():
     for f in glob.glob(os.path.join(SITE, "**", "*"), recursive=True):
         if f.endswith((".html", ".json", ".csv", ".js", ".css")) and os.path.isfile(f):
             t = open(f, encoding="utf-8", errors="strict").read(); n = unicodedata.normalize("NFC", t)
+            if f.endswith(".html") and "data-goatcounter" not in n and "</head>" in n:  # page-view analytics on every page
+                n = n.replace("</head>", GC + "</head>", 1)
             if n != t: open(f, "w", encoding="utf-8").write(n)
 if __name__ == "__main__": main()

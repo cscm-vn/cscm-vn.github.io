@@ -19,7 +19,7 @@ jobs:
       - name: Package
         run: |
           TAG="${{ inputs.tag }}"; TAG="${TAG:-backup-$(TZ=Asia/Ho_Chi_Minh date +%Y-%m)}"; echo "TAG=$TAG" >> $GITHUB_ENV
-          zip -qr "gia-vat-tu-$TAG.zip" data/history data/registry data/taxonomy.json DATA.md store.py
+          zip -qr "cscm-vn-$TAG.zip" data/history data/registry data/taxonomy.json DATA.md store.py
           gzip -9c prices.db > "prices-$TAG.db.gz"
           sha256sum *.zip *.gz > SHA256SUMS.txt; ls -la *.zip *.gz
       - name: Publish release (replaces assets if tag exists)

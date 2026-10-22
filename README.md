@@ -1,5 +1,7 @@
 # Bảng giá kim loại & vật liệu xây dựng (Thế giới + Việt Nam)
 
+**Trang web:** https://cscm-vn.github.io/ · repo: https://github.com/cscm-vn/cscm-vn.github.io (link cũ formalboy.github.io/gia-vat-tu/ tự chuyển hướng về đây).
+
 Dashboard tiếng Việt cho bộ phận Mua sắm/Đấu thầu: giá kim loại thế giới (LME/COMEX/SHFE), thép xây dựng VN theo hãng & miền,
 xi măng, cát, đá, gạch, vàng SJC, tỷ giá Vietcombank. Có lọc/tìm kiếm (không dấu), quy đổi VND, % thay đổi, biểu đồ lịch sử, xuất CSV/Excel,
 cờ "dữ liệu cũ" khi nguồn lỗi (giữ giá tốt gần nhất – không bao giờ tự bịa giá).

@@ -31,7 +31,7 @@ Trùng nếu **URL nguồn đầu tiên** (chuẩn hóa, bỏ http/www/query) ho
 
 ## Quy trình hằng ngày (trợ lý)
 ```bash
-cd /workspace/gia-vat-tu-repo && git pull --rebase
+cd /workspace/gia-vat-tu-repo && git pull --rebase   # remote: github.com/cscm-vn/cscm-vn.github.io · site: https://cscm-vn.github.io/
 # 1) nghiên cứu web, ghi các mục mới vào trends/seed/YYYY-MM-DD.json  (list hoặc {"trends":[…],"market":[…]})
 python3 trends/merge.py trends/seed/2026-10-22.json      # báo +mới / cập nhật / tổng; lỗi nếu thiếu nguồn hoặc tax sai
 python3 export_static.py && python3 trends/build.py       # (tùy chọn) xem trước cục bộ
