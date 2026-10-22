@@ -1,0 +1,326 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Điều chỉnh giá HĐ tổng thầu – Masterise Construction SCM Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css">
+<script src="hub-common.js"></script><script src="static/chart.umd.min.js"></script>
+<style>
+.dc-hero .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.hk.dn .v{color:#75e0a7}.hk.upk .v{color:#fda29b}
+.hk .v .of{font-size:13px;color:#b9c3d1;font-weight:400}
+.rec{margin-top:14px;background:#ffffff0d;border:1px solid #c9a96e55;border-radius:14px;padding:10px 14px;font-size:13.5px;color:#e9edf3}
+.rec b{color:#fff}.rec ul{margin:6px 0 0;padding-left:18px}.rec li{margin:3px 0}.rec a{color:#f3dfb8}
+.tb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 10px}
+.tb .sp{flex:1}
+.tb input[type=search]{padding:8px 11px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:14px;min-width:180px;flex:1 1 180px;max-width:320px}
+.btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:7px 12px;font:inherit;font-size:13.5px;cursor:pointer;color:var(--ink);white-space:nowrap}
+.btn:hover{border-color:var(--gold)}.btn.pri{background:var(--pri);color:#fff;border-color:var(--pri)}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:13px;color:var(--mute)}
+.dct{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px;background:#fff}
+.dct th,.dct td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.dct th{background:#faf8f4;color:#4b5563;font-size:11.5px;text-transform:uppercase;letter-spacing:.3px;font-weight:600;position:sticky;top:0;z-index:2}
+.dct td.n,.dct th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dct tr.g td{background:#f4efe6;font-family:var(--serif);font-weight:600;color:#0e1a2b;font-size:14px;border-bottom:1px solid #e3dccd}
+.dct tr.g td .small{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-weight:400;color:var(--mute)}
+.dct tr.r{cursor:pointer}.dct tr.r:hover td{background:#fbfaf7}
+.dct tr.hiw td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
+.dct .code{font-weight:700;color:#0e1a2b;white-space:nowrap}
+.dct .desc{min-width:140px;max-width:200px}
+.dct td.mk{min-width:150px;max-width:210px}
+.w{display:inline-block;min-width:44px;padding:1px 6px;border-radius:6px;background:#f1efe9;font-weight:600;font-size:12.5px;text-align:right}
+.w.hi{background:linear-gradient(135deg,#c9a96e,#b08d57);color:#0e1a2b}
+.w.mid{background:var(--gold2);color:#7a5c2e}
+.bd{display:inline-block;border-radius:6px;padding:2px 6px;font-size:11px;font-weight:600;white-space:nowrap;margin-top:3px}
+.bd.down{background:#d1fadf;color:#05603a}.bd.up{background:#fee4e2;color:#912018}.bd.within{background:#eef2f8;color:#14325a}.bd.missing{background:#f2f4f7;color:#667085}.bd.na{background:none;color:#98a2b3;font-weight:400;padding-left:0}
+.near{display:inline-block;margin-top:3px;font-size:11.5px;color:#a16207;font-weight:600;white-space:nowrap}
+.q{display:inline-block;width:18px;height:18px;line-height:18px;text-align:center;border-radius:5px;font-size:11px;font-weight:700;margin-left:4px;vertical-align:1px}
+.q.A{background:#d1fadf;color:#05603a}.q.B{background:#fef0c7;color:#93370d}.q.C{background:#e9d7fe;color:#53389e}
+.src{font-size:11.5px;color:var(--mute);line-height:1.35;margin-top:2px}
+.stale{color:#b54708;font-weight:600}
+.dv{font-weight:700;white-space:nowrap}
+.dct td.sp svg{display:block}
+.imp{font-size:11.5px;white-space:nowrap}
+.cmp th.reg{text-align:center;background:#f0ebe1}
+.lgrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:0 0 10px}.exp{display:flex;gap:6px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--mute);margin:8px 0}
+dialog#dlg{border:0;border-radius:18px;padding:0;width:min(1060px,96vw);max-height:92vh;box-shadow:0 30px 80px #0e1a2b55}
+dialog#dlg::backdrop{background:#0e1a2b8c}
+.dlg-h{display:flex;gap:12px;align-items:flex-start;padding:16px 18px 10px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:3}
+.dlg-h h3{font-family:var(--serif);font-size:20px;margin:0;font-weight:600}.dlg-h .x{margin-left:auto;font-size:20px;border:0;background:none;cursor:pointer;padding:2px 8px;border-radius:8px}
+.dlg-b{padding:12px 18px 18px;overflow:auto}
+.cbox{position:relative;height:330px}
+.kv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0}
+.kv div{background:#faf8f4;border:1px solid var(--line);border-radius:12px;padding:8px 10px}.kv span{display:block;font-size:11.5px;color:var(--mute)}.kv b{font-size:16px;font-variant-numeric:tabular-nums}
+.note{background:var(--gold2);border-left:3px solid var(--gold);border-radius:8px;padding:8px 10px;font-size:13px;margin:10px 0}
+.meth{font-size:13.5px}.meth li{margin:4px 0}
+.mute2{color:#98a2b3}
+@media (max-width:900px){.dc-hero .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kv{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){
+ .tw.dcw{border:0;box-shadow:none;background:none;max-height:none;overflow:visible}
+ .dct.cards,.dct.cards tbody{display:block;background:none}.dct.cards thead{display:none}
+ .dct.cards tr.r{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 10px;box-shadow:var(--sh1)}
+ .dct.cards tr.g{display:block;margin:14px 0 8px}.dct.cards tr.g td{display:block;border-radius:10px;border:0}
+ .dct.cards td{display:block;border:0;padding:3px 0;text-align:left!important;white-space:normal}
+ .dct.cards td::before{content:attr(data-l);display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;color:var(--mute)}
+ .dct.cards td.code,.dct.cards td.desc{grid-column:1/-1;max-width:none}.dct.cards td.code::before,.dct.cards td.desc::before{display:none}
+ .dct.cards td.code{font-size:16px}
+ .dct.cards td.mk,.dct.cards td.sp{grid-column:1/-1}
+ .tb input[type=search]{min-width:0;flex:1 1 100%;max-width:none}
+ .tb .seg{max-width:100%;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}.tb .seg button{white-space:nowrap;flex:0 0 auto}
+ .cbox{height:250px}
+ dialog#dlg{width:100vw;max-width:100vw;max-height:100vh;height:100vh;border-radius:0;margin:0}
+}
+@media print{
+ #hubnav,.tb,.no-print,dialog,.hk svg{display:none!important}
+ body.hub{background:#fff;font-size:10.5px}.wrap{max-width:none;padding:0}
+ .hero{box-shadow:none;background:#fff!important;color:#000;padding:0;border-radius:0}.hero h1,.hero .sub,.hk .l,.hk .v,.hk .c,.rec,.rec b{color:#000!important}.hero .eyebrow{color:#7a5c2e}
+ .hk,.rec{border:1px solid #ccc;background:#fff}.tw{max-height:none!important;overflow:visible!important;border:0;box-shadow:none}
+ .dct{font-size:9.5px}.dct th{position:static}.dct td.sp{display:none}.dct th.sp{display:none}.dct tr{break-inside:avoid}
+ .bd{border:1px solid #999}
+ @page{size:A4 landscape;margin:10mm}
+}
+</style></head>
+<body class="hub" data-page="dieuchinh" data-hub-page><div id="hubnav"></div>
+<main class="wrap" id="main"><div class="crumb" id="crumb"></div>
+<section class="hero dc-hero"><div class="hero-in">
+ <div class="eyebrow">Theo dõi điều chỉnh giá hợp đồng · hằng ngày</div>
+ <h1>Điều chỉnh giá HĐ tổng thầu</h1>
+ <p class="sub" id="sub">So sánh giá thị trường với đơn giá nguyên tắc CTD / NTC để kích hoạt điều chỉnh khi giá biến động vượt ngưỡng (CTD ±3%; NTC ±3% bê tông, ±5% vật tư khác).</p>
+ <div class="grid kpis" id="kpi"></div>
+ <div class="rec" id="rec" hidden></div>
+</div></section>
+
+<div class="tb no-print" id="tb">
+ <div class="seg" id="rg" role="tablist" aria-label="Chọn miền"><button data-k="bac" class="on">Miền Bắc</button><button data-k="nam">Miền Nam</button><button data-k="cmp">So sánh 2 miền</button></div>
+ <div class="seg" id="sf" aria-label="Lọc trạng thái"><button data-k="" class="on">Tất cả</button><button data-k="down">Vượt ngưỡng giảm</button><button data-k="up">Vượt ngưỡng tăng</button><button data-k="near">Sắp chạm</button><button data-k="missing">Thiếu dữ liệu</button></div>
+ <label class="chk"><input type="checkbox" id="onlyw"> Chỉ mục có tỷ trọng</label>
+ <input type="search" id="q" placeholder="Tìm mã, mô tả… (không dấu)" aria-label="Tìm mặt hàng">
+</div>
+<div class="lgrow"><div class="legend" id="legend"></div><div class="exp no-print">
+ <button class="btn" id="bcsv" title="Tải bảng đang xem (CSV, mở được bằng Excel)">⬇ CSV</button>
+ <a class="btn" id="bxls" href="dieu-chinh.xlsx" download title="Tải toàn bộ 2 miền (Excel .xlsx)">⬇ Excel</a>
+ <button class="btn" id="bprint" title="In / lưu PDF (khổ A4 ngang)">🖨 In</button></div></div>
+<div class="tw dcw" style="max-height:none"><table class="dct" id="tbl"></table></div>
+
+<h2 id="fc-h">📈 Dự báo & mặt hàng sắp tăng</h2>
+<div class="tb no-print" style="margin-top:0">
+ <div class="seg" id="fh"><button data-k="3">3 tháng</button><button data-k="6" class="on">6 tháng</button><button data-k="12">12 tháng</button></div>
+ <div class="seg" id="fb"><button data-k="ctd" class="on">So với CTD</button><button data-k="ntc">So với NTC</button></div>
+ <div class="seg" id="fr"><button data-k="all" class="on">Cả 2 miền</button><button data-k="bac">Miền Bắc</button><button data-k="nam">Miền Nam</button></div>
+</div>
+<p class="sub" id="fc-sub"></p>
+<div class="tw" style="max-height:none"><table class="t" id="fct"></table></div>
+
+<h2>🧭 Phương pháp, nguồn & giới hạn</h2>
+<div class="card meth" id="meth"></div>
+<div class="foot" id="foot"></div>
+</main>
+<dialog id="dlg" aria-labelledby="dlg-t"><div class="dlg-h"><div><div class="small mute" id="dlg-e"></div><h3 id="dlg-t"></h3></div><button class="x" id="dlg-x" aria-label="Đóng">✕</button></div><div class="dlg-b" id="dlg-b"></div></dialog>
+<script>
+(async () => {
+ const E = HUB.esc, $ = s => document.querySelector(s);
+ const D = await HUB.get("dieu-chinh.json");
+ HUB.crumb(["<b>Điều chỉnh giá HĐ</b>"]);
+ if (!D || !D.contracts?.length) { $("#tbl").innerHTML = '<tr><td class="empty">Chưa có dữ liệu điều chỉnh giá.</td></tr>'; return; }
+ const C = D.contracts[0], ROWS = C.rows;
+ const ST = D.status_vi, NEAR = D.near_pp;
+ const st = {r: ["bac", "nam", "cmp"].includes(HUB.qs("r")) ? HUB.qs("r") : "bac", f: "", q: "", w: false, fh: "6", fb: "ctd", fr: "all"};
+ const num = (v, u) => v == null ? "–" : Number(v).toLocaleString("vi-VN", {maximumFractionDigits: Math.abs(v) < 100 ? 2 : (Math.abs(v) < 10000 && u !== "m3" && u !== "m³" ? 0 : 0)});
+ const pc = (v, d = 2) => v == null ? '<span class="mute2">–</span>' : `<span class="dv ${v > 0 ? "up" : v < 0 ? "down" : ""}">${v > 0 ? "▲ +" : v < 0 ? "▼ −" : ""}${Math.abs(v).toFixed(d).replace(".", ",")}%</span>`;
+ const pcT = (v, d = 2) => v == null ? "" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(d).replace(".", ",") + "%";
+ const pp = v => v == null ? "–" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(2).replace(".", ",") + " điểm %";
+ const date = s => s ? HUB.date(s) : "–";
+ const METH = {median: "Giá nguồn", ratio: "Suy diễn – tỷ lệ mác", interp: "Suy diễn – nội suy", norm: "Suy diễn – định mức", none: "Thiếu dữ liệu"};
+ const QT = {A: "A – cùng quy cách, bảng giá NCC/nhà máy cập nhật trực tiếp", B: "B – công bố giá Sở XD / bảng tham khảo / quy đổi định mức (cập nhật tháng/quý hoặc không định kỳ)", C: "C – suy diễn từ chuỗi khác (xem cách tính)"};
+ const badge = (e, thr) => {
+  if (!e || e.status === "na") return `<span class="bd na">không áp dụng</span>`;
+  return `<span class="bd ${e.status}" title="${e.status === "down" ? "Giá thị trường thấp hơn đơn giá HĐ quá ngưỡng – Chủ đầu tư nên đề nghị điều chỉnh giảm" : e.status === "up" ? "Giá thị trường cao hơn đơn giá HĐ quá ngưỡng – nhà thầu có thể đề nghị điều chỉnh tăng" : e.status === "within" ? "Chênh lệch trong ngưỡng ±" + thr + "%" : "Chưa có giá thị trường so sánh được"}">${e.status === "down" ? "▼ " : e.status === "up" ? "▲ " : ""}${ST[e.status]}</span>` +
+   (e.near ? `<br><span class="near" title="Còn ${e.gap_pp.toFixed(2).replace(".", ",")} điểm % nữa là chạm ngưỡng">⚠ sắp chạm ngưỡng (còn ${e.gap_pp.toFixed(2).replace(".", ",")} đ%)</span>` : "");
+ };
+ const wcls = w => w == null ? "" : w >= 2 ? "hi" : w >= 0.5 ? "mid" : "";
+ const spark = (r, w = 80, h = 28) => {
+  const s = (r.series?.d || []).slice(-90).map(x => x[1]);
+  if (s.length < 2) return `<span class="small mute2" title="Mới bắt đầu theo dõi – chuỗi giá tích lũy hằng ngày">${s.length ? "mới" : "–"}</span>`;
+  const ref = [r.ctd, r.ntc].filter(Boolean), all = s.concat(ref), mn = Math.min(...all), mx = Math.max(...all), k = mx - mn || 1;
+  const X = i => (i / (s.length - 1)) * (w - 4) + 2, Y = v => h - 3 - ((v - mn) / k) * (h - 6);
+  const last = s[s.length - 1], first = s[0], col = last < first ? "#067647" : last > first ? "#b42318" : "#14325a";
+  const bl = ref.map((v, i) => `<line x1="2" x2="${w - 2}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" stroke="${i ? "#b08d57" : "#14325a"}" stroke-dasharray="3 2" stroke-width="1" opacity=".55"/>`).join("");
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-label="Diễn biến ${s.length} ngày">${bl}<polyline fill="none" stroke="${col}" stroke-width="1.8" points="${s.map((v, i) => X(i).toFixed(1) + "," + Y(v).toFixed(1)).join(" ")}"/></svg>`;
+ };
+ const short = s => { s = String(s || ""); if (/Sở Xây dựng Hà Nội/.test(s)) return "Sở XD Hà Nội (quý)"; if (/thitruonghanghoa/.test(s)) return "Sở XD TP.HCM (tháng)";
+  return s.replace(/\s*\(.*$/, "").slice(0, 40); };
+ const first = s => { s = String(s || ""); const i = s.search(/\.\s/); return i > 0 && i < 160 ? s.slice(0, i + 1) : s.slice(0, 160) + (s.length > 160 ? "…" : ""); };
+ const mkCell = r => {
+  const m = r.market;
+  if (m.value == null) {
+   const ref = (m.refs || []).map(x => `${E(x.label)}: <b>${num(x.value)}</b> ${E(x.unit || "")}`).join("<br>");
+   return `<span class="bd missing">Thiếu dữ liệu</span><div class="src" title="${E(m.note || "")}">${E(first(m.note))}${ref ? `<br><i>Tham khảo (không so):</i> ${ref}` : ""}</div>`;
+  }
+  const main = (m.sources || []).filter(x => !x.missing && x.role !== "check");
+  const srcTxt = m.method === "median" ? [...new Set(main.map(x => short(x.src || x.label)))].map(E).join(", ") : METH[m.method];
+  const rng = m.n > 1 && Math.round(m.lo) !== Math.round(m.hi) ? `<div class="src">Khoảng các nguồn: ${num(m.lo)} – ${num(m.hi)}</div>` : "";
+  return `<b class="n" title="${E(m.note || "")}">${num(m.value)}</b><span class="q ${m.quality}" title="${E(QT[m.quality] || "")}">${m.quality || ""}</span>
+   <div class="src">${srcTxt} · ${date(m.as_of)}${m.stale ? ' · <span class="stale">dữ liệu cũ</span>' : ""}</div>${rng}`;
+ };
+ const match = r => {
+  if (st.w && !r.weight_pct) return false;
+  if (st.q) { const s = HUB.strip(r.code + " " + r.desc + " " + r.group); if (!HUB.strip(st.q).split(/\s+/).every(w => s.includes(w))) return false; }
+  if (st.f) { const es = [r.eval.ctd, r.eval.ntc]; if (st.f === "near") return es.some(e => e.near); return es.some(e => e.status === st.f); }
+  return true;
+ };
+ // KPIs
+ const kpis = () => {
+  const reg = st.r === "cmp" ? "all" : st.r, S = C.summary[reg], lab = reg === "all" ? "2 miền" : reg === "bac" ? "Miền Bắc" : "Miền Nam";
+  const k = (cls, l, v, of, c) => `<div class="hk ${cls}"><span class="l">${l}</span><div class="v">${v}<span class="of"> ${of}</span></div><div class="c">${c}</div></div>`;
+  $("#kpi").innerHTML =
+   k("dn", `Vượt ngưỡng GIẢM · ${lab}`, `${S.ctd.down} <span class="of">CTD</span> · ${S.ntc.down}`, "NTC", `Tỷ trọng: CTD ${S.ctd.down_w.toFixed(2).replace(".", ",")}% · NTC ${S.ntc.down_w.toFixed(2).replace(".", ",")}%`) +
+   k("upk", `Vượt ngưỡng TĂNG · ${lab}`, `${S.ctd.up} <span class="of">CTD</span> · ${S.ntc.up}`, "NTC", `Tỷ trọng: CTD ${S.ctd.up_w.toFixed(2).replace(".", ",")}% · NTC ${S.ntc.up_w.toFixed(2).replace(".", ",")}%`) +
+   k("", "Sắp chạm ngưỡng / Thiếu dữ liệu", `${S.ctd.near + S.ntc.near} <span class="of">sắp chạm</span> · ${Math.max(S.ctd.missing, S.ntc.missing)}`, "thiếu", `Sắp chạm = còn ≤ ${String(NEAR).replace(".", ",")} điểm % tới ngưỡng`) +
+   k("dn", "Tác động nếu điều chỉnh GIẢM", pp(S.ctd.impact_down).replace(" điểm %", ""), "điểm % giá trị HĐ (CTD)",
+     `NTC: ${pp(S.ntc.impact_down)} · rủi ro TĂNG: CTD ${pp(S.ctd.impact_up)}, NTC ${pp(S.ntc.impact_up)}. = Σ tỷ trọng × % lệch${reg === "all" ? " (cộng 2 miền, tham khảo)" : ""}`);
+  const top = ROWS.filter(r => (reg === "all" || r.region === reg) && r.weight_pct && (r.eval.ctd.status === "down" || r.eval.ntc.status === "down")).sort((a, b) => b.weight_pct - a.weight_pct).slice(0, 5);
+  const ups = ROWS.filter(r => (reg === "all" || r.region === reg) && r.weight_pct && (r.eval.ctd.status === "up" || r.eval.ntc.status === "up")).sort((a, b) => b.weight_pct - a.weight_pct).slice(0, 3);
+  const li = (r, dir) => { const parts = ["ctd", "ntc"].filter(b => r.eval[b].status === dir).map(b => `${b.toUpperCase()} ${pcT(r.eval[b].dev)}`).join(" · ");
+   return `<li><a href="#" data-open="${r.region}|${E(r.code)}"><b>${E(r.code)}</b></a> ${reg === "all" ? r.region_name + " – " : ""}${E(r.desc)} (tỷ trọng ${String(r.weight_pct).replace(".", ",")}%, chất lượng dữ liệu ${r.market.quality}): ${parts}</li>`; };
+  $("#rec").hidden = !(top.length || ups.length);
+  $("#rec").innerHTML = (top.length ? `<b>👉 Đề xuất Chủ đầu tư xem xét kích hoạt điều chỉnh GIẢM</b> (giá thị trường thấp hơn đơn giá HĐ quá ngưỡng, xếp theo tỷ trọng):<ul>${top.map(r => li(r, "down")).join("")}</ul>` : "") +
+   (ups.length ? `<div style="margin-top:6px"><b>⚠ Rủi ro nhà thầu đề nghị điều chỉnh TĂNG:</b><ul>${ups.map(r => li(r, "up")).join("")}</ul></div>` : "") +
+   `<div class="small" style="margin-top:6px;color:#b9c3d1">Cần đối chiếu điều khoản HĐ (phương pháp, kỳ so sánh, chứng từ giá) và báo giá thực tế trước khi gửi đề nghị. Chất lượng dữ liệu: A tin cậy nhất, C là suy diễn.</div>`;
+ };
+ // Main table
+ const head = `<thead><tr><th>Mã</th><th>Mô tả</th><th>ĐVT</th><th class="n" title="Tỷ trọng trong giá trị HĐ">Tỷ trọng</th><th class="n">Đơn giá CTD</th><th class="n">Đơn giá NTC</th>
+  <th>Giá thị trường (nguồn · ngày)</th><th>Lệch vs CTD</th><th>Lệch vs NTC</th><th class="n" title="Ngưỡng điều chỉnh CTD / NTC">Ngưỡng</th><th class="sp">Diễn biến</th><th class="n" title="Tỷ trọng × % lệch: điểm % giá trị HĐ thay đổi nếu điều chỉnh toàn bộ chênh lệch">Tác động</th></tr></thead>`;
+ const rowHtml = r => {
+  const e = r.eval, imp = ["ctd", "ntc"].map(b => e[b].impact != null && e[b].status !== "within" ? `<div class="imp ${e[b].impact < 0 ? "down" : "up"}" title="Nếu chỉ điều chỉnh phần vượt ngưỡng: ${pp(e[b].impact_beyond)}">${b.toUpperCase()} ${pp(e[b].impact)}</div>` : "").join("");
+  return `<tr class="r ${r.weight_pct >= 2 ? "hiw" : ""}" data-k="${r.region}|${E(r.code)}" tabindex="0">
+  <td class="code" data-l="Mã">${E(r.code)}</td><td class="desc" data-l="Mô tả">${E(r.desc)}</td><td data-l="ĐVT">${E(r.unit)}</td>
+  <td class="n" data-l="Tỷ trọng">${r.weight_pct != null ? `<span class="w ${wcls(r.weight_pct)}">${String(r.weight_pct.toFixed(2)).replace(".", ",")}%</span>` : '<span class="mute2">–</span>'}</td>
+  <td class="n" data-l="Đơn giá CTD">${num(r.ctd)}</td><td class="n" data-l="Đơn giá NTC">${num(r.ntc)}</td>
+  <td class="mk" data-l="Giá thị trường">${mkCell(r)}</td>
+  <td data-l="Lệch vs CTD">${r.eval.ctd.status === "na" ? "" : pc(e.ctd.dev)}<br>${badge(e.ctd, r.thr_ctd_pct)}</td>
+  <td data-l="Lệch vs NTC">${r.eval.ntc.status === "na" ? "" : pc(e.ntc.dev)}<br>${badge(e.ntc, r.thr_ntc_pct)}</td>
+  <td class="n" data-l="Ngưỡng CTD / NTC">±${r.thr_ctd_pct}% / ±${r.thr_ntc_pct}%</td>
+  <td class="sp" data-l="Diễn biến">${spark(r)}</td>
+  <td class="n" data-l="Tác động (điểm % giá trị HĐ)">${imp || '<span class="mute2">–</span>'}</td></tr>`;
+ };
+ const table = () => {
+  const tbl = $("#tbl"); tbl.className = "dct" + (innerWidth <= 760 ? " cards" : "");
+  if (st.r === "cmp") return cmpTable();
+  const rows = ROWS.filter(r => r.region === st.r && match(r));
+  if (!rows.length) { tbl.innerHTML = `<tbody><tr><td class="empty" colspan="12">Không có mặt hàng phù hợp bộ lọc.</td></tr></tbody>`; return; }
+  const groups = [...new Set(rows.map(r => r.group))];
+  tbl.innerHTML = head + "<tbody>" + groups.map(g => {
+   const rs = rows.filter(r => r.group === g), all = ROWS.filter(r => r.region === st.r && r.group === g), w = all.reduce((s, r) => s + (r.weight_pct || 0), 0);
+   return `<tr class="g"><td colspan="12">${E(g)} <span class="small">· ${rs.length}/${all.length} mục${w ? ` · tỷ trọng nhóm ${w.toFixed(2).replace(".", ",")}%` : ""}</span></td></tr>` + rs.map(rowHtml).join("");
+  }).join("") + "</tbody>";
+ };
+ const cmpTable = () => {
+  const tbl = $("#tbl"), codes = [...new Set(ROWS.map(r => r.code))], by = (reg, c) => ROWS.find(r => r.region === reg && r.code === c);
+  const list = codes.map(c => [c, by("bac", c), by("nam", c)]).filter(([c, a, b]) => (a && match(a)) || (b && match(b)));
+  const cell = (r, l) => !r ? `<td data-l="${l}" colspan="1" class="mute2">không có trong HĐ</td><td></td><td></td>` :
+   `<td class="n" data-l="${l} – giá TT">${r.market.value != null ? `<a href="#" data-open="${r.region}|${E(r.code)}">${num(r.market.value)}</a><span class="q ${r.market.quality}">${r.market.quality}</span>` : '<span class="bd missing">Thiếu dữ liệu</span>'}</td>
+    <td data-l="${l} – vs CTD">${r.eval.ctd.status === "na" ? '<span class="mute2">–</span>' : pc(r.eval.ctd.dev) + "<br>" + badge(r.eval.ctd, r.thr_ctd_pct)}</td>
+    <td data-l="${l} – vs NTC">${r.eval.ntc.status === "na" ? '<span class="mute2">–</span>' : pc(r.eval.ntc.dev) + "<br>" + badge(r.eval.ntc, r.thr_ntc_pct)}</td>`;
+  tbl.innerHTML = `<thead><tr><th rowspan="2">Mã</th><th rowspan="2">Mô tả</th><th rowspan="2">ĐVT</th><th rowspan="2" class="n">Tỷ trọng</th><th colspan="3" class="reg">Miền Bắc</th><th colspan="3" class="reg">Miền Nam</th><th rowspan="2" class="n" title="Giá thị trường Miền Nam so với Miền Bắc">Nam vs Bắc</th></tr>
+   <tr><th class="n">Giá TT</th><th>vs CTD</th><th>vs NTC</th><th class="n">Giá TT</th><th>vs CTD</th><th>vs NTC</th></tr></thead><tbody>` +
+   list.map(([c, a, b]) => { const r0 = a || b, d = a?.market.value && b?.market.value ? (b.market.value / a.market.value - 1) * 100 : null;
+    return `<tr class="r"><td class="code" data-l="Mã">${E(c)}</td><td class="desc" data-l="Mô tả">${E(r0.desc)}</td><td data-l="ĐVT">${E(r0.unit)}</td><td class="n" data-l="Tỷ trọng">${r0.weight_pct != null ? `<span class="w ${wcls(r0.weight_pct)}">${r0.weight_pct.toFixed(2).replace(".", ",")}%</span>` : "–"}</td>${cell(a, "Bắc")}${cell(b, "Nam")}<td class="n" data-l="Nam vs Bắc">${pc(d, 1)}</td></tr>`; }).join("") + "</tbody>";
+ };
+ // Detail dialog
+ let chart = null;
+ const open = (key, push = true) => {
+  const [reg, code] = key.split("|"), r = ROWS.find(x => x.region === reg && x.code === code); if (!r) return;
+  const m = r.market, dlg = $("#dlg");
+  $("#dlg-e").textContent = `${r.region_name} · ${r.group} · ${r.unit}`; $("#dlg-t").textContent = `${r.code} – ${r.desc}`;
+  const fh = r.fc?.h || {};
+  const srcRows = (m.sources || []).map(s => s.derived ? `<tr><td colspan="5">${E(s.label)} → <b>${num(s.value)}</b></td></tr>` : s.missing ? `<tr><td>${E(s.label)}</td><td colspan="4" class="mute">nguồn chưa có giá</td></tr>` :
+   `<tr><td>${E(s.label)}${s.role === "check" ? ' <span class="pill">đối chiếu</span>' : ""}</td><td class="n">${num(s.raw)}${s.raw_high && s.raw_high !== s.raw ? " – " + num(s.raw_high) : ""} <span class="small mute">${E(s.unit || "")}</span></td><td class="n"><b>${num(s.value)}</b>${s.conv ? `<div class="small mute">${E(s.conv)}</div>` : ""}</td><td>${date(s.as_of)}${s.stale ? ' <span class="stale">cũ</span>' : ""}</td><td><a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.src || "nguồn")}</a>${s.note ? `<div class="small mute">${E(s.note)}</div>` : ""}</td></tr>`).join("");
+  const refRows = (m.refs || []).map(s => `<tr><td>${E(s.label)} <span class="pill">tham khảo</span></td><td class="n">${num(s.value)} <span class="small mute">${E(s.unit || "")}</span></td><td></td><td>${date(s.as_of)}</td><td><a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.src || "nguồn")}</a></td></tr>`).join("");
+  const fcRows = ["3", "6", "12"].map(h => fh[h] ? `<tr><td>${h} tháng</td><td class="n"><b>${num(fh[h].base)}</b></td><td>${pc(fh[h].pct)}</td><td class="n">${num(fh[h].lo)} – ${num(fh[h].hi)}</td>
+   <td class="n">${fh[h].p_down_ctd != null ? `<span class="down">${fh[h].p_down_ctd.toFixed(0)}%</span> / <span class="up">${fh[h].p_up_ctd.toFixed(0)}%</span>` : "–"}</td>
+   <td class="n">${fh[h].p_down_ntc != null ? `<span class="down">${fh[h].p_down_ntc.toFixed(0)}%</span> / <span class="up">${fh[h].p_up_ntc.toFixed(0)}%</span>` : "–"}</td></tr>` : "").join("");
+  $("#dlg-b").innerHTML = `<div class="kv"><div><span>Giá thị trường</span><b>${num(m.value)}</b> ${m.quality ? `<span class="q ${m.quality}" title="${E(QT[m.quality])}">${m.quality}</span>` : ""}<div class="small mute">${m.value != null ? "ngày giá " + date(m.as_of) : "Thiếu dữ liệu"}</div></div>
+    <div><span>Đơn giá CTD (ngưỡng ±${r.thr_ctd_pct}%)</span><b>${num(r.ctd)}</b><div>${r.eval.ctd.status === "na" ? "" : pc(r.eval.ctd.dev)} ${badge(r.eval.ctd, r.thr_ctd_pct)}</div></div>
+    <div><span>Đơn giá NTC (ngưỡng ±${r.thr_ntc_pct}%)</span><b>${num(r.ntc)}</b><div>${r.eval.ntc.status === "na" ? "" : pc(r.eval.ntc.dev)} ${badge(r.eval.ntc, r.thr_ntc_pct)}</div></div>
+    <div><span>Tỷ trọng trong HĐ</span><b>${r.weight_pct != null ? r.weight_pct.toFixed(2).replace(".", ",") + "%" : "–"}</b><div class="small mute">${["ctd", "ntc"].filter(b => r.eval[b].impact != null).map(b => `${b.toUpperCase()}: ${pp(r.eval[b].impact)}`).join(" · ") || "&nbsp;"}</div></div></div>
+   ${m.note ? `<div class="note"><b>Cách xác định giá thị trường${m.method ? " (" + METH[m.method] + ")" : ""}:</b> ${E(m.note)}</div>` : ""}
+   ${m.value != null ? `<div class="tb no-print" style="margin:6px 0"><div class="seg" id="cg"><button data-k="d" class="on">Theo ngày</button><button data-k="m">Theo tháng + dự báo</button></div><span class="small mute">Đường đậm: giá thị trường · nét đứt: đơn giá CTD/NTC · dải mờ: ±ngưỡng</span></div><div class="cbox"><canvas id="cv"></canvas></div>` : ""}
+   <h3 style="margin-top:14px">Nguồn giá</h3><div class="tw" style="max-height:none"><table class="t"><thead><tr><th>Chuỗi</th><th class="n">Giá nguồn</th><th class="n">Quy đổi</th><th>Ngày giá</th><th>Nguồn</th></tr></thead><tbody>${srcRows + refRows || '<tr><td colspan="5" class="mute">Chưa có nguồn công khai phù hợp.</td></tr>'}</tbody></table></div>
+   ${fcRows ? `<h3 style="margin-top:14px">Dự báo & xác suất vượt ngưỡng</h3><div class="tw" style="max-height:none"><table class="t"><thead><tr><th>Kỳ hạn</th><th class="n">Giá dự báo</th><th>% so với nay</th><th class="n">Khoảng 80%</th><th class="n">P(giảm/tăng vượt ngưỡng) CTD</th><th class="n">P(giảm/tăng vượt ngưỡng) NTC</th></tr></thead><tbody>${fcRows}</tbody></table></div><p class="small mute">${E(r.fc.note)} Xác suất tính từ phân phối log-chuẩn của dự báo (khoảng 80% ↔ ±1,28σ), so với đơn giá HĐ ± ngưỡng. Độ tin cậy thấp – dùng để ưu tiên theo dõi, không thay thế báo giá.</p>` : '<p class="small mute">Chưa có dự báo cho mục này.</p>'}`;
+  dlg.showModal(); if (push) history.replaceState(null, "", `?r=${st.r === "cmp" ? reg : st.r}&code=${encodeURIComponent(code)}`);
+  if (m.value != null) { drawChart(r, "d"); $("#cg").onclick = e => { const b = e.target.closest("button"); if (!b) return; $("#cg").querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); drawChart(r, b.dataset.k); }; }
+ };
+ const addM = (ym, k) => { let [y, m] = ym.split("-").map(Number); m += k; y += Math.floor((m - 1) / 12); m = ((m - 1) % 12 + 12) % 12 + 1; return `${y}-${String(m).padStart(2, "0")}`; };
+ const drawChart = (r, mode) => {
+  if (chart) chart.destroy();
+  let pts = mode === "d" ? r.series.d.map(([d, v]) => [HUB.date(d), v]) : r.series.m.map(([m, v]) => [m.slice(5) + "/" + m.slice(0, 4), v]);
+  if (!pts.length) pts = [[HUB.date(r.market.as_of), r.market.value]];
+  const labels = pts.map(p => p[0]), n0 = labels.length; let fc = [];
+  if (mode === "m" && r.fc?.h) {
+   const lastM = r.series.m.length ? r.series.m[r.series.m.length - 1][0] : (r.market.as_of || "").slice(0, 7);
+   fc = ["3", "6", "12"].filter(h => r.fc.h[h]).map(h => { const ym = addM(lastM, +h); return [ym.slice(5) + "/" + ym.slice(0, 4), r.fc.h[h]]; });
+   fc.forEach(f => labels.push(f[0] + " (dự báo)"));
+  }
+  const N = labels.length, flat = v => Array(N).fill(v), ds = [];
+  const band = (base, thr, col, name) => { if (!base) return; ds.push({label: `${name} +${thr}%`, data: flat(base * (1 + thr / 100)), borderWidth: 0, pointRadius: 0, fill: false},
+   {label: `${name} −${thr}%`, data: flat(base * (1 - thr / 100)), borderWidth: 0, pointRadius: 0, backgroundColor: col, fill: "-1"},
+   {label: `Đơn giá ${name}`, data: flat(base), borderColor: col.slice(0, 7), borderDash: [6, 4], borderWidth: 1.6, pointRadius: 0, fill: false}); };
+  band(r.ctd, r.thr_ctd_pct, "#14325a22", "CTD"); band(r.ntc, r.thr_ntc_pct, "#b08d5733", "NTC");
+  ds.push({label: "Giá thị trường", data: pts.map(p => p[1]).concat(Array(N - n0).fill(null)), borderColor: "#0e1a2b", backgroundColor: "#0e1a2b", borderWidth: 2.4, pointRadius: n0 < 40 ? 3 : 0, tension: .2, fill: false});
+  if (fc.length) {
+   const lead = Array(n0 - 1).fill(null).concat([pts[n0 - 1][1]]);
+   ds.push({label: "Dự báo (cơ sở)", data: lead.concat(fc.map(f => f[1].base)), borderColor: "#a16207", borderDash: [4, 3], borderWidth: 2, pointRadius: 3, fill: false},
+    {label: "Dự báo – cận trên 80%", data: lead.concat(fc.map(f => f[1].hi)), borderColor: "#a1620755", borderWidth: 1, pointRadius: 0, fill: false},
+    {label: "Dự báo – cận dưới 80%", data: lead.concat(fc.map(f => f[1].lo)), borderColor: "#a1620755", borderWidth: 1, pointRadius: 0, backgroundColor: "#a1620714", fill: "-1"});
+  }
+  chart = new Chart($("#cv"), {type: "line", data: {labels, datasets: ds}, options: {responsive: true, maintainAspectRatio: false, interaction: {mode: "index", intersect: false}, animation: false,
+   plugins: {legend: {labels: {filter: i => !/[+−]\d/.test(i.text) && !/cận/.test(i.text), boxWidth: 14, font: {size: 11}}}, tooltip: {callbacks: {label: c => c.raw == null ? null : `${c.dataset.label}: ${num(c.raw)}`}}},
+   scales: {y: {ticks: {callback: v => num(v)}}, x: {ticks: {maxRotation: 0, autoSkip: true, maxTicksLimit: 8}}}}});
+ };
+ $("#dlg-x").onclick = () => $("#dlg").close();
+ $("#dlg").addEventListener("close", () => { if (chart) { chart.destroy(); chart = null; } history.replaceState(null, "", `?r=${st.r}`); });
+ $("#dlg").addEventListener("click", e => { if (e.target === $("#dlg")) $("#dlg").close(); });
+ document.addEventListener("click", e => { const a = e.target.closest("[data-open]"); if (a) { e.preventDefault(); open(a.dataset.open); return; }
+  const tr = e.target.closest("#tbl tr.r[data-k]"); if (tr && !e.target.closest("a")) open(tr.dataset.k); });
+ document.addEventListener("keydown", e => { const tr = e.target.closest?.("#tbl tr.r[data-k]"); if (tr && e.key === "Enter") open(tr.dataset.k); });
+ // Forecast ranking
+ const fcTable = () => {
+  const h = st.fh, b = st.fb, rows = ROWS.filter(r => r.fc?.h?.[h] && r[b] && (st.fr === "all" || r.region === st.fr)).sort((x, y) => y.fc.h[h].pct - x.fc.h[h].pct);
+  $("#fc-sub").innerHTML = `Xếp theo % thay đổi dự báo ${h} tháng (cao nhất = sắp tăng nhất). Xác suất = khả năng giá ${h} tháng tới vượt ngưỡng so với đơn giá ${b.toUpperCase()}. Dự báo xây dựng ${D.forecast_generated ? "lúc " + D.forecast_generated.replace("T", " ") : ""} từ mô hình trang <a href="forecast.html">Dự báo</a> + yếu tố đã biết (xi măng tăng 70.000 đ/tấn bao, 100.000 đ/tấn rời từ 05/10/2026).`;
+  $("#fct").innerHTML = `<thead><tr><th>#</th><th>Mã</th><th>Miền</th><th>Mô tả</th><th class="n">Giá TT nay</th><th class="n">Dự báo ${h}T</th><th>% thay đổi</th><th class="n">Khoảng 80%</th><th class="n">Lệch dự báo vs ${b.toUpperCase()}</th><th class="n">P(vượt ngưỡng TĂNG)</th><th class="n">P(vượt ngưỡng GIẢM)</th><th class="n">Tỷ trọng</th></tr></thead><tbody>` +
+   (rows.map((r, i) => { const f = r.fc.h[h], dv = (f.base / r[b] - 1) * 100; return `<tr><td>${i + 1}</td><td><a href="#" data-open="${r.region}|${E(r.code)}"><b>${E(r.code)}</b></a></td><td>${r.region_name}</td><td>${E(r.desc)}</td><td class="n">${num(r.market.value)}</td><td class="n">${num(f.base)}</td><td>${pc(f.pct)}</td><td class="n small">${num(f.lo)} – ${num(f.hi)}</td><td class="n">${pc(dv)}</td>
+    <td class="n"><b class="${f["p_up_" + b] >= 50 ? "up" : ""}">${f["p_up_" + b].toFixed(0)}%</b></td><td class="n"><b class="${f["p_down_" + b] >= 50 ? "down" : ""}">${f["p_down_" + b].toFixed(0)}%</b></td><td class="n">${r.weight_pct != null ? r.weight_pct.toFixed(2).replace(".", ",") + "%" : "–"}</td></tr>`; }).join("") || '<tr><td colspan="12" class="empty">Chưa có dự báo.</td></tr>') + "</tbody>";
+ };
+ // Methodology
+ const MISS = ROWS.filter(r => r.market.value == null);
+ $("#meth").innerHTML = `<ul>
+  <li><b>Hợp đồng:</b> ${E(C.name)} · phiên bản ${E(C.version)} · hiệu lực ${date(C.effective_date)} · ${ROWS.length} dòng (${E(C.note || "")}). Đơn giá lưu tại <code>data/registry/contract_baselines.json</code> (sửa/nhập phiên bản mới bằng <code>dieu_chinh/import_tsv.py</code>); ánh xạ nguồn giá tại <code>data/registry/contract_market_map.json</code>.</li>
+  <li><b>Quy tắc:</b> % lệch = giá thị trường ÷ đơn giá HĐ − 1. <span class="bd down">Vượt ngưỡng GIẢM</span> khi % lệch &lt; −ngưỡng → Chủ đầu tư có cơ sở đề nghị điều chỉnh giảm; <span class="bd up">Vượt ngưỡng TĂNG</span> khi % lệch &gt; +ngưỡng; <span class="near">⚠ sắp chạm</span> khi còn ≤ ${String(NEAR).replace(".", ",")} điểm %. Ô đơn giá trống trong HĐ → “không áp dụng”.</li>
+  <li><b>Tác động</b> = tỷ trọng × % lệch (điểm % giá trị HĐ nếu điều chỉnh toàn bộ chênh lệch); rê chuột để xem phương án chỉ điều chỉnh phần vượt ngưỡng. Tỷ trọng chỉ có ở các dòng HĐ có ghi.</li>
+  <li><b>Độ tin cậy dữ liệu:</b> <span class="q A">A</span> ${E(QT.A.slice(4))}; <span class="q B">B</span> ${E(QT.B.slice(4))}; <span class="q C">C</span> ${E(QT.C.slice(4))}. Giá web là giá tham khảo, thường chưa VAT, chưa chiết khấu dự án.</li>
+  <li><b>Tần suất:</b> bảng giá NCC/nhà máy được lấy tự động 5 lần/ngày (06:05–18:05 giờ VN) nhưng NCC chỉ đổi bảng giá theo đợt; công bố giá Sở XD TP.HCM theo tháng, Sở XD Hà Nội theo quý (nhập tay). Chuỗi ngày tích lũy từ khi bắt đầu theo dõi (10/2026) nên đồ thị còn ngắn.</li>
+  <li><b>Suy diễn:</b> M500–M700 miền Bắc theo tỷ lệ mác trong HĐ × giá M450; M650 miền Nam nội suy M600–M700; vữa M50/M75 theo định mức cấp phối (176 kg XM + 1,11 m³ cát; 247 kg + 1,09 m³ – vữa XM cát mịn, PCB40) áp vào đơn giá NTC; vữa AAC × 70 kg/m³ và skimcoat × 1 kg/m² theo định mức ghi trong HĐ.</li>
+  <li><b>Thiếu dữ liệu (${MISS.length} dòng):</b> ${MISS.map(r => `${r.region_name} ${E(r.code)}`).join(", ")}. Không bao giờ tự điền giá khi không có nguồn.</li>
+  <li><b>Dự báo:</b> tái sử dụng mô hình trang Dự báo (bê tông/xi măng/cát: mô hình chi phí cấu thành; vật tư khác: proxy chi phí ghi rõ trong từng mục) + bước tăng giá xi măng 10/2026. Độ tin cậy thấp vì chuỗi giá VN còn ngắn.</li></ul>`;
+ HUB.foot(`Cập nhật ${D.generated.replace("T", " ")} (giờ VN).`);
+ $("#sub").innerHTML += ` <span>Cập nhật ${D.generated.slice(11, 16)} ngày ${date(D.generated)} · HĐ ${E(C.name)} v${E(C.version)}.</span>`;
+ $("#legend").innerHTML = `<span><span class="q A">A</span><span class="q B">B</span><span class="q C">C</span> độ tin cậy dữ liệu</span><span><span class="w hi">≥2%</span> tỷ trọng lớn (viền vàng)</span><span><span class="dv up">▲</span> cao hơn HĐ · <span class="dv down">▼</span> thấp hơn HĐ</span><span>Bấm một dòng để xem đồ thị, nguồn & dự báo</span>`;
+ // CSV export of current view
+ $("#bcsv").onclick = () => {
+  const reg = st.r === "cmp" ? null : st.r, rows = ROWS.filter(r => (!reg || r.region === reg) && match(r));
+  const H = ["Miền", "Nhóm", "Mã", "Mô tả", "ĐVT", "Tỷ trọng (%)", "Đơn giá CTD", "Đơn giá NTC", "Giá thị trường", "Ngày giá", "Nguồn/cách xác định", "Độ tin cậy", "% lệch vs CTD", "Ngưỡng CTD (±%)", "Trạng thái CTD", "% lệch vs NTC", "Ngưỡng NTC (±%)", "Trạng thái NTC", "Tác động CTD (điểm %)", "Tác động NTC (điểm %)"];
+  const s = e => e.status === "na" ? ST.na : ST[e.status] + (e.near ? " (sắp chạm)" : "");
+  const L = rows.map(r => [r.region_name, r.group, r.code, r.desc, r.unit, r.weight_pct ?? "", r.ctd ?? "", r.ntc ?? "", r.market.value != null ? Math.round(r.market.value * 100) / 100 : "", r.market.as_of || "",
+   r.market.value != null ? (r.market.method === "median" ? (r.market.sources || []).filter(x => !x.missing && x.role !== "check").map(x => x.src).join("; ") : METH[r.market.method]) : "Thiếu dữ liệu", r.market.quality || "",
+   r.eval.ctd.dev ?? "", r.thr_ctd_pct, s(r.eval.ctd), r.eval.ntc.dev ?? "", r.thr_ntc_pct, s(r.eval.ntc), r.eval.ctd.impact ?? "", r.eval.ntc.impact ?? ""]);
+  const csv = "\ufeff" + [H, ...L].map(a => a.map(v => { v = String(v); return /[",\n;]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v; }).join(",")).join("\r\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], {type: "text/csv;charset=utf-8"})); a.download = `dieu-chinh-gia-${reg || "2-mien"}-${D.generated.slice(0, 10)}.csv`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+ };
+ $("#bprint").onclick = () => print();
+ const seg = (id, key, cb) => $(id).addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; $(id).querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b)); st[key] = b.dataset.k; cb(); });
+ const render = () => { kpis(); table(); };
+ seg("#rg", "r", () => { history.replaceState(null, "", `?r=${st.r}`); render(); }); seg("#sf", "f", table); seg("#fh", "fh", fcTable); seg("#fb", "fb", fcTable); seg("#fr", "fr", fcTable);
+ $("#rg").querySelectorAll("button").forEach(b => b.classList.toggle("on", b.dataset.k === st.r));
+ $("#q").oninput = () => { st.q = $("#q").value.trim(); table(); }; $("#onlyw").onchange = () => { st.w = $("#onlyw").checked; table(); };
+ let lw = innerWidth; addEventListener("resize", () => { if ((lw <= 760) !== (innerWidth <= 760)) table(); lw = innerWidth; });
+ render(); fcTable();
+ const qc = HUB.qs("code"); if (qc) open(`${st.r === "cmp" ? "bac" : st.r}|${qc}`, false);
+})();
+</script></body></html>

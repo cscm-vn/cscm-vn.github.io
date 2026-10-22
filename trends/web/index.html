@@ -1,5 +1,12 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Masterise Construction SCM Hub – Tổng quan hôm nay</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<title>Masterise Construction SCM Hub – Tổng quan hôm nay</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script><style>
+.dcw{margin:18px 0 4px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:var(--r);box-shadow:var(--sh1);padding:14px 16px}
+.dcw h2{margin:0 0 8px}.dcw .g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.dcw .c{background:#faf8f4;border:1px solid var(--line);border-radius:12px;padding:9px 12px;color:var(--ink);display:block}.dcw .c:hover{border-color:var(--gold);text-decoration:none}
+.dcw .c span{display:block;font-size:12px;color:var(--mute)}.dcw .c b{font-size:22px;font-variant-numeric:tabular-nums}.dcw .c small{color:var(--mute);font-size:12px}
+.dcw ul{margin:8px 0 0;padding-left:18px;font-size:13.5px}.dcw li{margin:2px 0}
+@media (max-width:700px){.dcw .g{grid-template-columns:1fr 1fr}.dcw .c b{font-size:18px}}
+</style></head>
 <body class="hub" data-page="home" data-hub-page><div id="hubnav"></div>
 <main class="wrap" id="main">
  <section class="hero"><div class="hero-in">
@@ -9,6 +16,7 @@
   <div class="grid kpis" id="kpi"></div>
   <div class="hstrip" id="hstrip"></div>
  </div></section>
+ <section id="dcw" class="dcw" hidden></section>
  <h2>Danh mục mua sắm</h2><div class="grid g4" id="tiles"></div>
  <div class="grid g2" style="margin-top:6px">
   <section><h2>🔥 Top 5 xu hướng & cơ hội <a class="small" href="xu-huong.html">xem tất cả →</a></h2><div id="top5" class="grid"></div></section>
@@ -44,6 +52,15 @@
   return `<a class="hk" href="mat-hang.html?id=${id}" title="${E(x.name)} – ${E(x.src || "")}, ngày ${HUB.date(x.as_of)}"><span class="l">${l}</span>
    <div class="v">${x.price_high ? "<small>từ</small> " : ""}${HUB.num(x.price)} <small>${E(x.unit)}</small></div>
    <span class="c">${n ? `${n} phiên: ${HUB.pct(chg)}` : x.d1 != null ? `Phiên: ${HUB.pct(x.d1)}` : "Giá niêm yết"} · ${HUB.date(x.as_of)}</span>${spark(x.spark)}</a>`; }).join("");
+ HUB.get("dieu-chinh-summary.json").then(ds => { const c = ds?.contracts?.[0]; if (!c) return; const S = c.summary, el = document.getElementById("dcw");
+  const box = (reg, lab) => `<a class="c" href="dieu-chinh.html?r=${reg}"><span>${lab} · vượt ngưỡng GIẢM</span><b class="down">${S[reg].ctd.down}</b> <small>CTD</small> · <b class="down">${S[reg].ntc.down}</b> <small>NTC</small></a>
+   <a class="c" href="dieu-chinh.html?r=${reg}"><span>${lab} · vượt ngưỡng TĂNG</span><b class="up">${S[reg].ctd.up}</b> <small>CTD</small> · <b class="up">${S[reg].ntc.up}</b> <small>NTC</small></a>`;
+  const f = v => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(2).replace(".", ",") + "%";
+  el.innerHTML = `<h2>⚖️ Điều chỉnh giá HĐ tổng thầu <a class="small" href="dieu-chinh.html">mở bảng theo dõi →</a></h2>
+   <div class="g">${(S.bac ? box("bac", "Miền Bắc") : "") + (S.nam ? box("nam", "Miền Nam") : "")}</div>
+   ${c.top.length ? `<ul>${c.top.slice(0, 4).map(x => `<li><a href="dieu-chinh.html?r=${x.region}&code=${encodeURIComponent(x.code)}"><b>${E(x.code)}</b></a> ${x.region_name}${x.weight ? ` (tỷ trọng ${String(x.weight).replace(".", ",")}%)` : ""}: thị trường ${x.hits.map(h => `<span class="${h.dev < 0 ? "down" : "up"}">${f(h.dev)}</span> so với ${h.base}`).join(", ")} → ${x.status === "down" ? "vượt ngưỡng GIẢM" : "vượt ngưỡng TĂNG"} <span class="mute small">(dữ liệu ${x.quality})</span></li>`).join("")}</ul>` : ""}
+   <div class="small mute" style="margin-top:6px">HĐ ${E(c.name)} v${E(c.version)} · so sánh giá thị trường với đơn giá CTD/NTC, ngưỡng ±3% / ±5%.</div>`;
+  el.hidden = false; });
  const cnt = {}; const add = (k, f) => { cnt[k] ||= {p: 0, t: 0, m: 0}; cnt[k][f]++; };
  h.items.forEach(x => add(t.byId[x.tax].parent.id, "p")); tr.items.forEach(x => add(x.l1, "t"));
  mk.items.forEach(x => (x.tax || []).slice(0, 1).forEach(id => add(t.byId[id].parent.id, "m")));
