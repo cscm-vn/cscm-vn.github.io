@@ -15,7 +15,8 @@ HUB.tax = async () => {
 };
 HUB.catLink = (id, label) => `<a href="danh-muc.html?c=${encodeURIComponent(id)}">${HUB.esc(label)}</a>`;
 HUB.crumb = async (parts) => { const el = document.getElementById("crumb"); if (el) el.innerHTML = [`<a href="index.html">Trang chủ</a>`, ...parts].join(" › "); };
-HUB.nav = async () => {
+HUB.nav = () => HUB._navP ||= HUB._nav();  // idempotent: mọi lời gọi dùng chung 1 lần dựng
+HUB._nav = async () => {
   if (!document.querySelector("link[rel=icon]")) { const l = document.createElement("link"); l.rel = "icon"; l.type = "image/svg+xml"; l.href = "favicon.svg"; document.head.appendChild(l); }
   const host = document.getElementById("hubnav"); if (!host) return;
   const page = document.body.dataset.page || ""; const t = await HUB.tax(); const cfg = await HUB.get("site-config.json") || {};
@@ -55,7 +56,7 @@ HUB.nav = async () => {
 };
 // Lượt xem (GoatCounter public counter API + views-daily.json do workflow tạo). Lỗi => ẩn, không ném lỗi.
 HUB.views = async () => {
-  if (document.querySelector(".hn-views")) return;
+  if (HUB._viewsOn || document.querySelector(".hn-views-wrap")) return; HUB._viewsOn = true;
   const GC = "https://cscm-vn.goatcounter.com/counter/", nf = new Intl.NumberFormat("vi-VN"), SINCE = "2026-10-22";
   const get = async (u, raw) => { try { const c = new AbortController(); const t = setTimeout(() => c.abort(), 6000);
     const r = await fetch(raw ? u : GC + u, {signal: c.signal, credentials: "omit"}); clearTimeout(t); if (!r.ok) return null;
@@ -65,11 +66,11 @@ HUB.views = async () => {
   const home = /(^|\/)(index\.html)?$/.test(location.pathname);
   const [tot, today, p1, p2] = await Promise.all([get(`TOTAL.json?start=${SINCE}&end=${next}`), get(`TOTAL.json?start=${day}&end=${next}`),
     home ? get("%2F.json") : null, home ? get("%2Findex.html.json") : null]);
-  if (tot == null) return;
+  if (tot == null || document.querySelector(".hn-views-wrap")) return;
   const wrap = document.createElement("div"); wrap.className = "hn-views-wrap";
   const it = (l, v, tip) => v == null ? "" : `<span title="${tip || ""}"><small>${l}</small><b>${nf.format(v)}</b></span>`;
   wrap.innerHTML = `<button type="button" class="hn-views" aria-expanded="false" aria-controls="hn-vchart" title="Xem xu hướng 30 ngày">
-    <i aria-hidden="true">◉</i>${it("Lượt xem hôm nay", today, "Theo ngày giờ Việt Nam")}${it("Tổng lượt xem", tot, "Toàn trang, từ 22/10/2026")}${home && (p1 != null || p2 != null) ? it("Trang chủ", (p1 || 0) + (p2 || 0)) : ""}<em aria-hidden="true">▾</em></button>
+    <i aria-hidden="true">◉</i>${it("Lượt xem hôm nay", today, "Theo ngày giờ Việt Nam")}${it("Tổng lượt xem", tot, "Trực tiếp (GoatCounter), toàn trang, từ 22/10/2026")}${home && (p1 != null || p2 != null) ? it("Trang chủ", (p1 || 0) + (p2 || 0)) : ""}<em aria-hidden="true">▾</em></button>
     <div class="hn-vchart" id="hn-vchart" hidden></div>`;
   document.body.appendChild(wrap);
   const btn = wrap.querySelector("button"), box = wrap.querySelector(".hn-vchart"); let loaded = false;
@@ -78,22 +79,27 @@ HUB.views = async () => {
     if (!open || loaded) return; loaded = true; box.innerHTML = '<div class="vc-empty">Đang tải…</div>';
     const d = await get("views-daily.json?t=" + Math.floor(Date.now() / 6e5), true);
     if (!d || !Array.isArray(d.days) || !d.days.length) { box.innerHTML = '<div class="vc-empty">Chưa có dữ liệu xu hướng.</div>'; return; }
-    const D = d.days, max = Math.max(1, ...D.map(x => x.n || 0)), W = 600, H = 120, bw = W / D.length;
+    const D = d.days.map(x => x.d < SINCE ? {...x, pre: true, n: null} : x), max = Math.max(1, ...D.map(x => x.n || 0)), W = 600, H = 120, bw = W / D.length;
     const lab = s => { const [y, m, dd] = s.split("-"); return `${dd}/${m}`; };
+    const desc = x => `${lab(x.d)}/${x.d.slice(0, 4)}: ${x.pre ? "trước khi bắt đầu đo (22/10/2026)" : x.n == null ? "chưa có số liệu" : nf.format(x.n) + " lượt xem"}`;
+    const upd = String(d.updated || ""), updL = upd ? `${upd.slice(11, 16)} ${upd.slice(8, 10)}/${upd.slice(5, 7)}` : "";
+    const HINT = "Rê chuột/chạm vào cột để xem số";
     const bars = D.map((x, k) => { const h = x.n ? Math.max(2, x.n / max * (H - 8)) : 0;
       return `<g class="vb" data-k="${k}"><rect x="${k * bw}" y="0" width="${bw}" height="${H}" fill="transparent"/>` +
-        (x.n == null ? `<rect x="${k * bw + bw * .2}" y="${H - 2}" width="${bw * .6}" height="2" class="na"/>` : `<rect x="${k * bw + bw * .15}" y="${H - h}" width="${bw * .7}" height="${h}" rx="2"/>`) +
-        `<title>${lab(x.d)}: ${x.n == null ? "chưa đo" : nf.format(x.n) + " lượt xem"}</title></g>`; }).join("");
+        (x.n == null ? `<rect class="${x.pre ? "na pre" : "na"}" x="${k * bw + bw * .2}" y="${H - 2}" width="${bw * .6}" height="2"/>` : `<rect x="${k * bw + bw * .15}" y="${H - h}" width="${bw * .7}" height="${h}" rx="2"/>`) +
+        `<title>${desc(x)}</title></g>`; }).join("");
     const sum = D.reduce((s, x) => s + (x.n || 0), 0);
-    box.innerHTML = `<div class="vc-h"><b>Lượt xem theo ngày</b><span>30 ngày gần nhất · ${nf.format(sum)} lượt</span></div>
+    box.innerHTML = `<div class="vc-h"><b>Lượt xem theo ngày</b><span>30 ngày gần nhất · ${nf.format(sum)} lượt${updL ? ` (bản chụp ${updL})` : ""}</span></div>
       <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Biểu đồ lượt xem 30 ngày">${bars}</svg>
-      <div class="vc-x"><span>${lab(D[0].d)}</span><span class="vc-tip" aria-live="polite">Rê chuột/chạm vào cột để xem số</span><span>${lab(D[D.length - 1].d)}</span></div>
-      <div class="vc-f">Theo giờ Việt Nam · cập nhật ${String(d.updated || "").slice(11, 16)} ${String(d.updated || "").slice(8, 10)}/${String(d.updated || "").slice(5, 7)}</div>`;
+      <div class="vc-x"><span>${lab(D[0].d)}</span><span class="vc-tip" aria-live="polite">${HINT}</span><span>${lab(D[D.length - 1].d)}</span></div>
+      <div class="vc-f">Theo giờ Việt Nam · biểu đồ là bản chụp lúc ${updL || "–"}; số “Tổng lượt xem” ở trên là trực tiếp nên có thể cao hơn${D.some(x => x.pre) ? " · vạch mờ: chưa bắt đầu đo" : ""}</div>`;
     const tip = box.querySelector(".vc-tip");
     box.querySelectorAll(".vb").forEach(g => { const x = D[+g.dataset.k];
       const show = () => { box.querySelectorAll(".vb.on").forEach(e => e.classList.remove("on")); g.classList.add("on");
-        tip.textContent = `${lab(x.d)}/${x.d.slice(0, 4)}: ${x.n == null ? "chưa đo" : nf.format(x.n) + " lượt xem"}`; };
-      g.addEventListener("mouseenter", show); g.addEventListener("click", show); });
+        tip.textContent = desc(x); };
+      g.addEventListener("mouseenter", show); g.addEventListener("click", e => { e.stopPropagation(); show(); }); });
+    const reset = () => { box.querySelectorAll(".vb.on").forEach(e => e.classList.remove("on")); tip.textContent = HINT; };
+    box.querySelector("svg").addEventListener("mouseleave", reset); document.addEventListener("click", e => { if (!box.contains(e.target)) reset(); });
   };
 };
 HUB.sidebar = async (el, active, counts) => {
