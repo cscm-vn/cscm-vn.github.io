@@ -18,6 +18,17 @@ MT.confPill = id => { const m = MT.info(id); if (!m) return ""; if (!m.code) ret
 MT.e = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 MT.med = a => { const s = a.slice().sort((x, y) => x - y), n = s.length; return n ? (n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2) : null; };
 MT.fmt = v => (Math.abs(v) < 10 ? Math.abs(v).toFixed(1) : Math.abs(v).toFixed(0)).replace(".", ",");
+/* Đường dẫn nhóm cho bảng giá: GIỮ nhóm cấp 1 của site (data/taxonomy.json: Xây dựng phần thô, MEP, Hoàn thiện…),
+   bên trong chia theo master data (bỏ cấp 'Khối' vì nhóm site đã thay thế). Mặt hàng ngoài master data → nhóm cấp 2 của site. */
+MT.hubPath = (id, cat, taxId, T) => {
+  if (T && !T._mt) { T._mt = {}; T.tree.forEach((n, i) => { T._mt[n.id] = {n, i}; n.children.forEach(c => T._mt[c.id] = {n, c, i}); }); }
+  const h = T?._mt?.[taxId]; if (!h) return MT.path(id, cat);
+  const top = MT.by["H." + h.n.id] ||= {code: "H." + h.n.id, parent: null, level: 1, name_vi: `${h.n.icon || ""} ${h.n.name}`.trim(), ord: h.i, hub: true};
+  const m = MT.info(id);
+  if (m && m.code) return [top, ...MT.chain(m.code).filter(n => n.level >= 2)];
+  const c = h.c ? (MT.by["H." + h.c.id] ||= {code: "H." + h.c.id, parent: top.code, level: 2, name_vi: h.c.name, ord: 9000, virtual: true, description: "Ngoài master data – theo danh mục của site"}) : null;
+  return c ? [top, c] : [top];
+};
 /* Nhận định nhanh cho 1 nhóm: trung vị % thay đổi (ưu tiên 7 ngày → 30 ngày → lần cập nhật trước). */
 MT.insight = (rows, na) => {
   const f0 = rows.filter(r => r.m?.s0 != null).map(r => r.m.f0).filter(Boolean).sort()[0];
@@ -49,13 +60,13 @@ MT.render = (host, rows, o = {}) => {
   MT.css(); const key = "mtg:" + (o.key || location.pathname), st = JSON.parse(localStorage.getItem(key) || "null");
   const tree = {code: "", kids: new Map(), rows: [], all: []};
   for (const r of rows) { let t = tree; t.all.push(r); for (const n of r.path) { if (!t.kids.has(n.code)) t.kids.set(n.code, {n, kids: new Map(), rows: [], all: []}); t = t.kids.get(n.code); t.all.push(r); } t.rows.push(r); }
-  const ordKey = n => n.code === "X" ? 1e9 : ({KC: 0, MEPF: 1, HT: 2}[n.code] ?? n.ord ?? 0);
+  const ordKey = n => n.code === "X" ? 1e9 : ({KC: 0, MEPF: 1, HT: 2}[n.code] ?? n.ord ?? 0);  // nhóm site (H.*) theo thứ tự taxonomy.json
   const sorted = m => [...m.values()].sort((a, b) => ordKey(a.n) - ordKey(b.n) || a.n.name_vi.localeCompare(b.n.name_vi, "vi"));
   const opts = [], walk = (t, d) => { for (const k of sorted(t.kids)) { opts.push(`<option value="${MT.e(k.n.code)}">${"  ".repeat(d)}${d ? "└ " : ""}${MT.e(k.n.name_vi)} (${k.all.length})</option>`); walk(k, d + 1); } }; walk(tree, 0);
   const sel = host.querySelector(".mtg-f")?.value || o.group || "";
   let h = `<div class="mtg-bar"><select class="mtg-f" aria-label="Lọc theo nhóm master data"><option value="">Mọi nhóm master data (${rows.length} mã)</option>${opts.join("")}</select>
    <button type="button" class="mtg-ex">⊞ Mở tất cả</button><button type="button" class="mtg-co">⊟ Thu gọn tất cả</button>
-   <span class="mtg-lg">Nhóm theo master data: Khối › Hệ › Nhóm giá › Nhóm giá cấp 2. Nhãn ở mỗi nhóm = trung vị % thay đổi giá của các mã trong nhóm (▲ đỏ tăng, ▼ xanh giảm). Bấm tiêu đề nhóm để mở/thu gọn.${o.note ? " " + o.note : ""}</span></div><div class="mtg-tw"><table class="${o.tcls || ""}">${o.head || ""}<tbody>`;
+   <span class="mtg-lg">Nhóm cấp 1 = danh mục của site; bên trong chia theo master data: Hệ › Nhóm giá › Nhóm giá cấp 2. Nhãn ở mỗi nhóm = trung vị % thay đổi giá của các mã trong nhóm (▲ đỏ tăng, ▼ xanh giảm). Bấm tiêu đề nhóm để mở/thu gọn.${o.note ? " " + o.note : ""}</span></div><div class="mtg-tw"><table class="${o.tcls || ""}">${o.head || ""}<tbody>`;
   const cols = o.cols || 8, emit = (t, anc) => { for (const k of sorted(t.kids)) { const n = k.n, a = anc.concat(n.code);
       h += `<tr class="mtg-h lv${n.level}" data-c="${MT.e(n.code)}" data-p="${MT.e(anc.join(" "))}" tabindex="0" aria-expanded="true"><td colspan="${cols}"><div class="mtg-hd"><span class="mtg-c" aria-hidden="true">▾</span><span class="mtg-t">${MT.e(n.name_vi)}</span><span class="mtg-n">${k.all.length} mã</span>${n.supply_now ? `<span class="mtg-s" title="Hiện trạng cấp vật tư theo ma trận quyết định">${MT.e(n.supply_now)}</span>` : ""}${MT.insight(k.all, o.naText)}${n.description && n.level >= 2 && !o.nodesc ? `<span class="mtg-ds">${MT.e(n.description)}</span>` : ""}</div></td></tr>`;
       for (const r of k.rows) h += r.html.replace(/^<tr/, `<tr data-p="${MT.e(a.join(" "))}"`); emit(k, a); } };

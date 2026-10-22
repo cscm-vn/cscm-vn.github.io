@@ -54,7 +54,7 @@
    const HEAD = `<thead><tr><th>Mặt hàng</th><th>Khu vực</th><th class="n">Giá</th><th>ĐVT</th><th class="n">Phiên</th><th class="n">MoM</th><th class="n">YoY</th><th>Ngày</th></tr></thead>`;
    const row = x => `<tr><td><a href="mat-hang.html?id=${encodeURIComponent(x.id)}">${E(x.name)}</a>${x.stale ? ' <span class="pill" title="Nguồn lỗi – giữ giá tốt gần nhất">dữ liệu cũ</span>' : ""}${MT.confPill(x.id)}</td><td>${HUB.regPill(x.reg)}<span class="small mute">${E(x.region || "")}</span></td>
     <td class="n">${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""}</td><td class="small">${E(x.unit)}</td><td class="n">${HUB.pct(x.d1)}</td><td class="n">${HUB.pct(x.mom)}</td><td class="n">${HUB.pct(x.yoy)}</td><td class="small">${HUB.date(x.as_of)}</td></tr>`;
-   MT.render(document.getElementById("pt"), L.map(x => ({path: MT.path(x.id, x.category), html: row(x), m: {w1: x.w1, mom: x.mom, s0: x.s0, f0: x.first_date, d1: x.d1}})), {head: HEAD, cols: 8, key: "dm", tcls: "t", expand: true, nodesc: false});
+   MT.render(document.getElementById("pt"), L.map(x => ({path: MT.hubPath(x.id, x.category, x.tax, t), html: row(x), m: {w1: x.w1, mom: x.mom, s0: x.s0, f0: x.first_date, d1: x.d1}})), {head: HEAD, cols: 8, key: "dm", tcls: "t", expand: true, nodesc: false});
    document.querySelector("#pt .mtg-tw")?.classList.add("tw"); };
   q.oninput = f; document.querySelectorAll("#rg button").forEach(b => b.onclick = () => { rg = b.dataset.r; document.querySelectorAll("#rg button").forEach(x => x.classList.toggle("on", x === b)); f(); }); f(); }
  draw(); HUB.foot();

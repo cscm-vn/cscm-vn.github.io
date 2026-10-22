@@ -246,7 +246,23 @@ def src_contract_materials():
     if not out: raise RuntimeError("; ".join(errs) or "không có dòng nào")
     return out
 
-NEW_SOURCES = [("Bê tông thương phẩm (NCC)", src_concrete), ("Bê tông TP.HCM mác cao (NCC)", src_concrete_hcm2), ("Nhựa PE/PVC/PP (TE)", src_plastics),
+def src_cable_cu():
+    """Cáp điện hạ thế ruột đồng CXV 0,6/1kV CADIVI 1 lõi 70/95/120 mm² (cáp trục/feeder ≥50 mm²) – bảng giá niêm yết đại lý công khai.
+    Giá niêm yết tham khảo, CHƯA trừ chiết khấu dự án (đại lý ghi 15–25%); không ghi rõ VAT. Sai cấu trúc → bỏ qua, giữ giá tốt gần nhất."""
+    out, u = [], "https://thanhdattech.com.vn/bang-gia-day-cap-dien-cxv-cadivi-06-1kv/"
+    for t in _tables(u)[:2]:
+        for _, r in t.iterrows():
+            c = _cells(r)
+            m = re.search(r"CXV\s+(70|95|120)\s+CADIVI", " ".join(c))
+            if not m or len(c) < 4: continue
+            p = _vn(c[3]); mm = m.group(1)
+            if p and 100_000 < p < 2_000_000 and not any(x["id"] == f"cable_cxv_cadivi_1x{mm}" for x in out):
+                out.append(_it(f"cable_cxv_cadivi_1x{mm}", "Cáp điện (MEP)", f"Cáp đồng CXV 1×{mm} mm² 0,6/1kV CADIVI (cáp trục/feeder)", "VND/m", "VND", p,
+                               "thanhdattech.com.vn (bảng giá niêm yết đại lý CADIVI)", u,
+                               note="Giá niêm yết tham khảo đại lý, chưa trừ chiết khấu dự án (đại lý ghi 15–25%); nguồn không ghi rõ VAT"))
+    if not out: raise RuntimeError("không đọc được dòng CXV 70/95/120")
+    return out
+NEW_SOURCES = [("Cáp đồng CXV CADIVI (đại lý)", src_cable_cu), ("Bê tông thương phẩm (NCC)", src_concrete), ("Bê tông TP.HCM mác cao (NCC)", src_concrete_hcm2), ("Nhựa PE/PVC/PP (TE)", src_plastics),
                ("Ống HDPE Tiền Phong", src_hdpe_pipe), ("Vật tư HĐ tổng thầu (AAC, vữa, Sika, gạch, trần)", src_contract_materials)]
 
 if __name__ == "__main__":

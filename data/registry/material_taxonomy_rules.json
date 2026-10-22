@@ -3,6 +3,12 @@
  "desc": "Quy tắc gán mặt hàng → nút master data (material_taxonomy.json). Thứ tự quan trọng: quy tắc đầu tiên khớp được dùng. re: regex trên 'nhóm | mã | tên' đã bỏ dấu, chữ thường. conf: high/medium/low. code=null → cố ý KHÔNG gán (ngoài master data), 'related' = nhóm giá chịu tác động.",
  "items": [
   {
+   "re": "cxv|cap dong",
+   "code": "MEPF.dien.cap-dien-ge50mm-truc-feeder",
+   "conf": "high",
+   "why": "Cáp đồng CXV ≥70 mm² = 'Cáp điện ≥50mm² (trục/feeder)'"
+  },
+  {
    "re": "thep xay dung|cb240|cb300|cb400|cb500",
    "code": "KC.thep-thanh-van-d6-32",
    "conf": "high",

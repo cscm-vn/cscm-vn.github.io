@@ -216,7 +216,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
  const rowHtml = r => {
   const e = r.eval, imp = ["ctd", "ntc"].map(b => e[b].impact != null && e[b].status !== "within" ? `<div class="imp ${e[b].impact < 0 ? "down" : "up"}" title="Nếu chỉ điều chỉnh phần vượt ngưỡng: ${pp(e[b].impact_beyond)}">${b.toUpperCase()} ${pp(e[b].impact)}</div>` : "").join("");
   return `<tr class="r ${r.weight_pct >= 2 ? "hiw" : ""}" data-k="${r.region}|${E(r.code)}" tabindex="0">
-  <td class="code" data-l="Mã">${E(r.code)}</td><td class="desc" data-l="Mô tả">${E(r.desc)}</td><td data-l="ĐVT">${E(r.unit)}</td>
+  <td class="code" data-l="Mã HĐ"><small class="mute2" title="Mã trong HĐ">${E(r.code)}</small></td><td class="desc" data-l="Mô tả"><b>${E(r.desc)}</b>${MT.d ? `<div class="small mute2">Nhóm giá: ${E(MT.pathC(r.code).slice(-1)[0].name_vi)}</div>` : ""}</td><td data-l="ĐVT">${E(r.unit)}</td>
   <td class="n" data-l="Tỷ trọng">${r.weight_pct != null ? `<span class="w ${wcls(r.weight_pct)}">${String(r.weight_pct.toFixed(2)).replace(".", ",")}%</span>` : '<span class="mute2">–</span>'}</td>
   <td class="n" data-l="Đơn giá CTD">${num(r.ctd)}</td><td class="n" data-l="Đơn giá NTC">${num(r.ntc)}</td>
   <td class="mk" data-l="Giá thị trường">${mkCell(r)}</td>
@@ -232,7 +232,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const rows = ROWS.filter(r => r.region === st.r && match(r));
   if (!rows.length) { tbl.innerHTML = `<tbody><tr><td class="empty" colspan="12">Không có mặt hàng phù hợp bộ lọc.</td></tr></tbody>`; return; }
   // nhóm theo master data (Khối › Nhóm giá), giữ tên nhóm trong HĐ làm chú thích
-  const gk = r => MT.d ? MT.pathC(r.code).map(n => n.name_vi).join(" › ") : r.group;
+  const gk = r => MT.d ? MT.pathC(r.code).filter(n => n.level >= 2).map(n => n.name_vi).join(" › ") || r.group : r.group;
   const groups = [...new Set(rows.map(gk))];
   const cnt = (rs, b, k) => rs.filter(r => r.eval[b].status === k).length;
   tbl.innerHTML = head + "<tbody>" + groups.map(g => {
@@ -252,7 +252,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   tbl.innerHTML = `<thead><tr><th rowspan="2">Mã</th><th rowspan="2">Mô tả</th><th rowspan="2">ĐVT</th><th rowspan="2" class="n">Tỷ trọng</th><th colspan="3" class="reg">Miền Bắc</th><th colspan="3" class="reg">Miền Nam</th><th rowspan="2" class="n" title="Giá thị trường Miền Nam so với Miền Bắc">Nam vs Bắc</th></tr>
    <tr><th class="n">Giá TT</th><th>vs CTD</th><th>vs NTC</th><th class="n">Giá TT</th><th>vs CTD</th><th>vs NTC</th></tr></thead><tbody>` +
    list.map(([c, a, b]) => { const r0 = a || b, d = a?.market.value && b?.market.value ? (b.market.value / a.market.value - 1) * 100 : null;
-    return `<tr class="r"><td class="code" data-l="Mã">${E(c)}</td><td class="desc" data-l="Mô tả">${E(r0.desc)}</td><td data-l="ĐVT">${E(r0.unit)}</td><td class="n" data-l="Tỷ trọng">${r0.weight_pct != null ? `<span class="w ${wcls(r0.weight_pct)}">${r0.weight_pct.toFixed(2).replace(".", ",")}%</span>` : "–"}</td>${cell(a, "Bắc")}${cell(b, "Nam")}<td class="n" data-l="Nam vs Bắc">${pc(d, 1)}</td></tr>`; }).join("") + "</tbody>";
+    return `<tr class="r"><td class="code" data-l="Mã HĐ"><small class="mute2" title="Mã trong HĐ">${E(c)}</small></td><td class="desc" data-l="Mô tả"><b>${E(r0.desc)}</b>${MT.d ? `<div class="small mute2">Nhóm giá: ${E(MT.pathC(c).slice(-1)[0].name_vi)}</div>` : ""}</td><td data-l="ĐVT">${E(r0.unit)}</td><td class="n" data-l="Tỷ trọng">${r0.weight_pct != null ? `<span class="w ${wcls(r0.weight_pct)}">${r0.weight_pct.toFixed(2).replace(".", ",")}%</span>` : "–"}</td>${cell(a, "Bắc")}${cell(b, "Nam")}<td class="n" data-l="Nam vs Bắc">${pc(d, 1)}</td></tr>`; }).join("") + "</tbody>";
  };
  // Detail dialog
  let chart = null;

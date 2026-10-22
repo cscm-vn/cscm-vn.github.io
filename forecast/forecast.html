@@ -67,7 +67,7 @@ let D,S='base',SEL=null,PATH='Tất cả',chart;
 const GN={copper:'Đồng',aluminium:'Nhôm',steel_world:'Thép TG',ironore:'Quặng sắt',steel_vn:'Thép VN',energy:'Dầu',coal:'Than',plastics:'Nhựa',cement:'Xi măng',sand_stone:'Cát/đá',concrete:'Bê tông',fx:'Tỷ giá',mep_index:'MEP'};
 const val=(it,h)=>{const f=it.fc[h];return S==='base'?f.base:f[S]};
 function drvFor(it){return D.drivers.drivers.filter(d=>{const imp=Object.assign({},d.impact||{},d.impact_up||{},d.impact_down||{});return imp[it.group]!=null})}
-function load(){Promise.all([fetch('forecast.json?'+Date.now()).then(r=>r.json()),window.MT?MT.load():null]).then(([d])=>{D=d;document.getElementById('gen').textContent='Cập nhật: '+d.generated.replace('T',' ').slice(0,16)+' (giờ VN)';buildTree();render();pairs();mep();drivers();strategy();method();sel(D.items.find(i=>i.id==='rebar_HN')||D.items[0])})}
+let FT=null;function load(){Promise.all([fetch('forecast.json?'+Date.now()).then(r=>r.json()),window.MT?MT.load():null,fetch('data/taxonomy.json').then(r=>r.json()).catch(()=>null)]).then(([d,_m,tx])=>{FT=tx;D=d;document.getElementById('gen').textContent='Cập nhật: '+d.generated.replace('T',' ').slice(0,16)+' (giờ VN)';buildTree();render();pairs();mep();drivers();strategy();method();sel(D.items.find(i=>i.id==='rebar_HN')||D.items[0])})}
 function buildTree(){const ps=['Tất cả'];D.items.filter(i=>i.group!=='mep_index').forEach(i=>{[i.path[0],i.path[1]?i.path[0]+' › '+i.path[1]:null].forEach(p=>{if(p&&!ps.includes(p))ps.push(p)})});
  const t=document.getElementById('tree');t.innerHTML='<b>Phân loại:</b> '+ps.map(p=>`<button data-p="${p}" class="${p===PATH?'on':''}">${p}</button>`).join('');
  t.querySelectorAll('button').forEach(b=>b.onclick=()=>{PATH=b.dataset.p;buildTree();render()})}
@@ -80,7 +80,7 @@ function render(){const q=strip(document.getElementById('q').value),loc=document
  const its=D.items.filter(i=>i.group!=='mep_index').filter(i=>PATH==='Tất cả'||i.path.join(' › ').startsWith(PATH)).filter(i=>!q||strip(i.name+' '+i.path.join(' ')+' '+(i.region||'')).includes(q)).filter(i=>!loc||i.region||/VND/.test(i.unit));
  const tb=document.querySelector('#tbl tbody');
  if(window.MT&&MT.d){const box=document.getElementById('tblbox'),TH=document.querySelector('#tblflat thead')?.outerHTML||'';document.getElementById('tblflat').hidden=true;
-  MT.render(box,its.map(it=>({path:it.mt?MT.chain(it.mt):[MT.X,MT.virt(it.path[0]||'Khác')],html:rowHTML(it),m:{mom:it.trend?.mom,yoy:it.trend?.yoy}})),{head:TH,cols:10,key:'fc',expand:true,nodesc:true,naText:'MoM/YoY đang tích lũy',note:'Nhãn nhóm dựa trên MoM của chuỗi lịch sử (không phải dự báo).'});
+  MT.render(box,its.map(it=>({path:FT?(it.mt?[MT.hubPath('_',null,it.tax,FT)[0],...MT.chain(it.mt).filter(n=>n.level>=2)]:MT.hubPath('_',null,it.tax,FT)):(it.mt?MT.chain(it.mt):[MT.X,MT.virt(it.path[0]||'Khác')]),html:rowHTML(it),m:{mom:it.trend?.mom,yoy:it.trend?.yoy}})),{head:TH,cols:10,key:'fc',expand:true,nodesc:true,naText:'MoM/YoY đang tích lũy',note:'Nhãn nhóm dựa trên MoM của chuỗi lịch sử (không phải dự báo).'});
   box.querySelector('.mtg-tw')?.classList.add('scroll');box.querySelector('table').id='tbl';document.querySelector('#tblflat table').id='tbl0';
   box.querySelectorAll('tr.row').forEach(r=>r.onclick=()=>{sel(D.items.find(i=>i.id===r.dataset.id));document.getElementById('chTitle').scrollIntoView({behavior:'smooth'})});
  } else {tb.innerHTML=its.map(rowHTML).join('')||'<tr><td colspan=10 class="mut">Không có mục phù hợp</td></tr>';}

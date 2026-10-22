@@ -18,9 +18,9 @@
    const avg = L.reduce((s, x) => s + x[per], 0) / L.length; const top = L.slice().sort((a, b) => Math.abs(b[per]) - Math.abs(a[per]))[0]; rows.push({n, c, L, avg, top}); }
   document.getElementById("cat").innerHTML = `<tr><th>Nhóm</th><th>Danh mục</th><th class="n">Số mã</th><th class="n">TB ${per.toUpperCase()}</th><th>Biến động mạnh nhất</th></tr>` + (rows.map(r => `<tr><td>${r.n.icon} ${E(r.n.name)}</td><td>${HUB.catLink(r.c.id, r.c.name)}</td><td class="n">${r.L.length}</td><td class="n">${HUB.pct(r.avg)}</td>
     <td><a href="mat-hang.html?id=${r.top.id}">${E(r.top.name)}</a> ${HUB.pct(r.top[per])}</td></tr>`).join("") || `<tr><td colspan=5 class="mute">Chưa đủ lịch sử để tính ${per.toUpperCase()}.</td></tr>`);
-  if (MT.d) { const k = per; MT.render(document.getElementById("mtt"), h.items.map(x => ({path: MT.path(x.id, x.category), m: {[k]: x[k], s0: x.s0, f0: x.first_date, d1: x.d1},
+  if (MT.d) { const k = per; MT.render(document.getElementById("mtt"), h.items.map(x => ({path: MT.hubPath(x.id, x.category, x.tax, t), m: {[k]: x[k], s0: x.s0, f0: x.first_date, d1: x.d1},
      html: `<tr><td><a href="mat-hang.html?id=${encodeURIComponent(x.id)}">${E(x.name)}</a> ${HUB.regPill(x.reg)}</td><td class="n">${HUB.num(x.price)} <span class="small mute">${E(x.unit)}</span></td><td class="n">${HUB.pct(x.mom)}</td><td class="n">${HUB.pct(x.yoy)}</td></tr>`})),
-     {head: `<thead><tr><th>Mặt hàng</th><th class="n">Giá</th><th class="n">MoM</th><th class="n">YoY</th></tr></thead>`, cols: 4, key: "thang", tcls: "t", nodesc: true, defClosed: MT.defClosed(h.items.map(x => ({path: MT.path(x.id, x.category)}))),
+     {head: `<thead><tr><th>Mặt hàng</th><th class="n">Giá</th><th class="n">MoM</th><th class="n">YoY</th></tr></thead>`, cols: 4, key: "thang", tcls: "t", nodesc: true, defClosed: MT.defClosed(h.items.map(x => ({path: MT.hubPath(x.id, x.category, x.tax, t)}))),
       note: `Đang xem: ${per === "mom" ? "MoM" : "YoY"}; khi chưa đủ lịch sử, nhãn dùng thay đổi từ đầu kỳ theo dõi hoặc phiên trước (ghi rõ trong nhãn).`});
    document.querySelector("#mtt .mtg-tw")?.classList.add("tw"); }
   const have = h.items.filter(x => x[per] != null).length;

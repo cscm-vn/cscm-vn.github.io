@@ -54,7 +54,7 @@ async function load(){let r=null;if(!HOSTED){try{r=await fetch("api/prices");if(
  const cats=[...new Set(DATA.items.map(i=>i.category))].sort(),regs=[...new Set(DATA.items.map(i=>i.region).filter(Boolean))].sort();
  cat.innerHTML='<option value="">Mọi danh mục</option>'+cats.map(c=>`<option>${esc(c)}</option>`).join("");
  reg.innerHTML='<option value="">Mọi khu vực</option>'+regs.map(c=>`<option>${esc(c)}</option>`).join("");
- if(window.MT){await MT.load();try{const h=await(await fetch("data/hub.json",{cache:"no-cache"})).json();HUBX=Object.fromEntries(h.items.map(x=>[x.id,x]))}catch(e){}}
+ if(window.MT){await MT.load();try{const h=await(await fetch("data/hub.json",{cache:"no-cache"})).json();HUBX=Object.fromEntries(h.items.map(x=>[x.id,x]));HTAX=await(await fetch("data/taxonomy.json",{cache:"no-cache"})).json()}catch(e){}}
  kpis();render();srcs();}
 function kpis(){const k=["fx_usd_vnd","lme_copper","lme_aluminium","te_rebar_shfe","te_ironore","vnsteel_hoa_phat_mien_bac_cb300_d10","sjc_bar"];
  document.getElementById("kpis").innerHTML=k.map(id=>DATA.items.find(i=>i.id==id)).filter(Boolean).map(i=>`<div class="kpi"><div class="l">${esc(i.name)}${i.region?" · "+esc(i.region):""}</div><div class="v">${nf(i.price)} <span class="note">${esc(i.unit)}</span></div>${chg(i.change_pct)}</div>`).join("");}
@@ -62,7 +62,7 @@ function chg(c){if(c==null)return'<span class="note">–</span>';const cl=c>0?"u
 function match(i){const q=document.getElementById("q").value.trim().toLowerCase();
  if(G&&i.group!=G)return false;if(cat.value&&i.category!=cat.value)return false;if(reg.value&&i.region!=reg.value)return false;
  if(staleOnly.checked&&!i.stale)return false;
- if(q){const h=(i.name+" "+i.category+" "+(i.region||"")+" "+i.src+" "+(i.brand||"")+" "+(window.MT&&MT.d?MT.text(i.id,i.category):"")).toLowerCase();
+ if(q){const h=(i.name+" "+i.category+" "+(i.region||"")+" "+i.src+" "+(i.brand||"")+" "+(window.MT&&MT.d?MT.text(i.id,i.category)+" "+i.id:"")).toLowerCase();
   const strip=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d");if(!q.split(/\s+/).every(w=>strip(h).includes(strip(w))))return false}
  return true}
 const ROW=r=>`<tr><td class="name">${esc(r.name)}${r.stale?'<span class="tag stale">dữ liệu cũ</span>':""}${PERIODIC(r)?'<span class="tag per">định kỳ</span>':""}${window.MT&&MT.d?MT.confPill(r.id):""}${r.note?`<div class="note">${esc(r.note)}</div>`:""}</td>
@@ -71,11 +71,12 @@ const ROW=r=>`<tr><td class="name">${esc(r.name)}${r.stale?'<span class="tag sta
 <td><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.src)}</a></td><td><button class="hist" data-id="${esc(r.id)}">📈 Lịch sử</button></td></tr>`;
 const HEAD=`<thead><tr><th>Mặt hàng</th><th>Khu vực</th><th style="text-align:right">Giá</th><th>Đơn vị</th><th style="text-align:right">Thay đổi</th><th style="text-align:right">Quy đổi VND</th><th>Ngày giá</th><th>Cập nhật</th><th>Nguồn</th><th></th></tr></thead>`;
 const MT_M=(id,d1)=>{const x=HUBX?.[id];return{w1:x?.w1,mom:x?.mom,s0:x?.s0,f0:x?.first_date,d1:d1??x?.d1}};
-let HUBX=null,MTG=new URLSearchParams(location.search).get("nhom")||"";
+const MTP=r=>MT.hubPath(r.id,r.category,HUBX?.[r.id]?.tax,HTAX);
+let HTAX=null,HUBX=null,MTG=new URLSearchParams(location.search).get("nhom")||"";
 function render(){const rows=DATA.items.filter(match);const out=document.getElementById("out");
  if(window.MT&&MT.d){const q=document.getElementById("q").value.trim();
-  MT.render(out,rows.map(r=>({path:MT.path(r.id,r.category),html:ROW(r),m:MT_M(r.id,r.change_pct)})),
-   {head:HEAD,cols:10,key:"gia",tcls:"",group:MTG,expand:!!(q||cat.value||reg.value||staleOnly.checked),defClosed:MT.defClosed(rows.map(r=>({path:MT.path(r.id,r.category)}))),onGroup:g=>{MTG=g;const u=new URL(location);g?u.searchParams.set("nhom",g):u.searchParams.delete("nhom");history.replaceState(null,"",u)}});
+  MT.render(out,rows.map(r=>({path:MTP(r),html:ROW(r),m:MT_M(r.id,r.change_pct)})),
+   {head:HEAD,cols:10,key:"gia",tcls:"",group:MTG,expand:!!(q||cat.value||reg.value||staleOnly.checked),defClosed:MT.defClosed(rows.map(r=>({path:MTP(r)}))),onGroup:g=>{MTG=g;const u=new URL(location);g?u.searchParams.set("nhom",g):u.searchParams.delete("nhom");history.replaceState(null,"",u)}});
   out.querySelector(".mtg-tw")?.classList.add("tw");
  } else {let h="";
  for(const g of[["world","🌐 Thị trường thế giới"],["vn","🇻🇳 Thị trường Việt Nam"]]){const gr=rows.filter(r=>r.group==g[0]);if(!gr.length)continue;
