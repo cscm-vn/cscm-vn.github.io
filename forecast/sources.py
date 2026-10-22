@@ -33,7 +33,8 @@ def _concrete_table(url, src, prefix, region, grades=GRADES):
                 if not lo or not (500_000 < lo < 5_000_000): continue
                 out.append(_it(f"{prefix}_m{g}", "Bê tông thương phẩm", f"Bê tông tươi M{g} đá 1x2, sụt 12±2 ({src})",
                                "VND/m³", "VND", lo, src, url, region, price_high=hi,
-                               note=f"Cát thường {_vnf(lo)} – cát vàng {_vnf(hi)} đ/m³; chưa VAT, gồm vận chuyển nội thành; báo giá NCC"))
+                               note=(f"Cát công trình {_vnf(lo)} – 100% cát vàng {_vnf(hi)} đ/m³; ĐÃ GỒM VAT (theo trang NCC), sụt 12±2; báo giá NCC" if "betonghanoi" in src else
+                                     f"Cát thường {_vnf(lo)} – cát vàng {_vnf(hi)} đ/m³; chưa VAT, gồm vận chuyển đến CT nội thành; báo giá NCC")))
     if not out: raise RuntimeError(f"{src}: không thấy dòng M250/M300")
     return out
 

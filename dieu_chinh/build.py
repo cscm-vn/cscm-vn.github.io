@@ -29,8 +29,8 @@ def sval(s, p, vat):
     if s.get("use") == "mid": v = (v + (p.get("price_high") or v)) / 2
     elif s.get("use") == "high": v = p.get("price_high") or v
     v *= s.get("factor", 1.0)
-    if s.get("vat_incl"): v /= (1 + vat)
-    return v
+    if s.get("vat") == "incl": v /= (1 + vat)
+    return v + s.get("adj", 0)
 
 def series_of(s, H, vat):
     return [(p["date"], sval(s, p, vat)) for p in H(s["id"]) if sval(s, p, vat) is not None]
@@ -47,6 +47,17 @@ def combine(list_of_series, how=statistics.median, start=None):
         if vals and len(vals) == len(list_of_series) or (vals and how is statistics.median): out.append((d, how(vals)))
     return out
 
+VATL = {"excl": "chưa VAT", "incl": "đã gồm VAT (quy về chưa VAT)", "unknown": "nguồn không nêu VAT (coi là chưa VAT)", "mixed": "nhiều nguồn – đã quy về chưa VAT"}
+def basis_text(mk, r):
+    b = mk.get("basis")
+    if mk.get("value") is None or not b: return None
+    src_vat = {"excl": "nguồn chưa VAT", "incl": "nguồn đã gồm VAT → ÷1,08", "unknown": "nguồn không nêu VAT → coi là chưa VAT", "mixed": "nhiều nguồn, mỗi nguồn quy về chưa VAT"}[b.get("vat", "unknown")]
+    parts = [f"Giá thị trường quy về CHƯA VAT ({src_vat})"]
+    if b.get("delivery"): parts.append("Điều kiện giao: " + "; ".join(b["delivery"]))
+    if b.get("adj"): parts.append("Điều chỉnh quy cách: " + "; ".join(b["adj"]))
+    if b.get("conv"): parts.append(f"Quy đổi về đ/{r['unit']}: " + "; ".join(b["conv"]))
+    return " · ".join(parts)
+
 def build_contract(c, MAP, prices, H, FC, today):
     vat, near_pp, infl = MAP["vat_rate"], MAP["near_pp"], MAP["infl"]
     items = {(r["region"], r["code"]): r for r in c["items"]}
@@ -61,12 +72,17 @@ def build_contract(c, MAP, prices, H, FC, today):
             if s.get("role") != "check": main.append(v)
             srcs.append(dict(id=s["id"], label=s.get("label"), value=v, role=s.get("role"), raw=it.get("price"), raw_high=it.get("price_high"), unit=it.get("unit"),
                              as_of=it.get("as_of"), src=it.get("src"), url=it.get("url"), stale=bool(it.get("stale")), note=it.get("note"),
-                             conv=" ".join(x for x in [("điểm giữa khoảng" if s.get("use") == "mid" else ""), (f"× {s['factor']:g}" if s.get("factor", 1) != 1 else ""),
-                                                        ("÷ 1,08 (bỏ VAT)" if s.get("vat_incl") else "")] if x) or None))
+                             vat=s.get("vat", "unknown"), vat_ev=s.get("vat_ev"), delivery=s.get("delivery"), adj_note=s.get("adj_note"),
+                             conv=" ".join(x for x in [("điểm giữa khoảng" if s.get("use") == "mid" else ""), (f"× {s['factor']:g}".replace(".", ",") if s.get("factor", 1) != 1 else ""),
+                                                        ("÷ 1,08 (bỏ VAT)" if s.get("vat") == "incl" else ""),
+                                                        (f"+ {s['adj']:,.0f}".replace(",", ".") + " (độ sụt 12±2)" if s.get("adj") else "")] if x) or None))
         if not main: return None
         ser = combine([series_of(s, H, vat) for s in m["series"] if prices.get(s["id"]) and s.get("role") != "check"], start=start)
         ok = [x for x in srcs if not x.get("missing") and x.get("role") != "check"]
-        return dict(value=statistics.median(main), lo=min(cur), hi=max(cur), n=len(cur), n_main=len(main), as_of=min(x["as_of"] for x in ok if x.get("as_of")),
+        vs = sorted({x["vat"] for x in ok})
+        basis = dict(vat=vs[0] if len(vs) == 1 else "mixed", vat_src=[x["vat"] for x in ok], delivery=sorted({x["delivery"] for x in ok if x.get("delivery")}),
+                     conv=sorted({x["conv"] for x in ok if x.get("conv")}), adj=sorted({x["adj_note"] for x in ok if x.get("adj_note")}), ev=sorted({x["vat_ev"] for x in ok if x.get("vat_ev")}))
+        return dict(value=statistics.median(main), lo=min(cur), hi=max(cur), n=len(cur), n_main=len(main), basis=basis, as_of=min(x["as_of"] for x in ok if x.get("as_of")),
                     newest=max(x["as_of"] for x in ok if x.get("as_of")), stale=any(x["stale"] for x in ok), sources=srcs, series=ser)
     order = sorted(MAP["items"].items(), key=lambda kv: kv[1]["method"] != "median")
     got = lambda k: (lambda x: x if x and x.get("value") is not None else None)(res.get(k))
@@ -79,13 +95,13 @@ def build_contract(c, MAP, prices, H, FC, today):
             rr, rc = m["ref"].split("|"); ref = got((rr, rc)); a, b = items[(reg, code)], items[(rr, rc)]
             k = (a["ctd"] / b["ctd"]) if a.get("ctd") and b.get("ctd") else ((a["ntc"] / b["ntc"]) if a.get("ntc") and b.get("ntc") else None)
             if ref and k:
-                out = dict(value=ref["value"] * k, lo=ref["lo"] * k, hi=ref["hi"] * k, n=ref["n"], as_of=ref["as_of"], newest=ref["newest"], stale=ref["stale"],
+                out = dict(value=ref["value"] * k, lo=ref["lo"] * k, hi=ref["hi"] * k, n=ref["n"], as_of=ref["as_of"], newest=ref["newest"], stale=ref["stale"], basis=dict(ref.get("basis") or {}, conv=[f"giá {rc} × {k:.4f}".replace(".", ",")]),
                            sources=[dict(derived=True, label=f"Giá thị trường {rc} × {k:.4f}".replace(".", ","), value=ref["value"] * k)], series=[(d, v * k) for d, v in ref["series"]])
         elif m["method"] == "interp":
             refs = [got(tuple(x.split("|"))) for x in m["refs"]]
             if all(refs):
                 ser = combine([r["series"] for r in refs], how=lambda v: sum(v) / len(v), start=start)
-                out = dict(value=sum(r["value"] for r in refs) / len(refs), lo=sum(r["lo"] for r in refs) / len(refs), hi=sum(r["hi"] for r in refs) / len(refs),
+                out = dict(value=sum(r["value"] for r in refs) / len(refs), lo=sum(r["lo"] for r in refs) / len(refs), hi=sum(r["hi"] for r in refs) / len(refs), basis=dict(refs[0].get("basis") or {}, conv=["TB(" + ", ".join(x.split("|")[1] for x in m["refs"]) + ")"]),
                            n=min(r["n"] for r in refs), as_of=min(r["as_of"] for r in refs), newest=max(r["newest"] for r in refs), stale=any(r["stale"] for r in refs),
                            sources=[dict(derived=True, label=f"TB({', '.join(x.split('|')[1] for x in m['refs'])})", value=sum(r["value"] for r in refs) / len(refs))], series=ser)
         elif m["method"] == "norm":
@@ -95,7 +111,10 @@ def build_contract(c, MAP, prices, H, FC, today):
                 c0 = kg * bx + m3 * bc
                 f = lambda x, y: base * (kg * x + m3 * y) / c0
                 ser = [(d, base * v / c0) for d, v in combine([[(d, kg * v) for d, v in xm["series"]], [(d, m3 * v) for d, v in ca["series"]]], how=sum, start=start)]
+                bx_, bc_ = xm.get("basis") or {}, ca.get("basis") or {}
                 out = dict(value=f(xm["value"], ca["value"]), lo=f(xm["lo"], ca["lo"]), hi=f(xm["hi"], ca["hi"]), n=min(xm["n"], ca["n"]),
+                           basis=dict(vat=bx_.get("vat") if bx_.get("vat") == bc_.get("vat") else "mixed", delivery=bx_.get("delivery", []) + bc_.get("delivery", []),
+                                      conv=[f"đơn giá NTC × chỉ số chi phí ({kg} kg XM + {m3:g} m³ cát)".replace(".", ",")], adj=[], ev=bx_.get("ev", []) + bc_.get("ev", [])),
                            as_of=min(xm["as_of"], ca["as_of"]), newest=max(xm["newest"], ca["newest"]), stale=xm["stale"] or ca["stale"],
                            sources=[dict(derived=True, label=f"{kg} kg XM × {xm['value']:,.0f} + {m3:g} m³ cát × {ca['value']:,.0f}".replace(",", ".") + f" = {kg * xm['value'] + m3 * ca['value']:,.0f}".replace(",", ".") +
                                          f" so với {c0:,.0f}".replace(",", ".") + " theo đơn giá NTC", value=f(xm["value"], ca["value"]))], series=ser,
@@ -156,51 +175,63 @@ def build_contract(c, MAP, prices, H, FC, today):
             now = mk["value"]; mu = math.log(now * (1 + pct)); e = dict(pct=round(pct * 100, 2), base=now * (1 + pct), lo=now * (1 + pct) * math.exp(-1.2816 * sd), hi=now * (1 + pct) * math.exp(1.2816 * sd))
             it = items[(reg, code)]
             for b in ("ctd", "ntc"):
-                bv, thr = it.get(b), it.get(f"thr_{b}_pct")
-                if bv and thr is not None and sd > 0:
-                    e[f"p_up_{b}"] = round(100 * (1 - Phi((math.log(bv * (1 + thr / 100)) - mu) / sd)), 1)
-                    e[f"p_down_{b}"] = round(100 * Phi((math.log(bv * (1 - thr / 100)) - mu) / sd), 1)
+                thr = it.get(f"thr_{b}_pct")
+                for suf, kb in (("", 1.0), ("_vi", 1 / (1 + vat))):
+                    bv = it.get(b) and it[b] * kb; mu_ = mu + (math.log(kb) if kind == "norm" else 0)
+                    if bv and thr is not None and sd > 0:
+                        e[f"p_up_{b}{suf}"] = round(100 * (1 - Phi((math.log(bv * (1 + thr / 100)) - mu_) / sd)), 1)
+                        e[f"p_down_{b}{suf}"] = round(100 * Phi((math.log(bv * (1 - thr / 100)) - mu_) / sd), 1)
             out[str(h)] = e
         return dict(h=out, note=note, kind=kind)
     rows = []
     for r in c["items"]:
         mk = res.get((r["region"], r["code"])) or dict(value=None, method="none", note="Chưa khai báo ánh xạ giá thị trường")
-        ev = {}
-        for b in ("ctd", "ntc"):
-            bv, thr = r.get(b), r.get(f"thr_{b}_pct")
+        evals = {}
+        for scen, kb in (("excl", 1.0), ("incl", 1 / (1 + vat))):
+          ev = evals[scen] = {}
+          for b in ("ctd", "ntc"):
+            bv, thr = r.get(b) and r[b] * kb, r.get(f"thr_{b}_pct")
             if not bv: ev[b] = dict(status="na"); continue
             if mk.get("value") is None: ev[b] = dict(status="missing"); continue
-            d = (mk["value"] / bv - 1) * 100
+            mv = mk["value"] * (kb if mk.get("method") == "norm" else 1)  # 'norm' suy từ đơn giá NTC → cùng cơ sở VAT với HĐ
+            d = (mv / bv - 1) * 100
             st = "down" if d < -thr else "up" if d > thr else "within"
             e = dict(dev=round(d, 2), status=st, near=bool(st == "within" and thr - abs(d) <= near_pp), beyond=round((abs(d) - thr) * (1 if d > 0 else -1), 2) if st != "within" else 0.0,
-                     gap_pp=round(thr - abs(d), 2), dev_lo=round((mk["lo"] / bv - 1) * 100, 2), dev_hi=round((mk["hi"] / bv - 1) * 100, 2))
+                     gap_pp=round(thr - abs(d), 2), dev_lo=round((mk["lo"] * mv / mk["value"] / bv - 1) * 100, 2), dev_hi=round((mk["hi"] * mv / mk["value"] / bv - 1) * 100, 2))
             if r.get("weight_pct"):
                 e["impact"] = round(r["weight_pct"] * d / 100, 3); e["impact_beyond"] = round(r["weight_pct"] * e["beyond"] / 100, 3)
+            if (mk.get("basis") or {}).get("vat") == "unknown":  # nguồn không nêu VAT: nếu thực ra đã gồm VAT
+                e["dev_if_src_incl"] = round((mv / (1 + vat) / bv - 1) * 100, 2)
             ev[b] = e
+        ev = evals["excl"]
         ser = mk.pop("series", None) or []
         monthly = {}
         for d, v in ser: monthly[d[:7]] = v
-        row = dict(r, region_name=RNAME.get(r["region"], r["region"]), market={k: v for k, v in mk.items() if k != "shares"}, eval=ev,
+        row = dict(r, region_name=RNAME.get(r["region"], r["region"]), market={k: v for k, v in mk.items() if k != "shares"}, eval=ev, evals=evals, basis_text=basis_text(mk, r),
                    series=dict(d=[[d, round(v, 2)] for d, v in ser], m=[[k, round(v, 2)] for k, v in sorted(monthly.items())]),
                    fc=forecast(r["region"], r["code"], r["group"], dict(mk, series=None)))
         rows.append(row)
-    summ = {}
-    for reg in sorted({r["region"] for r in rows}) + ["all"]:
+    summs = {}
+    for scen in ("excl", "incl"):
+      summ = summs[scen] = {}
+      for reg in sorted({r["region"] for r in rows}) + ["all"]:
         summ[reg] = {}
         for b in ("ctd", "ntc"):
-            sel = [x for x in rows if reg in ("all", x["region"]) and x["eval"][b]["status"] != "na"]
-            S = lambda st: [x for x in sel if x["eval"][b]["status"] == st]
-            summ[reg][b] = dict(down=len(S("down")), up=len(S("up")), within=len(S("within")), missing=len(S("missing")), near=sum(1 for x in sel if x["eval"][b].get("near")), n=len(sel),
+            E_ = lambda x: x["evals"][scen][b]
+            sel = [x for x in rows if reg in ("all", x["region"]) and E_(x)["status"] != "na"]
+            S = lambda st: [x for x in sel if E_(x)["status"] == st]
+            summ[reg][b] = dict(down=len(S("down")), up=len(S("up")), within=len(S("within")), missing=len(S("missing")), near=sum(1 for x in sel if E_(x).get("near")), n=len(sel),
                                 down_w=round(sum(x.get("weight_pct") or 0 for x in S("down")), 2), up_w=round(sum(x.get("weight_pct") or 0 for x in S("up")), 2),
-                                impact_down=round(sum(x["eval"][b].get("impact") or 0 for x in S("down")), 3), impact_up=round(sum(x["eval"][b].get("impact") or 0 for x in S("up")), 3),
-                                impact_down_beyond=round(sum(x["eval"][b].get("impact_beyond") or 0 for x in S("down")), 3))
+                                impact_down=round(sum(E_(x).get("impact") or 0 for x in S("down")), 3), impact_up=round(sum(E_(x).get("impact") or 0 for x in S("up")), 3),
+                                impact_down_beyond=round(sum(E_(x).get("impact_beyond") or 0 for x in S("down")), 3))
     meta = {k: v for k, v in c.items() if k != "items"}
-    return dict(meta, rows=rows, summary=summ)
+    return dict(meta, rows=rows, summary=summs["excl"], summaries=summs, contract_vat_default=MAP.get("contract_vat_default", "unknown"), vat_rate=vat,
+                vat_note=MAP.get("basis_vat_rate_note"))
 
 def export_tables(data, site):
     hdr = ["Hợp đồng", "Miền", "Nhóm", "Mã", "Mô tả", "ĐVT", "Tỷ trọng (%)", "Đơn giá CTD", "Đơn giá NTC", "Giá thị trường", "Khoảng giá nguồn", "Ngày giá", "Nguồn",
-           "Cách xác định", "Độ tin cậy", "% lệch vs CTD", "Ngưỡng CTD (±%)", "Trạng thái CTD", "% lệch vs NTC", "Ngưỡng NTC (±%)", "Trạng thái NTC",
-           "Tác động vs CTD (điểm % giá trị HĐ)", "Tác động vs NTC (điểm % giá trị HĐ)", "Dự báo 3T (%)", "Dự báo 6T (%)", "Dự báo 12T (%)", "Ghi chú"]
+           "Cách xác định", "Độ tin cậy", "Cơ sở so sánh", "% lệch vs CTD", "Ngưỡng CTD (±%)", "Trạng thái CTD", "% lệch vs NTC", "Ngưỡng NTC (±%)", "Trạng thái NTC",
+           "Tác động vs CTD (điểm % giá trị HĐ)", "Tác động vs NTC (điểm % giá trị HĐ)", "% lệch vs CTD nếu đơn giá HĐ đã gồm VAT", "Trạng thái CTD nếu HĐ gồm VAT", "% lệch vs NTC nếu đơn giá HĐ đã gồm VAT", "Trạng thái NTC nếu HĐ gồm VAT", "Dự báo 3T (%)", "Dự báo 6T (%)", "Dự báo 12T (%)", "Ghi chú"]
     lines = []
     for c in data["contracts"]:
         for r in c["rows"]:
@@ -212,8 +243,9 @@ def export_tables(data, site):
                           round(m["value"]) if m.get("value") is not None and m["value"] >= 100 else (round(m["value"], 1) if m.get("value") is not None else None),
                           (f"{m['lo']:,.0f} – {m['hi']:,.0f}".replace(",", ".") if m.get("value") is not None and m.get("n", 1) > 1 else ""), m.get("as_of") or "", src,
                           {"median": "Trung vị nguồn", "ratio": "Suy diễn (tỷ lệ mác)", "interp": "Suy diễn (nội suy)", "norm": "Suy diễn (định mức)", "none": "Thiếu dữ liệu"}.get(m.get("method"), ""),
-                          m.get("quality") or "", e["ctd"].get("dev"), r.get("thr_ctd_pct"), st("ctd"), e["ntc"].get("dev"), r.get("thr_ntc_pct"), st("ntc"),
-                          e["ctd"].get("impact"), e["ntc"].get("impact"), (fch.get("3") or {}).get("pct"), (fch.get("6") or {}).get("pct"), (fch.get("12") or {}).get("pct"), m.get("note") or ""])
+                          m.get("quality") or "", r.get("basis_text") or "", e["ctd"].get("dev"), r.get("thr_ctd_pct"), st("ctd"), e["ntc"].get("dev"), r.get("thr_ntc_pct"), st("ntc"),
+                          e["ctd"].get("impact"), e["ntc"].get("impact"), r["evals"]["incl"]["ctd"].get("dev"), STATUS_VI[r["evals"]["incl"]["ctd"]["status"]],
+                          r["evals"]["incl"]["ntc"].get("dev"), STATUS_VI[r["evals"]["incl"]["ntc"]["status"]], (fch.get("3") or {}).get("pct"), (fch.get("6") or {}).get("pct"), (fch.get("12") or {}).get("pct"), m.get("note") or ""])
     with open(os.path.join(site, "dieu-chinh.csv"), "w", encoding="utf-8-sig", newline="") as f:
         w = csv.writer(f); w.writerow(hdr); w.writerows(lines)
     try:
@@ -226,17 +258,17 @@ def export_tables(data, site):
         fills = {"Vượt ngưỡng GIẢM": "D1FADF", "Vượt ngưỡng TĂNG": "FEE4E2", "Thiếu dữ liệu": "F2F4F7"}
         for ln in lines:
             ws.append(ln)
-            for col in (18, 21):
+            for col in (19, 22, 26, 28):
                 v = ws.cell(ws.max_row, col).value or ""
                 for k, fc in fills.items():
-                    if v.startswith(k): ws.cell(ws.max_row, col).fill = PatternFill("solid", fgColor=fc)
-        for col, wd in zip("ABCDEFGHIJKLMNOPQRSTUVWXYZA", [22, 10, 16, 13, 40, 7, 9, 12, 12, 13, 22, 11, 40, 18, 8, 10, 9, 22, 10, 9, 22, 12, 12, 9, 9, 9, 60]):
-            ws.column_dimensions[col].width = wd
-        ws.column_dimensions["AA"].width = 60
+                    if str(v).startswith(k): ws.cell(ws.max_row, col).fill = PatternFill("solid", fgColor=fc)
+        from openpyxl.utils import get_column_letter as GL
+        for i, wd in enumerate([22, 10, 16, 13, 40, 7, 9, 12, 12, 13, 22, 11, 40, 18, 8, 50, 10, 9, 22, 10, 9, 22, 12, 12, 12, 22, 12, 22, 9, 9, 9, 60], 1):
+            ws.column_dimensions[GL(i)].width = wd
         for row in ws.iter_rows(min_row=3):
             for cell in row:
                 if isinstance(cell.value, float) and cell.column in (8, 9, 10): cell.number_format = "#,##0"
-        ws.freeze_panes = "F3"; ws.auto_filter.ref = f"A2:AA{ws.max_row}"
+        ws.freeze_panes = "F3"; ws.auto_filter.ref = f"A2:{GL(len(hdr))}{ws.max_row}"
         wb.save(os.path.join(site, "dieu-chinh.xlsx"))
     except ImportError: pass
 
@@ -264,7 +296,8 @@ def main():
                 top.append(dict(code=r["code"], region=r["region"], region_name=r["region_name"], hits=hits, status=hits[0]["status"],
                                 weight=r.get("weight_pct"), quality=r["market"].get("quality")))
         top.sort(key=lambda x: (x["status"] != "down", -(x["weight"] or 0), min(h["dev"] for h in x["hits"])))
-        summ.append(dict(id=c["id"], name=c["name"], version=c["version"], summary=c["summary"], top=top[:8]))
+        summ.append(dict(id=c["id"], name=c["name"], version=c["version"], summary=c["summary"], summary_if_contract_incl_vat=c["summaries"]["incl"], top=top[:8],
+                         basis="Giá thị trường quy về chưa VAT; giả định đơn giá HĐ chưa gồm VAT (chưa xác nhận)"))
     open(os.path.join(a.site, "data", "dieu-chinh-summary.json"), "w", encoding="utf-8").write(NFC(json.dumps(dict(generated=data["generated"], contracts=summ), ensure_ascii=False, separators=(",", ":"))))
     for c in data["contracts"]:
         S = c["summary"]["all"]; print(f"{c['id']} v{c['version']}: {len(c['rows'])} dòng | CTD ↓{S['ctd']['down']} ↑{S['ctd']['up']} ≈{S['ctd']['within']} ?{S['ctd']['missing']} | NTC ↓{S['ntc']['down']} ↑{S['ntc']['up']} ≈{S['ntc']['within']} ?{S['ntc']['missing']}")
