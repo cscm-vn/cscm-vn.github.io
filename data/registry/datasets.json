@@ -37,41 +37,6 @@
     "error"
    ],
    "desc": "Nhật ký mỗi lần chạy nguồn"
-  },
-  "contract_baselines": {
-   "path": "registry/contract_baselines.json",
-   "key": [
-    "contract.id",
-    "contract.version",
-    "items.region",
-    "items.code"
-   ],
-   "columns": [
-    "region",
-    "group",
-    "code",
-    "desc",
-    "unit",
-    "weight_pct",
-    "thr_ctd_pct",
-    "thr_ntc_pct",
-    "ctd",
-    "ntc"
-   ],
-   "desc": "Đơn giá nguyên tắc HĐ tổng thầu (CTD/NTC) + ngưỡng điều chỉnh; nhiều HĐ/phiên bản (version, effective_date). Nhập bằng dieu_chinh/import_tsv.py; null = ô trống trong HĐ."
-  },
-  "contract_market_map": {
-   "path": "registry/contract_market_map.json",
-   "key": [
-    "items.<region|code>"
-   ],
-   "columns": [
-    "method",
-    "series[id,use,factor,vat_incl,role,label]",
-    "quality",
-    "note"
-   ],
-   "desc": "Ánh xạ dòng HĐ → chuỗi giá trong history/prices (trung vị/suy diễn/thiếu) + hồ sơ dự báo; dùng bởi dieu_chinh/build.py"
   }
  },
  "registries": {
