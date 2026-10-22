@@ -68,7 +68,7 @@ def te_desc(slug):
     return html.unescape(m.group(1)) if m else ""
 def parse_te_desc(d):
     """'X rose to 8,646 CNY/T on October 21, 2026 ... past month ... risen 4.98%, ... up 25.16% compared to ... last year'"""
-    m = re.search(r"to ([\d,\.]+) ([A-Z]{3})/(\w+) on ([A-Za-z]+ \d+, \d{4})", d)
+    m = re.search(r"(?:to|at) ([\d,\.]+) ([A-Z]{3})/(\w+) on ([A-Za-z]+ \d+, \d{4})", d)  # "rose to …" / "traded flat at …"
     if not m: return None
     p = float(m.group(1).replace(",", ""))
     mo = re.search(r"past month[^%]*?(risen|fallen|increased|decreased|gained|lost)\s*([\d\.]+)%", d)
