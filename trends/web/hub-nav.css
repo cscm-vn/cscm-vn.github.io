@@ -1,11 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&display=swap&subset=vietnamese");
 /* Shared header – Masterise Procurement Hub design system (also injected into gia.html & forecast.html) */
-:root{--pri:#14325a;--pri2:#eef2f8;--gold:#b08d57;--gold2:#f6efe3;--navy:#0e1a2b;--line:#e7e3da;--ink:#1a2233;--mute:#6b7280}
+:root{--serif:"Lora","Noto Serif","Times New Roman",serif;--pri:#14325a;--pri2:#eef2f8;--gold:#b08d57;--gold2:#f6efe3;--navy:#0e1a2b;--line:#e7e3da;--ink:#1a2233;--mute:#6b7280}
 .hn-bar{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#0e1a2b,#12233b);color:#fff;box-shadow:0 1px 0 #b08d5733,0 6px 20px #0e1a2b26;font:14px/1.5 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
 .hn-bar a{text-decoration:none}
 .hn-in{max-width:1320px;margin:auto;display:flex;align-items:center;gap:6px;padding:0 16px;height:58px}
 .hn-logo{display:flex;align-items:center;gap:9px;color:#fff;margin-right:14px;white-space:nowrap;font-weight:600;letter-spacing:.2px}
-.hn-logo i{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#c9a96e,#8f6f3e);color:#0e1a2b;font-style:normal;font-weight:800;font-family:Georgia,"Times New Roman",serif;font-size:17px}
-.hn-logo span{display:flex;flex-direction:column;line-height:1.1}.hn-logo b{font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-size:16px;font-weight:600;letter-spacing:.4px}
+.hn-logo i{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#c9a96e,#8f6f3e);color:#0e1a2b;font-style:normal;font-weight:800;font-family:"Lora","Noto Serif","Times New Roman",serif;font-size:17px}
+.hn-logo span{display:flex;flex-direction:column;line-height:1.1}.hn-logo b{font-family:"Lora","Noto Serif","Times New Roman",serif;font-size:16px;font-weight:600;letter-spacing:.4px}
 .hn-logo small{font-size:10.5px;font-weight:500;color:#c9a96e;letter-spacing:1.6px;text-transform:uppercase;margin-top:2px}
 .hn-links{display:flex;gap:1px;flex:1;align-items:center}
 .hn-links a,.hn-links button{color:#cdd6e3;padding:7px 10px;border-radius:7px;font-size:13.5px;background:none;border:0;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s,color .15s}

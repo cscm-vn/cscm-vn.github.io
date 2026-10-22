@@ -94,6 +94,7 @@ def main():
         x["score"] = sum(w for k, w in KW.items() if k in t) + 2 * len(x["tax"]) - age * 0.3
         x["id"] = hashlib.sha1(x["url"].encode()).hexdigest()[:12]; x["origin"] = "rss"; items.append(x)
     items.sort(key=lambda x: (x["date"], x["score"]), reverse=True); items = items[:900]
+    import unicodedata; items = json.loads(unicodedata.normalize("NFC", json.dumps(items, ensure_ascii=False)))  # NFC: decomposed marks render detached
     json.dump(dict(updated=dt.datetime.now(TZ).isoformat(timespec="minutes"), errors=errs, count=len(items), items=items),
               open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     print(f"feed: {len(new)} fetched, {len(items)} kept, errors: {errs or 'none'}")

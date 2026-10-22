@@ -141,4 +141,9 @@ def main():
     fc = next((p for p in ("du-bao.html", "du-bao/index.html", "forecast.html", "forecast/index.html") if os.path.exists(os.path.join(SITE, p))), None)
     json.dump(dict(forecast_page=fc), open(os.path.join(OUT, "site-config.json"), "w"))
     n, c = build(); print(f"hub built: {n} price items mapped, {c} HN/HCM comparisons, forecast page: {fc}")
+    import unicodedata  # normalize every generated text file to NFC (decomposed Vietnamese marks render detached)
+    for f in glob.glob(os.path.join(SITE, "**", "*"), recursive=True):
+        if f.endswith((".html", ".json", ".csv", ".js", ".css")) and os.path.isfile(f):
+            t = open(f, encoding="utf-8", errors="strict").read(); n = unicodedata.normalize("NFC", t)
+            if n != t: open(f, "w", encoding="utf-8").write(n)
 if __name__ == "__main__": main()
