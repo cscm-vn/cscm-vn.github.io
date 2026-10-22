@@ -16,7 +16,7 @@ with sync_playwright() as p:
     pg.fill("#q", "dong"); print("search dong ->", pg.locator("#tbl tbody tr.row").count()); 
     pg.locator("#tbl tbody tr.row").first.click(); pg.wait_for_timeout(500)
     pg.locator("#chTitle").scroll_into_view_if_needed(); pg.screenshot(path=f"{out}/forecast_03_chart_copper.png")
-    pg.fill("#q", ""); pg.click("text=Xây dựng › Bê tông thương phẩm"); print("concrete rows", pg.locator("#tbl tbody tr.row").count())
+    pg.fill("#q", ""); pg.click("text=/Xây dựng.* › Bê tông thương phẩm$/"); print("concrete rows", pg.locator("#tbl tbody tr.row").count())
     pg.locator("#tbl").scroll_into_view_if_needed(); pg.screenshot(path=f"{out}/forecast_04_taxonomy_concrete.png")
     pg.locator("#hnhcm").scroll_into_view_if_needed(); pg.screenshot(path=f"{out}/forecast_05_hn_vs_hcm.png")
     print("pairs", pg.locator("#pairs tbody tr").count())

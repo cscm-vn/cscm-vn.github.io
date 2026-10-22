@@ -5,7 +5,7 @@ xi măng, cát, đá, gạch, vàng SJC, tỷ giá Vietcombank. Có lọc/tìm k
 cờ "dữ liệu cũ" khi nguồn lỗi (giữ giá tốt gần nhất – không bao giờ tự bịa giá).
 
 ## Cấu trúc
-- `fetcher.py` – lấy giá từ mọi nguồn → `data/prices.db` (SQLite: `items` = giá mới nhất + trạng thái, `obs` = lịch sử, `runs` = log từng nguồn).
+- `fetcher.py` – lấy giá từ mọi nguồn → lịch sử chuẩn dạng CSV theo tháng `data/history/prices/YYYY-MM.csv` + `data/registry/items.json` (xem **DATA.md**); `data/prices.db` (SQLite `items`/`obs`/`runs`) chỉ là bản làm việc dựng lại từ CSV, không commit.
 - `app.py` – Flask/gunicorn, cổng 8080: `/`, `/api/prices`, `/api/history/<id>`, `/api/sources`, `/api/export.csv|xlsx?group=&q=`, `/healthz`.
 - `static/index.html` – giao diện (Chart.js đóng gói sẵn, không phụ thuộc CDN). Tự tải lại mỗi 15 phút.
 - `export_static.py` – xuất bản tĩnh vào `site/` (chạy được trên GitHub Pages/Netlify; UI tự nhận chế độ tĩnh).
@@ -40,7 +40,7 @@ gunicorn -w 2 -b 0.0.0.0:8080 app:app   # http://localhost:8080
 Quick tunnel Cloudflare **không chạy được trên box này** (mạng chặn cổng 7844 TCP/UDP; SSH tunnel cũng bị chặn). Các lựa chọn ổn định:
 1. **GitHub Pages + GitHub Actions (miễn phí, khuyến nghị)**: tạo repo (có thể private với GitHub Team/Enterprise, Pages private cần gói trả phí; public thì ai có link đều xem được),
    đẩy thư mục này lên, bật Settings → Pages → Source: GitHub Actions.
-   Workflow chạy 5 lần/ngày, commit `data/prices.db` (giữ lịch sử) và deploy `site/`. Cần: tài khoản GitHub + bật Actions. Lưu ý IP của GitHub runner có thể bị một số site (TE/Yahoo) chặn → khi đó dòng tương ứng hiện "dữ liệu cũ".
+   Workflow chạy 5 lần/ngày, commit `data/history/` + `data/registry/` (CSV, giữ lịch sử; sao lưu đầy đủ hằng tháng ở GitHub Releases `backup-YYYY-MM`) và deploy `site/`. Cần: tài khoản GitHub + bật Actions. Lưu ý IP của GitHub runner có thể bị một số site (TE/Yahoo) chặn → khi đó dòng tương ứng hiện "dữ liệu cũ".
 2. **Render / Railway / Fly.io** (chạy nguyên app Flask + cron job): cần tài khoản, ổ đĩa persistent cho `data/prices.db` (gói free của Render không có disk → dùng bản tĩnh hoặc gói trả phí ~7 USD/tháng).
 3. **Cloudflare Tunnel có tài khoản (named tunnel)** trên một máy/VM nội bộ có mở cổng 7844 ra ngoài → URL cố định trên domain công ty, có thể gắn Cloudflare Access (đăng nhập email @masterisehomes.com).
 4. **Máy chủ nội bộ Masterise** (VM Linux bất kỳ): chạy y hệt box này (gunicorn + cron), mở cổng nội bộ – an toàn nhất về dữ liệu.
