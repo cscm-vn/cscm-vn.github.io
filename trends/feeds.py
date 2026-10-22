@@ -25,6 +25,7 @@ def load_orgs():
     p = os.path.join(D, "orgs.json")
     R = [o for o in json.load(open(p, encoding="utf-8"))["orgs"] if o.get("query") and o.get("kws")]
     return [(o["name"], o["type"], o["query"], o["kws"]) for o in R], {o["name"]: o["type"] for o in R if o.get("trust_query")}
+ORGS_ZH = [(o["name"], o["type"], o["query_zh"]) for o in json.load(open(os.path.join(D, "orgs.json"), encoding="utf-8"))["orgs"] if o.get("query_zh") and o.get("kws")]  # optional Chinese-language org queries (Google News zh-CN; Baidu-free)
 VI = re.compile("[ăâđêôơưĂÂĐÊÔƠƯàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]")
 ORGS, TRUST = load_orgs()  # TRUST: distinctive quoted query => a hit from that org's own query is tagged to it even if the headline omits the name  # (display name, type, Google News query, accent-free headline keywords)
 MSEG = [  # market segment tags (accent-free keywords) – same ids as trends/data/segments.json
@@ -66,6 +67,7 @@ def main():
     jobs = [(GN.format(q=urllib.parse.quote(q), hl=hl, gl=gl, lang=lang), "Google News", k) for q, hl, gl, lang, k in Q] + [(u, n, k) for n, u, k in RSS]
     jobs = [(u, s_, k, None) for u, s_, k in jobs]
     jobs += [(GN.format(q=urllib.parse.quote(q + " when:30d"), hl="vi", gl="VN", lang="vi"), "Google News", typ, n) for n, typ, q, _ in ORGS]
+    jobs += [(GN.format(q=urllib.parse.quote(q + " when:30d"), hl="zh-CN", gl="CN", lang="zh-Hans"), "Google News", typ, n) for n, typ, q in ORGS_ZH]
     for url, src, kind, qorg in jobs:
         try:
             got = parse(fetch(url), src, kind)
