@@ -49,23 +49,48 @@ HUB.nav = async () => {
   inp.onkeydown = e => { if (e.key === "Enter") { const a = res.querySelector("a"); if (a) location.href = a.href; } };
   HUB.views();
 };
-// Lượt xem (GoatCounter public counter API). Lỗi mạng => ẩn widget, không ném lỗi.
+// Lượt xem (GoatCounter public counter API + views-daily.json do workflow tạo). Lỗi => ẩn, không ném lỗi.
 HUB.views = async () => {
   if (document.querySelector(".hn-views")) return;
-  const GC = "https://cscm-vn.goatcounter.com/counter/", nf = new Intl.NumberFormat("vi-VN");
-  const get = async p => { try { const c = new AbortController(); const t = setTimeout(() => c.abort(), 6000);
-    const r = await fetch(GC + p, {signal: c.signal, credentials: "omit"}); clearTimeout(t); if (!r.ok) return null;
-    const j = await r.json(); return +String(j.count).replace(/\D/g, "") || 0; } catch (e) { return null; } };
-  const day = new Date().toISOString().slice(0, 10);  // GoatCounter tính theo ngày UTC (từ 07:00 giờ VN)
+  const GC = "https://cscm-vn.goatcounter.com/counter/", nf = new Intl.NumberFormat("vi-VN"), SINCE = "2026-10-22";
+  const get = async (u, raw) => { try { const c = new AbortController(); const t = setTimeout(() => c.abort(), 6000);
+    const r = await fetch(raw ? u : GC + u, {signal: c.signal, credentials: "omit"}); clearTimeout(t); if (!r.ok) return null;
+    const j = await r.json(); return raw ? j : (+String(j.count).replace(/\D/g, "") || 0); } catch (e) { return null; } };
+  const ymd = d => new Intl.DateTimeFormat("en-CA", {timeZone: "Asia/Ho_Chi_Minh"}).format(d);  // ngày giờ VN
+  const day = ymd(new Date()), next = ymd(new Date(Date.now() + 864e5));
   const home = /(^|\/)(index\.html)?$/.test(location.pathname);
-  const [tot, today, p1, p2] = await Promise.all([get("TOTAL.json"), get("TOTAL.json?start=" + day),
+  const [tot, today, p1, p2] = await Promise.all([get(`TOTAL.json?start=${SINCE}&end=${next}`), get(`TOTAL.json?start=${day}&end=${next}`),
     home ? get("%2F.json") : null, home ? get("%2Findex.html.json") : null]);
   if (tot == null) return;
-  const el = document.createElement("div"); el.className = "hn-views"; el.setAttribute("aria-label", "Thống kê lượt xem");
+  const wrap = document.createElement("div"); wrap.className = "hn-views-wrap";
   const it = (l, v, tip) => v == null ? "" : `<span title="${tip || ""}"><small>${l}</small><b>${nf.format(v)}</b></span>`;
-  el.innerHTML = `<i aria-hidden="true">◉</i>` + it("Lượt xem hôm nay", today, "Tính từ 07:00 giờ Việt Nam (ngày UTC)") + it("Tổng lượt xem", tot, "Toàn trang, từ 22/10/2026") +
-    (home && (p1 != null || p2 != null) ? it("Trang chủ", (p1 || 0) + (p2 || 0)) : "");
-  document.body.appendChild(el);
+  wrap.innerHTML = `<button type="button" class="hn-views" aria-expanded="false" aria-controls="hn-vchart" title="Xem xu hướng 30 ngày">
+    <i aria-hidden="true">◉</i>${it("Lượt xem hôm nay", today, "Theo ngày giờ Việt Nam")}${it("Tổng lượt xem", tot, "Toàn trang, từ 22/10/2026")}${home && (p1 != null || p2 != null) ? it("Trang chủ", (p1 || 0) + (p2 || 0)) : ""}<em aria-hidden="true">▾</em></button>
+    <div class="hn-vchart" id="hn-vchart" hidden></div>`;
+  document.body.appendChild(wrap);
+  const btn = wrap.querySelector("button"), box = wrap.querySelector(".hn-vchart"); let loaded = false;
+  btn.onclick = async () => {
+    const open = box.hidden; box.hidden = !open; btn.setAttribute("aria-expanded", open);
+    if (!open || loaded) return; loaded = true; box.innerHTML = '<div class="vc-empty">Đang tải…</div>';
+    const d = await get("views-daily.json?t=" + Math.floor(Date.now() / 6e5), true);
+    if (!d || !Array.isArray(d.days) || !d.days.length) { box.innerHTML = '<div class="vc-empty">Chưa có dữ liệu xu hướng.</div>'; return; }
+    const D = d.days, max = Math.max(1, ...D.map(x => x.n || 0)), W = 600, H = 120, bw = W / D.length;
+    const lab = s => { const [y, m, dd] = s.split("-"); return `${dd}/${m}`; };
+    const bars = D.map((x, k) => { const h = x.n ? Math.max(2, x.n / max * (H - 8)) : 0;
+      return `<g class="vb" data-k="${k}"><rect x="${k * bw}" y="0" width="${bw}" height="${H}" fill="transparent"/>` +
+        (x.n == null ? `<rect x="${k * bw + bw * .2}" y="${H - 2}" width="${bw * .6}" height="2" class="na"/>` : `<rect x="${k * bw + bw * .15}" y="${H - h}" width="${bw * .7}" height="${h}" rx="2"/>`) +
+        `<title>${lab(x.d)}: ${x.n == null ? "chưa đo" : nf.format(x.n) + " lượt xem"}</title></g>`; }).join("");
+    const sum = D.reduce((s, x) => s + (x.n || 0), 0);
+    box.innerHTML = `<div class="vc-h"><b>Lượt xem theo ngày</b><span>30 ngày gần nhất · ${nf.format(sum)} lượt</span></div>
+      <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Biểu đồ lượt xem 30 ngày">${bars}</svg>
+      <div class="vc-x"><span>${lab(D[0].d)}</span><span class="vc-tip" aria-live="polite">Rê chuột/chạm vào cột để xem số</span><span>${lab(D[D.length - 1].d)}</span></div>
+      <div class="vc-f">Theo giờ Việt Nam · cập nhật ${String(d.updated || "").slice(11, 16)} ${String(d.updated || "").slice(8, 10)}/${String(d.updated || "").slice(5, 7)}</div>`;
+    const tip = box.querySelector(".vc-tip");
+    box.querySelectorAll(".vb").forEach(g => { const x = D[+g.dataset.k];
+      const show = () => { box.querySelectorAll(".vb.on").forEach(e => e.classList.remove("on")); g.classList.add("on");
+        tip.textContent = `${lab(x.d)}/${x.d.slice(0, 4)}: ${x.n == null ? "chưa đo" : nf.format(x.n) + " lượt xem"}`; };
+      g.addEventListener("mouseenter", show); g.addEventListener("click", show); });
+  };
 };
 HUB.sidebar = async (el, active, counts) => {
   if (!el) return; const t = await HUB.tax(); if (!t) return; const act = t.byId[active]; const open = act ? (act.level === 1 ? act.id : act.parent.id) : null;

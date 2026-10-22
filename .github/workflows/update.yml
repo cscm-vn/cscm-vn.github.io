@@ -2,7 +2,7 @@ name: update-prices
 on:
   schedule: [{cron: "5 23,2,5,8,11 * * *"}]   # UTC -> 06:05, 09:05, 12:05, 15:05, 18:05 Asia/Saigon
   workflow_dispatch:
-  push: {branches: [main], paths-ignore: ["data/history/**", "data/registry/**", "trends/data/feed.json"]}
+  push: {branches: [main], paths-ignore: ["data/history/**", "data/registry/**", "data/views/**", "trends/data/feed.json"]}
 permissions: {contents: write, pages: write, id-token: write}
 concurrency: {group: pages, cancel-in-progress: false}
 jobs:
@@ -27,11 +27,15 @@ jobs:
         run: python trends/feeds.py
       - name: Build hub pages (Trang chủ, Danh mục, Xu hướng, Thị trường) + shared nav
         run: python trends/build.py
+      - name: Daily page views (GoatCounter API, Vietnam days) – non-blocking
+        continue-on-error: true
+        env: {GOATCOUNTER_TOKEN: "${{ secrets.GOATCOUNTER_TOKEN }}"}
+        run: python trends/views.py
       - name: Commit price history
         continue-on-error: true
         run: |
           git config user.name "price-bot" && git config user.email "price-bot@users.noreply.github.com"
-          git add data/history data/registry trends/data/feed.json
+          git add data/history data/registry data/views trends/data/feed.json
           git commit -m "prices $(TZ=Asia/Ho_Chi_Minh date +%F' '%H:%M) [skip ci]" || exit 0
           git push || (git fetch origin main && git rebase -X theirs origin/main && git push)
       - uses: actions/configure-pages@v5
