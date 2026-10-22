@@ -1,12 +1,12 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mặt hàng – Masterise Construction SCM Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script><script src="static/chart.umd.min.js"></script></head>
+<title>Mặt hàng – Masterise Construction SCM Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script><script src="mt-group.js"></script><script src="static/chart.umd.min.js"></script></head>
 <body class="hub" data-page="item"><div id="hubnav"></div>
 <main class="wrap" id="main"><div class="crumb" id="crumb"></div>
 <div class="layout"><aside class="side" id="side"></aside><section id="main"></section></div><div class="foot" id="foot"></div></main>
 <script>
 (async () => {
  const [h, tr, mk, t, fc] = await Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.tax(), fetch("forecast.json").then(r => r.ok ? r.json() : null).catch(() => null)]);
- const E = HUB.esc, id = HUB.qs("id"), x = h.items.find(i => i.id === id), main = document.getElementById("main");
+ await MT.load(); const E = HUB.esc, id = HUB.qs("id"), x = h.items.find(i => i.id === id), main = document.getElementById("main");
  if (!x) { main.innerHTML = `<div class="empty">Không tìm thấy mặt hàng “${E(id)}”. <a href="gia.html">Về bảng giá</a></div>`; HUB.sidebar(document.getElementById("side")); return; }
  const n = t.byId[x.tax]; HUB.sidebar(document.getElementById("side"), x.tax);
  HUB.crumb([HUB.catLink(n.parent.id, n.parent.icon + " " + n.parent.name), HUB.catLink(n.id, n.name), `<b>${E(x.name)}</b>`]); document.title = x.name + " – Hub";
@@ -16,6 +16,12 @@
  const T = tr.items.filter(i => i.tax.includes(x.tax)).slice(0, 5), M = mk.items.filter(i => (i.tax || []).includes(x.tax)).slice(0, 5);
  const F = (fc?.items || []).filter(i => i.tax === x.tax && (!i.region || x.reg === "world" || (/hn|bac/i.test(i.region) ? "hn" : /hcm|nam/i.test(i.region) ? "hcm" : x.reg) === x.reg));
  main.innerHTML = `<h1>${E(x.name)}</h1><p class="sub">${HUB.regPill(x.reg)} ${E(x.region || "")} · Nguồn: <a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.src)}</a> · ngày giá ${HUB.date(x.as_of)} ${x.stale ? '· <b class="up">dữ liệu cũ (nguồn lỗi)</b>' : ""}</p>
+  ${(() => { if (!MT.d) return ""; const P = MT.path(x.id, x.category), mi = MT.info(x.id) || {}, leaf = P[P.length - 1];
+    const G = h.items.filter(i => MT.text(i.id, i.category) === MT.text(x.id, x.category));
+    const M = i => ({w1: i.w1, mom: i.mom, s0: i.s0, f0: i.first_date, d1: i.d1});
+    return `<div class="card mtcard" style="margin-bottom:12px"><span class="small mute">Nhóm theo master data</span><div style="margin:4px 0;font-weight:600">${P.map(n => n.virtual ? E(n.name_vi) : `<a href="gia.html?nhom=${encodeURIComponent(n.code)}">${E(n.name_vi)}</a>`).join(" › ")} ${MT.confPill(x.id)}</div>
+     <div class="small">${G.length} mã trong nhóm · ${MT.insight(G.map(i => ({m: M(i)})))} ${leaf.supply_now ? `<span class="mtg-s">${E(leaf.supply_now)}</span>` : ""}</div>
+     ${mi.why ? `<div class="small mute" style="margin-top:4px">Căn cứ gán nhóm: ${E(mi.why)}${mi.related_path?.length ? ` · Ảnh hưởng tới: ${E(mi.related_path.join("; "))}` : ""}</div>` : ""}</div>`; })()}
   <div class="grid g4"><div class="card"><span class="small mute">Giá hiện tại</span><div class="kpi">${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""} <small>${E(x.unit)}</small></div>${x.vnd && x.unit.indexOf("VND") < 0 ? `<span class="small">≈ ${HUB.num(x.vnd)} ${E(x.vnd_unit)}</span>` : ""}</div>
    <div class="card"><span class="small mute">So với phiên trước</span><div class="kpi">${HUB.pct(x.d1)}</div></div>
    <div class="card"><span class="small mute">So với ~1 tháng (MoM)</span><div class="kpi">${HUB.pct(x.mom)}</div></div>

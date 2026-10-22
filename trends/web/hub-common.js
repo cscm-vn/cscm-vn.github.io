@@ -42,11 +42,13 @@ HUB._nav = async () => {
       idx.push({k: "Trang", t: "Điều chỉnh giá HĐ tổng thầu – giá thị trường vs đơn giá CTD/NTC, vượt ngưỡng", u: "dieu-chinh.html"});
       idx.push({k: "Trang", t: "Hợp đồng & Pháp lý – luật xây dựng, NĐ 210/2026, FIDIC, chống bán phá giá, tranh chấp, hỏi đáp", u: "hop-dong.html"});
       if (t) for (const id in t.byId) idx.push({k: "Danh mục", t: t.byId[id].name, u: `danh-muc.html?c=${id}`});
-      for (const x of h?.items || []) idx.push({k: "Giá", t: `${x.name}${x.region ? " – " + x.region : ""}`, u: `mat-hang.html?id=${encodeURIComponent(x.id)}`});
+      const mt = await (window.MT ? window.MT.load() : new Promise(r => { const sc = document.createElement("script"); sc.src = "mt-group.js"; sc.onload = () => r(window.MT.load()); sc.onerror = () => r(null); document.head.appendChild(sc); })); const MT = window.MT;
+      if (mt) for (const n of mt.nodes) if (n.level >= 2 && h?.items?.some(x => MT.path(x.id, x.category).some(p => p.code === n.code))) idx.push({k: "Nhóm giá", t: MT.chain(n.code).map(p => p.name_vi).join(" › "), u: `gia.html?nhom=${encodeURIComponent(n.code)}`});
+      for (const x of h?.items || []) idx.push({k: "Giá", t: `${x.name}${x.region ? " – " + x.region : ""}`, g: mt ? MT.text(x.id, x.category) : "", u: `mat-hang.html?id=${encodeURIComponent(x.id)}`});
       for (const x of tr?.items || []) idx.push({k: "Xu hướng", t: x.title, u: `xu-huong.html?id=${x.id}`});
       for (const x of mk?.items || []) idx.push(x.org_type ? {k: x.org_type === "contractor" ? "Nhà thầu" : "Chủ đầu tư", t: x.title, u: `nha-thau.html?t=${x.org_type}&org=${encodeURIComponent(x.org)}`} : {k: "Thị trường", t: x.title, u: `thi-truong.html?id=${x.id}`});
       const scm = await HUB.get("scm.json"); for (const c of scm?.categories || []) idx.push({k: "SCM", t: `${c.name} – cung cầu & sourcing`, u: `scm.html?c=${c.id}`});
-      idx.forEach(x => x.s = HUB.strip(x.t)); }
+      idx.forEach(x => x.s = HUB.strip(x.t + " " + (x.g || ""))); }
     const words = q.split(/\s+/); const hits = idx.filter(x => words.every(w => x.s.includes(w))).slice(0, 25);
     res.innerHTML = hits.length ? hits.map(x => `<a href="${x.u}"><span class="k">${x.k}</span>${HUB.esc(x.t)}</a>`).join("") : '<div style="padding:10px" class="mute">Không tìm thấy</div>';
     res.style.display = "block";

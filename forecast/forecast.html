@@ -1,6 +1,6 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Dự báo giá vật tư 3–6–12 tháng – Masterise Construction SCM Hub</title>
-<script src="static/chart.umd.min.js"></script>
+<script src="static/chart.umd.min.js"></script><script src="mt-group.js"></script>
 <style>
 :root{--b:#0b5cad;--up:#c62828;--dn:#2e7d32;--mut:#667;--bg:#f6f8fb}
 *{box-sizing:border-box}body{font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:var(--bg);color:#1b2330}
@@ -36,7 +36,7 @@ tr.row:hover{background:#f0f6ff;cursor:pointer}tr.sel{background:#e3efff}
  <div class="ctl"><b>Kịch bản:</b><span class="seg" id="scen"><button data-s="bear">Giảm (bear)</button><button data-s="base" class="on">Cơ sở</button><button data-s="bull">Tăng (bull)</button></span><span class="mut" id="scenNote"></span></div>
  <div class="ctl tree" id="tree"></div>
  <div class="ctl"><input id="q" placeholder="Tìm (không dấu): thep, dong, be tong..." style="min-width:240px"><label><input type="checkbox" id="onlyLocal"> Chỉ vật tư tại VN</label></div>
- <div class="scroll"><table id="tbl"><thead><tr><th>Vật tư / phân loại</th><th>KV</th><th>Giá hiện tại</th><th>MoM / YoY</th><th>3 tháng</th><th>6 tháng</th><th>12 tháng</th><th>Khoảng 12T (P10–P90)</th><th>Tin cậy</th><th style="text-align:left">Động lực chính</th></tr></thead><tbody></tbody></table></div>
+ <div id="tblbox"></div><div class="scroll" id="tblflat"><table id="tbl"><thead><tr><th>Vật tư / phân loại</th><th>KV</th><th>Giá hiện tại</th><th>MoM / YoY</th><th>3 tháng</th><th>6 tháng</th><th>12 tháng</th><th>Khoảng 12T (P10–P90)</th><th>Tin cậy</th><th style="text-align:left">Động lực chính</th></tr></thead><tbody></tbody></table></div>
  <p class="mut">Bấm một dòng để xem biểu đồ lịch sử + dải dự báo. ▲ tăng >2%, ▼ giảm >2%, ► đi ngang. Đỏ = bất lợi cho bên mua (giá tăng).</p>
 </div>
 <div class="card"><h2 id="chTitle">Biểu đồ</h2><div style="height:340px"><canvas id="ch"></canvas></div><div id="chInfo" class="mut"></div></div>
@@ -67,7 +67,7 @@ let D,S='base',SEL=null,PATH='Tất cả',chart;
 const GN={copper:'Đồng',aluminium:'Nhôm',steel_world:'Thép TG',ironore:'Quặng sắt',steel_vn:'Thép VN',energy:'Dầu',coal:'Than',plastics:'Nhựa',cement:'Xi măng',sand_stone:'Cát/đá',concrete:'Bê tông',fx:'Tỷ giá',mep_index:'MEP'};
 const val=(it,h)=>{const f=it.fc[h];return S==='base'?f.base:f[S]};
 function drvFor(it){return D.drivers.drivers.filter(d=>{const imp=Object.assign({},d.impact||{},d.impact_up||{},d.impact_down||{});return imp[it.group]!=null})}
-function load(){fetch('forecast.json?'+Date.now()).then(r=>r.json()).then(d=>{D=d;document.getElementById('gen').textContent='Cập nhật: '+d.generated.replace('T',' ').slice(0,16)+' (giờ VN)';buildTree();render();pairs();mep();drivers();strategy();method();sel(D.items.find(i=>i.id==='rebar_HN')||D.items[0])})}
+function load(){Promise.all([fetch('forecast.json?'+Date.now()).then(r=>r.json()),window.MT?MT.load():null]).then(([d])=>{D=d;document.getElementById('gen').textContent='Cập nhật: '+d.generated.replace('T',' ').slice(0,16)+' (giờ VN)';buildTree();render();pairs();mep();drivers();strategy();method();sel(D.items.find(i=>i.id==='rebar_HN')||D.items[0])})}
 function buildTree(){const ps=['Tất cả'];D.items.filter(i=>i.group!=='mep_index').forEach(i=>{[i.path[0],i.path[1]?i.path[0]+' › '+i.path[1]:null].forEach(p=>{if(p&&!ps.includes(p))ps.push(p)})});
  const t=document.getElementById('tree');t.innerHTML='<b>Phân loại:</b> '+ps.map(p=>`<button data-p="${p}" class="${p===PATH?'on':''}">${p}</button>`).join('');
  t.querySelectorAll('button').forEach(b=>b.onclick=()=>{PATH=b.dataset.p;buildTree();render()})}
@@ -78,7 +78,12 @@ function rowHTML(it){const ds=drvFor(it).slice(0,3).map(d=>`<span class="${d.dir
  return `<tr class="row ${SEL&&SEL.id===it.id?'sel':''}" data-id="${it.id}"><td><b>${it.name}</b><div class="path">${it.path.join(' › ')} · ${it.unit}</div></td><td>${it.region||'TG'}</td><td>${fmt(it.now)}<div class="mut">${it.as_of||''}</div></td><td>${tr}</td><td>${cell('3')}</td><td>${cell('6')}</td><td>${cell('12')}</td><td>${it.fc?fmt(it.fc['12'].lo)+' – '+fmt(it.fc['12'].hi):'–'}</td><td><span class="pill c-${c}">${it.confidence}</span></td><td style="text-align:left;font-size:12px">${ds||'<span class="mut">–</span>'}</td></tr>`}
 function render(){const q=strip(document.getElementById('q').value),loc=document.getElementById('onlyLocal').checked;
  const its=D.items.filter(i=>i.group!=='mep_index').filter(i=>PATH==='Tất cả'||i.path.join(' › ').startsWith(PATH)).filter(i=>!q||strip(i.name+' '+i.path.join(' ')+' '+(i.region||'')).includes(q)).filter(i=>!loc||i.region||/VND/.test(i.unit));
- const tb=document.querySelector('#tbl tbody');tb.innerHTML=its.map(rowHTML).join('')||'<tr><td colspan=10 class="mut">Không có mục phù hợp</td></tr>';
+ const tb=document.querySelector('#tbl tbody');
+ if(window.MT&&MT.d){const box=document.getElementById('tblbox'),TH=document.querySelector('#tblflat thead')?.outerHTML||'';document.getElementById('tblflat').hidden=true;
+  MT.render(box,its.map(it=>({path:it.mt?MT.chain(it.mt):[MT.X,MT.virt(it.path[0]||'Khác')],html:rowHTML(it),m:{mom:it.trend?.mom,yoy:it.trend?.yoy}})),{head:TH,cols:10,key:'fc',expand:true,nodesc:true,naText:'MoM/YoY đang tích lũy',note:'Nhãn nhóm dựa trên MoM của chuỗi lịch sử (không phải dự báo).'});
+  box.querySelector('.mtg-tw')?.classList.add('scroll');box.querySelector('table').id='tbl';document.querySelector('#tblflat table').id='tbl0';
+  box.querySelectorAll('tr.row').forEach(r=>r.onclick=()=>{sel(D.items.find(i=>i.id===r.dataset.id));document.getElementById('chTitle').scrollIntoView({behavior:'smooth'})});
+ } else {tb.innerHTML=its.map(rowHTML).join('')||'<tr><td colspan=10 class="mut">Không có mục phù hợp</td></tr>';}
  tb.querySelectorAll('tr.row').forEach(r=>r.onclick=()=>{sel(D.items.find(i=>i.id===r.dataset.id));document.getElementById('chTitle').scrollIntoView({behavior:'smooth'})});
  document.getElementById('scenNote').textContent={base:'Mô hình thống kê + futures, không cộng yếu tố rủi ro.',bull:'Cơ sở + các yếu tố đẩy giá tăng (mục Yếu tố rủi ro).',bear:'Cơ sở + các yếu tố kéo giá giảm.'}[S]}
 function addM(ym,k){let [y,m]=ym.split('-').map(Number);m+=k;y+=Math.floor((m-1)/12);m=((m-1)%12+12)%12+1;return y+'-'+String(m).padStart(2,'0')}

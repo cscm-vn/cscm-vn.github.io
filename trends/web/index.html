@@ -1,5 +1,5 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Masterise Construction SCM Hub – Tổng quan hôm nay</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script><style>
+<title>Masterise Construction SCM Hub – Tổng quan hôm nay</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script><script src="mt-group.js"></script><style>
 .dcw{margin:18px 0 4px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:var(--r);box-shadow:var(--sh1);padding:14px 16px}
 .dcw h2{margin:0 0 8px}.dcw .g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .dcw .c{background:#faf8f4;border:1px solid var(--line);border-radius:12px;padding:9px 12px;color:var(--ink);display:block}.dcw .c:hover{border-color:var(--gold);text-decoration:none}
@@ -17,6 +17,7 @@
   <div class="hstrip" id="hstrip"></div>
  </div></section>
  <section id="dcw" class="dcw" hidden></section>
+ <section id="mtw" hidden><h2>📦 Giá theo nhóm master data <a class="small" href="gia.html">xem bảng giá theo nhóm →</a></h2><p class="small mute">Gộp theo đúng cây Nhóm giá của master data (Khối › Nhóm giá). Nhãn = trung vị % thay đổi giá các mã trong nhóm (▲ đỏ tăng – bất lợi bên mua, ▼ xanh giảm).</p><div class="grid g4" id="mtg"></div></section>
  <h2>Danh mục mua sắm</h2><div class="grid g4" id="tiles"></div>
  <div class="grid g2" style="margin-top:6px">
   <section><h2>🔥 Top 5 xu hướng & cơ hội <a class="small" href="xu-huong.html">xem tất cả →</a></h2><div id="top5" class="grid"></div></section>
@@ -62,6 +63,14 @@
    <div class="small mute" style="margin-top:6px">HĐ ${E(c.name)} v${E(c.version)} · so sánh giá thị trường (quy về chưa VAT) với đơn giá CTD/NTC, ngưỡng ±3% / ±5%.</div>
    <div class="small" style="margin-top:4px;color:#1f6b3a">✅ ${c.vat_basis === "excl" ? "Xác nhận: đơn giá HĐ CTD/NTC <b>chưa gồm VAT</b> – số trên là kết quả chính thức theo cơ sở này." : "Số trên giả định đơn giá HĐ chưa gồm VAT."} Cơ sở bơm/cước vận chuyển chưa xác nhận.</div>`;
   el.hidden = false; });
+ MT.load().then(d => { if (!d) return; const G = new Map();
+  for (const x of h.items) { const P = MT.path(x.id, x.category), leaf = P.find(n => n.level === (P[0].code === "MEPF" || P[0].code === "HT" ? 3 : 2)) || P[P.length - 1]; if (P[0].virtual) continue;
+   if (!G.has(leaf.code)) G.set(leaf.code, {n: leaf, top: P[0], L: []}); G.get(leaf.code).L.push(x); }
+  document.getElementById("mtg").innerHTML = [...G.values()].sort((a, b) => b.L.length - a.L.length).map(g => `<a class="tile" href="gia.html?nhom=${encodeURIComponent(g.n.code)}"><span class="small">${E(g.top.name_vi)}</span><b>${E(g.n.name_vi)}</b>
+   <span class="small">${g.L.length} mã giá${g.n.supply_now ? " · " + E(g.n.supply_now) : ""}</span><div style="margin-top:6px">${MT.insight(g.L.map(x => ({m: {w1: x.w1, mom: x.mom, s0: x.s0, f0: x.first_date, d1: x.d1}})))}</div></a>`).join("");
+  const nx = h.items.filter(x => MT.path(x.id, x.category)[0].virtual).length;
+  document.getElementById("mtg").insertAdjacentHTML("beforeend", `<a class="tile" href="gia.html?nhom=X"><span class="small">Ngoài master data</span><b>${E(MT.X.name_vi)}</b><span class="small">${nx} mã · kim loại, quặng, nhựa thế giới, vàng, tỷ giá</span></a>`);
+  document.getElementById("mtw").hidden = false; });
  const cnt = {}; const add = (k, f) => { cnt[k] ||= {p: 0, t: 0, m: 0}; cnt[k][f]++; };
  h.items.forEach(x => add(t.byId[x.tax].parent.id, "p")); tr.items.forEach(x => add(x.l1, "t"));
  mk.items.forEach(x => (x.tax || []).slice(0, 1).forEach(id => add(t.byId[id].parent.id, "m")));

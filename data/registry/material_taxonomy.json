@@ -1,0 +1,3371 @@
+{
+ "schema_version": 1,
+ "name": "Cây nhóm vật tư theo master data (ngôn ngữ nhóm Mua sắm)",
+ "source": {
+  "file": "Master data ma trận quyết định (xlsx, nội bộ – không commit)",
+  "sheets": [
+   "2.1 Ma_tran_QD_Ket_cau",
+   "2.2 Ma_tran_QD_MEPF",
+   "2.3 Ma_tran_QD_Hoàn thiện",
+   "d_masterdata_KC",
+   "d_masterdata_MEPF",
+   "d_masterdata_Hoàn thiện"
+  ],
+  "built": "2026-10-22",
+  "excluded": "Điểm số, BOQ/giá trị, remark chiến lược không xuất ra web công khai"
+ },
+ "levels": {
+  "1": "Khối (sheet ma trận)",
+  "2": "Hệ / System (Level 1)",
+  "3": "Nhóm giá – Price family",
+  "4": "Nhóm giá Level 2"
+ },
+ "note": "KC: Level 2 = Nhóm giá (chỉ có 1 hệ 'Kết cấu'). MEPF: L2 = Hệ (cột 'Hệ' ma trận 2.2), L3 = Nhóm giá, L4 = Nhóm giá Level 2 nếu khác. HT: L2 = System (Level 1), L3 = gói (Price family, bỏ hậu tố CC&LĐ/Cung cấp/D&B), L4 = Price family Level 2.",
+ "nodes": [
+  {
+   "code": "HT",
+   "parent": null,
+   "level": 1,
+   "name_vi": "Hoàn thiện",
+   "description": "",
+   "source_sheet": "2.3 Ma_tran_QD_Hoàn thiện",
+   "master_rows": 72
+  },
+  {
+   "code": "HT.bep-giat-la",
+   "parent": "HT",
+   "level": 2,
+   "name_vi": "BẾP & GIẶT LÀ",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 9
+  },
+  {
+   "code": "HT.bep-giat-la.cu-thiet-bi-bep",
+   "parent": "HT.bep-giat-la",
+   "level": 3,
+   "name_vi": "CU - Thiết bị bếp",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "CU - Thiết bị bếp - Cung cấp",
+   "master_rows": 5
+  },
+  {
+   "code": "HT.bep-giat-la.cu-thiet-bi-bep.bep-tu",
+   "parent": "HT.bep-giat-la.cu-thiet-bi-bep",
+   "level": 4,
+   "name_vi": "Bếp từ",
+   "description": "VD trong master data: Bếp từ",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.bep-giat-la.cu-thiet-bi-bep.chau-voi-rua",
+   "parent": "HT.bep-giat-la.cu-thiet-bi-bep",
+   "level": 4,
+   "name_vi": "Chậu & vòi rửa",
+   "description": "VD trong master data: Chậu + vòi rửa",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.bep-giat-la.cu-thiet-bi-bep.lo-nuong-vi-song",
+   "parent": "HT.bep-giat-la.cu-thiet-bi-bep",
+   "level": 4,
+   "name_vi": "Lò nướng & vi sóng",
+   "description": "VD trong master data: Lò nướng, lò vi sóng",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.bep-giat-la.cu-thiet-bi-bep.may-hut-mui",
+   "parent": "HT.bep-giat-la.cu-thiet-bi-bep",
+   "level": 4,
+   "name_vi": "Máy hút mùi",
+   "description": "VD trong master data: Máy hút mùi",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.bep-giat-la.cu-thiet-bi-bep.may-rua-bat",
+   "parent": "HT.bep-giat-la.cu-thiet-bi-bep",
+   "level": 4,
+   "name_vi": "Máy rửa bát",
+   "description": "VD trong master data: Máy rửa bát",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la",
+   "parent": "HT.bep-giat-la",
+   "level": 3,
+   "name_vi": "TC - Hệ thống bếp và giặt là",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Hệ thống bếp và giặt là - D&B",
+   "master_rows": 4
+  },
+  {
+   "code": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la.ban-chau-inox",
+   "parent": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la",
+   "level": 4,
+   "name_vi": "Bàn chậu inox",
+   "description": "VD trong master data: Bàn chậu inox, kệ inox",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la.giat-say-cong-nghiep",
+   "parent": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la",
+   "level": 4,
+   "name_vi": "Giặt sấy công nghiệp",
+   "description": "VD trong master data: Máy giặt/sấy công nghiệp, bàn là",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "hệ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la.thiet-bi-lanh-cn",
+   "parent": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la",
+   "level": 4,
+   "name_vi": "Thiết bị lạnh CN",
+   "description": "VD trong master data: Thiết bị lạnh (cold room, tủ đông)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "hệ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la.thiet-bi-nau-hood-cn",
+   "parent": "HT.bep-giat-la.tc-he-thong-bep-va-giat-la",
+   "level": 4,
+   "name_vi": "Thiết bị nấu & hood CN",
+   "description": "VD trong master data: Thiết bị nấu + hood + xử lý mùi/dầu mỡ",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "hệ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.bien-hieu-nghe-thuat",
+   "parent": "HT",
+   "level": 2,
+   "name_vi": "BIỂN HIỆU & NGHỆ THUẬT",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 4
+  },
+  {
+   "code": "HT.bien-hieu-nghe-thuat.tc-artwork-dieu-khac",
+   "parent": "HT.bien-hieu-nghe-thuat",
+   "level": 3,
+   "name_vi": "TC - Artwork/Điêu khắc",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Artwork/Điêu khắc - CC&LĐ",
+   "master_rows": 2
+  },
+  {
+   "code": "HT.bien-hieu-nghe-thuat.tc-artwork-dieu-khac.tranh-phu-dieu",
+   "parent": "HT.bien-hieu-nghe-thuat.tc-artwork-dieu-khac",
+   "level": 4,
+   "name_vi": "Tranh & phù điêu",
+   "description": "VD trong master data: Tranh, phù điêu",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.bien-hieu-nghe-thuat.tc-artwork-dieu-khac.tuong-dieu-khac",
+   "parent": "HT.bien-hieu-nghe-thuat.tc-artwork-dieu-khac",
+   "level": 4,
+   "name_vi": "Tượng & điêu khắc",
+   "description": "VD trong master data: Tượng/điêu khắc + đế móng + chiếu sáng điểm",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.bien-hieu-nghe-thuat.tc-bien-hieu-va-logo",
+   "parent": "HT.bien-hieu-nghe-thuat",
+   "level": 3,
+   "name_vi": "TC - Biển hiệu và Logo",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Biển hiệu và Logo - D&B",
+   "master_rows": 2
+  },
+  {
+   "code": "HT.bien-hieu-nghe-thuat.tc-bien-hieu-va-logo.logo-bien-toa",
+   "parent": "HT.bien-hieu-nghe-thuat.tc-bien-hieu-va-logo",
+   "level": 4,
+   "name_vi": "Logo & biển tòa",
+   "description": "VD trong master data: Logo khối LED, biển tên tòa, pylon",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.bien-hieu-nghe-thuat.tc-bien-hieu-va-logo.wayfinding",
+   "parent": "HT.bien-hieu-nghe-thuat.tc-bien-hieu-va-logo",
+   "level": 4,
+   "name_vi": "Wayfinding",
+   "description": "VD trong master data: Biển tầng, số căn hộ, chỉ hướng, giao thông nội khu",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan",
+   "parent": "HT",
+   "level": 2,
+   "name_vi": "CẢNH QUAN",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 12
+  },
+  {
+   "code": "HT.canh-quan.tc-cay-xanh-canh-quan",
+   "parent": "HT.canh-quan",
+   "level": 3,
+   "name_vi": "TC - Cây xanh cảnh quan",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Cây xanh cảnh quan - CC&LĐ",
+   "master_rows": 6
+  },
+  {
+   "code": "HT.canh-quan.tc-cay-xanh-canh-quan.bao-duong-cay",
+   "parent": "HT.canh-quan.tc-cay-xanh-canh-quan",
+   "level": 4,
+   "name_vi": "Bảo dưỡng cây",
+   "description": "VD trong master data: Bảo dưỡng 12 tháng sau bàn giao",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "tháng"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-cay-xanh-canh-quan.cay-bong-mat",
+   "parent": "HT.canh-quan.tc-cay-xanh-canh-quan",
+   "level": 4,
+   "name_vi": "Cây bóng mát",
+   "description": "VD trong master data: Cây bóng mát (theo đường kính thân)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cây"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-cay-xanh-canh-quan.cay-bui-phu-nen",
+   "parent": "HT.canh-quan.tc-cay-xanh-canh-quan",
+   "level": 4,
+   "name_vi": "Cây bụi & phủ nền",
+   "description": "VD trong master data: Cây bụi, phủ nền, cây chậu",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-cay-xanh-canh-quan.co",
+   "parent": "HT.canh-quan.tc-cay-xanh-canh-quan",
+   "level": 4,
+   "name_vi": "Cỏ",
+   "description": "VD trong master data: Cỏ lá tre/nhung",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-cay-xanh-canh-quan.dat-gia-the",
+   "parent": "HT.canh-quan.tc-cay-xanh-canh-quan",
+   "level": 4,
+   "name_vi": "Đất & giá thể",
+   "description": "VD trong master data: Đất trồng, giá thể, phân bón",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m3"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-cay-xanh-canh-quan.he-tuoi-tu-dong",
+   "parent": "HT.canh-quan.tc-cay-xanh-canh-quan",
+   "level": 4,
+   "name_vi": "Hệ tưới tự động",
+   "description": "VD trong master data: Tưới nhỏ giọt/phun + controller, thoát nước bồn",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "hệ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-da-trong-nha-va-canh-quan",
+   "parent": "HT.canh-quan",
+   "level": 3,
+   "name_vi": "TC - Đá trong nhà và cảnh quan",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Đá trong nhà và cảnh quan - CC&LĐ",
+   "master_rows": 1
+  },
+  {
+   "code": "HT.canh-quan.tc-da-trong-nha-va-canh-quan.da-canh-quan",
+   "parent": "HT.canh-quan.tc-da-trong-nha-va-canh-quan",
+   "level": 4,
+   "name_vi": "Đá cảnh quan",
+   "description": "VD trong master data: Đá lát/ốp ngoài trời, đá cubic, bó vỉa",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-kim-loai-khu-canh-quan",
+   "parent": "HT.canh-quan",
+   "level": 3,
+   "name_vi": "TC - Kim loại khu cảnh quan",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Kim loại khu cảnh quan - CC&LĐ",
+   "master_rows": 3
+  },
+  {
+   "code": "HT.canh-quan.tc-kim-loai-khu-canh-quan.cong-pergola",
+   "parent": "HT.canh-quan.tc-kim-loai-khu-canh-quan",
+   "level": 4,
+   "name_vi": "Cổng & pergola",
+   "description": "VD trong master data: Cổng, pergola",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-kim-loai-khu-canh-quan.grating-nap-trang-tri",
+   "parent": "HT.canh-quan.tc-kim-loai-khu-canh-quan",
+   "level": 4,
+   "name_vi": "Grating & nắp trang trí",
+   "description": "VD trong master data: Grating gốc cây, nắp hố ga trang trí",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-kim-loai-khu-canh-quan.lan-can-hang-rao",
+   "parent": "HT.canh-quan.tc-kim-loai-khu-canh-quan",
+   "level": 4,
+   "name_vi": "Lan can & hàng rào",
+   "description": "VD trong master data: Lan can, hàng rào (mạ kẽm nhúng nóng + PU)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-thiet-bi-san-choi-tre-em",
+   "parent": "HT.canh-quan",
+   "level": 3,
+   "name_vi": "TC - Thiết bị sân chơi trẻ em",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Thiết bị sân chơi trẻ em - CC&LĐ",
+   "master_rows": 2
+  },
+  {
+   "code": "HT.canh-quan.tc-thiet-bi-san-choi-tre-em.san-epdm",
+   "parent": "HT.canh-quan.tc-thiet-bi-san-choi-tre-em",
+   "level": 4,
+   "name_vi": "Sàn EPDM",
+   "description": "VD trong master data: Sàn cao su EPDM đổ tại chỗ",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.canh-quan.tc-thiet-bi-san-choi-tre-em.thiet-bi-san-choi",
+   "parent": "HT.canh-quan.tc-thiet-bi-san-choi-tre-em",
+   "level": 4,
+   "name_vi": "Thiết bị sân chơi",
+   "description": "VD trong master data: Cụm liên hoàn, xích đu, cầu trượt, fitness ngoài trời (EN 1176)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha",
+   "parent": "HT",
+   "level": 2,
+   "name_vi": "HOÀN THIỆN TRONG NHÀ",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 22
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.cu-gach-op-lat",
+   "parent": "HT.hoan-thien-trong-nha",
+   "level": 3,
+   "name_vi": "CU - Gạch ốp lát",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "CU - Gạch ốp lát - Cung cấp",
+   "master_rows": 4
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.cu-gach-op-lat.gach-chong-truot",
+   "parent": "HT.hoan-thien-trong-nha.cu-gach-op-lat",
+   "level": 4,
+   "name_vi": "Gạch chống trượt",
+   "description": "VD trong master data: Gạch ban công chống trượt R10-R11",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.cu-gach-op-lat.gach-porcelain",
+   "parent": "HT.hoan-thien-trong-nha.cu-gach-op-lat",
+   "level": 4,
+   "name_vi": "Gạch porcelain",
+   "description": "VD trong master data: Gạch porcelain căn hộ, hành lang",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.cu-gach-op-lat.gach-wc",
+   "parent": "HT.hoan-thien-trong-nha.cu-gach-op-lat",
+   "level": 4,
+   "name_vi": "Gạch WC",
+   "description": "VD trong master data: Gạch ốp WC",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.cu-gach-op-lat.mosaic-ho-boi",
+   "parent": "HT.hoan-thien-trong-nha.cu-gach-op-lat",
+   "level": 4,
+   "name_vi": "Mosaic hồ bơi",
+   "description": "VD trong master data: Mosaic hồ bơi & khu ướt",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.cu-phu-kien-cua-go",
+   "parent": "HT.hoan-thien-trong-nha",
+   "level": 3,
+   "name_vi": "CU - Phụ kiện cửa gỗ",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "CU - Phụ kiện cửa gỗ - Cung cấp",
+   "master_rows": 2
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.cu-phu-kien-cua-go.ban-le-phu-kien-cua",
+   "parent": "HT.hoan-thien-trong-nha.cu-phu-kien-cua-go",
+   "level": 4,
+   "name_vi": "Bản lề & phụ kiện cửa",
+   "description": "VD trong master data: Bản lề, tay co, chặn cửa, mắt thần",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.cu-phu-kien-cua-go.khoa-cua",
+   "parent": "HT.hoan-thien-trong-nha.cu-phu-kien-cua-go",
+   "level": 4,
+   "name_vi": "Khóa cửa",
+   "description": "VD trong master data: Khóa (smart lock/khóa cơ)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-cua-go",
+   "parent": "HT.hoan-thien-trong-nha",
+   "level": 3,
+   "name_vi": "TC - Cửa gỗ",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Cửa gỗ - CC&LĐ",
+   "master_rows": 3
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-cua-go.cua-chinh-can-ho",
+   "parent": "HT.hoan-thien-trong-nha.tc-cua-go",
+   "level": 4,
+   "name_vi": "Cửa chính căn hộ",
+   "description": "VD trong master data: Cửa chính căn hộ (chống cháy gỗ + khuôn)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-cua-go.cua-phong",
+   "parent": "HT.hoan-thien-trong-nha.tc-cua-go",
+   "level": 4,
+   "name_vi": "Cửa phòng",
+   "description": "VD trong master data: Cửa phòng ngủ (veneer/HDF + khuôn, nẹp)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-cua-go.cua-wc-ky-thuat",
+   "parent": "HT.hoan-thien-trong-nha.tc-cua-go",
+   "level": 4,
+   "name_vi": "Cửa WC/kỹ thuật",
+   "description": "VD trong master data: Cửa WC/kỹ thuật (HDF chống ẩm)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-cua-thep-chong-chay",
+   "parent": "HT.hoan-thien-trong-nha",
+   "level": 3,
+   "name_vi": "TC - Cửa thép chống cháy",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Cửa thép chống cháy - CC&LĐ",
+   "master_rows": 2
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-cua-thep-chong-chay.cua-thep-ei-khuon",
+   "parent": "HT.hoan-thien-trong-nha.tc-cua-thep-chong-chay",
+   "level": 4,
+   "name_vi": "Cửa thép EI + khuôn",
+   "description": "VD trong master data: Cửa EI60/EI90 + khuôn thép + gioăng ngăn khói",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-cua-thep-chong-chay.phu-kien-cua-chong-chay",
+   "parent": "HT.hoan-thien-trong-nha.tc-cua-thep-chong-chay",
+   "level": 4,
+   "name_vi": "Phụ kiện cửa chống cháy",
+   "description": "VD trong master data: Phụ kiện đồng bộ chứng nhận (tay co, panic bar, khóa)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-da-trong-nha-va-canh-quan",
+   "parent": "HT.hoan-thien-trong-nha",
+   "level": 3,
+   "name_vi": "TC - Đá trong nhà và cảnh quan",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Đá trong nhà và cảnh quan - CC&LĐ",
+   "master_rows": 3
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-da-trong-nha-va-canh-quan.da-granite-lat",
+   "parent": "HT.hoan-thien-trong-nha.tc-da-trong-nha-va-canh-quan",
+   "level": 4,
+   "name_vi": "Đá granite lát",
+   "description": "VD trong master data: Đá granite lát sảnh, hành lang, thang",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-da-trong-nha-va-canh-quan.da-marble-op",
+   "parent": "HT.hoan-thien-trong-nha.tc-da-trong-nha-va-canh-quan",
+   "level": 4,
+   "name_vi": "Đá marble ốp",
+   "description": "VD trong master data: Đá marble ốp tường, bench WC",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-da-trong-nha-va-canh-quan.da-nhan-tao-quartz",
+   "parent": "HT.hoan-thien-trong-nha.tc-da-trong-nha-va-canh-quan",
+   "level": 4,
+   "name_vi": "Đá nhân tạo/quartz",
+   "description": "VD trong master data: Đá nhân tạo/quartz (mặt bàn, ốp trang trí)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that",
+   "parent": "HT.hoan-thien-trong-nha",
+   "level": 3,
+   "name_vi": "TC - Hoàn thiện nội thất",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Hoàn thiện nội thất - CC&LĐ",
+   "master_rows": 6
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.giay-dan-tuong",
+   "parent": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that",
+   "level": 4,
+   "name_vi": "Giấy dán tường",
+   "description": "VD trong master data: Giấy/vải dán tường",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.guong-kinh-noi-that",
+   "parent": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that",
+   "level": 4,
+   "name_vi": "Gương & kính nội thất",
+   "description": "VD trong master data: Gương WC, vách kính trong nhà",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.op-go-kim-loai-trang-tri",
+   "parent": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that",
+   "level": 4,
+   "name_vi": "Ốp gỗ & kim loại trang trí",
+   "description": "VD trong master data: Ốp gỗ, kim loại trang trí trong nhà",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.son-ba",
+   "parent": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that",
+   "level": 4,
+   "name_vi": "Sơn bả",
+   "description": "VD trong master data: Bả matit + sơn nước trong nhà",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.tran-thach-cao",
+   "parent": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that",
+   "level": 4,
+   "name_vi": "Trần thạch cao",
+   "description": "VD trong master data: Khung xương + tấm thạch cao (thường/chịu ẩm/chống cháy)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.vach-thach-cao",
+   "parent": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that",
+   "level": 4,
+   "name_vi": "Vách thạch cao",
+   "description": "VD trong master data: Vách ngăn thạch cao + cách âm",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-san-go",
+   "parent": "HT.hoan-thien-trong-nha",
+   "level": 3,
+   "name_vi": "TC - Sàn gỗ",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Sàn gỗ - CC&LĐ",
+   "master_rows": 2
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-san-go.lot-phao-nep",
+   "parent": "HT.hoan-thien-trong-nha.tc-san-go",
+   "level": 4,
+   "name_vi": "Lót & phào & nẹp",
+   "description": "VD trong master data: Lớp lót, phào chân tường, nẹp chuyển sàn",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.hoan-thien-trong-nha.tc-san-go.van-san-go",
+   "parent": "HT.hoan-thien-trong-nha.tc-san-go",
+   "level": 4,
+   "name_vi": "Ván sàn gỗ",
+   "description": "VD trong master data: Ván sàn engineered/laminate",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh",
+   "parent": "HT",
+   "level": 2,
+   "name_vi": "MẶT DỰNG & NHÔM KÍNH",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 11
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-chieu-sang-mat-dung",
+   "parent": "HT.mat-dung-nhom-kinh",
+   "level": 3,
+   "name_vi": "TC - Chiếu sáng mặt dựng",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Chiếu sáng mặt dựng - D&B",
+   "master_rows": 3
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-chieu-sang-mat-dung.cap-phu-kien-facade",
+   "parent": "HT.mat-dung-nhom-kinh.tc-chieu-sang-mat-dung",
+   "level": 4,
+   "name_vi": "Cáp & phụ kiện facade",
+   "description": "VD trong master data: Cáp nguồn/tín hiệu, bracket",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-chieu-sang-mat-dung.den-led-facade",
+   "parent": "HT.mat-dung-nhom-kinh.tc-chieu-sang-mat-dung",
+   "level": 4,
+   "name_vi": "Đèn LED facade",
+   "description": "VD trong master data: Đèn LED linear/wallwasher/spot IP65+",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-chieu-sang-mat-dung.dieu-khien-lap-trinh",
+   "parent": "HT.mat-dung-nhom-kinh.tc-chieu-sang-mat-dung",
+   "level": 4,
+   "name_vi": "Điều khiển & lập trình",
+   "description": "VD trong master data: Controller DMX/DALI, tủ điều khiển, lập trình scene",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "hệ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "parent": "HT.mat-dung-nhom-kinh",
+   "level": 3,
+   "name_vi": "TC - Nhôm kính và mặt dựng",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Nhôm kính và mặt dựng - CC&LĐ",
+   "master_rows": 8
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.bracket-embed",
+   "parent": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "level": 4,
+   "name_vi": "Bracket & embed",
+   "description": "VD trong master data: Bracket, embed thép, flashing",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "kg"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.canopy-louver",
+   "parent": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "level": 4,
+   "name_vi": "Canopy & louver",
+   "description": "VD trong master data: Canopy sảnh, louver kỹ thuật",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.kinh-mat-dung",
+   "parent": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "level": 4,
+   "name_vi": "Kính mặt dựng",
+   "description": "VD trong master data: Kính hộp/kính dán Low-E (curtain wall, cửa sổ, vách)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.lan-can-kinh",
+   "parent": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "level": 4,
+   "name_vi": "Lan can kính",
+   "description": "VD trong master data: Lan can kính (kính cường lực + tay vịn)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.nhom-profile",
+   "parent": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "level": 4,
+   "name_vi": "Nhôm profile",
+   "description": "VD trong master data: Nhôm profile hệ (mác hợp kim, sơn PVDF/anodized)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "kg"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.op-alu",
+   "parent": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "level": 4,
+   "name_vi": "Ốp ALU",
+   "description": "VD trong master data: Tấm ốp ALU/nhôm đục lỗ",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.phu-kien-nhom-kinh",
+   "parent": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "level": 4,
+   "name_vi": "Phụ kiện nhôm kính",
+   "description": "VD trong master data: Phụ kiện cửa nhôm (khóa đa điểm, bản lề, tay nắm)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.silicone-gioang",
+   "parent": "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung",
+   "level": 4,
+   "name_vi": "Silicone & gioăng",
+   "description": "VD trong master data: Silicone kết cấu/thời tiết, gioăng EPDM, fire-stop",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e",
+   "parent": "HT",
+   "level": 2,
+   "name_vi": "NỘI THẤT & FF&E",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 14
+  },
+  {
+   "code": "HT.noi-that-ff-e.cu-phu-kien-tu-bep-tu-quan-ao-tu-vanity",
+   "parent": "HT.noi-that-ff-e",
+   "level": 3,
+   "name_vi": "CU - Phụ kiện tủ bếp, tủ quần áo, tủ vanity",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "CU - Phụ kiện tủ bếp, tủ quần áo, tủ vanity - Cung cấp",
+   "master_rows": 3
+  },
+  {
+   "code": "HT.noi-that-ff-e.cu-phu-kien-tu-bep-tu-quan-ao-tu-vanity.ban-le-ray-tu",
+   "parent": "HT.noi-that-ff-e.cu-phu-kien-tu-bep-tu-quan-ao-tu-vanity",
+   "level": 4,
+   "name_vi": "Bản lề & ray tủ",
+   "description": "VD trong master data: Bản lề giảm chấn, ray hộp",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.cu-phu-kien-tu-bep-tu-quan-ao-tu-vanity.den-led-tu",
+   "parent": "HT.noi-that-ff-e.cu-phu-kien-tu-bep-tu-quan-ao-tu-vanity",
+   "level": 4,
+   "name_vi": "Đèn LED tủ",
+   "description": "VD trong master data: Đèn LED trong tủ + sensor",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.cu-phu-kien-tu-bep-tu-quan-ao-tu-vanity.tay-nang-gio-keo",
+   "parent": "HT.noi-that-ff-e.cu-phu-kien-tu-bep-tu-quan-ao-tu-vanity",
+   "level": 4,
+   "name_vi": "Tay nâng & giỏ kéo",
+   "description": "VD trong master data: Tay nâng, giỏ kéo, ray treo",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-chan-ga-goi-dem",
+   "parent": "HT.noi-that-ff-e",
+   "level": 3,
+   "name_vi": "TC - Chăn ga gối đệm",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Chăn ga gối đệm - CC&LĐ",
+   "master_rows": 2
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-chan-ga-goi-dem.chan-ga-goi",
+   "parent": "HT.noi-that-ff-e.tc-chan-ga-goi-dem",
+   "level": 4,
+   "name_vi": "Chăn ga gối",
+   "description": "VD trong master data: Bộ chăn-ga-gối, bảo vệ đệm",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-chan-ga-goi-dem.dem",
+   "parent": "HT.noi-that-ff-e.tc-chan-ga-goi-dem",
+   "level": 4,
+   "name_vi": "Đệm",
+   "description": "VD trong master data: Đệm (theo cỡ giường) + topper",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-noi-that-lien-tuong",
+   "parent": "HT.noi-that-ff-e",
+   "level": 3,
+   "name_vi": "TC - Nội thất liền tường",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Nội thất liền tường - CC&LĐ",
+   "master_rows": 4
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-noi-that-lien-tuong.ke-tu-khac",
+   "parent": "HT.noi-that-ff-e.tc-noi-that-lien-tuong",
+   "level": 4,
+   "name_vi": "Kệ & tủ khác",
+   "description": "VD trong master data: Kệ trang trí, tủ giày, khác",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-noi-that-lien-tuong.tu-bep",
+   "parent": "HT.noi-that-ff-e.tc-noi-that-lien-tuong",
+   "level": 4,
+   "name_vi": "Tủ bếp",
+   "description": "VD trong master data: Tủ bếp (thùng MDF chống ẩm, cánh acrylic/laminate, mặt đá quartz)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-noi-that-lien-tuong.tu-quan-ao",
+   "parent": "HT.noi-that-ff-e.tc-noi-that-lien-tuong",
+   "level": 4,
+   "name_vi": "Tủ quần áo",
+   "description": "VD trong master data: Tủ quần áo",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-noi-that-lien-tuong.tu-vanity",
+   "parent": "HT.noi-that-ff-e.tc-noi-that-lien-tuong",
+   "level": 4,
+   "name_vi": "Tủ vanity",
+   "description": "VD trong master data: Tủ vanity + gương tủ WC",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-noi-that-roi-ngoai-troi",
+   "parent": "HT.noi-that-ff-e",
+   "level": 3,
+   "name_vi": "TC - Nội thất rời ngoài trời",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Nội thất rời ngoài trời - CC&LĐ",
+   "master_rows": 2
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-noi-that-roi-ngoai-troi.ban-ghe-ngoai-troi",
+   "parent": "HT.noi-that-ff-e.tc-noi-that-roi-ngoai-troi",
+   "level": 4,
+   "name_vi": "Bàn ghế ngoài trời",
+   "description": "VD trong master data: Bàn ghế, sofa ngoài trời (teak/nhôm/dây đan HDPE)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-noi-that-roi-ngoai-troi.sun-lounger-du",
+   "parent": "HT.noi-that-ff-e.tc-noi-that-roi-ngoai-troi",
+   "level": 4,
+   "name_vi": "Sun lounger & dù",
+   "description": "VD trong master data: Sun lounger, dù che",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-thiet-bi-phong-gym",
+   "parent": "HT.noi-that-ff-e",
+   "level": 3,
+   "name_vi": "TC - Thiết bị phòng Gym",
+   "description": "",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "package": "TC - Thiết bị phòng Gym - CC&LĐ",
+   "master_rows": 3
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-thiet-bi-phong-gym.san-phu-kien-gym",
+   "parent": "HT.noi-that-ff-e.tc-thiet-bi-phong-gym",
+   "level": 4,
+   "name_vi": "Sàn & phụ kiện gym",
+   "description": "VD trong master data: Sàn cao su, gương, phụ kiện",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-thiet-bi-phong-gym.thiet-bi-cardio",
+   "parent": "HT.noi-that-ff-e.tc-thiet-bi-phong-gym",
+   "level": 4,
+   "name_vi": "Thiết bị cardio",
+   "description": "VD trong master data: Cardio (treadmill, bike, elliptical)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "HT.noi-that-ff-e.tc-thiet-bi-phong-gym.thiet-bi-strength",
+   "parent": "HT.noi-that-ff-e.tc-thiet-bi-phong-gym",
+   "level": 4,
+   "name_vi": "Thiết bị strength",
+   "description": "VD trong master data: Strength (rack, multi-station, free weights)",
+   "source_sheet": "d_masterdata_Hoàn thiện",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC",
+   "parent": null,
+   "level": 1,
+   "name_vi": "Kết cấu & phần thô",
+   "description": "",
+   "source_sheet": "2.1 Ma_tran_QD_Ket_cau",
+   "master_rows": 586
+  },
+  {
+   "code": "KC.be-tong-thuong-pham",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Bê tông thương phẩm",
+   "description": "VD trong master data: Bê tông sàn; Sàn tầng hầm 2; Bê tông cho Cột/ Vách/ lõi cứng/ Tường bao ngoài; Đài móng",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 54,
+   "units": [
+    "m3"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.canh-quan-cung-ht",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Cảnh quan cứng (→HT)",
+   "description": "VD trong master data: Cung cấp và thi công chống thấm cho tường và sàn ngoài trời cho landscape tầng 1; Ván khuôn cho Tường đỡ bằng bê tông; Tường đỡ bằng bê tông; Tường parapet, bồn hoa, hồ bơi - Tầng 1",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 36,
+   "units": [
+    "m2",
+    "m3",
+    "m"
+   ],
+   "note": "Master data ghi '→HT': đánh giá ở ma trận Hoàn thiện"
+  },
+  {
+   "code": "KC.chong-tham",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Chống thấm",
+   "description": "VD trong master data: Đài cọc; sàn đáy hầm; Phòng vệ sinh căn hộ; Ống thoát nước sàn; Ban công, logia",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 44,
+   "units": [
+    "m2",
+    "nos",
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.dao-van-chuyen-dat",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Đào & vận chuyển đất",
+   "description": "VD trong master data: Bốc và vận chuyển đất thừa; Đào đất  toàn bộ tầng hầm và bể ngầm đến cao độ đáy bê tông lót; Đào đất cho đài cọc; Đắp đất (cung cấp cát san lấp mới)",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 7,
+   "units": [
+    "m3",
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.gach-aac",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Gạch AAC",
+   "description": "VD trong master data: Dày 150mm; Gạch AAC Dày 100mm; Gạch AAC Dày 80mm; Gạch AAC Dày 150mm",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 13,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.gach-dat-nung",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Gạch đất nung",
+   "description": "VD trong master data: Xây tường gạch đặc dày 75mm để đi đường ống nước khu bếp; Xây bậc thang cho căn hộ Duplex",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 2,
+   "units": [
+    "m3"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.gach-op-lat-ht",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Gạch ốp lát (→HT)",
+   "description": "VD trong master data: Phòng vệ sinh - Tường; Phòng vệ sinh; Sảnh thang máy; Gạch mũi bậc thang thoát hiểm",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 27,
+   "units": [
+    "m2",
+    "m"
+   ],
+   "note": "Master data ghi '→HT': đánh giá ở ma trận Hoàn thiện"
+  },
+  {
+   "code": "KC.khac-tho",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Khác (thô)",
+   "description": "VD trong master data: Lớp XPS cách nhiệt; Thi công chống mối bằng lưới thép; LỚP BÊ TÔNG ĐÁ MI KÈM PHỤ GIA CHỐNG THẤM VỚI LƯỚI THÉP HÀN D6@200, TẠO DỐC VỀ VỊ TRÍ THU NƯỚC i=2%, CHỖ MỎNG NHẤT 30MM; Ron U nhựa 6mm cho trần hành lang khu vực căn hộ",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 95,
+   "units": [
+    "cái",
+    "m",
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.kim-loai-khac-ht",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Kim loại & khác (→HT)",
+   "description": "VD trong master data: Grating mương nước rộng 250mm; Thang thoát hiểm, cao 1100mm; Grating khu vực sàn hầm; Cung cấp và lắp đặt nẹp kim loại cho tường WC (tiếp giáp giữa đá và gạch)",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 55,
+   "units": [
+    "m",
+    "m2",
+    "nos"
+   ],
+   "note": "Master data ghi '→HT': đánh giá ở ma trận Hoàn thiện"
+  },
+  {
+   "code": "KC.luoi-thep-han",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Lưới thép hàn",
+   "description": "VD trong master data: Lưới thép cho tường bao ngoài; Lớp lưới thép hàn D6@200; Lớp thép D6a200 cho lớp bê tông bảo vệ cột vách bể ngầm; Lưới thép cho bê tông bọc cột bể",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 4,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.phu-kien-btct-lanh-to-kicker-khe-co-gian",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Phụ kiện BTCT (lanh tô, kicker, khe co giãn)",
+   "description": "VD trong master data: Kích thước 100x300; Kích thước 80x200; Thi công khe đàn hồi chống nứt tường AAC; Kích thước 150x200",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 68,
+   "units": [
+    "m",
+    "nos"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.son-ba-ht",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Sơn bả (→HT)",
+   "description": "VD trong master data: Phòng khách, phòng ngủ, bếp; Bên trong căn hộ; Phòng vệ sinh; Tường và cột bê tông mặt ngoài nhà",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 53,
+   "units": [
+    "m2",
+    "m"
+   ],
+   "note": "Master data ghi '→HT': đánh giá ở ma trận Hoàn thiện"
+  },
+  {
+   "code": "KC.tang-cung-phu-san",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Tăng cứng & phủ sàn",
+   "description": "VD trong master data: Sàn tầng hầm, bãi đỗ xe, đường xe chạy, khu lánh nạn; Sơn chỗ đậu xe ô tô, xe máy và khuyết tật; Mặt bậc thang bộ; Phòng sảnh đệm thang - Tháp",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 21,
+   "units": [
+    "m2",
+    "nos",
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.thep-thanh-van-d6-32",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Thép thanh vằn D6-32",
+   "description": "VD trong master data: Đài cọc, dầm, sàn, cột, vách, lõi, các bể ngầm, thang bộ; Thép cho cột, vách, lõi cứng; Thép sàn; Thép dầm",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 25,
+   "units": [
+    "Kg",
+    "m",
+    "nos"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "KC.tran-thach-cao-ht",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Trần thạch cao (→HT)",
+   "description": "VD trong master data: Phòng khách, phòng ngủ, bếp; Nhà vệ sinh; Hành lang tầng căn hộ; Thanh Z (shadow line)",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 21,
+   "units": [
+    "m2",
+    "m",
+    "nos"
+   ],
+   "note": "Master data ghi '→HT': đánh giá ở ma trận Hoàn thiện"
+  },
+  {
+   "code": "KC.van-khuon",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Ván khuôn",
+   "description": "VD trong master data: Ván khuôn cho cột, vách, lõi cứng và tường bao ngoài; Ván khuôn sàn; Sàn tầng hầm 1 và tầng 1; Ván khuôn dầm",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 33,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "KC.vua-trat-can-nen",
+   "parent": "KC",
+   "level": 2,
+   "name_vi": "Vữa trát & cán nền",
+   "description": "VD trong master data: Bên trong căn hộ; Trát tường dày trung bình 15mm vị trí tường gạch nung xây ốp cho các vị bàn bếp căn hộ, VXM mác 75#; Ban công, logia; Hành lang căn hộ",
+   "source_sheet": "d_masterdata_KC",
+   "master_rows": 28,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF",
+   "parent": null,
+   "level": 1,
+   "name_vi": "Cơ điện (MEPF)",
+   "description": "",
+   "source_sheet": "2.2 Ma_tran_QD_MEPF",
+   "master_rows": 2696
+  },
+  {
+   "code": "MEPF.dien",
+   "parent": "MEPF",
+   "level": 2,
+   "name_vi": "Điện",
+   "description": "",
+   "source_sheet": "2.2 Ma_tran_QD_MEPF",
+   "short": "Điện",
+   "master_rows": 664
+  },
+  {
+   "code": "MEPF.dien.bon-dau",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Bồn dầu",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 7,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.bon-dau.phu-kien-may-phat-dien",
+   "parent": "MEPF.dien.bon-dau",
+   "level": 4,
+   "name_vi": "Phụ kiện máy phát điện",
+   "description": "VD trong master data: Bồn dầu chính, 10 tiếng 12000 lít; Bồn dầu chính,10 tiếng, 6500 lít; Bồn dầu chính,10 tiếng, 4000 lít; Bồn dầu chính,10 tiếng, 3000 lít",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 7,
+   "units": [
+    "bồn"
+   ]
+  },
+  {
+   "code": "MEPF.dien.busway",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Busway",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 13,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.busway.bustduct",
+   "parent": "MEPF.dien.busway",
+   "level": 4,
+   "name_vi": "BustDuct",
+   "description": "VD trong master data: Busway AL 1600A, 4W chống cháy; Busway AL 2000A, 4W chống cháy; Busway AL 1600A (4W+50%E); Busway AL 2000A (4W+50%E)",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 13,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.dien.cap-dien-ge50mm-truc-feeder",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Cáp điện ≥50mm² (trục/feeder)",
+   "description": "VD trong master data: CU/XLPE/DSTA(SWA)/PVC 1x3C-240mm2 - 24kV; CU/XLPE/DSTA(SWA)/PVC 1x3C-120mm2 - 24kV; Đầu cáp trung thế 3 pha 3x240mm2; Đầu cáp trung thế 3 pha 3x120mm2",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 33,
+   "units": [
+    "m",
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.cap-dien-lt50mm-nhanh-cuoi",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Cáp điện <50mm² (nhánh/cuối)",
+   "description": "VD trong master data: Ống gân xoắn HDPE ∅195/150; Hố ga kéo cáp điện; Cáp điện 1x4C-35mm2 Cu/MICA/XLPE/FR-PVC; Cáp điện 1x1C-35mm2 Cu/MICA/XLPE/FR-PVC",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 157,
+   "units": [
+    "m",
+    "vị trí"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.cong-tac-o-cam",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Công tắc/ổ cắm",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 29,
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.cong-tac-o-cam.cong-tac-o-cam",
+   "parent": "MEPF.dien.cong-tac-o-cam",
+   "level": 4,
+   "name_vi": "Công tắc, ổ cắm",
+   "description": "VD trong master data: Công tắc đơn 1 chiều; Công tắc đôi 1 chiều; Công tắc ba 1 chiều; Công tắc đơn 1 chiều chống nước",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 27,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.dien.cong-tac-o-cam.thiet-bi-phu-kien-pccc",
+   "parent": "MEPF.dien.cong-tac-o-cam",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện PCCC",
+   "description": "VD trong master data: Công tắc bảo trì",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.dien.den",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Đèn",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 74,
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.den.den-dien-chieu-sang",
+   "parent": "MEPF.dien.den",
+   "level": 4,
+   "name_vi": "Đèn điện chiếu sáng",
+   "description": "VD trong master data: Đèn led tuýp 1x8W gắn nổi, IP20, nguồn dự trữ 2h; Đèn led tuýp 1x8W gắn nổi, chống ẩm IP44, nguồn dự trữ 2h; Đèn led tuýp 1x8W gắn nổi, chống ẩm IP65, nguồn dự trữ 2h; Đèn led tuýp 1x9W gắn nổi, chống ẩm IP44",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 53,
+   "units": [
+    "cái",
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.dien.den.den-pccc",
+   "parent": "MEPF.dien.den",
+   "level": 4,
+   "name_vi": "Đèn PCCC",
+   "description": "VD trong master data: Đèn chiếu sáng khẩn cấp bóng led 2x1W có nguồn dự trữ 3h; Đèn chiếu sáng khẩn cấp bóng led 2x1.5W có nguồn dự trữ 2h; Đèn chiếu sáng khẩn cấp 3W có nguồn dự trữ 2h; Đèn chiếu sáng khẩn cấp 5W có nguồn dự trữ 3h",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 8,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.dien.den.phu-kien-may-phat-dien",
+   "parent": "MEPF.dien.den",
+   "level": 4,
+   "name_vi": "Phụ kiện máy phát điện",
+   "description": "VD trong master data: Tủ hiển thị mức dầu có đèn báo",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.dien.den.thiet-bi-phu-kien-chong-set",
+   "parent": "MEPF.dien.den",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện chống sét",
+   "description": "VD trong master data: Đèn báo không; Trụ đèn báo không, ống Inox DN25",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.dien.den.thiet-bi-phu-kien-dan-duong",
+   "parent": "MEPF.dien.den",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện dẫn đường",
+   "description": "VD trong master data: Bộ điều khiển đèn báo trạng thái vị trí ZCU LED; Đèn báo trạng thái vị trí",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "bộ"
+   ]
+  },
+  {
+   "code": "MEPF.dien.den.thiet-bi-phu-kien-pccc",
+   "parent": "MEPF.dien.den",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện PCCC",
+   "description": "VD trong master data: Sơ đồ chỉ dẫn thoát nạn; Còi đèn báo cháy kết hợp; Đầu báo khói quang điện có địa chỉ, gắn trên trần giả kèm đèn chỉ thị; Đầu báo khói quang điện không địa chỉ, gắn trên trần giả và đèn chỉ thị",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 8,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.dien.may-bien-ap",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Máy biến áp",
+   "description": "VD trong master data: Máy biến áp khô 2500KVA 22/0.38KV, 50Hz, Dyn 11; Máy biến áp khô 2000KVA 22/0.38KV, 50Hz, Dyn 11; Máy biến áp khô 1600KVA 22/0.38KV, 50Hz, Dyn 11; Máy biến áp khô 1250KVA 22/0.38KV, 50Hz, Dyn 11",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "chiếc"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.may-phat-dien",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Máy phát điện",
+   "description": "VD trong master data: Máy phát điện: Prime power 2500kVA, 3P, 4W-50Hz; Máy phát điện: Prime power 1500kVA, 3P, 4W-50Hz; Máy phát điện: Prime power 1400kVA, 3P, 4W-50Hz; Máy phát điện: Prime power 1250kVA, 3P, 4W-50Hz",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "máy"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.nhien-lieu",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Nhiên liệu",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.nhien-lieu.phu-kien-may-phat-dien",
+   "parent": "MEPF.dien.nhien-lieu",
+   "level": 4,
+   "name_vi": "Phụ kiện máy phát điện",
+   "description": "VD trong master data: Đổ đầy bồn dầu trước khi bàn giao hệ thống máy phát điện cho đơn vị vận hành tòa nhà.",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "lít"
+   ]
+  },
+  {
+   "code": "MEPF.dien.ong-khoi",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Ống khói",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 3,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.ong-khoi.phu-kien-may-phat-dien",
+   "parent": "MEPF.dien.ong-khoi",
+   "level": 4,
+   "name_vi": "Phụ kiện máy phát điện",
+   "description": "VD trong master data: Ống khói thép đen DN500 (bọc cách nhiệt dày 100mm); Ống khói thép đen DN300 (bọc cách nhiệt dày 75mm); Chụp ống khói",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 3,
+   "units": [
+    "m",
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.dien.ong-luon-day",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Ống luồn dây",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 90,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.ong-luon-day.conduit",
+   "parent": "MEPF.dien.ong-luon-day",
+   "level": 4,
+   "name_vi": "Conduit",
+   "description": "VD trong master data: Ống GI D50; Ống GI D32; Ống GI D25; Ống GI D20",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 90,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.dien.phu-kien-busway",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Phụ kiện busway",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 69,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.phu-kien-busway.bustduct",
+   "parent": "MEPF.dien.phu-kien-busway",
+   "level": 4,
+   "name_vi": "BustDuct",
+   "description": "VD trong master data: Co ngang - 1600A (4W+50%E); Co ngang - 1600A, 4W chống cháy; Co ngang - 2000A (4W+50%E); Co ngang - 2000A, 4W",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 69,
+   "units": [
+    "bộ",
+    "cái",
+    "điểm"
+   ]
+  },
+  {
+   "code": "MEPF.dien.thang-mang-cap",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Thang/máng cáp",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 37,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.thang-mang-cap.thang-cap-mang-cap-ong-dan",
+   "parent": "MEPF.dien.thang-mang-cap",
+   "level": 4,
+   "name_vi": "Thang cáp, máng cáp, ống dẫn",
+   "description": "VD trong master data: Thang cáp 500x100mm dày 1.5mm; Thang cáp 400x100mm dày 1.5mm; Thang cáp 300x100mm dày 1.2mm; Máng cáp 400x100mm dày 1.5mm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.dien.thang-mang-cap.thang-mang-cap",
+   "parent": "MEPF.dien.thang-mang-cap",
+   "level": 4,
+   "name_vi": "Thang, máng, cáp",
+   "description": "VD trong master data: Thang cáp 1000x100 dày 2mm; Thang cáp 800x100 dày 2mm; Thang cáp 600x100 dày 1,5mm; Thang cáp 500x100 dày 1,5mm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 33,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.dien.thiet-bi-bep",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Thiết bị bếp",
+   "description": "VD trong master data: Bếp từ - 2 vùng nấu; Bếp từ - 3 vùng nấu; Máy hút mùi bếp; Lò nướng",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.tu-dien",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Tủ điện",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 116,
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.tu-dien.thiet-bi-phu-kien-tu-dien",
+   "parent": "MEPF.dien.tu-dien",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện tủ điện",
+   "description": "VD trong master data: Tap-off-3P-25A-18kA; Tap-off-3P-32A-18kA; Tap-off-3P-40A-18kA; Tap-off-3P-50A-18kA",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 23,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.dien.tu-dien.tu-dien-can-ho",
+   "parent": "MEPF.dien.tu-dien",
+   "level": 4,
+   "name_vi": "Tủ điện căn hộ",
+   "description": "VD trong master data: DB-1BR; DB-2BR; DB-3BR; DB-4BR",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 7,
+   "units": [
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.dien.tu-dien.tu-dien-ha-the",
+   "parent": "MEPF.dien.tu-dien",
+   "level": 4,
+   "name_vi": "Tủ điện hạ thế",
+   "description": "VD trong master data: MSB-AP; MSB-MDB; MSB-CO; MSB-SYNC",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 83,
+   "units": [
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.dien.tu-dien.tu-dien-penhouse",
+   "parent": "MEPF.dien.tu-dien",
+   "level": 4,
+   "name_vi": "Tủ điện Penhouse",
+   "description": "VD trong master data: Tủ điện Penhouse",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.dien.tu-dien.tu-dien-phdl",
+   "parent": "MEPF.dien.tu-dien",
+   "level": 4,
+   "name_vi": "Tủ điện PHDL",
+   "description": "VD trong master data: Tủ điện PHDL",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.dien.tu-dien.tu-dien-shophouse",
+   "parent": "MEPF.dien.tu-dien",
+   "level": 4,
+   "name_vi": "Tủ điện Shophouse",
+   "description": "VD trong master data: Tủ điện Shophouse",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.dien.tu-trung-the",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "Tủ trung thế",
+   "description": "VD trong master data: Tủ điện trung thế; Khoang tủ đầu vào; Khoang tủ đầu ra; Khoang tủ đo đếm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 7,
+   "units": [
+    "khoang tủ",
+    "tủ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.dien.tu-trung-the.phu-kien-chong-set",
+   "parent": "MEPF.dien.tu-trung-the",
+   "level": 4,
+   "name_vi": "Phụ kiện chống sét",
+   "description": "VD trong master data: Chống sét van 3xLA18kV 10kA",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ]
+  },
+  {
+   "code": "MEPF.dien.ups",
+   "parent": "MEPF.dien",
+   "level": 3,
+   "name_vi": "UPS",
+   "description": "VD trong master data: UPS 30 kVA; UPS 12 kVA; UPS 8 kVA; UPS 5 kVA",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 15,
+   "units": [
+    "bộ",
+    "cái"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.elv",
+   "parent": "MEPF",
+   "level": 2,
+   "name_vi": "Điện nhẹ (ELV)",
+   "description": "",
+   "source_sheet": "2.2 Ma_tran_QD_MEPF",
+   "short": "ELV",
+   "master_rows": 181
+  },
+  {
+   "code": "MEPF.elv.elv-am-thanh-cong-cong",
+   "parent": "MEPF.elv",
+   "level": 3,
+   "name_vi": "ELV – Âm thanh công cộng",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 16,
+   "supply_now": "NT đang cấp (trong Thiết bị/khác)"
+  },
+  {
+   "code": "MEPF.elv.elv-am-thanh-cong-cong.he-thong-am-thanh",
+   "parent": "MEPF.elv.elv-am-thanh-cong-cong",
+   "level": 4,
+   "name_vi": "Hệ thống âm thanh",
+   "description": "VD trong master data: Bộ điều khiển trung tâm; Tủ báo động mạng/ Network alarm panel; Bộ tiền khuếch đại; Bộ khuếch đại 500W",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 12,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-am-thanh-cong-cong.loa",
+   "parent": "MEPF.elv.elv-am-thanh-cong-cong",
+   "level": 4,
+   "name_vi": "Loa",
+   "description": "VD trong master data: Loa gắn trần 100V, 6W; Loa gắn trần 100V, 1W; Loa gắn tường 100V, 6W; Loa kòi gắn tường 100V, 15W",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-an-ninh-kiem-soat",
+   "parent": "MEPF.elv",
+   "level": 3,
+   "name_vi": "ELV – An ninh & kiểm soát",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 77,
+   "supply_now": "NT đang cấp (trong Thiết bị/khác)"
+  },
+  {
+   "code": "MEPF.elv.elv-an-ninh-kiem-soat.cctv",
+   "parent": "MEPF.elv.elv-an-ninh-kiem-soat",
+   "level": 4,
+   "name_vi": "CCTV",
+   "description": "VD trong master data: Trạm CCTV bao gồm máy trạm, bàn phím, màn hình, máy in, giấy phép…; Phần mềm quản lý; Máy in; Màn hình 55 inch",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 13,
+   "units": [
+    "cái",
+    "trạm",
+    "p/m"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-an-ninh-kiem-soat.isolator",
+   "parent": "MEPF.elv.elv-an-ninh-kiem-soat",
+   "level": 4,
+   "name_vi": "Isolator",
+   "description": "VD trong master data: ISO-2P-16A; ISO-2P-16A-WP; ISO-2P-20A; ISO-4P-80A-WP",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 15,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-an-ninh-kiem-soat.module",
+   "parent": "MEPF.elv.elv-an-ninh-kiem-soat",
+   "level": 4,
+   "name_vi": "Module",
+   "description": "VD trong master data: Module quang",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-an-ninh-kiem-soat.thiet-bi-phu-kien-kiem-soat",
+   "parent": "MEPF.elv.elv-an-ninh-kiem-soat",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện kiểm soát",
+   "description": "VD trong master data: Trạm ACS bao gồm  máy trạm, bàn phím, màn hình, giấy phép…; Phần mềm quản lý trung tâm; Local server; Module quang",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 47,
+   "units": [
+    "cái",
+    "bộ",
+    "trạm"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-mang-truyen-dan",
+   "parent": "MEPF.elv",
+   "level": 3,
+   "name_vi": "ELV – Mạng & truyền dẫn",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 86,
+   "supply_now": "NT đang cấp (trong Thiết bị/khác)"
+  },
+  {
+   "code": "MEPF.elv.elv-mang-truyen-dan.hop-chia-quang",
+   "parent": "MEPF.elv.elv-mang-truyen-dan",
+   "level": 4,
+   "name_vi": "Hộp chia quang",
+   "description": "VD trong master data: Hộp phối quang 196FO; Hộp phối quang 96FO; Hộp phối quang 24FO; Hộp phối quang 8FO",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 16,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-mang-truyen-dan.iptv",
+   "parent": "MEPF.elv.elv-mang-truyen-dan",
+   "level": 4,
+   "name_vi": "IPTV",
+   "description": "VD trong master data: Tổng đài PABX 4CO-24EXT; Tổng đài PABX ( 3 trung kế/3CO, 5 máy nhánh / 5EXT); Tủ phiến đấu dây MDF 10Pairs; Fire wall/ Load balance",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-mang-truyen-dan.patch-panel",
+   "parent": "MEPF.elv.elv-mang-truyen-dan",
+   "level": 4,
+   "name_vi": "Patch panel",
+   "description": "VD trong master data: Patch panel 24 ports; Patch panel 16 ports; Patch panel 8 ports; Patch panel 4 ports",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 11,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-mang-truyen-dan.path-panel",
+   "parent": "MEPF.elv.elv-mang-truyen-dan",
+   "level": 4,
+   "name_vi": "Path panel",
+   "description": "VD trong master data: Patch panel 48 ports; Patch panel 24 ports; Patch panel 16 ports; Patch panel 8 ports",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 7,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-mang-truyen-dan.switch",
+   "parent": "MEPF.elv.elv-mang-truyen-dan",
+   "level": 4,
+   "name_vi": "Switch",
+   "description": "VD trong master data: Core switch quang 48 SFP; Core switch quang 24 SFP; Switch PoE 48 ports 2SFP; Switch PoE 24 ports 2SFP",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 34,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.elv.elv-mang-truyen-dan.tu-rack",
+   "parent": "MEPF.elv.elv-mang-truyen-dan",
+   "level": 4,
+   "name_vi": "Tủ rack",
+   "description": "VD trong master data: Tủ rack chính 42U phòng CCTV; Tủ rack tầng 12U; Tủ rack tầng 10U; Tủ rack tầng  kỹ thuật",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 14,
+   "units": [
+    "cái",
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.elv.videophone",
+   "parent": "MEPF.elv",
+   "level": 3,
+   "name_vi": "Videophone",
+   "description": "VD trong master data: Chuông cửa (bên ngoài căn hộ) loại có camera; Màn hình điện thoại video (bên trong căn hộ)",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac",
+   "parent": "MEPF",
+   "level": 2,
+   "name_vi": "Điều hòa & thông gió (HVAC)",
+   "description": "",
+   "source_sheet": "2.2 Ma_tran_QD_MEPF",
+   "short": "HVAC",
+   "master_rows": 1193
+  },
+  {
+   "code": "MEPF.hvac.bao-on",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Bảo ôn",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 30,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.bao-on.bao-on-cho-ong",
+   "parent": "MEPF.hvac.bao-on",
+   "level": 4,
+   "name_vi": "Bảo ôn cho ống",
+   "description": "VD trong master data: Bảo ôn cho ống Ø 6.4mm dày 15mm; Bảo ôn cho ống Ø 9.5mm dày 15mm; Bảo ôn cho ống Ø 12.7mm dày 15mm; Bảo ôn cho ống Ø 15.9mm dày 15mm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 25,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.bao-on.ong-gio",
+   "parent": "MEPF.hvac.bao-on",
+   "level": 4,
+   "name_vi": "Ống gió",
+   "description": "VD trong master data: Ống gió mềm D150 có bảo ôn; Ống gió mềm D200 có bảo ôn; Ống gió mềm D250 có bảo ôn; Ống gió mềm D300 có bảo ôn",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.cach-am",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Cách âm",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 21,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.cach-am.boc-cach-am",
+   "parent": "MEPF.hvac.cach-am",
+   "level": 4,
+   "name_vi": "Bọc cách âm",
+   "description": "VD trong master data: Bọc cách âm cho ống DN200; Bọc cách âm cho ống DN150; Bọc cách âm cho ống DN125; Bọc cách âm cho ống DN100",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 20,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.cach-am.phu-kien-may-phat-dien",
+   "parent": "MEPF.hvac.cach-am",
+   "level": 4,
+   "name_vi": "Phụ kiện máy phát điện",
+   "description": "VD trong master data: Cách âm tường, trần nhà",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.fan",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "FAN",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 288,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.fan.quat-gio",
+   "parent": "MEPF.hvac.fan",
+   "level": 4,
+   "name_vi": "Quạt gió",
+   "description": "VD trong master data: SPF, Hướng trục, Lưu lượng: 10700L/s, Cột áp: 600 Pa; SPF, Hướng trục, Lưu lượng: 9000L/s, Cột áp: 750 Pa; SPF, Hướng trục, Lưu lượng: 8900L/s, Cột áp: 700 Pa; SEF, Hướng trục, Lưu lượng: 9400L/s, Cột áp: 900 Pa",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 280,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.fan.thiet-bi-cam-bien-va-phu-tro-thong-khi",
+   "parent": "MEPF.hvac.fan",
+   "level": 4,
+   "name_vi": "Thiết bị cảm biến và phụ trợ thông khí",
+   "description": "VD trong master data: Cảm biến chênh áp; Cảm biến chất lượng không khí; Cảm biến khói; Cảm biến nhiệt độ",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.fan.thiet-bi-phu-kien-thong-gio",
+   "parent": "MEPF.hvac.fan",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện thông gió",
+   "description": "VD trong master data: Máy khử âm: 42L/D; Máy khử âm: 50L/D; Máy khử âm: 70L/D",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 3,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.may-lanh",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Máy lạnh",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 97,
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.may-lanh.dieu-hoa-khong-khi",
+   "parent": "MEPF.hvac.may-lanh",
+   "level": 4,
+   "name_vi": "Điều hòa không khí",
+   "description": "VD trong master data: Điều hòa cục bộ âm trần ống gió 16.0kW; Điều hòa cục bộ âm trần ống gió 14.0kW; Điều hòa cục bộ âm trần ống gió 7.1kW; Điều hòa cục bộ âm trần ống gió 6.0kW",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 97,
+   "units": [
+    "dàn",
+    "bộ"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.mieng-gio-cua-gio-van-gio",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Miệng gió, cửa gió, van gió",
+   "description": "VD trong master data: Miệng gió cấp 600mm D200; Miệng gió cấp 800mm D200; Miệng gió cấp 1000mm D200; Miệng gió cấp 1200mm D200",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 650,
+   "units": [
+    "cái",
+    "nrs"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.mieng-gio-luoi",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Miệng gió/lưới",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 27,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.mieng-gio-luoi.luoi-chan-con-trung",
+   "parent": "MEPF.hvac.mieng-gio-luoi",
+   "level": 4,
+   "name_vi": "Lưới chắn côn trùng",
+   "description": "VD trong master data: LCCT 200x150; LCCT 300x550; LCCT 400x400; LCCT 450x200",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 27,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.ong-dong",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Ống đồng",
+   "description": "VD trong master data: Ống đồng Ø 6.4mm dày 0.8mm; Ống đồng Ø 9.5mm dày 0.8mm; Ống đồng Ø 12.7mm dày 0.8mm; Ống đồng Ø 15.9mm dày 1.0mm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 12,
+   "units": [
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.ong-gio",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Ống gió",
+   "description": "VD trong master data: Thép mạ kẽm độ dày 0.58mm; Thép mạ kẽm độ dày 0.75mm; Thép mạ kẽm độ dày 0.95mm; Thép mạ kẽm độ dày 1.15mm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 48,
+   "units": [
+    "m2",
+    "m"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.ong-gio.thiet-bi-cach-nhiet-va-phu-tro",
+   "parent": "MEPF.hvac.ong-gio",
+   "level": 4,
+   "name_vi": "Thiết bị cách nhiệt và phụ trợ",
+   "description": "VD trong master data: Cách nhiệt/Tiêu âm dán trong 50mm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ]
+  },
+  {
+   "code": "MEPF.hvac.quat-hut-mui-ve-sinh",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Quạt hút mùi vệ sinh",
+   "description": "VD trong master data: Quạt vệ sinh gắn trần 25 l/s - 75 Pa; Quạt vệ sinh gắn trần 25 l/s - 50 Pa",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.tieu-am",
+   "parent": "MEPF.hvac",
+   "level": 3,
+   "name_vi": "Tiêu âm",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 18,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.hvac.tieu-am.hop-cach-am-cho-quat",
+   "parent": "MEPF.hvac.tieu-am",
+   "level": 4,
+   "name_vi": "Hộp cách âm cho quạt",
+   "description": "VD trong master data: ATT: 600x400x900; ATT: 800x400x900; ATT: 1200x1000x900; ATT: 1250x600x900",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 18,
+   "units": [
+    "bộ"
+   ]
+  },
+  {
+   "code": "MEPF.khac",
+   "parent": "MEPF",
+   "level": 2,
+   "name_vi": "Khác",
+   "description": "",
+   "source_sheet": "2.2 Ma_tran_QD_MEPF",
+   "short": "Khác",
+   "master_rows": 159
+  },
+  {
+   "code": "MEPF.khac.may-bom",
+   "parent": "MEPF.khac",
+   "level": 3,
+   "name_vi": "Máy bơm",
+   "description": "VD trong master data: Máy bơm cấp nước Q = 45m³/h, H = 37m; Máy bơm cấp nước Q = 35m³/h, H = 20m; Máy bơm cấp nước Q = 25m³/h, H = 40m; Máy bơm lọc nước Q = 45m³/h, H = 37m",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 8,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.may-bom.phu-kien-may-phat-dien",
+   "parent": "MEPF.khac.may-bom",
+   "level": 4,
+   "name_vi": "Phụ kiện máy phát điện",
+   "description": "VD trong master data: Bơm dầu (chuyển nhiên liệu); Tủ bơm dầu DB-FUEL",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "bơm",
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.may-bom.van",
+   "parent": "MEPF.khac.may-bom",
+   "level": 4,
+   "name_vi": "Van",
+   "description": "VD trong master data: Van bảo vệ vỏ bơm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac",
+   "parent": "MEPF.khac",
+   "level": 3,
+   "name_vi": "Thiết bị/khác",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 151,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.bo-phat-wifi",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Bộ phát Wifi",
+   "description": "VD trong master data: Bộ phát Wifi",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.cach-nhiet",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Cách nhiệt",
+   "description": "VD trong master data: Cách nhiệt bên ngoài dày 19mm; Cách nhiệt bên ngoài dày 25mm; Cách nhiệt bên trong dày 25mm; Box cấp cho FCU (bao gồm bảo ôn dán trong)",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "m2",
+    "bộ"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.cap-dien",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Cáp điện",
+   "description": "VD trong master data: Dây nhảy CAT6 UTP; Dây nhảy quang; Cáp HDMI cho màn hình; Module quang",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 14,
+   "units": [
+    "sợi",
+    "cái",
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.chup-thoat-mui",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Chụp thoát mùi",
+   "description": "VD trong master data: Chụp thoát mùi DN250; Chụp thoát mùi DN200; Chụp thoát mùi DN150; Chụp thoát mùi DN100",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.conduit",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Conduit",
+   "description": "VD trong master data: Ống GI D25",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "n"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.cong-tac",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Công tắc",
+   "description": "VD trong master data: Công tắc dòng chảy DN150; Công tắc dòng chảy DN125; Công tắc dòng chảy DN100; Công tắc dòng chảy DN80",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.cong-tac-o-cam",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Công tắc, ổ cắm",
+   "description": "VD trong master data: Ổ cắm điện thoại (RJ45); Ổ cắm mạng (RJ45); Ổ cắm mạng đôi (2xRJ45); Ổ cắm mạng đôi (2xRJ45) âm sàn",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.he-thong-cua-cuon-pccc",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Hệ thống cửa cuốn PCCC",
+   "description": "VD trong master data: Cửa sập chống cháy EI60",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "m2"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.khop-noi-mem",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Khớp nối mềm",
+   "description": "VD trong master data: Khớp nối mềm DN200; Khớp nối mềm DN150; Khớp nối mềm DN125; Khớp nối mềm DN100",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 22,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.kim-thu-set",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Kim thu sét",
+   "description": "VD trong master data: Kim thu sét, H=0,6m",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "bộ"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.kinh-quan-sat",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Kính quan sát",
+   "description": "VD trong master data: Kính quan sát DN25",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.ong-gio",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Ống gió",
+   "description": "VD trong master data: Độ dày 0.58mm; Độ dày 0.75mm; Độ dày 0.95mm; Độ dày 1.15mm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "m2"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.ong-nuoc",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Ống nước",
+   "description": "VD trong master data: Dây mềm cấp nước đầu phun D25",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.phu-kien-may-phat-dien",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Phụ kiện máy phát điện",
+   "description": "VD trong master data: Bộ giảm âm; Cảm biến mức dầu; Cảm biến rò dầu; Cáp điện, cáp tín hiệu và ống luồn dây PVC, GI…",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 6,
+   "units": [
+    "cái",
+    "gói"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.thanh-noi-dat",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Thanh nối đất",
+   "description": "VD trong master data: Thanh nối đất chính; Thanh nối đất tủ MV; Thanh nối đất phòng MFĐ; Thanh nối đất chính hệ ELV",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "thanh"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.thep-he-thong-chong-set",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Thép hệ thống chống sét",
+   "description": "VD trong master data: Thép D16; Thép D10",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.thiet-bi-linh-kien-duong-ong",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Thiết bị, linh kiện đường ống",
+   "description": "VD trong master data: Bộ chống nước va (Búa nước) DN150; Bộ chống nước va (Búa nước) DN125; Bộ chống nước va (Búa nước) DN100; Công tắc mực nước",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.thiet-bi-phu-kien-bom",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện bơm",
+   "description": "VD trong master data: Cụm làm mềm nước Q= 35 m3/h",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "Cụm"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.thiet-bi-phu-kien-chong-set",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện chống sét",
+   "description": "VD trong master data: Băng đồng trần 25x3mm; Băng nhôm 25x3mm; Cáp đồng trần M50; Bộ đếm sét",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "m",
+    "cái",
+    "hộp"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.thiet-bi-phu-kien-dan-duong",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện dẫn đường",
+   "description": "VD trong master data: Bộ điều khiển trung tâm; Bộ điều khiển camera; Màn hình hiển thị chỗ trống; Camera phát hiện chỗ trống",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 6,
+   "units": [
+    "bộ",
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.thiet-bi-phu-kien-pccc",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện PCCC",
+   "description": "VD trong master data: Quả cầu chữa cháy ABC 6kg; Tủ đựng dụng cụ cứu hộ bao gồm rìu, xà beng, búa, cùng các dụng cụ hỗ trợ); Bộ nội quy tiêu lệnh chữa cháy; Tủ điều khiển xả khí 1 vùng loại thường",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 53,
+   "units": [
+    "cái",
+    "bộ",
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.thiet-bi-phu-kien-thong-gio",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện thông gió",
+   "description": "VD trong master data: Nạp chất làm lạnh; Hộp cáp chứa ống đồng",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "lô"
+   ]
+  },
+  {
+   "code": "MEPF.khac.thiet-bi-khac.tru-cuu-hoa",
+   "parent": "MEPF.khac.thiet-bi-khac",
+   "level": 4,
+   "name_vi": "Trụ cứu hỏa",
+   "description": "VD trong master data: Trụ cứu hỏa DN100",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc",
+   "parent": "MEPF",
+   "level": 2,
+   "name_vi": "Cấp thoát nước",
+   "description": "",
+   "source_sheet": "2.2 Ma_tran_QD_MEPF",
+   "short": "Nước",
+   "master_rows": 442
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc",
+   "parent": "MEPF.nuoc",
+   "level": 3,
+   "name_vi": "Bồn/bình lọc",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 30,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc.binh-tich-ap",
+   "parent": "MEPF.nuoc.bon-binh-loc",
+   "level": 4,
+   "name_vi": "Bình tích áp",
+   "description": "VD trong master data: Bình tích áp 100 L; Bình tích áp 100L",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "bình",
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc.bon-chua",
+   "parent": "MEPF.nuoc.bon-binh-loc",
+   "level": 4,
+   "name_vi": "Bồn chứa",
+   "description": "VD trong master data: Bồn chứa nước mái 2 ngăn 105 m³; Bồn chứa nước mái 2 ngăn 70 m³; Bồn chứa nước mái 2 ngăn 60 m³; Bồn chứa nước mái 2 ngăn 50 m³",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "bể",
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc.bon-loc",
+   "parent": "MEPF.nuoc.bon-binh-loc",
+   "level": 4,
+   "name_vi": "Bồn lọc",
+   "description": "VD trong master data: Bồn lọc dung tích 50m3/h; Bồn lọc dung tích 40m3/h; Bình lọc cát SF-01/02/03/04; Bình lọc cát Q= 35 m3/h",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 6,
+   "units": [
+    "bồn",
+    "bình"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc.bon-nuoc",
+   "parent": "MEPF.nuoc.bon-binh-loc",
+   "level": 4,
+   "name_vi": "Bồn nước",
+   "description": "VD trong master data: Bồn nước chữa cháy lắp ghép 234m3; Bồn nước chữa cháy lắp ghép 80m3; Bồn nước chữa cháy lắp ghép 63m3",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 3,
+   "units": [
+    "bể"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc.thiet-bi-linh-kien-duong-ong",
+   "parent": "MEPF.nuoc.bon-binh-loc",
+   "level": 4,
+   "name_vi": "Thiết bị, linh kiện đường ống",
+   "description": "VD trong master data: Y lọc DN150; Y lọc DN125; Y lọc DN100; Y lọc DN80",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc.thiet-bi-phu-kien-bom",
+   "parent": "MEPF.nuoc.bon-binh-loc",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện bơm",
+   "description": "VD trong master data: Màng lọc UF; Hệ thống cáp điện và tủ điều khiển",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "bộ",
+    "gói"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc.thiet-bi-phu-kien-pccc",
+   "parent": "MEPF.nuoc.bon-binh-loc",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện PCCC",
+   "description": "VD trong master data: Kệ đựng bình chữa cháy loại 3 bình; Kệ đựng bình chữa cháy loại 2 bình; Kệ đựng bình chữa cháy loại 1 bình; Tủ đựng khẩu trang, mặt nạ lọc độc",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái",
+    "bộ"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.bon-binh-loc.y-loc",
+   "parent": "MEPF.nuoc.bon-binh-loc",
+   "level": 4,
+   "name_vi": "Y lọc",
+   "description": "VD trong master data: Y lọc DN150; Y lọc DN100; Y lọc DN65; Y lọc DN50",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.dong-ho-nuoc-do-luong",
+   "parent": "MEPF.nuoc",
+   "level": 3,
+   "name_vi": "Đồng hồ nước & đo lường",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 15,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.nuoc.dong-ho-nuoc-do-luong.dien-ke",
+   "parent": "MEPF.nuoc.dong-ho-nuoc-do-luong",
+   "level": 4,
+   "name_vi": "Điện kế",
+   "description": "VD trong master data: Điện kế",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "chiếc"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.dong-ho-nuoc-do-luong.dong-ho-do",
+   "parent": "MEPF.nuoc.dong-ho-nuoc-do-luong",
+   "level": 4,
+   "name_vi": "Đồng hồ đo",
+   "description": "VD trong master data: Đồng hồ đo lưu lượng nước thải DN100; Đồng hồ đo áp suất kèm van",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.dong-ho-nuoc-do-luong.dong-ho-nuoc",
+   "parent": "MEPF.nuoc.dong-ho-nuoc-do-luong",
+   "level": 4,
+   "name_vi": "Đồng hồ nước",
+   "description": "VD trong master data: Đồng hồ nước DN150; Đồng hồ nước DN125; Đồng hồ nước DN100; Đồng hồ nước DN80",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 10,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.dong-ho-nuoc-do-luong.luu-luong-ke",
+   "parent": "MEPF.nuoc.dong-ho-nuoc-do-luong",
+   "level": 4,
+   "name_vi": "Lưu lượng kế",
+   "description": "VD trong master data: Lưu lượng kế DN150; Lưu lượng kế DN100",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.may-bom-cap-thoat-nuoc",
+   "parent": "MEPF.nuoc",
+   "level": 3,
+   "name_vi": "Máy bơm cấp thoát nước",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 28,
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.nuoc.may-bom-cap-thoat-nuoc.may-bom",
+   "parent": "MEPF.nuoc.may-bom-cap-thoat-nuoc",
+   "level": 4,
+   "name_vi": "Máy bơm",
+   "description": "VD trong master data: Máy bơm tăng áp Q=65m3/h, H=28m; Máy bơm tăng áp (2 chạy, 1 dự phòng) Q=13m3/h, H=20m; Máy bơm tăng áp (2 chạy, 1 dự phòng) Q=18m3/h, H=30m; Máy bơm tăng áp (2 chạy, 1 dự phòng) Q=19m3/h, H=28m",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 28,
+   "units": [
+    "cái",
+    "Cụm",
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.may-nuoc-nong",
+   "parent": "MEPF.nuoc",
+   "level": 3,
+   "name_vi": "Máy nước nóng",
+   "description": "VD trong master data: Máy nước nóng 80L (có ống mềm và van an toàn); Máy nước nóng 50L (có ống mềm và van an toàn); Máy nước nóng 30L (có ống mềm và van an toàn)",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 3,
+   "units": [
+    "bộ"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.nuoc.ong-nuoc-pccc",
+   "parent": "MEPF.nuoc",
+   "level": 3,
+   "name_vi": "Ống nước/PCCC",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 195,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.nuoc.ong-nuoc-pccc.conduit",
+   "parent": "MEPF.nuoc.ong-nuoc-pccc",
+   "level": 4,
+   "name_vi": "Conduit",
+   "description": "VD trong master data: Ống gân xoắn HDPE ∅50/40",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.ong-nuoc-pccc.ong-chua-chay",
+   "parent": "MEPF.nuoc.ong-nuoc-pccc",
+   "level": 4,
+   "name_vi": "Ống chữa cháy",
+   "description": "VD trong master data: Ống thép đen DN200; Ống thép đen DN150; Ống thép đen DN125; Ống thép đen DN100",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 17,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.ong-nuoc-pccc.ong-nuoc",
+   "parent": "MEPF.nuoc.ong-nuoc-pccc",
+   "level": 4,
+   "name_vi": "Ống nước",
+   "description": "VD trong master data: Ống HDPE DN150; Ống HDPE DN125; Ống HDPE DN100; Ống HDPE DN80",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 164,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.ong-nuoc-pccc.ong-thoat-nuoc",
+   "parent": "MEPF.nuoc.ong-nuoc-pccc",
+   "level": 4,
+   "name_vi": "Ống thoát nước",
+   "description": "VD trong master data: Ống uPVC DN15; Ống uPVC DN20; Ống uPVC DN25; Ống uPVC DN32",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 13,
+   "units": [
+    "m"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.thiet-bi-ve-sinh",
+   "parent": "MEPF.nuoc",
+   "level": 3,
+   "name_vi": "Thiết bị vệ sinh",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 20,
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.nuoc.thiet-bi-ve-sinh.thiet-bi-ve-sinh-va-phu-kien",
+   "parent": "MEPF.nuoc.thiet-bi-ve-sinh",
+   "level": 4,
+   "name_vi": "Thiết bị vệ sinh và phụ kiện",
+   "description": "VD trong master data: Bồn cầu kèm vòi xịt, van góc; Chậu rửa kèm vòi, van góc; Sen tắm master; Sen tắm",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 16,
+   "units": [
+    "bộ"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.thiet-bi-ve-sinh.voi-nuoc",
+   "parent": "MEPF.nuoc.thiet-bi-ve-sinh",
+   "level": 4,
+   "name_vi": "Vòi nước",
+   "description": "VD trong master data: Vòi nước rửa sàn hầm DN15; Vòi nước phòng rác DN20; Vòi nước phòng rác DN15; Vòi nước máy giặt DN15",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.thoat-san-phu-kien",
+   "parent": "MEPF.nuoc",
+   "level": 3,
+   "name_vi": "Thoát sàn & phụ kiện",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 22,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.nuoc.thoat-san-phu-kien.cau-thu-mua",
+   "parent": "MEPF.nuoc.thoat-san-phu-kien",
+   "level": 4,
+   "name_vi": "Cầu thu mưa",
+   "description": "VD trong master data: Cầu thu mưa DN150; Cầu thu mưa DN100; Cầu thu mưa DN80",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 3,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.thoat-san-phu-kien.thoat-san",
+   "parent": "MEPF.nuoc.thoat-san-phu-kien",
+   "level": 4,
+   "name_vi": "Thoát sàn",
+   "description": "VD trong master data: Thoát sàn hầm DN80; Thoát sàn mương, sàn phòng máy DN100; Thoát sàn mương, sàn phòng máy DN80; Thoát sàn mương, sàn phòng máy DN50",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 15,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.thoat-san-phu-kien.thong-tac-san",
+   "parent": "MEPF.nuoc.thoat-san-phu-kien",
+   "level": 4,
+   "name_vi": "Thông tắc sàn",
+   "description": "VD trong master data: Thông tắc sàn DN150; Thông tắc sàn DN100; Thông tắc sàn DN80; Thông tắc sàn DN50",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.van",
+   "parent": "MEPF.nuoc",
+   "level": 3,
+   "name_vi": "Van",
+   "description": "VD trong master data: Van cổng DN200; Van cổng DN150; Van cổng DN125; Van cổng DN100",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 129,
+   "units": [
+    "cái",
+    "bộ"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.nuoc.van.cong-tac",
+   "parent": "MEPF.nuoc.van",
+   "level": 4,
+   "name_vi": "Công tắc",
+   "description": "VD trong master data: Công tắc áp suất kèm van",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.van.dia-chong-xoay",
+   "parent": "MEPF.nuoc.van",
+   "level": 4,
+   "name_vi": "Đĩa chống xoáy",
+   "description": "VD trong master data: Đĩa chống xoáy DN150; Đĩa chống xoáy DN100; Đĩa chống xoáy DN65; Đĩa chống xoáy DN50",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 4,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.van.phu-kien-may-phat-dien",
+   "parent": "MEPF.nuoc.van",
+   "level": 4,
+   "name_vi": "Phụ kiện máy phát điện",
+   "description": "VD trong master data: Đường ống dầu (bao gồm ống, van, phụ kiện…)",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 1,
+   "units": [
+    "gói"
+   ]
+  },
+  {
+   "code": "MEPF.nuoc.van.thiet-bi-linh-kien-duong-ong",
+   "parent": "MEPF.nuoc.van",
+   "level": 4,
+   "name_vi": "Thiết bị, linh kiện đường ống",
+   "description": "VD trong master data: Rọ hút/ đĩa chống xoáy DN200; Rọ hút/ đĩa chống xoáy DN150; Rọ hút/ đĩa chống xoáy DN100; Rọ hút/ đĩa chống xoáy DN80",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 6,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.pccc",
+   "parent": "MEPF",
+   "level": 2,
+   "name_vi": "Phòng cháy chữa cháy (PCCC)",
+   "description": "",
+   "source_sheet": "2.2 Ma_tran_QD_MEPF",
+   "short": "PCCC",
+   "master_rows": 57
+  },
+  {
+   "code": "MEPF.pccc.binh-chua-chay",
+   "parent": "MEPF.pccc",
+   "level": 3,
+   "name_vi": "Bình chữa cháy",
+   "description": "VD trong master data: Bình chữa cháy bột ABC 8kg; Bình chữa cháy bột ABC 4.5kg; Bình chữa cháy nước 9 lit; Bình chữa cháy bột CO2 5kg",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 12,
+   "units": [
+    "bình"
+   ],
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.pccc.dau-phun-sprinkler",
+   "parent": "MEPF.pccc",
+   "level": 3,
+   "name_vi": "Đầu phun (sprinkler)",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 11,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.pccc.dau-phun-sprinkler.dau-phun",
+   "parent": "MEPF.pccc.dau-phun-sprinkler",
+   "level": 4,
+   "name_vi": "Đầu phun",
+   "description": "VD trong master data: Đầu phun hướng lên K5.6 68oC; Đầu phun hướng lên K5.6 93oC; Đầu phun hướng lên K8 68oC; Đầu phun hướng lên K8 68oC dưới ống gió",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 11,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.pccc.may-bom-pccc",
+   "parent": "MEPF.pccc",
+   "level": 3,
+   "name_vi": "Máy bơm PCCC",
+   "description": "VD trong master data: Máy bơm chữa cháy động cơ điện 75.6m3/h, cột áp 40m; Máy bơm chữa cháy động cơ điện 75.6m3/h, cột áp 35m; Máy bơm chữa cháy động cơ điện 75.6m3/h, cột áp 33m; Máy bơm bù áp 3.6m3/h, cột áp 45m",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 7,
+   "units": [
+    "bộ",
+    "Cụm",
+    "gói"
+   ],
+   "supply_now": "CĐT đang cấp"
+  },
+  {
+   "code": "MEPF.pccc.thiet-bi-bao-chay",
+   "parent": "MEPF.pccc",
+   "level": 3,
+   "name_vi": "Thiết bị báo cháy",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 11,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.pccc.thiet-bi-bao-chay.callpoint",
+   "parent": "MEPF.pccc.thiet-bi-bao-chay",
+   "level": 4,
+   "name_vi": "Callpoint",
+   "description": "VD trong master data: Bàn gọi phòng trung tâm -hầm; Bàn gọi phòng trung tâm 128 vùng; Bàn gọi phòng trung tâm 25 vùng; Bàn gọi phòng FCC",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.pccc.thiet-bi-bao-chay.tu-bao-chay",
+   "parent": "MEPF.pccc.thiet-bi-bao-chay",
+   "level": 4,
+   "name_vi": "Tủ báo cháy",
+   "description": "VD trong master data: Tủ báo cháy 16 loop kèm bộ nguồn lưu trữ Chờ 24h + báo cháy 1h, tủ hiển thị phụ LCD (loại kèm đèn hiển thị); Tủ báo cháy 14 loop kèm bộ nguồn lưu trữ Chờ 24h + báo cháy 1h, tủ hiển thị phụ LCD (loại kèm đèn hiển thị); Tủ báo cháy 13 loop kèm bộ nguồn lưu trữ Chờ 24h + báo cháy 1h, tủ hiển thị phụ LCD (loại kèm đèn hiển thị); Tủ báo cháy 12 loop kèm bộ nguồn lưu trữ Chờ 24h + báo cháy 1h, tủ hiển thị phụ LCD (loại kèm đèn hiển thị)",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 6,
+   "units": [
+    "tủ"
+   ]
+  },
+  {
+   "code": "MEPF.pccc.tu-hong-cuon-voi-chua-chay",
+   "parent": "MEPF.pccc",
+   "level": 3,
+   "name_vi": "Tủ/họng/cuộn vòi chữa cháy",
+   "description": "",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 16,
+   "supply_now": "NT đang cấp"
+  },
+  {
+   "code": "MEPF.pccc.tu-hong-cuon-voi-chua-chay.cuon-voi",
+   "parent": "MEPF.pccc.tu-hong-cuon-voi-chua-chay",
+   "level": 4,
+   "name_vi": "Cuộn vòi",
+   "description": "VD trong master data: Cuộn vòi DN65, dài 20m; Cuộn vòi DN50, dài 20m",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.pccc.tu-hong-cuon-voi-chua-chay.hong-tiep-nuoc",
+   "parent": "MEPF.pccc.tu-hong-cuon-voi-chua-chay",
+   "level": 4,
+   "name_vi": "Họng tiếp nước",
+   "description": "VD trong master data: Họng tiếp nước 4 ngã - DN150; Họng tiếp nước 2 ngã - DN100",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.pccc.tu-hong-cuon-voi-chua-chay.lang-phun",
+   "parent": "MEPF.pccc.tu-hong-cuon-voi-chua-chay",
+   "level": 4,
+   "name_vi": "Lăng phun",
+   "description": "VD trong master data: Lăng phun D19; Lăng phun D13",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 2,
+   "units": [
+    "cái"
+   ]
+  },
+  {
+   "code": "MEPF.pccc.tu-hong-cuon-voi-chua-chay.thiet-bi-phu-kien-chua-chay-foam",
+   "parent": "MEPF.pccc.tu-hong-cuon-voi-chua-chay",
+   "level": 4,
+   "name_vi": "Thiết bị, phụ kiện chữa cháy foam",
+   "description": "VD trong master data: Phòng máy phát điện+bồn dầu ngày+ bồn dầu- diện tích 188,17m2; Phòng máy phát điện+bồn dầu ngày+ bồn dầu- diện tích 184,07m2; Phòng máy phát điện+bồn dầu - diện tích 130.53m2; Phòng máy phát điện+bồn dầu- diện tích 135.99m2",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "phòng"
+   ]
+  },
+  {
+   "code": "MEPF.pccc.tu-hong-cuon-voi-chua-chay.tu-chua-chay",
+   "parent": "MEPF.pccc.tu-hong-cuon-voi-chua-chay",
+   "level": 4,
+   "name_vi": "Tủ chữa cháy",
+   "description": "VD trong master data: Tủ chữa cháy kích thước 1400x550x250mm khu vực căn hộ; Tủ chữa cháy kích thước 1400x800x250mm khu bãi xe 1; Tủ chữa cháy kích thước 1350x550x250mm loại FH1; Tủ chữa cháy kích thước 1350x550x250mm loại FH2",
+   "source_sheet": "d_masterdata_MEPF",
+   "master_rows": 5,
+   "units": [
+    "bộ"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2332 @@
+{
+ "schema_version": 1,
+ "taxonomy": "material_taxonomy.json",
+ "rules": "material_taxonomy_rules.json",
+ "summary": {
+  "items": 216,
+  "mapped": 182,
+  "by_conf": {
+   "high": 105,
+   "medium": 39,
+   "low": 38,
+   "none": 34
+  },
+  "contract": 29,
+  "contract_mapped": 29
+ },
+ "unmapped": [
+  "fx_cny_vnd",
+  "fx_eur_vnd",
+  "fx_usd_vnd",
+  "lbma_gold",
+  "lme_aluminium",
+  "lme_copper",
+  "lme_lead",
+  "lme_nickel",
+  "lme_tin",
+  "lme_zinc",
+  "sjc_bar",
+  "sjc_bar_webgia",
+  "sjc_ring",
+  "te_aluminium",
+  "te_cokingcoal",
+  "te_copper",
+  "te_hrc",
+  "te_ironore",
+  "te_ironore_cny",
+  "te_lead",
+  "te_nickel",
+  "te_polyethylene",
+  "te_polypropylene",
+  "te_pvc",
+  "te_rebar_shfe",
+  "te_scrap",
+  "te_tin",
+  "te_zinc",
+  "yf_aluminium",
+  "yf_copper",
+  "yf_gold",
+  "yf_hrc",
+  "yf_ironore",
+  "yf_silver"
+ ],
+ "items": {
+  "aac_hcm_eblock_b3_d100": {
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC = nhóm 'Gạch AAC'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch AAC"
+   ]
+  },
+  "aac_hcm_eblock_b3_d75": {
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC = nhóm 'Gạch AAC'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch AAC"
+   ]
+  },
+  "aac_hn_viglacera_d100": {
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC = nhóm 'Gạch AAC'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch AAC"
+   ]
+  },
+  "aac_hn_viglacera_d75": {
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC = nhóm 'Gạch AAC'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch AAC"
+   ]
+  },
+  "ceiling_vinhtuong_mr_tika": {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.tran-thach-cao",
+   "conf": "high",
+   "why": "Trần thạch cao Vĩnh Tường = 'Trần thạch cao'",
+   "path": [
+    "Hoàn thiện",
+    "HOÀN THIỆN TRONG NHÀ",
+    "TC - Hoàn thiện nội thất",
+    "Trần thạch cao"
+   ]
+  },
+  "ceiling_vinhtuong_std_tika": {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.tran-thach-cao",
+   "conf": "high",
+   "why": "Trần thạch cao Vĩnh Tường = 'Trần thạch cao'",
+   "path": [
+    "Hoàn thiện",
+    "HOÀN THIỆN TRONG NHÀ",
+    "TC - Hoàn thiện nội thất",
+    "Trần thạch cao"
+   ]
+  },
+  "fx_cny_vnd": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "fx_eur_vnd": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "fx_usd_vnd": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "hn_sxd_q3_00": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_01": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_02": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_03": {
+   "code": "KC.dao-van-chuyen-dat",
+   "conf": "medium",
+   "why": "Master data: 'Đắp đất (cung cấp cát san lấp mới)' ⊂ 'Đào & vận chuyển đất'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Đào & vận chuyển đất"
+   ]
+  },
+  "hn_sxd_q3_04": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Đá dăm = cốt liệu bê tông thương phẩm",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "hn_sxd_q3_05": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Đá dăm = cốt liệu bê tông thương phẩm",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "hn_sxd_q3_06": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "hn_sxd_q3_07": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "hn_sxd_q3_08": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_09": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_10": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_11": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_12": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_13": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "hn_sxd_q3_14": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "lbma_gold": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "lme_aluminium": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.nhom-profile",
+    "MEPF.dien.busway"
+   ],
+   "related_path": [
+    "Hoàn thiện › MẶT DỰNG & NHÔM KÍNH › TC - Nhôm kính và mặt dựng › Nhôm profile",
+    "Cơ điện (MEPF) › Điện › Busway"
+   ]
+  },
+  "lme_copper": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "MEPF.dien.cap-dien-ge50mm-truc-feeder",
+    "MEPF.dien.cap-dien-lt50mm-nhanh-cuoi",
+    "MEPF.hvac.ong-dong",
+    "MEPF.dien.busway"
+   ],
+   "related_path": [
+    "Cơ điện (MEPF) › Điện › Cáp điện ≥50mm² (trục/feeder)",
+    "Cơ điện (MEPF) › Điện › Cáp điện <50mm² (nhánh/cuối)",
+    "Cơ điện (MEPF) › Điều hòa & thông gió (HVAC) › Ống đồng",
+    "Cơ điện (MEPF) › Điện › Busway"
+   ]
+  },
+  "lme_lead": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "lme_nickel": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "lme_tin": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "lme_zinc": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "MEPF.dien.thang-mang-cap"
+   ],
+   "related_path": [
+    "Cơ điện (MEPF) › Điện › Thang/máng cáp"
+   ]
+  },
+  "mesh_fiberglass_eblock": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "low",
+   "why": "Lưới chống nứt dùng khi tô trát → 'Vữa trát & cán nền'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "mortar_aac_eblock_ebs301": {
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC = nhóm 'Gạch AAC'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch AAC"
+   ]
+  },
+  "mortar_aac_mater_m75": {
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC = nhóm 'Gạch AAC'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch AAC"
+   ]
+  },
+  "mortar_aac_sako_m75_s900": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Vữa khô trộn sẵn – remark ma trận 2.1 nêu vật tư 'vữa khô trộn sẵn'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "pipe_hdpe_pe100_d110_pn10": {
+   "code": "MEPF.nuoc.ong-nuoc-pccc.ong-nuoc",
+   "conf": "medium",
+   "why": "Ống HDPE cấp nước → 'Ống nước/PCCC › Ống nước'",
+   "path": [
+    "Cơ điện (MEPF)",
+    "Cấp thoát nước",
+    "Ống nước/PCCC",
+    "Ống nước"
+   ]
+  },
+  "pipe_hdpe_pe100_d63_pn10": {
+   "code": "MEPF.nuoc.ong-nuoc-pccc.ong-nuoc",
+   "conf": "medium",
+   "why": "Ống HDPE cấp nước → 'Ống nước/PCCC › Ống nước'",
+   "path": [
+    "Cơ điện (MEPF)",
+    "Cấp thoát nước",
+    "Ống nước/PCCC",
+    "Ống nước"
+   ]
+  },
+  "rmc_hcm_dn_m100": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m150": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m200": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m250": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m300": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m350": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m400": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m450": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m500": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m600": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dn_m700": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dvc_m200": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dvc_m250": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dvc_m300": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_dvc_m350": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_mk_m100": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_mk_m150": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_mk_m200": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_mk_m250": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_mk_m300": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_mk_m350": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hcm_mk_m400": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_btHN_m100": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_btHN_m150": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_btHN_m200": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_btHN_m250": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_btHN_m300": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_btHN_m350": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_btHN_m400": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_btHN_m450": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_chem_m100": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_chem_m150": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_chem_m200": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_chem_m250": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_chem_m300": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_chem_m350": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "rmc_hn_chem_m400": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "sika_latex_th_25l": {
+   "code": "KC.chong-tham",
+   "conf": "medium",
+   "why": "Phụ gia kết dính/chống thấm gốc latex → 'Chống thấm'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Chống thấm"
+   ]
+  },
+  "sjc_bar": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "sjc_bar_webgia": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "sjc_ring": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "skimcoat_eblock_ebs302": {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.son-ba",
+   "conf": "high",
+   "why": "Master data KC ghi skimcoat → 'Sơn bả (→HT)'",
+   "path": [
+    "Hoàn thiện",
+    "HOÀN THIỆN TRONG NHÀ",
+    "TC - Hoàn thiện nội thất",
+    "Sơn bả"
+   ]
+  },
+  "skimcoat_mater_401": {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.son-ba",
+   "conf": "high",
+   "why": "Master data KC ghi skimcoat → 'Sơn bả (→HT)'",
+   "path": [
+    "Hoàn thiện",
+    "HOÀN THIỆN TRONG NHÀ",
+    "TC - Hoàn thiện nội thất",
+    "Sơn bả"
+   ]
+  },
+  "te_aluminium": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.nhom-profile",
+    "MEPF.dien.busway"
+   ],
+   "related_path": [
+    "Hoàn thiện › MẶT DỰNG & NHÔM KÍNH › TC - Nhôm kính và mặt dựng › Nhôm profile",
+    "Cơ điện (MEPF) › Điện › Busway"
+   ]
+  },
+  "te_cokingcoal": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ],
+   "related_path": [
+    "Kết cấu & phần thô › Thép thanh vằn D6-32"
+   ]
+  },
+  "te_copper": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "MEPF.dien.cap-dien-ge50mm-truc-feeder",
+    "MEPF.dien.cap-dien-lt50mm-nhanh-cuoi",
+    "MEPF.hvac.ong-dong",
+    "MEPF.dien.busway"
+   ],
+   "related_path": [
+    "Cơ điện (MEPF) › Điện › Cáp điện ≥50mm² (trục/feeder)",
+    "Cơ điện (MEPF) › Điện › Cáp điện <50mm² (nhánh/cuối)",
+    "Cơ điện (MEPF) › Điều hòa & thông gió (HVAC) › Ống đồng",
+    "Cơ điện (MEPF) › Điện › Busway"
+   ]
+  },
+  "te_hrc": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ],
+   "related_path": [
+    "Kết cấu & phần thô › Thép thanh vằn D6-32"
+   ]
+  },
+  "te_ironore": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ],
+   "related_path": [
+    "Kết cấu & phần thô › Thép thanh vằn D6-32"
+   ]
+  },
+  "te_ironore_cny": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ],
+   "related_path": [
+    "Kết cấu & phần thô › Thép thanh vằn D6-32"
+   ]
+  },
+  "te_lead": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "te_nickel": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "te_polyethylene": {
+   "code": null,
+   "conf": "none",
+   "why": "Hạt nhựa thế giới – không có trong master data",
+   "related": [
+    "MEPF.nuoc.ong-nuoc-pccc",
+    "MEPF.dien.ong-luon-day"
+   ],
+   "related_path": [
+    "Cơ điện (MEPF) › Cấp thoát nước › Ống nước/PCCC",
+    "Cơ điện (MEPF) › Điện › Ống luồn dây"
+   ]
+  },
+  "te_polypropylene": {
+   "code": null,
+   "conf": "none",
+   "why": "Hạt nhựa thế giới – không có trong master data",
+   "related": [
+    "MEPF.nuoc.ong-nuoc-pccc",
+    "MEPF.dien.ong-luon-day"
+   ],
+   "related_path": [
+    "Cơ điện (MEPF) › Cấp thoát nước › Ống nước/PCCC",
+    "Cơ điện (MEPF) › Điện › Ống luồn dây"
+   ]
+  },
+  "te_pvc": {
+   "code": null,
+   "conf": "none",
+   "why": "Hạt nhựa thế giới – không có trong master data",
+   "related": [
+    "MEPF.nuoc.ong-nuoc-pccc",
+    "MEPF.dien.ong-luon-day"
+   ],
+   "related_path": [
+    "Cơ điện (MEPF) › Cấp thoát nước › Ống nước/PCCC",
+    "Cơ điện (MEPF) › Điện › Ống luồn dây"
+   ]
+  },
+  "te_rebar_shfe": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ],
+   "related_path": [
+    "Kết cấu & phần thô › Thép thanh vằn D6-32"
+   ]
+  },
+  "te_scrap": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ],
+   "related_path": [
+    "Kết cấu & phần thô › Thép thanh vằn D6-32"
+   ]
+  },
+  "te_tin": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "te_zinc": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "MEPF.dien.thang-mang-cap"
+   ],
+   "related_path": [
+    "Cơ điện (MEPF) › Điện › Thang/máng cáp"
+   ]
+  },
+  "vnmat_cat_cat_be_tong_gia_binh_quan_khu_vuc": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Cốt liệu đầu vào của bê tông thương phẩm",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "vnmat_cat_cat_san_lap_gia_binh_quan_khu_vuc": {
+   "code": "KC.dao-van-chuyen-dat",
+   "conf": "medium",
+   "why": "Master data: 'Đắp đất (cung cấp cát san lấp mới)' ⊂ 'Đào & vận chuyển đất'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Đào & vận chuyển đất"
+   ]
+  },
+  "vnmat_cat_cat_tu_nhien_gia_tai_mo": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_cat_cat_xay_to_gia_binh_quan_khu_vuc": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_da_xay_dung_cap_phoi_da_dam_dmax_25_gia_tai_mo": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_da_xay_dung_cap_phoi_da_dam_dmax_37_5_gia_tai_mo": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_da_xay_dung_da_0x4_gia_tai_mo": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_da_xay_dung_da_1x1_gia_tai_mo": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Đá dăm = cốt liệu bê tông thương phẩm",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "vnmat_da_xay_dung_da_1x2_gia_binh_quan_khu_vuc": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Đá dăm = cốt liệu bê tông thương phẩm",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "vnmat_da_xay_dung_da_1x2_gia_tai_mo": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Đá dăm = cốt liệu bê tông thương phẩm",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "vnmat_da_xay_dung_da_2x4_gia_tai_mo": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Đá dăm = cốt liệu bê tông thương phẩm",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "vnmat_da_xay_dung_da_4x6_gia_binh_quan_khu_vuc": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_da_xay_dung_da_4x6_gia_tai_mo": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_da_xay_dung_da_hoc_gia_tai_mo": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_da_xay_dung_da_mi_bui_gia_tai_mo": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_da_xay_dung_da_mi_sang_gia_tai_mo": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_195x180x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_195x190x190_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_195x190x90_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x100x180_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x120x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x140x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x150x80_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x180x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x190x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x190x190_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x190x90_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x250x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x80x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x90x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_390x90x190_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_400x100x200_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_400x150x200_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_400x200x100_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_400x200x150_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_block_400x200x200_mm": {
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Khác (thô)"
+   ]
+  },
+  "vnmat_gach_xay_gach_dac_180x80x40_mm": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "vnmat_gach_xay_gach_dac_200x100x50_mm": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "vnmat_gach_xay_gach_dac_200x95x60_mm": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "vnmat_gach_xay_gach_dinh_180x80x40_mm": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "vnmat_gach_xay_gach_dinh_190x80x40_mm": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "vnmat_gach_xay_gach_ong_180x80x80_mm": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "vnmat_gach_xay_gach_ong_190x80x80_mm": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "vnmat_gach_xay_gach_ong_90x80x80_mm": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "vnmat_gach_xay_gach_trong_co_390x260x80_mm": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "medium",
+   "why": "Gạch lát sân/đường → 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_gach_xay_gach_tu_chen_200x100x80_mm": {
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "medium",
+   "why": "Gạch lát sân/đường → 'Cảnh quan cứng (→HT)'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Cảnh quan cứng (→HT)"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_mc25_bao": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pc40_bao": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pc40_ben_sunfat_roi": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pc40_roi": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pcb30_roi": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pcb40_bao": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pcb40_ben_sunfat_bao": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pcb40_ben_sunfat_roi": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pcb40_roi": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pcb40_xi_lo_cao_roi": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pcb50_ben_sunfat_roi": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnmat_xi_mang_xi_mang_pcb50_roi": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_bac_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_bac_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_bac_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_bac_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_nam_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_nam_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_nam_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_nam_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_trung_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_trung_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_trung_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_hoa_phat_mien_trung_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_kyoei_mien_bac_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_kyoei_mien_bac_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_kyoei_mien_bac_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_kyoei_mien_bac_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_mien_nam_mien_nam_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_mien_nam_mien_nam_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_mien_nam_mien_nam_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_pomina_mien_nam_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_pomina_mien_nam_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_pomina_mien_nam_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_pomina_mien_nam_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_pomina_mien_trung_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_pomina_mien_trung_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_pomina_mien_trung_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_pomina_mien_trung_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_thai_nguyen_mien_bac_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_thai_nguyen_mien_bac_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_thai_nguyen_mien_bac_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_tungho_mien_nam_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_tungho_mien_nam_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_tungho_mien_nam_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_bac_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_bac_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_bac_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_nam_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_nam_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_nam_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_trung_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_trung_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_vas_mien_trung_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_duc_mien_bac_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_duc_mien_bac_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_duc_mien_bac_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_duc_mien_bac_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_duc_mien_trung_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_duc_mien_trung_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_duc_mien_trung_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_duc_mien_trung_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_sing_mien_bac_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_sing_mien_bac_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_sing_mien_bac_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_y_mien_bac_cb240_d6_cuon": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_y_mien_bac_cb300_d10": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_y_mien_bac_cb400_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "vnsteel_viet_y_mien_bac_cb500_d16": {
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'",
+   "path": [
+    "Kết cấu & phần thô",
+    "Thép thanh vằn D6-32"
+   ]
+  },
+  "yf_aluminium": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.nhom-profile",
+    "MEPF.dien.busway"
+   ],
+   "related_path": [
+    "Hoàn thiện › MẶT DỰNG & NHÔM KÍNH › TC - Nhôm kính và mặt dựng › Nhôm profile",
+    "Cơ điện (MEPF) › Điện › Busway"
+   ]
+  },
+  "yf_copper": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "MEPF.dien.cap-dien-ge50mm-truc-feeder",
+    "MEPF.dien.cap-dien-lt50mm-nhanh-cuoi",
+    "MEPF.hvac.ong-dong",
+    "MEPF.dien.busway"
+   ],
+   "related_path": [
+    "Cơ điện (MEPF) › Điện › Cáp điện ≥50mm² (trục/feeder)",
+    "Cơ điện (MEPF) › Điện › Cáp điện <50mm² (nhánh/cuối)",
+    "Cơ điện (MEPF) › Điều hòa & thông gió (HVAC) › Ống đồng",
+    "Cơ điện (MEPF) › Điện › Busway"
+   ]
+  },
+  "yf_gold": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  },
+  "yf_hrc": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ],
+   "related_path": [
+    "Kết cấu & phần thô › Thép thanh vằn D6-32"
+   ]
+  },
+  "yf_ironore": {
+   "code": null,
+   "conf": "none",
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ],
+   "related_path": [
+    "Kết cấu & phần thô › Thép thanh vằn D6-32"
+   ]
+  },
+  "yf_silver": {
+   "code": null,
+   "conf": "none",
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data",
+   "related": []
+  }
+ },
+ "contract_items": {
+  "M100": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M100 (12cm±2) - B7.5",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M150": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M150 (12cm±2) - B12.5",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M200": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M200 (12cm±2) - B15",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M250": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M250 (12cm±2) - B20",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M300": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M300 (12cm±2) - B22.5",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M350": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M350 (12cm±2) - B25",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M400": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M400 (12cm±2) - B30",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M450": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M450 (12cm±2) - B35",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M500": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M500 (12cm±2) - B40",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M600": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M600 (12cm±2) - B45",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M650": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M650 (12cm±2) - B50",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "M700": {
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'",
+   "desc": "Bê tông M700 (12cm±2) - B55",
+   "path": [
+    "Kết cấu & phần thô",
+    "Bê tông thương phẩm"
+   ]
+  },
+  "XM": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "high",
+   "why": "Xi măng, cát tô, vữa M50/M75, vữa AAC = 'Vữa trát & cán nền'",
+   "desc": "Xi măng",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "CATTO": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "high",
+   "why": "Xi măng, cát tô, vữa M50/M75, vữa AAC = 'Vữa trát & cán nền'",
+   "desc": "Cát xây tô",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "V50": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "high",
+   "why": "Xi măng, cát tô, vữa M50/M75, vữa AAC = 'Vữa trát & cán nền'",
+   "desc": "Giá 1m3 vữa M50",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "V75": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "high",
+   "why": "Xi măng, cát tô, vữa M50/M75, vữa AAC = 'Vữa trát & cán nền'",
+   "desc": "Giá 1m3 vữa M75",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "VX-AAC": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "high",
+   "why": "Xi măng, cát tô, vữa M50/M75, vữa AAC = 'Vữa trát & cán nền'",
+   "desc": "Vữa xây gạch AAC (Định mức 70kg/m3)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "AAC>=100": {
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC",
+   "desc": "Gạch AAC tường dày trên 100",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch AAC"
+   ]
+  },
+  "AAC<100": {
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC",
+   "desc": "Gạch AAC tường dày dưới 100",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch AAC"
+   ]
+  },
+  "B12": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/ống → 'Gạch đất nung'",
+   "desc": "Gạch đặc 205*95*55",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "B10": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/ống → 'Gạch đất nung'",
+   "desc": "Gạch đặc 205*150*55",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "SKIMCOAT": {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.son-ba",
+   "conf": "high",
+   "why": "Skimcoat → 'Sơn bả'",
+   "desc": "Plastering Skimcoat (Định mức 1kg/m2) độ dày 1mm",
+   "path": [
+    "Hoàn thiện",
+    "HOÀN THIỆN TRONG NHÀ",
+    "TC - Hoàn thiện nội thất",
+    "Sơn bả"
+   ]
+  },
+  "PLU": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Lưới tô / hồ dầu – phụ trợ tô trát",
+   "desc": "Lưới tô tường ( NC+VT)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "PLA": {
+   "code": "KC.chong-tham",
+   "conf": "medium",
+   "why": "Sika Latex → 'Chống thấm'",
+   "desc": "Sikalatex TH trộn xi măng tạo kết dính Sika Latex TH : xi măng = 1 lít : 4kg (phủ 4m2)",
+   "path": [
+    "Kết cấu & phần thô",
+    "Chống thấm"
+   ]
+  },
+  "PHD": {
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Lưới tô / hồ dầu – phụ trợ tô trát",
+   "desc": "Hồ dầu tăng bám dính",
+   "path": [
+    "Kết cấu & phần thô",
+    "Vữa trát & cán nền"
+   ]
+  },
+  "CF.VT.TC.9MM": {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.tran-thach-cao",
+   "conf": "high",
+   "why": "Trần thạch cao",
+   "desc": "Trần thạch cao tấm tiêu chuẩn dày 9mm",
+   "path": [
+    "Hoàn thiện",
+    "HOÀN THIỆN TRONG NHÀ",
+    "TC - Hoàn thiện nội thất",
+    "Trần thạch cao"
+   ]
+  },
+  "CF.VT.CA.9MM": {
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.tran-thach-cao",
+   "conf": "high",
+   "why": "Trần thạch cao",
+   "desc": "Trần thạch cao tấm chống ẩm dày 9mm",
+   "path": [
+    "Hoàn thiện",
+    "HOÀN THIỆN TRONG NHÀ",
+    "TC - Hoàn thiện nội thất",
+    "Trần thạch cao"
+   ]
+  },
+  "B8": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/ống → 'Gạch đất nung'",
+   "desc": "Gạch đặc 180*80*40",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  },
+  "B9": {
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/ống → 'Gạch đất nung'",
+   "desc": "Gạch ống 4 lỗ 180*80*80",
+   "path": [
+    "Kết cấu & phần thô",
+    "Gạch đất nung"
+   ]
+  }
+ }
+}

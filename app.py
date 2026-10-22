@@ -113,7 +113,17 @@ def sources():
 COLS = [("group", "Nhóm"), ("category", "Danh mục"), ("name", "Mặt hàng"), ("region", "Khu vực"), ("price", "Giá"),
         ("price_high", "Giá cao (khoảng)"), ("unit", "Đơn vị"), ("currency", "Tiền tệ"), ("vnd", "Quy đổi VND"),
         ("vnd_unit", "Đơn vị VND"), ("change_pct", "Thay đổi %"), ("as_of", "Ngày giá"), ("last_ok", "Cập nhật lúc"),
-        ("stale", "Dữ liệu cũ"), ("src", "Nguồn"), ("url", "Link nguồn"), ("note", "Ghi chú")]
+        ("stale", "Dữ liệu cũ"), ("src", "Nguồn"), ("url", "Link nguồn"), ("note", "Ghi chú"),
+        ("mt_path", "Nhóm master data (Khối › Hệ › Nhóm giá)"), ("mt_code", "Mã nhóm master data"), ("mt_conf", "Độ tin cậy gán nhóm")]
+CONF_VN = {"high": "cao", "medium": "trung bình", "low": "thấp – cần xác nhận", "none": "ngoài master data"}
+def _mt():
+    """item id → (path text, code, confidence) from data/registry/material_taxonomy*.json (master data tree)."""
+    try:
+        import sys; sys.path.insert(0, os.path.join(BASE, "tools")); import material_map
+        _, r = material_map.build(write=False)
+        return {k: (" › ".join(d.get("path") or ["Chỉ số nguyên liệu & thị trường (ngoài master data)"]), d.get("code") or "", CONF_VN.get(d.get("conf"), "")) for k, d in r["items"].items()}
+    except Exception as e:
+        print("material taxonomy unavailable:", e); return {}
 
 import unicodedata
 def _norm(t): return unicodedata.normalize("NFD", t.lower().replace("đ", "d")).encode("ascii", "ignore").decode()
@@ -124,7 +134,9 @@ def filtered():
     if q:
         rows = [r for r in rows if all(w in _norm(" ".join(str(r.get(k) or "") for k in ("name", "category", "region", "src", "brand")))
                                        for w in q.split())]
-    return [dict(r, group=GROUP_VN.get(r["group"], r["group"]), stale="Có" if r["stale"] else "") for r in rows]
+    mt = _mt()
+    return [dict(r, group=GROUP_VN.get(r["group"], r["group"]), stale="Có" if r["stale"] else "",
+                 mt_path=mt.get(r["id"], ("",))[0], mt_code=mt.get(r["id"], ("", ""))[1], mt_conf=mt.get(r["id"], ("", "", ""))[2]) for r in rows]
 
 @app.get("/api/export.csv")
 def export_csv():
@@ -142,7 +154,7 @@ def export_xlsx():
     wb = Workbook(); ws = wb.active; ws.title = "Bang gia"
     ws.append([h for _, h in COLS]); [setattr(c, "font", Font(bold=True)) for c in ws[1]]
     for r in filtered(): ws.append([r.get(k) for k, _ in COLS])
-    for col, w in zip("ABCDEFGHIJKLMNOPQ", [8, 18, 45, 14, 14, 14, 14, 8, 18, 12, 10, 12, 22, 8, 30, 40, 40]):
+    for col, w in zip("ABCDEFGHIJKLMNOPQRST", [8, 18, 45, 14, 14, 14, 14, 8, 18, 12, 10, 12, 22, 8, 30, 40, 40, 55, 34, 18]):
         ws.column_dimensions[col].width = w
     bio = io.BytesIO(); wb.save(bio)
     fn = f"bang-gia-vat-lieu-{dt.datetime.now(TZ):%Y%m%d-%H%M}.xlsx"

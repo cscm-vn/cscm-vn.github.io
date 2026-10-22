@@ -64,21 +64,38 @@ HINT = {"xd.be-tong": "Bê tông tươi phụ thuộc giá xi măng, cát, đá 
         "xd.cot-thep": "Thép dùng giá niêm yết nhà máy theo miền (Bắc ≈ Hà Nội, Nam ≈ TP.HCM); chênh lệch phản ánh chính sách giá vùng và cạnh tranh giữa các hãng."}
 BASIS = {"rmc": "Giá niêm yết công khai trên website trạm trộn, chưa gồm bơm; chỉ so các bảng giá CHƯA VAT (bảng giá đã gồm VAT 8% như Mekong Thương Tín được loại khỏi phép so sánh). Cần chào giá thực tế theo khối lượng & cự ly.","steel": "Cùng nguồn (steelonline.vn), cùng ngày – so sánh trực tiếp được.",
          "sxd": "Khác cơ sở: Hà Nội = công bố giá Sở XD Q3/2026 (theo điểm giao cụ thể); TP.HCM = giá bình quân/tại mỏ tổng hợp hàng tháng – chỉ dùng tham khảo xu hướng."}
+import sys; sys.path.insert(0, os.path.join(ROOT, "tools"))
+import material_map
+MT_TAX, MT_MAP = material_map.build()  # master-data tree + item mapping (writes data/registry/material_taxonomy_map.json)
+def write_mt():
+    """site/data/mt.json: public slim copy of the master-data tree + mapping used by mt-group.js on every price page."""
+    keep = ("code", "parent", "level", "name_vi", "description", "units", "supply_now", "note", "master_rows")
+    json.dump(dict(schema_version=MT_TAX["schema_version"], levels=MT_TAX["levels"], source=MT_TAX["source"], note=MT_TAX["note"],
+                   nodes=[{k: n[k] for k in keep if k in n} for n in MT_TAX["nodes"]], items=MT_MAP["items"], contract_items=MT_MAP["contract_items"],
+                   summary=MT_MAP["summary"], unmapped=MT_MAP["unmapped"]),
+              open(os.path.join(OUT, "mt.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+    fp = os.path.join(SITE, "forecast.json"); fc = J(fp)  # tag forecast series with the master-data group (same rules)
+    if fc:
+        for it in fc.get("items", []):
+            d = material_map.map_text(f"{it.get('group','')} | {it.get('key','')} | {it.get('name','')}"); it["mt"], it["mt_conf"] = d.get("code"), d.get("conf")
+        json.dump(fc, open(fp, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 def build():
     prices = J(os.path.join(SITE, "prices.json"), {"items": []}); items = []
     for it in prices["items"]:
         h = J(os.path.join(SITE, "history", it["id"] + ".json"), {"points": []})
         pts = sorted([p for p in h.get("points", []) if p.get("price") is not None], key=lambda p: p["date"])
-        last = pts[-1]["price"] if pts else it.get("price"); m, y = pt_at(pts, 30), pt_at(pts, 365)
+        last = pts[-1]["price"] if pts else it.get("price"); m, y, w = pt_at(pts, 30), pt_at(pts, 365), pt_at(pts, 7)
         monthly = {}
         for p in pts: monthly[p["date"][:7]] = p["price"]
         ms = sorted(monthly.items())
         items.append(dict(id=it["id"], name=it["name"], unit=it["unit"], price=it.get("price"), price_high=it.get("price_high"),
             vnd=it.get("vnd"), vnd_unit=it.get("vnd_unit"), as_of=it.get("as_of"), src=it.get("src"), url=it.get("url"),
             stale=it.get("stale"), note=re.sub(r"(?<=\d),(?=\d{3}\b)", ".", it.get("note") or "") or None, category=it.get("category"), grp=it.get("grp"), region=it.get("region"),
-            reg=region(it), tax=classify(it), d1=it.get("change_pct"), mom=pct(last, m and m["price"]), yoy=pct(last, y and y["price"]),
+            reg=region(it), tax=classify(it), d1=it.get("change_pct"), w1=pct(last, w and w["price"]), s0=pct(last, pts[0]["price"]) if len(pts) >= 2 else None, mom=pct(last, m and m["price"]), yoy=pct(last, y and y["price"]),
             n_hist=len(pts), spark=[p["price"] for p in pts[-90:]] if len(pts) >= 10 else None, first_date=pts[0]["date"] if pts else None,
             monthly=[dict(m=k, p=v, chg=pct(v, ms[i - 1][1]) if i else None) for i, (k, v) in enumerate(ms)]))
+        mt = MT_MAP["items"].get(it["id"]) or {}
+        items[-1].update(mt=mt.get("code"), mt_conf=mt.get("conf"))
     # Hà Nội vs TP.HCM
     comps = []
     for label, rh, rc, tax, basis in PAIRS:
@@ -141,7 +158,7 @@ def main():
     # forecast page detection (built by the forecast worker): first match wins
     fc = next((p for p in ("du-bao.html", "du-bao/index.html", "forecast.html", "forecast/index.html") if os.path.exists(os.path.join(SITE, p))), None)
     json.dump(dict(forecast_page=fc), open(os.path.join(OUT, "site-config.json"), "w"))
-    n, c = build(); print(f"hub built: {n} price items mapped, {c} HN/HCM comparisons, forecast page: {fc}")
+    write_mt(); n, c = build(); print(f"hub built: {n} price items mapped, {c} HN/HCM comparisons, forecast page: {fc}")
     import unicodedata  # normalize every generated text file to NFC (decomposed Vietnamese marks render detached)
     for f in glob.glob(os.path.join(SITE, "**", "*"), recursive=True):
         if f.endswith((".html", ".json", ".csv", ".js", ".css")) and os.path.isfile(f):

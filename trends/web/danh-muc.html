@@ -1,5 +1,5 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Danh mục – Masterise Construction SCM Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<title>Danh mục – Masterise Construction SCM Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script><script src="mt-group.js"></script></head>
 <body class="hub" data-page="cat"><div id="hubnav"></div>
 <main class="wrap" id="main"><div class="crumb" id="crumb"></div>
 <div class="layout"><aside class="side" id="side"></aside><section>
@@ -8,7 +8,7 @@
 </section></div><div class="foot" id="foot"></div></main>
 <script>
 (async () => {
- const [h, tr, mk, fd, t, scm, fc] = await Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.get("feed.json"), HUB.tax(), HUB.get("scm.json"), fetch("forecast.json").then(r => r.ok ? r.json() : null).catch(() => null)]);
+ const [h, tr, mk, fd, t, scm, fc] = await MT.load().then(() => Promise.all([HUB.get("hub.json"), HUB.get("trends.json"), HUB.get("market.json"), HUB.get("feed.json"), HUB.tax(), HUB.get("scm.json"), fetch("forecast.json").then(r => r.ok ? r.json() : null).catch(() => null)]));
  const E = HUB.esc; let c = HUB.qs("c"); if (!t.byId[c]) c = t.tree[0].id; const node = t.byId[c];
  const ids = node.level === 1 ? node.children.map(x => x.id) : [c]; const inC = arr => (arr || []).some(x => ids.includes(x));
  const P = h.items.filter(x => ids.includes(x.tax)), T = tr.items.filter(x => inC(x.tax)), M = mk.items.filter(x => inC(x.tax)), F = (fd?.items || []).filter(x => inC(x.tax));
@@ -26,7 +26,7 @@
   gia() { if (!P.length) return `<div class="empty">Chưa có nguồn giá tự động cho mục này. Xem tab <b>Xu hướng</b>/<b>Tin</b>, hoặc đề xuất nguồn giá để bổ sung.</div>`;
    const regs = [...new Set(P.map(x => x.reg))]; return `<div class="filters"><input id="q" type="search" placeholder="Lọc trong ${E(node.name)}… (vd: hòa phát, d16, pcb40)">
    ${regs.length > 1 ? `<span class="seg" id="rg"><button data-r="" class="on">Tất cả</button>${regs.map(r => `<button data-r="${r}">${{hn: "Hà Nội/Bắc", hcm: "TP.HCM/Nam", world: "Thế giới", vn: "VN khác"}[r]}</button>`).join("")}</span>` : ""}</div>
-   <div class="tw"><table class="t" id="pt"></table></div><p class="small mute">MoM = so với ~30 ngày trước; YoY = so với ~1 năm trước (cần đủ lịch sử – nhiều nguồn VN mới tích lũy từ 21/10/2026). Bấm tên để xem lịch sử, biểu đồ tháng.</p>`; },
+   <div id="pt"></div><p class="small mute">MoM = so với ~30 ngày trước; YoY = so với ~1 năm trước (cần đủ lịch sử – nhiều nguồn VN mới tích lũy từ 21/10/2026). Bấm tên để xem lịch sử, biểu đồ tháng.</p>`; },
   cmp() { if (!C.length) return `<div class="empty">Chưa có cặp dữ liệu Hà Nội – TP.HCM cùng quy cách cho mục này.</div>`;
    let s = C.map(x => `<div class="card"><div class="cmp"><b>${E(x.label)}</b><span class="pill hn">Hà Nội ${HUB.num(x.hn)}</span><span class="pill hcm">TP.HCM ${HUB.num(x.hcm)}</span><span>${HUB.pct(x.diff_pct)}</span></div>
      <div class="small mute">${E(x.unit)} · % = TP.HCM so với Hà Nội · HN: ${x.hn_ids.length} mã, HCM: ${x.hcm_ids.length} mã</div><div class="ins">${E(x.insight)}</div></div>`).join("");
@@ -50,10 +50,12 @@
   document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { tab = b.dataset.k; history.replaceState(null, "", `?c=${c}&tab=${tab}`); draw(); });
   document.getElementById("pane").innerHTML = R[tab](); if (tab === "gia" && P.length) table(); };
  function table() { let rg = ""; const q = document.getElementById("q");
-  const f = () => { const s = HUB.strip(q.value).split(/\s+/).filter(Boolean); const L = P.filter(x => (!rg || x.reg === rg) && s.every(w => HUB.strip(x.name + " " + (x.region || "") + " " + x.src).includes(w)));
-   document.getElementById("pt").innerHTML = `<tr><th>Mặt hàng</th><th>Khu vực</th><th class="n">Giá</th><th>ĐVT</th><th class="n">Phiên</th><th class="n">MoM</th><th class="n">YoY</th><th>Ngày</th></tr>` +
-    L.map(x => `<tr><td><a href="mat-hang.html?id=${encodeURIComponent(x.id)}">${E(x.name)}</a>${x.stale ? ' <span class="pill" title="Nguồn lỗi – giữ giá tốt gần nhất">dữ liệu cũ</span>' : ""}</td><td>${HUB.regPill(x.reg)}<span class="small mute">${E(x.region || "")}</span></td>
-    <td class="n">${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""}</td><td class="small">${E(x.unit)}</td><td class="n">${HUB.pct(x.d1)}</td><td class="n">${HUB.pct(x.mom)}</td><td class="n">${HUB.pct(x.yoy)}</td><td class="small">${HUB.date(x.as_of)}</td></tr>`).join("") + (L.length ? "" : `<tr><td colspan=8 class="mute">Không có kết quả.</td></tr>`); };
+  const f = () => { const s = HUB.strip(q.value).split(/\s+/).filter(Boolean); const L = P.filter(x => (!rg || x.reg === rg) && s.every(w => HUB.strip(x.name + " " + (x.region || "") + " " + x.src + " " + MT.text(x.id, x.category)).includes(w)));
+   const HEAD = `<thead><tr><th>Mặt hàng</th><th>Khu vực</th><th class="n">Giá</th><th>ĐVT</th><th class="n">Phiên</th><th class="n">MoM</th><th class="n">YoY</th><th>Ngày</th></tr></thead>`;
+   const row = x => `<tr><td><a href="mat-hang.html?id=${encodeURIComponent(x.id)}">${E(x.name)}</a>${x.stale ? ' <span class="pill" title="Nguồn lỗi – giữ giá tốt gần nhất">dữ liệu cũ</span>' : ""}${MT.confPill(x.id)}</td><td>${HUB.regPill(x.reg)}<span class="small mute">${E(x.region || "")}</span></td>
+    <td class="n">${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""}</td><td class="small">${E(x.unit)}</td><td class="n">${HUB.pct(x.d1)}</td><td class="n">${HUB.pct(x.mom)}</td><td class="n">${HUB.pct(x.yoy)}</td><td class="small">${HUB.date(x.as_of)}</td></tr>`;
+   MT.render(document.getElementById("pt"), L.map(x => ({path: MT.path(x.id, x.category), html: row(x), m: {w1: x.w1, mom: x.mom, s0: x.s0, f0: x.first_date, d1: x.d1}})), {head: HEAD, cols: 8, key: "dm", tcls: "t", expand: true, nodesc: false});
+   document.querySelector("#pt .mtg-tw")?.classList.add("tw"); };
   q.oninput = f; document.querySelectorAll("#rg button").forEach(b => b.onclick = () => { rg = b.dataset.r; document.querySelectorAll("#rg button").forEach(x => x.classList.toggle("on", x === b)); f(); }); f(); }
  draw(); HUB.foot();
 })();

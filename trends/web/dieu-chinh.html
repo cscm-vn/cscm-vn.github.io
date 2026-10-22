@@ -1,6 +1,6 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Điều chỉnh giá HĐ tổng thầu – Masterise Construction SCM Hub</title><link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css">
-<script src="hub-common.js"></script><script src="static/chart.umd.min.js"></script>
+<script src="hub-common.js"></script><script src="mt-group.js"></script><script src="static/chart.umd.min.js"></script>
 <style>
 .dc-hero .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
 .hk.dn .v{color:#75e0a7}.hk.upk .v{color:#fda29b}
@@ -125,7 +125,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
 <script>
 (async () => {
  const E = HUB.esc, $ = s => document.querySelector(s);
- const D = await HUB.get("dieu-chinh.json");
+ const [D] = await Promise.all([HUB.get("dieu-chinh.json"), MT.load()]);
  HUB.crumb(["<b>Điều chỉnh giá HĐ</b>"]);
  if (!D || !D.contracts?.length) { $("#tbl").innerHTML = '<tr><td class="empty">Chưa có dữ liệu điều chỉnh giá.</td></tr>'; return; }
  const C = D.contracts[0], ROWS = C.rows;
@@ -231,11 +231,16 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   if (st.r === "cmp") return cmpTable();
   const rows = ROWS.filter(r => r.region === st.r && match(r));
   if (!rows.length) { tbl.innerHTML = `<tbody><tr><td class="empty" colspan="12">Không có mặt hàng phù hợp bộ lọc.</td></tr></tbody>`; return; }
-  const groups = [...new Set(rows.map(r => r.group))];
+  // nhóm theo master data (Khối › Nhóm giá), giữ tên nhóm trong HĐ làm chú thích
+  const gk = r => MT.d ? MT.pathC(r.code).map(n => n.name_vi).join(" › ") : r.group;
+  const groups = [...new Set(rows.map(gk))];
+  const cnt = (rs, b, k) => rs.filter(r => r.eval[b].status === k).length;
   tbl.innerHTML = head + "<tbody>" + groups.map(g => {
-   const rs = rows.filter(r => r.group === g), all = ROWS.filter(r => r.region === st.r && r.group === g), w = all.reduce((s, r) => s + (r.weight_pct || 0), 0);
-   return `<tr class="g"><td colspan="12">${E(g)} <span class="small">· ${rs.length}/${all.length} mục${w ? ` · tỷ trọng nhóm ${w.toFixed(2).replace(".", ",")}%` : ""}</span></td></tr>` + rs.map(rowHtml).join("");
-  }).join("") + "</tbody>";
+   const rs = rows.filter(r => gk(r) === g), all = ROWS.filter(r => r.region === st.r && gk(r) === g), w = all.reduce((s, r) => s + (r.weight_pct || 0), 0);
+   const hg = [...new Set(rs.map(r => r.group))].join(", "), dn = cnt(rs, "ctd", "down") + cnt(rs, "ntc", "down"), upn = cnt(rs, "ctd", "up") + cnt(rs, "ntc", "up");
+   const ins = dn || upn ? `${dn ? `<span class="mtg-in dn" title="Số lượt vượt ngưỡng GIẢM (CTD + NTC) trong nhóm">▼ ${dn} lượt vượt ngưỡng giảm</span> ` : ""}${upn ? `<span class="mtg-in up" title="Số lượt vượt ngưỡng TĂNG (CTD + NTC) trong nhóm">▲ ${upn} lượt vượt ngưỡng tăng</span>` : ""}` : `<span class="mtg-in fl">■ Trong ngưỡng</span>`;
+   return `<tr class="g"><td colspan="12">${E(g)} <span class="small">· ${rs.length}/${all.length} mục${w ? ` · tỷ trọng nhóm ${w.toFixed(2).replace(".", ",")}%` : ""} · nhóm trong HĐ: ${E(hg)}</span> ${ins}</td></tr>` + rs.map(rowHtml).join("");
+  }).join("") + "</tbody>"; MT.foldable(tbl);
  };
  const cmpTable = () => {
   const tbl = $("#tbl"), codes = [...new Set(ROWS.map(r => r.code))], by = (reg, c) => ROWS.find(r => r.region === reg && r.code === c);

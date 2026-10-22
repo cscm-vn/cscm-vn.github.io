@@ -1,0 +1,249 @@
+{
+ "schema_version": 1,
+ "desc": "Quy tắc gán mặt hàng → nút master data (material_taxonomy.json). Thứ tự quan trọng: quy tắc đầu tiên khớp được dùng. re: regex trên 'nhóm | mã | tên' đã bỏ dấu, chữ thường. conf: high/medium/low. code=null → cố ý KHÔNG gán (ngoài master data), 'related' = nhóm giá chịu tác động.",
+ "items": [
+  {
+   "re": "thep xay dung|cb240|cb300|cb400|cb500",
+   "code": "KC.thep-thanh-van-d6-32",
+   "conf": "high",
+   "why": "Thép thanh vằn/cuộn D6–D16 ⊂ nhóm 'Thép thanh vằn D6-32'"
+  },
+  {
+   "re": "be tong thuong pham|be tong tuoi|^.*\\| rmc_",
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông tươi = 'Bê tông thương phẩm'"
+  },
+  {
+   "re": "\\| aac_|gach aac",
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC = nhóm 'Gạch AAC'"
+  },
+  {
+   "re": "trong co|tu chen",
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "medium",
+   "why": "Gạch lát sân/đường → 'Cảnh quan cứng (→HT)'"
+  },
+  {
+   "re": "gach dac|gach dinh|gach ong",
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/đinh/ống (gạch nung) → 'Gạch đất nung'; nguồn không ghi rõ nung hay không nung"
+  },
+  {
+   "re": "gach block",
+   "code": "KC.khac-tho",
+   "conf": "low",
+   "why": "Gạch block xi măng cốt liệu: master data chưa có nhóm riêng → tạm 'Khác (thô)'"
+  },
+  {
+   "re": "thach cao",
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.tran-thach-cao",
+   "conf": "high",
+   "why": "Trần thạch cao Vĩnh Tường = 'Trần thạch cao'"
+  },
+  {
+   "re": "skimcoat",
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.son-ba",
+   "conf": "high",
+   "why": "Master data KC ghi skimcoat → 'Sơn bả (→HT)'"
+  },
+  {
+   "re": "sika latex",
+   "code": "KC.chong-tham",
+   "conf": "medium",
+   "why": "Phụ gia kết dính/chống thấm gốc latex → 'Chống thấm'"
+  },
+  {
+   "re": "luoi soi thuy tinh",
+   "code": "KC.vua-trat-can-nen",
+   "conf": "low",
+   "why": "Lưới chống nứt dùng khi tô trát → 'Vữa trát & cán nền'"
+  },
+  {
+   "re": "vua xay|mortar",
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Vữa khô trộn sẵn – remark ma trận 2.1 nêu vật tư 'vữa khô trộn sẵn'"
+  },
+  {
+   "re": "san lap|san nen",
+   "code": "KC.dao-van-chuyen-dat",
+   "conf": "medium",
+   "why": "Master data: 'Đắp đất (cung cấp cát san lấp mới)' ⊂ 'Đào & vận chuyển đất'"
+  },
+  {
+   "re": "cat be tong",
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Cốt liệu đầu vào của bê tông thương phẩm"
+  },
+  {
+   "re": "^cat |cat vang|cat den|cat xay|cat tu nhien",
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền'"
+  },
+  {
+   "re": "xi mang",
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Remark ma trận 2.1: vật tư 'xi măng, cát' của nhóm 'Vữa trát & cán nền' (cũng là đầu vào bê tông)"
+  },
+  {
+   "re": "cap phoi|da 4x6|da hoc|da mi|da 0x4",
+   "code": "KC.canh-quan-cung-ht",
+   "conf": "low",
+   "why": "Master data: 'cát san lấp đá cấp phối' ⊂ 'Cảnh quan cứng (→HT)'"
+  },
+  {
+   "re": "da 1x1|da 1x2|da 2x4",
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "low",
+   "why": "Đá dăm = cốt liệu bê tông thương phẩm"
+  },
+  {
+   "re": "hdpe",
+   "code": "MEPF.nuoc.ong-nuoc-pccc.ong-nuoc",
+   "conf": "medium",
+   "why": "Ống HDPE cấp nước → 'Ống nước/PCCC › Ống nước'"
+  },
+  {
+   "re": "dong|copper",
+   "code": null,
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "MEPF.dien.cap-dien-ge50mm-truc-feeder",
+    "MEPF.dien.cap-dien-lt50mm-nhanh-cuoi",
+    "MEPF.hvac.ong-dong",
+    "MEPF.dien.busway"
+   ]
+  },
+  {
+   "re": "may bien ap|transformer",
+   "code": "MEPF.dien.may-bien-ap",
+   "conf": "medium",
+   "why": "Chỉ số giá Máy biến áp → nhóm 'Máy biến áp'"
+  },
+  {
+   "re": "may phat dien|genset",
+   "code": "MEPF.dien.may-phat-dien",
+   "conf": "medium",
+   "why": "Chỉ số giá Máy phát điện → nhóm 'Máy phát điện'"
+  },
+  {
+   "re": "tu dien|switchboard",
+   "code": "MEPF.dien.tu-dien",
+   "conf": "low",
+   "why": "Chỉ số gộp Tủ điện/thang máng cáp/rack → tạm 'Tủ điện'"
+  },
+  {
+   "re": "chiller|hvac|dieu hoa",
+   "code": "MEPF.hvac.may-lanh",
+   "conf": "medium",
+   "why": "Chỉ số Điều hòa/Chiller → 'Máy lạnh'"
+  },
+  {
+   "re": "cap dien",
+   "code": "MEPF.dien",
+   "conf": "medium",
+   "why": "Chỉ số cáp điện hạ thế chung → hệ 'Điện' (không tách được <50 / ≥50 mm²)"
+  },
+  {
+   "re": "nhom|alumin",
+   "code": null,
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "HT.mat-dung-nhom-kinh.tc-nhom-kinh-va-mat-dung.nhom-profile",
+    "MEPF.dien.busway"
+   ]
+  },
+  {
+   "re": "kem|zinc",
+   "code": null,
+   "why": "Nguyên liệu thế giới – không có trong master data",
+   "related": [
+    "MEPF.dien.thang-mang-cap"
+   ]
+  },
+  {
+   "re": "thep & quang|hrc|quang sat|than coc|phe lieu|rebar",
+   "code": null,
+   "why": "Nguyên liệu/chỉ số thép thế giới – không có trong master data",
+   "related": [
+    "KC.thep-thanh-van-d6-32"
+   ]
+  },
+  {
+   "re": "nhua|pvc|polyeth|polyprop",
+   "code": null,
+   "why": "Hạt nhựa thế giới – không có trong master data",
+   "related": [
+    "MEPF.nuoc.ong-nuoc-pccc",
+    "MEPF.dien.ong-luon-day"
+   ]
+  },
+  {
+   "re": ".",
+   "code": null,
+   "why": "Chỉ số thị trường (vàng/tỷ giá/kim loại khác) – không thuộc master data"
+  }
+ ],
+ "contract": [
+  {
+   "re": "be tong",
+   "code": "KC.be-tong-thuong-pham",
+   "conf": "high",
+   "why": "Bê tông M100–M700 = 'Bê tông thương phẩm'"
+  },
+  {
+   "re": "\\| aac",
+   "code": "KC.gach-aac",
+   "conf": "high",
+   "why": "Gạch AAC"
+  },
+  {
+   "re": "gach dac|gach ong",
+   "code": "KC.gach-dat-nung",
+   "conf": "medium",
+   "why": "Gạch đặc/ống → 'Gạch đất nung'"
+  },
+  {
+   "re": "thach cao",
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.tran-thach-cao",
+   "conf": "high",
+   "why": "Trần thạch cao"
+  },
+  {
+   "re": "\\| skimcoat",
+   "code": "HT.hoan-thien-trong-nha.tc-hoan-thien-noi-that.son-ba",
+   "conf": "high",
+   "why": "Skimcoat → 'Sơn bả'"
+  },
+  {
+   "re": "sikalatex",
+   "code": "KC.chong-tham",
+   "conf": "medium",
+   "why": "Sika Latex → 'Chống thấm'"
+  },
+  {
+   "re": "\\| plu|\\| phd",
+   "code": "KC.vua-trat-can-nen",
+   "conf": "medium",
+   "why": "Lưới tô / hồ dầu – phụ trợ tô trát"
+  },
+  {
+   "re": "vua xi mang",
+   "code": "KC.vua-trat-can-nen",
+   "conf": "high",
+   "why": "Xi măng, cát tô, vữa M50/M75, vữa AAC = 'Vữa trát & cán nền'"
+  },
+  {
+   "re": ".",
+   "code": null,
+   "why": "Chưa có quy tắc"
+  }
+ ]
+}
