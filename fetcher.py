@@ -297,8 +297,14 @@ def main():
                     con.execute("insert or ignore into obs values(?,?,?,?,?,?)", (r["id"], d + "T00:00:00+07:00", d, p, None, None))
                 con.execute("insert or replace into items(id,meta,last_ok,last_try,status) values(?,?,?,?, 'ok')",
                             (r["id"], json.dumps(r, ensure_ascii=False), ts, ts))
-                con.execute("insert or replace into obs values(?,?,?,?,?,?)",
-                            (r["id"], ts, r.get("as_of"), r["price"], r.get("price_high"), r.get("change_pct")))
+                # same source date & same values as already stored => keep first-seen row (stable history CSV)
+                same = con.execute("select 1 from obs where id=? and as_of is ? and price is ? and price_high is ? and change_pct is ?"
+                                   " and fetched_at=(select max(fetched_at) from obs where id=? and as_of is ?)",
+                                   (r["id"], r.get("as_of"), r["price"], r.get("price_high"), r.get("change_pct"),
+                                    r["id"], r.get("as_of"))).fetchone()
+                if not same:
+                    con.execute("insert or replace into obs values(?,?,?,?,?,?)",
+                                (r["id"], ts, r.get("as_of"), r["price"], r.get("price_high"), r.get("change_pct")))
             con.execute("insert into runs values(?,?,?,?,?)", (name, ts, 1, len(rows), None))
             print(f"OK   {name}: {len(rows)} items")
         except Exception as e:
