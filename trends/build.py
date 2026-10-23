@@ -109,7 +109,13 @@ def build():
         side = "TP.HCM cao hơn" if d > 0 else "TP.HCM thấp hơn"
         txt = (f"{side} Hà Nội {vn(abs(d), 1)}% ({vn(b)} so với {vn(a)} {hn[0]['unit']}). " if abs(d) >= 0.5 else
                f"Hai thị trường gần như ngang giá (chênh {'+' if d >= 0 else '−'}{vn(abs(d), 1)}%). ") + HINT.get(tax, "") + " " + BASIS[basis]
-        if basis == "rmc":
+        H4, M4 = next((x for x in items if x["id"] == "rmc_hn_btHN_m400"), None), next((x for x in items if x["id"] == "rmc_hcm_mk_m400"), None)
+        if label.startswith("Bê tông tươi M400") and H4 and M4 and M4.get("slump12_add") and H4["price"]:  # cùng cơ sở với ô trang chủ
+            hn, hc = [H4], [M4]; a, b = mid(H4), M4["price"] + M4["slump12_add"]; d = pct(b, a)
+            txt = (f"{'TP.HCM cao hơn' if d > 0 else 'TP.HCM thấp hơn'} Hà Nội {vn(abs(d), 1)}% ({vn(b)} so với {vn(a)} {H4['unit']}). Cùng cơ sở: sụt 12±2, đã gồm VAT, chưa gồm bơm. "
+                   f"Hà Nội: betonghanoi.com.vn, điểm giữa khoảng {vn(H4['price'])}–{vn(H4.get('price_high') or H4['price'])} (trang NCC không nêu bơm). "
+                   f"TP.HCM: mekongthuongtin.com niêm yết {vn(M4['price'])} sụt 10±2 (gồm VAT 8%, chưa bơm) + {vn(M4['slump12_add'])} phụ phí tăng sụt theo bảng NCC. " + HINT.get(tax, ""))
+        elif basis == "rmc":
             sup = lambda L: ", ".join(sorted({(re.search(r"\(([^)]+)\)\s*$", x["name"]) or [None, x["src"] or "?"])[1] for x in L}))
             txt += f" Nguồn so sánh – Hà Nội: {sup(hn)}; TP.HCM: {sup(hc)} (giá trị là trung bình các bảng giá, lấy điểm giữa nếu có khoảng)."
         comps.append(dict(label=label, tax=tax, unit=hn[0]["unit"], hn=round(a), hcm=round(b), diff_pct=d, insight=txt.strip(),
