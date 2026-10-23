@@ -90,7 +90,7 @@ def build():
         ms = sorted(monthly.items())
         items.append(dict(id=it["id"], name=it["name"], unit=it["unit"], price=it.get("price"), price_high=it.get("price_high"),
             vnd=it.get("vnd"), vnd_unit=it.get("vnd_unit"), as_of=it.get("as_of"), src=it.get("src"), url=it.get("url"),
-            stale=it.get("stale"), note=re.sub(r"(?<=\d),(?=\d{3}\b)", ".", it.get("note") or "") or None, category=it.get("category"), grp=it.get("grp"), region=it.get("region"),
+            stale=it.get("stale"), slump12_add=it.get("slump12_add"), note=re.sub(r"(?<=\d),(?=\d{3}\b)", ".", it.get("note") or "") or None, category=it.get("category"), grp=it.get("grp"), region=it.get("region"),
             reg=region(it), tax=classify(it), d1=it.get("change_pct"), w1=pct(last, w and w["price"]), s0=pct(last, pts[0]["price"]) if len(pts) >= 2 else None, mom=pct(last, m and m["price"]), yoy=pct(last, y and y["price"]),
             n_hist=len(pts), spark=[p["price"] for p in pts[-90:]] if len(pts) >= 10 else None, first_date=pts[0]["date"] if pts else None,
             monthly=[dict(m=k, p=v, chg=pct(v, ms[i - 1][1]) if i else None) for i, (k, v) in enumerate(ms)]))

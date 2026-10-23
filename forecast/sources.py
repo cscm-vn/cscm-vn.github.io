@@ -134,6 +134,14 @@ def src_concrete_hcm2():
                   "Báo giá NCC tham khảo, ĐÃ gồm VAT 8%, chưa gồm bơm")]:
         try: out += _rmc_grade_table(*args)
         except Exception as e: errs.append(str(e))
+    try:  # Phụ phí tăng độ sụt do chính Mekong công bố ("cộng thêm 20.000 đ/m³ cho mỗi 2cm") -> quy về sụt 12±2 như HN
+        t = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", _get("https://mekongthuongtin.com/gia-be-tong-tuoi/"))))
+        m = re.search(r"Tăng độ sụt[^.]{0,40}?cộng thêm ([\d.]+) ?đ/m³ cho mỗi 2 ?cm", t)
+        add = _vn(m.group(1)) if m else None
+        if add and 0 < add < 200_000:
+            for o in out:
+                if o["id"].startswith("rmc_hcm_mk_"): o["slump12_add"] = add
+    except Exception as e: errs.append(f"mk slump: {e}")
     if errs: print("concrete HCM2 partial errors:", errs)
     if not out: raise RuntimeError("; ".join(errs))
     return out
