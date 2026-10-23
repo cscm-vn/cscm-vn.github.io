@@ -23,13 +23,13 @@ NEWS_MIN = 3.5  # điểm "nóng" tối thiểu của tin RSS (feeds.py chấm 0
 KW = dict(
  xd=r"thep|phoi thep|quang sat|than coc|xi mang|clinker|be tong|cat xay|cat san|da xay|da 1x2|vat lieu xay dung|vlxd|gach (xay|nung|khong nung|aac)|cop pha|van khuon|chong tham|steel|rebar|hrc|iron ore|cement|concrete|sand|aggregate|hoa phat|hoa sen|vicem|formosa",
  mep=r"gia dong|dong lme|dong do|quang dong|cap dong|nhom|cap dien|day dien|dieu hoa|hvac|chiller|thang may|may phat|ong nuoc|ong nhua|pvc|hdpe|ppr|tu dien|bien ap|pccc|chua chay|dien mat troi|copper|alumin|cable|elevator|transformer|cadivi|daikin|schneider",
- ht=r"gach (op|lat|men|granite|porcelain)|ceramic|thiet bi ve sinh|tbvs|\\bson (nuoc|dau|tuong|chong|phu|epoxy|noi that|ngoai that)|\\bpaint|go cong nghiep|san go|san go|vach thach cao|thach cao|gypsum|da op|da granite|da marble|tu bep|bep tu|viglacera|inax|toto|dong tam|prime|thach ban|jotun|dulux|kova",
- md=r"kinh|nhom dinh hinh|nhom kinh|cua nhom|mat dung|facade|glass|curtain wall|alu|xingfa|austdoor|eurowindow",
+ ht=r"gach (op|lat|men|granite|porcelain)|ceramic|thiet bi ve sinh|tbvs|\bson (nuoc|dau|tuong|chong|phu|epoxy|noi that|ngoai that)|\bpaint|go cong nghiep|san go|san go|vach thach cao|thach cao|gypsum|da op|da granite|da marble|tu bep|bep tu|viglacera|inax|toto|dong tam|prime|thach ban|jotun|dulux|kova",
+ md=r"\bkinh\b(?! (te|doanh|nghiem|phi))|nhom dinh hinh|nhom kinh|cua nhom|mat dung|facade|glass|curtain wall|alu|xingfa|austdoor|eurowindow",
  elv=r"smart home|nha thong minh|camera|an ninh|bms|elv|iot|khoa dien tu|bkav|lumi|hikvision",
  cq=r"canh quan|cay xanh|cay trong|vuon uom|co nhan tao|da canh quan|da tu nhien|ho boi|tieu canh|landscape|cong vien",
  esg=r"xanh|carbon|cbam|leed|edge|lotus|phat thai|net zero|tai che|nang luong tai tao|esg",
- tt=r"\\b(thep|xi mang|vat lieu|vlxd|thue|chong ban pha gia|phong ve thuong mai|ty gia|xang dau|nha thau|tong thau|coteccons|hoa binh|ricons|xuat khau|nhap khau|lai suat|lam phat|cpi|fdi)\\b|gia (vat lieu|thep|xang|dien|nhien lieu)")
-EXCL = r"can ho|khu do thi|huy dong von|chung cu|biet thu|bat dong san|bds|nha o|du an .*(mo ban|ra mat)|gia dat|condotel|tham quan nha mau|luat dat dai"
+ tt=r"\b(thep|xi mang|vat lieu|vlxd|thue|chong ban pha gia|phong ve thuong mai|ty gia|xang dau|nha thau|tong thau|coteccons|hoa binh|ricons|xuat khau|nhap khau|lai suat|lam phat|cpi|fdi)\b|gia (vat lieu|thep|xang|dien|nhien lieu)")
+EXCL = r"can ho|an cu|nha o xa hoi|khu do thi|huy dong von|chung cu|biet thu|bat dong san|bds|nha o|du an .*(mo ban|ra mat)|gia dat|condotel|tham quan nha mau|luat dat dai"
 TH = dict(world=2.0, gold=2.0, fx=0.5, vn=1.0)
 LAB = dict(world="hàng hóa thế giới", gold="kim loại quý", fx="tỷ giá", vn="vật liệu trong nước")
 def kind(iid, meta):
