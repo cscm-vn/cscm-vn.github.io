@@ -17,6 +17,9 @@
 .qz .ex{font-size:13px;background:#f7f7f4;border-radius:8px;padding:7px 9px;margin-top:4px}.badge{background:#14325a;color:#e9d8b4;border-radius:20px;padding:2px 10px;font-weight:700}
 .feed li{margin:5px 0;font-size:13.5px;overflow-wrap:anywhere}.unrev{font-size:11px;background:#fff4d6;color:#8a5a00;border-radius:10px;padding:0 6px;margin-left:4px;white-space:nowrap}
 .ck li{margin:7px 0}
+.pf li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px;overflow-wrap:anywhere}.pf li:first-child{border-top:0}
+.pf .score{min-width:38px;height:24px;font-size:12.5px}.pf .wy{font-size:12.5px;color:#5b4a1f;margin-top:2px}.pf .mt{font-size:12px;color:var(--mute)}.pf .also a{margin-right:8px}
+.pf-n{font-size:11px;font-weight:700;color:#8a5a00;background:#fbf6ea;border:1px solid #ecdcb4;border-radius:999px;padding:0 6px;margin-left:4px;white-space:nowrap}
 @media (max-width:560px){.fx{grid-template-columns:1fr}.it h3{font-size:15px}}
 </style></head>
 <body class="hub" data-page="hopdong"><div id="hubnav"></div>
@@ -24,7 +27,7 @@
 <h1>Hợp đồng & Pháp lý</h1>
 <p class="sub">Dành cho đội Hợp đồng: văn bản pháp luật mới, FIDIC, thuế phòng vệ thương mại, tranh chấp & bài học, hỏi đáp mỗi ngày. Mỗi mục đều có link nguồn đã kiểm tra. <b>Thông tin tham khảo – không thay thế tư vấn pháp lý; luôn đối chiếu văn bản gốc.</b> <span id="rev" class="mute"></span></p>
 <nav class="hd-toc" aria-label="Mục lục trang">
- <a href="#moi">🆕 Mới cập nhật</a><a href="#phap-luat">📜 Pháp luật</a><a href="#fidic">🌐 FIDIC</a><a href="#pvtm">🛡️ Thuế & PVTM</a><a href="#tranh-chap">⚖️ Tranh chấp</a><a href="#hoi-dap">🎯 Hỏi đáp</a><a href="#checklist">✅ Checklist</a>
+ <a href="#moi">🆕 Mới cập nhật</a><a href="#chinh-sach">🏛️ Luật & chính sách BĐS</a><a href="#phap-luat">📜 Pháp luật</a><a href="#fidic">🌐 FIDIC</a><a href="#pvtm">🛡️ Thuế & PVTM</a><a href="#tranh-chap">⚖️ Tranh chấp</a><a href="#hoi-dap">🎯 Hỏi đáp</a><a href="#checklist">✅ Checklist</a>
 </nav>
 
 <section class="hd-sec" id="hoi-dap"><h2>🎯 Hỏi đáp mỗi ngày <small id="qz-sub"></small></h2><div class="qz" id="qz">Đang tải…</div></section>
@@ -32,6 +35,11 @@
 <section class="hd-sec" id="moi"><h2>🆕 Mới cập nhật <small>tin tự động – chưa biên tập</small></h2>
  <div class="card"><p class="small mute" style="margin-top:0">Quét tự động từ Google News / RSS (tối đa 5 lần/ngày). <b>Chưa được kiểm chứng</b> – chỉ để phát hiện sớm; mục đã kiểm chứng nằm ở các phần bên dưới.</p>
  <div class="flt" id="feed-f"></div><ul class="feed" id="feed"><li class="mute">Đang tải…</li></ul></div></section>
+
+<section class="hd-sec" id="chinh-sach"><h2>🏛️ Luật & chính sách mới – BĐS, nhà ở, đất đai, xây dựng, khoáng sản <small id="pf-sub"></small></h2>
+ <div class="card"><p class="small mute" style="margin-top:0" id="pf-note">Đang tải…</p>
+ <div class="flt" id="pf-f"></div><ul class="feed pf" id="pf" style="list-style:none;padding:0;margin:0"><li class="mute">Đang tải…</li></ul>
+ <div style="margin-top:8px"><button class="opt" id="pf-more" style="border:1px solid var(--line);background:#fff;border-radius:20px;padding:4px 12px;font-size:12.5px;cursor:pointer" hidden>Xem thêm</button></div></div></section>
 
 <section class="hd-sec" id="phap-luat"><h2>📜 Văn bản pháp luật mới / thay đổi <small id="lg-n"></small></h2><div id="legal"></div></section>
 
@@ -115,5 +123,19 @@ function quiz(Q) {
     document.querySelectorAll("#feed-f button").forEach(b => b.onclick = () => drawFeed(b.dataset.k));
     document.getElementById("feed").innerHTML = it.length ? it.map(x => `<li><span class="pill">${SEC[x.section]}</span><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="mute small">– ${E(x.source)}${x.published ? ", " + dt(x.published) : ""}</span><span class="unrev">chưa kiểm chứng</span></li>`).join("") : '<li class="mute">Chưa có tin mới.</li>'; };
   drawFeed("all");
+  HUB.get("policy-feed.json").then(P => { const box = document.getElementById("pf"); if (!P || !P.items) { box.innerHTML = '<li class="mute">Chưa có dữ liệu.</li>'; return; }
+   const today = new Date().toLocaleDateString("en-CA", {timeZone: "Asia/Ho_Chi_Minh"}), dd = x => (x.published || x.found || "").slice(0, 10);
+   document.getElementById("pf-sub").textContent = `${P.items.length} tin · ${P.window_days} ngày · quét lúc ${dt(P.updated)} ${P.updated.slice(11, 16)} (giờ VN)`;
+   document.getElementById("pf-note").innerHTML = `Tự động từ Google News & RSS chính thống (Chinhphu.vn, Báo Chính phủ, VnExpress…), làm mới mỗi lần CI chạy, gộp tin trùng. <b>Chưa biên tập</b> – điểm và lý do sinh theo quy tắc từ khóa trong tiêu đề/tóm tắt. ${E(P.scoring)}`;
+   let f = "all", lim = 20; const more = document.getElementById("pf-more");
+   const draw = () => { const it = P.items.filter(x => f === "all" || x.topics.includes(f));
+    document.getElementById("pf-f").innerHTML = [["all", "Tất cả"], ...Object.entries(P.topics)].map(([k, l]) => `<button data-k="${k}" class="${k === f ? "on" : ""}">${E(l)} <span class="mute">${k === "all" ? P.items.length : P.items.filter(x => x.topics.includes(k)).length}</span></button>`).join("");
+    document.querySelectorAll("#pf-f button").forEach(b => b.onclick = () => { f = b.dataset.k; lim = 20; draw(); });
+    box.innerHTML = it.slice(0, lim).map(x => `<li><span class="score" title="Liên quan ${x.parts.rel}/60 · tính mới văn bản ${x.parts.dyn}/25 · độ mới ${x.parts.rec}/20">${x.score}</span><div>
+     <a href="${E(x.url)}" target="_blank" rel="noopener"><b>${E(x.title)}</b></a>${dd(x) === today ? '<span class="pf-n" title="Đăng hôm nay (giờ VN)">⚡ Mới</span>' : ""}
+     <div class="mt">${x.topics.map(t => `<span class="pill">${E(P.topics[t])}</span>`).join("")} ${E(x.source)} · ${dt(dd(x))}${x.also ? ` <span class="also">· cùng tin: ${x.also.map(a => `<a href="${E(a.url)}" target="_blank" rel="noopener">${E(a.source)}</a>`).join("")}</span>` : ""}</div>
+     <div class="wy"><b>Vì sao quan trọng với Masterise:</b> ${E(x.why)}</div></div></li>`).join("") || '<li class="mute">Không có tin cho chủ đề này.</li>';
+    more.hidden = it.length <= lim; more.onclick = () => { lim += 20; draw(); }; };
+   draw(); });
 })();
 </script></body></html>

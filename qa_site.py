@@ -43,6 +43,28 @@ with sync_playwright() as p:
                 elif hq["have"] != hq["want"]: fails.append((w, f, f"highlights shown {hq['have']} != data {hq['want']}"))
                 if hq["multi"]: fails.append((w, f, f"highlight block duplicated in {hq['multi']}"))
                 if hq["ov"]: fails.append((w, f, f"highlight overflow in {hq['ov']}"))
+            if f == "index.html":  # ⚖️ Luật & chính sách mới: đúng 1 section, ở cuối (ngay trước footer), 5–6 thẻ, link hợp lệ, không tràn
+                pq = pg.evaluate("""() => { const s = document.querySelectorAll('#policy'), el = s[0]; if (!el) return {n: 0};
+                  const cards = [...el.querySelectorAll('#pol > .card')], W = el.getBoundingClientRect().right + 1;
+                  const nx = el.nextElementSibling, secs = [...document.querySelectorAll('#main > section, #main > .grid')];
+                  return {n: s.length, k: cards.length, last: secs[secs.length - 1] === el && !!nx && nx.id === 'foot',
+                    ext: cards.map(c => c.querySelector('a[href]')?.href || ''), all: el.querySelector('h2 a')?.getAttribute('href'),
+                    ov: cards.filter(c => c.getBoundingClientRect().right > W || c.scrollWidth > c.clientWidth + 1).length}; }""")
+                if pq["n"] != 1: fails.append((w, f, f"policy section x{pq['n']}"))
+                else:
+                    if not 5 <= pq["k"] <= 6: fails.append((w, f, f"policy items x{pq['k']} (expect 5-6)"))
+                    if not pq["last"]: fails.append((w, f, "policy section not last before footer"))
+                    if pq["all"] != "hop-dong.html#chinh-sach": fails.append((w, f, f"policy 'xem tất cả' href {pq['all']}"))
+                    if pq["ov"]: fails.append((w, f, f"policy overflow in {pq['ov']} cards"))
+                    for u in pq["ext"]:
+                        if not u.startswith("https://"): fails.append((w, f, "policy bad link " + u))
+                        elif w == W[0] and not link_ok(u): fails.append((w, f, "policy broken link " + u))
+            if f == "hop-dong.html":
+                hq2 = pg.evaluate("""() => ({n: document.querySelectorAll('#chinh-sach').length, k: document.querySelectorAll('#pf > li .score').length,
+                  toc: document.querySelectorAll('.hd-toc a[href="#chinh-sach"]').length, chips: document.querySelectorAll('#pf-f button').length})""")
+                if hq2["n"] != 1 or hq2["toc"] != 1: fails.append((w, f, f"policy section x{hq2['n']} toc x{hq2['toc']}"))
+                if hq2["k"] < 5: fails.append((w, f, f"policy list items x{hq2['k']}"))
+                if hq2["chips"] < 2: fails.append((w, f, "policy topic chips missing"))
             if r["c"]["footer"] > 1: fails.append((w, f, f"footer x{r['c']['footer']}"))
             if r["ov"] > 0: fails.append((w, f, f"overflow {r['ov']}px"))
             if r["moj"]: fails.append((w, f, f"mojibake {r['moj']}"))

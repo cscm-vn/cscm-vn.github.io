@@ -43,6 +43,7 @@
   <section><h2>🏗️ Nhà thầu & chủ đầu tư <a class="small" href="nha-thau.html">xem tất cả →</a></h2>
    <div class="seg" id="orgseg"><button data-k="contractor" class="on">Tin nhà thầu</button><button data-k="developer">Chủ đầu tư / Đối thủ</button></div><ul class="news card" id="orgl" style="margin-top:8px"></ul></section>
  </div>
+ <section id="policy"><h2>⚖️ Luật & chính sách mới (liên quan Masterise) <a class="small" href="hop-dong.html#chinh-sach">xem tất cả →</a></h2><div id="pol" class="grid g3"></div></section>
  <div class="foot" id="foot"></div>
 </main>
 <script>
@@ -135,6 +136,11 @@
   const rs = (fd?.items || []).filter(x => x.org_type === k).map(x => ({t: x.title, u: x.url, d: x.date, o: x.org, s: x.source}));
   document.getElementById("orgl").innerHTML = [...ed, ...rs].sort((a, b) => b.d.localeCompare(a.d) || (b.ed || 0) - (a.ed || 0)).slice(0, 8).map(x => `<li><span class="pill cat">${E(x.o)}</span><a href="${E(x.u)}" target="_blank" rel="noopener">${E(x.t)}</a> <span class="small mute">${HUB.date(x.d)} · ${E(x.s)}</span></li>`).join("") || '<li class="mute">Chưa có tin.</li>'; };
  document.querySelectorAll("#orgseg button").forEach(b => b.onclick = () => { document.querySelectorAll("#orgseg button").forEach(z => z.classList.toggle("on", z === b)); orgl(b.dataset.k); }); orgl("contractor");
+ HUB.get("policy-feed.json").then(P => { const el = document.getElementById("pol"); if (!P || !P.items || !P.items.length) { el.innerHTML = '<div class="card mute">Chưa có tin chính sách mới.</div>'; return; } // xếp hạng theo trends/policy_feed.py
+  const today = new Date().toLocaleDateString("en-CA", {timeZone: "Asia/Ho_Chi_Minh"});
+  el.innerHTML = P.items.slice(0, 6).map((x, i) => { const d = (x.published || x.found || "").slice(0, 10); return `<div class="card"><div class="trend"><span class="score" title="Điểm liên quan Masterise + tính mới /100">${x.score}</span>
+  <div><a href="${E(x.url)}" target="_blank" rel="noopener"><b>${i + 1}. ${E(x.title)}</b></a>${d === today ? '<span class="newb" title="Đăng hôm nay (giờ VN)">⚡ Mới</span>' : ""}<div>${x.topics.slice(0, 2).map(t => `<span class="pill cat">${E(P.topics[t])}</span>`).join(" ")} <span class="small mute">${HUB.date(d)} · ${E(x.source)}</span></div>
+  <div class="small" style="margin-top:4px">${E(x.why)}</div></div></div></div>`; }).join(""); }).catch(() => {});
  HUB.foot();
 })();
 </script></body></html>
