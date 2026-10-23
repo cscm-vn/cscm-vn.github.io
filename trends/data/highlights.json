@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-23T17:15+07:00",
+ "built": "2026-10-23T20:21+07:00",
  "today": "2026-10-23",
  "news_since": "2026-10-22",
  "thresholds": {
@@ -23,15 +23,30 @@
  },
  "top": [
   "mep",
-  "tt",
-  "xd"
+  "xd",
+  "tt"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": 6.92,
+     "date": "2026-10-23",
+     "prev_date": "2026-10-22",
+     "price": 1375.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
      "title": "The 1.5 trillion VND cement project in Thanh Hoa, abandoned for 16 years, is proposed to be terminated.",
@@ -49,8 +64,8 @@
     }
    ],
    "n_news": 2,
-   "n_moves": 0,
-   "rank": 0.6,
+   "n_moves": 1,
+   "rank": 4.06,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -62,10 +77,10 @@
      "id": "yf_aluminium",
      "name": "Nhôm (COMEX Aluminum)",
      "region": "",
-     "d1": -3.23,
+     "d1": -3.2,
      "date": "2026-10-23",
      "prev_date": "2026-10-22",
-     "price": 3090.0,
+     "price": 3090.75,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
@@ -85,22 +100,36 @@
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
      "url": "mat-hang.html?id=lme_tin"
+    },
+    {
+     "id": "te_polypropylene",
+     "name": "Polypropylene (PP, DCE)",
+     "region": "",
+     "d1": 2.72,
+     "date": "2026-10-23",
+     "prev_date": "2026-10-22",
+     "price": 9520.0,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_polypropylene"
     }
    ],
    "news": [
+    {
+     "title": "Copper price falls to five-week low as LME inventory build continues",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQV0YycFhISzRpYkNrVXpGYXBGbXBKUlRJUDQ1SDBuS19JN3R6aHhzbEp5bDhhVzFhemIwMjJSSi1IOU14R3lPZGdiYzhhUjNSd2d1M0x0YlF3S3hYc1pRM01BSzJ1YlFIYk1HUy15N242cEY1RGlNdEJ2THk3WEh3U0JGY205SWJSaEhHMldZd2JTWXd5M3o5eloxV1kyNGRHU01raUtRNk4yUDE0MHlZRzcySQ?oc=5",
+     "date": "2026-10-23",
+     "score": 9.0,
+     "source": "Kitco"
+    },
     {
      "title": "Crude oil closes higher, metals nearly all fall, NY silver plunges, LME/SHFE zinc, tin, nickel, LME copper, aluminum, SHFE gold, silver lead losses [Overnight Market]",
      "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxQSl9ZcTNTaFBuWlQ5bktIaEhwT0lNdHNWRjNiQ1h6T0xORzlHM0E5TjNtbmdVMy1Ia09CNTBJU2ZSdTBpVmdmS2N5RXlBbGlpSDIzZTV3cFlJSUx2d2R4alRrZFpJVVZRX2U3NEZmOU91cWZsQm1CX0lMb1YzOTdreFhqYXNlWjdWekZSNXFjX0tkYWtFbUlzcDR1bUhHYnpUSnBEMHNjM3FUbGxrNk1QZlVidTFBY2lWd28yUVAwaFRwSDdjVWNZczhWWUlUcG5UaU0yYlFIVDc0ekVoQktpNUhUSEYxXzBhQVBfbG9SNE05WG9rZS1TeW1fM05lY29EWWJnb2d0WmFyalAzY3FhZ21zMjVRZjk0MlJlTVBpUUxuQUhNRWc?oc=5",
      "date": "2026-10-23",
      "score": 9.0,
      "source": "Shanghai Metals Market"
-    },
-    {
-     "title": "Copper price falls to five-week low as LME inventory build continues",
-     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQRmdRSWVTRDg0dVlRcEFSUndFeEZwZ2xVaXBEbldkTUswbDVHU0RqcDRTckZZWEVNNkhrV3dOR2x5NURyWjNMYnBIMldpMGNPWnEwTlExZUxlb0RYQ1ZvaWpfQnBKRzhvWlhXUTFoelFJb3pxSXUyOFRQcHE5aF8zTldfQXNKQzBTWXJoWDVtRE5kNmpTWUExbnBBX0I?oc=5",
-     "date": "2026-10-23",
-     "score": 9.0,
-     "source": "Mining.com"
     },
     {
      "title": "Aluminium Gives Up Its War Premium, Copper Stays Elevated",
@@ -111,8 +140,8 @@
     }
    ],
    "n_news": 5,
-   "n_moves": 2,
-   "rank": 4.47,
+   "n_moves": 4,
+   "rank": 5.82,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -164,10 +193,18 @@
    "name": "ESG & công trình xanh",
    "icon": "♻️",
    "prices": [],
-   "news": [],
-   "n_news": 0,
+   "news": [
+    {
+     "title": "AEON Hải Dương: Từ mua sắm hiện đại đến công trình xanh",
+     "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPSWg3TFR3dHZwdUFMQ0ZJN0U3VFhjaVk0azB2OW5CdW1OcFZBUmtjR0JnTVpqbWhfQkhnRDRyYmlvOFQtU1VKVE5OdUg1MjhzX0M3QzdlTGNIQlVZemg2RDNPbVhqbnNsd2RqUFJQV2lJQ3VKSVFNckVxdDJwRmdpSUFOY084RGdpSHQ3cE52c0Z2VnRCOXc?oc=5",
+     "date": "2026-10-23",
+     "score": 5.0,
+     "source": "Người Đô Thị"
+    }
+   ],
+   "n_news": 1,
    "n_moves": 0,
-   "rank": 0.0,
+   "rank": 0.3,
    "link": "danh-muc.html?c=esg"
   },
   {
