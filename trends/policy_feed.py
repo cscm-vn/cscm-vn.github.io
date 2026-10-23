@@ -50,11 +50,22 @@ DYN = [  # recency/dynamics (max one per group by order)
  (["du thao", "lay y kien", "gop y"], 10, "dự thảo đang lấy ý kiến"),
  (["sua doi", "bo sung", "thay the", "moi nhat", "quy dinh moi"], 7, "thay đổi quy định"),]
 DOC = [(r"\bnghi dinh\b|\bnd\s?\d", 8, "Nghị định"), (r"\bthong tu\b", 7, "Thông tư"), (r"\bluat\b", 8, "Luật"), (r"\bnghi quyet\b", 7, "Nghị quyết"), (r"\bquyet dinh\b|\bcong van\b|\bchi thi\b", 4, "QĐ/CV")]
+THEME = {1: "Thời hạn sở hữu chung cư", 2: "Giá đất & tiền sử dụng đất", 3: "Quyền sử dụng đất & giao đất", 4: "Chung cư & nhà ở thương mại", 5: "Kinh doanh BĐS (mở bán, chuyển nhượng)",
+ 6: "Cấp phép & thẩm định xây dựng", 7: "Phòng cháy chữa cháy", 8: "Khoáng sản & VLXD (cát, đá, đất)", 9: "Thuế & phí BĐS", 10: "Nhà ở xã hội", 11: "Hà Nội", 12: "TP.HCM", 13: "Quy hoạch", 14: "Chi phí & HĐ xây dựng"}
+THEME_PREF = {"nha-o": [1, 10, 4], "dat-dai": [2, 3, 13], "kd-bds": [5, 10], "xay-dung": [6, 14, 13], "pccc": [7], "khoang-san": [8], "thue": [9]}  # chủ đề con ưu tiên theo chủ đề chính
+GENERIC_LAW = ["luat sua doi", "luat (sua doi)", "luat nay", "luat moi", "luat hoa", "luat chuyen nganh", "luat su", "luat le", "phap luat", "du luat", "luat gop"]
+def side_law(t):
+    """Dự luật gộp: luật được nhắc ĐẦU TIÊN trong tiêu đề không thuộc nhóm liên quan (vd. 'Luật Quản lý vũ khí…, Luật PCCC') → luật liên quan chỉ là phần phụ."""
+    pos = [m.start() for m in re.finditer(r"(?<![a-z])luat ", t) if not any(t.startswith(g, m.start() - (2 if g.startswith("ph") or g.startswith("du") else 0)) for g in GENERIC_LAW)]
+    if not pos: return False
+    first = pos[0]; return not any(t.startswith(k, first) for k, _ in LAWS) and any(has(t[first:], k) for k, _ in LAWS)
 def has(t, k): return re.search(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])", t) is not None
 def score(x, now):
     t = strip(x["title"] + " " + x.get("summary", "")); rel, why, tags = 0, [], []
     for ks, p, r in REL:
         if any(has(t, k) for k in ks): rel += p; why.append(r)
+    side = side_law(strip(x["title"]))
+    if side: rel = round(rel * 0.4)  # phạt: lĩnh vực liên quan chỉ là phần phụ của dự luật gộp
     dyn, dn = 0, []
     for ks, p, r in DYN:
         if any(has(t, k) for k in ks): dyn += p; dn.append(r)
@@ -65,6 +76,7 @@ def score(x, now):
     s = min(100, min(rel, 60) + min(dyn, 25) + rec // 1)
     reason = "; ".join(why[:2]) or "Chính sách ngành BĐS/xây dựng"
     if dn: reason += " · " + ", ".join(dn[:2])
+    if side: reason += " · (chỉ là phần phụ của dự luật gộp – giảm điểm)"
     return s, reason, dict(rel=min(rel, 60), dyn=min(dyn, 25), rec=rec)
 LAWS = [("luat dat dai", "Luật Đất đai"), ("luat nha o", "Luật Nhà ở"), ("luat kinh doanh bat dong san", "Luật Kinh doanh BĐS"), ("luat xay dung", "Luật Xây dựng"),
  ("luat dia chat va khoang san", "Luật Địa chất & Khoáng sản"), ("luat khoang san", "Luật Địa chất & Khoáng sản"), ("luat quy hoach", "Luật Quy hoạch"), ("luat phong chay", "Luật PCCC"),
@@ -73,13 +85,15 @@ def cluster(x):
     """Cụm = văn bản gốc (tên luật / số nghị định-thông tư) nếu nhận diện được, nếu không = chủ đề chính. Tin cùng cụm = cùng câu chuyện pháp lý."""
     t = strip(x["title"] + " " + x.get("summary", ""))
     hits = [(t.find(k), lab) for k, lab in LAWS if has(t, k)]
-    th = next((i for i, (ks, _, _) in enumerate(REL) if i > 0 and any(has(t, k) for k in ks)), None)  # chủ đề con = luật quan hệ đầu tiên khớp
+    hit = [i for i, (ks, _, _) in enumerate(REL) if i > 0 and any(has(t, k) for k in ks)]
+    th = next((i for i in THEME_PREF.get(x["topics"][0], []) if i in hit), hit[0] if hit else None)  # chủ đề con: ưu tiên luật khớp đúng chủ đề chính
     x["theme"] = f"{x['topics'][0]}:{th}"
     if hits: lab = min(hits)[1]; return "law:" + re.sub(r"[^a-z0-9]+", "-", strip(lab)).strip("-"), lab
     m = re.search(r"(nghi dinh|thong tu|nghi quyet)\s*(?:so\s*)?(\d{1,4}/\d{4}(?:/[a-z\-]+)?)", t)
-    if m: lab = {"nghi dinh": "Nghị định", "thong tu": "Thông tư", "nghi quyet": "Nghị quyết"}[m.group(1)] + " " + m.group(2).upper(); return "doc:" + re.sub(r"[^a-z0-9]+", "-", lab.lower()), lab
+    if m: lab = {"nghi dinh": "Nghị định", "thong tu": "Thông tư", "nghi quyet": "Nghị quyết"}[m.group(1)] + " " + m.group(2).upper().replace("/ND-", "/NĐ-").replace("/QD-", "/QĐ-"); return "doc:" + re.sub(r"[^a-z0-9]+", "-", lab.lower()), lab
     if th is None: return "topic:" + x["topics"][0], TOPIC[x["topics"][0]][0]
-    return f"theme:{x['topics'][0]}:{th}", REL[th][2].split(" – ")[0]
+    return f"theme:{x['topics'][0]}:{th}", THEME[th]
+SUBJ = {"law:luat-dat-dai": "dat dai", "law:luat-nha-o": "nha o", "law:luat-kinh-doanh-bds": "kinh doanh bat dong san", "law:luat-xay-dung": "xay dung", "law:luat-pccc": "phong chay"}
 def pick_home(items, n=6, floor=40, per_topic=2, min_n=5):
     """Trang chủ: tối đa 1 tin/cụm, tối đa 2 tin/chủ đề chính, điểm ≥ floor; thiếu thì bù tới min_n (vẫn 1 tin/cụm)."""
     out, cl, tp = [], set(), {}
@@ -87,6 +101,8 @@ def pick_home(items, n=6, floor=40, per_topic=2, min_n=5):
         for x in items:
             if len(out) >= (n if not relax else min_n): break
             if x["cluster"] in cl or x["theme"] in cl or x in out: continue  # khác văn bản VÀ khác chủ đề con (vd. giá đất)
+            t = strip(x["title"])
+            if sum(1 for c in cl if c in SUBJ and has(t, SUBJ[c])) >= 2: continue  # bài tổng hợp nhiều luật đã có trên trang chủ
             if not relax and (x["score"] < floor or tp.get(x["topics"][0], 0) >= per_topic): continue
             out.append(x); cl.update((x["cluster"], x["theme"])); tp[x["topics"][0]] = tp.get(x["topics"][0], 0) + 1
     return out
@@ -141,6 +157,17 @@ def main():
     for x in keep: size[x["cluster"]] = size.get(x["cluster"], 0) + 1
     home = [dict(id=x["id"], same=size[x["cluster"]] - 1) for x in pick_home(keep)]
     clusters = {c: dict(label=next(x["cluster_label"] for x in keep if x["cluster"] == c), n=k) for c, k in size.items()}
+    labs = {}
+    for c, v in clusters.items(): labs.setdefault(v["label"], []).append(c)
+    for lab, cs in labs.items():  # tên cụm phải duy nhất: trùng thì thêm chủ đề chính
+        if len(cs) > 1:
+            for c in cs:
+                tp = c.split(":")[1] if c.count(":") >= 1 and c.split(":")[1] in TOPIC else None
+                th = int(c.split(":")[2]) if c.startswith("theme:") else None
+                home_tp = next((k for k, v in THEME_PREF.items() if th in v), None)  # chủ đề "tự nhiên" của chủ đề con giữ tên gốc
+                if tp and not c.startswith("law:") and tp != home_tp: clusters[c]["label"] = f"{lab} · {TOPIC[tp][0]}"
+    assert len({v["label"] for v in clusters.values()}) == len(clusters), "duplicate cluster labels"
+    for x in keep: x["cluster_label"] = clusters[x["cluster"]]["label"]
     json.dump(dict(schema_version=1, updated=now.isoformat(timespec="minutes"), window_days=KEEP_DAYS, topics={k: v[0] for k, v in TOPIC.items()},
                    note="Tin tự động từ RSS/Google News – CHƯA biên tập. Điểm & lý do sinh theo quy tắc từ khóa trong tiêu đề/tóm tắt; luôn đọc văn bản gốc.",
                    scoring="Điểm = Liên quan Masterise (≤60) + Tính mới/động lực văn bản (≤25: hiệu lực, ban hành, dự thảo, sửa đổi, loại văn bản) + Độ mới (≤20, giảm tuyến tính 30 ngày); tối đa 100.",

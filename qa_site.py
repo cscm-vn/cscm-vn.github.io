@@ -60,6 +60,8 @@ with sync_playwright() as p:
                         import json as _js
                         _p = _js.load(urllib.request.urlopen(B + "data/policy-feed.json", timeout=30)); _I = {x["id"]: x for x in _p["items"]}; _H = [_I[h["id"]] for h in _p["home"] if h["id"] in _I]
                         if len(_H) != pq["k"]: fails.append((w, f, f"policy cards {pq['k']} != home data {len(_H)}"))
+                        _L = [v["label"] for v in _p["clusters"].values()]
+                        if len(set(_L)) != len(_L): fails.append((w, f, "policy duplicate cluster labels"))
                         if len({x["cluster"] for x in _H}) != len(_H): fails.append((w, f, "policy home duplicate cluster"))
                         if max([sum(1 for y in _H if y["topics"][0] == x["topics"][0]) for x in _H] or [0]) > 2: fails.append((w, f, "policy home >2 per topic"))
                         for m in pq["more"]:
