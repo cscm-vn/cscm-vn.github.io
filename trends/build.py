@@ -5,7 +5,7 @@
 - computes site/data/hub.json: every price item mapped to the taxonomy, MoM/YoY, monthly series,
   Hà Nội vs TP.HCM comparisons with insight text, monthly digest."""
 import json, os, re, shutil, glob, unicodedata, datetime as dt
-from statistics import mean
+from statistics import mean, median
 H = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(H); SITE = os.path.join(ROOT, "site"); OUT = os.path.join(SITE, "data")
 TZ = dt.timezone(dt.timedelta(hours=7))
 def strip(s):
@@ -56,13 +56,25 @@ PAIRS = [  # label, HN regex, HCM regex (on accent-free name), tax, note
  ("Bê tông tươi M450 đá 1x2", r"m450", r"m450", "xd.be-tong", "rmc"),
  ("Bê tông tươi M500 đá 1x2", r"m500", r"m500", "xd.be-tong", "rmc"),
 ]
+VAT_ASSUMED = 1.08
+def rmc_norm(x):
+    """Quy giá bê tông về cơ sở chung: CHƯA VAT, sụt 12±2, chưa bơm. None nếu NCC không công bố đủ để quy đổi
+    (vd. betongdvc.com: không nêu độ sụt/VAT). Giá đã gồm VAT chia 1,08 (Mekong ghi rõ 8%; betonghanoi không ghi thuế suất -> giả định 8%)."""
+    if not x.get("price") or "dvc" in x["id"]: return None
+    p, n = mid(x), x["name"]
+    if "10±2" in n:
+        if not x.get("slump12_add"): return None
+        p += x["slump12_add"]  # phụ phí tăng sụt do chính NCC công bố (cùng cơ sở VAT với đơn giá)
+    elif "12±2" not in n: return None
+    if "gom vat" in strip(x.get("note")): p /= VAT_ASSUMED
+    return p
 def vn(v, d=0):
     """Vietnamese number format: 1.234.567 / 12,5"""
     s = f"{v:,.{d}f}"; return s.replace(",", "§").replace(".", ",").replace("§", ".")
 HINT = {"xd.be-tong": "Bê tông tươi phụ thuộc giá xi măng, cát, đá tại chỗ và cự ly vận chuyển từ trạm trộn; chênh lệch vùng chủ yếu phản ánh giá cốt liệu địa phương.","xd.cat-da": "Cát, đá phụ thuộc mạnh vào cự ly mỏ – bãi – công trình và chính sách cấp phép khai thác từng địa phương, nên chênh lệch vùng thường lớn hơn các vật tư công nghiệp.",
         "xd.xi-mang": "Xi măng là hàng công nghiệp phân phối rộng; chênh lệch chủ yếu do cước vận chuyển từ nhà máy (miền Bắc có nhiều nhà máy hơn) và điều kiện giao hàng (tại nhà máy hay đến công trình).",
         "xd.cot-thep": "Thép dùng giá niêm yết nhà máy theo miền (Bắc ≈ Hà Nội, Nam ≈ TP.HCM); chênh lệch phản ánh chính sách giá vùng và cạnh tranh giữa các hãng."}
-BASIS = {"rmc": "Giá niêm yết công khai trên website trạm trộn, chưa gồm bơm; chỉ so các bảng giá CHƯA VAT (bảng giá đã gồm VAT 8% như Mekong Thương Tín được loại khỏi phép so sánh). Cần chào giá thực tế theo khối lượng & cự ly.","steel": "Cùng nguồn (steelonline.vn), cùng ngày – so sánh trực tiếp được.",
+BASIS = {"rmc": "Cơ sở chung: giá niêm yết NCC quy về CHƯA VAT (bảng gồm VAT chia 1,08), sụt 12±2 (bảng sụt 10±2 cộng phụ phí tăng sụt do chính NCC công bố), chưa gồm bơm; lấy trung vị các NCC. Loại NCC không công bố độ sụt/VAT (betongdvc.com). Cần chào giá thực tế theo khối lượng & cự ly.","steel": "Cùng nguồn (steelonline.vn), cùng ngày – so sánh trực tiếp được.",
          "sxd": "Khác cơ sở: Hà Nội = công bố giá Sở XD Q3/2026 (theo điểm giao cụ thể); TP.HCM = giá bình quân/tại mỏ tổng hợp hàng tháng – chỉ dùng tham khảo xu hướng."}
 import sys; sys.path.insert(0, os.path.join(ROOT, "tools"))
 import material_map
@@ -101,25 +113,21 @@ def build():
     for label, rh, rc, tax, basis in PAIRS:
         hn = [x for x in items if x["reg"] == "hn" and x["tax"] == tax and re.search(rh, strip(x["name"])) and x["price"]]
         hc = [x for x in items if x["reg"] == "hcm" and x["tax"] == tax and re.search(rc, strip(x["name"])) and x["price"]]
-        if basis == "rmc":  # compare like with like: drop price lists that already include VAT
-            hn = [x for x in hn if "gom vat" not in strip(x.get("note"))]; hc = [x for x in hc if "gom vat" not in strip(x.get("note"))]
+        if basis == "rmc":  # cùng cơ sở: CHƯA VAT, sụt 12±2, chưa bơm; trung vị các NCC quy đổi được
+            hn = [x for x in hn if rmc_norm(x)]; hc = [x for x in hc if rmc_norm(x)]
         hn = [x for x in hn if not x.get("stale")] or hn; hc = [x for x in hc if not x.get("stale")] or hc  # prefer live sources over stale fallbacks
         if not hn or not hc or hn[0]["unit"].replace("³", "3") != hc[0]["unit"].replace("³", "3"): continue
-        a, b = mean(mid(x) for x in hn), mean(mid(x) for x in hc); d = pct(b, a)
+        a, b = (median(rmc_norm(x) for x in hn), median(rmc_norm(x) for x in hc)) if basis == "rmc" else (mean(mid(x) for x in hn), mean(mid(x) for x in hc)); d = pct(b, a)
         side = "TP.HCM cao hơn" if d > 0 else "TP.HCM thấp hơn"
         txt = (f"{side} Hà Nội {vn(abs(d), 1)}% ({vn(b)} so với {vn(a)} {hn[0]['unit']}). " if abs(d) >= 0.5 else
                f"Hai thị trường gần như ngang giá (chênh {'+' if d >= 0 else '−'}{vn(abs(d), 1)}%). ") + HINT.get(tax, "") + " " + BASIS[basis]
-        H4, M4 = next((x for x in items if x["id"] == "rmc_hn_btHN_m400"), None), next((x for x in items if x["id"] == "rmc_hcm_mk_m400"), None)
-        if label.startswith("Bê tông tươi M400") and H4 and M4 and M4.get("slump12_add") and H4["price"]:  # cùng cơ sở với ô trang chủ
-            hn, hc = [H4], [M4]; a, b = mid(H4), M4["price"] + M4["slump12_add"]; d = pct(b, a)
-            txt = (f"{'TP.HCM cao hơn' if d > 0 else 'TP.HCM thấp hơn'} Hà Nội {vn(abs(d), 1)}% ({vn(b)} so với {vn(a)} {H4['unit']}). Cùng cơ sở: sụt 12±2, đã gồm VAT, chưa gồm bơm. "
-                   f"Hà Nội: betonghanoi.com.vn, điểm giữa khoảng {vn(H4['price'])}–{vn(H4.get('price_high') or H4['price'])} (trang NCC không nêu bơm). "
-                   f"TP.HCM: mekongthuongtin.com niêm yết {vn(M4['price'])} sụt 10±2 (gồm VAT 8%, chưa bơm) + {vn(M4['slump12_add'])} phụ phí tăng sụt theo bảng NCC. " + HINT.get(tax, ""))
-        elif basis == "rmc":
+        if basis == "rmc":
             sup = lambda L: ", ".join(sorted({(re.search(r"\(([^)]+)\)\s*$", x["name"]) or [None, x["src"] or "?"])[1] for x in L}))
-            txt += f" Nguồn so sánh – Hà Nội: {sup(hn)}; TP.HCM: {sup(hc)} (giá trị là trung bình các bảng giá, lấy điểm giữa nếu có khoảng)."
+            part = lambda L: "; ".join(f"{x['src']} {vn(rmc_norm(x))}" for x in L)
+            txt += f" Giá trị = TRUNG VỊ các NCC sau quy đổi – Hà Nội: {part(hn)}; TP.HCM: {part(hc)}."
         comps.append(dict(label=label, tax=tax, unit=hn[0]["unit"], hn=round(a), hcm=round(b), diff_pct=d, insight=txt.strip(),
-                          hn_ids=[x["id"] for x in hn], hcm_ids=[x["id"] for x in hc], basis=basis))
+                          hn_ids=[x["id"] for x in hn], hcm_ids=[x["id"] for x in hc], basis=basis,
+                          parts={"hn": [dict(id=x["id"], src=x["src"], raw=mid(x), norm=round(rmc_norm(x))) for x in hn], "hcm": [dict(id=x["id"], src=x["src"], raw=mid(x), norm=round(rmc_norm(x))) for x in hc]} if basis == "rmc" else None))
     # per-brand steel pairs (same brand both regions)
     brand = {}
     for x in items:

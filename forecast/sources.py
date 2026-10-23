@@ -129,7 +129,7 @@ def _rmc_grade_table(url, src, prefix, region, note, vat=False):
 def src_concrete_hcm2():
     out, errs = [], []
     for args in [("https://betongdongnam.com/cap-nhat-gia-be-tong-tuoi-tphcm-nhanh/", "betongdongnam.com", "rmc_hcm_dn", "TP.HCM",
-                  "Báo giá NCC tham khảo (bảng chung TP.HCM), chưa gồm bơm; VAT theo NCC"),
+                  "Báo giá NCC tham khảo (bảng chung TP.HCM), chưa gồm bơm; chưa VAT 10% (theo NCC)"),
                  ("https://mekongthuongtin.com/gia-be-tong-tuoi/", "mekongthuongtin.com", "rmc_hcm_mk", "TP.HCM",
                   "Báo giá NCC tham khảo, ĐÃ gồm VAT 8%, chưa gồm bơm")]:
         try: out += _rmc_grade_table(*args)
@@ -142,6 +142,13 @@ def src_concrete_hcm2():
             for o in out:
                 if o["id"].startswith("rmc_hcm_mk_"): o["slump12_add"] = add
     except Exception as e: errs.append(f"mk slump: {e}")
+    try:  # Đông Nam: dòng 'Tăng độ sụt +2 | m3 | 50.000' của bảng chung (giá chưa VAT)
+        t = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", _get("https://betongdongnam.com/cap-nhat-gia-be-tong-tuoi-tphcm-nhanh/"))))
+        m = re.search(r"Tăng độ sụt \+2 (?:m3 )?([\d.]+)", t); add = _vn(m.group(1)) if m else None
+        if add and 0 < add < 200_000:
+            for o in out:
+                if o["id"].startswith("rmc_hcm_dn_"): o["slump12_add"] = add
+    except Exception as e: errs.append(f"dn slump: {e}")
     if errs: print("concrete HCM2 partial errors:", errs)
     if not out: raise RuntimeError("; ".join(errs))
     return out
