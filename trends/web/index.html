@@ -70,11 +70,11 @@
   const row = (lab, x, basis) => x ? `<div class="v" style="font-size:16px;margin-top:2px"><small>${lab}</small> ${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""}</div><span class="c" style="display:block">${chg(x)} · ${E((x.src || "").split(" (")[0])} · ${HUB.date(x.as_of)}${basis ? " · " + basis : ""}</span>${sp(x)}` : "";
   const two = (href, lab, unit, n, nb, s, sb, tip) => (n || s) ? `<a class="hk" href="${href}" title="${E(tip)}"><span class="l">${lab} <small>(${unit})</small></span>${row("HN", n, nb)}${row("HCM", s, sb)}</a>` : "";
   out.push(two("mat-hang.html?id=vnsteel_hoa_phat_mien_bac_cb300_d10", "Thép Hòa Phát CB300 D10", "VND/kg", by("vnsteel_hoa_phat_mien_bac_cb300_d10"), "", by("vnsteel_hoa_phat_mien_nam_cb300_d10"), "", "Giá đại lý steelonline.vn, cùng cơ sở 2 miền: chưa VAT & vận chuyển"));
-  const mk = by("rmc_hcm_mk_m400"), mk12 = mk && mk.slump12_add ? Object.assign({}, mk, {price: mk.price + mk.slump12_add, spark: mk.spark && mk.spark.map(v => v + mk.slump12_add)}) : null;
-  const RMC_BASIS = "sụt 12±2 · gồm VAT · chưa gồm bơm";
-  out.push(two("danh-muc.html?c=xd.be-tong&tab=cmp", "Bê tông M400 đá 1×2 · cùng cơ sở", "VND/m³", by("rmc_hn_btHN_m400"), RMC_BASIS + " (trang NCC không nêu bơm trong đơn giá)", mk12 || mk,
-   mk12 ? RMC_BASIS + ` (quy đổi: niêm yết ${HUB.num(mk.price)} sụt 10±2 + ${HUB.num(mk.slump12_add)} phụ phí tăng sụt theo bảng NCC)` : "CHƯA quy đổi: sụt 10±2, gồm VAT 8%, chưa bơm",
-   "Cùng cơ sở 2 miền: sụt 12±2, đã gồm VAT, bơm tính riêng. HN: betonghanoi.com.vn (niêm yết sụt 12±2, gồm VAT; trang không nêu bơm). HCM: mekongthuongtin.com niêm yết sụt 10±2 gồm VAT 8%, chưa bơm, cộng phụ phí tăng sụt do chính NCC công bố. HN là khoảng cát công trình–cát vàng; HCM một mức."));
+  const c4 = (h.compare || []).find(c => /M400/.test(c.label) && c.parts), RMC_BASIS = "chưa VAT · sụt 12±2 · chưa gồm bơm";
+  if (c4) { const pt = r => c4.parts[r].map(q => `${q.src.split(" (")[0]} ${HUB.num(q.norm)}`).join(" / "), asof = by(c4.hn_ids[0])?.as_of,
+    o = (v, r) => ({price: v, src: `trung vị ${c4.parts[r].length} NCC`, as_of: asof, n_hist: 0});
+   out.push(two("danh-muc.html?c=xd.be-tong&tab=cmp", "Bê tông M400 đá 1×2 · cùng cơ sở", "VND/m³", o(c4.hn, "hn"), RMC_BASIS + " · " + pt("hn"), o(c4.hcm, "hcm"), RMC_BASIS + " · " + pt("hcm"),
+    "Cùng phương pháp với thẻ Hà Nội vs TP.HCM: giá niêm yết NCC quy về chưa VAT (bảng gồm VAT chia 1,08; betonghanoi không ghi thuế suất – giả định 8%), sụt 12±2 (bảng sụt 10±2 cộng phụ phí tăng sụt do chính NCC công bố), chưa gồm bơm; lấy trung vị. HN có khoảng giá thì lấy điểm giữa. Loại betongdvc.com (không nêu độ sụt/VAT).")); }
   out.push(two("gia.html?nhom=KC.gach-aac", "Gạch AAC ≥100 mm", "VND/m³", a, "đại lý, VAT chưa rõ", b, "nhà máy, chưa VAT & v/c", "Gạch AAC 600×200×100. Cơ sở khác nhau: HN giá đại lý Viglacera; HCM giá niêm yết nhà máy EBLOCK"));
   if (c95) out.push(`<a class="hk" href="mat-hang.html?id=cable_cxv_cadivi_1x95" title="${E(c95.name)} – ${E(c95.src)}. ${E(c95.note || "")}"><span class="l">Cáp đồng CXV 1×95 mm² · CADIVI</span>
    <div class="v">${HUB.num(c95.price)} <small>VND/m</small></div><span class="c">${c70 ? `1×70: ${HUB.num(c70.price)} đ/m · ` : ""}giá niêm yết đại lý toàn quốc (chưa có nguồn tách HN/HCM), chưa chiết khấu · ${HUB.date(c95.as_of)}</span>${spark(c95.spark)}</a>`);

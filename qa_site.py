@@ -56,6 +56,14 @@ with sync_playwright() as p:
             pg.close()
         ctx.close()
     br.close()
+try:  # sanity: cùng thành phố & cùng cơ sở, mác cao hơn không được rẻ hơn mác thấp hơn
+    import json as _j
+    _h = _j.load(urllib.request.urlopen(B + "data/hub.json", timeout=30))
+    _r = sorted([(int(re.search(r"M(\d+)", c["label"]).group(1)), c) for c in _h.get("compare", []) if c.get("basis") == "rmc" and re.search(r"M\d+", c["label"])], key=lambda t: t[0])
+    for (g1, c1), (g2, c2) in zip(_r, _r[1:]):
+        for reg in ("hn", "hcm"):
+            if c2[reg] < c1[reg]: fails.append(("-", "hub.json", f"grade order {reg}: M{g2} {c2[reg]} < M{g1} {c1[reg]}"))
+except Exception as e: fails.append(("-", "hub.json", f"grade-order check error: {e}"))
 print(f"pages={len(PAGES)} widths={W} links_checked={len(checked)}")
 for x in fails: print("FAIL", *x)
 print("ALL OK" if not fails else f"{len(fails)} failures"); sys.exit(1 if fails else 0)
