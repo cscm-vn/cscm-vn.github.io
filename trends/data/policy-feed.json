@@ -1,6 +1,6 @@
 {
 "schema_version": 1,
-"updated": "2026-10-23T16:53+07:00",
+"updated": "2026-10-23T17:00+07:00",
 "window_days": 30,
 "topics": {
 "dat-dai": "Đất đai",
@@ -183,24 +183,24 @@
 },
 "home_rule": "Trang chủ: tối đa 1 tin/cụm văn bản và 1 tin/chủ đề con, 2 tin/chủ đề chính, điểm ≥ 40 (thiếu thì bù tới 5).",
 "sources": {
-"Google News: nghị định Luật Đất đai when:14d": 42,
+"Google News: nghị định Luật Đất đai when:14d": 63,
 "Google News: bảng giá đất Hà Nội TP.HCM when:14d": 11,
 "Google News: thông tư Bộ Xây dựng mới when:14d": 7,
-"Google News: Luật Xây dựng 2025 nghị định hướng dẫn when:14d": 11,
+"Google News: Luật Xây dựng 2025 nghị định hướng dẫn when:14d": 10,
 "Google News: Luật Nhà ở chung cư nghị định when:14d": 28,
-"Google News: thời hạn sở hữu chung cư when:30d": 11,
-"Google News: Luật Kinh doanh bất động sản nghị định when:14d": 48,
-"Google News: nhà ở xã hội quy định chủ đầu tư when:14d": 24,
-"Google News: giấy phép xây dựng quy định mới when:14d": 19,
+"Google News: thời hạn sở hữu chung cư when:30d": 10,
+"Google News: Luật Kinh doanh bất động sản nghị định when:14d": 50,
+"Google News: nhà ở xã hội quy định chủ đầu tư when:14d": 26,
+"Google News: giấy phép xây dựng quy định mới when:14d": 18,
 "Google News: phòng cháy chữa cháy chung cư quy định when:14d": 9,
 "Google News: Luật Địa chất và Khoáng sản nghị định when:14d": 4,
 "Google News: khai thác cát sỏi vật liệu xây dựng quy định when:14d": 2,
 "Google News: mỏ đá mỏ đất san lấp cấp phép when:14d": 2,
 "Google News: thuế chuyển nhượng bất động sản dự thảo when:14d": 15,
-"Google News: dự thảo nghị định bất động sản lấy ý kiến when:14d": 14,
+"Google News: dự thảo nghị định bất động sản lấy ý kiến when:14d": 13,
 "Google News: Masterise Homes when:30d": 0,
 "Google News: site:chinhphu.vn bất động sản OR đất đai OR xây dựng when:14d": 14,
-"Google News: site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d": 54,
+"Google News: site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d": 55,
 "Google News: site:moc.gov.vn when:30d": 18,
 "Google News: site:xaydung.gov.vn when:30d": 0,
 "Google News: site:cafeland.vn chính sách when:14d": 4,
@@ -277,6 +277,7 @@
 },
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai",
+"theme": "dat-dai:2",
 "also": [
 {
 "source": "Báo Đại Đoàn Kết",
@@ -286,8 +287,7 @@
 "source": "media.chinhphu.vn",
 "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOdjR3VGFhTDdpcWoxSTZxenY2Mi1lbmgzdFBIR3N6RFh0a1BnMDlQc1JueGNfd0I1VldvZFlzeE9RZnFQY3QtcHhNNjlBTGJJSjdSSThDVkQta1ZjYlpmNFEzWjdEMEd5Mi1uQVpKTUpZcVU4Z3FPallqVVNNWTRSRUprdVI5TjVv?oc=5"
 }
-],
-"theme": "dat-dai:2"
+]
 },
 {
 "id": "120334e052ae",
@@ -354,6 +354,7 @@
 },
 "cluster": "law:luat-kinh-doanh-bds",
 "cluster_label": "Luật Kinh doanh BĐS",
+"theme": "kd-bds:5",
 "also": [
 {
 "source": "Vietnam.vn",
@@ -364,15 +365,14 @@
 "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOUnMwdGVwNF9jMENmblFsSUJUYS05ck9MYWwwQmRMNjRic1QwcXFNWDIzUFVhYktlWXdFcUZtUTk0TXNDdU51ckpBSVpsMkVORzBrQTdZVXpvYlRJVDFzSlVIMksyUDhfdjZoZEg4blpkbGFEaUtnX3haWUZkSkhJaXAxZ0p3U0xDM3REVDc4SHZhNjQxdjNnWkdwRnF6Y1UzTDU4RGRnWDVPWUsxNFJWMC1LeTNMTXZLYnlhelZHRllBUHVzcGZ1YnRSeEgyd1BRd1ZwZ19vRjgyS0prNHNVcQ?oc=5"
 },
 {
-"source": "Báo Hànộimới",
-"url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQNXU2dWNBdjhiRXNSd0ZBUnFSbXBEaFJLa3ZiamIxSXpFZVVWbWh1VE5RdXB2Z2UyWmpRVlp4M09CeEd6SkV1SHBFSTh1Z2Nhd01nOUdZM1E0VHN4emM4ZnVLWmp1RlZ6UDlLdXZIOHFrakVmbnJGMWFRTXdJS2FQWUItUFNMY0lNUkFtUXFFbjdvbVNPWENCYzBQYUE3Xzh5M001SjNpNm4tVkppbHgxeE11dmRxLUJtODNPc1Mtb3FoYW53dVFoZFNGMUdhazNUUkhqbllR?oc=5"
+"source": "Báo Dân Việt",
+"url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxNdEtkc181UHhWUVRHLVNaV2dyc1d4WW5GZGx5NkNCQVJKUlhrZmFZZVFqbVZmbThMOE9XZ3k3Q2tWWDVvNmN0UHZoZjE5cXk4YzNMU3ZuaGtVdk11NDZXQnlFNERtTzBuSEZxejJjVlRiNzE5ZEl5XzdCcnNfOGNNaUN4c2dkQlh5SzVoTjFfYTlMZVo0a3Y3RzZCNmEycGRoZ2U4TDRId0VRVzR3dDlPSjk4ZHE4ZWctbUxPelQ5SlNLRzdXSzdZLW8wMGRwZXlZbFZRbExGQlhJTEQ1a3c?oc=5"
 },
 {
-"source": "Cổng thông tin điện tử Bộ Xây dựng",
-"url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNd2w3MW9XbzZPM28yYmtBaHYwaWtxODhLbnFZOFNoOHZMaHVfQk5Ic2ZmLW1QYV9lZFU1Umg4MG9rVWFpWnpVbDV5SXFYUktZX1Z0UXRFS0lMYzRBdlBfbnI3YTZ2djItc3dwanZLdGlEYXZPQ3JGMjZ4RjNQbDM2SkdIeWI4V0pGRUNjc2NtMktZNkdKSWxaQU84dlVjdUo0cm8zYnpzSUR5QVY4Ui1oY1lEbWI?oc=5"
+"source": "Báo Hànộimới",
+"url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQNXU2dWNBdjhiRXNSd0ZBUnFSbXBEaFJLa3ZiamIxSXpFZVVWbWh1VE5RdXB2Z2UyWmpRVlp4M09CeEd6SkV1SHBFSTh1Z2Nhd01nOUdZM1E0VHN4emM4ZnVLWmp1RlZ6UDlLdXZIOHFrakVmbnJGMWFRTXdJS2FQWUItUFNMY0lNUkFtUXFFbjdvbVNPWENCYzBQYUE3Xzh5M001SjNpNm4tVkppbHgxeE11dmRxLUJtODNPc1Mtb3FoYW53dVFoZFNGMUdhazNUUkhqbllR?oc=5"
 }
-],
-"theme": "kd-bds:5"
+]
 },
 {
 "id": "36d33ec7427f",
@@ -417,6 +417,7 @@
 },
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai",
+"theme": "dat-dai:5",
 "also": [
 {
 "source": "Báo Cao Bằng điện tử",
@@ -434,8 +435,7 @@
 "source": "Báo Thanh Hóa",
 "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPSE8wbUloMGxaZmJQVXRSZWhNR2FXaXkySDhCaWZna2Y5NExLZUp0bzFwTkE2elVTbjU1Wmg1aFhjMzFFR0RHRmM0TW1RQkwtMmI2WGt6SjhaUDc5VzJMMUxGdFJKN0NyT2F2LWotcDFkODF1TkNpdHJQa0hmOGc0VXF4QmNCR2Mtek82R1dxckJrakF5M1Z3WTFjSkVhX0lZRlh6ZzlzSUZLZDZiOTdsUmx2dHh2cnRDTXdMQkFSMTNUbTFjUmhkd2Y0QWktbmVmNGxjdWUwSk1kdw?oc=5"
 }
-],
-"theme": "dat-dai:5"
+]
 },
 {
 "id": "7f6fd9eaad07",
@@ -501,13 +501,13 @@
 },
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai",
+"theme": "dat-dai:2",
 "also": [
 {
 "source": "Vietnam.vn",
 "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQZzhPVnMweTBHWE9WeFd2R19USGQyVDY5N2dQbGRxblVvMDgzZ1FETktKUXZXQUtKdzZoaVFnWjZUa2Q2ZWQzQm1sTnZWYzNsTzJHWjM1SmFOUWxNLUV0RktrcFRMTzJPMGcwYVlyR2N3WmI1NjF2Vk84TTNScThVN2lQeHE3OFJraFBDel9mdlR5c052MVI1MUFNVUZ4U0tOSmUw?oc=5"
 }
-],
-"theme": "dat-dai:2"
+]
 },
 {
 "id": "3a3633835d5b",
@@ -686,6 +686,7 @@
 },
 "cluster": "law:luat-nha-o",
 "cluster_label": "Luật Nhà ở",
+"theme": "nha-o:10",
 "also": [
 {
 "source": "Tạp chí Điện tử Luật sư Việt Nam",
@@ -695,8 +696,7 @@
 "source": "CafeLand",
 "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPcm5WcXZrZ2txc1VLOXpwbGN6UXZ0aGY3LVQyaDA3Y0xOZVNlVnR0MTNmNmptU2tmZEZqTTEtVUhFUXhacWN3czZjaXZVM2NkZjhqTGZMb0NWZXJTOFZ1TG1BNlNpSnNOaF9uRVlrbTU0MkJRV3IwOW12VkxkbGsxX1NUS1JRWUVVNDBNQmltRVJLczYwWWFPRzVaeW45bWNtbVk1ekNYWUU2SzlNWlFXTWh3RTJwOEh4ZHlHMzZjMUpLOEw5aFZHLQ?oc=5"
 }
-],
-"theme": "nha-o:10"
+]
 },
 {
 "id": "b5b14a0738fd",
@@ -982,6 +982,7 @@
 },
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai",
+"theme": "dat-dai:2",
 "also": [
 {
 "source": "Báo Đại biểu Nhân dân",
@@ -991,8 +992,7 @@
 "source": "VOV2",
 "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNY1ZDZjFiWUIwc25Tb3BiZWRkODFNS3IzRVBiYUhrMExQUkpqV3o1WnkyTWs2a0IzMDN6d3NXM2RrMzA5MnBCQlh1VERNVmtIbDYxc1FFZDdmcmlTU2FYYjRuZW5ha1A3eVRGWXRKVGg4d0ZlN2lESWdqQnhJQ2hiRUpianVFSmpsZmlXb281UGhBdUE1dzE0ZEphQV9rN0tBa2tfU05RM2VwQQ?oc=5"
 }
-],
-"theme": "dat-dai:2"
+]
 },
 {
 "id": "eb32d25318c2",
@@ -1015,17 +1015,17 @@
 },
 "cluster": "theme:dat-dai:5",
 "cluster_label": "Luật Kinh doanh BĐS",
+"theme": "dat-dai:5",
 "also": [
 {
 "source": "Cổng Thông tin điện tử Quốc hội",
 "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPT3daVXQyaHpHUWtEbi1YdTFyU2kzMEVhdTlmMEFtZ0dpTERWWUhzMFpNY2Y3X1NyNkpEbEdJbDg5YlNCVS0xWk9KX2xDVFp6aVhfbmFlTk9LZ2x4am55V2NrZ2hITVVHSzNlM3lzODhoRUVvVmJRdVFFMHlUdUtXVS1Ebw?oc=5"
 },
 {
-"source": "Cổng Thông tin điện tử Quốc hội",
-"url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOZndPc2t3bm5JTjc3Ukd3NFV1dDlvSm5MdTU5eWxyMmFMTFA2dXJsVlRpV1JwT19jNHhaNzVEMzdyUDVFOFVLcUZZRDBsa29iOFhuZDVKREZpdFBTUDNjSDJlQmNqa1ZjU0QtSXNOTlBfSUMxbkVZMjNCZ0V6aktwNEJYWQ?oc=5"
+"source": "kinhtemoitruong.vn",
+"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPTFduS1hzM2ZEXy00VFJzTWEzTTU3NkZpWEhmUW5kQlJDTTRIbDhTTU1BRHA5dTBPd0dmSWctSUpUYVpSem9pcVRiSDB0bHRHeHl5NDB4SnBSUERtN1lHWDNHREJfUEY5dC1IaTJJN3QzVWJydTJWSHhfT19uQ2pIUHlmejVpcUhQVUN1VlJkVzUyMVc5ZmxrdEtWWVNiUjdiV0VRR2NDZjNvanNUTUF1aFNpc0FzZHEyaElUNlBrLUxQNVlpbjN0djdWazI5RC1Zc1h6YllvZFlqUkNTZG1OdS1MemJLUQ?oc=5"
 }
-],
-"theme": "dat-dai:5"
+]
 },
 {
 "id": "6bff1df49110",
@@ -1069,13 +1069,13 @@
 },
 "cluster": "law:luat-kinh-doanh-bds",
 "cluster_label": "Luật Kinh doanh BĐS",
+"theme": "kd-bds:5",
 "also": [
 {
 "source": "xaydungchinhsach.chinhphu.vn",
 "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxOYkFJQXFjbzRGQUdGbWd0U0lZQmh0Y2xUZ1BPOUxUcVFGTDF5RWlodGVILVNGaDBETXhuendmNXRrTGdEYXhpNmtUbUprMndpTXVvWDZEV09Mb0VRd1lmWmlYQVd4eHVJdFJiZmRkbXk0cFM2alUzbWZCbmRwajNaQkJxSTEySzRlTWxUWmM4Rm1DbWZvaWRJTVFSTDF1WmhSODhtczRnSHVub1hLT3NZYWZHaHFTTUJlWUg0LWtleFgwa2RhNm52MGZOUDFJYlBhd2pkOFNZendNYW1mcjc2MGRHR3JUR2pIRjg0?oc=5"
 }
-],
-"theme": "kd-bds:5"
+]
 },
 {
 "id": "916c32c8dad9",
@@ -1119,13 +1119,13 @@
 },
 "cluster": "law:luat-kinh-doanh-bds",
 "cluster_label": "Luật Kinh doanh BĐS",
+"theme": "kd-bds:5",
 "also": [
 {
 "source": "baodautu",
-"url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQenpOck85WlpBZmo0VUxuUlYwTmFyMnhRbXo2elhBQXR4ZEc1TTFPTFlIb05LUGVUelY4d2NkUDhKTnNzbTVPSTczMTJMb3kxU0ppaHdXdjcwQTViNEZobm5DYnVLZUVJbzJwNVZmV3R2NjlGZlJ6ai11RGJMSVlTaFQxWWZwNnlRLUx5N0E4U3RBVkgw?oc=5"
+"url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQZTdkLUlTblQ1cGRXM3pwaVpPbjFNQ0dSQ0ExbW5HTlI2dmNsYnRNTjBqdnVoLWJnNE91YmRzWndUQi1NNU9LUUJIaGV0WkdpU2RoWGpFckRqSlFicG9LWXFUMTY4Zkl6bndqX3RseGduSE8ybDE4aVhnOV9UaHF1aDdNWW9MVnlSLVRjYzgzbW9MWWtud1VyVkl3?oc=5"
 }
-],
-"theme": "kd-bds:5"
+]
 },
 {
 "id": "c8f581eb94cd",
@@ -1169,6 +1169,7 @@
 },
 "cluster": "theme:xay-dung:6",
 "cluster_label": "Cấp phép / thẩm định xây dựng",
+"theme": "xay-dung:6",
 "also": [
 {
 "source": "Laodong.vn",
@@ -1178,8 +1179,7 @@
 "source": "Thanh Niên",
 "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNR1dYanF0RjFMd0VsYmZvU1dsQl9fT0JONkNVYnc2UnMzMmJXYkxEZWdvVUNqWS1DQlZNRFZHMmc1anlfYndFY1RZRTJPSWVzYjN2OWpVMHhjNEtROG1HR0l3NUR6ZWJVWXpqVDY4YXpOX1IybVZfeFFubUFVTDQ0T2ZPejJSS0tZT1RaR3JhRDZ6QkdSMF8zY3JfbFo2b0c4dmd6LVE2UQ?oc=5"
 }
-],
-"theme": "xay-dung:6"
+]
 },
 {
 "id": "0e56411f84b7",
@@ -1201,6 +1201,7 @@
 },
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai",
+"theme": "dat-dai:None",
 "also": [
 {
 "source": "Thư Viện Pháp Luật",
@@ -1218,8 +1219,7 @@
 "source": "Thư Viện Pháp Luật",
 "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQemNoaDJqYy1uU3JzbnVSWmVYZkpTYVZJSHVkMUIxOWptazdGNGNwVmN5ODdyaUdEeWpZdFQwZExKNGZuZjdHMS1aSnloelpkM1RQVUQ5OXRSdmY2bTRUNk5rTUFuSnpadC1IQWVURGZWR2ZQUGVBellWNjhqWlE3RjJ0cVV5WVNWOFEyOVY5WXlqd3M3N3E4dE9YSFd6ZUg1TklCRms2dEpwS19kdEgzWUFYXzBnNm5aSVVDWGhWTkpaVEpzRTA0NW0zUC1rSEdQd1gtbUN4VFlBTGdkYXNlODM5TDEyQQ?oc=5"
 }
-],
-"theme": "dat-dai:None"
+]
 },
 {
 "id": "53c7fd02d205",
@@ -1263,13 +1263,13 @@
 },
 "cluster": "law:luat-nha-o",
 "cluster_label": "Luật Nhà ở",
+"theme": "nha-o:10",
 "also": [
 {
 "source": "Pháp Luật Plus",
 "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPT3FfUkVxV25keHltR3BqNUl2MnBOaE5XXzl3UWFjN2c4b3U4VUl0R0E3NHdMTkFaX2hFX2s5cjYtR05NQy1rQ3QyaUVMbmJDRV9YdUl3WGhNN1JrNHB3ZVR1T0NQNzBpVWdlUzRjdEJnRmJoQzk2ZFNxcEhLV2N4U29kdVdBczM1a3Q3b3lHUFhodElVdG5lZ0V2WGxPbXdyUmlGalRmT0U?oc=5"
 }
-],
-"theme": "nha-o:10"
+]
 },
 {
 "id": "fbd557a5ddca",
@@ -1380,13 +1380,13 @@
 },
 "cluster": "law:luat-nha-o",
 "cluster_label": "Luật Nhà ở",
+"theme": "nha-o:None",
 "also": [
 {
-"source": "Báo Cần Thơ",
-"url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNZWM5YzBtRW15NlRYajlFak5kV21jZDVNTUVXRzEwdURaSkNPMHdPVHlJRzlUV2pNaW5WRHNKZEtXcHFIazQ0bmtpaDgxTHFPVlZGWkxfTnVLeGh5S1FaUWRZNEVRQzltSUNtWWpoalVfNjNXV3NCRHJ0VnhmRmh1dmxEci1FUzRIZ29WTHQwSWh1T0VpTTNtcHhfRTBsRURnZHM5QUNESXNHQ0xlaVA3NjBXNWE2Z0dhSnFDaEVwYTNNaWk5azk5UjFtTVY?oc=5"
+"source": "Vietnam.vn",
+"url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPNURWNWNnaDB0ckFWQnlMWjYzcWpqRksyTzFvaDB1STVaRS1pSEZVNUF3em5sX0UyMmxweFJwbVpWYnFob1JzUTRXaV9kcENXblVnM2hjN3BLMllYUVptU05UUDJiNGg2ZEdXNzJiTnFYbms2dUdRY2RCa0tacHJIeWcxQVc3QS1iajRqa2VYZUk4MmRyODVmemJyMzgwSUJyRFpRZWpTTkZ1TmY4ZkQzdE1KQWtfLWc?oc=5"
 }
-],
-"theme": "nha-o:None"
+]
 },
 {
 "id": "d9382176d810",
@@ -1408,6 +1408,7 @@
 },
 "cluster": "law:luat-nha-o",
 "cluster_label": "Luật Nhà ở",
+"theme": "nha-o:None",
 "also": [
 {
 "source": "CafeF",
@@ -1420,9 +1421,12 @@
 {
 "source": "Tài sản công",
 "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNeGUxcTJoX3puWkZhQ19JMmtKeF95SF9vN3NVSm9BLU0tZExMR3Z5NWJ1RDNNY3RXckVqZWpIcGJBNDZLU0VlcUdJdG5RanhocnNFdW56aUFfZl9RN0V3R3hENER6SWFjb1BtZXlfMUhCS2RZOS1UaDRDVkFZR2tHTlNMbGtEQlV6SkJOM0VPVFB6TTgxVG4tTG5xLVk?oc=5"
+},
+{
+"source": "Báo Kiểm toán",
+"url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPcnVHczdYU1pWa0p3Z2FRdHd3eV92QnM5UVpwd1c0M0duaThnVTRESGU1dkZDbldlcXRrMjRaNm5FSnlpRVFZd1VTMlJCbXpBdERocVBUcHhXdzIxTV8xZmYxOWpaQk82STFlcDJOc1BTRERsVUpFNWxzZ1J1MXJCS0tFNk5JaGNNWEYzOHROUG1sSFVCY2xpb1ZFVmstSDFIRGtWVFNOaHk?oc=5"
 }
-],
-"theme": "nha-o:None"
+]
 },
 {
 "id": "684fc9ec02ba",
@@ -1444,7 +1448,13 @@
 },
 "cluster": "law:luat-nha-o",
 "cluster_label": "Luật Nhà ở",
-"theme": "nha-o:None"
+"theme": "nha-o:None",
+"also": [
+{
+"source": "Tạp chí điện tử Thương Trường",
+"url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNQ0ZtNEN2Y2NHZF9VY1ZqYlNBTVpXb080YWVFaUgtQ1VSaWo2WXZEVFhPem11MWJvZUFZUEZyVlp0M3FhT3FSbHRUcWk3N3l3N2t6UWJGbGR6ZUlTeURaWUtFOWJOWTVLbGJnSFJnVS0zNG9xak5nbF8zMVpya2NZNjZBc2dMeHY0blFfSUJEN040LXhjTWtVMnQxejdxeThiWERZX0dCNnBOdzg?oc=5"
+}
+]
 },
 {
 "id": "d713f3fb3c47",
@@ -1643,6 +1653,7 @@
 },
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất / tiền sử dụng đất",
+"theme": "dat-dai:2",
 "also": [
 {
 "source": "Thư Viện Pháp Luật",
@@ -1660,8 +1671,7 @@
 "source": "Thư Viện Pháp Luật",
 "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxPMjFsUEhiVlRHem92NTBaOEtpUXRXdTNtREhFY0t0S09XZmV4Uk1aZk9MNGlpWEpWWlN0Z3F6RVdSVlRXdDJvRlhtZ3AzUk5jLUk1WWRzSVhPZEJTX1B3R1hfejBER3doME1GM2dxNk0zUlZKaGlvbmVzU1FHYlpib3hpZUNHRzR3SDJodWxFUkNZWFlFaVpfcDlmaDlHalROZlR0MVJpRVpLNnY4c2FKZ3gtWW5JUGIwSXFxenZMQk51QjZGY0k1NzBrSVdTZnhyTGd0S2NsM2pMTU85UjMtaFhGZ0RxT3lQVGs4?oc=5"
 }
-],
-"theme": "dat-dai:2"
+]
 },
 {
 "id": "bf00fcf67a64",
@@ -1771,13 +1781,13 @@
 },
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất / tiền sử dụng đất",
+"theme": "dat-dai:2",
 "also": [
 {
 "source": "CafeLand",
 "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQRkE1ZUZVc2JMeDVRMzBNTXFSMnVvcFo2clpKQVp5TmNOYVkxQ0tTV0tTajBzWkMzNGhLVWI2OTdUZVBRNVlrWXVTc3NXTUVSSzdYVmRBN25JOGY5UzIzVlpyUC1MWjZiQUlFUFZBTUFYbnZjd0JrNXVNQ1RUYlpQUmtpRmc1R2Q4OUdib0dSaEJWTWZFS1B1bw?oc=5"
 }
-],
-"theme": "dat-dai:2"
+]
 },
 {
 "id": "ac789ef2f0f6",
@@ -1845,13 +1855,13 @@
 },
 "cluster": "theme:dat-dai:5",
 "cluster_label": "Luật Kinh doanh BĐS",
+"theme": "dat-dai:5",
 "also": [
 {
 "source": "HueNgayNay",
 "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNeE04TGhRNUQ5Q01HVnNicmpONzJGVDlJUWtUM3YyNmlMUTJHUFFDM21BN2N3MktWa3o1TGVybGFMdWVWSFQ5M1B5QlFGNG45RTNkeUM3SkNwTEZKY3RpejlzSXNsNVZIVTJZdjZhdC1pUElaSmJOQmpaYUxRdllRdFczYlhwNmh2ZmRZa1V3VDhmZXVZZmtDY3hLMkItOVBDNVp3c0VTOU5NejJwbmExZ090bkZEazFXcENSYlFxYW9GZ3JFYTZ0VFZvenpFRkpDQnFlQ19BbVBZbWk0bk5XStIBVkFVX3lxTE1DMDJXZXVaeXhtNlp1MktpanBQUUlhZzZnekotWWNySHFWZkxCUV9nVjNvTVZRV2p0a2djRDJTMEZxWW5qdmYxRkczYzE0Qjl1TkRYTHF3?oc=5"
 }
-],
-"theme": "dat-dai:5"
+]
 },
 {
 "id": "05df3bdbe3cd",
@@ -2141,6 +2151,7 @@
 },
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất / tiền sử dụng đất",
+"theme": "dat-dai:2",
 "also": [
 {
 "source": "Thư Viện Pháp Luật",
@@ -2154,8 +2165,7 @@
 "source": "Thư Viện Pháp Luật",
 "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNeUIzWENlXzNFNnFtbjl3ZWtxdmZ6SFAzLW9iVUE3VGJWbEpZVHFvdFRXX3ZVX1pZbUVuYm4yY2xjc2JoN1hCcXFLbDVLdTlkT29QVE5wNWZiYnRxYmFVYk12dmtWUEZlSm5DRTNWcDB2WXRRMW4zZHFFd1IydVlDQVJJenk1c3c2X0dzTUJsV3J4bG5UNk90QVU2M3hNNFRfajNicHRXbHM4QW5Rclhqc1dha24xUm5YSktQbGgtZE1wTjFvX2Fick4xeVBxYzQ0ZVV4RmU4ZFd0ajc3bTNJYzNCTXNCd1hCMjBF?oc=5"
 }
-],
-"theme": "dat-dai:2"
+]
 },
 {
 "id": "7b1ec5d24ac8",
@@ -2288,13 +2298,13 @@
 },
 "cluster": "theme:kd-bds:5",
 "cluster_label": "Luật Kinh doanh BĐS",
+"theme": "kd-bds:5",
 "also": [
 {
 "source": "Báo Sức khỏe & Đời sống",
 "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPS0ZSWmM2dTdJeENwXzNTN2x5dGdXM1VCbkluRC1wWkE2ODV1N0UwVGttakFKb2RhVTJCZlhwZHgxMDV6d1Bhd2p3Q1FFVkhFbFBwdWFwam0zYmZTX281dVZUVDZIenNjZVVGS0ZmaTZrcGRnUE9YSEhEVDhEbzhLYnc3WTExaU4tQ2dRSENtWDYtMHI5QnQyYUo3QU9LbGk1WFU0aVAyV1J3N2tXak5hcHpHMGw1cGd1ZFdr?oc=5"
 }
-],
-"theme": "kd-bds:5"
+]
 },
 {
 "id": "07357d07fa98",
@@ -2404,6 +2414,7 @@
 },
 "cluster": "theme:xay-dung:6",
 "cluster_label": "Cấp phép / thẩm định xây dựng",
+"theme": "xay-dung:6",
 "also": [
 {
 "source": "xaydungchinhsach.chinhphu.vn",
@@ -2413,8 +2424,7 @@
 "source": "Báo Bảo vệ pháp luật",
 "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNMzkzV0FjZ1cxQ0k0TzhqMjFCQTBqd3JLOENZam0tRHhNazU1TjFOUXhWNU1PWjJBclN0VEswbFpHMEY5THBod1FhWVJsSFpwX1FLcDVEc1EwTnhTSXB5N1RUay1pQ2pUT3I4RVQ5Nkh5YWEwaGVzTDhpWUNCbWFaNVlicUd5Ym54REhIMEY2MDVscWhrV1IxeFhPWEJwX0RTQTRmRkNPQzA4RzVOZXpXWTN3ek5EZEREaWVQUzc3cFpRZnozZHNpcTln?oc=5"
 }
-],
-"theme": "xay-dung:6"
+]
 },
 {
 "id": "6f8bcedb5b36",
@@ -2876,6 +2886,7 @@
 },
 "cluster": "law:luat-nha-o",
 "cluster_label": "Luật Nhà ở",
+"theme": "nha-o:None",
 "also": [
 {
 "source": "Vietstock",
@@ -2885,8 +2896,7 @@
 "source": "baodautu",
 "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOOVhRbm9qLTZabmFOVWVUeEE5R1pwZFd6NHR5bXlXLXJWUzZTMC1jSDVrNXBweFNINGtsRzhBR3lEenFFc0RVTkZpY2VRNldRVGdObjljRXNNcG1aMFRrSjJJVE9ZSzZUVUFJNFBZSTBWakpSSmNmOFU3c0lWZ2RRQ29iMXE4cTRENFlCYUlOUHd4Q0s1VVM5ZGdnelhmLXpQMmJucFpR?oc=5"
 }
-],
-"theme": "nha-o:None"
+]
 },
 {
 "id": "1fa06a0a1b47",
@@ -2952,13 +2962,13 @@
 },
 "cluster": "theme:nha-o:4",
 "cluster_label": "Liên quan chung cư / nhà ở thương mại",
+"theme": "nha-o:4",
 "also": [
 {
 "source": "baochinhphu.vn",
 "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQMFJHTXVvZFJRZ3J0Y3RabG5saU54S3RwbTRjWk1uOC1zVmhSa0dtU1IyWm5YYzZlaEVpZDZiQmltV3FUbms5Y0RLMXgyelNiemFxVFVMZ0ZhMFQ3ZzE3cmRnVmVrTGZtSGgyN3JBWnpvclNfV0JJNEN5VVZncHZuY05QOHpUOE1WUzBKQWZicnRvYktSUG96aXZSRTlodHVzNGtnYnpFaG4zOERDcGpUZl9YSUk4elhINV9tbDR3b1I?oc=5"
 }
-],
-"theme": "nha-o:4"
+]
 },
 {
 "id": "f2c08e4d8990",
@@ -3134,13 +3144,13 @@
 },
 "cluster": "theme:dat-dai:3",
 "cluster_label": "Quyền sử dụng đất / giao đất / cấp sổ",
+"theme": "dat-dai:3",
 "also": [
 {
 "source": "baochinhphu.vn",
 "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPZVZUNVRmRGRvcmxtLTFRSGpOMGhQejRaX29oX0ZNdmltRlFuaUhfS2czSDlBbEplSVNoOGNMNGJ1XzMzQVd1NU9TQV9tY0ZHZGx2LWE2V0tIVkxxM2FjMG5oUGRqbnotMEpIMlNEb2pLY0QzZlpYRDc5NlRBZ2tvWThaUk83TGpUM0Y5NUpnRXRjMmhpZndMaWxKTDRNc3RCOXJFOUJPRnlmdVFpb2Yw?oc=5"
 }
-],
-"theme": "dat-dai:3"
+]
 },
 {
 "id": "13a8c54e2c56",
@@ -3341,13 +3351,13 @@
 },
 "cluster": "theme:dat-dai:3",
 "cluster_label": "Quyền sử dụng đất / giao đất / cấp sổ",
+"theme": "dat-dai:3",
 "also": [
 {
 "source": "baochinhphu.vn",
 "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPN01jeFlRZmJoZlVacHNUUm1za2VxQnotalFrWm5hN0VSOEZMUEtneC1VTEhuV2g5UG9jeENCQ1l3M0laUFRjeHVKMVJxYktqREJ1SnVQTHd1VUoySlVZWC1xWnRMUDlFS2I3X0lFQTVESVEyaTUyVzJsSnF4cl9TUXlyd1Bhc0lKUG1lN3NoSGswQWtqOFZSLXp1STE5UGM?oc=5"
 }
-],
-"theme": "dat-dai:3"
+]
 },
 {
 "id": "1ba2dcec2ab0",
@@ -3391,13 +3401,13 @@
 },
 "cluster": "topic:xay-dung",
 "cluster_label": "Xây dựng",
+"theme": "xay-dung:None",
 "also": [
 {
 "source": "VietQ",
 "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMmNWb24yREl3VVFEdG9RcDBuZll5MkFrQVRFYklpWGc3MERySXlIVV85Y0E1UmllQThXb3dlQnNQcXJTclVUd0VtOWpEWEpNd1RoYVNzMnRkbU1ENjc2NnUyVGUwRnlGeWdZMzMxZWN2WjF4VUs4TnJ1MHMxQ201ZUFVZ3o2WGdVd21YT0tjbWtzWWtEQWRPZkVEbWJYTkZuTDdJZUdDYw?oc=5"
 }
-],
-"theme": "xay-dung:None"
+]
 },
 {
 "id": "f2dbe5f328a0",
@@ -3454,28 +3464,6 @@
 ],
 "published": "2026-10-16T14:12+07:00",
 "found": "2026-10-23T16:36+07:00",
-"score": 31,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 4,
-"rec": 15
-},
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Nguồn cung khoáng sản/VLXD (cát, đá, đất)",
-"theme": "khoang-san:8"
-},
-{
-"id": "5490bedae18b",
-"title": "Bảng giá vật liệu xây dựng Đắk Lắk tháng 9 2026 áp dụng từ ngày 08/10/2026 theo Công văn 9063 chi tiết?",
-"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPTGxwUURaVFJnUUd1NFhlaUVMcTVBNXIxR2QyajdhWEdhQnZDQ0hfYnoyMGVEaTN5VWNOT2NveUdHcklQM1h2TndWM25SLW53NEo1cWhfdXNrbHB2MlRhcXVfTDZYdTIyNG53ek4yUTJ6YkVxZnZVam5XcjFYeVBINXhHQWxZdVZHenBRSEFKZHVUVFJnR1BMNVF6OFlaQUtxYVRyUzdkbzF6UkEtREk4OXBCcldUYWxJdlZaS1pmNmR1OGZ5MGdDZFU3bUN5enlNN0dLYThGWE43V0hjYkpxZGFJQ3pJZw?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-10-15T11:00+07:00",
-"found": "2026-10-23T16:52+07:00",
 "score": 31,
 "why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
 "parts": {
@@ -3620,6 +3608,28 @@
 "theme": "xay-dung:6"
 },
 {
+"id": "5490bedae18b",
+"title": "Bảng giá vật liệu xây dựng Đắk Lắk tháng 9 2026 áp dụng từ ngày 08/10/2026 theo Công văn 9063 chi tiết?",
+"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPTGxwUURaVFJnUUd1NFhlaUVMcTVBNXIxR2QyajdhWEdhQnZDQ0hfYnoyMGVEaTN5VWNOT2NveUdHcklQM1h2TndWM25SLW53NEo1cWhfdXNrbHB2MlRhcXVfTDZYdTIyNG53ek4yUTJ6YkVxZnZVam5XcjFYeVBINXhHQWxZdVZHenBRSEFKZHVUVFJnR1BMNVF6OFlaQUtxYVRyUzdkbzF6UkEtREk4OXBCcldUYWxJdlZaS1pmNmR1OGZ5MGdDZFU3bUN5enlNN0dLYThGWE43V0hjYkpxZGFJQ3pJZw?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-10-15T11:00+07:00",
+"found": "2026-10-23T16:52+07:00",
+"score": 30,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 4,
+"rec": 14
+},
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Nguồn cung khoáng sản/VLXD (cát, đá, đất)",
+"theme": "khoang-san:8"
+},
+{
 "id": "df614894c9f7",
 "title": "Đất chưa có sổ đỏ, người có quyền sử dụng đất đã mất, Bộ hướng dẫn thủ tục thừa kế",
 "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPLVh0RUR3dnBNUDBWT3ZyNXNhNnMwbUlfUGlDYlhYRE12UEFrU3pRcEF1OUoyZWRfQ3pxVThQclBpaTM5Z0JWSzJ3R2ZDUkVPMVd1QlpHNXNlUmktRTJwa0plOXNtSFNzVHVlbTBUb0x2aEoyVmtkNW0yQ0x3ald4d1dFbEhKVzNKSWFOMG5xRjJDSlZrX3NCTm14Y0hOSW5QVUlLZFN4RVM3ZzE2VlAzMmFaM0piRXltbDFhS2tBQzQwUQ?oc=5",
@@ -3749,11 +3759,8 @@
 },
 "cluster": "theme:xay-dung:13",
 "cluster_label": "Quy hoạch",
+"theme": "xay-dung:13",
 "also": [
-{
-"source": "LuatVietnam",
-"url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPazBqM1k4U21YTWVNX3gwT21kcnlOQnJkT3M5MXVmcjZVc2xWVHQxckt6dWFKRzNERXBBbGhZRU5fQWhmT0hjX05hWHFkSUZBZHY5a0FnY3lHMU9MeE5HVGVwS0VyYkFZTzlPVnBjakJvNFpvSjdKODR3R2hlZFJmekJuLVYtZUMyVnBnRERfVEx1REp4UVJ5SXdWYkhiV3dzS3htNXJoM2pHS0ExTjVrdHlqTjdMVnp3WE1CdUhQLThXODJLcHV0cXhBMm9nZVV1?oc=5"
-},
 {
 "source": "LuatVietnam",
 "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNQjlxbGxVT0xjU1g5VmFxUWNITFRiTXdocEl4clpzbzA1NGZhQmNFRVVVc0QtTHF4cEYySTVmd3lNVWxIMThkZUJjTzJCRFByNkxYTGRiUVNZMUE2RF9wUWpRUnZPT3p4aTVlNnFCNnRORTVEa2xFcXlsVV92bTN2Nl9tZGxSZExMb1FnMUZ2TER5RWZtMEY3X2NoU1FIZkxNbkR4NE9wdjgyRVhNem51T0ZKcXpoZ2RlWnh0Z2tBcHBQS0dnRXcxTmxwT2prdw?oc=5"
@@ -3765,9 +3772,12 @@
 {
 "source": "LuatVietnam",
 "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPTl9oWlZieEZ6WmthNnJQdEpQMHluR0NUbzdXVXBObHl0V1k1WkZOVENQOWhXRnJuNHd4dzJoeDRzUW1JRC1SN0lrTFFBMzZrUjl0M1NoNHpQMElTa185VDJ0N0R2RXQwMkx0NXFsY2Zwa2VQdjdManFpbTN5c3RxZnFwNi14YTFiNTgyd1VBWFJramJXdmc4N0V5bzBpeHlnZXZZa2pIUkh2TGd6VlNCQURlc2FvX2Y4SnZuWE1sNzJObmhqRldUWVNPT1k?oc=5"
+},
+{
+"source": "LuatVietnam",
+"url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQN2xXRFNNRDQzUzI3bHZnZFFCNzRmaW4wSWg0S2VHOURTYzRrU21FZnYyRWpnOWdHTlJBMWdsTzdfMTZhT204UXc2TV9oRWtodU83VkROUmw0WEpfTnBlMkw5TnJvbWU5LUFTU0MyNmpPUlJWOVItejhjZnBvZVpXeG9kaUZ2eW9MLWY4MFlYaXJJOHhGT3c3MGlEZjFscjg2RzZCTDcxQllrYjRTNUlxWDBHMmkwWEYwcG9RM0dhd2E2TDN2c1B0UVNRRnhVT3A2ZjA1Tnl1T3Q?oc=5"
 }
-],
-"theme": "xay-dung:13"
+]
 },
 {
 "id": "7b7c2db494d1",
@@ -3811,13 +3821,13 @@
 },
 "cluster": "topic:xay-dung",
 "cluster_label": "Xây dựng",
+"theme": "xay-dung:None",
 "also": [
 {
 "source": "Cổng thông tin điện tử Bộ Xây dựng",
 "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNSXVHYkN6c29UdkQyblUzdlkyVHFCajNzMGE0M2xudGM5VEFINTE4dDJxZFBLbXNFb0pFTjcwWm1iU0t4NWtaTDJodF9TUnptOGtZTG4zRkxQcXFubTlUTm5EUUVtSTMwVWljdGVzamhjSjJRQ0VpbVpfLThHemJuRU52aXBOT2JmUzlvQXFfUkNRWmhQYXdaQ3FiWnRMWExXczNFRF8tYndhaEtYZmF6ZmlJN2JCZFFoOC1UOGRXTEdDYjFIaEFzT290X3hrS3BqNm92YXFha203YjQyYzFMbE12UGt6MWhj?oc=5"
 }
-],
-"theme": "xay-dung:None"
+]
 },
 {
 "id": "4bc9453fb365",
@@ -4082,7 +4092,13 @@
 },
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai",
-"theme": "dat-dai:None"
+"theme": "dat-dai:None",
+"also": [
+{
+"source": "Báo Nông nghiệp và Môi trường",
+"url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNdXZxUTF6V0NHQ3pkcEZjTExTYmk0ZkxKaHpTSmVHZzNSLXBSTEIwRFdIZ1V6UEt4R0VuZ1h6MU1wQ0N0bk1OdXVISHJFMnFrcm5kaHh4SzgxOWx2cTd4MW51WW1Vakpya21KX3JtTVJ5Rk94cEthVUQ1b1g0eVFLVFZTTm5wdHZpRnpTejFJZjhFVVBZc2NtemdqWXAwYVlRYlAwM1htSVBTSkd0?oc=5"
+}
+]
 },
 {
 "id": "cf76542877b4",
@@ -4258,13 +4274,13 @@
 },
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai",
+"theme": "dat-dai:None",
 "also": [
 {
 "source": "Bnews.vn",
 "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOYndNejlSRTNOQUNSRVRnRGRjMWFvSmJTeDZrcXdGTnhfcnN4VzBmVW5mVFNSQk9zc3k2YkVXYy00Tk93MElIcGJVUUNsRWhRajY1bW5SSDRhN21BOGVGRHFOUU9ZVnJHd2JaNmM1VWhwcWdCY1FWZ1hHVFB2QzVBdGhpaVRVQmluX3pVdFNldGV5dFY1SUtncGxuNFhYUTItRlhpXzJCRy1hclJzZnJFYXRWRHl0RHV1VlB3?oc=5"
 }
-],
-"theme": "dat-dai:None"
+]
 },
 {
 "id": "20eefe6862c2",
@@ -5101,13 +5117,13 @@
 },
 "cluster": "topic:dat-dai",
 "cluster_label": "Đất đai",
+"theme": "dat-dai:None",
 "also": [
 {
 "source": "dangcongsan.vn",
 "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQNUxuZFVXZjdKLWZNNW43UFo3b0N2cmlKZEJxTkNfVnEwSElhMlVlSzJqdXdZWUZjZ1JlUkxsTTJybWsydVE2VnJQMEVqaHFoYzVIU1NlcHFQb0tFZHNtdFc5S1dka1hKTkRhTjVzWTl2eU5Jbnc4ZGJxSExCRFFpX3gzc0VSRUtlRVJXNElPaFNzUnRrelIycVljSlBZMFJjcUJSOFJLN3FrYVJGZm8takQxSUxEamlpYW5DSWxSTHNtek9sdHZ6NXZsMTBxQ1E2Vzg1ZUhzN29Lb0JRSXpwMG5R?oc=5"
 }
-],
-"theme": "dat-dai:None"
+]
 },
 {
 "id": "2014eadc08a0",
