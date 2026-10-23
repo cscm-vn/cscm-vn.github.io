@@ -12,7 +12,7 @@ with sync_playwright() as p:
         pg.on("pageerror", lambda e: errs.append(f"{mode}: {e}")); pg.on("console", lambda m: m.type == "error" and errs.append(f"{mode} console: {m.text}"))
         sh = lambda n: pg.screenshot(path=f"{S}/trends_{mode}_{n}.png", full_page=mode == "desktop")
         pg.goto(B + "index.html"); pg.wait_for_selector("#top5 .card"); sh("01_home")
-        ok(f"{mode} home top5", pg.locator("#top5 .card").count() == 5); ok(f"{mode} home tiles", pg.locator("#tiles .tile").count() >= 7)
+        ok(f"{mode} home top5", pg.locator("#top5 .card").count() == 6); ok(f"{mode} home tiles", pg.locator("#tiles .tile").count() >= 7)
         ok(f"{mode} home HN/HCM", pg.locator("#cmp .card").count() >= 1); ok(f"{mode} home movers", pg.locator("#movers tr").count() > 1)
         if mode == "desktop":
             pg.click(".hn-mega-btn"); pg.wait_for_selector(".mega.open"); sh("02_mega_menu")

@@ -14,6 +14,7 @@
 .newstrip{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:4px 0 10px;padding:8px 12px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:var(--r);font-size:13.5px}
 .newstrip b{font-family:Lora,Georgia,serif}.newstrip a{color:var(--ink);min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media (max-width:560px){.newstrip{flex-direction:column;gap:3px}.newstrip a{display:block}}
+.newb{display:inline-block;margin-left:6px;padding:0 6px;border-radius:999px;font-size:11px;font-weight:700;line-height:18px;vertical-align:1px;color:#8a5a00;background:#fbf6ea;border:1px solid #ecdcb4;white-space:nowrap;cursor:help}.newb[hidden]{display:none}
 </style></head>
 <body class="hub" data-page="home" data-hub-page><div id="hubnav"></div>
 <main class="wrap" id="main">
@@ -27,7 +28,7 @@
  <section id="dcw" class="dcw" hidden></section>
  <h2>Danh mục mua sắm</h2><div class="newstrip" id="hlstrip" hidden></div><div class="grid g4" id="tiles"></div>
  <div class="grid g2" style="margin-top:6px">
-  <section><h2>🔥 Top 5 xu hướng & cơ hội <a class="small" href="xu-huong.html">xem tất cả →</a></h2><div id="top5" class="grid"></div></section>
+  <section><h2>🔥 Top 6 xu hướng & cơ hội <a class="small" href="xu-huong.html">xem tất cả →</a></h2><div id="top5" class="grid"></div></section>
   <section><h2>📈 Biến động giá đáng chú ý <a class="small" href="gia.html">bảng giá →</a></h2>
    <div class="seg" id="mvseg"><button data-k="d1" class="on">Phiên gần nhất</button><button data-k="vn">Giá VN</button><button data-k="mom">So với tháng trước</button></div>
    <div class="tw" style="margin-top:8px;max-height:none"><table class="t" id="movers"></table></div>
@@ -103,9 +104,11 @@
   const top = (hl.top || []).map(id => hl.groups.find(g => g.id === id)).filter(Boolean); const st = document.getElementById("hlstrip");
   if (top.length) { st.innerHTML = `<b>Hôm nay có gì mới</b>` + top.map(g => { const r = g.prices[0], x = g.news[0];
     return `<a href="${g.link}">${g.icon} ${E(g.name)}: ${r ? `<span class="${r.d1 > 0 ? "up" : "down"}">${fp(r.d1)}</span> ${E(r.name)}` : `${g.n_news} tin mới`}</a>`; }).join(""); st.hidden = false; } });
- document.getElementById("top5").innerHTML = tr.items.slice(0, 5).map((x, i) => `<div class="card"><div class="trend"><span class="score" title="Điểm tổng hợp /100">${Math.round(x.score)}</span>
-  <div><a href="xu-huong.html?id=${x.id}"><b>${i + 1}. ${E(x.title)}</b></a><div>${HUB.catLink(x.tax[0], x.category).replace("<a", '<a class="pill cat"')} <span class="pill">${E(x.region)}</span> <span class="small mute">${HUB.date(x.date)}</span></div>
+ document.getElementById("top5").innerHTML = tr.items.slice(0, 6).map((x, i) => `<div class="card"><div class="trend"><span class="score" title="Điểm tổng hợp /100">${Math.round(x.score)}</span>
+  <div><a href="xu-huong.html?id=${x.id}"><b>${i + 1}. ${E(x.title)}</b></a><span class="newb" data-id="${x.id}" hidden title="Mới vào top hôm nay (không có trong top 6 của ngày hôm trước)">⚡ Mới</span><div>${HUB.catLink(x.tax[0], x.category).replace("<a", '<a class="pill cat"')} <span class="pill">${E(x.region)}</span> <span class="small mute">${HUB.date(x.date)}</span></div>
   <div class="small" style="margin-top:4px">${E(x.why)}</div></div></div></div>`).join("");
+ HUB.get("top_history.json").then(th => { const d = Object.keys((th && th.days) || {}).sort(), today = new Date().toLocaleDateString("en-CA", {timeZone: "Asia/Ho_Chi_Minh"}), pv = d.filter(x => x < today).pop(); if (!pv) return; // ⚡ Mới = không có trong top của ngày VN trước đó
+  const prev = new Set(th.days[pv]); document.querySelectorAll("#top5 .newb").forEach(b => { if (!prev.has(b.dataset.id)) { b.hidden = false; b.title += " · so với " + HUB.date(pv); } }); }).catch(() => {});
  const mv = k0 => { const vn = k0 === "vn", k = vn ? "d1" : k0; const L = h.items.filter(x => (!vn || x.grp === "vn") && x[k] != null && Math.abs(x[k]) > 0 && !x.stale).sort((a, b) => Math.abs(b[k]) - Math.abs(a[k])).slice(0, 8);
   document.getElementById("movers").innerHTML = `<tr><th>Mặt hàng</th><th class="n">Giá</th><th class="n">${k === "d1" ? "Phiên" : "MoM"}</th></tr>` + (L.length ? L.map(x => `<tr><td><a href="mat-hang.html?id=${x.id}">${E(x.name)}</a> ${HUB.regPill(x.reg)}</td>
    <td class="n">${HUB.num(x.price)} <span class="small mute">${E(x.unit)}</span></td><td class="n">${HUB.pct(x[k])}</td></tr>`).join("") : `<tr><td colspan=3 class="mute">${vn ? "Giá VN hôm nay chưa thay đổi so với phiên trước (nhiều nguồn cập nhật theo tháng/quý)." : "Chưa đủ lịch sử để tính."}</td></tr>`); };
