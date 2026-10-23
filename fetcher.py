@@ -209,6 +209,20 @@ def src_steelonline():
                                 "steelonline.vn", url, as_of=as_of, region=region, brand=brand,
                                 note="Giá tham khảo đại lý, chưa VAT & vận chuyển"))
     if len(out) < 5: raise RuntimeError("steelonline parse failed")
+    # real daily history from steelonline's own price chart (~30 days) -> backfill (insert-or-ignore, never overwrites)
+    charts = {c.get("stock-name", "").replace("Thép VAS", "VAS"): c.get("url-data") for c in s.select("canvas[url-data]")}
+    for r in out:
+        u = charts.get(f"{r['brand']} {r['region']}")
+        if not u: continue
+        try:
+            js = get("https://steelonline.vn" + u).json()
+            dates = [f"{l[6:10]}-{l[3:5]}-{l[0:2]}" for l in js["labels"]]
+            grade = re.search(r"CB\d+", r["name"]).group(0)
+            for ds in js["datasets"]:
+                if grade not in ds["label"]: continue
+                r["backfill"] = [(d, float(v)) for d, v in zip(dates, ds["data"])
+                                 if v and float(v) > 0 and (not as_of or d < as_of)]
+        except Exception as e: print("steelonline chart", u, e)
     return out
 
 TTHH = [("gia-xi-mang-hom-nay", "Xi măng"), ("gia-cat-xay-dung-hom-nay", "Cát"),
