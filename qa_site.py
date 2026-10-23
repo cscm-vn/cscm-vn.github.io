@@ -1,7 +1,7 @@
 """Site-wide audit + regression: python qa_site.py BASE_URL [--shots]
 Asserts each shared component mounts exactly once per page, no console/page errors,
 no horizontal overflow, no broken internal links, no mojibake in Vietnamese text."""
-import sys, re, glob, os, urllib.request
+import sys, re, glob, os, urllib.request, urllib.parse
 from playwright.sync_api import sync_playwright
 B = sys.argv[1].rstrip("/") + "/"
 PAGES = sorted(os.path.basename(f) for f in glob.glob(os.path.join(os.path.dirname(__file__), "site", "*.html")))
@@ -48,7 +48,7 @@ with sync_playwright() as p:
                   const cards = [...el.querySelectorAll('#pol > .card')], W = el.getBoundingClientRect().right + 1;
                   const nx = el.nextElementSibling, secs = [...document.querySelectorAll('#main > section, #main > .grid')];
                   return {n: s.length, k: cards.length, last: secs[secs.length - 1] === el && !!nx && nx.id === 'foot',
-                    ext: cards.map(c => c.querySelector('a[href]')?.href || ''), all: el.querySelector('h2 a')?.getAttribute('href'),
+                    ext: cards.map(c => c.querySelector('a[href]')?.href || ''), more: [...el.querySelectorAll('a.pmore')].map(a => a.getAttribute('href')), all: el.querySelector('h2 a')?.getAttribute('href'),
                     ov: cards.filter(c => c.getBoundingClientRect().right > W || c.scrollWidth > c.clientWidth + 1).length}; }""")
                 if pq["n"] != 1: fails.append((w, f, f"policy section x{pq['n']}"))
                 else:
@@ -56,6 +56,15 @@ with sync_playwright() as p:
                     if not pq["last"]: fails.append((w, f, "policy section not last before footer"))
                     if pq["all"] != "hop-dong.html#chinh-sach": fails.append((w, f, f"policy 'xem tất cả' href {pq['all']}"))
                     if pq["ov"]: fails.append((w, f, f"policy overflow in {pq['ov']} cards"))
+                    if w == W[0]:  # dữ liệu: 1 tin/cụm, ≤2/chủ đề, khớp số thẻ; link '+N tin' trỏ đúng cụm có trên hop-dong
+                        import json as _js
+                        _p = _js.load(urllib.request.urlopen(B + "data/policy-feed.json", timeout=30)); _I = {x["id"]: x for x in _p["items"]}; _H = [_I[h["id"]] for h in _p["home"] if h["id"] in _I]
+                        if len(_H) != pq["k"]: fails.append((w, f, f"policy cards {pq['k']} != home data {len(_H)}"))
+                        if len({x["cluster"] for x in _H}) != len(_H): fails.append((w, f, "policy home duplicate cluster"))
+                        if max([sum(1 for y in _H if y["topics"][0] == x["topics"][0]) for x in _H] or [0]) > 2: fails.append((w, f, "policy home >2 per topic"))
+                        for m in pq["more"]:
+                            c = urllib.parse.unquote(m.split("pc=")[1].split("#")[0]) if "pc=" in m else ""
+                            if c not in _p["clusters"] or not m.startswith("hop-dong.html?pc="): fails.append((w, f, "policy bad cluster link " + m))
                     for u in pq["ext"]:
                         if not u.startswith("https://"): fails.append((w, f, "policy bad link " + u))
                         elif w == W[0] and not link_ok(u): fails.append((w, f, "policy broken link " + u))

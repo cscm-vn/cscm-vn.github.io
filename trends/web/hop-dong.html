@@ -19,6 +19,9 @@
 .ck li{margin:7px 0}
 .pf li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px;overflow-wrap:anywhere}.pf li:first-child{border-top:0}
 .pf .score{min-width:38px;height:24px;font-size:12.5px}.pf .wy{font-size:12.5px;color:#5b4a1f;margin-top:2px}.pf .mt{font-size:12px;color:var(--mute)}.pf .also a{margin-right:8px}
+.pf li.sub{margin-left:48px;padding:6px 0 6px 10px;border-top:0;border-left:2px solid #ecdcb4;grid-template-columns:auto minmax(0,1fr)}.pf li.sub .score{min-width:30px;height:20px;font-size:11.5px;opacity:.75}.pf li.sub b{font-weight:600}
+.pf .gh{font-size:12px;color:#8a5a00;margin-top:3px}.pf .gh button{border:0;background:none;color:var(--pri);cursor:pointer;font-size:12px;padding:0}
+@media (max-width:560px){.pf li.sub{margin-left:14px}}
 .pf-n{font-size:11px;font-weight:700;color:#8a5a00;background:#fbf6ea;border:1px solid #ecdcb4;border-radius:999px;padding:0 6px;margin-left:4px;white-space:nowrap}
 @media (max-width:560px){.fx{grid-template-columns:1fr}.it h3{font-size:15px}}
 </style></head>
@@ -127,15 +130,22 @@ function quiz(Q) {
    const today = new Date().toLocaleDateString("en-CA", {timeZone: "Asia/Ho_Chi_Minh"}), dd = x => (x.published || x.found || "").slice(0, 10);
    document.getElementById("pf-sub").textContent = `${P.items.length} tin · ${P.window_days} ngày · quét lúc ${dt(P.updated)} ${P.updated.slice(11, 16)} (giờ VN)`;
    document.getElementById("pf-note").innerHTML = `Tự động từ Google News & RSS chính thống (Chinhphu.vn, Báo Chính phủ, VnExpress…), làm mới mỗi lần CI chạy, gộp tin trùng. <b>Chưa biên tập</b> – điểm và lý do sinh theo quy tắc từ khóa trong tiêu đề/tóm tắt. ${E(P.scoring)}`;
-   let f = "all", lim = 20; const more = document.getElementById("pf-more");
-   const draw = () => { const it = P.items.filter(x => f === "all" || x.topics.includes(f));
-    document.getElementById("pf-f").innerHTML = [["all", "Tất cả"], ...Object.entries(P.topics)].map(([k, l]) => `<button data-k="${k}" class="${k === f ? "on" : ""}">${E(l)} <span class="mute">${k === "all" ? P.items.length : P.items.filter(x => x.topics.includes(k)).length}</span></button>`).join("");
-    document.querySelectorAll("#pf-f button").forEach(b => b.onclick = () => { f = b.dataset.k; lim = 20; draw(); });
-    box.innerHTML = it.slice(0, lim).map(x => `<li><span class="score" title="Liên quan ${x.parts.rel}/60 · tính mới văn bản ${x.parts.dyn}/25 · độ mới ${x.parts.rec}/20">${x.score}</span><div>
+   let f = "all", lim = 20, pc = new URLSearchParams(location.search).get("pc"), open = new Set(pc ? [pc] : []); const more = document.getElementById("pf-more");
+   if (pc && !(P.clusters || {})[pc]) pc = null;
+   const row = (x, sub) => `<li class="${sub ? "sub" : ""}"><span class="score" title="Liên quan ${x.parts.rel}/60 · tính mới văn bản ${x.parts.dyn}/25 · độ mới ${x.parts.rec}/20">${x.score}</span><div>
      <a href="${E(x.url)}" target="_blank" rel="noopener"><b>${E(x.title)}</b></a>${dd(x) === today ? '<span class="pf-n" title="Đăng hôm nay (giờ VN)">⚡ Mới</span>' : ""}
-     <div class="mt">${x.topics.map(t => `<span class="pill">${E(P.topics[t])}</span>`).join("")} ${E(x.source)} · ${dt(dd(x))}${x.also ? ` <span class="also">· cùng tin: ${x.also.map(a => `<a href="${E(a.url)}" target="_blank" rel="noopener">${E(a.source)}</a>`).join("")}</span>` : ""}</div>
-     <div class="wy"><b>Vì sao quan trọng với Masterise:</b> ${E(x.why)}</div></div></li>`).join("") || '<li class="mute">Không có tin cho chủ đề này.</li>';
-    more.hidden = it.length <= lim; more.onclick = () => { lim += 20; draw(); }; };
-   draw(); });
+     <div class="mt">${sub ? "" : x.topics.map(t => `<span class="pill">${E(P.topics[t])}</span>`).join("")} ${E(x.source)} · ${dt(dd(x))}${x.also ? ` <span class="also">· cùng tin: ${x.also.map(a => `<a href="${E(a.url)}" target="_blank" rel="noopener">${E(a.source)}</a>`).join("")}</span>` : ""}</div>
+     ${sub ? "" : `<div class="wy"><b>Vì sao quan trọng với Masterise:</b> ${E(x.why)}</div>`}`;
+   const draw = () => { const it = P.items.filter(x => (f === "all" || x.topics.includes(f)) && (!pc || x.cluster === pc));
+    const G = []; const gi = {}; it.forEach(x => { const k = x.cluster || x.id; if (!(k in gi)) { gi[k] = G.length; G.push([]); } G[gi[k]].push(x); }); // nhóm theo cụm văn bản/chủ đề, giữ thứ tự điểm
+    document.getElementById("pf-f").innerHTML = [["all", "Tất cả"], ...Object.entries(P.topics)].map(([k, l]) => `<button data-k="${k}" class="${k === f ? "on" : ""}">${E(l)} <span class="mute">${k === "all" ? P.items.length : P.items.filter(x => x.topics.includes(k)).length}</span></button>`).join("");
+    if (pc) document.getElementById("pf-f").insertAdjacentHTML("beforeend", `<button class="on" id="pf-pc" title="Bỏ lọc cụm">Cụm: ${E(P.clusters[pc].label)} (${P.clusters[pc].n}) ✕</button>`);
+    document.querySelectorAll("#pf-f button[data-k]").forEach(b => b.onclick = () => { f = b.dataset.k; lim = 20; draw(); });
+    const xb = document.getElementById("pf-pc"); if (xb) xb.onclick = () => { pc = null; history.replaceState(null, "", location.pathname + "#chinh-sach"); draw(); };
+    box.innerHTML = G.slice(0, lim).map(g => { const k = g[0].cluster, op = open.has(k) || !!pc, rest = g.length - 1;
+     return row(g[0], 0) + (rest ? `<div class="gh">🗂️ ${E(P.clusters[k].label)}: +${rest} tin cùng chủ đề <button data-c="${E(k)}">${op ? "thu gọn ▲" : "xem ▼"}</button></div>` : "") + "</div></li>" + (op ? g.slice(1).map(x => row(x, 1) + "</div></li>").join("") : ""); }).join("") || '<li class="mute">Không có tin cho chủ đề này.</li>';
+    box.querySelectorAll(".gh button").forEach(b => b.onclick = () => { const c = b.dataset.c; open.has(c) ? open.delete(c) : open.add(c); draw(); });
+    more.hidden = G.length <= lim; more.onclick = () => { lim += 20; draw(); }; };
+   draw(); if (pc) document.getElementById("chinh-sach").scrollIntoView(); });
 })();
 </script></body></html>

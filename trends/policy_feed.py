@@ -66,6 +66,30 @@ def score(x, now):
     reason = "; ".join(why[:2]) or "Chính sách ngành BĐS/xây dựng"
     if dn: reason += " · " + ", ".join(dn[:2])
     return s, reason, dict(rel=min(rel, 60), dyn=min(dyn, 25), rec=rec)
+LAWS = [("luat dat dai", "Luật Đất đai"), ("luat nha o", "Luật Nhà ở"), ("luat kinh doanh bat dong san", "Luật Kinh doanh BĐS"), ("luat xay dung", "Luật Xây dựng"),
+ ("luat dia chat va khoang san", "Luật Địa chất & Khoáng sản"), ("luat khoang san", "Luật Địa chất & Khoáng sản"), ("luat quy hoach", "Luật Quy hoạch"), ("luat phong chay", "Luật PCCC"),
+ ("luat thue", "Luật Thuế"), ("luat dau thau", "Luật Đấu thầu")]
+def cluster(x):
+    """Cụm = văn bản gốc (tên luật / số nghị định-thông tư) nếu nhận diện được, nếu không = chủ đề chính. Tin cùng cụm = cùng câu chuyện pháp lý."""
+    t = strip(x["title"] + " " + x.get("summary", ""))
+    hits = [(t.find(k), lab) for k, lab in LAWS if has(t, k)]
+    th = next((i for i, (ks, _, _) in enumerate(REL) if i > 0 and any(has(t, k) for k in ks)), None)  # chủ đề con = luật quan hệ đầu tiên khớp
+    x["theme"] = f"{x['topics'][0]}:{th}"
+    if hits: lab = min(hits)[1]; return "law:" + re.sub(r"[^a-z0-9]+", "-", strip(lab)).strip("-"), lab
+    m = re.search(r"(nghi dinh|thong tu|nghi quyet)\s*(?:so\s*)?(\d{1,4}/\d{4}(?:/[a-z\-]+)?)", t)
+    if m: lab = {"nghi dinh": "Nghị định", "thong tu": "Thông tư", "nghi quyet": "Nghị quyết"}[m.group(1)] + " " + m.group(2).upper(); return "doc:" + re.sub(r"[^a-z0-9]+", "-", lab.lower()), lab
+    if th is None: return "topic:" + x["topics"][0], TOPIC[x["topics"][0]][0]
+    return f"theme:{x['topics'][0]}:{th}", REL[th][2].split(" – ")[0]
+def pick_home(items, n=6, floor=40, per_topic=2, min_n=5):
+    """Trang chủ: tối đa 1 tin/cụm, tối đa 2 tin/chủ đề chính, điểm ≥ floor; thiếu thì bù tới min_n (vẫn 1 tin/cụm)."""
+    out, cl, tp = [], set(), {}
+    for relax in (False, True):
+        for x in items:
+            if len(out) >= (n if not relax else min_n): break
+            if x["cluster"] in cl or x["theme"] in cl or x in out: continue  # khác văn bản VÀ khác chủ đề con (vd. giá đất)
+            if not relax and (x["score"] < floor or tp.get(x["topics"][0], 0) >= per_topic): continue
+            out.append(x); cl.update((x["cluster"], x["theme"])); tp[x["topics"][0]] = tp.get(x["topics"][0], 0) + 1
+    return out
 def get(url):
     r = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; MasteriseSCMHub/1.0)"})
     return urllib.request.urlopen(r, timeout=20).read()
@@ -112,9 +136,15 @@ def main():
         if hit is not None: hit.setdefault("also", []).append(dict(source=x["source"], url=x["url"])) if len(hit.get("also", [])) < 4 else None; continue
         x.pop("also", None); seen.append((x, w)); out.append(x)
     keep = out[:300]
+    for x in keep: x["cluster"], x["cluster_label"] = cluster(x)
+    size = {}
+    for x in keep: size[x["cluster"]] = size.get(x["cluster"], 0) + 1
+    home = [dict(id=x["id"], same=size[x["cluster"]] - 1) for x in pick_home(keep)]
+    clusters = {c: dict(label=next(x["cluster_label"] for x in keep if x["cluster"] == c), n=k) for c, k in size.items()}
     json.dump(dict(schema_version=1, updated=now.isoformat(timespec="minutes"), window_days=KEEP_DAYS, topics={k: v[0] for k, v in TOPIC.items()},
                    note="Tin tự động từ RSS/Google News – CHƯA biên tập. Điểm & lý do sinh theo quy tắc từ khóa trong tiêu đề/tóm tắt; luôn đọc văn bản gốc.",
                    scoring="Điểm = Liên quan Masterise (≤60) + Tính mới/động lực văn bản (≤25: hiệu lực, ban hành, dự thảo, sửa đổi, loại văn bản) + Độ mới (≤20, giảm tuyến tính 30 ngày); tối đa 100.",
+                   home=home, clusters=clusters, home_rule="Trang chủ: tối đa 1 tin/cụm văn bản và 1 tin/chủ đề con, 2 tin/chủ đề chính, điểm ≥ 40 (thiếu thì bù tới 5).",
                    sources=used, errors=errors, count=len(keep), items=keep), open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     print(f"policy feed: {len(keep)} items, {len(errors)} errors")
 if __name__ == "__main__": main()
