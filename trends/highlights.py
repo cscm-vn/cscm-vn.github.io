@@ -15,9 +15,21 @@ Tin mới: tin trong feed/market/legal có ngày >= hôm qua (giờ VN) và đi�
 Xếp hạng trong nhóm: biến động giá (theo |Δd|/ngưỡng) trước, sau đó tin (điểm score)."""
 import csv, glob, json, os, re, sys, datetime as dt
 H = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(H); sys.path.insert(0, H)
-from build import classify, TAX, J  # same taxonomy mapping as hub.json
+from build import classify, TAX, J, strip  # same taxonomy mapping as hub.json
 TZ = dt.timezone(dt.timedelta(hours=7))
 NEWS_MIN = 3.5  # điểm "nóng" tối thiểu của tin RSS (feeds.py chấm 0–10); tin market.json (biên tập) luôn tính
+# Tin chỉ tính cho ô nhóm khi tiêu đề (không dấu) chứa từ khóa vật tư/NCC/quy định của CHÍNH nhóm đó; tin BĐS chung bị loại.
+# Nhóm 'tt' (Vĩ mô) giữ tin vĩ mô/thương mại/nhà thầu nhưng tin có từ khóa vật tư được xếp trước.
+KW = dict(
+ xd=r"thep|phoi thep|quang sat|than coc|xi mang|clinker|be tong|cat xay|cat san|da xay|da 1x2|vat lieu xay dung|vlxd|gach (xay|nung|khong nung|aac)|cop pha|van khuon|chong tham|steel|rebar|hrc|iron ore|cement|concrete|sand|aggregate|hoa phat|hoa sen|vicem|formosa",
+ mep=r"gia dong|dong lme|dong do|quang dong|cap dong|nhom|cap dien|day dien|dieu hoa|hvac|chiller|thang may|may phat|ong nuoc|ong nhua|pvc|hdpe|ppr|tu dien|bien ap|pccc|chua chay|dien mat troi|copper|alumin|cable|elevator|transformer|cadivi|daikin|schneider",
+ ht=r"gach (op|lat|men|granite|porcelain)|ceramic|thiet bi ve sinh|tbvs|\\bson (nuoc|dau|tuong|chong|phu|epoxy|noi that|ngoai that)|\\bpaint|go cong nghiep|san go|san go|vach thach cao|thach cao|gypsum|da op|da granite|da marble|tu bep|bep tu|viglacera|inax|toto|dong tam|prime|thach ban|jotun|dulux|kova",
+ md=r"kinh|nhom dinh hinh|nhom kinh|cua nhom|mat dung|facade|glass|curtain wall|alu|xingfa|austdoor|eurowindow",
+ elv=r"smart home|nha thong minh|camera|an ninh|bms|elv|iot|khoa dien tu|bkav|lumi|hikvision",
+ cq=r"canh quan|cay xanh|cay trong|vuon uom|co nhan tao|da canh quan|da tu nhien|ho boi|tieu canh|landscape|cong vien",
+ esg=r"xanh|carbon|cbam|leed|edge|lotus|phat thai|net zero|tai che|nang luong tai tao|esg",
+ tt=r"\\b(thep|xi mang|vat lieu|vlxd|thue|chong ban pha gia|phong ve thuong mai|ty gia|xang dau|nha thau|tong thau|coteccons|hoa binh|ricons|xuat khau|nhap khau|lai suat|lam phat|cpi|fdi)\\b|gia (vat lieu|thep|xang|dien|nhien lieu)")
+EXCL = r"can ho|khu do thi|huy dong von|chung cu|biet thu|bat dong san|bds|nha o|du an .*(mo ban|ra mat)|gia dat|condotel|tham quan nha mau|luat dat dai"
 TH = dict(world=2.0, gold=2.0, fx=0.5, vn=1.0)
 LAB = dict(world="hàng hóa thế giới", gold="kim loại quý", fx="tỷ giá", vn="vật liệu trong nước")
 def kind(iid, meta):
@@ -58,6 +70,11 @@ def main(today=None):
     since = (today - dt.timedelta(days=1)).isoformat(); seen = set()
     def add_news(g, x, title, url, date, score, src):
         if g not in G or (score or 0) < NEWS_MIN or not title or title.lower() in seen: return
+        t = strip(title); m = re.search(KW[g], t)
+        if g != "tt" and (not m or re.search(EXCL, t)): return
+        mat = re.search("|".join(v for k, v in KW.items() if k not in ("tt", "esg")), t)
+        if g == "tt" and (re.search(EXCL, t) and not mat or not m and not mat): return
+        score = (score or 0) + (3 if (mat and not re.search(EXCL, t)) else 0)  # tin có từ khóa vật tư xếp trước
         seen.add(title.lower()); G[g]["news"].append(dict(title=title, url=url, date=date, score=score or 0, source=src))
     for x in J(os.path.join(H, "data/market.json"), {"items": []})["items"]:  # curated market notes first
         if (x.get("date") or "") >= since:
