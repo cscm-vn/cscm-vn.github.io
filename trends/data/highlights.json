@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-23T08:45+07:00",
+ "built": "2026-10-23T09:22+07:00",
  "today": "2026-10-23",
  "news_since": "2026-10-22",
  "thresholds": {
@@ -22,8 +22,8 @@
   }
  },
  "top": [
-  "mep",
   "tt",
+  "mep",
   "xd"
  ],
  "groups": [
@@ -74,6 +74,20 @@
    "icon": "⚡",
    "prices": [
     {
+     "id": "yf_aluminium",
+     "name": "Nhôm (COMEX Aluminum)",
+     "region": "",
+     "d1": -3.19,
+     "date": "2026-10-22",
+     "prev_date": "2026-10-21",
+     "price": 3076.25,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_aluminium"
+    },
+    {
      "id": "lme_tin",
      "name": "Thiếc LME",
      "region": "",
@@ -86,20 +100,6 @@
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
      "url": "mat-hang.html?id=lme_tin"
-    },
-    {
-     "id": "yf_aluminium",
-     "name": "Nhôm (COMEX Aluminum)",
-     "region": "",
-     "d1": -2.71,
-     "date": "2026-10-22",
-     "prev_date": "2026-10-21",
-     "price": 3091.5,
-     "unit": "USD/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=yf_aluminium"
     }
    ],
    "news": [
@@ -127,7 +127,7 @@
    ],
    "n_news": 4,
    "n_moves": 2,
-   "rank": 3.92,
+   "rank": 4.16,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -194,15 +194,29 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -3.7,
+     "d1": -4.46,
      "date": "2026-10-22",
      "prev_date": "2026-10-21",
-     "price": 54.38999938964844,
+     "price": 53.959999084472656,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
      "tax": "tt.ty-gia",
      "url": "mat-hang.html?id=yf_silver"
+    },
+    {
+     "id": "yf_gold",
+     "name": "Vàng (COMEX Gold)",
+     "region": "",
+     "d1": -2.25,
+     "date": "2026-10-22",
+     "prev_date": "2026-10-21",
+     "price": 4017.89990234375,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=yf_gold"
     }
    ],
    "news": [
@@ -229,8 +243,8 @@
     }
    ],
    "n_news": 6,
-   "n_moves": 1,
-   "rank": 3.65,
+   "n_moves": 2,
+   "rank": 5.15,
    "link": "danh-muc.html?c=tt"
   }
  ]
