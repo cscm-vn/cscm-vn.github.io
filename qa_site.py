@@ -31,6 +31,18 @@ with sync_playwright() as p:
             for k in ONCE:
                 if k.startswith("views") and r["c"][k] == 0: continue  # widget hides itself if counter API unreachable
                 if r["c"][k] != 1: fails.append((w, f, f"{k} x{r['c'][k]}"))
+            if f == "index.html":  # điểm nóng nhóm: mỗi ô tối đa 1 khối .hl, khớp highlights.json, không tràn ô
+                hq = pg.evaluate("""async () => { const t = [...document.querySelectorAll('#tiles .tile.hlt')]; let j = null;
+                  try { j = await (await fetch('data/highlights.json', {cache: 'no-store'})).json(); } catch (e) {}
+                  const want = j ? j.groups.filter(g => g.prices.length || g.news.length).map(g => g.id).sort() : null;
+                  return {n: t.length, multi: t.filter(x => x.querySelectorAll('.hl').length > 1).map(x => x.dataset.g),
+                    have: t.filter(x => x.querySelector('.hl')).map(x => x.dataset.g).sort(), want,
+                    ov: t.filter(x => { const h = x.querySelector('.hl'); return h && (h.getBoundingClientRect().right > x.getBoundingClientRect().right + 1 || h.scrollWidth > h.clientWidth + 1); }).map(x => x.dataset.g)}; }""")
+                if hq["n"] != 8: fails.append((w, f, f"category tiles x{hq['n']} (expect 8)"))
+                if hq["want"] is None: fails.append((w, f, "highlights.json missing"))
+                elif hq["have"] != hq["want"]: fails.append((w, f, f"highlights shown {hq['have']} != data {hq['want']}"))
+                if hq["multi"]: fails.append((w, f, f"highlight block duplicated in {hq['multi']}"))
+                if hq["ov"]: fails.append((w, f, f"highlight overflow in {hq['ov']}"))
             if r["c"]["footer"] > 1: fails.append((w, f, f"footer x{r['c']['footer']}"))
             if r["ov"] > 0: fails.append((w, f, f"overflow {r['ov']}px"))
             if r["moj"]: fails.append((w, f, f"mojibake {r['moj']}"))

@@ -6,7 +6,15 @@
 .dcw .c span{display:block;font-size:12px;color:var(--mute)}.dcw .c b{font-size:22px;font-variant-numeric:tabular-nums}.dcw .c small{color:var(--mute);font-size:12px}
 .dcw ul{margin:8px 0 0;padding-left:18px;font-size:13.5px}.dcw li{margin:2px 0}
 @media (max-width:700px){.dcw .g{grid-template-columns:1fr 1fr}.dcw .c b{font-size:18px}}
-</style><style>@media (min-width:901px){.hero #kpi.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}</style></head>
+</style><style>@media (min-width:901px){.hero #kpi.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}</style><style>/* Điểm nóng theo nhóm (trends/highlights.py -> data/highlights.json) */
+.tile.hlt{display:flex;flex-direction:column;padding:0;min-width:0;overflow:hidden}.tile.hlt>a.tl{display:block;padding:12px 12px 8px;color:var(--ink);flex:1}.tile.hlt>a.tl:hover{text-decoration:none}
+.tile .hl{margin:0 10px 10px;padding:6px 8px;border-radius:10px;background:#fbf6ea;border:1px solid #ecdcb4;font-size:12.5px;line-height:1.4;min-width:0}
+.tile .hl .bd{display:inline-block;font-size:11px;font-weight:700;color:#8a5a00;letter-spacing:.02em;margin-bottom:2px}
+.tile .hl a{display:block;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tile .hl a:hover{color:var(--pri)}
+.newstrip{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:4px 0 10px;padding:8px 12px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:var(--r);font-size:13.5px}
+.newstrip b{font-family:Lora,Georgia,serif}.newstrip a{color:var(--ink);min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:560px){.newstrip{flex-direction:column;gap:3px}.newstrip a{display:block}}
+</style></head>
 <body class="hub" data-page="home" data-hub-page><div id="hubnav"></div>
 <main class="wrap" id="main">
  <section class="hero"><div class="hero-in">
@@ -17,7 +25,7 @@
   <div class="hstrip" id="hstrip"></div>
  </div></section>
  <section id="dcw" class="dcw" hidden></section>
- <h2>Danh mục mua sắm</h2><div class="grid g4" id="tiles"></div>
+ <h2>Danh mục mua sắm</h2><div class="newstrip" id="hlstrip" hidden></div><div class="grid g4" id="tiles"></div>
  <div class="grid g2" style="margin-top:6px">
   <section><h2>🔥 Top 5 xu hướng & cơ hội <a class="small" href="xu-huong.html">xem tất cả →</a></h2><div id="top5" class="grid"></div></section>
   <section><h2>📈 Biến động giá đáng chú ý <a class="small" href="gia.html">bảng giá →</a></h2>
@@ -83,8 +91,18 @@
  const cnt = {}; const add = (k, f) => { cnt[k] ||= {p: 0, t: 0, m: 0}; cnt[k][f]++; };
  h.items.forEach(x => add(t.byId[x.tax].parent.id, "p")); tr.items.forEach(x => add(x.l1, "t"));
  mk.items.forEach(x => (x.tax || []).slice(0, 1).forEach(id => add(t.byId[id].parent.id, "m")));
- document.getElementById("tiles").innerHTML = t.tree.map(n => { const c = cnt[n.id] || {p: 0, t: 0, m: 0}; return `<a class="tile" href="danh-muc.html?c=${n.id}"><span class="ic">${n.icon}</span><b>${E(n.name)}</b>
-  <span class="small">${c.p} mã giá · ${c.t} xu hướng · ${c.m} tin</span><div class="small" style="margin-top:4px">${n.children.slice(0, 4).map(x => E(x.name)).join(" · ")}${n.children.length > 4 ? " …" : ""}</div></a>`; }).join("");
+ document.getElementById("tiles").innerHTML = t.tree.map(n => { const c = cnt[n.id] || {p: 0, t: 0, m: 0}; return `<div class="tile hlt" data-g="${n.id}"><a class="tl" href="danh-muc.html?c=${n.id}"><span class="ic">${n.icon}</span><b>${E(n.name)}</b>
+  <span class="small">${c.p} mã giá · ${c.t} xu hướng · ${c.m} tin</span><div class="small" style="margin-top:4px">${n.children.slice(0, 4).map(x => E(x.name)).join(" · ")}${n.children.length > 4 ? " …" : ""}</div></a></div>`; }).join("");
+ HUB.get("highlights.json").then(hl => { if (!hl || !hl.groups) return; // điểm nóng: chỉ hiện khi có biến động vượt ngưỡng / tin mới
+  const fp = v => (v > 0 ? "▲ +" : "▼ −") + Math.abs(v).toFixed(1).replace(".", ",") + "%";
+  const lines = g => [...g.prices.slice(0, 2).map(r => `<a href="${E(r.url)}" title="${E(r.name)} ${r.region ? "· " + E(r.region) : ""}: ${fp(r.d1)} phiên ${HUB.date(r.date)} so với ${HUB.date(r.prev_date)} (ngưỡng ±${String(r.threshold).replace(".", ",")}%)"><span class="${r.d1 > 0 ? "up" : "down"}">${fp(r.d1)}</span> ${E(r.name)}${r.region ? " · " + E(r.region) : ""}</a>`),
+   ...g.news.slice(0, g.prices.length ? 1 : 2).map(x => `<a href="${E(x.url)}"${/^https?:/.test(x.url) ? ' target="_blank" rel="noopener"' : ""} title="${E(x.title)} – ${E(x.source || "")}">📰 ${E(x.title)}</a>`)].slice(0, 2).join("");
+  const badge = g => [g.n_moves ? `${g.n_moves} biến động giá` : "", g.n_news ? `${g.n_news} tin mới` : ""].filter(Boolean).join(" · ");
+  hl.groups.forEach(g => { if (!g.prices.length && !g.news.length) return; const el = document.querySelector(`.tile.hlt[data-g="${g.id}"]`); if (!el) return;
+   el.insertAdjacentHTML("beforeend", `<div class="hl"><span class="bd">🔥 ${badge(g)}</span>${lines(g)}</div>`); });
+  const top = (hl.top || []).map(id => hl.groups.find(g => g.id === id)).filter(Boolean); const st = document.getElementById("hlstrip");
+  if (top.length) { st.innerHTML = `<b>Hôm nay có gì mới</b>` + top.map(g => { const r = g.prices[0], x = g.news[0];
+    return `<a href="${g.link}">${g.icon} ${E(g.name)}: ${r ? `<span class="${r.d1 > 0 ? "up" : "down"}">${fp(r.d1)}</span> ${E(r.name)}` : `${g.n_news} tin mới`}</a>`; }).join(""); st.hidden = false; } });
  document.getElementById("top5").innerHTML = tr.items.slice(0, 5).map((x, i) => `<div class="card"><div class="trend"><span class="score" title="Điểm tổng hợp /100">${Math.round(x.score)}</span>
   <div><a href="xu-huong.html?id=${x.id}"><b>${i + 1}. ${E(x.title)}</b></a><div>${HUB.catLink(x.tax[0], x.category).replace("<a", '<a class="pill cat"')} <span class="pill">${E(x.region)}</span> <span class="small mute">${HUB.date(x.date)}</span></div>
   <div class="small" style="margin-top:4px">${E(x.why)}</div></div></div></div>`).join("");
