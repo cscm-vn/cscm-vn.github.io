@@ -91,6 +91,25 @@ def ncc_checks(pg, w, f, fails):
     # so sánh
     ask("coteccons"); pg.select_option("#ncc-cmp-sel", index=1); pg.wait_for_timeout(400)
     if not pg.locator("#ncc-out .ncc-cmp ~ .tw table").count(): F("so sánh nhanh không hiện bảng")
+# ---- Trang chủ: box Nhà thầu & chủ đầu tư – số tin lấp đủ chỗ trống, không tràn, không đổi chiều cao hàng ----
+def home_news_checks(pg, w, f, fails):
+    def F(m): fails.append((w, f, "orgbox: " + m))
+    J = """() => { const ul = document.getElementById('orgl'), sec = ul.closest('section'), row = sec.parentElement, sib = [...row.children].find(z => z !== sec), sb = sec.getBoundingClientRect(), ub = ul.getBoundingClientRect();
+      const two = getComputedStyle(row).gridTemplateColumns.trim().split(/\\s+/).length > 1, sibNat = Math.max(...[...sib.children].map(c => c.getBoundingClientRect().bottom)) - sb.top, ids = [...ul.querySelectorAll('li a')].map(a => a.href);
+      return {n: ul.querySelectorAll('li').length, two, row: row.getBoundingClientRect().height, sibNat, ulBot: ub.bottom - sb.top, box: sb.height, gap: sb.bottom - ub.bottom, dup: ids.length - new Set(ids).size, ov: ul.scrollWidth - ul.clientWidth, empty: !!ul.querySelector('li.mute')}; }"""
+    for k in ("contractor", "developer", "contractor"):
+        pg.click(f'#orgseg button[data-k={k}]'); pg.wait_for_timeout(300); r = pg.evaluate(J)
+        if r["empty"]: F(f"{k}: danh sách tin trống"); continue
+        if r["dup"]: F(f"{k}: tin trùng link x{r['dup']}")
+        if r["ov"] > 1: F(f"{k}: danh sách tràn ngang {r['ov']}px")
+        if r["two"]:
+            if r["ulBot"] > r["sibNat"] + 1: F(f"{k}: danh sách ({r['ulBot']:.0f}px) vượt đáy cột bên cạnh ({r['sibNat']:.0f}px) – sẽ làm cao hàng")
+            if abs(r["row"] - r["box"]) > 1 or r["row"] > r["sibNat"] + 2: F(f"{k}: chiều cao hàng {r['row']:.0f} ≠ chiều cao cột bên cạnh {r['sibNat']:.0f}")
+            if r["gap"] > 110: F(f"{k}: còn trống {r['gap']:.0f}px dưới danh sách (n={r['n']})")
+            if r["n"] < 12: F(f"{k}: chỉ {r['n']} tin ở 2 cột (cần ≥12 khi đủ dữ liệu)")
+        elif r["n"] != 8: F(f"{k}: 1 cột phải 8 tin, thực tế {r['n']}")
+    pg.click('#orgseg button[data-k=contractor]'); pg.wait_for_timeout(200)
+
 # ---- Trang chủ: tab "Tra cứu nhà cung cấp" trong box Nhà thầu & chủ đầu tư (#orgseg + #ncc) ----
 def home_ncc_checks(pg, w, f, fails):
     def F(m): fails.append((w, f, "ncc-home: " + m))
@@ -248,7 +267,7 @@ with sync_playwright() as p:
             if f == "nha-thau.html" and w in (390, 1366):
                 ncc_checks(pg, w, f, fails); pg.wait_for_timeout(300)
             if f == "index.html":
-                home_ncc_checks(pg, w, f, fails); pg.wait_for_timeout(300)
+                home_news_checks(pg, w, f, fails); home_ncc_checks(pg, w, f, fails); pg.wait_for_timeout(300)
             if r["c"]["footer"] > 1: fails.append((w, f, f"footer x{r['c']['footer']}"))
             if r["ov"] > 0: fails.append((w, f, f"overflow {r['ov']}px"))
             if r["moj"]: fails.append((w, f, f"mojibake {r['moj']}"))
