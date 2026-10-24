@@ -137,7 +137,8 @@ def build():
     units = J(UNITS_F)["units"]; fin = J(FIN_F); reg = J(REG_F, {"records": {}})["records"]; orgs = {o["name"]: o for o in J(os.path.join(DATA, "orgs.json"))["orgs"]}
     out_units = []
     for u in units:
-        o = orgs[u["org"]]; r = reg.get(u["mst"]); fl = []
+        o = orgs.get(u["org"]) or dict(name=u["org"], group=u.get("group"), website=u.get("website"))  # đơn vị mở rộng: không có trong orgs.json
+        r = reg.get(u["mst"]); fl = []
         if not r: raise SystemExit(f"Thiếu bản ghi đăng ký cho MST {u['mst']} ({u['org']}) – chạy --refresh-registry")
         status_ok = (r["status"] or "").strip().lower() == "nnt đang hoạt động"
         if not status_ok: fl.append(dict(sev="bad" if "không hoạt động" in r["status"].lower() or "ngừng" in r["status"].lower() or "chấm dứt" in r["status"].lower() else "warn", t="Tình trạng thuế khác 'đang hoạt động'", d=f"Cơ quan thuế ghi: “{r['status']}”. Cần hỏi lại đơn vị trước khi ký/ứng tiền."))
@@ -153,8 +154,10 @@ def build():
         for k in ("short",): al.add(strip(o.get(k) or ""))
         al |= {strip(b) for b in o.get("brands", [])}; al |= {strip(r["legal"]), strip(r.get("intl") or ""), strip(r.get("short") or "")}
         if f: al.add(strip(f["ticker"]))
+        if u.get("ticker") and not f: al.add(strip(u["ticker"]))
+        al.add(strip(o.get("group") or ""))  # tìm theo nhóm/hạng mục (vd. "thang may", "son", "hvac")
         out_units.append(dict(id=re.sub(r"[^a-z0-9]+", "-", strip(u["org"])).strip("-"), org=u["org"], name=r["legal"], short=u["org"], group=o.get("group"), website=o.get("website") if (o.get("website") or "").startswith("http") else None,
-            mst=u["mst"], aliases=sorted(a for a in al if a), listed=bool(f), ticker=f["ticker"] if f else None, exchange=f["exchange"] if f else None, note=u.get("note"),
+            mst=u["mst"], aliases=sorted(a for a in al if a), listed=bool(f), ticker=f["ticker"] if f else u.get("ticker"), exchange=f["exchange"] if f else u.get("exchange"), note=u.get("note"),
             hub_note=o.get("note"), reg=dict(legal=r["legal"], intl=r.get("intl"), address=r["address"], status=r["status"], active=status_ok, fetched=r["fetched"], upstream_updated=r.get("upstream_updated"),
                 source="VietQR API (dữ liệu tổng hợp từ Tổng cục Thuế)", url="https://api.vietqr.io/v2/business/" + u["mst"]), flags=fl, fin=f))
     doc = dict(schema=1, generated=TODAY.isoformat(), stale_days=STALE_DAYS, old_period_days=OLD_PERIOD_DAYS, rules=RULES, bands=BANDS, units=out_units,

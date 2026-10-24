@@ -1,48 +1,1316 @@
 {
- "_doc": "Danh sách đơn vị cho bảng 'Tra cứu nhà cung cấp' (nha-thau.html). org = tên đơn vị trong trends/data/orgs.json (dùng để lọc tin feed). mst = mã số thuế do ta chọn và ĐÃ đối chiếu tên pháp nhân với bản ghi thuế (VietQR/Tổng cục Thuế). aliases = tên gọi tắt/thương hiệu để tìm kiếm. fin = mã chứng khoán trong suppliers_financials.json. Sửa tên pháp nhân sai CHỈ ở đây/registry, KHÔNG sửa orgs.json.",
+ "_doc": "Danh sách đơn vị cho bảng 'Tra cứu nhà cung cấp' (nha-thau.html). org = tên đơn vị trong trends/data/orgs.json (dùng để lọc tin feed). mst = mã số thuế do ta chọn và ĐÃ đối chiếu tên pháp nhân với bản ghi thuế (VietQR/Tổng cục Thuế). aliases = tên gọi tắt/thương hiệu để tìm kiếm. fin = mã chứng khoán trong suppliers_financials.json. Sửa tên pháp nhân sai CHỈ ở đây/registry, KHÔNG sửa orgs.json. | Đơn vị mở rộng (không có trong orgs.json): có thêm group, website (chỉ giữ link đã mở được), ticker/exchange (niêm yết nhưng chưa có BCTC đã kiểm chứng → fin vắng).",
  "units": [
-  {"org":"Coteccons","mst":"0303443233","aliases":["cotecon","ctd","coteccons"],"fin":"CTD"},
-  {"org":"Hòa Phát","mst":"0900189284","aliases":["hpg","hoa phat","hoaphat","tap doan hoa phat"],"fin":"HPG"},
-  {"org":"Hòa Bình","mst":"0302158498","aliases":["hbc","hoa binh","hbcg","tap doan xay dung hoa binh"],"fin":"HBC"},
-  {"org":"Vinaconex","mst":"0100105616","aliases":["vcg","vinaconex"],"fin":"VCG"},
-  {"org":"Searefico","mst":"0301825452","aliases":["srf","searefico"],"fin":"SRF"},
-  {"org":"CONINCO","mst":"0100106169","aliases":["cnn","coninco"],"fin":"CNN"},
-  {"org":"Newtecons","mst":"0303103212","aliases":["ntc","newtecons"]},
-  {"org":"Ricons","mst":"0303527596","aliases":["ricons"],"name_unconfirmed":true},
-  {"org":"Unicons","mst":"0304472276","aliases":["unicons"],"name_unconfirmed":true,"note":"Công ty con của Coteccons (cùng địa chỉ trụ sở 236/6 Điện Biên Phủ). Chưa niêm yết, không công bố BCTC riêng."},
-  {"org":"Hawee","mst":"0101466566","aliases":["hawee","hawee co dien"]},
-  {"org":"Sigma","mst":"0101600518","aliases":["sigma","ky thuat sigma"]},
-  {"org":"CSCEC Vietnam","mst":"0301218401","aliases":["cscec","china state construction","cscec sea","trung quoc dong nam a"]},
-  {"org":"Gold Mantis","mst":"0314412406","aliases":["gold mantis","goldmantis"],"name_unconfirmed":true,"note":"Hub chưa ghi tên pháp nhân. Có thêm bản ghi 'Gold Mantis (NTNN)' MST 0319694095 (hoạt động từ 28/08/2026 theo một nguồn tổng hợp) – chưa kiểm tra."},
-  {"org":"TTT Corp","mst":"0317206507","aliases":["ttt","ttt corp","ttt me","ky thuat co dien ttt"],"name_unconfirmed":true},
-  {"org":"DELTA","mst":"0100512717","aliases":["delta","delta group"]},
-  {"org":"REE M&E","mst":"0302660700","aliases":["ree","ree me","r.e.e","ree m&e"],"name_unconfirmed":true,"note":"REE M&E là công ty con (90,91%) của REE Corp (niêm yết); bản thân REE M&E không niêm yết nên không có BCTC công khai ở đây."},
-  {"org":"SOL E&C","mst":"0313541575","aliases":["sol","sol e&c","sol ec"]},
-  {"org":"CENTRAL","mst":"0314476689","aliases":["central","central cons"]},
-  {"org":"Phước Thành","mst":"0303615482","aliases":["phuoc thanh"]},
-  {"org":"ECOBA","mst":"0104415496","aliases":["ecoba"]},
-  {"org":"Woodsland","mst":"2500214518","aliases":["woodsland","dau tu woodsland"]},
-  {"org":"Phương Trung","mst":"0101535971","aliases":["phuong trung"]},
-  {"org":"NAMIN (DURAVIT)","mst":"0314402341","aliases":["namin","duravit","nam nam"],"note":"Website duravit.vn là của thương hiệu Duravit; nhà phân phối theo bản ghi thuế là CTCP NAMIN. Một MST in trên website Namin thuộc công ty khác – ta dùng MST khớp tên và địa chỉ trong bản ghi thuế."},
-  {"org":"LIXIL (GROHE)","mst":"0100113381","aliases":["lixil","grohe","lixil viet nam"]},
-  {"org":"KB HOME (MOEN)","mst":"0315758245","aliases":["kb home","kbhome","moen"]},
-  {"org":"Häfele","mst":"0305067898","aliases":["hafele","haefele"]},
-  {"org":"Tân Phát (cơ điện lạnh)","mst":"0106324195","aliases":["tan phat","tan phat co dien lanh"]},
-  {"org":"THIBIDI","mst":"3600253826","aliases":["thibidi","thiet bi dien"]},
-  {"org":"Thành An (KT&TM)","mst":"0106655662","aliases":["thanh an","thanh an kt tm"]},
-  {"org":"DHL (Công nghệ)","mst":"0106355122","aliases":["dhl","dhl cong nghe"],"note":"Không phải DHL chuyển phát."},
-  {"org":"Picenza","mst":"0107695185","aliases":["picenza"]},
-  {"org":"INNO","mst":"0102998556","aliases":["inno"]},
-  {"org":"Kiến Trúc Việt","mst":"0101483811","aliases":["kien truc viet"]},
-  {"org":"Cường Lâm","mst":"3700152194","aliases":["cuong lam"]},
-  {"org":"Terracons","mst":"0303741913","aliases":["terracons"],"note":"Không nhầm với 'CÔNG TY TNHH ĐẦU TƯ VÀ XÂY DỰNG TERRA' (MST 0313545202, tình trạng thuế: không hoạt động tại địa chỉ đã đăng ký)."},
-  {"org":"Duy Hòa Phát","mst":"0309137497","aliases":["duy hoa phat","dhp"]},
-  {"org":"Ferroli","mst":"0500579201","aliases":["ferroli"]},
-  {"org":"Minh Anh (VLXD)","mst":"0103990020","aliases":["minh anh","minh anh vlxd"]},
-  {"org":"Schneider Electric","mst":"3700228661","aliases":["schneider","schneider electric"]},
-  {"org":"Artelia","mst":"0305343837","aliases":["artelia"]},
-  {"org":"HanmiGlobal","mst":"0310320754","aliases":["hanmi","hanmiglobal"]},
-  {"org":"CORE Asia","mst":"0313441605","aliases":["core asia","core"]},
-  {"org":"Apave","mst":"0100776237","aliases":["apave"]}
+  {
+   "org": "Coteccons",
+   "mst": "0303443233",
+   "aliases": [
+    "cotecon",
+    "ctd",
+    "coteccons"
+   ],
+   "fin": "CTD"
+  },
+  {
+   "org": "Hòa Phát",
+   "mst": "0900189284",
+   "aliases": [
+    "hpg",
+    "hoa phat",
+    "hoaphat",
+    "tap doan hoa phat"
+   ],
+   "fin": "HPG"
+  },
+  {
+   "org": "Hòa Bình",
+   "mst": "0302158498",
+   "aliases": [
+    "hbc",
+    "hoa binh",
+    "hbcg",
+    "tap doan xay dung hoa binh"
+   ],
+   "fin": "HBC"
+  },
+  {
+   "org": "Vinaconex",
+   "mst": "0100105616",
+   "aliases": [
+    "vcg",
+    "vinaconex"
+   ],
+   "fin": "VCG"
+  },
+  {
+   "org": "Searefico",
+   "mst": "0301825452",
+   "aliases": [
+    "srf",
+    "searefico"
+   ],
+   "fin": "SRF"
+  },
+  {
+   "org": "CONINCO",
+   "mst": "0100106169",
+   "aliases": [
+    "cnn",
+    "coninco"
+   ],
+   "fin": "CNN"
+  },
+  {
+   "org": "Newtecons",
+   "mst": "0303103212",
+   "aliases": [
+    "ntc",
+    "newtecons"
+   ]
+  },
+  {
+   "org": "Ricons",
+   "mst": "0303527596",
+   "aliases": [
+    "ricons"
+   ],
+   "name_unconfirmed": true
+  },
+  {
+   "org": "Unicons",
+   "mst": "0304472276",
+   "aliases": [
+    "unicons"
+   ],
+   "name_unconfirmed": true,
+   "note": "Công ty con của Coteccons (cùng địa chỉ trụ sở 236/6 Điện Biên Phủ). Chưa niêm yết, không công bố BCTC riêng."
+  },
+  {
+   "org": "Hawee",
+   "mst": "0101466566",
+   "aliases": [
+    "hawee",
+    "hawee co dien"
+   ]
+  },
+  {
+   "org": "Sigma",
+   "mst": "0101600518",
+   "aliases": [
+    "sigma",
+    "ky thuat sigma"
+   ]
+  },
+  {
+   "org": "CSCEC Vietnam",
+   "mst": "0301218401",
+   "aliases": [
+    "cscec",
+    "china state construction",
+    "cscec sea",
+    "trung quoc dong nam a"
+   ]
+  },
+  {
+   "org": "Gold Mantis",
+   "mst": "0314412406",
+   "aliases": [
+    "gold mantis",
+    "goldmantis"
+   ],
+   "name_unconfirmed": true,
+   "note": "Hub chưa ghi tên pháp nhân. Có thêm bản ghi 'Gold Mantis (NTNN)' MST 0319694095 (hoạt động từ 28/08/2026 theo một nguồn tổng hợp) – chưa kiểm tra."
+  },
+  {
+   "org": "TTT Corp",
+   "mst": "0317206507",
+   "aliases": [
+    "ttt",
+    "ttt corp",
+    "ttt me",
+    "ky thuat co dien ttt"
+   ],
+   "name_unconfirmed": true
+  },
+  {
+   "org": "DELTA",
+   "mst": "0100512717",
+   "aliases": [
+    "delta",
+    "delta group"
+   ]
+  },
+  {
+   "org": "REE M&E",
+   "mst": "0302660700",
+   "aliases": [
+    "ree",
+    "ree me",
+    "r.e.e",
+    "ree m&e"
+   ],
+   "name_unconfirmed": true,
+   "note": "REE M&E là công ty con (90,91%) của REE Corp (niêm yết); bản thân REE M&E không niêm yết nên không có BCTC công khai ở đây."
+  },
+  {
+   "org": "SOL E&C",
+   "mst": "0313541575",
+   "aliases": [
+    "sol",
+    "sol e&c",
+    "sol ec"
+   ]
+  },
+  {
+   "org": "CENTRAL",
+   "mst": "0314476689",
+   "aliases": [
+    "central",
+    "central cons"
+   ]
+  },
+  {
+   "org": "Phước Thành",
+   "mst": "0303615482",
+   "aliases": [
+    "phuoc thanh"
+   ]
+  },
+  {
+   "org": "ECOBA",
+   "mst": "0104415496",
+   "aliases": [
+    "ecoba"
+   ]
+  },
+  {
+   "org": "Woodsland",
+   "mst": "2500214518",
+   "aliases": [
+    "woodsland",
+    "dau tu woodsland"
+   ]
+  },
+  {
+   "org": "Phương Trung",
+   "mst": "0101535971",
+   "aliases": [
+    "phuong trung",
+    "newsky",
+    "phuong trung newsky"
+   ]
+  },
+  {
+   "org": "NAMIN (DURAVIT)",
+   "mst": "0314402341",
+   "aliases": [
+    "namin",
+    "duravit",
+    "nam nam"
+   ],
+   "note": "Website duravit.vn là của thương hiệu Duravit; nhà phân phối theo bản ghi thuế là CTCP NAMIN. Một MST in trên website Namin thuộc công ty khác – ta dùng MST khớp tên và địa chỉ trong bản ghi thuế."
+  },
+  {
+   "org": "LIXIL (GROHE)",
+   "mst": "0100113381",
+   "aliases": [
+    "lixil",
+    "grohe",
+    "lixil viet nam"
+   ]
+  },
+  {
+   "org": "KB HOME (MOEN)",
+   "mst": "0315758245",
+   "aliases": [
+    "kb home",
+    "kbhome",
+    "moen"
+   ]
+  },
+  {
+   "org": "Häfele",
+   "mst": "0305067898",
+   "aliases": [
+    "hafele",
+    "haefele"
+   ]
+  },
+  {
+   "org": "Tân Phát (cơ điện lạnh)",
+   "mst": "0106324195",
+   "aliases": [
+    "tan phat",
+    "tan phat co dien lanh"
+   ]
+  },
+  {
+   "org": "THIBIDI",
+   "mst": "3600253826",
+   "aliases": [
+    "thibidi",
+    "thiet bi dien"
+   ]
+  },
+  {
+   "org": "Thành An (KT&TM)",
+   "mst": "0106655662",
+   "aliases": [
+    "thanh an",
+    "thanh an kt tm"
+   ]
+  },
+  {
+   "org": "DHL (Công nghệ)",
+   "mst": "0106355122",
+   "aliases": [
+    "dhl",
+    "dhl cong nghe"
+   ],
+   "note": "Không phải DHL chuyển phát."
+  },
+  {
+   "org": "Picenza",
+   "mst": "0107695185",
+   "aliases": [
+    "picenza"
+   ]
+  },
+  {
+   "org": "INNO",
+   "mst": "0102998556",
+   "aliases": [
+    "inno"
+   ]
+  },
+  {
+   "org": "Kiến Trúc Việt",
+   "mst": "0101483811",
+   "aliases": [
+    "kien truc viet"
+   ]
+  },
+  {
+   "org": "Cường Lâm",
+   "mst": "3700152194",
+   "aliases": [
+    "cuong lam"
+   ]
+  },
+  {
+   "org": "Terracons",
+   "mst": "0303741913",
+   "aliases": [
+    "terracons"
+   ],
+   "note": "Không nhầm với 'CÔNG TY TNHH ĐẦU TƯ VÀ XÂY DỰNG TERRA' (MST 0313545202, tình trạng thuế: không hoạt động tại địa chỉ đã đăng ký)."
+  },
+  {
+   "org": "Duy Hòa Phát",
+   "mst": "0309137497",
+   "aliases": [
+    "duy hoa phat",
+    "dhp"
+   ]
+  },
+  {
+   "org": "Ferroli",
+   "mst": "0500579201",
+   "aliases": [
+    "ferroli"
+   ]
+  },
+  {
+   "org": "Minh Anh (VLXD)",
+   "mst": "0103990020",
+   "aliases": [
+    "minh anh",
+    "minh anh vlxd"
+   ]
+  },
+  {
+   "org": "Schneider Electric",
+   "mst": "3700228661",
+   "aliases": [
+    "schneider",
+    "schneider electric"
+   ]
+  },
+  {
+   "org": "Artelia",
+   "mst": "0305343837",
+   "aliases": [
+    "artelia"
+   ]
+  },
+  {
+   "org": "HanmiGlobal",
+   "mst": "0310320754",
+   "aliases": [
+    "hanmi",
+    "hanmiglobal"
+   ]
+  },
+  {
+   "org": "CORE Asia",
+   "mst": "0313441605",
+   "aliases": [
+    "core asia",
+    "core"
+   ]
+  },
+  {
+   "org": "Apave",
+   "mst": "0100776237",
+   "aliases": [
+    "apave"
+   ]
+  },
+  {
+   "org": "Pado",
+   "mst": "0304480929",
+   "aliases": [
+    "pado",
+    "noi that pado"
+   ],
+   "group": "Nội thất – thi công hoàn thiện",
+   "website": "https://pado.vn"
+  },
+  {
+   "org": "Thiên Sơn",
+   "mst": "0102237505",
+   "aliases": [
+    "thien son",
+    "thienson"
+   ],
+   "group": "Nội thất – thi công hoàn thiện",
+   "name_unconfirmed": true
+  },
+  {
+   "org": "Nam Thuận Thành",
+   "mst": "0308311590",
+   "aliases": [
+    "nam thuan thanh"
+   ],
+   "group": "Hoàn thiện – đá ốp lát",
+   "name_unconfirmed": true
+  },
+  {
+   "org": "Đồng Tâm",
+   "mst": "1100548578",
+   "aliases": [
+    "dong tam",
+    "gach dong tam"
+   ],
+   "group": "Gạch ốp lát",
+   "website": "https://dongtam.com.vn"
+  },
+  {
+   "org": "An Cường",
+   "mst": "3700748131",
+   "aliases": [
+    "an cuong",
+    "ancuong",
+    "go an cuong",
+    "an cuong wood"
+   ],
+   "group": "Nội thất – gỗ công nghiệp",
+   "website": "https://ancuong.com"
+  },
+  {
+   "org": "Daikin Việt Nam",
+   "mst": "0301450108",
+   "aliases": [
+    "daikin",
+    "daikin vietnam",
+    "daikin air conditioning"
+   ],
+   "group": "HVAC – điều hòa",
+   "website": "https://www.daikin.com.vn"
+  },
+  {
+   "org": "Panasonic Life Solutions Việt Nam",
+   "mst": "3702150604",
+   "aliases": [
+    "panasonic",
+    "panasonic life solutions",
+    "panasonic electric works",
+    "panasonic eco solutions"
+   ],
+   "group": "Thiết bị điện"
+  },
+  {
+   "org": "Mitsubishi Electric Việt Nam",
+   "mst": "0310919107",
+   "aliases": [
+    "mitsubishi electric",
+    "mitsubishi",
+    "melco"
+   ],
+   "group": "Thiết bị điện"
+  },
+  {
+   "org": "Mitsubishi Heavy Industries Việt Nam",
+   "mst": "0110664268",
+   "aliases": [
+    "mitsubishi heavy",
+    "mhi",
+    "mitsubishi heavy industries"
+   ],
+   "group": "HVAC – điều hòa",
+   "website": "https://mitsuheavy.vn",
+   "name_unconfirmed": true
+  },
+  {
+   "org": "Hải Li (phân phối Mitsubishi Heavy)",
+   "mst": "0305236754",
+   "aliases": [
+    "hai li",
+    "mitsubishi heavy",
+    "mitsubishi heavy air conditioners"
+   ],
+   "group": "HVAC – điều hòa",
+   "website": "https://mitsuheavy.vn",
+   "name_unconfirmed": true
+  },
+  {
+   "org": "Cơ điện Đoàn Nhất (Đoàn Nhất MEP)",
+   "mst": "0305289273",
+   "aliases": [
+    "doan nhat",
+    "doan nhat mep",
+    "doan nhat me",
+    "co dien doan nhat"
+   ],
+   "group": "MEP"
+  },
+  {
+   "org": "Casta (ALC Corp – Đất Mới)",
+   "mst": "0301409974",
+   "aliases": [
+    "casta",
+    "alc",
+    "alc corp",
+    "alc vietnam",
+    "tu bep casta",
+    "dat moi"
+   ],
+   "group": "Nội thất – tủ bếp",
+   "website": "https://casta.com.vn",
+   "name_unconfirmed": true,
+   "note": "Casta là thương hiệu tủ bếp; email/địa chỉ trụ sở trên casta.com.vn (Lô B2 KCN Cát Lái, email @alcvietnam.com) trỏ tới ALC Corp. Không nhầm với Công ty TNHH Casta Việt Nam (MST 0901131382, Hưng Yên) – công ty khác."
+  },
+  {
+   "org": "Schindler Việt Nam",
+   "mst": "0300798220",
+   "aliases": [
+    "schindler",
+    "schindler vietnam"
+   ],
+   "group": "Thang máy"
+  },
+  {
+   "org": "Otis Thang máy Việt Nam",
+   "mst": "0100114226",
+   "aliases": [
+    "otis",
+    "otis elevator",
+    "thang may otis"
+   ],
+   "group": "Thang máy",
+   "website": "https://www.otis.com/vi/vn"
+  },
+  {
+   "org": "KONE Việt Nam",
+   "mst": "0309469439",
+   "aliases": [
+    "kone",
+    "thang may kone"
+   ],
+   "group": "Thang máy"
+  },
+  {
+   "org": "TK Elevator Việt Nam (thyssenkrupp)",
+   "mst": "0101403862",
+   "aliases": [
+    "tk elevator",
+    "thyssenkrupp",
+    "thyssenkrupp elevator",
+    "tkelevator"
+   ],
+   "group": "Thang máy"
+  },
+  {
+   "org": "Carrier Việt Nam (Điều hòa không khí)",
+   "mst": "0300687055",
+   "aliases": [
+    "carrier",
+    "carrier vietnam",
+    "dieu hoa carrier"
+   ],
+   "group": "HVAC – điều hòa"
+  },
+  {
+   "org": "Trane Việt Nam (Dịch vụ Trane)",
+   "mst": "0302622381",
+   "aliases": [
+    "trane",
+    "trane vietnam",
+    "dich vu trane"
+   ],
+   "group": "HVAC – điều hòa",
+   "name_unconfirmed": true,
+   "note": "Có nhiều pháp nhân Trane tại VN (Dịch vụ Trane Việt Nam; Điều hòa không khí Trane Việt Nam; bản NTNN). Bảng chọn Công ty TNHH Dịch vụ Trane Việt Nam – cần xác nhận đúng pháp nhân ký hợp đồng."
+  },
+  {
+   "org": "LG Electronics Việt Nam Hải Phòng",
+   "mst": "0201311397",
+   "aliases": [
+    "lg",
+    "lg electronics",
+    "lg hvac",
+    "lg vietnam"
+   ],
+   "group": "HVAC – điều hòa",
+   "website": "https://www.lg.com/vn",
+   "name_unconfirmed": true,
+   "note": "Pháp nhân sản xuất LG tại Hải Phòng; pháp nhân bán hàng/ký hợp đồng HVAC có thể khác – cần xác nhận."
+  },
+  {
+   "org": "Samsung Vina Electronics",
+   "mst": "0300741922",
+   "aliases": [
+    "samsung",
+    "samsung vina",
+    "samsung hvac",
+    "samsung electronics"
+   ],
+   "group": "HVAC – điều hòa",
+   "name_unconfirmed": true,
+   "note": "Công ty TNHH Điện tử Samsung Vina (thương mại, TP.HCM); điều hòa thương mại Samsung có thể do pháp nhân khác phân phối – cần xác nhận."
+  },
+  {
+   "org": "TOTO Việt Nam",
+   "mst": "0101225306",
+   "aliases": [
+    "toto",
+    "toto vietnam"
+   ],
+   "group": "Thiết bị vệ sinh",
+   "website": "https://vn.toto.com"
+  },
+  {
+   "org": "Viglacera",
+   "mst": "0100108173",
+   "aliases": [
+    "viglacera",
+    "vgc",
+    "tong cong ty viglacera"
+   ],
+   "group": "Vật liệu hoàn thiện – gạch, kính, sứ",
+   "website": "https://viglacera.com.vn",
+   "ticker": "VGC",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Prime Group",
+   "mst": "2500235250",
+   "aliases": [
+    "prime",
+    "prime group",
+    "gach prime"
+   ],
+   "group": "Gạch ốp lát",
+   "name_unconfirmed": true,
+   "note": "Tên thương hiệu Prime khớp tên pháp nhân; cần xác nhận khi ký hợp đồng."
+  },
+  {
+   "org": "Taicera",
+   "mst": "3600254001",
+   "aliases": [
+    "taicera",
+    "tcr",
+    "gom su taicera"
+   ],
+   "group": "Gạch ốp lát",
+   "ticker": "TCR",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Cadivi",
+   "mst": "0300381564",
+   "aliases": [
+    "cadivi",
+    "cav",
+    "day cap dien viet nam"
+   ],
+   "group": "Dây cáp điện",
+   "website": "https://cadivi.vn",
+   "ticker": "CAV",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Cadisun (Dây & Cáp điện Thượng Đình)",
+   "mst": "0100892628",
+   "aliases": [
+    "cadisun",
+    "cadi-sun",
+    "cadi sun",
+    "thuong dinh",
+    "day cap dien thuong dinh"
+   ],
+   "group": "Dây cáp điện",
+   "website": "https://www.cadisun.com.vn",
+   "note": "Cadi-Sun là thương hiệu của Công ty CP Dây và Cáp điện Thượng Đình (theo cadisun.com.vn)."
+  },
+  {
+   "org": "Legrand Việt Nam",
+   "mst": "0305172620",
+   "aliases": [
+    "legrand",
+    "legrand vietnam"
+   ],
+   "group": "Thiết bị điện",
+   "note": "u"
+  },
+  {
+   "org": "Jotun Việt Nam",
+   "mst": "3700230043",
+   "aliases": [
+    "jotun",
+    "jotun paints",
+    "son jotun"
+   ],
+   "group": "Sơn & chống thấm"
+  },
+  {
+   "org": "Nippon Paint Việt Nam",
+   "mst": "3600244941",
+   "aliases": [
+    "nippon",
+    "nippon paint",
+    "son nippon"
+   ],
+   "group": "Sơn & chống thấm",
+   "website": "https://www.nipponpaint.com.vn",
+   "note": "Pháp nhân khác: Nippon Paint Việt Nam (Hà Nội) MST 2500251252."
+  },
+  {
+   "org": "Dulux (AkzoNobel Việt Nam)",
+   "mst": "3700687873",
+   "aliases": [
+    "dulux",
+    "akzonobel",
+    "akzo nobel",
+    "son dulux"
+   ],
+   "group": "Sơn & chống thấm"
+  },
+  {
+   "org": "Kova",
+   "mst": "0100779573",
+   "aliases": [
+    "kova",
+    "son kova",
+    "kova paint"
+   ],
+   "group": "Sơn & chống thấm",
+   "website": "https://kovapaint.com.vn"
+  },
+  {
+   "org": "Sika Việt Nam",
+   "mst": "3600254227",
+   "aliases": [
+    "sika",
+    "sika vietnam",
+    "sika huu han"
+   ],
+   "group": "Sơn & chống thấm",
+   "website": "https://vnm.sika.com"
+  },
+  {
+   "org": "Fosroc Việt Nam",
+   "mst": "2300778193",
+   "aliases": [
+    "fosroc",
+    "fosroc vietnam"
+   ],
+   "group": "Sơn & chống thấm",
+   "website": "https://www.fosroc.com"
+  },
+  {
+   "org": "ABB Automation and Electrification (Việt Nam)",
+   "mst": "0315752109",
+   "aliases": [
+    "abb",
+    "abb vietnam",
+    "abb automation"
+   ],
+   "group": "Thiết bị điện",
+   "name_unconfirmed": true,
+   "note": "ABB có nhiều pháp nhân tại VN; đã bỏ ABB Vietnam (MST 0315981892) vì cơ quan thuế ghi \"không hoạt động tại địa chỉ đã đăng ký\". Cần xác nhận pháp nhân ký hợp đồng."
+  },
+  {
+   "org": "Tổng công ty Xây dựng số 1 (CC1)",
+   "mst": "0301429113",
+   "aliases": [
+    "cc1",
+    "xay dung so 1",
+    "tong cong ty xay dung so 1"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "website": "https://www.cc1.vn",
+   "ticker": "CC1",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "FECON",
+   "mst": "0101502599",
+   "aliases": [
+    "fecon",
+    "fcn",
+    "tap doan fecon"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "website": "https://fecon.com.vn",
+   "ticker": "FCN",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Kajima Việt Nam",
+   "mst": "0313761330",
+   "aliases": [
+    "kajima",
+    "kajima vietnam"
+   ],
+   "group": "Tổng thầu xây dựng"
+  },
+  {
+   "org": "Obayashi Việt Nam",
+   "mst": "0304436870",
+   "aliases": [
+    "obayashi",
+    "obayashi vietnam"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "website": "https://www.obayashivn.com"
+  },
+  {
+   "org": "Shimizu Việt Nam",
+   "mst": "0106708836",
+   "aliases": [
+    "shimizu",
+    "shimizu vietnam"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "name_unconfirmed": true,
+   "note": "Nguồn MST từ tra cứu công khai chưa đối chiếu với website chính thức; cần xác nhận."
+  },
+  {
+   "org": "Takenaka Việt Nam",
+   "mst": "0314252985",
+   "aliases": [
+    "takenaka",
+    "takenaka vietnam"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "name_unconfirmed": true,
+   "note": "Nguồn MST từ tra cứu công khai chưa đối chiếu với website chính thức; cần xác nhận."
+  },
+  {
+   "org": "Xuân Hòa Việt Nam",
+   "mst": "2500161922",
+   "aliases": [
+    "xuan hoa",
+    "xhc",
+    "noi that xuan hoa"
+   ],
+   "group": "Nội thất – văn phòng",
+   "website": "https://xuanhoa.vn",
+   "ticker": "XHC",
+   "exchange": "UPCoM",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Eurowindow",
+   "mst": "2500217526",
+   "aliases": [
+    "eurowindow",
+    "cua nhua loi thep"
+   ],
+   "group": "Cửa – kính nhôm",
+   "website": "https://eurowindow.biz"
+  },
+  {
+   "org": "Austdoor",
+   "mst": "0101306139",
+   "aliases": [
+    "austdoor",
+    "tap doan austdoor",
+    "cua nhom"
+   ],
+   "group": "Cửa – kính nhôm"
+  },
+  {
+   "org": "Saint-Gobain Việt Nam (Vĩnh Tường / Gyproc)",
+   "mst": "0304078329",
+   "aliases": [
+    "saint gobain",
+    "vinh tuong",
+    "gyproc",
+    "saint-gobain"
+   ],
+   "group": "Trần – vách thạch cao",
+   "name_unconfirmed": true,
+   "note": "Theo tra cứu công khai, pháp nhân này vận hành thương hiệu Vĩnh Tường và Gyproc; cần xác nhận pháp nhân ký hợp đồng."
+  },
+  {
+   "org": "Thạch Bàn",
+   "mst": "0100107444",
+   "aliases": [
+    "thach ban",
+    "tap doan thach ban",
+    "gach thach ban"
+   ],
+   "group": "Gạch ốp lát",
+   "website": "https://thachban.com.vn"
+  },
+  {
+   "org": "Caesar Việt Nam",
+   "mst": "3600253375",
+   "aliases": [
+    "caesar",
+    "thiet bi ve sinh caesar"
+   ],
+   "group": "Thiết bị vệ sinh",
+   "website": "https://www.caesar.com.vn"
+  },
+  {
+   "org": "Kohler Việt Nam",
+   "mst": "0311966029",
+   "aliases": [
+    "kohler",
+    "kohler vietnam"
+   ],
+   "group": "Thiết bị vệ sinh"
+  },
+  {
+   "org": "Blum Việt Nam",
+   "mst": "0311996383",
+   "aliases": [
+    "blum",
+    "blum vietnam",
+    "phu kien blum"
+   ],
+   "group": "Phụ kiện tủ bếp – nội thất",
+   "website": "https://www.blum.com/vn"
+  },
+  {
+   "org": "Tân Á Đại Thành",
+   "mst": "1100797006",
+   "aliases": [
+    "tan a dai thanh",
+    "tan a",
+    "dai thanh"
+   ],
+   "group": "Thiết bị vệ sinh – bồn nước, nóng lạnh",
+   "name_unconfirmed": true,
+   "note": "Có hai pháp nhân cùng tên thương hiệu (CTCP Tập đoàn Tân Á Đại Thành và CTCP Đầu tư Tập đoàn Tân Á Đại Thành, MST 0108623987) – cần xác nhận."
+  },
+  {
+   "org": "Electrolux Việt Nam",
+   "mst": "0100831110",
+   "aliases": [
+    "electrolux",
+    "electrolux vietnam"
+   ],
+   "group": "Thiết bị bếp – điện máy",
+   "website": "https://www.electrolux.vn"
+  },
+  {
+   "org": "BSH Việt Nam (Bosch)",
+   "mst": "0317397393",
+   "aliases": [
+    "bsh",
+    "bosch",
+    "bosch home appliances",
+    "do gia dung bsh"
+   ],
+   "group": "Thiết bị bếp – điện máy",
+   "website": "https://www.bosch-home.com.vn",
+   "name_unconfirmed": true,
+   "note": "Tên thương hiệu Bosch; pháp nhân bán hàng tại VN là Công ty TNHH Đồ gia dụng BSH (Việt Nam) – cần xác nhận pháp nhân ký hợp đồng."
+  },
+  {
+   "org": "Malloca Việt Nam",
+   "mst": "0303476359",
+   "aliases": [
+    "malloca",
+    "malloca vietnam"
+   ],
+   "group": "Thiết bị bếp – điện máy",
+   "website": "https://malloca.com"
+  },
+  {
+   "org": "Rinnai Việt Nam",
+   "mst": "3700300974",
+   "aliases": [
+    "rinnai",
+    "rinnai vietnam",
+    "bep ga rinnai"
+   ],
+   "group": "Thiết bị bếp – điện máy"
+  },
+  {
+   "org": "Sunhouse",
+   "mst": "0101976905",
+   "aliases": [
+    "sunhouse",
+    "tap doan sunhouse"
+   ],
+   "group": "Thiết bị bếp – điện máy",
+   "website": "https://sunhouse.com.vn"
+  },
+  {
+   "org": "Siemens Việt Nam",
+   "mst": "0302727641",
+   "aliases": [
+    "siemens",
+    "siemens vietnam"
+   ],
+   "group": "Thiết bị điện",
+   "website": "https://www.siemens.com/vn"
+  },
+  {
+   "org": "Honeywell Việt Nam",
+   "mst": "0107364200",
+   "aliases": [
+    "honeywell",
+    "honeywell vietnam"
+   ],
+   "group": "Thiết bị điện – PCCC, BMS"
+  },
+  {
+   "org": "Cummins DKSH (Việt Nam)",
+   "mst": "0309741395",
+   "aliases": [
+    "cummins",
+    "cummins dksh",
+    "may phat dien cummins"
+   ],
+   "group": "Máy phát điện",
+   "name_unconfirmed": true,
+   "note": "Nhà phân phối ủy quyền máy phát điện Cummins tại VN; công ty TNHH Cummins Việt Nam (MST 0314253918) là pháp nhân khác."
+  },
+  {
+   "org": "Signify Việt Nam (Philips Lighting)",
+   "mst": "3600523744",
+   "aliases": [
+    "signify",
+    "philips lighting",
+    "philips",
+    "den philips"
+   ],
+   "group": "Chiếu sáng",
+   "website": "https://www.lighting.philips.com.vn"
+  },
+  {
+   "org": "Alphanam E&C",
+   "mst": "0100520683",
+   "aliases": [
+    "alphanam",
+    "alphanam e&c",
+    "alphanam ec"
+   ],
+   "group": "MEP"
+  },
+  {
+   "org": "Tinh Kỳ (cơ điện)",
+   "mst": "0304852616",
+   "aliases": [
+    "tinh ky",
+    "tinhky",
+    "co dien tinh ky"
+   ],
+   "group": "MEP",
+   "website": "https://tinhky.vn",
+   "name_unconfirmed": true,
+   "note": "Theo tra cứu công khai: Công ty TNHH Tinh Kỳ; không nhầm với CTCP Tinh Kỹ (MST 0304251862). Cần xác nhận khớp tên website."
+  },
+  {
+   "org": "INTECH M&E",
+   "mst": "0105978170",
+   "aliases": [
+    "intech",
+    "intech mep",
+    "intech m&e"
+   ],
+   "group": "MEP",
+   "name_unconfirmed": true,
+   "note": "Top 10 nhà thầu cơ điện 2026 (Vietnam Report); pháp nhân CTCP Công nghệ và Đầu tư INTECH khớp tên gọi nhưng chưa đối chiếu website – cần xác nhận."
+  },
+  {
+   "org": "Huynchi",
+   "mst": "0310206360",
+   "aliases": [
+    "huynchi",
+    "huynchi design build"
+   ],
+   "group": "Nội thất – thi công hoàn thiện (fit-out)"
+  },
+  {
+   "org": "Vacons Architects (Kiến trúc Xây dựng Việt An)",
+   "mst": "0311731570",
+   "aliases": [
+    "vacons",
+    "viet an",
+    "vacons architects"
+   ],
+   "group": "Nội thất – thi công hoàn thiện (fit-out)",
+   "website": "https://vacons.com.vn",
+   "name_unconfirmed": true,
+   "note": "Vacons là tên thương hiệu; pháp nhân theo tra cứu công khai là Công ty TNHH Kiến trúc Xây dựng Việt An – cần xác nhận."
+  },
+  {
+   "org": "PURO (Xây dựng và Thương mại PURO)",
+   "mst": "0317638497",
+   "aliases": [
+    "puro",
+    "puro corp",
+    "purocorp"
+   ],
+   "group": "Nội thất – thi công hoàn thiện (fit-out)",
+   "website": "https://purocorp.vn"
+  },
+  {
+   "org": "Inter Office",
+   "mst": "0315219451",
+   "aliases": [
+    "inter office",
+    "interoffice"
+   ],
+   "group": "Nội thất – thi công hoàn thiện (fit-out)",
+   "website": "https://interoffice.vn"
+  },
+  {
+   "org": "Panasonic Việt Nam",
+   "mst": "0101824243",
+   "aliases": [
+    "panasonic vietnam",
+    "panasonic",
+    "panasonic sales"
+   ],
+   "group": "Thiết bị điện – điều hòa, điện gia dụng",
+   "name_unconfirmed": true,
+   "note": "Panasonic có nhiều pháp nhân tại VN (Panasonic Việt Nam; Panasonic Life Solutions/Electric Works Việt Nam, MST 3702150604; Panasonic Sales...) – cần xác nhận pháp nhân ký hợp đồng."
+  },
+  {
+   "org": "Rạng Đông",
+   "mst": "0101526991",
+   "aliases": [
+    "rang dong",
+    "ral",
+    "den rang dong",
+    "bong den phich nuoc rang dong"
+   ],
+   "group": "Chiếu sáng",
+   "website": "https://rangdong.com.vn",
+   "ticker": "RAL",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Điện Quang",
+   "mst": "0300363808",
+   "aliases": [
+    "dien quang",
+    "dqc",
+    "tap doan dien quang"
+   ],
+   "group": "Chiếu sáng",
+   "website": "https://www.dienquang.com",
+   "ticker": "DQC",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Thang máy Mitsubishi Việt Nam",
+   "mst": "0305616442",
+   "aliases": [
+    "mitsubishi elevator",
+    "thang may mitsubishi",
+    "mitsubishi thang may"
+   ],
+   "group": "Thang máy",
+   "name_unconfirmed": true,
+   "note": "Tên theo tra cứu công khai; chưa đối chiếu website chính thức – cần xác nhận."
+  },
+  {
+   "org": "Hyundai Elevator Việt Nam",
+   "mst": "0110843034",
+   "aliases": [
+    "hyundai elevator",
+    "thang may hyundai"
+   ],
+   "group": "Thang máy",
+   "name_unconfirmed": true,
+   "note": "Tên theo tra cứu công khai; chưa đối chiếu website chính thức – cần xác nhận."
+  },
+  {
+   "org": "Lumi Việt Nam (Smart home)",
+   "mst": "0105871131",
+   "aliases": [
+    "lumi",
+    "lumi smart home",
+    "smart home lumi",
+    "nha thong minh lumi"
+   ],
+   "group": "Smart home",
+   "website": "https://smarthome.lumi.vn"
+  },
+  {
+   "org": "Nhựa Bình Minh",
+   "mst": "0301464823",
+   "aliases": [
+    "binh minh",
+    "bmp",
+    "nhua binh minh"
+   ],
+   "group": "Vật liệu – ống nhựa, cấp thoát nước",
+   "website": "https://www.binhminhplastic.com.vn",
+   "ticker": "BMP",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Nhựa Tiền Phong",
+   "mst": "0200167782",
+   "aliases": [
+    "tien phong",
+    "ntp",
+    "nhua tien phong"
+   ],
+   "group": "Vật liệu – ống nhựa, cấp thoát nước",
+   "website": "https://nhuatienphong.vn",
+   "ticker": "NTP",
+   "exchange": "HNX",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "COTANA Group",
+   "mst": "0101482984",
+   "aliases": [
+    "cotana",
+    "csc",
+    "tap doan cotana"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "ticker": "CSC",
+   "exchange": "HNX",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Hưng Thịnh Incons",
+   "mst": "0305371707",
+   "aliases": [
+    "hung thinh incons",
+    "incons",
+    "hti"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "website": "https://hungthinhincons.com.vn",
+   "ticker": "HTN",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Hoa Sen Group",
+   "mst": "3700381324",
+   "aliases": [
+    "hoa sen",
+    "hsg",
+    "tap doan hoa sen"
+   ],
+   "group": "Vật liệu – tôn thép, ống, thiết bị",
+   "website": "https://hoasengroup.vn",
+   "ticker": "HSG",
+   "exchange": "HOSE",
+   "note": "Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "LICOGI 16",
+   "mst": "0302310209",
+   "aliases": [
+    "licogi 16",
+    "licogi16",
+    "lizen",
+    "lcg"
+   ],
+   "group": "Tổng thầu xây dựng",
+   "name_unconfirmed": true,
+   "note": "Mã số thuế 0302310209 hiện đứng tên CÔNG TY CỔ PHẦN LIZEN (cơ quan thuế); theo tra cứu công khai đây là tên mới của LICOGI 16 – cần xác nhận. Chưa có BCTC đã kiểm chứng trong bảng."
+  },
+  {
+   "org": "Kính nổi Việt Nam (VFG)",
+   "mst": "2300103345",
+   "aliases": [
+    "vfg",
+    "kinh noi viet nam",
+    "kinh noi"
+   ],
+   "group": "Vật liệu hoàn thiện – kính"
+  },
+  {
+   "org": "Gạch men Chang Yih",
+   "mst": "3600477135",
+   "aliases": [
+    "chang yih",
+    "gach chang yih",
+    "changyih"
+   ],
+   "group": "Gạch ốp lát"
+  },
+  {
+   "org": "REE Corporation (Cơ điện lạnh)",
+   "mst": "0300741143",
+   "aliases": [
+    "ree corp",
+    "ree corporation",
+    "ree",
+    "co dien lanh"
+   ],
+   "group": "HVAC – MEP",
+   "website": "https://www.reecorp.com",
+   "ticker": "REE",
+   "exchange": "HOSE",
+   "note": "khác với REE M&E (nhà thầu cơ điện đã có trong hub). Chưa có BCTC đã kiểm chứng trong bảng. Mã chứng khoán và sàn theo thông tin công khai (chưa đối chiếu lại tại sàn)."
+  },
+  {
+   "org": "Sơn TOA Việt Nam",
+   "mst": "3700226914",
+   "aliases": [
+    "toa",
+    "son toa",
+    "toa paint"
+   ],
+   "group": "Sơn & chống thấm"
+  },
+  {
+   "org": "Midea Consumer Electric (Việt Nam)",
+   "mst": "3700688210",
+   "aliases": [
+    "midea",
+    "midea vietnam",
+    "dieu hoa midea"
+   ],
+   "group": "HVAC – điều hòa",
+   "name_unconfirmed": true,
+   "note": "Pháp nhân sản xuất tại Bình Dương; pháp nhân bán hàng điều hòa Midea tại VN có thể khác – cần xác nhận."
+  }
  ]
 }
