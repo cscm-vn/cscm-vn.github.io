@@ -50,7 +50,7 @@ with sync_playwright() as p:
                   return {n: s.length, k: cards.length, last: secs[secs.length - 1] === el && !!nx && nx.id === 'foot',
                     ext: cards.map(c => c.querySelector('a[href]')?.href || ''), more: [...el.querySelectorAll('a.pmore')].map(a => a.getAttribute('href')), all: el.querySelector('h2 a')?.getAttribute('href'),
                     ov: cards.filter(c => c.getBoundingClientRect().right > W || c.scrollWidth > c.clientWidth + 1).length,
-                    imp: cards.filter(c => /Ảnh hưởng đến soạn hợp đồng:/.test(c.innerText)).length}; }""")
+                    imp: cards.filter(c => /Ảnh hưởng đến soạn hợp đồng(?:[/]đấu thầu)?:/.test(c.innerText)).length}; }""")
                 if pq["n"] != 1: fails.append((w, f, f"policy section x{pq['n']}"))
                 else:
                     if not 5 <= pq["k"] <= 6: fails.append((w, f, f"policy items x{pq['k']} (expect 5-6)"))
@@ -72,6 +72,13 @@ with sync_playwright() as p:
                         if any(not str(x["url"]).startswith("https://") for x in _G if x.get("seed")): fails.append((w, f, "policy seed bad link"))
                         import datetime as _dt
                         if _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=7))).date() <= _dt.date(2026, 11, 19) and not any(x.get("seed") and "39/2026/QH16" in x["title"] for x in _G): fails.append((w, f, "policy Bắc Ninh seed (NQ 39/2026/QH16) missing"))
+                        _P = [x for x in _p["items"] if "ppp" in x["topics"]]  # chủ đề BT / PPP / Đầu tư công (ảnh hưởng soạn hợp đồng/đấu thầu)
+                        if "ppp" not in _p["topics"]: fails.append((w, f, "policy topic ppp missing"))
+                        if any(not x.get("impact") or x.get("impact_label") != "Ảnh hưởng đến soạn hợp đồng/đấu thầu" for x in _P if x["topics"][0] != "dia-gioi"): fails.append((w, f, "policy ppp item without impact line / label"))
+                        if any(not str(x["url"]).startswith("https://") for x in _P if x.get("seed")): fails.append((w, f, "policy ppp seed bad link"))
+                        _today = _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=7))).date()
+                        for _n, _d in (("377/2026/NĐ-CP", _dt.date(2026, 11, 30)), ("349/2026/NĐ-CP", _dt.date(2026, 11, 8))):
+                            if _today <= _d and not any(x.get("seed") and _n in x["title"] for x in _P): fails.append((w, f, f"policy ppp seed (NĐ {_n}) missing"))
                         for m in pq["more"]:
                             c = urllib.parse.unquote(m.split("pc=")[1].split("#")[0]) if "pc=" in m else ""
                             if c not in _p["clusters"] or not m.startswith("hop-dong.html?pc="): fails.append((w, f, "policy bad cluster link " + m))
@@ -85,9 +92,13 @@ with sync_playwright() as p:
                 if hq2["k"] < 5: fails.append((w, f, f"policy list items x{hq2['k']}"))
                 if hq2["chips"] < 2: fails.append((w, f, "policy topic chips missing"))
                 gq = pg.evaluate("""() => { const b = document.querySelector('#pf-f button[data-k="dia-gioi"]'); if (!b) return {chip: 0}; const want = +(b.querySelector('.mute')?.textContent || 0); b.click();
-                  const li = [...document.querySelectorAll('#pf > li:not(.sub)')]; return {chip: 1, want, n: li.length, noimp: li.filter(l => !/Ảnh hưởng đến soạn hợp đồng:/.test(l.innerText)).length}; }""")
+                  const li = [...document.querySelectorAll('#pf > li:not(.sub)')]; return {chip: 1, want, n: li.length, noimp: li.filter(l => !/Ảnh hưởng đến soạn hợp đồng(?:[/]đấu thầu)?:/.test(l.innerText)).length}; }""")
                 if not gq["chip"]: fails.append((w, f, "policy chip 'Địa giới hành chính' missing"))
                 elif gq["want"] and (gq["n"] == 0 or gq["noimp"]): fails.append((w, f, f"policy dia-gioi rows {gq['n']}, without impact line {gq['noimp']}"))
+                pq2 = pg.evaluate("""() => { const b = document.querySelector('#pf-f button[data-k="ppp"]'); if (!b) return {chip: 0}; const want = +(b.querySelector('.mute')?.textContent || 0); b.click();
+                  const li = [...document.querySelectorAll('#pf > li:not(.sub)')]; return {chip: 1, want, n: li.length, noimp: li.filter(l => !/Ảnh hưởng đến soạn hợp đồng(?:[/]đấu thầu)?:/.test(l.innerText)).length}; }""")
+                if not pq2["chip"]: fails.append((w, f, "policy chip 'BT / PPP / Đầu tư công' missing"))
+                elif pq2["want"] and (pq2["n"] == 0 or pq2["noimp"]): fails.append((w, f, f"policy ppp rows {pq2['n']}, without impact line {pq2['noimp']}"))
             if r["c"]["footer"] > 1: fails.append((w, f, f"footer x{r['c']['footer']}"))
             if r["ov"] > 0: fails.append((w, f, f"overflow {r['ov']}px"))
             if r["moj"]: fails.append((w, f, f"mojibake {r['moj']}"))

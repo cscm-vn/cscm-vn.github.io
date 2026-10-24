@@ -1,5 +1,5 @@
 {
- "note": "Tin biên tập (seed) cho chủ đề Địa giới hành chính: chỉ gồm tin đã đối chiếu trực tiếp nguồn chính thống/báo lớn. policy_feed.py giữ tới ngày hiệu lực + 60 ngày. Không bịa dữ kiện: summary/impact chỉ nêu điều văn bản/nguồn nói.",
+ "note": "Tin biên tập (seed) cho chủ đề Địa giới hành chính (mặc định) và BT/PPP/Đầu tư công (topics=[\"ppp\"], impact_label): chỉ gồm tin đã đối chiếu trực tiếp nguồn chính thống/báo lớn. policy_feed.py giữ tới ngày hiệu lực + 60 ngày. Không bịa dữ kiện: summary/impact chỉ nêu điều văn bản/nguồn nói.",
  "items": [
   {
    "title": "Nghị quyết số 39/2026/QH16 của Quốc hội: Về việc thành lập thành phố Bắc Ninh",
@@ -27,6 +27,32 @@
    "effective": "2026-09-20",
    "summary": "Ủy ban Thường vụ Quốc hội ban hành ngày 04/08/2026, có hiệu lực từ ngày 20/09/2026: thành lập 12 phường (Yên Phong, Tiên Du, Chi Lăng, Phù Lãng, Lương Tài, Gia Bình, Nhân Thắng, Hiệp Hòa, Bố Hạ, Lạng Giang, Kép, Lục Nam) trên cơ sở nguyên trạng các xã cùng tên.",
    "impact": "địa điểm dự án/trụ sở tại 12 địa bàn này ghi “phường …” thay “xã …” từ 20/09/2026 (cùng tên, nguyên trạng diện tích) – đối chiếu danh sách trong nghị quyết."
+  },
+  {
+   "title": "Nghị định số 377/2026/NĐ-CP sửa đổi các nghị định hướng dẫn Luật Đầu tư theo phương thức đối tác công tư (PPP, BT)",
+   "url": "https://vanban.chinhphu.vn/?docid=219746&pageid=27160",
+   "source": "Cổng TTĐT Chính phủ (vanban.chinhphu.vn)",
+   "published": "2026-10-01T00:00+07:00",
+   "effective": "2026-10-01",
+   "topics": [
+    "ppp"
+   ],
+   "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
+   "summary": "Chính phủ ban hành ngày 01/10/2026, có hiệu lực từ ngày 01/10/2026: sửa đổi, bổ sung các nghị định hướng dẫn Luật Đầu tư theo phương thức đối tác công tư (PPP, gồm hợp đồng BT); bãi bỏ Nghị định số 69/2019/NĐ-CP về sử dụng tài sản công thanh toán dự án BT.",
+   "impact": "dự án/hợp đồng PPP, BT đang làm: đối chiếu điều khoản chuyển tiếp (Điều 49) – hợp đồng PPP đã ký trước 01/10/2026 tiếp tục theo hợp đồng, các bên được thỏa thuận sửa đổi theo quy định hiện hành; hồ sơ mời thầu chưa phê duyệt/phát hành phải lập hoặc sửa theo nghị định mới."
+  },
+  {
+   "title": "Nghị định số 349/2026/NĐ-CP sửa đổi quy định chi tiết Luật Đấu thầu về lựa chọn nhà thầu",
+   "url": "https://vanban.chinhphu.vn/?docid=219431&pageid=27160",
+   "source": "Cổng TTĐT Chính phủ (vanban.chinhphu.vn)",
+   "published": "2026-09-09T00:00+07:00",
+   "effective": "2026-09-09",
+   "topics": [
+    "ppp"
+   ],
+   "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
+   "summary": "Chính phủ ban hành ngày 09/9/2026, có hiệu lực từ ngày 09/9/2026: sửa đổi, bổ sung Nghị định số 214/2025/NĐ-CP quy định chi tiết Luật Đấu thầu về lựa chọn nhà thầu (và Nghị định số 32/2019/NĐ-CP).",
+   "impact": "hồ sơ mời thầu/hợp đồng theo NĐ 214/2025 đã sửa đổi: giá gói thầu xác định bằng báo giá phải đăng tải và nhận báo giá trên Hệ thống mạng đấu thầu quốc gia (tối thiểu 03 ngày làm việc); đối chiếu các điều sửa đổi khác trước khi lập hồ sơ."
   }
  ]
 }

@@ -135,7 +135,7 @@ function quiz(Q) {
    const row = (x, sub) => `<li class="${sub ? "sub" : ""}"><span class="score" title="Liên quan ${x.parts.rel}/60 · tính mới văn bản ${x.parts.dyn}/25 · độ mới ${x.parts.rec}/20">${x.score}</span><div>
      <a href="${E(x.url)}" target="_blank" rel="noopener"><b>${E(x.title)}</b></a>${dd(x) === today ? '<span class="pf-n" title="Đăng hôm nay (giờ VN)">⚡ Mới</span>' : ""}
      <div class="mt">${sub ? "" : x.topics.map(t => `<span class="pill">${E(P.topics[t])}</span>`).join("")} ${E(x.source)} · ${dt(dd(x))}${x.also ? ` <span class="also">· cùng tin: ${x.also.map(a => `<a href="${E(a.url)}" target="_blank" rel="noopener">${E(a.source)}</a>`).join("")}</span>` : ""}</div>
-     ${sub ? "" : `<div class="wy"><b>Vì sao quan trọng với Masterise:</b> ${E(x.why)}</div>`}${!sub && x.impact ? `<div class="wy"><b>Ảnh hưởng đến soạn hợp đồng:</b> ${E(x.impact)}</div>` : ""}`;
+     ${sub ? "" : `<div class="wy"><b>Vì sao quan trọng với Masterise:</b> ${E(x.why)}</div>`}${!sub && x.impact ? `<div class="wy"><b>${E(x.impact_label || "Ảnh hưởng đến soạn hợp đồng")}:</b> ${E(x.impact)}</div>` : ""}`;
    const draw = () => { const it = P.items.filter(x => (f === "all" || x.topics.includes(f)) && (!pc || x.cluster === pc));
     const G = []; const gi = {}; it.forEach(x => { const k = x.cluster || x.id; if (!(k in gi)) { gi[k] = G.length; G.push([]); } G[gi[k]].push(x); }); // nhóm theo cụm văn bản/chủ đề, giữ thứ tự điểm
     document.getElementById("pf-f").innerHTML = [["all", "Tất cả"], ...Object.entries(P.topics)].map(([k, l]) => `<button data-k="${k}" class="${k === f ? "on" : ""}">${E(l)} <span class="mute">${k === "all" ? P.items.length : P.items.filter(x => x.topics.includes(k)).length}</span></button>`).join("");

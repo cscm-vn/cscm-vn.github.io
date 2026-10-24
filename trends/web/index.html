@@ -141,7 +141,7 @@
   const I = Object.fromEntries(P.items.map(x => [x.id, x])), H = (P.home || []).filter(h => I[h.id]); // tối đa 1 tin/cụm văn bản (policy_feed.pick_home)
   el.innerHTML = H.map((h, i) => { const x = I[h.id], d = (x.published || x.found || "").slice(0, 10); return `<div class="card"><div class="trend"><span class="score" title="Điểm liên quan Masterise + tính mới /100">${x.score}</span>
   <div><a href="${E(x.url)}" target="_blank" rel="noopener"><b>${i + 1}. ${E(x.title)}</b></a>${d === today ? '<span class="newb" title="Đăng hôm nay (giờ VN)">⚡ Mới</span>' : ""}<div>${x.topics.slice(0, 2).map(t => `<span class="pill cat">${E(P.topics[t])}</span>`).join(" ")} <span class="small mute">${HUB.date(d)} · ${E(x.source)}</span></div>
-  <div class="small" style="margin-top:4px">${E(x.why)}</div>${x.impact ? `<div class="small" style="margin-top:4px"><b>Ảnh hưởng đến soạn hợp đồng:</b> ${E(x.impact)}</div>` : ""}${h.same ? `<a class="small pmore" style="display:inline-block;margin-top:4px" href="hop-dong.html?pc=${encodeURIComponent(x.cluster)}#chinh-sach" title="${E(P.clusters[x.cluster].label)}">+${h.same} tin cùng chủ đề →</a>` : ""}</div></div></div>`; }).join(""); }).catch(() => {});
+  <div class="small" style="margin-top:4px">${E(x.why)}</div>${x.impact ? `<div class="small" style="margin-top:4px"><b>${E(x.impact_label || "Ảnh hưởng đến soạn hợp đồng")}:</b> ${E(x.impact)}</div>` : ""}${h.same ? `<a class="small pmore" style="display:inline-block;margin-top:4px" href="hop-dong.html?pc=${encodeURIComponent(x.cluster)}#chinh-sach" title="${E(P.clusters[x.cluster].label)}">+${h.same} tin cùng chủ đề →</a>` : ""}</div></div></div>`; }).join(""); }).catch(() => {});
  HUB.foot();
 })();
 </script></body></html>

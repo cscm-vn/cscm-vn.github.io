@@ -18,10 +18,14 @@ Q = [  # Google News queries (topic hint only; topics are re-derived from text)
  "khai thác cát sỏi vật liệu xây dựng quy định when:14d", "mỏ đá mỏ đất san lấp cấp phép when:14d", "thuế chuyển nhượng bất động sản dự thảo when:14d",
  "dự thảo nghị định bất động sản lấy ý kiến when:14d", "Masterise Homes when:30d",
  "thành lập thành phố trực thuộc trung ương nghị quyết Quốc hội when:30d", "sáp nhập đổi tên tỉnh thành phố đơn vị hành chính when:30d", "sắp xếp đơn vị hành chính cấp xã thành lập phường when:30d",
- "đổi tên địa danh hành chính cập nhật giấy tờ địa chỉ when:30d", "site:chinhphu.vn bất động sản OR đất đai OR xây dựng when:14d", "site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d",
+ "đổi tên địa danh hành chính cập nhật giấy tờ địa chỉ when:30d", "Luật Đầu tư theo phương thức đối tác công tư nghị định hướng dẫn when:30d", "hợp đồng BT thanh toán bằng quỹ đất nghị định when:30d", "nghị định PPP sửa đổi hợp đồng BOT BT when:30d",
+ "quyết toán thanh toán dự án BT vướng mắc cơ chế when:30d", "Luật Đầu tư công nghị định hướng dẫn when:30d", "giải ngân vốn đầu tư công Thủ tướng công điện nghị định when:30d",
+ "Luật Đấu thầu nghị định lựa chọn nhà thầu when:30d", "lựa chọn nhà đầu tư PPP đấu thầu qua mạng when:30d", "dự án PPP cao tốc đường sắt cơ chế chính sách mới when:30d",
+ "site:chinhphu.vn bất động sản OR đất đai OR xây dựng when:14d", "site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d",
  "site:moc.gov.vn when:30d", "site:xaydung.gov.vn when:30d", "site:cafeland.vn chính sách when:14d", "site:baochinhphu.vn nhà ở OR đất đai when:14d"]
 RSS = [("Chinhphu.vn – Chính sách mới", "https://xaydungchinhsach.chinhphu.vn/chinh-sach-moi.rss"), ("Báo Chính phủ – Chính sách mới", "https://baochinhphu.vn/chinh-sach-moi.rss"),
        ("VnExpress – Pháp luật", "https://vnexpress.net/rss/phap-luat.rss"), ("VnExpress – Bất động sản", "https://vnexpress.net/rss/bat-dong-san.rss")]
+PPP_RSS = [("Báo Chính phủ – Kinh tế (lọc BT/PPP/ĐTC)", "https://baochinhphu.vn/kinh-te.rss"), ("Chinhphu.vn – Đầu tư & kinh doanh (lọc BT/PPP/ĐTC)", "https://xaydungchinhsach.chinhphu.vn/dau-tu-kinh-doanh.rss")]  # RSS rộng: chỉ nhận tin chủ đề "ppp"
 def strip(s): return unicodedata.normalize("NFD", (s or "").lower().replace("đ", "d")).encode("ascii", "ignore").decode()
 # Địa giới / đơn vị hành chính / địa danh: ảnh hưởng trực tiếp tới soạn hợp đồng (địa chỉ các bên, địa điểm dự án, tên cơ quan). Từ khóa đủ cụ thể nên không cần thêm từ "luật/chính sách".
 GEO = ["thanh lap thanh pho", "tro thanh thanh pho truc thuoc trung uong", "len thanh pho truc thuoc trung uong", "tinh len thanh pho", "dia gioi hanh chinh", "thay doi dia gioi", "dieu chinh dia gioi",
@@ -30,6 +34,16 @@ GEO = ["thanh lap thanh pho", "tro thanh thanh pho truc thuoc trung uong", "len 
 GEO_NEG = ["hanh chinh su nghiep", "xu phat vi pham hanh chinh", "cai cach hanh chinh",  # nhiễu: đơn vị hành chính sự nghiệp…
  "neu co", "co the sap nhap", "khong co ten", "phan dau", "quyet tam", "ban do", "lan truyen", "chua co chu truong", "chua sap xep", "giu nguyen", "khong sap xep", "de an", "ke hoach", "muc tieu", "ung ho", "du kien", "chu truong", "gop y"]  # tin phỏng đoán/định hướng, chưa phải thay đổi có căn cứ
 GEO_LEGAL = ["nghi quyet", "thong qua", "hieu luc", "cong bo", "chinh thuc", "ban hanh", "huong dan", "quy dinh", "nghi dinh", "thong tu", "dang ky kinh doanh", "can cuoc", "giay to", "doi giay"]  # tin địa giới phải có dấu hiệu văn bản/hiệu lực/hướng dẫn
+# BT / PPP / Đầu tư công / Đấu thầu: văn bản pháp lý & chính sách ảnh hưởng hợp đồng dự án, thanh toán/quyết toán, hồ sơ dự thầu. Chỉ nhận tin có dấu hiệu văn bản/chính sách thật.
+PPP_CORE = ["doi tac cong tu", "ppp", "hop dong bt", "du an bt", "hop dong bot", "du an bot", "bot bt", "bt bot", "bot, bt", "bot/bt", "bt/bot", "xay dung chuyen giao", "xay dung - chuyen giao", "thanh toan bang quy dat", "quy dat thanh toan"]
+PPP_ICP = ["dau tu cong", "von dau tu cong", "giai ngan von dau tu", "ke hoach dau tu cong", "quyet toan von dau tu", "quyet toan du an hoan thanh", "thanh toan, quyet toan du an"]
+PPP_BID = ["luat dau thau", "lua chon nha thau", "lua chon nha dau tu", "he thong mang dau thau quoc gia", "dau thau qua mang"]
+PPP_KW = PPP_CORE + PPP_ICP + PPP_BID
+PPP_NEG = ["mua thuoc", "goi thau thuoc", "thiet bi y te", "vat tu y te", "hoa chat xet nghiem", "danh muc khu dat",  # nhiễu: đấu thầu thuốc/thiết bị y tế
+ "du kien", "kien nghi", "phan dau", "quyet tam", "ung ho", "neu co", "co the", "muc tieu", "tin don"]  # tin phỏng đoán/định hướng
+PPP_LEGAL = ["luat dau thau", "luat dau tu", "luat ppp", "luat doi tac cong tu", "luat ngan sach", "nghi dinh", "nghi quyet", "thong tu", "quyet dinh", "cong van", "cong dien", "chi thi", "huong dan", "quy dinh", "hieu luc", "ban hanh", "sua doi", "bo sung", "thong qua", "du thao", "lay y kien", "co che"]
+LAWS_PPP = [("luat dau tu theo phuong thuc doi tac cong tu", "Luật PPP"), ("luat ppp", "Luật PPP"), ("luat doi tac cong tu", "Luật PPP"), ("luat dau tu cong", "Luật Đầu tư công")]  # chỉ xét cho tin chủ đề "ppp" (không đổi cụm tin cũ)
+def ppp_ok(st): return not any(has(st, n) for n in PPP_NEG) and any(has(st, l) for l in PPP_LEGAL)
 # topic -> (label, accent-free keywords). An item must match ≥1 topic AND ≥1 legal/policy word to be kept.
 TOPIC = {"dat-dai": ("Đất đai", ["dat dai", "gia dat", "bang gia dat", "quyen su dung dat", "giao dat", "thu hoi dat", "tien su dung dat", "chuyen muc dich su dung dat", "dau gia dat", "so do", "tien thue dat"]),
  "nha-o": ("Nhà ở & chung cư", ["luat nha o", "chung cu", "nha o thuong mai", "nha o xa hoi", "so huu nha", "thoi han so huu", "can ho", "nha chung cu", "cai tao chung cu"]),
@@ -38,7 +52,8 @@ TOPIC = {"dat-dai": ("Đất đai", ["dat dai", "gia dat", "bang gia dat", "quye
  "pccc": ("PCCC", ["phong chay", "chua chay", "pccc", "cuu nan cuu ho"]),
  "khoang-san": ("Khoáng sản & VLXD", ["khoang san", "cat song", "cat san lap", "cat xay dung", "mo cat", "mo da", "da xay dung", "dat san lap", "mo dat", "set gach", "vat lieu xay dung", "dia chat"]),
  "thue": ("Thuế BĐS", ["thue chuyen nhuong", "thue bat dong san", "thue thu nhap ca nhan tu chuyen nhuong", "thue nha", "thue su dung dat", "thue doi voi nguoi so huu nhieu nha", "le phi truoc ba"]),
- "dia-gioi": ("Địa giới hành chính", GEO)}
+ "dia-gioi": ("Địa giới hành chính", GEO),
+ "ppp": ("BT / PPP / Đầu tư công", PPP_KW)}
 LEGAL = ["luat", "nghi dinh", "thong tu", "nghi quyet", "quyet dinh", "du thao", "quy dinh", "chinh sach", "huong dan", "sua doi", "hieu luc", "ban hanh", "cong van", "chi thi", "bang gia", "cap phep", "lay y kien", "quy chuan"]
 # relevance weights (Masterise: luxury condo developer, HN & HCMC) – reason text is fixed per rule
 REL = [  # (keywords, points, reason)
@@ -55,7 +70,8 @@ REL = [  # (keywords, points, reason)
  (["nha o xa hoi", "20% quy dat"], 11, "Nghĩa vụ nhà ở xã hội của chủ đầu tư"),
  (["ha noi"], 7, "Áp dụng tại Hà Nội (thị trường dự án)"), (["tp.hcm", "tp hcm", "ho chi minh", "thanh pho ho chi minh", "sai gon"], 7, "Áp dụng tại TP.HCM (thị trường dự án)"),
  (["quy hoach"], 6, "Quy hoạch – ảnh hưởng quỹ đất"), (["hop dong xay dung", "chi phi dau tu xay dung", "dinh muc xay dung", "chi so gia xay dung"], 6, "Quản lý chi phí / HĐ xây dựng"),
- (GEO, 28, "Địa giới/tên đơn vị hành chính thay đổi – ảnh hưởng địa chỉ & địa điểm trong hợp đồng")]
+ (GEO, 28, "Địa giới/tên đơn vị hành chính thay đổi – ảnh hưởng địa chỉ & địa điểm trong hợp đồng"),
+ (PPP_KW, 24, "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu")]
 DYN = [  # recency/dynamics (max one per group by order)
  (["co hieu luc tu", "hieu luc tu ngay", "chinh thuc co hieu luc", "bat dau co hieu luc", "tu ngay 1/", "tu 1/"], 14, "sắp/đã có hiệu lực"),
  (["ban hanh", "vua ky", "da ky", "thong qua", "chinh thuc"], 12, "văn bản mới ban hành/thông qua"),
@@ -69,11 +85,22 @@ IMPACT = [  # dòng "Ảnh hưởng đến soạn hợp đồng" cho tin địa 
 def impact_idx(x):  # 0 = nâng tỉnh lên thành phố, 1 = thành lập phường/xã, 2 = sáp nhập/đổi tên, 3 = chung
     t = strip(x["title"] + " " + x.get("summary", ""))
     return next(i for i, (ks, _) in enumerate(IMPACT) if not ks or any(has(t, k) for k in ks))
-def impact(x): return IMPACT[impact_idx(x)][1] if "dia-gioi" in x.get("topics", []) else None
+IMPACT_PPP = [  # (nhóm từ khóa, câu) – "Ảnh hưởng đến soạn hợp đồng/đấu thầu": gợi ý cố định theo quy tắc, không suy diễn dữ kiện; luôn đối chiếu văn bản gốc
+ (PPP_CORE, "đối chiếu căn cứ pháp lý, loại hợp đồng (PPP/BT), điều kiện thanh toán – quyết toán (quỹ đất/ngân sách) và điều khoản chuyển tiếp của văn bản với hợp đồng/dự án đang làm."),
+ (PPP_ICP, "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu."),
+ (PPP_BID, "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.")]
+def ppp_idx(x):  # 0 = PPP/BT, 1 = đầu tư công, 2 = đấu thầu (ưu tiên theo thứ tự)
+    t = strip(x["title"] + " " + x.get("summary", ""))
+    return next((i for i, (ks, _) in enumerate(IMPACT_PPP) if any(has(t, k) for k in ks)), 0)
+def impact(x):
+    tp = x.get("topics") or [""]
+    return IMPACT[impact_idx(x)][1] if tp[0] == "dia-gioi" else IMPACT_PPP[ppp_idx(x)][1] if "ppp" in tp else None
+def impact_label(x): return "Ảnh hưởng đến soạn hợp đồng/đấu thầu" if (x.get("topics") or [""])[0] != "dia-gioi" and "ppp" in (x.get("topics") or []) else None
 DOC = [(r"\bnghi dinh\b|\bnd\s?\d", 8, "Nghị định"), (r"\bthong tu\b", 7, "Thông tư"), (r"\bluat\b", 8, "Luật"), (r"\bnghi quyet\b", 7, "Nghị quyết"), (r"\bquyet dinh\b|\bcong van\b|\bchi thi\b", 4, "QĐ/CV")]
 THEME = {1: "Thời hạn sở hữu chung cư", 2: "Giá đất & tiền sử dụng đất", 3: "Quyền sử dụng đất & giao đất", 4: "Chung cư & nhà ở thương mại", 5: "Kinh doanh BĐS (mở bán, chuyển nhượng)",
- 6: "Cấp phép & thẩm định xây dựng", 7: "Phòng cháy chữa cháy", 8: "Khoáng sản & VLXD (cát, đá, đất)", 9: "Thuế & phí BĐS", 10: "Nhà ở xã hội", 11: "Hà Nội", 12: "TP.HCM", 13: "Quy hoạch", 14: "Chi phí & HĐ xây dựng", 15: "Nâng tỉnh lên thành phố trực thuộc TW", 16: "Thành lập phường/xã (đổi cấp xã)", 17: "Sáp nhập, sắp xếp & đổi tên đơn vị hành chính"}
-THEME_PREF = {"nha-o": [1, 10, 4], "dat-dai": [2, 3, 13], "kd-bds": [5, 10], "xay-dung": [6, 14, 13], "pccc": [7], "khoang-san": [8], "thue": [9], "dia-gioi": [15, 16, 17]}  # chủ đề con ưu tiên theo chủ đề chính
+ 6: "Cấp phép & thẩm định xây dựng", 7: "Phòng cháy chữa cháy", 8: "Khoáng sản & VLXD (cát, đá, đất)", 9: "Thuế & phí BĐS", 10: "Nhà ở xã hội", 11: "Hà Nội", 12: "TP.HCM", 13: "Quy hoạch", 14: "Chi phí & HĐ xây dựng", 15: "Nâng tỉnh lên thành phố trực thuộc TW", 16: "Thành lập phường/xã (đổi cấp xã)", 17: "Sáp nhập, sắp xếp & đổi tên đơn vị hành chính",
+ 18: "PPP & hợp đồng BOT/BT/BOO", 19: "Đầu tư công, giải ngân & quyết toán", 20: "Đấu thầu & lựa chọn nhà thầu/nhà đầu tư"}
+THEME_PREF = {"nha-o": [1, 10, 4], "dat-dai": [2, 3, 13], "kd-bds": [5, 10], "xay-dung": [6, 14, 13], "pccc": [7], "khoang-san": [8], "thue": [9], "dia-gioi": [15, 16, 17], "ppp": [18, 19, 20]}  # chủ đề con ưu tiên theo chủ đề chính
 GENERIC_LAW = ["luat sua doi", "luat (sua doi)", "luat nay", "luat moi", "luat hoa", "luat chuyen nganh", "luat su", "luat le", "phap luat", "du luat", "luat gop"]
 def side_law(t):
     """Dự luật gộp: luật được nhắc ĐẦU TIÊN trong tiêu đề không thuộc nhóm liên quan (vd. 'Luật Quản lý vũ khí…, Luật PCCC') → luật liên quan chỉ là phần phụ."""
@@ -84,7 +111,8 @@ def has(t, k): return re.search(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])
 def score(x, now):
     t = strip(x["title"] + " " + x.get("summary", "")); rel, why, tags = 0, [], []
     for ks, p, r in REL:
-        if ks is GEO and any(has(t, n) for n in GEO_NEG): continue
+        if ks is GEO and ("dia-gioi" not in x["topics"] or any(has(t, n) for n in GEO_NEG)): continue  # chỉ tính điểm địa giới cho tin thuộc chủ đề này (không đổi điểm tin cũ)
+        if ks is PPP_KW and x["topics"][0] != "ppp": continue  # tin cũ có nhãn ppp phụ giữ nguyên điểm
         if any(has(t, k) for k in ks): rel += p; why.append(r)
     side = side_law(strip(x["title"]))
     if side: rel = round(rel * 0.4)  # phạt: lĩnh vực liên quan chỉ là phần phụ của dự luật gộp
@@ -106,10 +134,11 @@ LAWS = [("luat dat dai", "Luật Đất đai"), ("luat nha o", "Luật Nhà ở"
 def cluster(x):
     """Cụm = văn bản gốc (tên luật / số nghị định-thông tư) nếu nhận diện được, nếu không = chủ đề chính. Tin cùng cụm = cùng câu chuyện pháp lý."""
     t = strip(x["title"] + " " + x.get("summary", ""))
-    hits = [(t.find(k), lab) for k, lab in LAWS if has(t, k)]
-    hit = [i for i, (ks, _, _) in enumerate(REL) if i > 0 and any(has(t, k) for k in ks)]
+    hits = [(t.find(k), lab) for k, lab in (LAWS_PPP + [("luat dau thau", "Luật Đấu thầu")] if x["topics"][0] == "ppp" else LAWS) if has(t, k)]
+    hit = [i for i, (ks, _, _) in enumerate(REL) if i > 0 and (ks is not GEO or "dia-gioi" in x["topics"]) and (ks is not PPP_KW or x["topics"][0] == "ppp") and any(has(t, k) for k in ks)]
     th = next((i for i in THEME_PREF.get(x["topics"][0], []) if i in hit), hit[0] if hit else None)  # chủ đề con: ưu tiên luật khớp đúng chủ đề chính
     if x["topics"][0] == "dia-gioi": th = 15 + min(impact_idx(x), 2)  # chủ đề con theo loại thay đổi (mỗi loại ảnh hưởng hợp đồng khác nhau)
+    if x["topics"][0] == "ppp": th = 18 + ppp_idx(x)  # chủ đề con: PPP/BT, đầu tư công, đấu thầu
     x["theme"] = f"{x['topics'][0]}:{th}"
     if hits: lab = min(hits)[1]; return "law:" + re.sub(r"[^a-z0-9]+", "-", strip(lab)).strip("-"), lab
     m = re.search(r"(nghi dinh|thong tu|nghi quyet)\s*(?:so\s*)?(\d{1,4}/\d{4}(?:/[a-z\-]+\d{0,2})?)", t)
@@ -132,7 +161,7 @@ def pick_home(items, n=6, floor=40, per_topic=2, min_n=5):
 def get(url):
     r = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; MasteriseSCMHub/1.0)"})
     return urllib.request.urlopen(r, timeout=20).read()
-def parse(xml, srcname):
+def parse(xml, srcname, only=None):
     out = []
     for it in ET.fromstring(xml).iter("item"):
         t = html.unescape((it.findtext("title") or "").strip()); u = (it.findtext("link") or "").strip()
@@ -145,9 +174,12 @@ def parse(xml, srcname):
         if src is not None and " - " in t: t = t.rsplit(" - ", 1)[0].strip()
         summ = "" if src is not None else re.sub(r"<[^>]+>|\s+", " ", html.unescape(it.findtext("description") or "")).strip()[:300]
         st = strip(t + " " + summ)
-        topics = [k for k, (_, ks) in TOPIC.items() if any(has(st, w) for w in ks) and not (k == "dia-gioi" and (any(has(st, n) for n in GEO_NEG) or not any(has(st, l) for l in GEO_LEGAL)))]
+        topics = [k for k, (_, ks) in TOPIC.items() if any(has(st, w) for w in ks) and not (k == "dia-gioi" and (any(has(st, n) for n in GEO_NEG) or not any(has(st, l) for l in GEO_LEGAL))) and not (k == "ppp" and not ppp_ok(st))]
+        if only: topics = [k for k in topics if k in only]  # RSS rộng: chỉ giữ chủ đề được chỉ định (không thêm tin cho chủ đề khác)
+        if topics == ["ppp"]: pass  # tin chỉ thuộc BT/PPP/ĐTC: chủ đề chính = ppp
+        elif "ppp" in topics: topics.remove("ppp"); topics.append("ppp")  # tin đã thuộc chủ đề khác: chỉ gắn nhãn phụ ppp (giữ chủ đề chính, điểm, cụm như cũ)
         if "dia-gioi" in topics: topics.remove("dia-gioi"); topics.insert(0, "dia-gioi")  # tin địa giới: chủ đề chính = địa giới (chip vẫn xếp cuối)
-        if not topics or not (topics[0] == "dia-gioi" or any(has(st, w) for w in LEGAL)): continue
+        if not topics or not (topics[0] in ("dia-gioi", "ppp") or any(has(st, w) for w in LEGAL)): continue
         key = re.sub(r"[^a-z0-9]+", " ", strip(t)).strip()
         out.append(dict(id=hashlib.md5(key.encode()).hexdigest()[:12], title=unicodedata.normalize("NFC", t), url=u, source=name, summary=unicodedata.normalize("NFC", summ),
                         topics=topics, published=pub))
@@ -162,18 +194,20 @@ def load_seed(now):
         if now > eff + dt.timedelta(days=SEED_DAYS): continue
         key = re.sub(r"[^a-z0-9]+", " ", strip(x["title"])).strip()
         out.append(dict(id=hashlib.md5(key.encode()).hexdigest()[:12], title=unicodedata.normalize("NFC", x["title"]), url=x["url"], source=x["source"], summary=unicodedata.normalize("NFC", x.get("summary", "")),
-                        topics=["dia-gioi"], published=x["published"], found=x["published"], seed=True, effective=x["effective"], impact=x["impact"]))
+                        topics=x.get("topics", ["dia-gioi"]), published=x["published"], found=x["published"], seed=True, effective=x["effective"], impact=x["impact"], **({"impact_label": x["impact_label"]} if x.get("impact_label") else {})))
     return out
 def main():
     try: old = json.load(open(OUT, encoding="utf-8"))
     except Exception: old = {}
     items = {x["id"]: x for x in old.get("items", [])}; errors = []; now = dt.datetime.now(TZ); used = {}
-    srcs = [(GN.format(q=urllib.parse.quote(q)), "Google News", "Google News: " + q) for q in Q] + [(u, n, n) for n, u in RSS]
-    for url, name, label in srcs:
+    srcs = [(GN.format(q=urllib.parse.quote(q)), "Google News", "Google News: " + q, None) for q in Q] + [(u, n, n, None) for n, u in RSS] + [(u, n, n, ["ppp"]) for n, u in PPP_RSS]
+    for url, name, label, only in srcs:
         try:
-            got = parse(get(url), name); used[label] = len(got)
+            got = parse(get(url), name, only); used[label] = len(got)
             for x in got:
-                if x["id"] in items: items[x["id"]].update(topics=x["topics"])
+                if x["id"] in items:
+                    if only: (items[x["id"]]["topics"].append("ppp") if "ppp" not in items[x["id"]]["topics"] else None)  # RSS lọc: chỉ bổ sung nhãn ppp, không đụng chủ đề cũ
+                    else: items[x["id"]].update(topics=x["topics"])
                 else: items[x["id"]] = {**x, "found": now.isoformat(timespec="minutes")}
         except Exception as e: errors.append(f"{label}: {type(e).__name__}")
     SD = load_seed(now); seeds = {x["id"] for x in SD}
@@ -185,8 +219,9 @@ def main():
         elif (x.get("published") or x.get("found") or "") < cut or (x.get("published") or "") > (now + dt.timedelta(hours=1)).isoformat(): continue
         x["score"], x["why"], x["parts"] = score(x, now)
         if not x.get("seed"):
-            x.pop("impact", None); i = impact(x)
+            x.pop("impact", None); x.pop("impact_label", None); i = impact(x)
             if i: x["impact"] = i
+            if impact_label(x): x["impact_label"] = impact_label(x)
         keep.append(x)
     keep.sort(key=lambda x: (-x["score"], -(dt.datetime.fromisoformat(x.get("published") or x["found"]).timestamp())))
     out, seen = [], []  # gộp tin trùng nội dung (cùng sự kiện, khác báo): Jaccard từ tiêu đề ≥ 0,5
@@ -195,7 +230,7 @@ def main():
         hit = next((o for o, ws in seen if len(w & ws) / max(1, len(w | ws)) >= 0.5), None)
         if hit is not None: hit.setdefault("also", []).append(dict(source=x["source"], url=x["url"])) if len(hit.get("also", [])) < 4 else None; continue
         x.pop("also", None); seen.append((x, w)); out.append(x)
-    keep = out[:300]
+    keep = out[:400]  # nâng từ 300: thêm chủ đề mới không được đẩy tin cũ điểm thấp ra khỏi danh sách
     for x in keep: x["cluster"], x["cluster_label"] = cluster(x)
     size = {}
     for x in keep: size[x["cluster"]] = size.get(x["cluster"], 0) + 1
