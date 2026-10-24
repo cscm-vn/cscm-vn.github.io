@@ -1,6 +1,7 @@
 /* Bảng "Tra cứu nhà cung cấp" (nha-thau.html). Dữ liệu dựng sẵn: data/suppliers.json (trends/supplier_profiles.py). Không gọi API ngoài từ trình duyệt. */
 (async () => {
  const root = document.getElementById("ncc"); if (!root) return;
+ const HOME = root.classList.contains("ncc-home"); // trang chủ: kết quả gọn, cùng dữ liệu + cùng logic tìm/cảnh báo/nhãn
  const E = HUB.esc, out = document.getElementById("ncc-out"), inp = document.getElementById("ncc-q"), list = document.getElementById("ncc-list");
  const [D, fd, mk] = await Promise.all([HUB.get("suppliers.json"), HUB.get("feed.json"), HUB.get("market.json")]);
  if (!D || !D.units) { out.innerHTML = '<div class="ncc-empty">Không tải được dữ liệu tra cứu. Vui lòng tải lại trang.</div>'; return; }
@@ -134,6 +135,18 @@
    <span class="small mute">Dữ liệu dựng sẵn · ${f ? "BCTC kiểm chứng " + dmy(f.verified_on) + " · " : ""}đăng ký lấy ${dmy(r.fetched)}</span></div>
    <div class="ncc-grid">${info}${labelBox(u)}${warn}</div>${fin}${nw}${todo}${cmpBox}</article>`;
  };
+ const compact = u => { // kết quả gọn cho trang chủ; hồ sơ đầy đủ (BCTC, so sánh, việc cần làm) ở nha-thau.html
+  const f = u.fin, r = u.reg, F = flagsFor(u, newsFor(u)), L = f && f.label, p0 = f && f.periods[0], more = F.length - 3;
+  const sig = f ? `<span class="ncc-sig ${L.k}">${LAB[L.k]}</span>${L.pts != null ? `<span class="ncc-pts">${L.pts} điểm · dựa trên ${E(p0.label)}</span>` : ""}` : `<span class="ncc-sig unl">${u.ticker ? "Chưa có số liệu đã kiểm chứng" : "Chưa có BCTC công khai"}</span>`;
+  const nums = f ? `<dl class="ncc-kv"><dt>Doanh thu</dt><dd>${T(p0.v.rev)} tỷ</dd><dt>LNST</dt><dd>${T(p0.v.np)} tỷ</dd><dt>Nợ vay ÷ vốn chủ</dt><dd>${X(p0.m.dbe)}</dd><dt>Thanh khoản hiện hành</dt><dd>${X(p0.m.cr)}</dd></dl>`
+   : `<p class="small mute" style="margin:6px 0 0">Bảng <b>không có doanh thu, lợi nhuận hay nợ</b> của đơn vị này và không ước lượng.</p>`;
+  const fl = F.length ? `<ul class="ncc-flags">${F.slice(0, 3).map(x => `<li class="${x.sev}"><span aria-hidden="true">${SEV[x.sev]}</span><span><b>${E(x.t)}</b></span></li>`).join("")}</ul>${more > 0 ? `<p class="small mute" style="margin:0">+${more} cảnh báo khác trong hồ sơ đầy đủ.</p>` : ""}`
+   : '<p class="small" style="margin:0">Chưa có cờ nào từ số liệu bảng này theo dõi. <b>Không có nghĩa là không có rủi ro.</b></p>';
+  return `<article class="ncc-cmpct" aria-label="Hồ sơ ${E(u.short)}"><h3>${E(r.legal)}</h3><div>${u.ticker ? `<span class="pill cat">${E(u.ticker)} · ${E(u.exchange)}</span>` : '<span class="pill">Chưa niêm yết</span>'}<span class="pill">MST ${E(u.mst)}</span>${u.group ? `<span class="pill">${E(u.group)}</span>` : ""}<span class="pill ${r.active ? "hcm" : "hn"}">${r.active ? "✓ " : "⚠ "}${E(r.status)}</span></div>
+   <div class="ncc-row">${sig}</div>${nums}<div class="ncc-fl">${fl}</div>
+   <p class="ncc-note">Chưa tra tự động: vi phạm đấu thầu, nợ thuế, hóa đơn rủi ro, hồ sơ đăng ký.${f ? " " + E(D.disclaimer.split(". ")[0]) + "." : ""}</p>
+   <p style="margin:6px 0 0"><a class="ncc-full" href="nha-thau.html?ncc=${encodeURIComponent(u.mst)}#ncc">Xem hồ sơ đầy đủ (BCTC, so sánh, việc cần làm) →</a></p></article>`;
+ };
  const cmpTable = u => {
   const ids = [u.id, ...cmp], Us = ids.map(id => BY[id]);
   const row = (n, fn) => `<tr><td class="l">${n}</td>${Us.map(x => `<td class="n" style="white-space:normal">${x.fin ? fn(x.fin.periods[0], x.fin) : `<span class="mute">${x.ticker ? "Chưa có số liệu đã kiểm chứng" : "Chưa có BCTC công khai"}</span>`}</td>`).join("")}</tr>`;
@@ -144,9 +157,10 @@
  };
  const render = () => {
   if (!cur) { out.innerHTML = ""; return; }
-  out.innerHTML = card(cur);
+  out.innerHTML = HOME ? compact(cur) : card(cur); if (HOME) return;
   const sel = document.getElementById("ncc-cmp-sel"); if (sel) sel.onchange = () => { if (sel.value && cmp.length < 2) { cmp.push(sel.value); render(); document.getElementById("ncc-cmp-sel")?.focus(); } };
   out.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { cmp = cmp.filter(x => x !== b.dataset.rm); render(); document.getElementById("ncc-cmp-sel")?.focus(); });
  };
- const q0 = HUB.qs("ncc"); if (q0) { const r = find(q0); if (r.length) pick(r[0].id); else { inp.value = q0; notFound(q0); } }
+ if (HOME && inp.value.trim()) onInput(); // gõ trước khi dữ liệu tải xong
+ const q0 = HOME ? null : HUB.qs("ncc"); if (q0) { const r = find(q0); if (r.length) pick(r[0].id); else { inp.value = q0; notFound(q0); } }
 })();
