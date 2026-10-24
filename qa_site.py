@@ -37,8 +37,9 @@ def ncc_checks(pg, w, f, fails):
     sug, txt = ask("coteccons")
     for k in CTD_SHOW:
         if k not in txt: F(f"thẻ Coteccons thiếu “{k}”")
+    full = pg.locator("#ncc-out").text_content()  # gồm cả phần “Cách tính nhãn” đang gập
     for lab in ("Tốt", "Theo dõi", "Thận trọng"):
-        if lab not in txt: F(f"thẻ Coteccons không nêu ngưỡng nhãn “{lab}”")
+        if lab not in full: F(f"thẻ Coteccons không nêu ngưỡng nhãn “{lab}”")
     for k in ("chưa tra tự động", "tin chưa kiểm chứng" if "Tin gần đây" in txt else "chưa tra tự động"):
         if k.lower() not in txt.lower(): F(f"thẻ Coteccons thiếu cụm “{k}”")
     try:
@@ -56,6 +57,7 @@ def ncc_checks(pg, w, f, fails):
         host = urllib.parse.urlparse(u).netloc
         if u in pdfs or "coteccons.vn" in host and "/bao-cao-tai-chinh" in u or "api.vietqr.io" in host:
             if not link_ok(u): F("link nguồn hỏng " + u)
+    ls = [u.rstrip("/") if u.count("/") == 3 else u for u in ls]
     man = {u for u in ls if "gdt.gov.vn" in u or "dangkykinhdoanh" in u or "muasamcong" in u}
     if not man <= GOV_MANUAL or len(man) < 3: F(f"link tra cứu thủ công sai {man}")
     # đơn vị chưa niêm yết
@@ -72,7 +74,7 @@ def ncc_checks(pg, w, f, fails):
     if pg.locator("#ncc-list").is_visible(): F("Esc không đóng gợi ý")
     # so sánh
     ask("coteccons"); pg.select_option("#ncc-cmp-sel", index=1); pg.wait_for_timeout(400)
-    if not pg.locator("#ncc-out .ncc-cmp table").count(): F("so sánh nhanh không hiện bảng")
+    if not pg.locator("#ncc-out .ncc-cmp ~ .tw table").count(): F("so sánh nhanh không hiện bảng")
 def link_ok(u):
     try: return urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=20).status < 400
     except Exception:

@@ -153,7 +153,7 @@ def build():
         for k in ("short",): al.add(strip(o.get(k) or ""))
         al |= {strip(b) for b in o.get("brands", [])}; al |= {strip(r["legal"]), strip(r.get("intl") or ""), strip(r.get("short") or "")}
         if f: al.add(strip(f["ticker"]))
-        out_units.append(dict(id=re.sub(r"[^a-z0-9]+", "-", strip(u["org"])).strip("-"), org=u["org"], name=r["legal"], short=o.get("short") or o["name"], group=o.get("group"), website=o.get("website") if (o.get("website") or "").startswith("http") else None,
+        out_units.append(dict(id=re.sub(r"[^a-z0-9]+", "-", strip(u["org"])).strip("-"), org=u["org"], name=r["legal"], short=u["org"], group=o.get("group"), website=o.get("website") if (o.get("website") or "").startswith("http") else None,
             mst=u["mst"], aliases=sorted(a for a in al if a), listed=bool(f), ticker=f["ticker"] if f else None, exchange=f["exchange"] if f else None, note=u.get("note"),
             hub_note=o.get("note"), reg=dict(legal=r["legal"], intl=r.get("intl"), address=r["address"], status=r["status"], active=status_ok, fetched=r["fetched"], upstream_updated=r.get("upstream_updated"),
                 source="VietQR API (dữ liệu tổng hợp từ Tổng cục Thuế)", url="https://api.vietqr.io/v2/business/" + u["mst"]), flags=fl, fin=f))
