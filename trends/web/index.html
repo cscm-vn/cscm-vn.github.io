@@ -138,9 +138,18 @@
  const ORDER = {"khan-hiem": 0, "du-cung": 1, "can-bang": 2, "chua-du": 3};
  document.getElementById("scmw").innerHTML = scm ? `<tr><th>Nhóm</th><th>Tín hiệu</th><th>Nguồn mua</th></tr>` + scm.categories.slice().sort((a, b) => ORDER[a.signal] - ORDER[b.signal]).map(c => `<tr><td><a href="scm.html?c=${c.id}">${E(c.name)}</a></td><td><span class="sig" style="background:${SIGC[c.signal][1]}">${SIGC[c.signal][0]}</span> <span class="small mute">${{up: "↑", down: "↓", flat: "→"}[c.trend]}</span></td><td class="small">${E(c.rec)}</td></tr>`).join("") : '<tr><td class="mute">Chưa có dữ liệu SCM.</td></tr>';
  const SEGN = Object.fromEntries((sg?.segments || []).map(s => [s.id, s.name]));
+ let orgRows = [];
+ const orgLi = x => `<li><span class="pill cat">${E(x.o)}</span><a href="${E(x.u)}" target="_blank" rel="noopener">${E(x.t)}</a> <span class="small mute">${HUB.date(x.d)} · ${E(x.s)}</span></li>`;
+ // Số tin theo chỗ trống: khi 2 cột (box đứng cạnh "Hà Nội vs TP.HCM") hiện thêm tin cho đến khi sát đáy cột bên cạnh (chiều cao hàng không đổi); 1 cột (điện thoại) giữ 8 tin.
+ const fitOrg = () => { const ul = document.getElementById("orgl"); if (ul.hidden) return; const sec = ul.closest("section"), row = sec.parentElement, sib = [...row.children].find(z => z !== sec);
+  const two = getComputedStyle(row).gridTemplateColumns.trim().split(/\s+/).length > 1; let n = Math.min(orgRows.length, two ? 30 : 8);
+  ul.innerHTML = orgRows.slice(0, n).map(orgLi).join("") || '<li class="mute">Chưa có tin.</li>';
+  if (two) { const lim = Math.max(...[...sib.children].map(c => c.getBoundingClientRect().bottom)) - sec.getBoundingClientRect().top; while (n > 8 && ul.getBoundingClientRect().bottom - sec.getBoundingClientRect().top > lim) { ul.lastElementChild.remove(); n--; } } };
  const orgl = k => { const ed = mk.items.filter(x => x.org_type === k).map(x => ({t: x.title, u: x.sources[0].url, d: x.date, o: x.org, s: x.sources[0].name, ed: 1}));
-  const rs = (fd?.items || []).filter(x => x.org_type === k).map(x => ({t: x.title, u: x.url, d: x.date, o: x.org, s: x.source}));
-  document.getElementById("orgl").innerHTML = [...ed, ...rs].sort((a, b) => b.d.localeCompare(a.d) || (b.ed || 0) - (a.ed || 0)).slice(0, 8).map(x => `<li><span class="pill cat">${E(x.o)}</span><a href="${E(x.u)}" target="_blank" rel="noopener">${E(x.t)}</a> <span class="small mute">${HUB.date(x.d)} · ${E(x.s)}</span></li>`).join("") || '<li class="mute">Chưa có tin.</li>'; };
+  const rs = (fd?.items || []).filter(x => x.org_type === k).map(x => ({t: x.title, u: x.url, d: x.date, o: x.org, s: x.source})), seen = new Set();
+  orgRows = [...ed, ...rs].sort((a, b) => b.d.localeCompare(a.d) || (b.ed || 0) - (a.ed || 0)).filter(x => !seen.has(x.u) && seen.add(x.u)); fitOrg(); };
+ let orgRz; addEventListener("resize", () => { clearTimeout(orgRz); orgRz = setTimeout(fitOrg, 120); });
+ if (window.ResizeObserver) new ResizeObserver(() => fitOrg()).observe(document.getElementById("cmp"));
  // Tab "Tra cứu nhà cung cấp": nạp supplier-lookup.css/.js (cùng logic với nha-thau.html) khi bấm lần đầu, nên trang chủ không tải thêm gì nếu không dùng.
  const nccP = document.getElementById("ncc"), nccLoad = () => nccLoad.p ||= new Promise(ok => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "supplier-lookup.css"; l.onload = l.onerror = ok; document.head.append(l);
   const sc = document.createElement("script"); sc.src = "supplier-lookup.js"; document.body.append(sc); });
