@@ -91,6 +91,70 @@ def ncc_checks(pg, w, f, fails):
     # so sánh
     ask("coteccons"); pg.select_option("#ncc-cmp-sel", index=1); pg.wait_for_timeout(400)
     if not pg.locator("#ncc-out .ncc-cmp ~ .tw table").count(): F("so sánh nhanh không hiện bảng")
+# ---- Trang chủ: tab "Tra cứu nhà cung cấp" trong box Nhà thầu & chủ đầu tư (#orgseg + #ncc) ----
+def home_ncc_checks(pg, w, f, fails):
+    def F(m): fails.append((w, f, "ncc-home: " + m))
+    n = pg.evaluate("() => [document.querySelectorAll('#ncc').length, document.querySelectorAll('#ncc-q').length, document.querySelectorAll('#ncc-out').length, document.querySelectorAll('#orgseg button[data-k=ncc]').length, document.querySelectorAll('#orgseg button').length]")
+    if n != [1, 1, 1, 1, 3]: return F(f"số phần tử [#ncc, #ncc-q, #ncc-out, nút tab, tổng nút] = {n}, cần [1,1,1,1,3]")
+    st = pg.evaluate("""() => { const seg = document.getElementById('orgseg'), sr = seg.getBoundingClientRect(), bs = [...seg.querySelectorAll('button')], o = document.getElementById('orgl');
+      return {hid: document.getElementById('ncc').hidden, orgl: !o.hidden && o.children.length > 0, clip: seg.scrollWidth > seg.clientWidth + 1 || bs.some(b => b.getBoundingClientRect().right > sr.right + 1 || b.scrollWidth > b.clientWidth + 1),
+        lbl: bs.map(b => b.innerText.trim()), aria: seg.querySelector('button[data-k=ncc]').getAttribute('aria-label'),
+        lazy: performance.getEntriesByType('resource').filter(r => /supplier-lookup|suppliers\\.json/.test(r.name)).length}; }""")
+    if not st["hid"]: F("ô tra cứu không ẩn lúc mới vào (tab mặc định phải là Tin nhà thầu)")
+    if not st["orgl"]: F("danh sách tin nhà thầu mặc định trống/ẩn")
+    if st["clip"]: F(f"thanh chuyển tab bị cắt/tràn {st['lbl']}")
+    if st["lazy"]: F("trang chủ đã tải supplier-lookup/suppliers.json trước khi bấm tab (phải tải lười)")
+    if st["aria"] != "Tra cứu nhà cung cấp": F(f"nút tab thiếu aria-label đầy đủ ({st['aria']})")
+    if w > 380 and st["lbl"][2] != "Tra cứu nhà cung cấp": F(f"nhãn nút {st['lbl'][2]!r}")
+    H = lambda: pg.evaluate("() => { const b = document.getElementById('orgseg').closest('section'); return [Math.round(b.getBoundingClientRect().height * 10) / 10, Math.round(b.parentElement.getBoundingClientRect().height * 10) / 10, document.documentElement.scrollHeight]; }")
+    h0 = H(); pg.click("#orgseg button[data-k=ncc]"); pg.wait_for_selector("#ncc:not([hidden]) #ncc-q", timeout=5000); pg.wait_for_timeout(600)
+    if pg.evaluate("() => document.getElementById('orgl').hidden") is not True: F("danh sách tin chưa ẩn khi mở tab tra cứu")
+    if pg.evaluate("() => document.querySelectorAll('#orgseg button.on').length") != 1: F("không đúng 1 tab đang chọn")
+    def ask(q):  # trả về (ms từ lúc gõ đến khi gợi ý hiện + vẽ xong, gợi ý, ms từ Enter đến khi thẻ kết quả vẽ xong, nội dung)
+        pg.fill("#ncc-q", ""); pg.wait_for_timeout(100)
+        t1 = pg.evaluate("""async (q) => { const i = document.getElementById('ncc-q'), t = performance.now(); i.value = q; i.dispatchEvent(new Event('input', {bubbles: true}));
+          await new Promise(r => requestAnimationFrame(() => setTimeout(r, 0))); return performance.now() - t; }""", q)
+        sug = pg.locator("#ncc-list li").all_inner_texts()
+        t2 = pg.evaluate("""async () => { const i = document.getElementById('ncc-q'), t = performance.now(); i.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter', bubbles: true}));
+          await new Promise(r => requestAnimationFrame(() => setTimeout(r, 0))); return performance.now() - t; }""")
+        return t1, sug, t2, pg.locator("#ncc-out").inner_text()
+    for q, first, legal, mst in [("Coteccons", "COTECCONS", "XÂY DỰNG COTECCONS", "0303443233"), ("0303443233", "COTECCONS", "XÂY DỰNG COTECCONS", "0303443233"), ("hoa phat", "HÒA PHÁT", "TẬP ĐOÀN HÒA PHÁT", None), ("CTD", "COTECCONS", "XÂY DỰNG COTECCONS", "0303443233")]:
+        t1, sug, t2, txt = ask(q)
+        if not sug or first not in sug[0].upper(): F(f"gợi ý đầu cho “{q}” = {sug[:1]}")
+        if legal not in txt.upper(): F(f"kết quả “{q}” không có “{legal}”")
+        if mst and mst not in txt: F(f"kết quả “{q}” không có MST {mst}")
+        if t1 > 200 or t2 > 200: F(f"“{q}”: gợi ý {t1:.0f}ms / kết quả {t2:.0f}ms (cần <200ms)")
+        if "chưa tra tự động" not in txt.lower(): F(f"kết quả “{q}” thiếu ghi chú chưa tra tự động")
+    t1, sug, t2, txt = ask("Coteccons")
+    for k in ("34.340", "788", "0303443233", "CTD", "HOSE", "Theo dõi", "NNT đang hoạt động", "dựa trên Năm tài chính 2026"):
+        if k not in txt: F(f"kết quả Coteccons thiếu “{k}”")
+    href = pg.evaluate("() => { const a = document.querySelector('#ncc-out a.ncc-full'); return a ? a.getAttribute('href') : null; }")
+    if href != "nha-thau.html?ncc=0303443233#ncc": F(f"link hồ sơ đầy đủ = {href}")
+    t1, sug, t2, txt = ask("newtecons")
+    if "Chưa niêm yết" not in txt or "Chưa có BCTC công khai" not in txt: F("đơn vị chưa niêm yết (Newtecons) không ghi rõ 'Chưa niêm yết' / 'Chưa có BCTC công khai'")
+    if "doanh thu" in txt.lower() and "không có doanh thu" not in txt.lower(): F("đơn vị chưa niêm yết hiện doanh thu?")
+    t1, sug, t2, txt = ask("xyzabc khong co")
+    if "chưa có trong dữ liệu" not in txt or "Tổng cục Thuế" not in txt: F("không có kết quả mà không hướng dẫn tra nguồn chính thức")
+    h1 = H()
+    if abs(h1[0] - h0[0]) > 1 or abs(h1[1] - h0[1]) > 1 or abs(h1[2] - h0[2]) > 1: F(f"chiều cao box/hàng/trang đổi khi dùng ô tra cứu: trước {h0} sau {h1}")
+    ov = pg.evaluate("() => { const b = document.getElementById('ncc'), r = b.getBoundingClientRect(); return {pg: document.documentElement.scrollWidth - innerWidth, inner: b.scrollWidth - b.clientWidth, right: r.right > innerWidth + 1}; }")
+    if ov["pg"] > 0 or ov["inner"] > 1 or ov["right"]: F(f"tràn ngang {ov}")
+    # bàn phím: ↓ Enter chọn gợi ý thứ 2 → thẻ đổi; Escape đóng danh sách
+    pg.fill("#ncc-q", "hoa"); pg.wait_for_timeout(200); pg.keyboard.press("ArrowDown"); pg.keyboard.press("Enter"); pg.wait_for_timeout(300)
+    if not pg.locator("#ncc-out .ncc-cmpct").count(): F("chọn bằng bàn phím không ra thẻ")
+    # chip thử nhanh
+    pg.click("#ncc-quick button[data-id=hoa-binh]"); pg.wait_for_timeout(300)
+    if "HÒA BÌNH" not in pg.locator("#ncc-out").inner_text().upper(): F("chip Hòa Bình không ra kết quả")
+    # quay lại tab tin: danh sách tin quay lại, ô tra cứu ẩn, box đúng chiều cao ban đầu
+    pg.click("#orgseg button[data-k=developer]"); pg.wait_for_timeout(300)
+    if not pg.evaluate("() => document.getElementById('ncc').hidden && !document.getElementById('orgl').hidden && document.getElementById('orgl').children.length > 0"): F("quay lại tab tin: trạng thái sai")
+    # liên kết hồ sơ đầy đủ mở đúng thẻ ở nha-thau.html
+    pg2 = pg.context.new_page()
+    try:
+        pg2.goto(B + "nha-thau.html?ncc=0303443233", wait_until="networkidle", timeout=60000); pg2.wait_for_timeout(1200)
+        if "XÂY DỰNG COTECCONS" not in pg2.locator("#ncc-out").inner_text().upper() or pg2.evaluate("() => document.querySelectorAll('#ncc').length") != 1: F("nha-thau.html?ncc=MST không mở thẻ Coteccons / #ncc không đúng 1 lần")
+    finally: pg2.close()
+
 def link_ok(u):
     try: return urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=20).status < 400
     except Exception:
@@ -183,6 +247,8 @@ with sync_playwright() as p:
                 elif pq2["want"] and (pq2["n"] == 0 or pq2["noimp"]): fails.append((w, f, f"policy ppp rows {pq2['n']}, without impact line {pq2['noimp']}"))
             if f == "nha-thau.html" and w in (390, 1366):
                 ncc_checks(pg, w, f, fails); pg.wait_for_timeout(300)
+            if f == "index.html":
+                home_ncc_checks(pg, w, f, fails); pg.wait_for_timeout(300)
             if r["c"]["footer"] > 1: fails.append((w, f, f"footer x{r['c']['footer']}"))
             if r["ov"] > 0: fails.append((w, f, f"overflow {r['ov']}px"))
             if r["moj"]: fails.append((w, f, f"mojibake {r['moj']}"))

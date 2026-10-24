@@ -6,7 +6,7 @@
 .dcw .c span{display:block;font-size:12px;color:var(--mute)}.dcw .c b{font-size:22px;font-variant-numeric:tabular-nums}.dcw .c small{color:var(--mute);font-size:12px}
 .dcw ul{margin:8px 0 0;padding-left:18px;font-size:13.5px}.dcw li{margin:2px 0}
 @media (max-width:700px){.dcw .g{grid-template-columns:1fr 1fr}.dcw .c b{font-size:18px}}
-#orgseg{max-width:100%}@media (max-width:800px){#orgseg button{padding:6px 6px}#orgseg button[data-k=ncc]{flex:1 1 0}}#orgl[hidden],#ncc[hidden]{display:none}
+#orgseg{max-width:100%}@media (max-width:800px){#orgseg button{padding:6px 6px}}#orgseg .ns{display:none}@media (max-width:380px){#orgseg .nl{display:none}#orgseg .ns{display:inline}}#orgl[hidden],#ncc[hidden]{display:none}
 </style><style>@media (min-width:901px){.hero #kpi.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}</style><style>/* Điểm nóng theo nhóm (trends/highlights.py -> data/highlights.json) */
 .tile.hlt{display:flex;flex-direction:column;padding:0;min-width:0;overflow:hidden}.tile.hlt>a.tl{display:block;padding:12px 12px 8px;color:var(--ink);flex:1}.tile.hlt>a.tl:hover{text-decoration:none}
 .tile .hl{margin:0 10px 10px;padding:6px 8px;border-radius:10px;background:#fbf6ea;border:1px solid #ecdcb4;font-size:12.5px;line-height:1.4;min-width:0}
@@ -42,7 +42,7 @@
  <div class="grid g2">
   <section><h2>🏙️ Hà Nội vs TP.HCM <a class="small" href="danh-muc.html?c=xd&tab=cmp">chi tiết →</a></h2><div id="cmp" class="grid"></div></section>
   <section><h2>🏗️ Nhà thầu & chủ đầu tư <a class="small" href="nha-thau.html">xem tất cả →</a></h2>
-   <div class="seg" id="orgseg"><button data-k="contractor" class="on">Tin nhà thầu</button><button data-k="developer">Chủ đầu tư / Đối thủ</button><button data-k="ncc">Tra cứu nhà cung cấp</button></div><ul class="news card" id="orgl" style="margin-top:8px"></ul>
+   <div class="seg" id="orgseg"><button data-k="contractor" class="on">Tin nhà thầu</button><button data-k="developer">Chủ đầu tư / Đối thủ</button><button data-k="ncc" aria-label="Tra cứu nhà cung cấp">Tra cứu <span class="nl">nhà cung cấp</span><span class="ns">NCC</span></button></div><ul class="news card" id="orgl" style="margin-top:8px"></ul>
    <div class="card ncc ncc-home" id="ncc" hidden aria-label="Tra cứu nhà cung cấp">
     <p class="small mute ncc-intro">Gõ tên (không dấu cũng được), mã cổ phiếu hoặc mã số thuế. Dữ liệu dựng sẵn từ nguồn công khai, không tra trực tiếp trên mạng.</p>
     <div class="ncc-sb"><label class="sr-only" for="ncc-q">Tên nhà cung cấp, mã cổ phiếu hoặc mã số thuế</label><input id="ncc-q" type="search" placeholder="Ví dụ: Cotecon, CTD, hoa phat, 0303443233…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="ncc-list" aria-autocomplete="list"><ul id="ncc-list" class="ncc-list" role="listbox" aria-label="Gợi ý đơn vị" hidden></ul></div>
