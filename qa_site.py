@@ -77,8 +77,8 @@ with sync_playwright() as p:
                         if any(not x.get("impact") or x.get("impact_label") != "Ảnh hưởng đến soạn hợp đồng/đấu thầu" for x in _P if x["topics"][0] != "dia-gioi"): fails.append((w, f, "policy ppp item without impact line / label"))
                         if any(not str(x["url"]).startswith("https://") for x in _P if x.get("seed")): fails.append((w, f, "policy ppp seed bad link"))
                         _today = _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=7))).date()
-                        for _n, _d in (("377/2026/NĐ-CP", _dt.date(2026, 11, 30)), ("349/2026/NĐ-CP", _dt.date(2026, 11, 8))):
-                            if _today <= _d and not any(x.get("seed") and _n in x["title"] for x in _P): fails.append((w, f, f"policy ppp seed (NĐ {_n}) missing"))
+                        for _n, _u, _d in (("377/2026/NĐ-CP", "docid=219746", _dt.date(2026, 11, 30)), ("349/2026/NĐ-CP", "docid=219431", _dt.date(2026, 11, 8))):  # link chính thức có thể nằm trong 'also' khi gộp với tin trùng
+                            if _today <= _d and not any(_u in x["url"] or any(_u in a.get("url", "") for a in x.get("also", [])) for x in _P): fails.append((w, f, f"policy ppp official link (NĐ {_n}) missing"))
                         for m in pq["more"]:
                             c = urllib.parse.unquote(m.split("pc=")[1].split("#")[0]) if "pc=" in m else ""
                             if c not in _p["clusters"] or not m.startswith("hop-dong.html?pc="): fails.append((w, f, "policy bad cluster link " + m))
