@@ -76,6 +76,24 @@ def ncc_checks(pg, w, f, fails):
     if "Chưa có số liệu đã kiểm chứng" not in txt or "Doanh thu thuần" in txt or "VGC" not in txt: F("[mở rộng] Viglacera: sai nhãn/hiện số liệu chưa kiểm chứng")
     sug, txt = ask("casta")
     if "cần xác nhận" not in txt.lower(): F("[mở rộng] Casta thiếu cảnh báo tên pháp nhân cần xác nhận")
+    # đơn vị thêm theo yêu cầu anh Hà (4 tên nêu riêng + đợt mở rộng): tìm được, đúng pháp nhân/MST; chưa niêm yết -> 'Chưa có BCTC công khai'; cờ tên pháp nhân cho đơn vị chưa chắc
+    for q, first, legal in [("fountech", "FOUNTECH", "CỔ PHẦN FOUNTECH"), ("kingsteel", "KINGSTEEL", "KINGSTEEL VIỆT NAM"), ("an phat cuong", "AN PHÁT CƯỜNG", "CỔ PHẦN AN PHÁT CƯỜNG"),
+                            ("long giang", "LONG GIANG", "ĐÔ THỊ LONG GIANG"), ("0105647362", "KINGSTEEL", "KINGSTEEL VIỆT NAM"), ("acefic", "ACEFIC", "ACE THÁI BÌNH DƯƠNG"), ("wilo", "WILO", "WILO VIỆT NAM"),
+                            ("nem", "NEM", "NỘI THẤT NEM"), ("dong ngo", "ĐÔNG NGÔ", "TẬP ĐOÀN ĐÔNG NGÔ"), ("bm windows", "BM WINDOWS", "BM WINDOWS"), ("mau nghe thuat", "MÀU NGHỆ THUẬT", "MÀU NGHỆ THUẬT"),
+                            ("tinh phu qui", "TÍNH PHÚ QUÍ", "TÍNH PHÚ QUÍ"), ("catinat", "CATINAT", "CATINAT DESIGN"), ("gg derco", "GG DECOR", "GG DECOR")]:
+        sug, txt = ask(q)
+        if not sug or first not in sug[0].upper(): F(f"[đơn vị mới] gợi ý đầu cho “{q}” = {sug[:1]}")
+        if legal not in txt.upper(): F(f"[đơn vị mới] thẻ “{q}” thiếu “{legal}”")
+        if "Chưa có BCTC công khai" not in txt and "LGL" not in txt: F(f"[đơn vị mới] thẻ “{q}” thiếu nhãn 'Chưa có BCTC công khai'")
+        if "Doanh thu thuần" in txt: F(f"[đơn vị mới] thẻ “{q}” không được hiện doanh thu")
+    for q in ("long giang", "catinat", "gg decor", "bkt"):
+        sug, txt = ask(q)
+        if "cần xác nhận" not in txt.lower(): F(f"[đơn vị mới] thẻ “{q}” thiếu cảnh báo tên pháp nhân cần xác nhận")
+    sug, txt = ask("long giang")  # niêm yết (LGL) nhưng chưa có số liệu đã kiểm chứng: không hiện số
+    if "LGL" not in txt or "Chưa có số liệu đã kiểm chứng" not in txt or "Doanh thu thuần" in txt: F("[đơn vị mới] Long Giang (LGL): sai nhãn/hiện số liệu chưa kiểm chứng")
+    for q in ("fountech", "kingsteel", "an phat cuong"):
+        sug, txt = ask(q)
+        if "cần xác nhận" in txt.lower(): F(f"[đơn vị mới] thẻ “{q}” không nên có cờ tên pháp nhân (đã khai pháp nhân trong orgs.json)")
     sug, txt = ask("thang may", enter=False)
     if len(sug) < 3: F(f"[mở rộng] tìm theo nhóm “thang may” chỉ ra {len(sug)} kết quả")
     t0 = pg.evaluate("() => { const q = document.querySelector('#ncc-q'); const t = performance.now(); q.value = 'schin'; q.dispatchEvent(new Event('input', {bubbles: true})); return performance.now() - t; }")
