@@ -166,7 +166,7 @@ def main():
     days[dt.datetime.now(TZ).strftime("%Y-%m-%d")] = [x["id"] for x in J(os.path.join(H, "data", "trends.json"), {"items": []})["items"][:TOPN]]
     days = dict(sorted(days.items())[-14:]); json.dump(dict(n=TOPN, days=days), open(thp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for f in glob.glob(os.path.join(H, "web", "*")): shutil.copy(f, SITE)
-    for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json", "orgs.json", "legal.json", "fidic.json", "trade-remedies.json", "disputes.json", "quiz.json", "checklist.json", "legal-feed.json", "policy-feed.json", "highlights.json", "top_history.json"):
+    for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json", "orgs.json", "legal.json", "fidic.json", "trade-remedies.json", "disputes.json", "quiz.json", "checklist.json", "legal-feed.json", "policy-feed.json", "highlights.json", "top_history.json", "suppliers.json"):
         if os.path.exists(os.path.join(H, "data", f)): shutil.copy(os.path.join(H, "data", f), OUT)
     shutil.copy(TAXF, os.path.join(OUT, "taxonomy.json"))
     fd = J(os.path.join(OUT, "feed.json"))  # slim the public feed (UI never shows snippets) for faster first load

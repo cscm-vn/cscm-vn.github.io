@@ -1,10 +1,17 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nhà thầu & Chủ đầu tư – Masterise Construction SCM Hub</title><meta name="description" content="Theo dõi tin nhà thầu (trúng thầu, backlog, tài chính, hành vi giá) và chủ đầu tư đối thủ (mở bán, giá/m², tiêu chuẩn bàn giao, nhà cung cấp).">
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script></head>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="hub.css"><script src="hub-common.js"></script><link rel="stylesheet" href="supplier-lookup.css"></head>
 <body class="hub" data-page="nhathau"><div id="hubnav"></div>
 <main class="wrap" id="main"><div class="crumb" id="crumb"></div>
  <h1>Nhà thầu & Chủ đầu tư đối thủ</h1>
  <p class="sub">Tin biên tập có nguồn + tin tự động (Google News, cập nhật hằng ngày) về tổng thầu, nhà thầu MEP/fit-out và các chủ đầu tư cạnh tranh: trúng thầu, backlog, tài chính, hành vi giá, mở bán, giá/m², tiêu chuẩn bàn giao, nhà cung cấp được chỉ định.</p>
+<section class="card ncc" id="ncc" aria-labelledby="ncc-h">
+ <div class="ncc-h"><h2 id="ncc-h">🔎 Tra cứu nhà cung cấp</h2><span class="pill cat">Mới</span></div>
+ <p class="sub" style="margin:0">Gõ tên (không dấu cũng được), mã cổ phiếu hoặc mã số thuế để xem hồ sơ: thông tin doanh nghiệp, doanh thu – lợi nhuận – báo cáo tài chính (công ty niêm yết), nhãn sức khỏe tài chính và cảnh báo. Dữ liệu dựng sẵn từ nguồn công khai, không tra trực tiếp trên mạng.</p>
+ <div class="ncc-sb"><label class="sr-only" for="ncc-q">Tên nhà cung cấp, mã cổ phiếu hoặc mã số thuế</label><input id="ncc-q" type="search" placeholder="Ví dụ: Cotecon, CTD, hoa phat, 0303443233…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="ncc-list" aria-autocomplete="list"><ul id="ncc-list" class="ncc-list" role="listbox" aria-label="Gợi ý đơn vị" hidden></ul></div>
+ <div class="ncc-quick" id="ncc-quick">Thử nhanh: <button type="button" class="chip" data-id="coteccons">Coteccons</button><button type="button" class="chip" data-id="hoa-phat">Hòa Phát</button><button type="button" class="chip" data-id="hoa-binh">Hòa Bình</button><button type="button" class="chip" data-id="searefico">Searefico</button><button type="button" class="chip" data-id="newtecons">Newtecons <span class="small">(chưa niêm yết)</span></button></div>
+ <div id="ncc-out" aria-live="polite"></div>
+</section>
  <div class="tabs" id="tabs" role="tablist"><button data-k="contractor" role="tab">🏗️ Nhà thầu & NCC</button><button data-k="developer" role="tab">🏢 Chủ đầu tư / Đối thủ</button></div>
  <div id="grp" class="filters" aria-label="Lọc theo nhóm vai trò"></div>
  <div id="orgs" class="filters" aria-label="Lọc theo đơn vị"></div>
@@ -58,4 +65,4 @@
  HUB.crumb(["<b>Nhà thầu & Chủ đầu tư</b>"]); draw();
  HUB.foot(`Tin tự động lấy từ Google News (truy vấn theo tên đơn vị, gắn nhãn theo tiêu đề – có thể lẫn tin không liên quan). Cập nhật: ${HUB.date(fd?.updated)}.`);
 })();
-</script></body></html>
+</script><script src="supplier-lookup.js"></script></body></html>

@@ -1,7 +1,7 @@
 """Site-wide audit + regression: python qa_site.py BASE_URL [--shots]
 Asserts each shared component mounts exactly once per page, no console/page errors,
 no horizontal overflow, no broken internal links, no mojibake in Vietnamese text."""
-import sys, re, glob, os, urllib.request, urllib.parse
+import sys, re, glob, os, json, urllib.request, urllib.parse
 from playwright.sync_api import sync_playwright
 B = sys.argv[1].rstrip("/") + "/"
 PAGES = sorted(os.path.basename(f) for f in glob.glob(os.path.join(os.path.dirname(__file__), "site", "*.html")))
@@ -9,6 +9,70 @@ W = [360, 390, 768, 1366, 1440, 1920]
 ONCE = {"nav bar": ".hn-bar", "views widget": ".hn-views-wrap", "views pill": ".hn-views", "views chart": "#hn-vchart", "mega menu": ".mega"}
 MAXONE = {"footer": "#foot"}
 fails, checked = [], set()
+
+# ---- Nhà thầu & CĐT: bảng tra cứu nhà cung cấp (#ncc) ----
+GOV_MANUAL = {"https://tracuunnt.gdt.gov.vn/tcnnt/mstdn.jsp", "https://dangkykinhdoanh.gov.vn", "https://muasamcong.mof.gov.vn", "https://www.gdt.gov.vn"}  # cổng nhà nước: một số mạng ngoài VN không mở được → chỉ kiểm đúng địa chỉ, không HEAD
+# số liệu CTD năm tài chính 2026 (01/07/2025–30/06/2026) đọc tay từ BCTC hợp nhất đã kiểm toán, độc lập với suppliers.json (đơn vị đồng)
+CTD_RAW = {"rev": 34339621317795, "gp": 1445893909484, "np": 788387654043, "cfo": 828951292295}
+CTD_SHOW = ["34.340", "1.446", "788", "829", "38.696", "9.652", "15.326", "FY2026", "Theo dõi", "0303443233", "CTD"]
+def ncc_checks(pg, w, f, fails):
+    def F(m): fails.append((w, f, "ncc: " + m))
+    n = pg.evaluate("() => [document.querySelectorAll('#ncc').length, document.querySelectorAll('#ncc-q').length, document.querySelectorAll('#ncc-out').length, document.querySelectorAll('#ncc h2').length]")
+    if n != [1, 1, 1, 1]: return F(f"bảng không xuất hiện đúng 1 lần {n}")
+    if not pg.evaluate("() => { const l = document.querySelector('label[for=ncc-q]'); return !!l && l.textContent.trim().length > 5; }"): F("ô tìm thiếu label")
+    pos = pg.evaluate("() => { const a = document.querySelector('#ncc'), t = document.querySelector('#tabs'), s = document.querySelector('main .sub'); return !!t && !!s && !!(s.compareDocumentPosition(a) & 4) && !!(a.compareDocumentPosition(t) & 4); }")
+    if not pos: F("sai vị trí (phải nằm giữa phụ đề trang và dải tab)")
+    def ask(q, enter=True):
+        pg.fill("#ncc-q", q); pg.wait_for_timeout(250)
+        sug = pg.locator("#ncc-list li").all_inner_texts()
+        if enter: pg.keyboard.press("Enter"); pg.wait_for_timeout(500)
+        return sug, pg.locator("#ncc-out").inner_text()
+    for q, first, legal in [("cotecon", "COTECCONS", "XÂY DỰNG COTECCONS"), ("coteccons", "COTECCONS", "XÂY DỰNG COTECCONS"), ("CTD", "COTECCONS", "XÂY DỰNG COTECCONS"), ("0303443233", "COTECCONS", "XÂY DỰNG COTECCONS"),
+                            ("hoa phat", "HÒA PHÁT", "TẬP ĐOÀN HÒA PHÁT"), ("Hòa Phát", "HÒA PHÁT", "TẬP ĐOÀN HÒA PHÁT"), ("HPG", "HÒA PHÁT", "TẬP ĐOÀN HÒA PHÁT"), ("xay dung hoa binh", "HÒA BÌNH", "HÒA BÌNH")]:
+        sug, txt = ask(q)
+        if not sug or first not in sug[0].upper(): F(f"gợi ý đầu cho “{q}” = {sug[:1]}")
+        if legal not in txt.upper(): F(f"thẻ cho “{q}” không có “{legal}”")
+        if "kỳ" not in txt.lower() and "BCTC" not in txt: F(f"thẻ “{q}” thiếu kỳ báo cáo/BCTC")
+    # thẻ Coteccons: số liệu khớp BCTC
+    sug, txt = ask("coteccons")
+    for k in CTD_SHOW:
+        if k not in txt: F(f"thẻ Coteccons thiếu “{k}”")
+    for lab in ("Tốt", "Theo dõi", "Thận trọng"):
+        if lab not in txt: F(f"thẻ Coteccons không nêu ngưỡng nhãn “{lab}”")
+    for k in ("chưa tra tự động", "tin chưa kiểm chứng" if "Tin gần đây" in txt else "chưa tra tự động"):
+        if k.lower() not in txt.lower(): F(f"thẻ Coteccons thiếu cụm “{k}”")
+    try:
+        d = json.load(urllib.request.urlopen(B + "data/suppliers.json", timeout=30))
+        u = next(x for x in d["units"] if x["mst"] == "0303443233"); v = u["fin"]["periods"][0]["v"]
+        for k, x in CTD_RAW.items():
+            if v[k] != x: F(f"suppliers.json CTD {k}={v[k]} ≠ BCTC {x}")
+    except Exception as e: F(f"đọc suppliers.json lỗi {e}")
+    # link nguồn trong thẻ
+    ls = pg.evaluate("() => [...document.querySelectorAll('#ncc-out a[href]')].map(a => a.href)")
+    pdfs = [u for u in ls if u.lower().split('?')[0].endswith('.pdf')]
+    if not pdfs: F("thẻ Coteccons không có link BCTC gốc")
+    for u in sorted(set(ls)):
+        if u in GOV_MANUAL or not u.startswith("http"): continue
+        host = urllib.parse.urlparse(u).netloc
+        if u in pdfs or "coteccons.vn" in host and "/bao-cao-tai-chinh" in u or "api.vietqr.io" in host:
+            if not link_ok(u): F("link nguồn hỏng " + u)
+    man = {u for u in ls if "gdt.gov.vn" in u or "dangkykinhdoanh" in u or "muasamcong" in u}
+    if not man <= GOV_MANUAL or len(man) < 3: F(f"link tra cứu thủ công sai {man}")
+    # đơn vị chưa niêm yết
+    sug, txt = ask("newtecons")
+    if "Chưa có BCTC công khai" not in txt: F("Newtecons thiếu nhãn “Chưa có BCTC công khai”")
+    if "Doanh thu thuần" in txt: F("Newtecons không được hiện doanh thu")
+    # không tìm thấy
+    sug, txt = ask("xyzabc khong ton tai")
+    if "chưa có trong dữ liệu" not in txt or "dangkykinhdoanh" not in pg.locator("#ncc-out").inner_html(): F("trạng thái không tìm thấy thiếu thông báo/link tra cứu")
+    # bàn phím: ↓ ↓ Enter, Esc
+    pg.fill("#ncc-q", "hoa"); pg.wait_for_timeout(250); pg.keyboard.press("ArrowDown"); pg.keyboard.press("ArrowDown"); pg.keyboard.press("Enter"); pg.wait_for_timeout(500)
+    if not pg.locator("#ncc-out h3").count() or "chưa có trong dữ liệu" in pg.locator("#ncc-out").inner_text(): F("phím ↓ + Enter không chọn được đơn vị")
+    pg.fill("#ncc-q", "hoa"); pg.wait_for_timeout(250); pg.keyboard.press("Escape")
+    if pg.locator("#ncc-list").is_visible(): F("Esc không đóng gợi ý")
+    # so sánh
+    ask("coteccons"); pg.select_option("#ncc-cmp-sel", index=1); pg.wait_for_timeout(400)
+    if not pg.locator("#ncc-out .ncc-cmp table").count(): F("so sánh nhanh không hiện bảng")
 def link_ok(u):
     try: return urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=20).status < 400
     except Exception:
@@ -99,6 +163,8 @@ with sync_playwright() as p:
                   const li = [...document.querySelectorAll('#pf > li:not(.sub)')]; return {chip: 1, want, n: li.length, noimp: li.filter(l => !/Ảnh hưởng đến soạn hợp đồng(?:[/]đấu thầu)?:/.test(l.innerText)).length}; }""")
                 if not pq2["chip"]: fails.append((w, f, "policy chip 'BT / PPP / Đầu tư công' missing"))
                 elif pq2["want"] and (pq2["n"] == 0 or pq2["noimp"]): fails.append((w, f, f"policy ppp rows {pq2['n']}, without impact line {pq2['noimp']}"))
+            if f == "nha-thau.html" and w in (390, 1366):
+                ncc_checks(pg, w, f, fails); pg.wait_for_timeout(300)
             if r["c"]["footer"] > 1: fails.append((w, f, f"footer x{r['c']['footer']}"))
             if r["ov"] > 0: fails.append((w, f, f"overflow {r['ov']}px"))
             if r["moj"]: fails.append((w, f, f"mojibake {r['moj']}"))
