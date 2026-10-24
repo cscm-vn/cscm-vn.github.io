@@ -64,6 +64,22 @@ def ncc_checks(pg, w, f, fails):
     sug, txt = ask("newtecons")
     if "Chưa có BCTC công khai" not in txt: F("Newtecons thiếu nhãn “Chưa có BCTC công khai”")
     if "Doanh thu thuần" in txt: F("Newtecons không được hiện doanh thu")
+    # mở rộng dữ liệu (nhà thầu/nhà cung cấp hoàn thiện–nội thất–MEP): tên có/không dấu, viết tắt, MST, nhóm hạng mục
+    for q, first, legal in [("An Cường", "AN CƯỜNG", "GỖ AN CƯỜNG"), ("ancuong", "AN CƯỜNG", "GỖ AN CƯỜNG"), ("pado", "PADO", "TNHH PADO"), ("thien son", "THIÊN SƠN", "NỘI THẤT THIÊN SƠN"),
+                            ("daikin", "DAIKIN", "DAIKIN AIR CONDITIONING"), ("0301450108", "DAIKIN", "DAIKIN AIR CONDITIONING"), ("schindler", "SCHINDLER", "TNHH SCHINDLER"), ("nippon", "NIPPON", "NIPPON PAINT"),
+                            ("jotun", "JOTUN", "SƠN JOTUN"), ("doan nhat", "ĐOÀN NHẤT", "CƠ ĐIỆN ĐOÀN NHẤT"), ("newsky", "PHƯƠNG TRUNG", "PHƯƠNG TRUNG"), ("nam thuan thanh", "NAM THUẬN THÀNH", "NAM THUẬN THÀNH"),
+                            ("mitsubishi electric", "MITSUBISHI ELECTRIC", "MITSUBISHI ELECTRIC"), ("VGC", "VIGLACERA", "VIGLACERA")]:
+        sug, txt = ask(q)
+        if not sug or first not in sug[0].upper(): F(f"[mở rộng] gợi ý đầu cho “{q}” = {sug[:1]}")
+        if legal not in txt.upper(): F(f"[mở rộng] thẻ “{q}” thiếu “{legal}”")
+    sug, txt = ask("VGC")  # niêm yết nhưng chưa có BCTC đã kiểm chứng: không hiện doanh thu, không ước lượng
+    if "Chưa có số liệu đã kiểm chứng" not in txt or "Doanh thu thuần" in txt or "VGC" not in txt: F("[mở rộng] Viglacera: sai nhãn/hiện số liệu chưa kiểm chứng")
+    sug, txt = ask("casta")
+    if "cần xác nhận" not in txt.lower(): F("[mở rộng] Casta thiếu cảnh báo tên pháp nhân cần xác nhận")
+    sug, txt = ask("thang may", enter=False)
+    if len(sug) < 3: F(f"[mở rộng] tìm theo nhóm “thang may” chỉ ra {len(sug)} kết quả")
+    t0 = pg.evaluate("() => { const q = document.querySelector('#ncc-q'); const t = performance.now(); q.value = 'schin'; q.dispatchEvent(new Event('input', {bubbles: true})); return performance.now() - t; }")
+    if t0 > 200: F(f"[mở rộng] tìm kiếm chậm: {t0:.0f} ms")
     # không tìm thấy
     sug, txt = ask("xyzabc khong ton tai")
     if "chưa có trong dữ liệu" not in txt or "dangkykinhdoanh" not in pg.locator("#ncc-out").inner_html(): F("trạng thái không tìm thấy thiếu thông báo/link tra cứu")
