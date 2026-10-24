@@ -49,7 +49,8 @@ with sync_playwright() as p:
                   const nx = el.nextElementSibling, secs = [...document.querySelectorAll('#main > section, #main > .grid')];
                   return {n: s.length, k: cards.length, last: secs[secs.length - 1] === el && !!nx && nx.id === 'foot',
                     ext: cards.map(c => c.querySelector('a[href]')?.href || ''), more: [...el.querySelectorAll('a.pmore')].map(a => a.getAttribute('href')), all: el.querySelector('h2 a')?.getAttribute('href'),
-                    ov: cards.filter(c => c.getBoundingClientRect().right > W || c.scrollWidth > c.clientWidth + 1).length}; }""")
+                    ov: cards.filter(c => c.getBoundingClientRect().right > W || c.scrollWidth > c.clientWidth + 1).length,
+                    imp: cards.filter(c => /Ảnh hưởng đến soạn hợp đồng:/.test(c.innerText)).length}; }""")
                 if pq["n"] != 1: fails.append((w, f, f"policy section x{pq['n']}"))
                 else:
                     if not 5 <= pq["k"] <= 6: fails.append((w, f, f"policy items x{pq['k']} (expect 5-6)"))
@@ -64,6 +65,13 @@ with sync_playwright() as p:
                         if len(set(_L)) != len(_L): fails.append((w, f, "policy duplicate cluster labels"))
                         if len({x["cluster"] for x in _H}) != len(_H): fails.append((w, f, "policy home duplicate cluster"))
                         if max([sum(1 for y in _H if y["topics"][0] == x["topics"][0]) for x in _H] or [0]) > 2: fails.append((w, f, "policy home >2 per topic"))
+                        if pq["imp"] != sum(1 for x in _H if x.get("impact")): fails.append((w, f, f"policy 'Ảnh hưởng đến soạn hợp đồng' lines {pq['imp']} != home data {sum(1 for x in _H if x.get('impact'))}"))
+                        _G = [x for x in _p["items"] if "dia-gioi" in x["topics"]]  # chủ đề Địa giới hành chính (ảnh hưởng soạn hợp đồng)
+                        if "dia-gioi" not in _p["topics"]: fails.append((w, f, "policy topic dia-gioi missing"))
+                        if any(not x.get("impact") or x["topics"][0] != "dia-gioi" for x in _G): fails.append((w, f, "policy dia-gioi item without impact line / not main topic"))
+                        if any(not str(x["url"]).startswith("https://") for x in _G if x.get("seed")): fails.append((w, f, "policy seed bad link"))
+                        import datetime as _dt
+                        if _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=7))).date() <= _dt.date(2026, 11, 19) and not any(x.get("seed") and "39/2026/QH16" in x["title"] for x in _G): fails.append((w, f, "policy Bắc Ninh seed (NQ 39/2026/QH16) missing"))
                         for m in pq["more"]:
                             c = urllib.parse.unquote(m.split("pc=")[1].split("#")[0]) if "pc=" in m else ""
                             if c not in _p["clusters"] or not m.startswith("hop-dong.html?pc="): fails.append((w, f, "policy bad cluster link " + m))
@@ -76,6 +84,10 @@ with sync_playwright() as p:
                 if hq2["n"] != 1 or hq2["toc"] != 1: fails.append((w, f, f"policy section x{hq2['n']} toc x{hq2['toc']}"))
                 if hq2["k"] < 5: fails.append((w, f, f"policy list items x{hq2['k']}"))
                 if hq2["chips"] < 2: fails.append((w, f, "policy topic chips missing"))
+                gq = pg.evaluate("""() => { const b = document.querySelector('#pf-f button[data-k="dia-gioi"]'); if (!b) return {chip: 0}; const want = +(b.querySelector('.mute')?.textContent || 0); b.click();
+                  const li = [...document.querySelectorAll('#pf > li:not(.sub)')]; return {chip: 1, want, n: li.length, noimp: li.filter(l => !/Ảnh hưởng đến soạn hợp đồng:/.test(l.innerText)).length}; }""")
+                if not gq["chip"]: fails.append((w, f, "policy chip 'Địa giới hành chính' missing"))
+                elif gq["want"] and (gq["n"] == 0 or gq["noimp"]): fails.append((w, f, f"policy dia-gioi rows {gq['n']}, without impact line {gq['noimp']}"))
             if r["c"]["footer"] > 1: fails.append((w, f, f"footer x{r['c']['footer']}"))
             if r["ov"] > 0: fails.append((w, f, f"overflow {r['ov']}px"))
             if r["moj"]: fails.append((w, f, f"mojibake {r['moj']}"))

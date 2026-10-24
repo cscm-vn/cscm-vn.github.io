@@ -2,12 +2,14 @@
 """Luật & chính sách mới liên quan Masterise (hop-dong.html#chinh-sach + trang chủ).
 Real feeds only: Google News RSS (vi) + official/press RSS. Dedup by normalized title, 30-day window.
 Each item gets a rule-based score (relevance to Masterise + recency/dynamics) and a one-line reason built ONLY from
-matched keywords in the title/summary (no invented facts). Writes trends/data/policy-feed.json. Never raises."""
+matched keywords in the title/summary (no invented facts). Writes trends/data/policy-feed.json. Never raises.
+Chủ đề "Địa giới hành chính" (đổi tên/nâng cấp/sáp nhập đơn vị hành chính, địa danh) có thêm dòng "Ảnh hưởng đến soạn hợp đồng" (field impact); tin biên tập có nguồn: trends/seed/policy-seed.json."""
 import json, os, re, hashlib, unicodedata, html, datetime as dt, urllib.request, urllib.parse
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data"); OUT = os.path.join(D, "policy-feed.json")
 TZ = dt.timezone(dt.timedelta(hours=7)); KEEP_DAYS = 30
+SEED = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seed", "policy-seed.json"); SEED_DAYS = 60  # tin biên tập (đã đối chiếu nguồn) giữ tới ngày hiệu lực + 60 ngày, dù ngoài cửa sổ 30 ngày
 GN = "https://news.google.com/rss/search?q={q}&hl=vi&gl=VN&ceid=VN:vi"
 Q = [  # Google News queries (topic hint only; topics are re-derived from text)
  "nghị định Luật Đất đai when:14d", "bảng giá đất Hà Nội TP.HCM when:14d", "thông tư Bộ Xây dựng mới when:14d", "Luật Xây dựng 2025 nghị định hướng dẫn when:14d",
@@ -15,11 +17,19 @@ Q = [  # Google News queries (topic hint only; topics are re-derived from text)
  "giấy phép xây dựng quy định mới when:14d", "phòng cháy chữa cháy chung cư quy định when:14d", "Luật Địa chất và Khoáng sản nghị định when:14d",
  "khai thác cát sỏi vật liệu xây dựng quy định when:14d", "mỏ đá mỏ đất san lấp cấp phép when:14d", "thuế chuyển nhượng bất động sản dự thảo when:14d",
  "dự thảo nghị định bất động sản lấy ý kiến when:14d", "Masterise Homes when:30d",
- "site:chinhphu.vn bất động sản OR đất đai OR xây dựng when:14d", "site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d",
+ "thành lập thành phố trực thuộc trung ương nghị quyết Quốc hội when:30d", "sáp nhập đổi tên tỉnh thành phố đơn vị hành chính when:30d", "sắp xếp đơn vị hành chính cấp xã thành lập phường when:30d",
+ "đổi tên địa danh hành chính cập nhật giấy tờ địa chỉ when:30d", "site:chinhphu.vn bất động sản OR đất đai OR xây dựng when:14d", "site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d",
  "site:moc.gov.vn when:30d", "site:xaydung.gov.vn when:30d", "site:cafeland.vn chính sách when:14d", "site:baochinhphu.vn nhà ở OR đất đai when:14d"]
 RSS = [("Chinhphu.vn – Chính sách mới", "https://xaydungchinhsach.chinhphu.vn/chinh-sach-moi.rss"), ("Báo Chính phủ – Chính sách mới", "https://baochinhphu.vn/chinh-sach-moi.rss"),
        ("VnExpress – Pháp luật", "https://vnexpress.net/rss/phap-luat.rss"), ("VnExpress – Bất động sản", "https://vnexpress.net/rss/bat-dong-san.rss")]
 def strip(s): return unicodedata.normalize("NFD", (s or "").lower().replace("đ", "d")).encode("ascii", "ignore").decode()
+# Địa giới / đơn vị hành chính / địa danh: ảnh hưởng trực tiếp tới soạn hợp đồng (địa chỉ các bên, địa điểm dự án, tên cơ quan). Từ khóa đủ cụ thể nên không cần thêm từ "luật/chính sách".
+GEO = ["thanh lap thanh pho", "tro thanh thanh pho truc thuoc trung uong", "len thanh pho truc thuoc trung uong", "tinh len thanh pho", "dia gioi hanh chinh", "thay doi dia gioi", "dieu chinh dia gioi",
+ "don vi hanh chinh", "sap xep don vi", "sap nhap tinh", "sap nhap xa", "sap nhap phuong", "sap nhap don vi", "doi ten tinh", "doi ten thanh pho", "doi ten phuong", "doi ten xa",
+ "thanh lap phuong", "thanh lap cac phuong", "thanh lap xa", "thanh lap cac xa", "xa thanh phuong", "thi tran thanh phuong", "dia danh hanh chinh", "doi ten dia danh", "thay doi dia danh"]
+GEO_NEG = ["hanh chinh su nghiep", "xu phat vi pham hanh chinh", "cai cach hanh chinh",  # nhiễu: đơn vị hành chính sự nghiệp…
+ "neu co", "co the sap nhap", "khong co ten", "phan dau", "quyet tam", "ban do", "lan truyen", "chua co chu truong", "chua sap xep", "giu nguyen", "khong sap xep", "de an", "ke hoach", "muc tieu", "ung ho", "du kien", "chu truong", "gop y"]  # tin phỏng đoán/định hướng, chưa phải thay đổi có căn cứ
+GEO_LEGAL = ["nghi quyet", "thong qua", "hieu luc", "cong bo", "chinh thuc", "ban hanh", "huong dan", "quy dinh", "nghi dinh", "thong tu", "dang ky kinh doanh", "can cuoc", "giay to", "doi giay"]  # tin địa giới phải có dấu hiệu văn bản/hiệu lực/hướng dẫn
 # topic -> (label, accent-free keywords). An item must match ≥1 topic AND ≥1 legal/policy word to be kept.
 TOPIC = {"dat-dai": ("Đất đai", ["dat dai", "gia dat", "bang gia dat", "quyen su dung dat", "giao dat", "thu hoi dat", "tien su dung dat", "chuyen muc dich su dung dat", "dau gia dat", "so do", "tien thue dat"]),
  "nha-o": ("Nhà ở & chung cư", ["luat nha o", "chung cu", "nha o thuong mai", "nha o xa hoi", "so huu nha", "thoi han so huu", "can ho", "nha chung cu", "cai tao chung cu"]),
@@ -27,7 +37,8 @@ TOPIC = {"dat-dai": ("Đất đai", ["dat dai", "gia dat", "bang gia dat", "quye
  "xay-dung": ("Xây dựng", ["luat xay dung", "bo xay dung", "giay phep xay dung", "cap phep xay dung", "quy chuan", "tieu chuan xay dung", "quy hoach", "chi phi dau tu xay dung", "hop dong xay dung", "cong trinh xay dung", "dinh muc xay dung"]),
  "pccc": ("PCCC", ["phong chay", "chua chay", "pccc", "cuu nan cuu ho"]),
  "khoang-san": ("Khoáng sản & VLXD", ["khoang san", "cat song", "cat san lap", "cat xay dung", "mo cat", "mo da", "da xay dung", "dat san lap", "mo dat", "set gach", "vat lieu xay dung", "dia chat"]),
- "thue": ("Thuế BĐS", ["thue chuyen nhuong", "thue bat dong san", "thue thu nhap ca nhan tu chuyen nhuong", "thue nha", "thue su dung dat", "thue doi voi nguoi so huu nhieu nha", "le phi truoc ba"])}
+ "thue": ("Thuế BĐS", ["thue chuyen nhuong", "thue bat dong san", "thue thu nhap ca nhan tu chuyen nhuong", "thue nha", "thue su dung dat", "thue doi voi nguoi so huu nhieu nha", "le phi truoc ba"]),
+ "dia-gioi": ("Địa giới hành chính", GEO)}
 LEGAL = ["luat", "nghi dinh", "thong tu", "nghi quyet", "quyet dinh", "du thao", "quy dinh", "chinh sach", "huong dan", "sua doi", "hieu luc", "ban hanh", "cong van", "chi thi", "bang gia", "cap phep", "lay y kien", "quy chuan"]
 # relevance weights (Masterise: luxury condo developer, HN & HCMC) – reason text is fixed per rule
 REL = [  # (keywords, points, reason)
@@ -43,16 +54,26 @@ REL = [  # (keywords, points, reason)
  (["thue chuyen nhuong", "thue thu nhap ca nhan", "thue su dung dat", "thue tai san", "thue bat dong san", "thue nha", "le phi truoc ba"], 11, "Thuế/phí BĐS – tác động cầu & giá bán"),
  (["nha o xa hoi", "20% quy dat"], 11, "Nghĩa vụ nhà ở xã hội của chủ đầu tư"),
  (["ha noi"], 7, "Áp dụng tại Hà Nội (thị trường dự án)"), (["tp.hcm", "tp hcm", "ho chi minh", "thanh pho ho chi minh", "sai gon"], 7, "Áp dụng tại TP.HCM (thị trường dự án)"),
- (["quy hoach"], 6, "Quy hoạch – ảnh hưởng quỹ đất"), (["hop dong xay dung", "chi phi dau tu xay dung", "dinh muc xay dung", "chi so gia xay dung"], 6, "Quản lý chi phí / HĐ xây dựng")]
+ (["quy hoach"], 6, "Quy hoạch – ảnh hưởng quỹ đất"), (["hop dong xay dung", "chi phi dau tu xay dung", "dinh muc xay dung", "chi so gia xay dung"], 6, "Quản lý chi phí / HĐ xây dựng"),
+ (GEO, 28, "Địa giới/tên đơn vị hành chính thay đổi – ảnh hưởng địa chỉ & địa điểm trong hợp đồng")]
 DYN = [  # recency/dynamics (max one per group by order)
  (["co hieu luc tu", "hieu luc tu ngay", "chinh thuc co hieu luc", "bat dau co hieu luc", "tu ngay 1/", "tu 1/"], 14, "sắp/đã có hiệu lực"),
  (["ban hanh", "vua ky", "da ky", "thong qua", "chinh thuc"], 12, "văn bản mới ban hành/thông qua"),
  (["du thao", "lay y kien", "gop y"], 10, "dự thảo đang lấy ý kiến"),
  (["sua doi", "bo sung", "thay the", "moi nhat", "quy dinh moi"], 7, "thay đổi quy định"),]
+IMPACT = [  # dòng "Ảnh hưởng đến soạn hợp đồng" cho tin địa giới: cố định theo quy tắc (không suy diễn dữ kiện); tin biên tập (seed) có dòng riêng
+ (["thanh lap thanh pho", "tro thanh thanh pho", "len thanh pho", "tinh len thanh pho"], "ghi tên đơn vị hành chính mới (thành phố thay cho tỉnh) trong địa chỉ các bên, địa điểm dự án, nơi nhận thông báo/giải quyết tranh chấp từ ngày hiệu lực; xem điều khoản chuyển tiếp của nghị quyết về giấy tờ đã cấp trước đó."),
+ (["thanh lap phuong", "thanh lap cac phuong", "thanh lap xa", "thanh lap cac xa", "xa thanh phuong", "thi tran thanh phuong", "doi ten phuong", "doi ten xa"], "ghi đúng cấp và tên xã/phường mới trong địa chỉ pháp nhân, địa điểm dự án, giấy tờ đất/giấy phép; đối chiếu nghị quyết gốc."),
+ (["sap nhap", "sap xep don vi", "doi ten tinh", "doi ten thanh pho", "doi ten dia danh", "thay doi dia danh", "dia danh hanh chinh"], "cập nhật tên tỉnh/xã sau sáp nhập – đổi tên trong địa chỉ các bên, địa điểm dự án, hồ sơ pháp lý; ghi tên cũ (nay là …) khi cần đối chiếu giấy tờ cũ."),
+ ([], "rà soát địa danh/đơn vị hành chính trong địa chỉ các bên và địa điểm dự án; ghi theo tên và ngày hiệu lực của văn bản gốc.")]
+def impact_idx(x):  # 0 = nâng tỉnh lên thành phố, 1 = thành lập phường/xã, 2 = sáp nhập/đổi tên, 3 = chung
+    t = strip(x["title"] + " " + x.get("summary", ""))
+    return next(i for i, (ks, _) in enumerate(IMPACT) if not ks or any(has(t, k) for k in ks))
+def impact(x): return IMPACT[impact_idx(x)][1] if "dia-gioi" in x.get("topics", []) else None
 DOC = [(r"\bnghi dinh\b|\bnd\s?\d", 8, "Nghị định"), (r"\bthong tu\b", 7, "Thông tư"), (r"\bluat\b", 8, "Luật"), (r"\bnghi quyet\b", 7, "Nghị quyết"), (r"\bquyet dinh\b|\bcong van\b|\bchi thi\b", 4, "QĐ/CV")]
 THEME = {1: "Thời hạn sở hữu chung cư", 2: "Giá đất & tiền sử dụng đất", 3: "Quyền sử dụng đất & giao đất", 4: "Chung cư & nhà ở thương mại", 5: "Kinh doanh BĐS (mở bán, chuyển nhượng)",
- 6: "Cấp phép & thẩm định xây dựng", 7: "Phòng cháy chữa cháy", 8: "Khoáng sản & VLXD (cát, đá, đất)", 9: "Thuế & phí BĐS", 10: "Nhà ở xã hội", 11: "Hà Nội", 12: "TP.HCM", 13: "Quy hoạch", 14: "Chi phí & HĐ xây dựng"}
-THEME_PREF = {"nha-o": [1, 10, 4], "dat-dai": [2, 3, 13], "kd-bds": [5, 10], "xay-dung": [6, 14, 13], "pccc": [7], "khoang-san": [8], "thue": [9]}  # chủ đề con ưu tiên theo chủ đề chính
+ 6: "Cấp phép & thẩm định xây dựng", 7: "Phòng cháy chữa cháy", 8: "Khoáng sản & VLXD (cát, đá, đất)", 9: "Thuế & phí BĐS", 10: "Nhà ở xã hội", 11: "Hà Nội", 12: "TP.HCM", 13: "Quy hoạch", 14: "Chi phí & HĐ xây dựng", 15: "Nâng tỉnh lên thành phố trực thuộc TW", 16: "Thành lập phường/xã (đổi cấp xã)", 17: "Sáp nhập, sắp xếp & đổi tên đơn vị hành chính"}
+THEME_PREF = {"nha-o": [1, 10, 4], "dat-dai": [2, 3, 13], "kd-bds": [5, 10], "xay-dung": [6, 14, 13], "pccc": [7], "khoang-san": [8], "thue": [9], "dia-gioi": [15, 16, 17]}  # chủ đề con ưu tiên theo chủ đề chính
 GENERIC_LAW = ["luat sua doi", "luat (sua doi)", "luat nay", "luat moi", "luat hoa", "luat chuyen nganh", "luat su", "luat le", "phap luat", "du luat", "luat gop"]
 def side_law(t):
     """Dự luật gộp: luật được nhắc ĐẦU TIÊN trong tiêu đề không thuộc nhóm liên quan (vd. 'Luật Quản lý vũ khí…, Luật PCCC') → luật liên quan chỉ là phần phụ."""
@@ -63,6 +84,7 @@ def has(t, k): return re.search(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])
 def score(x, now):
     t = strip(x["title"] + " " + x.get("summary", "")); rel, why, tags = 0, [], []
     for ks, p, r in REL:
+        if ks is GEO and any(has(t, n) for n in GEO_NEG): continue
         if any(has(t, k) for k in ks): rel += p; why.append(r)
     side = side_law(strip(x["title"]))
     if side: rel = round(rel * 0.4)  # phạt: lĩnh vực liên quan chỉ là phần phụ của dự luật gộp
@@ -87,9 +109,10 @@ def cluster(x):
     hits = [(t.find(k), lab) for k, lab in LAWS if has(t, k)]
     hit = [i for i, (ks, _, _) in enumerate(REL) if i > 0 and any(has(t, k) for k in ks)]
     th = next((i for i in THEME_PREF.get(x["topics"][0], []) if i in hit), hit[0] if hit else None)  # chủ đề con: ưu tiên luật khớp đúng chủ đề chính
+    if x["topics"][0] == "dia-gioi": th = 15 + min(impact_idx(x), 2)  # chủ đề con theo loại thay đổi (mỗi loại ảnh hưởng hợp đồng khác nhau)
     x["theme"] = f"{x['topics'][0]}:{th}"
     if hits: lab = min(hits)[1]; return "law:" + re.sub(r"[^a-z0-9]+", "-", strip(lab)).strip("-"), lab
-    m = re.search(r"(nghi dinh|thong tu|nghi quyet)\s*(?:so\s*)?(\d{1,4}/\d{4}(?:/[a-z\-]+)?)", t)
+    m = re.search(r"(nghi dinh|thong tu|nghi quyet)\s*(?:so\s*)?(\d{1,4}/\d{4}(?:/[a-z\-]+\d{0,2})?)", t)
     if m: lab = {"nghi dinh": "Nghị định", "thong tu": "Thông tư", "nghi quyet": "Nghị quyết"}[m.group(1)] + " " + m.group(2).upper().replace("/ND-", "/NĐ-").replace("/QD-", "/QĐ-"); return "doc:" + re.sub(r"[^a-z0-9]+", "-", lab.lower()), lab
     if th is None: return "topic:" + x["topics"][0], TOPIC[x["topics"][0]][0]
     return f"theme:{x['topics'][0]}:{th}", THEME[th]
@@ -122,11 +145,24 @@ def parse(xml, srcname):
         if src is not None and " - " in t: t = t.rsplit(" - ", 1)[0].strip()
         summ = "" if src is not None else re.sub(r"<[^>]+>|\s+", " ", html.unescape(it.findtext("description") or "")).strip()[:300]
         st = strip(t + " " + summ)
-        topics = [k for k, (_, ks) in TOPIC.items() if any(has(st, w) for w in ks)]
-        if not topics or not any(has(st, w) for w in LEGAL): continue
+        topics = [k for k, (_, ks) in TOPIC.items() if any(has(st, w) for w in ks) and not (k == "dia-gioi" and (any(has(st, n) for n in GEO_NEG) or not any(has(st, l) for l in GEO_LEGAL)))]
+        if "dia-gioi" in topics: topics.remove("dia-gioi"); topics.insert(0, "dia-gioi")  # tin địa giới: chủ đề chính = địa giới (chip vẫn xếp cuối)
+        if not topics or not (topics[0] == "dia-gioi" or any(has(st, w) for w in LEGAL)): continue
         key = re.sub(r"[^a-z0-9]+", " ", strip(t)).strip()
         out.append(dict(id=hashlib.md5(key.encode()).hexdigest()[:12], title=unicodedata.normalize("NFC", t), url=u, source=name, summary=unicodedata.normalize("NFC", summ),
                         topics=topics, published=pub))
+    return out
+def load_seed(now):
+    """Tin biên tập có nguồn cụ thể (seed) – dùng khi nguồn tự động không bắt được. Chỉ giữ khi còn trong hạn (hiệu lực + SEED_DAYS)."""
+    out = []
+    try: raw = json.load(open(SEED, encoding="utf-8"))["items"]
+    except Exception: return out
+    for x in raw:
+        eff = dt.datetime.fromisoformat(x["effective"]).replace(tzinfo=TZ)
+        if now > eff + dt.timedelta(days=SEED_DAYS): continue
+        key = re.sub(r"[^a-z0-9]+", " ", strip(x["title"])).strip()
+        out.append(dict(id=hashlib.md5(key.encode()).hexdigest()[:12], title=unicodedata.normalize("NFC", x["title"]), url=x["url"], source=x["source"], summary=unicodedata.normalize("NFC", x.get("summary", "")),
+                        topics=["dia-gioi"], published=x["published"], found=x["published"], seed=True, effective=x["effective"], impact=x["impact"]))
     return out
 def main():
     try: old = json.load(open(OUT, encoding="utf-8"))
@@ -140,10 +176,18 @@ def main():
                 if x["id"] in items: items[x["id"]].update(topics=x["topics"])
                 else: items[x["id"]] = {**x, "found": now.isoformat(timespec="minutes")}
         except Exception as e: errors.append(f"{label}: {type(e).__name__}")
+    SD = load_seed(now); seeds = {x["id"] for x in SD}
+    for x in SD: items[x["id"]] = x  # seed ghi đè bản cũ trong JSON (sửa seed có hiệu lực ngay)
     cut = (now - dt.timedelta(days=KEEP_DAYS)).isoformat(); keep = []
     for x in items.values():
-        if (x.get("published") or x.get("found") or "") < cut or (x.get("published") or "") > (now + dt.timedelta(hours=1)).isoformat(): continue
-        x["score"], x["why"], x["parts"] = score(x, now); keep.append(x)
+        if x.get("seed"):
+            if x["id"] not in seeds: continue  # seed hết hạn / đã gỡ khỏi file seed
+        elif (x.get("published") or x.get("found") or "") < cut or (x.get("published") or "") > (now + dt.timedelta(hours=1)).isoformat(): continue
+        x["score"], x["why"], x["parts"] = score(x, now)
+        if not x.get("seed"):
+            x.pop("impact", None); i = impact(x)
+            if i: x["impact"] = i
+        keep.append(x)
     keep.sort(key=lambda x: (-x["score"], -(dt.datetime.fromisoformat(x.get("published") or x["found"]).timestamp())))
     out, seen = [], []  # gộp tin trùng nội dung (cùng sự kiện, khác báo): Jaccard từ tiêu đề ≥ 0,5
     for x in keep:
