@@ -146,6 +146,18 @@ def build():
                items=items, compare=comps, steel_brand_pairs=brand_pairs, digest=digest, mom_movers=[x["id"] for x in movers])
     json.dump(hub, open(os.path.join(OUT, "hub.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     return len(items), len(comps)
+def stamp_sw():
+    """VERSION = hash nội dung css/js/ảnh/manifest + sw.js (không gồm html/json: những thứ đó luôn lấy từ mạng trước). Đổi → SW mới dọn cache cũ."""
+    import hashlib
+    h = hashlib.sha1()
+    for f in sorted(glob.glob(os.path.join(H, "web", "*"))):
+        if os.path.isfile(f) and not f.endswith((".html", ".json")): h.update(os.path.basename(f).encode()); h.update(open(f, "rb").read())
+    p = os.path.join(SITE, "sw.js")
+    if os.path.exists(p):
+        t = open(p, encoding="utf-8").read(); open(p, "w", encoding="utf-8").write(t.replace("__SW_VERSION__", h.hexdigest()[:10]))
+PWA_HEAD = ('<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" sizes="180x180" href="scm-apple-touch-180.png"><meta name="theme-color" content="#0e1a2b">'
+            '<link rel="manifest" href="manifest.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="SCM Hub">'
+            '<script>"serviceWorker"in navigator&&addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>')
 GC = '<script data-goatcounter="https://cscm-vn.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'
 def main():
     os.makedirs(OUT, exist_ok=True)
@@ -166,6 +178,7 @@ def main():
     days[dt.datetime.now(TZ).strftime("%Y-%m-%d")] = [x["id"] for x in J(os.path.join(H, "data", "trends.json"), {"items": []})["items"][:TOPN]]
     days = dict(sorted(days.items())[-14:]); json.dump(dict(n=TOPN, days=days), open(thp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for f in glob.glob(os.path.join(H, "web", "*")): shutil.copy(f, SITE)
+    stamp_sw()  # PWA: đóng dấu VERSION cache của sw.js theo nội dung tài nguyên tĩnh
     for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json", "orgs.json", "legal.json", "fidic.json", "trade-remedies.json", "disputes.json", "quiz.json", "checklist.json", "legal-feed.json", "policy-feed.json", "highlights.json", "top_history.json", "suppliers.json"):
         if os.path.exists(os.path.join(H, "data", f)): shutil.copy(os.path.join(H, "data", f), OUT)
     shutil.copy(TAXF, os.path.join(OUT, "taxonomy.json"))
@@ -183,7 +196,7 @@ def main():
             t = open(f, encoding="utf-8", errors="strict").read(); n = unicodedata.normalize("NFC", t)
             if f.endswith(".html") and "data-goatcounter" not in n and "</head>" in n:  # page-view analytics on every page
                 n = n.replace("</head>", GC + "</head>", 1)
-            if f.endswith(".html") and "apple-touch-icon" not in n and "</head>" in n:  # brand icons on every page
-                n = n.replace("</head>", '<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#0e1a2b"></head>', 1)
+            if f.endswith(".html") and 'rel="manifest"' not in n and "</head>" in n:  # brand icons + PWA (manifest, apple-touch-icon SCM, service worker) on every page
+                n = n.replace("</head>", PWA_HEAD + "</head>", 1)
             if n != t: open(f, "w", encoding="utf-8").write(n)
 if __name__ == "__main__": main()
