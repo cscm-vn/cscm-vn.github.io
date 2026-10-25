@@ -17,6 +17,9 @@ Q = [  # (query, hl, gl, lang, kind)
  ("Canton Fair building materials sanitary when:14d", "en", "US", "en", "trend"), ("smart toilet market when:14d", "en", "US", "en", "trend"),
  ("sintered stone OR porcelain slab Foshan when:30d", "en", "US", "en", "trend"), ("low carbon cement OR green steel Vietnam when:30d", "en", "US", "en", "trend"),
  ("Vietnam construction materials when:7d", "en", "US", "en", "market"), ("LME aluminium copper price when:3d", "en", "US", "en", "trend"),
+ ("thiếu hụt nhân công xây dựng when:7d", "vi", "VN", "vi", "market"), ("giá nhân công xây dựng when:7d", "vi", "VN", "vi", "market"),
+ ("thiếu thợ công trường nhà thầu when:7d", "vi", "VN", "vi", "market"), ("đơn giá nhân công định mức xây dựng when:14d", "vi", "VN", "vi", "market"),
+ ("lao động ngành xây dựng tiền lương when:14d", "vi", "VN", "vi", "market"), ("lương tối thiểu vùng doanh nghiệp xây dựng when:30d", "vi", "VN", "vi", "market"),
  ("佛山 陶瓷 出口 when:14d", "zh-CN", "CN", "zh-Hans", "trend"), ("智能马桶 出口 when:14d", "zh-CN", "CN", "zh-Hans", "trend"),
  ("建材 出口 越南 when:30d", "zh-CN", "CN", "zh-Hans", "trend"),
 ]
@@ -47,6 +50,15 @@ def strip(s):
 def tax_rules():
     t = json.load(open((os.path.join(os.path.dirname(os.path.dirname(D)), "data", "taxonomy.json") if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(D)), "data", "taxonomy.json")) else os.path.join(D, "taxonomy.json")), encoding="utf-8"))
     return [(c["id"], [strip(k) for k in c.get("match", {}).get("kw", [])]) for n in t["tree"] for c in n["children"]]
+LABOR = ["nhan cong", "lao dong xay dung", "lao dong nganh xay dung", "nhan luc xay dung", "nhan luc nganh xay dung", "thieu lao dong", "thieu nhan luc", "thieu tho", "thieu hut nhan", "thieu hut lao dong", "khat tho", "khat lao dong", "khat nhan luc", "khan hiem lao dong", "khan hiem nhan cong", "khan hiem tho", "tho xay", "tho lanh nghe",
+         "cong nhan xay dung", "phu ho", "tien cong", "tien luong cong nhan", "luong toi thieu vung", "dinh muc nhan cong", "don gia nhan cong", "gia nhan cong"]  # labor terms (accent-free)
+LABOR_CTX = ["nhan cong xay dung", "nganh xay dung", "cong truong", "nha thau", "thi cong", "tong thau", "doanh nghiep xay dung", "cong ty xay dung", "lao dong xay dung", "tho xay", "phu ho", "bat dong san", "bo xay dung", "so xay dung", "vacc",
+             "chu dau tu", "dinh muc", "don gia xay dung", "du an ha tang"]  # AND construction context: labor terms alone are too noisy (factories, retail, farming)
+LABOR_NOT = ["xay dung dang", "dang bo", "nong thon moi", "xay dung phap luat", "xay dung chinh quyen", "xay dung doi ngu", "tuyen sinh", "hoc bong"]  # 'xay dung' as a verb in political/education headlines
+LKW = {"nhan cong": 3, "thieu hut": 3, "khat tho": 3, "thieu lao dong": 3, "thieu nhan luc": 3, "thieu tho": 3, "don gia nhan cong": 4, "gia nhan cong": 2, "dinh muc": 2, "luong toi thieu": 2, "nha thau": 1, "cong truong": 1}  # extra score ONLY for labor-matched items, so other items' scores do not change
+def _rx(ks): return re.compile(r"(?<![a-z0-9])(?:" + "|".join(re.escape(k) for k in ks) + r")(?![a-z0-9])")  # whole-word match ("phu ho" must not hit "phu hop")
+_LB, _LC, _LN = _rx(LABOR), _rx(LABOR_CTX), _rx(LABOR_NOT)
+def is_labor(t): return bool(_LB.search(t) and _LC.search(t) and not _LN.search(t))
 def fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (price-dashboard feed bot)"})
     return urllib.request.urlopen(req, timeout=20).read()
@@ -82,6 +94,8 @@ def main():
         if x.get("kind") in ("contractor", "developer") and not any(k in " " + strip(x["title"]) + " " for _, _, _, kws in ORGS for k in kws) and not (x.get("q_org") in TRUST and VI.search(x["title"])): continue  # org query hit but headline names nobody we track
         seen.update([key, x["url"]]); t = strip(x["title"] + " " + x.get("snippet", ""))
         x["tax"] = [cid for cid, kws in rules if any(k and k in t for k in kws)][:3]
+        labor = is_labor(t)
+        if labor: x["tax"] = (["tt.nhan-cong"] + [c for c in x["tax"] if c != "tt.nhan-cong"])[:3]  # labor news -> category "Nhân công & lao động xây dựng"
         tt = " " + strip(x["title"]) + " "  # organisation tag from the headline only (avoids false hits in snippets)
         org = next(((n, typ) for n, typ, _, kws in ORGS if any(k in tt for k in kws)), None)
         if not org and x.get("q_org") in TRUST and VI.search(x["title"]): org = (x["q_org"], TRUST[x["q_org"]])  # Vietnamese headlines only (GN also returns machine translations)
@@ -90,6 +104,7 @@ def main():
         x["mseg"] = next((sid for sid, kws in MSEG if any(k in t for k in kws)), "")
         age = (dt.date.fromisoformat(dt.datetime.now(TZ).date().isoformat()) - dt.date.fromisoformat(x["date"])).days
         x["score"] = sum(w for k, w in KW.items() if k in t) + 2 * len(x["tax"]) - age * 0.3
+        if labor: x["score"] += sum(w for k, w in LKW.items() if k in t)
         x["id"] = hashlib.sha1(x["url"].encode()).hexdigest()[:12]; x["origin"] = "rss"; items.append(x)
     items.sort(key=lambda x: (x["date"], x["score"]), reverse=True); items = items[:1200]
     import unicodedata; items = json.loads(unicodedata.normalize("NFC", json.dumps(items, ensure_ascii=False)))  # NFC: decomposed marks render detached
