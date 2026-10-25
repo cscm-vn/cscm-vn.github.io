@@ -21,7 +21,7 @@
 
 ## Mục thị trường (`type: "market"`)
 ```json
-{"type":"market","title":"…","segment":"Căn hộ|Thấp tầng|Chính sách|Tài chính & lãi suất|Nhà thầu|Doanh nghiệp|Vật liệu|Thế giới",
+{"type":"market","title":"…","segment":"Căn hộ|Thấp tầng|Chính sách|Tài chính & lãi suất|Nhà thầu|Doanh nghiệp|Vật liệu|Thế giới|Nhân công",
  "region":"Hà Nội|TP.HCM|Toàn quốc|Trung Quốc|Toàn cầu|Châu Âu","date":"YYYY-MM-DD","summary":"…","takeaway":"(tùy chọn) hàm ý",
  "tax":["tt.bds"],"sources":[{"name":"…","url":"https://…"}]}
 ```
@@ -72,3 +72,9 @@ Quy tắc: mọi số liệu phải có trong nguồn ghi kèm; FOB/giả địn
 
 Mọi tệp có `schema_version`, `reviewed` (ngày biên tập gần nhất). Quy tắc: mỗi mục phải có `sources` là URL đã mở và kiểm chứng; không kiểm chứng được thì bỏ. Thêm nguồn quét: sửa `Q`/`OFFICIAL` trong `legal_feed.py`.
 QA: `python trends/hopdong/qa.py <BASE_URL> [--shots]` (tràn ngang mọi trang ở 360–1920px, hỏi đáp, xoay vòng câu hỏi).
+
+## v4 – Nhân công xây dựng (`tt.nhan-cong`)
+- Nút cấp 2 `tt.nhan-cong` ("Nhân công & lao động xây dựng") dưới "Vĩ mô & thương mại" trong `data/taxonomy.json` (không có `match`, nên không gán theo từ khóa OR).
+- Tin biên tập: `market` với `segment: "Nhân công"`, `tax: ["tt.nhan-cong","tt.bds"]`, `takeaway` = 1 dòng ảnh hưởng đến mua sắm/đấu thầu; số liệu chỉ trích đúng như trong nguồn.
+- Tin tự động: `feeds.py` gắn `tt.nhan-cong` (đứng đầu `tax`) khi khớp **từ nhân công** (`LABOR`) **và** ngữ cảnh xây dựng (`LABOR_CTX`), khớp nguyên từ, loại `LABOR_NOT` (xây dựng Đảng, nông thôn mới…). Điểm cộng `LKW` chỉ áp cho tin đã khớp, nên điểm các tin khác không đổi.
+

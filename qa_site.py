@@ -300,6 +300,30 @@ def _get(u, t=30):
 def _png_size(b):
     import struct
     return struct.unpack(">II", b[16:24]) if b[:8] == b"\x89PNG\r\n\x1a\n" else None
+def nc_checks(pg, w, f, fails):
+    """Tin nhân công: nút taxonomy, tin biên tập có hàm ý + nguồn, bộ lọc 'Nhân công' ở thi-truong, danh mục hiện tin, không lỗi console."""
+    def F(m): fails.append((w, f, "nhan-cong: " + m))
+    if f == "thi-truong.html":
+        opts = pg.evaluate("() => [...document.querySelectorAll('select option')].map(o => o.textContent.trim())")
+        if "Nhân công" not in opts: F(f"bộ lọc chủ đề thiếu 'Nhân công': {opts}")
+        return
+    if f != "danh-muc.html": return
+    p2 = pg.context.new_page(); errs = []
+    p2.on("console", lambda m: m.type == "error" and errs.append(m.text)); p2.on("pageerror", lambda e: errs.append(str(e)))
+    try:
+        p2.goto(B + "danh-muc.html?c=tt.nhan-cong&tab=news", wait_until="networkidle", timeout=90000); p2.wait_for_timeout(800)
+        h1 = p2.evaluate("() => (document.querySelector('h1')||{}).textContent || ''")
+        if "Nhân công" not in h1: F(f"tiêu đề danh mục sai: {h1!r}")
+        rows = p2.evaluate("() => [...document.querySelectorAll('li, .news li, #news li')].filter(l => l.querySelector('a[href^=http]') && l.offsetParent).map(l => [l.innerText.trim(), l.querySelector('a[href^=http]').href])")
+        if len(rows) < 12: F(f"tab Tin chỉ có {len(rows)} dòng (<12)")
+        if sum("Biên tập" in r[0] for r in rows) < 12: F("thiếu nhãn 'Biên tập' cho các tin biên tập")
+        ov = p2.evaluate("() => document.documentElement.scrollWidth - document.documentElement.clientWidth")
+        if ov > 0: F(f"overflow {ov}px")
+        tax = p2.evaluate("async () => (await HUB.tax()).byId['tt.nhan-cong']"); 
+        if not tax: F("taxonomy thiếu tt.nhan-cong")
+        errs = [e for e in errs if "zgo.at" not in e and "goatcounter" not in e.lower()]
+        if errs: F("console: " + " | ".join(errs[:3]))
+    finally: p2.close()
 def pwa_head_checks(pg, w, f, fails):
     h = pg.evaluate("""() => { const q = s => [...document.head.querySelectorAll(s)];
       return {man: q('link[rel=manifest]').map(l => l.href), apple: q('link[rel=apple-touch-icon]').map(l => [l.href, l.sizes.value]),
@@ -565,6 +589,7 @@ with sync_playwright() as p:
                     if not link_ok(u): fails.append((w, f, "broken link " + u))
             pwa_head_checks(pg, w, f, fails)
             xh_checks(pg, w, f, fails, groups=(w in (390, 1366)))
+            nc_checks(pg, w, f, fails)
             pg.close()
         ctx.close()
     pwa_checks(br, fails)
@@ -577,6 +602,25 @@ try:  # sanity: cùng thành phố & cùng cơ sở, mác cao hơn không đư�
         for reg in ("hn", "hcm"):
             if c2[reg] < c1[reg]: fails.append(("-", "hub.json", f"grade order {reg}: M{g2} {c2[reg]} < M{g1} {c1[reg]}"))
 except Exception as e: fails.append(("-", "hub.json", f"grade-order check error: {e}"))
+try:  # tin nhân công trong market.json: mỗi tin có hàm ý mua sắm/đấu thầu, nguồn https, ngày hợp lệ, không trùng URL
+    _m = [x for x in _j.load(urllib.request.urlopen(B + "data/market.json", timeout=30))["items"] if "tt.nhan-cong" in x.get("tax", [])]
+    if len(_m) < 12: fails.append(("-", "market.json", f"tin nhân công {len(_m)} < 12"))
+    _seen = set()
+    for x in _m:
+        if not x.get("takeaway") or "đấu thầu" not in x["takeaway"] and "mua sắm" not in x["takeaway"].lower(): fails.append(("-", "market.json", "thiếu hàm ý mua sắm/đấu thầu: " + x["title"][:50]))
+        if not x.get("sources") or not all(s["url"].startswith("https://") for s in x["sources"]): fails.append(("-", "market.json", "nguồn không https: " + x["title"][:50]))
+        if not re.match(r"20\d\d-\d\d-\d\d$", x.get("date", "")): fails.append(("-", "market.json", "ngày sai: " + x["title"][:50]))
+        for s_ in x.get("sources", []):
+            if s_["url"] in _seen: fails.append(("-", "market.json", "trùng nguồn " + s_["url"][:60]))
+            _seen.add(s_["url"])
+except Exception as e: fails.append(("-", "market.json", f"nhan-cong check error: {e}"))
+try:  # bộ lọc feeds.py: dương tính = tin nhân công xây dựng, âm tính = nhiễu (xây dựng Đảng, nhà máy, nông nghiệp...)
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "trends")); import feeds as _fd
+    for _t, _e in [("Giá nhân công xây dựng chạm mức 1 triệu đồng/công", 1), ("Thiếu hụt nhân lực ngành xây dựng: cần bắt tay ba nhà", 1), ("Công trường khát thợ, nhà thầu phải đổi cách giữ người", 1),
+                   ("Thiếu thợ xây, phụ hồ: doanh nghiệp trả lương tới hơn 20 triệu", 1), ("Xây dựng Đảng trong sạch vững mạnh, nâng cao tiền công nhân", 0), ("Nhà máy Samsung thiếu lao động, tăng lương cho công nhân", 0),
+                   ("Giá nhân công nông nghiệp tăng mùa thu hoạch", 0), ("Phù hợp với điều kiện thực tế, bất động sản phân hóa", 0), ("Doanh nghiệp thu phí không dừng chưa làm rõ bản chất", 0)]:
+        if _fd.is_labor(_fd.strip(_t)) != bool(_e): fails.append(("-", "feeds.py", f"is_labor sai ({_e}): {_t}"))
+except Exception as e: fails.append(("-", "feeds.py", f"is_labor check error: {e}"))
 print(f"pages={len(PAGES)} widths={W} links_checked={len(checked)}")
 for x in fails: print("FAIL", *x)
 print("ALL OK" if not fails else f"{len(fails)} failures"); sys.exit(1 if fails else 0)
