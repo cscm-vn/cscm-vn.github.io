@@ -386,6 +386,72 @@ def pwa_checks(br, fails):
         if errs: F("console: " + " | ".join(errs[:3]))
         ctx.close()
 
+
+# ---------- cột "Xu hướng" ở bảng giá danh-muc.html ----------
+XH_JS = """async () => {
+  const t = await HUB.tax(), h = await HUB.get("hub.json"); const ids = (HUB.qs("c") && t.byId[HUB.qs("c")]) ? (t.byId[HUB.qs("c")].level === 1 ? t.byId[HUB.qs("c")].children.map(x => x.id) : [HUB.qs("c")]) : [];
+  const P = h.items.filter(x => ids.includes(x.tax)); const hist = {};
+  await Promise.all(P.map(async x => { try { const j = await (await fetch("history/" + x.id + ".json", {cache: "no-store"})).json(); hist[x.id] = (j.points || []).filter(p => p.price != null).sort((a, b) => a.date.localeCompare(b.date)).map(p => [p.date, p.price]); } catch (e) { hist[x.id] = null; } }));
+  const rows = [...document.querySelectorAll("#pt tbody tr:not(.mtg-h)")];
+  return {th: [...document.querySelectorAll("#pt thead th")].map(x => x.textContent.trim()), nP: P.length, nRows: rows.length,
+    pend: rows.filter(r => r.querySelector("td.xh")?.textContent.trim() === "…").length,
+    noCell: rows.filter(r => !r.querySelector("td.xh")).length,
+    rows: rows.map(r => { const td = r.querySelector("td.xh"), a = td && td.querySelector("a"), id = new URLSearchParams((r.querySelector("td a") || {href: ""}).href.split("?")[1] || "").get("id");
+      const poly = td && td.querySelector("polyline"); return {id, hist: hist[id], txt: td ? td.textContent.trim() : null, href: a ? a.getAttribute("href") : null, poly: poly ? poly.getAttribute("points").split(" ").length : 0,
+        cls: td && td.querySelector(".xt") ? td.querySelector(".xt").className : "", own: td ? td.scrollWidth - td.clientWidth : 0}; }),
+    ov: document.documentElement.scrollWidth - innerWidth};
+}"""
+def xh_group_check(pg, w, label, fails):
+    F = lambda m: fails.append((w, label, "xu hướng: " + m))
+    try: pg.wait_for_selector("#pt tbody tr:not(.mtg-h)", timeout=15000)
+    except Exception: return None  # nhóm không có bảng giá → bỏ qua
+    pg.wait_for_function("() => ![...document.querySelectorAll('#pt td.xh')].some(td => td.textContent.trim() === '…')", timeout=20000); pg.wait_for_timeout(300)
+    r = pg.evaluate(XH_JS)
+    if r["th"][-1] != "Xu hướng": F(f"tiêu đề cột cuối {r['th'][-1:]}")
+    if r["nRows"] != r["nP"]: F(f"số dòng {r['nRows']} != số mã {r['nP']}")
+    if r["noCell"]: F(f"{r['noCell']} dòng thiếu ô Xu hướng")
+    if r["pend"]: F(f"{r['pend']} ô còn '…' (không tải được trk.json)")
+    if r["ov"] > 0: F(f"trang tràn ngang {r['ov']}px")
+    for x in r["rows"]:
+        hp = x["hist"]; n = len(hp) if hp is not None else None
+        if hp is None: F(f"{x['id']}: không đọc được history json"); continue
+        if x["href"] != "mat-hang.html?id=" + x["id"] and n >= 2: F(f"{x['id']}: link {x['href']}")
+        if n < 2:
+            if x["txt"] != "mới thu" or x["poly"]: F(f"{x['id']}: {n} điểm nhưng hiện {x['txt']!r}/poly={x['poly']}")
+            continue
+        if x["poly"] != min(n, 60): F(f"{x['id']}: sparkline {x['poly']} điểm != history {min(n, 60)}")
+        d0 = hp[0][0]; want = d0[8:10] + "/" + d0[5:7]; chg = (hp[-1][1] / hp[0][1] - 1) * 100
+        m = re.match(r"^([+−])(\d+,\d+)% từ (\d\d/\d\d)$", x["txt"] or "")
+        if not m: F(f"{x['id']}: định dạng '{x['txt']}'"); continue
+        if m.group(3) != want: F(f"{x['id']}: ngày đầu {m.group(3)} != {want}")
+        val = float(m.group(2).replace(",", ".")) * (-1 if m.group(1) == "−" else 1)
+        if abs(val - chg) > 0.06: F(f"{x['id']}: % {val} != {chg:.2f} (tính từ history)")
+        if (chg > 0.0) != ("up" in x["cls"].split()) and abs(chg) >= 0.05: F(f"{x['id']}: màu {x['cls']} không khớp dấu {chg:.2f}")
+    return r
+def xh_checks(pg, w, f, fails, groups=True):
+    if f != "danh-muc.html": return
+    p2 = pg.context.new_page(); errs = []
+    p2.on("console", lambda m: m.type == "error" and errs.append(m.text)); p2.on("pageerror", lambda e: errs.append(str(e)))
+    try:
+        base = B + "danh-muc.html"
+        p2.goto(base + "?c=xd.be-tong&tab=gia", wait_until="networkidle", timeout=90000)
+        ids = p2.evaluate("async () => (await HUB.tax()).tree.map(x => x.id)") if groups else ["xd.be-tong"]
+        done = 0
+        for gid in ids:
+            p2.goto(base + "?c=" + gid + "&tab=gia", wait_until="networkidle", timeout=90000)
+            if xh_group_check(p2, w, "danh-muc.html?c=" + gid, fails) is not None: done += 1
+        if groups and done < 2: fails.append((w, f, f"cột Xu hướng: chỉ kiểm được {done} nhóm có bảng giá"))
+        # bấm một sparkline → mở đúng mat-hang.html của mã đó
+        p2.goto(base + "?c=xd.be-tong&tab=gia", wait_until="networkidle", timeout=90000)
+        p2.wait_for_function("() => document.querySelector('#pt td.xh a')", timeout=20000)
+        href = p2.evaluate("() => document.querySelector('#pt td.xh a').getAttribute('href')")
+        p2.locator("#pt td.xh a").first.click(); p2.wait_for_url(re.compile(r"mat-hang\.html\?id="), timeout=20000); p2.wait_for_timeout(1200)
+        if not p2.url.endswith(href): fails.append((w, f, f"bấm sparkline mở {p2.url} (cần …{href})"))
+    except Exception as e: fails.append((w, f, f"xu hướng: lỗi khi kiểm tra: {str(e)[:150]}"))
+    finally:
+        errs = [e for e in errs if "zgo.at" not in e and "goatcounter" not in e.lower()]
+        if errs: fails.append((w, f, "xu hướng: console " + " | ".join(errs[:3])))
+        p2.close()
 def link_ok(u):
     try: return urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=20).status < 400
     except Exception:
@@ -493,6 +559,7 @@ with sync_playwright() as p:
                     checked.add(u)
                     if not link_ok(u): fails.append((w, f, "broken link " + u))
             pwa_head_checks(pg, w, f, fails)
+            xh_checks(pg, w, f, fails, groups=(w in (390, 1366)))
             pg.close()
         ctx.close()
     pwa_checks(br, fails)

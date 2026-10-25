@@ -99,7 +99,7 @@ def build():
         last = pts[-1]["price"] if pts else it.get("price"); m, y, w = pt_at(pts, 30), pt_at(pts, 365), pt_at(pts, 7)
         if len(pts) >= 2:  # cột "Xu hướng" (danh-muc.html): chỉ mã có ≥2 điểm; 60 điểm cuối, ngày lưu dạng cách ngày đầu (nhẹ); % từ ngày đầu thu lấy từ s0/first_date trong hub.json
             tail = pts[-60:]; d0 = dt.date.fromisoformat(tail[0]["date"])
-            trk[it["id"]] = dict(s=tail[0]["date"], o=[(dt.date.fromisoformat(p["date"]) - d0).days for p in tail], p=[p["price"] for p in tail])
+            trk[it["id"]] = dict(s=tail[0]["date"], o=[(dt.date.fromisoformat(p["date"]) - d0).days for p in tail], p=[int(p["price"]) if p["price"] == int(p["price"]) else p["price"] for p in tail])
         monthly = {}
         for p in pts: monthly[p["date"][:7]] = p["price"]
         ms = sorted(monthly.items())
