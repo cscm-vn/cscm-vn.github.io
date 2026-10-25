@@ -1,7 +1,7 @@
 """Site-wide audit + regression: python qa_site.py BASE_URL [--shots]
 Asserts each shared component mounts exactly once per page, no console/page errors,
 no horizontal overflow, no broken internal links, no mojibake in Vietnamese text."""
-import sys, re, glob, os, json, urllib.request, urllib.parse
+import sys, re, glob, os, json, time, urllib.request, urllib.parse
 from playwright.sync_api import sync_playwright
 B = sys.argv[1].rstrip("/") + "/"
 PAGES = sorted(os.path.basename(f) for f in glob.glob(os.path.join(os.path.dirname(__file__), "site", "*.html")))
@@ -293,6 +293,99 @@ def bao_lanh_checks(pg, w, f, fails):
         p2.evaluate("() => localStorage.removeItem('hopdong-baolanh-v1')")
     except Exception as e: F(f"lỗi kiểm thử {type(e).__name__}: {str(e)[:200]}")
     finally: ctx.close()
+
+# ---------- PWA (manifest, icon, service worker, installability) ----------
+def _get(u, t=30):
+    r = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"}), timeout=t); return r.status, r.headers.get("Content-Type", ""), r.read()
+def _png_size(b):
+    import struct
+    return struct.unpack(">II", b[16:24]) if b[:8] == b"\x89PNG\r\n\x1a\n" else None
+def pwa_head_checks(pg, w, f, fails):
+    h = pg.evaluate("""() => { const q = s => [...document.head.querySelectorAll(s)];
+      return {man: q('link[rel=manifest]').map(l => l.href), apple: q('link[rel=apple-touch-icon]').map(l => [l.href, l.sizes.value]),
+        theme: q('meta[name=theme-color]').map(m => m.content), cap: q('meta[name=apple-mobile-web-app-capable]').map(m => m.content),
+        mcap: q('meta[name=mobile-web-app-capable]').map(m => m.content), title: q('meta[name=apple-mobile-web-app-title]').map(m => m.content),
+        reg: q('script').filter(s => s.textContent.includes('serviceWorker.register')).length}; }""")
+    if h["man"] != [B + "manifest.webmanifest"]: fails.append((w, f, f"link manifest sai/thiếu/trùng: {h['man']}"))
+    if len(h["apple"]) != 1 or h["apple"][0][1] != "180x180": fails.append((w, f, f"apple-touch-icon sai/thiếu/trùng: {h['apple']}"))
+    if h["theme"] != ["#0e1a2b"]: fails.append((w, f, f"theme-color {h['theme']}"))
+    if h["cap"] != ["yes"] or h["mcap"] != ["yes"] or h["title"] != ["SCM Hub"]: fails.append((w, f, f"meta app-capable/title {h['cap']} {h['mcap']} {h['title']}"))
+    if h["reg"] != 1: fails.append((w, f, f"script đăng ký service worker x{h['reg']}"))
+def pwa_checks(br, fails):
+    F = lambda m: fails.append(("-", "PWA", m))
+    try:
+        st, ct, body = _get(B + "manifest.webmanifest")
+        if st != 200: return F(f"manifest HTTP {st}")
+        m = json.loads(body)
+    except Exception as e: return F(f"manifest không tải/parse được: {e}")
+    exp = dict(name="Masterise Construction SCM Hub", short_name="SCM Hub", lang="vi", start_url="./", scope="/", display="standalone", theme_color="#0e1a2b", background_color="#f5f6f8")
+    for k, v in exp.items():
+        if m.get(k) != v: F(f"manifest.{k} = {m.get(k)!r} (cần {v!r})")
+    if "json" not in ct and "manifest" not in ct and "octet" not in ct: F(f"manifest Content-Type lạ: {ct}")
+    got = set()
+    for ic in m.get("icons", []):
+        try:
+            st, ct2, b = _get(urllib.parse.urljoin(B + "manifest.webmanifest", ic["src"]))
+            sz = _png_size(b); want = tuple(int(x) for x in ic["sizes"].split("x"))
+            if st != 200 or sz != want: F(f"icon {ic['src']}: HTTP {st}, kích thước {sz} (khai {want})")
+            got.add((want[0], ic.get("purpose", "any")))
+        except Exception as e: F(f"icon {ic.get('src')}: {e}")
+    for need in ((192, "any"), (512, "any"), (512, "maskable")):
+        if need not in got: F(f"manifest thiếu icon {need}")
+    try:
+        _, _, b = _get(B + "scm-apple-touch-180.png")
+        if _png_size(b) != (180, 180): F("apple-touch-icon không phải PNG 180x180")
+    except Exception as e: F(f"apple-touch-icon: {e}")
+    try:
+        st, ct, b = _get(B + "sw.js"); t = b.decode()
+        if st != 200 or "javascript" not in ct: F(f"sw.js HTTP {st} {ct}")
+        if "__SW_VERSION__" in t or not re.search(r'const VERSION = "[0-9a-f]{10}"', t): F("sw.js chưa được đóng dấu phiên bản")
+    except Exception as e: F(f"sw.js: {e}")
+    # đăng ký + hành vi thật của service worker (context cho phép SW, chặn goatcounter)
+    ctx = br.new_context(viewport={"width": 390, "height": 800}, service_workers="allow")
+    ctx.route("**/gc.zgo.at/**", lambda r: r.fulfill(status=200, content_type="application/javascript", body=""))
+    errs = []
+    try:
+        pg = ctx.new_page(); pg.on("console", lambda x: x.type == "error" and errs.append(x.text)); pg.on("pageerror", lambda e: errs.append(str(e)))
+        pg.goto(B + "index.html", wait_until="networkidle", timeout=90000)
+        ready = pg.evaluate("""async () => { const r = await Promise.race([navigator.serviceWorker.ready, new Promise(s => setTimeout(() => s(null), 15000))]); return r ? {scope: r.scope, active: !!r.active} : null; }""")
+        if not ready or not ready["active"]: return F("service worker không kích hoạt")
+        if ready["scope"] != B: F(f"scope SW {ready['scope']} != {B}")
+        pg.reload(wait_until="networkidle"); pg.wait_for_timeout(1500)
+        if not pg.evaluate("() => !!navigator.serviceWorker.controller"): F("trang chưa được SW kiểm soát sau khi tải lại")
+        # installability (CDP): không còn lỗi
+        cdp = ctx.new_cdp_session(pg); pg.wait_for_timeout(1500)
+        ie = cdp.send("Page.getInstallabilityErrors").get("installabilityErrors", [])
+        if ie: F(f"installability errors: {[e.get('errorId') for e in ie]}")
+        am = cdp.send("Page.getAppManifest"); mj = json.loads(am.get("data") or "{}")
+        if am.get("errors") or mj.get("display") != "standalone": F(f"CDP manifest lỗi: {am.get('errors')}")
+        # cache: có HTML/JSON/css/js, không có /api, không có khác nguồn, không có ?query
+        keys = pg.evaluate("""async () => { const out = []; for (const k of await caches.keys()) for (const r of await (await caches.open(k)).keys()) out.push(r.url); return out; }""")
+        if not any(u.endswith("/hub.css") for u in keys): F("cache không có hub.css")
+        bad = [u for u in keys if "/api/" in u or not u.startswith(B) or "?" in u]
+        if bad: F(f"cache chứa mục không được phép: {bad[:3]}")
+        # dữ liệu luôn lấy mạng trước: khi mạng có thì thấy ngay nội dung mới (giả lập bản deploy mới đổi hub.json)
+        pg.evaluate("() => fetch('data/hub.json', {cache: 'no-cache'}).then(r => r.text())")  # chắc chắn đã có bản lưu
+        fresh = {"v": "MOI-" + str(int(time.time()))}
+        def serve_new(route): route.fulfill(status=200, content_type="application/json", body=json.dumps(fresh))
+        ctx.route("**/data/hub.json", serve_new)
+        got_json = pg.evaluate("() => fetch('data/hub.json', {cache: 'no-cache'}).then(r => r.text())")
+        if json.loads(got_json) != fresh: F("SW phục vụ dữ liệu cũ khi có mạng (mạng trước không hoạt động)")
+        ctx.unroute("**/data/hub.json", serve_new)
+        pg.evaluate("() => fetch('data/hub.json', {cache: 'no-cache'}).then(r => r.text())")  # nạp lại bản thật vào cache (tránh bản giả lập làm hỏng bước offline)
+        # offline cơ bản: trang đã xem vẫn mở được, dữ liệu đã lưu vẫn đọc được
+        ctx.set_offline(True)
+        pg.reload(wait_until="domcontentloaded"); pg.wait_for_timeout(1500)
+        if pg.locator(".hn-bar").count() != 1: F("offline: không mở lại được trang đã xem")
+        ok = pg.evaluate("() => fetch('data/hub.json').then(r => r.ok).catch(() => false)")
+        if not ok: F("offline: không đọc được dữ liệu đã lưu")
+        ctx.set_offline(False)
+    except Exception as e: F(f"lỗi khi kiểm tra SW: {e}")
+    finally:
+        errs = [e for e in errs if "zgo.at" not in e and "goatcounter" not in e.lower() and "ERR_INTERNET_DISCONNECTED" not in e and "Failed to load resource" not in e]
+        if errs: F("console: " + " | ".join(errs[:3]))
+        ctx.close()
+
 def link_ok(u):
     try: return urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=20).status < 400
     except Exception:
@@ -399,8 +492,10 @@ with sync_playwright() as p:
                 if u not in checked:
                     checked.add(u)
                     if not link_ok(u): fails.append((w, f, "broken link " + u))
+            pwa_head_checks(pg, w, f, fails)
             pg.close()
         ctx.close()
+    pwa_checks(br, fails)
     br.close()
 try:  # sanity: cùng thành phố & cùng cơ sở, mác cao hơn không được rẻ hơn mác thấp hơn
     import json as _j
