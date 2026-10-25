@@ -38,6 +38,13 @@ gunicorn -w 2 -b 0.0.0.0:8080 app:app   # http://localhost:8080
 ./start_tunnel.sh                       # URL trycloudflare.com ngẫu nhiên, ĐỔI mỗi lần khởi động lại
 ```
 
+Chạy định kỳ trên máy local: `run_fetch.sh` và `watchdog.sh` tự `cd` vào thư mục chứa chúng (không gán cứng đường dẫn), nên cron chỉ cần đường dẫn **tuyệt đối** tới clone của bạn (thay `/home/ban/price-dashboard`):
+```cron
+5 */3 * * * /home/ban/price-dashboard/run_fetch.sh
+*/5 * * * *           /home/ban/price-dashboard/watchdog.sh
+```
+Log nằm ở `logs/` trong chính clone đó (script tự tạo thư mục). Cần `python3` trong PATH; thử tay bằng `bash /đường/dẫn/run_fetch.sh`.
+
 ## Truy cập công khai / hosting ổn định
 Quick tunnel Cloudflare **không chạy được trên box này** (mạng chặn cổng 7844 TCP/UDP; SSH tunnel cũng bị chặn). Các lựa chọn ổn định:
 1. **GitHub Pages + GitHub Actions (miễn phí, khuyến nghị)**: tạo repo (có thể private với GitHub Team/Enterprise, Pages private cần gói trả phí; public thì ai có link đều xem được),
