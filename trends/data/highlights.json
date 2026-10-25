@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-25T08:02+07:00",
+ "built": "2026-10-25T11:18+07:00",
  "today": "2026-10-25",
  "news_since": "2026-10-24",
  "thresholds": {
@@ -31,7 +31,22 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": 4.51,
+     "date": "2026-10-23",
+     "prev_date": "2026-10-22",
+     "price": 1344.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
      "title": "Giá thép hôm nay 24/10: Quặng sắt giảm 7 tuần liên tiếp",
@@ -49,8 +64,8 @@
     }
    ],
    "n_news": 2,
-   "n_moves": 0,
-   "rank": 0.6,
+   "n_moves": 1,
+   "rank": 2.85,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -71,20 +86,6 @@
      "threshold": 2.0,
      "tax": "mep.ong-nuoc",
      "url": "mat-hang.html?id=te_polypropylene"
-    },
-    {
-     "id": "yf_aluminium",
-     "name": "Nhôm (COMEX Aluminum)",
-     "region": "",
-     "d1": 2.36,
-     "date": "2026-10-23",
-     "prev_date": "2026-10-22",
-     "price": 3268.5,
-     "unit": "USD/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=yf_aluminium"
     },
     {
      "id": "te_polyethylene",
@@ -125,8 +126,8 @@
     }
    ],
    "n_news": 6,
-   "n_moves": 3,
-   "rank": 5.34,
+   "n_moves": 2,
+   "rank": 4.17,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -207,7 +208,7 @@
     },
     {
      "title": "Sắt thép, sản phẩm gỗ, vật liệu dẫn đầu danh sách rủi ro phòng vệ",
-     "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQRkY1MG1xbldONGNoOHlzNHhiOVpScVlYdk9ZUjFFNWZSdVVjaTFxTTBtWk95UmpvSUNOcmphaS1jYTJEdUZlSGFsTUEyRDZGYUxoeTJ1WTFGaGpMMEFNZ1lIVmhRV1dMcFJzc2pFcmgxYmNRYXNuLVJrRkwzSEFZVWtuTmVmQUhGb29lcUFQOGtHbURMc05NSkVjaDY3blE2UkE?oc=5",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNTFg3bGszamIwb2VyOGJ4MHpGZEFEbjBlX3VVcWgwMThfampubncxNnQxUHBDV1lXLUJNaEFzSHVUdF9lNVNDcHNKd0NLX2hBeDUzNVAzRGdtOUduazNKMl80M3pQeHhaRnhMYVhYd3ZIZk5FY2NMXzJHODZtSU5GMDdVY3VvRVUycTBwTGpfY184b1JjbzNEdnNqcUU?oc=5",
      "date": "2026-10-24",
      "score": 7.7,
      "source": "baodautu"
