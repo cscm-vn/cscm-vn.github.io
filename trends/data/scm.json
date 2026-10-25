@@ -1,13 +1,13 @@
 {
- "updated": "2026-10-22",
+ "updated": "2026-10-26",
  "freight": {
-  "text": "Cước biển Shanghai → TP.HCM 10/2026: 20GP 645–900 USD, 40HQ 1.190–1.600 USD; → Hải Phòng: 20GP 650–830 USD, 40HQ 1.060–1.560 USD (chưa phí địa phương).",
+  "text": "Cước biển Shanghai → TP.HCM 10/2026: 20GP 645–900 USD, 40HQ 1.190–1.600 USD; → Hải Phòng: 20GP 650–830 USD, 40HQ 1.060–1.560 USD (chưa phí địa phương; TSL cập nhật 15/10, rà soát 26/10 không đổi). Tuyến dài tăng: Drewry WCI 22/10 4.585 USD/FEU (+2%, cao nhất 15 tuần); SCFI 23/10 3.681,34 (+1,76).",
   "d20": 780,
   "d40": 1400,
   "source": {
-   "name": "TSL – cước Shanghai → VN 10/2026",
+   "name": "TSL – cước Shanghai → VN (cập nhật 15/10/2026)",
    "url": "https://tsl.com.vn/gia-cuoc-van-chuyen-tu-shanghai-ve-viet-nam/",
-   "date": "2026-10"
+   "date": "2026-10-15"
   }
  },
  "assumptions": "Thuế NK mặc định 0% = GIẢ ĐỊNH hàng có C/O mẫu E (ACFTA); phải tra biểu thuế theo mã HS. VAT nhập khẩu mặc định 10% (một số mặt hàng được giảm còn 8% theo chính sách từng thời kỳ). Chi phí logistics nội địa & thông quan mặc định 3% giá CIF. FOB đánh dấu GIẢ ĐỊNH chỉ để minh họa. Lưu ý: một số dòng HS (ví dụ gạch ốp lát, thiết bị vệ sinh, thép chịu biện pháp phòng vệ thương mại) có thể không được hưởng 0% hoặc đang chịu thuế CBPG/tự vệ — luôn tra biểu thuế và quyết định PVTM hiện hành của Bộ Công Thương.",
@@ -34,7 +34,8 @@
    ],
    "demand": [
     "Tiêu thụ thép xây dựng 7T/2026 gần 9,0 triệu tấn (+16,5% n/n)",
-    "worldsteel: nhu cầu thép TQ 2026 −2% → áp lực xuất khẩu"
+    "worldsteel: nhu cầu thép TQ 2026 −2% → áp lực xuất khẩu",
+    "TQ: tiêu thụ biểu kiến thép cây 201,03 vạn tấn/tuần – thấp nhất cùng kỳ 4 năm; giá Φ20 bình quân 3.311 NDT/tấn (Mysteel 24/10)"
    ],
    "trade": [
     "Nhập khẩu thép 9T/2026: 11,58 triệu tấn (+3,5%), từ TQ 5,90 triệu tấn (−8,8%)",
@@ -79,6 +80,11 @@
     "vn_note": "So với giá thép cây VN trên Bảng giá (đ/kg ×1.000)"
    },
    "sources": [
+    {
+     "name": "Mysteel 24/10/2026 – thép cây TQ",
+     "url": "https://news.mysteel.com/a/26102416/3100BAA241FF9640.html",
+     "date": "2026-10-24"
+    },
     {
      "name": "PSI – báo cáo ngành thép T9/2026",
      "url": "https://static.fireant.vn/reports/content/84988",
@@ -310,10 +316,11 @@
    ],
    "signal": "du-cung",
    "trend": "down",
-   "headline": "Kính float TQ yếu (~1.058–1.060 NDT/tấn giữa 10/2026); nhôm LME hạ về ~3.000 USD/tấn; nhôm định hình TQ chịu CBPG 2,85–35,58% đến 2029.",
+   "headline": "Kính float TQ yếu (~1.058–1.060 NDT/tấn giữa 10/2026); nhôm LME nhích lên 3.043 USD/tấn (giao ngay 23/10, tồn kho SHFE giảm 8 tuần); nhôm định hình TQ chịu CBPG 2,85–35,58% đến 2029.",
    "supply": [
     "Kính float TQ: giá giao ngay yếu, một số dây chuyền Tây Nam ngừng (10/2026)",
-    "Nhôm LME ~3.001,5 USD/tấn (tuần 12–16/10), giảm từ đỉnh 3.855 USD/tấn (6/2026)"
+    "Nhôm LME ~3.001,5 USD/tấn (tuần 12–16/10), giảm từ đỉnh 3.855 USD/tấn (6/2026)",
+    "Nhôm LME giao ngay 3.043 USD/tấn, 3 tháng 3.018 USD/tấn (23/10); tồn kho LME 235.800 tấn"
    ],
    "demand": [
     "Cầu mặt dựng cao tầng VN ổn định; BĐS TQ suy yếu → dư cung kính TQ"
@@ -360,6 +367,11 @@
    },
    "sources": [
     {
+     "name": "Westmetall – LME 23/10/2026",
+     "url": "https://www.westmetall.com/en/markdaten.php/en/leistungen/neumetalle.html",
+     "date": "2026-10-23"
+    },
+    {
      "name": "Jubo – giá kính & nhôm 16/10/2026",
      "url": "https://jbgy.atjubo.com/en-US/News/Detail/5797?category=%E4%BA%A7%E5%93%81%E8%B5%84%E8%AE%AF",
      "date": "2026-10-16"
@@ -395,9 +407,10 @@
    ],
    "signal": "khan-hiem",
    "trend": "up",
-   "headline": "Đồng LME lập đỉnh ~14.533 USD/tấn (08/09/2026) → giá cáp tăng; Cadivi điều chỉnh bảng giá từ 06/04/2026.",
+   "headline": "Đồng LME vẫn ở vùng cao 14.415 USD/tấn (giao ngay 23/10) sau đỉnh ~14.533 USD/tấn (08/09/2026); tồn kho LME tăng ~1/5 trong tuần → biến động mạnh, giá cáp chưa có dư địa giảm; Cadivi điều chỉnh bảng giá từ 06/04/2026.",
    "supply": [
-    "Nhà máy cáp VN đủ công suất (Cadivi, LS-VINA, Trần Phú, Daphaco)"
+    "Nhà máy cáp VN đủ công suất (Cadivi, LS-VINA, Trần Phú, Daphaco)",
+    "Tồn kho đồng LME 273.750 tấn (23/10), tăng ~1/5 trong tuần; Chile dự kiến sản lượng 2026 −8–9%, nhà máy luyện TQ cắt giảm do thiếu tinh quặng"
    ],
    "demand": [
     "Data center, lưới điện, BĐS kéo cầu đồng toàn cầu"
@@ -424,6 +437,16 @@
    "timing": "Đồng ở vùng đỉnh → tránh chốt giá cố định dài hạn; dùng công thức gắn LME.",
    "calc": null,
    "sources": [
+    {
+     "name": "AEGIS/Bloomberg 23/10/2026",
+     "url": "https://instanext.com/insights/metals/daily-first-look/2026-10-23",
+     "date": "2026-10-23"
+    },
+    {
+     "name": "Westmetall – LME đồng 2026",
+     "url": "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_cash&year=2026",
+     "date": "2026-10-23"
+    },
     {
      "name": "VietnamFinance – giá đồng lập đỉnh",
      "url": "https://vietnamfinance.vn/gia-dong-lap-dinh-lich-su-gee-va-tya-doi-mat-ap-luc-d150310.html",
@@ -780,7 +803,9 @@
    ],
    "trade": [
     "Nhập khẩu gạch Ấn Độ ~11,5 triệu m² (~60% nhập khẩu)",
-    "Đá nung kết Phật Sơn 9,5–36 USD/m² FOB"
+    "Đá nung kết Phật Sơn 9,5–36 USD/m² FOB",
+    "Gạch ốp lát TQ: đơn giá xuất khẩu 9T/2026 2.607 NDT/tấn (−15,2% n/n), lượng 9,77 triệu tấn (−1,4%) – áp lực giá chào FOB giảm",
+    "Canton Fair kỳ 140 GĐ2 (23–27/10, Quảng Châu): VLXD & trang trí khu B 11.2–13.2, TBVS khu B 9.1–11.1"
    ],
    "rec": "VN (gạch) + TQ (đá nung kết)",
    "rec_detail": "Gạch porcelain: nhà máy VN dư công suất → đấu thầu ép giá. Đá nung kết khổ lớn (mặt bếp, ốp tường): TQ (Phật Sơn).",
@@ -819,6 +844,16 @@
     "vn_note": ""
    },
    "sources": [
+    {
+     "name": "Cổng TTĐT Quảng Đông – Canton Fair GĐ2 23/10/2026",
+     "url": "https://www.gd.gov.cn/gdywdt/ydylygd/content/post_4969751.html",
+     "date": "2026-10-23"
+    },
+    {
+     "name": "jc68 – xuất khẩu gốm sứ XD TQ 9T/2026",
+     "url": "https://www.jc68.com/news/show-25451.html",
+     "date": "2026-10-24"
+    },
     {
      "name": "Vietnam.vn – gạch nhập khẩu gây sức ép",
      "url": "https://www.vietnam.vn/gach-nhap-khau-loi-the-gia-suc-ep-lon-doi-voi-doanh-nghiep-gach-trong-nuoc",
