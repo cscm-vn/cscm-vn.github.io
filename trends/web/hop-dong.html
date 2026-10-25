@@ -53,6 +53,135 @@
 
 <section class="hd-sec" id="tranh-chap"><h2>⚖️ Tranh chấp & án lệ <small id="ds-n"></small></h2><div class="grid g2" id="disp"></div></section>
 
+<section class="hd-sec" id="bao-lanh"><h2>🏦 Xác thực thư bảo lãnh trước khi chi tạm ứng <small>tra cứu tại ngân hàng phát hành · sổ theo dõi hạn bảo lãnh</small></h2>
+<style>
+#bao-lanh .bl-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer;color:var(--pri);text-decoration:none;display:inline-block;white-space:nowrap}
+#bao-lanh .bl-btn:hover{border-color:var(--pri);text-decoration:none}#bao-lanh .bl-btn.pri{background:var(--pri);border-color:var(--pri);color:#fff}
+#bao-lanh .bl-btn.dan{color:#a23b2c}#bao-lanh .bl-btn.sm{padding:3px 9px;font-size:12.5px}
+#bao-lanh .bl-warn{background:#fdf3e3;border-left:3px solid #b7791f;padding:8px 11px;border-radius:6px;font-size:13.5px;margin:0 0 10px}
+#bao-lanh .bl-ex{margin:6px 0 10px;padding-left:18px;font-size:13.5px}#bao-lanh .bl-ex li{margin:4px 0;overflow-wrap:anywhere}
+#bao-lanh table.t{min-width:640px}#bao-lanh table.t td,#bao-lanh table.t th{vertical-align:top;text-align:left}
+#bao-lanh .bl-in{font-size:13px}#bao-lanh .bl-in small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
+#bao-lanh .bl-no{color:#8a5a00;font-size:13px}
+#bao-lanh h3{margin:16px 0 6px;font-size:16px}
+#bao-lanh .bl-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 8px}
+#bao-lanh .bl-leg{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;margin:2px 0 8px}#bao-lanh .bl-leg span{border-radius:20px;padding:1px 9px;border:1px solid rgba(0,0,0,.08)}
+#bao-lanh .l-over{background:#f6c9c3}#bao-lanh .l-d7{background:#fde0cc}#bao-lanh .l-d15{background:#ffeec8}#bao-lanh .l-d30{background:#fff9d6}
+#bao-lanh tr[data-lvl=over] td{background:#f6c9c3}#bao-lanh tr[data-lvl=d7] td{background:#fde0cc}#bao-lanh tr[data-lvl=d15] td{background:#ffeec8}#bao-lanh tr[data-lvl=d30] td{background:#fff9d6}
+#bao-lanh .bl-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px 12px;margin:8px 0;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fafaf7}
+#bao-lanh .bl-form[hidden]{display:none}#bao-lanh .bl-form label{display:block;font-size:12.5px;color:var(--mute)}
+#bao-lanh .bl-form input,#bao-lanh .bl-form select{display:block;width:100%;box-sizing:border-box;margin-top:2px;padding:6px 8px;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)}
+#bao-lanh .bl-form .bl-act{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;align-items:center}#bao-lanh .bl-err{color:#a23b2c;font-size:13px}
+#bao-lanh td.bl-n{text-align:right;white-space:nowrap}#bao-lanh td.bl-w{white-space:nowrap}#bao-lanh .bl-empty{color:var(--mute);font-size:13.5px;padding:10px}
+#bao-lanh .bl-keep{font-size:12.5px;color:var(--mute);margin:6px 0 0}
+@media (max-width:560px){#bao-lanh .bl-form{grid-template-columns:1fr}}
+</style>
+<div class="card"><h3 style="margin-top:0">A. Tra cứu xác thực bảo lãnh</h3>
+ <p class="bl-warn"><b>Thư bảo lãnh giả là thủ đoạn có thật.</b> Trước khi chi tạm ứng, hãy đối chiếu thư bảo lãnh trực tiếp với ngân hàng phát hành. Chỉ dùng trang/hotline lấy từ website chính thức của ngân hàng – <b>không</b> dùng số điện thoại hay địa chỉ web in trên chính thư bảo lãnh (theo bài Báo Quảng Ninh dưới đây, một đường dây ở Cần Thơ đã dựng cả website và số máy bàn giả để “xác nhận” đúng).</p>
+ <p class="small" style="margin:0 0 2px"><b>Vụ việc thực tế:</b></p>
+ <ul class="bl-ex">
+  <li><b>IMICO – hơn 2,2 tỷ đồng tạm ứng thi công</b> (cao tốc Hà Nội – Hải Phòng): nhà thầu nộp 2 chứng thư bảo lãnh mang tên Vietcombank; khi yêu cầu thực hiện bảo lãnh, ngân hàng trả lời không phát hành, giám định kết luận là giả. <a href="https://baoquangninh.vn/canh-bao-thu-doan-lam-gia-chung-thu-bao-lanh-ngan-hang-post2317160.html" target="_blank" rel="noopener">Báo Quảng Ninh (theo CAND, 15/09/2016) ↗</a></li>
+  <li><b>Ban QLKDT Gò Tháp (Đồng Tháp)</b>: nhà thầu làm giả 2 chứng thư bảo lãnh thực hiện hợp đồng để nhận tạm ứng; chủ đầu tư chỉ phát hiện khi đến ngân hàng thu hồi tiền; cáo trạng nêu số chiếm đoạt hơn 3,7 tỷ đồng. <a href="https://baodauthau.vn/lam-gia-tai-lieu-ngan-hang-khi-du-thau-hau-qua-lon-can-xu-nghiem-post115293.html" target="_blank" rel="noopener">Báo Đấu thầu (27/10/2021) ↗</a></li>
+ </ul>
+ <p class="small mute" style="margin:6px 0 8px"><b>Lưu ý:</b> trang tra cứu của ngân hàng có thể có captcha nên hub chỉ dẫn link, <b>không tự kiểm tra</b>; hub <b>không xác nhận thật/giả thay ngân hàng</b>. Nhiều ngân hàng chỉ tra được thư còn hiệu lực, phát hành bằng văn bản (không qua SWIFT) và đã phát hành tối thiểu 1 ngày – nếu không tra được, hãy xin <b>văn bản xác thực</b> từ ngân hàng. Đã mở và đọc từng trang ngày 25/10/2026; ngân hàng có thể đổi trang sau đó.</p>
+ <div class="tw"><table class="t" id="bl-banks"><thead><tr><th>Ngân hàng</th><th>Cần nhập khi tra cứu</th><th>Tra cứu</th></tr></thead><tbody>
+  <tr data-bank="Vietcombank"><td><b>Vietcombank</b></td><td class="bl-in">Số thư bảo lãnh · số tiền · ngày phát hành<small>Chỉ tra thư còn hiệu lực, đã phát hành tối thiểu 1 ngày. Hotline 1900 54 54 13.</small></td><td><a class="bl-btn" href="https://www.vietcombank.com.vn/vi-VN/To-chuc/SMEs/SME---Kiem-tra-bao-lanh" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="BIDV"><td><b>BIDV</b></td><td class="bl-in">Nhập theo các ô trên trang (hub chưa đọc được ô nhập)<small>Kết quả hiển thị: đơn vị phát hành, loại bảo lãnh, ngày phát hành/hết hạn, giá trị, bên được bảo lãnh, bên thụ hưởng. Hỗ trợ: baolanh@bidv.com.vn.</small></td><td><a class="bl-btn" href="https://bidv.com.vn/vn/dinh-che-tai-chinh/cong-cu-tien-ich/tra-thu-bao-lanh" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="Techcombank"><td><b>Techcombank</b></td><td class="bl-in">Số tham chiếu (ký tự MD + 10 chữ số, bỏ phần từ dấu “-” trở đi) · số tiền bảo lãnh hiện tại (sau sửa đổi, nếu có)<small>Chỉ tra thư phát hành từ 01/11/2013, còn hiệu lực, đã phát hành tối thiểu 1 ngày.</small></td><td><a class="bl-btn" href="https://tracuubaolanh.techcombank.com.vn/" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="VietinBank"><td><b>VietinBank</b></td><td class="bl-in">Số bảo lãnh · số tiền bảo lãnh (nếu có sửa đổi tiền: nhập số tiền sau sửa đổi)<small>Hotline 1900 558 868.</small></td><td><a class="bl-btn" href="https://ebanking.vietinbank.vn/tracuubaolanh/lcVerifyGet" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="MB"><td><b>MB</b></td><td class="bl-in">Số bảo lãnh (số MD) · số tiền bảo lãnh · số ĐKKD/MST (doanh nghiệp) hoặc CMND/hộ chiếu của bên được bảo lãnh · mã xác thực hiển thị trên trang<small>Chỉ tra thư phát hành từ 07/08/2014, bằng văn bản, còn hiệu lực, đã phát hành tối thiểu 1 ngày. Hotline 1900 545426.</small></td><td><a class="bl-btn" href="https://www.mbbank.com.vn/Form/documents" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="Eximbank"><td><b>Eximbank</b></td><td class="bl-in">Số thư bảo lãnh · số seri trên chứng thư (đủ 7 ký tự; seri 6 số thì thêm số 0 ở đầu) · mã xác thực theo hình ảnh<small>Chỉ tra chứng thư bằng văn bản trong nước (không qua SWIFT), phát hành từ 2013. Hotline 1900 6655.</small></td><td><a class="bl-btn" href="https://eximbank.com.vn/tra-cuu-bao-lanh" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="NCB"><td><b>NCB</b></td><td class="bl-in">Số thư bảo lãnh · số seri (6 chữ số) · mã kiểm tra<small>Chỉ tra cam kết phát hành bằng thư (không phải bằng điện) và còn hiệu lực. Hotline 028 38 216 216.</small></td><td><a class="bl-btn" href="https://www.ncb-bank.vn/mdonline/" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="TPBank"><td><b>TPBank</b></td><td class="bl-in">Số serial bảo lãnh (bỏ dấu cách; chỉ chữ/số, ví dụ BG hoặc GN…) · tham chiếu bảo lãnh · mã CAPTCHA<small>Thư do TPBank phát hành có mã QR – có thể quét bằng điện thoại để xác thực.</small></td><td><a class="bl-btn" href="https://xacthucbaolanh.tpb.vn/xacthucbaolanh/" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="HDBank"><td><b>HDBank</b></td><td class="bl-in">Số CCCD/MST của bên được bảo lãnh · tên bên được bảo lãnh · ngày phát hành/hiệu lực · giá trị thư bảo lãnh (và loại tiền)<small>Hotline 1900 6060.</small></td><td><a class="bl-btn" href="https://hdbank.com.vn/vi/corporate/cong-cu/guarantee" target="_blank" rel="noopener">Mở trang tra cứu ↗</a></td></tr>
+  <tr data-bank="ACB"><td><b>ACB</b></td><td class="bl-no" colspan="2">Cần xin văn bản xác thực từ ngân hàng <small class="mute">(chưa xác minh được trang tra cứu công khai và thông tin cần nhập; hotline 1900 54 54 86)</small></td></tr>
+  <tr data-bank="SHB"><td><b>SHB</b></td><td class="bl-no" colspan="2">Cần xin văn bản xác thực từ ngân hàng <small class="mute">(trang SHB chỉ có hướng dẫn, chưa xác minh được trang tra cứu; hotline *6688)</small></td></tr>
+  <tr data-bank="Agribank"><td><b>Agribank</b></td><td class="bl-no" colspan="2">Cần xin văn bản xác thực từ ngân hàng <small class="mute">(Agribank có thông báo năm 2022 về tra cứu bằng số chứng thư + ngày phát hành, nhưng chưa tìm được trang tra cứu để xác minh; hotline 1900 558818)</small></td></tr>
+  <tr data-bank="VPBank"><td><b>VPBank</b></td><td class="bl-no" colspan="2">Cần xin văn bản xác thực từ ngân hàng <small class="mute">(không xác minh được trang tra cứu công khai còn hoạt động; hotline 1900 545 415)</small></td></tr>
+ </tbody></table></div>
+ <p class="small mute" style="margin:6px 0 0">Ngân hàng khác hoặc không tra được trực tuyến: gửi văn bản đề nghị xác thực kèm bản sao thư bảo lãnh tới chi nhánh phát hành, rồi chờ văn bản xác thực của ngân hàng trước khi chi tiền.</p>
+</div>
+<div class="card" style="margin-top:12px" id="bl-book"><h3 style="margin-top:0">B. Sổ bảo lãnh của tôi</h3>
+ <p class="small mute" style="margin:0 0 6px">Sổ này <b>chỉ nằm trên trình duyệt của máy này</b> (localStorage), hub <b>không gửi dữ liệu đi đâu</b>. Đổi máy/đổi trình duyệt hoặc xóa dữ liệu trình duyệt sẽ <b>mất sổ</b> – nên bấm “Xuất CSV” để lưu lại.</p>
+ <div class="bl-bar"><button type="button" class="bl-btn pri" id="bl-add">+ Thêm bảo lãnh</button><button type="button" class="bl-btn" id="bl-csv">Xuất CSV</button><span class="small mute" id="bl-count" aria-live="polite"></span></div>
+ <div class="bl-leg" aria-label="Chú giải màu"><span class="l-over">Quá hạn</span><span class="l-d7">còn ≤ 7 ngày</span><span class="l-d15">còn ≤ 15 ngày</span><span class="l-d30">còn ≤ 30 ngày</span></div>
+ <form class="bl-form" id="bl-form" hidden autocomplete="off">
+  <label>Số thư bảo lãnh *<input name="no" maxlength="60" required></label>
+  <label>Ngân hàng *<input name="bank" maxlength="80" list="bl-banklist" required></label><datalist id="bl-banklist"></datalist>
+  <label>Nhà thầu *<input name="contractor" maxlength="120" required></label>
+  <label>Loại *<select name="type"><option value="Tạm ứng">Tạm ứng</option><option value="Thực hiện HĐ">Thực hiện HĐ</option><option value="Dự thầu">Dự thầu</option><option value="Bảo hành">Bảo hành</option></select></label>
+  <label>Giá trị (VND) *<input name="amount" inputmode="numeric" maxlength="24" placeholder="vd 2200000000" required></label>
+  <label>Ngày hết hạn *<input name="expiry" type="date" required></label>
+  <label>Trạng thái xác thực<select name="verified"><option value="0">Chưa xác thực</option><option value="1">Đã xác thực</option></select></label>
+  <label>Ngày xác thực<input name="vdate" type="date"></label>
+  <label>Người ghi nhận xác thực<input name="vby" maxlength="60"></label>
+  <div class="bl-act"><button type="submit" class="bl-btn pri" id="bl-save">Lưu</button><button type="button" class="bl-btn" id="bl-cancel">Hủy</button><span class="bl-err" id="bl-err" role="alert"></span></div>
+ </form>
+ <div class="tw"><table class="t" id="bl-tbl" style="min-width:880px"><thead><tr><th>Số thư</th><th>Ngân hàng</th><th>Nhà thầu</th><th>Loại</th><th class="bl-n">Giá trị (VND)</th><th>Hết hạn</th><th>Còn lại</th><th>Xác thực</th><th></th></tr></thead><tbody id="bl-body"></tbody></table></div>
+ <p class="bl-keep" id="bl-msg"></p>
+</div>
+<script>
+(() => {
+  const KEY = "hopdong-baolanh-v1", $ = id => document.getElementById(id), body = $("bl-body"), form = $("bl-form");
+  const vn = (d = new Date()) => new Intl.DateTimeFormat("en-CA", {timeZone: "Asia/Ho_Chi_Minh", year: "numeric", month: "2-digit", day: "2-digit"}).format(d);
+  const dno = s => Math.round(Date.parse(s + "T00:00:00Z") / 864e5), fmtD = s => s ? s.split("-").reverse().join("/") : "";
+  const money = n => Number(n).toLocaleString("vi-VN");
+  let items = [], editing = null, delId = null, storeOK = true;
+  const load = () => { try { const j = JSON.parse(localStorage.getItem(KEY) || "null"); return j && Array.isArray(j.items) ? j.items.filter(x => x && typeof x.no === "string") : []; } catch (e) { return []; } };
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify({v: 1, items})); storeOK = true; } catch (e) { storeOK = false; } $("bl-msg").textContent = storeOK ? "" : "Không lưu được vào trình duyệt (chế độ riêng tư hoặc bộ nhớ đầy) – hãy xuất CSV ngay để khỏi mất dữ liệu."; };
+  const level = left => left < 0 ? "over" : left <= 7 ? "d7" : left <= 15 ? "d15" : left <= 30 ? "d30" : "ok";
+  const leftTxt = left => left < 0 ? `Quá hạn ${-left} ngày` : left === 0 ? "Hết hạn hôm nay" : `Còn ${left} ngày`;
+  const el = (t, txt, cls) => { const e = document.createElement(t); if (txt != null) e.textContent = txt; if (cls) e.className = cls; return e; };
+  const btn = (txt, fn, cls) => { const b = el("button", txt, "bl-btn sm" + (cls ? " " + cls : "")); b.type = "button"; b.onclick = fn; return b; };
+  const rows = () => items.map(x => ({x, left: dno(x.expiry) - dno(vn())})).sort((a, b) => a.left - b.left || a.x.no.localeCompare(b.x.no));
+  function draw() {
+    const R = rows(); body.replaceChildren();
+    $("bl-count").textContent = R.length ? `${R.length} thư bảo lãnh` : "";
+    if (!R.length) { const tr = el("tr"), td = el("td", "Chưa có thư bảo lãnh nào. Bấm “+ Thêm bảo lãnh” để ghi sổ.", "bl-empty"); td.colSpan = 9; tr.append(td); body.append(tr); return; }
+    R.forEach(({x, left}) => {
+      const tr = el("tr"); tr.dataset.id = x.id; tr.dataset.lvl = level(left);
+      tr.append(el("td", x.no), el("td", x.bank), el("td", x.contractor), el("td", x.type), el("td", money(x.amount), "bl-n"), el("td", fmtD(x.expiry), "bl-w"), el("td", leftTxt(left), "bl-w"),
+        el("td", x.verified ? `Đã xác thực${x.vdate ? " " + fmtD(x.vdate) : ""}${x.vby ? " · " + x.vby : ""}` : "Chưa xác thực"));
+      const ac = el("td", null, "bl-w");
+      ac.append(btn("Sửa", () => openForm(x)), " ");
+      if (delId === x.id) { ac.append(btn("Xóa thật?", () => { items = items.filter(y => y.id !== x.id); delId = null; save(); draw(); }, "dan"), " ", btn("Không", () => { delId = null; draw(); })); }
+      else ac.append(btn("Xóa", () => { delId = x.id; draw(); }, "dan"));
+      tr.append(ac); body.append(tr);
+    });
+  }
+  function banks() { const dl = $("bl-banklist"); dl.replaceChildren(); document.querySelectorAll("#bl-banks tbody tr[data-bank]").forEach(tr => { const o = document.createElement("option"); o.value = tr.dataset.bank; dl.append(o); }); }
+  function openForm(x) {
+    editing = x ? x.id : null; $("bl-err").textContent = ""; form.hidden = false;
+    form.no.value = x ? x.no : ""; form.bank.value = x ? x.bank : ""; form.contractor.value = x ? x.contractor : ""; form.type.value = x ? x.type : "Tạm ứng";
+    form.amount.value = x ? String(x.amount) : ""; form.expiry.value = x ? x.expiry : ""; form.verified.value = x && x.verified ? "1" : "0"; form.vdate.value = x ? x.vdate || "" : ""; form.vby.value = x ? x.vby || "" : "";
+    $("bl-save").textContent = x ? "Lưu thay đổi" : "Lưu"; form.no.focus();
+  }
+  const closeForm = () => { form.hidden = true; editing = null; $("bl-err").textContent = ""; };
+  form.onsubmit = ev => {
+    ev.preventDefault(); const v = n => form[n].value.trim(), err = m => { $("bl-err").textContent = m; return false; };
+    if (!v("no") || !v("bank") || !v("contractor")) return err("Cần nhập số thư, ngân hàng và nhà thầu.");
+    const amount = Number(v("amount").replace(/[^\d]/g, ""));
+    if (!amount) return err("Giá trị phải là số dương (VND).");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v("expiry")) || isNaN(Date.parse(v("expiry")))) return err("Cần chọn ngày hết hạn.");
+    const ver = v("verified") === "1", vdate = v("vdate");
+    if (ver && !vdate) return err("Đã xác thực thì cần ghi ngày xác thực.");
+    const rec = {id: editing || "b" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6), no: v("no"), bank: v("bank"), contractor: v("contractor"), type: v("type"), amount, expiry: v("expiry"), verified: ver, vdate: ver ? vdate : "", vby: ver ? v("vby") : ""};
+    items = editing ? items.map(y => y.id === editing ? rec : y) : [...items, rec];
+    save(); closeForm(); draw();
+  };
+  $("bl-add").onclick = () => openForm(null); $("bl-cancel").onclick = closeForm;
+  const cell = s => { s = String(s ?? ""); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  $("bl-csv").onclick = () => {
+    const H = ["Số thư", "Ngân hàng", "Nhà thầu", "Loại", "Giá trị (VND)", "Ngày hết hạn", "Còn lại (ngày)", "Đã xác thực", "Ngày xác thực", "Người ghi nhận"];
+    const L = rows().map(({x, left}) => [x.no, x.bank, x.contractor, x.type, x.amount, x.expiry, left, x.verified ? "Đã xác thực" : "Chưa xác thực", x.vdate || "", x.vby || ""].map(cell).join(","));
+    const blob = new Blob(["\ufeff" + [H.map(cell).join(","), ...L].join("\r\n") + "\r\n"], {type: "text/csv;charset=utf-8"});
+    const a = el("a"); a.href = URL.createObjectURL(blob); a.download = `so-bao-lanh-${vn().replace(/-/g, "")}.csv`; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  };
+  items = load(); banks(); draw();
+})();
+</script>
+</section>
+
 <section class="hd-sec" id="checklist"><h2>✅ Checklist rà soát hợp đồng</h2><ol class="card ck" id="ck"></ol></section>
 </main>
 <script>
