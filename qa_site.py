@@ -192,6 +192,105 @@ def home_ncc_checks(pg, w, f, fails):
         if "XÂY DỰNG COTECCONS" not in pg2.locator("#ncc-out").inner_text().upper() or pg2.evaluate("() => document.querySelectorAll('#ncc').length") != 1: F("nha-thau.html?ncc=MST không mở thẻ Coteccons / #ncc không đúng 1 lần")
     finally: pg2.close()
 
+# ---- Hợp đồng: khối "Xác thực thư bảo lãnh" (#bao-lanh): bảng tra cứu ngân hàng + sổ bảo lãnh (localStorage) ----
+BL_BANKS = {"Vietcombank": "https://www.vietcombank.com.vn/vi-VN/To-chuc/SMEs/SME---Kiem-tra-bao-lanh", "BIDV": "https://bidv.com.vn/vn/dinh-che-tai-chinh/cong-cu-tien-ich/tra-thu-bao-lanh",
+  "Techcombank": "https://tracuubaolanh.techcombank.com.vn/", "VietinBank": "https://ebanking.vietinbank.vn/tracuubaolanh/lcVerifyGet", "MB": "https://www.mbbank.com.vn/Form/documents",
+  "Eximbank": "https://eximbank.com.vn/tra-cuu-bao-lanh", "NCB": "https://www.ncb-bank.vn/mdonline/", "TPBank": "https://xacthucbaolanh.tpb.vn/xacthucbaolanh/", "HDBank": "https://hdbank.com.vn/vi/corporate/cong-cu/guarantee"}
+BL_NOLINK = ["ACB", "SHB", "Agribank", "VPBank"]
+BL_EX = ["https://baoquangninh.vn/canh-bao-thu-doan-lam-gia-chung-thu-bao-lanh-ngan-hang-post2317160.html", "https://baodauthau.vn/lam-gia-tai-lieu-ngan-hang-khi-du-thau-hau-qua-lon-can-xu-nghiem-post115293.html"]
+BL_BOT_BLOCKED = {"https://www.ncb-bank.vn/mdonline/"}  # NCB trả 403 cho trình duyệt tự động/curl (đã mở được bằng trình duyệt thật khi xác minh) → chỉ kiểm đúng địa chỉ, không HEAD
+def bl_link_ok(u):
+    import ssl
+    try: return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0", "Accept-Language": "vi"}), timeout=25).status < 400
+    except Exception: return False
+def bao_lanh_checks(pg, w, f, fails):
+    def F(m): fails.append((w, f, "bao-lanh: " + m))
+    st = pg.evaluate("""() => { const s = document.querySelectorAll('#bao-lanh'), el = s[0]; if (!el) return {n: 0};
+      const rows = [...el.querySelectorAll('#bl-banks tbody tr[data-bank]')];
+      return {n: s.length, book: el.querySelectorAll('#bl-book').length, tbl: el.querySelectorAll('#bl-tbl').length, prev: el.previousElementSibling?.id, next: el.nextElementSibling?.id,
+        banks: rows.map(r => [r.dataset.bank, r.querySelector('a.bl-btn')?.getAttribute('href') || null, r.querySelector('a.bl-btn')?.getAttribute('rel') || '', r.querySelector('a.bl-btn')?.target || '', r.innerText]),
+        ex: [...el.querySelectorAll('.bl-ex a')].map(a => a.getAttribute('href')), txt: el.innerText,
+        ov: el.scrollWidth - el.clientWidth, ovp: document.documentElement.scrollWidth - innerWidth}; }""")
+    if st["n"] != 1: return F(f"khối xuất hiện {st['n']} lần")
+    if st["prev"] != "tranh-chap" or st["next"] != "checklist": F(f"sai vị trí (trước {st['prev']}, sau {st['next']})")
+    if st["book"] != 1 or st["tbl"] != 1: F("thiếu sổ bảo lãnh")
+    got = {b[0]: b[1] for b in st["banks"] if b[1]}
+    if got != BL_BANKS: F(f"danh sách link ngân hàng sai: {set(got.items()) ^ set(BL_BANKS.items())}")
+    for b in st["banks"]:
+        if b[1] and (b[3] != "_blank" or "noopener" not in b[2]): F(f"link {b[0]} thiếu target/rel")
+        if not b[1] and "Cần xin văn bản xác thực" not in b[4]: F(f"{b[0]} không có link phải ghi 'Cần xin văn bản xác thực'")
+    if [b[0] for b in st["banks"] if not b[1]] != BL_NOLINK: F("danh sách ngân hàng không có link khác dự kiến")
+    if st["ex"] != BL_EX: F(f"link ví dụ vụ việc sai {st['ex']}")
+    for k in ("không tự kiểm tra", "không xác nhận thật/giả thay ngân hàng", "chỉ nằm trên trình duyệt của máy này", "không gửi dữ liệu đi đâu", "Xuất CSV", "captcha"):
+        if k not in st["txt"]: F(f"thiếu câu “{k}”")
+    if st["ov"] > 1: F(f"khối tràn ngang {st['ov']}px")
+    if w == W[0]:
+        for u in BL_EX + list(BL_BANKS.values()):
+            if u in BL_BOT_BLOCKED: continue
+            if not bl_link_ok(u): F("link hỏng " + u)
+    # --- sổ bảo lãnh: ngày giả lập 31/12/2026 (giờ VN), context riêng để không ảnh hưởng trang khác ---
+    br = pg.context.browser; ctx = br.new_context(viewport={"width": w, "height": 900}); ctx.route("**/gc.zgo.at/**", lambda r: r.fulfill(status=200, content_type="application/javascript", body=""))
+    errs = []
+    try:
+        ctx.clock.install(time="2026-12-31T12:00:00+07:00"); p2 = ctx.new_page()
+        p2.on("console", lambda m: m.type == "error" and errs.append(m.text)); p2.on("pageerror", lambda e: errs.append(str(e)))
+        p2.goto(pg.url.split("#")[0], wait_until="networkidle", timeout=90000); p2.wait_for_timeout(1500)
+        p2.evaluate("() => localStorage.removeItem('hopdong-baolanh-v1')"); p2.reload(wait_until="networkidle"); p2.wait_for_timeout(800)
+        if p2.locator("#bl-body tr[data-id]").count() != 0 or "Chưa có thư bảo lãnh" not in p2.locator("#bl-body").inner_text(): F("sổ rỗng không hiện dòng trống")
+        def add(no, bank, ct, ty, amt, exp, ver="0", vd="", vby=""):
+            p2.click("#bl-add"); fm = "#bl-form "
+            p2.fill(fm + "[name=no]", no); p2.fill(fm + "[name=bank]", bank); p2.fill(fm + "[name=contractor]", ct); p2.select_option(fm + "[name=type]", ty); p2.fill(fm + "[name=amount]", amt); p2.fill(fm + "[name=expiry]", exp)
+            p2.select_option(fm + "[name=verified]", ver); p2.fill(fm + "[name=vdate]", vd); p2.fill(fm + "[name=vby]", vby); p2.click("#bl-save"); p2.wait_for_timeout(120)
+        p2.click("#bl-add")  # lưu rỗng → báo lỗi, không thêm dòng
+        p2.fill("#bl-form [name=no]", ""); p2.evaluate("() => { const f = document.getElementById('bl-form'); f.noValidate = true; }"); p2.click("#bl-save")
+        if not p2.locator("#bl-err").inner_text().strip() or p2.locator("#bl-body tr[data-id]").count() != 0: F("lưu form rỗng không báo lỗi/đã thêm dòng")
+        p2.click("#bl-cancel")
+        if not p2.locator("#bl-form").is_hidden(): F("Hủy không đóng form")
+        D = [("T-1", "2026-12-30", "over"), ("T0", "2026-12-31", "d7"), ("T7", "2027-01-07", "d7"), ("T8", "2027-01-08", "d15"), ("T15", "2027-01-15", "d15"), ("T16", "2027-01-16", "d30"), ("T30", "2027-01-30", "d30"), ("T31", "2027-01-31", "ok")]
+        for i, (no, exp, lv) in enumerate(D): add("BL-" + no, "Vietcombank", "Nhà thầu " + no, ["Tạm ứng", "Thực hiện HĐ", "Dự thầu", "Bảo hành"][i % 4], "2.200.000.000", exp, "1" if i == 0 else "0", "2026-12-20" if i == 0 else "", "Hà" if i == 0 else "")
+        got = p2.evaluate("() => [...document.querySelectorAll('#bl-body tr[data-id]')].map(r => [r.cells[0].textContent, r.dataset.lvl, r.cells[6].textContent, getComputedStyle(r.cells[0]).backgroundColor, r.cells[4].textContent, r.cells[7].textContent])")
+        if len(got) != 8: return F(f"thêm 8 dòng nhưng có {len(got)}")
+        for (no, exp, lv), g in zip(D, got):
+            if g[0] != "BL-" + no or g[1] != lv: F(f"mốc màu {no}: {g[1]} (cần {lv})")
+        bg = {g[1]: g[3] for g in got}
+        if len(set(bg.values())) != 5 or bg["ok"] not in ("rgba(0, 0, 0, 0)", "rgb(255, 255, 255)"): F(f"màu nền các mốc không phân biệt: {bg}")
+        if got[0][2] != "Quá hạn 1 ngày" or got[1][2] != "Hết hạn hôm nay" or got[2][2] != "Còn 7 ngày": F(f"chữ 'còn lại' sai {[g[2] for g in got[:3]]}")
+        if got[0][4] != "2.200.000.000": F(f"định dạng giá trị {got[0][4]}")
+        if not got[0][5].startswith("Đã xác thực 20/12/2026") or "Hà" not in got[0][5]: F(f"trạng thái xác thực {got[0][5]}")
+        # sửa
+        p2.locator("#bl-body tr[data-lvl=ok] button", has_text="Sửa").click(); p2.fill("#bl-form [name=contractor]", "Nhà thầu SỬA"); p2.fill("#bl-form [name=expiry]", "2027-01-20"); p2.click("#bl-save"); p2.wait_for_timeout(120)
+        row = p2.locator("#bl-body tr", has_text="BL-T31")
+        if row.count() != 1 or "Nhà thầu SỬA" not in row.inner_text() or row.get_attribute("data-lvl") != "d30": F("sửa dòng không đúng (tên/mốc màu)")
+        if p2.locator("#bl-body tr[data-id]").count() != 8: F("sửa làm đổi số dòng")
+        # xóa (2 bước)
+        row.locator("button", has_text="Xóa").click()
+        if p2.locator("#bl-body tr[data-id]").count() != 8: F("bấm Xóa lần 1 đã xóa luôn")
+        p2.locator("#bl-body tr", has_text="BL-T31").locator("button", has_text="Không").click()
+        p2.locator("#bl-body tr", has_text="BL-T31").locator("button", has_text="Xóa").click(); p2.locator("#bl-body tr", has_text="BL-T31").locator("button", has_text="Xóa thật?").click(); p2.wait_for_timeout(120)
+        if p2.locator("#bl-body tr[data-id]").count() != 7 or p2.locator("#bl-body tr", has_text="BL-T31").count(): F("xóa dòng không hoạt động")
+        # chống chèn HTML + CSV an toàn công thức
+        add("<img src=x onerror=window.__bl=1>", "TPBank", "=HYPERLINK(\"http://x\")", "Dự thầu", "1500000", "2027-06-30")
+        if p2.evaluate("() => !!window.__bl || document.querySelectorAll('#bl-body img').length") : F("dữ liệu nhập bị diễn giải thành HTML")
+        if "<img src=x" not in p2.locator("#bl-body").inner_text(): F("không hiện nguyên văn dữ liệu nhập")
+        # tải lại: dữ liệu còn
+        p2.reload(wait_until="networkidle"); p2.wait_for_timeout(800)
+        if p2.locator("#bl-body tr[data-id]").count() != 8: F(f"tải lại còn {p2.locator('#bl-body tr[data-id]').count()} dòng (cần 8)")
+        # CSV
+        with p2.expect_download(timeout=15000) as dl: p2.click("#bl-csv")
+        d = dl.value; raw = open(d.path(), "rb").read()
+        if not d.suggested_filename.startswith("so-bao-lanh-20261231") or not d.suggested_filename.endswith(".csv"): F(f"tên file CSV {d.suggested_filename}")
+        if not raw.startswith(b"\xef\xbb\xbf"): F("CSV thiếu BOM UTF-8")
+        import csv as _csv, io as _io
+        rows = list(_csv.reader(_io.StringIO(raw.decode("utf-8-sig"))))
+        if rows[0][:6] != ["Số thư", "Ngân hàng", "Nhà thầu", "Loại", "Giá trị (VND)", "Ngày hết hạn"] or len(rows) != 9: F(f"CSV header/số dòng sai ({len(rows)})")
+        else:
+            if rows[1][0] != "BL-T-1" or rows[1][5] != "2026-12-30" or rows[1][4] != "2200000000" or rows[1][6] != "-1" or rows[1][7] != "Đã xác thực" or rows[1][8] != "2026-12-20" or rows[1][9] != "Hà": F(f"CSV dòng 1 sai {rows[1]}")
+            if not any(r[2].startswith("'=HYPERLINK") for r in rows[1:]): F("CSV không vô hiệu hóa công thức (=...)")
+            if not any(r[0].startswith("<img") for r in rows[1:]): F("CSV mất dữ liệu có ký tự đặc biệt")
+        if errs: F("console: " + " | ".join(errs[:3]))
+        p2.evaluate("() => localStorage.removeItem('hopdong-baolanh-v1')")
+    except Exception as e: F(f"lỗi kiểm thử {type(e).__name__}: {str(e)[:200]}")
+    finally: ctx.close()
 def link_ok(u):
     try: return urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=20).status < 400
     except Exception:
@@ -284,6 +383,8 @@ with sync_playwright() as p:
                 elif pq2["want"] and (pq2["n"] == 0 or pq2["noimp"]): fails.append((w, f, f"policy ppp rows {pq2['n']}, without impact line {pq2['noimp']}"))
             if f == "nha-thau.html" and w in (390, 1366):
                 ncc_checks(pg, w, f, fails); pg.wait_for_timeout(300)
+            if f == "hop-dong.html":
+                bao_lanh_checks(pg, w, f, fails); pg.wait_for_timeout(300)
             if f == "index.html":
                 home_news_checks(pg, w, f, fails); home_ncc_checks(pg, w, f, fails); pg.wait_for_timeout(300)
             if r["c"]["footer"] > 1: fails.append((w, f, f"footer x{r['c']['footer']}"))

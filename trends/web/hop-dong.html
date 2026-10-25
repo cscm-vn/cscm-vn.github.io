@@ -170,7 +170,7 @@
     save(); closeForm(); draw();
   };
   $("bl-add").onclick = () => openForm(null); $("bl-cancel").onclick = closeForm;
-  const cell = s => { s = String(s ?? ""); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  const cell = s => { if (typeof s === "number") return String(s); s = String(s ?? ""); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
   $("bl-csv").onclick = () => {
     const H = ["Số thư", "Ngân hàng", "Nhà thầu", "Loại", "Giá trị (VND)", "Ngày hết hạn", "Còn lại (ngày)", "Đã xác thực", "Ngày xác thực", "Người ghi nhận"];
     const L = rows().map(({x, left}) => [x.no, x.bank, x.contractor, x.type, x.amount, x.expiry, left, x.verified ? "Đã xác thực" : "Chưa xác thực", x.vdate || "", x.vby || ""].map(cell).join(","));
