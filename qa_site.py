@@ -412,6 +412,11 @@ def xh_group_check(pg, w, label, fails):
     if r["noCell"]: F(f"{r['noCell']} dòng thiếu ô Xu hướng")
     if r["pend"]: F(f"{r['pend']} ô còn '…' (không tải được trk.json)")
     if r["ov"] > 0: F(f"trang tràn ngang {r['ov']}px")
+    vis = pg.evaluate("""() => { const r = [...document.querySelectorAll('#pt tbody tr:not(.mtg-h)')].slice(0, 5), vw = innerWidth <= 600;
+      return r.map(x => { const a = vw ? x.querySelector('.xhm') : x.querySelector('td.xh'), cs = a && getComputedStyle(a); return [!!a && cs.display !== 'none' && a.getBoundingClientRect().width > 0, a ? a.textContent.trim() : null, x.querySelector('td.xh') ? x.querySelector('td.xh').textContent.trim() : null]; }); }""")
+    for v in vis:
+        if not v[0]: F("xu hướng không hiển thị trên màn hình này")
+        if v[1] != v[2]: F(f"bản hiển thị trên điện thoại '{v[1]}' != cột '{v[2]}'")
     for x in r["rows"]:
         hp = x["hist"]; n = len(hp) if hp is not None else None
         if hp is None: F(f"{x['id']}: không đọc được history json"); continue
