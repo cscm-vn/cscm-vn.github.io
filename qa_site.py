@@ -200,9 +200,11 @@ BL_NOLINK = ["ACB", "SHB", "Agribank", "VPBank"]
 BL_EX = ["https://baoquangninh.vn/canh-bao-thu-doan-lam-gia-chung-thu-bao-lanh-ngan-hang-post2317160.html", "https://baodauthau.vn/lam-gia-tai-lieu-ngan-hang-khi-du-thau-hau-qua-lon-can-xu-nghiem-post115293.html"]
 BL_BOT_BLOCKED = {"https://www.ncb-bank.vn/mdonline/"}  # NCB trả 403 cho trình duyệt tự động/curl (đã mở được bằng trình duyệt thật khi xác minh) → chỉ kiểm đúng địa chỉ, không HEAD
 def bl_link_ok(u):
-    import ssl
-    try: return urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0", "Accept-Language": "vi"}), timeout=25).status < 400
-    except Exception: return False
+    for _ in range(3):  # máy chủ một số ngân hàng chập chờn → thử lại tối đa 3 lần
+        try:
+            if urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0", "Accept-Language": "vi"}), timeout=25).status < 400: return True
+        except Exception: pass
+    return False
 def bao_lanh_checks(pg, w, f, fails):
     def F(m): fails.append((w, f, "bao-lanh: " + m))
     st = pg.evaluate("""() => { const s = document.querySelectorAll('#bao-lanh'), el = s[0]; if (!el) return {n: 0};
