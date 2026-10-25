@@ -450,7 +450,7 @@ def xh_checks(pg, w, f, fails, groups=True):
         p2.goto(base + "?c=xd.be-tong&tab=gia", wait_until="networkidle", timeout=90000)
         p2.wait_for_function("() => document.querySelector('#pt td.xh a')", timeout=20000)
         href = p2.evaluate("() => document.querySelector('#pt td.xh a').getAttribute('href')")
-        p2.locator("#pt td.xh a").first.click(); p2.wait_for_url(re.compile(r"mat-hang\.html\?id="), timeout=20000); p2.wait_for_timeout(1200)
+        p2.locator("#pt .xhm a" if w <= 600 else "#pt td.xh a").first.click(); p2.wait_for_url(re.compile(r"mat-hang\.html\?id="), timeout=20000); p2.wait_for_timeout(1200)
         if not p2.url.endswith(href): fails.append((w, f, f"bấm sparkline mở {p2.url} (cần …{href})"))
     except Exception as e: fails.append((w, f, f"xu hướng: lỗi khi kiểm tra: {str(e)[:150]}"))
     finally:
