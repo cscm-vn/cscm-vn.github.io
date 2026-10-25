@@ -92,11 +92,14 @@ def write_mt():
             d = material_map.map_text(f"{it.get('group','')} | {it.get('key','')} | {it.get('name','')}"); it["mt"], it["mt_conf"] = d.get("code"), d.get("conf")
         json.dump(fc, open(fp, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 def build():
-    prices = J(os.path.join(SITE, "prices.json"), {"items": []}); items = []
+    prices = J(os.path.join(SITE, "prices.json"), {"items": []}); items = []; trk = {}
     for it in prices["items"]:
         h = J(os.path.join(SITE, "history", it["id"] + ".json"), {"points": []})
         pts = sorted([p for p in h.get("points", []) if p.get("price") is not None], key=lambda p: p["date"])
         last = pts[-1]["price"] if pts else it.get("price"); m, y, w = pt_at(pts, 30), pt_at(pts, 365), pt_at(pts, 7)
+        if len(pts) >= 2:  # cột "Xu hướng" (danh-muc.html): chỉ mã có ≥2 điểm; 60 điểm cuối, ngày lưu dạng cách ngày đầu (nhẹ); % từ ngày đầu thu lấy từ s0/first_date trong hub.json
+            tail = pts[-60:]; d0 = dt.date.fromisoformat(tail[0]["date"])
+            trk[it["id"]] = dict(s=tail[0]["date"], o=[(dt.date.fromisoformat(p["date"]) - d0).days for p in tail], p=[p["price"] for p in tail])
         monthly = {}
         for p in pts: monthly[p["date"][:7]] = p["price"]
         ms = sorted(monthly.items())
@@ -145,6 +148,7 @@ def build():
     hub = dict(updated=prices.get("updated_at"), built=dt.datetime.now(TZ).isoformat(timespec="minutes"), usd_vnd=prices.get("usd_vnd"),
                items=items, compare=comps, steel_brand_pairs=brand_pairs, digest=digest, mom_movers=[x["id"] for x in movers])
     json.dump(hub, open(os.path.join(OUT, "hub.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+    json.dump(trk, open(os.path.join(OUT, "trk.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     return len(items), len(comps)
 def stamp_sw():
     """VERSION = hash nội dung css/js/ảnh/manifest + sw.js (không gồm html/json: những thứ đó luôn lấy từ mạng trước). Đổi → SW mới dọn cache cũ."""
