@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-26T08:09+07:00",
+ "built": "2026-10-26T14:44+07:00",
  "today": "2026-10-26",
  "news_since": "2026-10-25",
  "thresholds": {
@@ -22,31 +22,16 @@
   }
  },
  "top": [
-  "xd",
+  "mep",
   "tt",
-  "mep"
+  "xd"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "yf_hrc",
-     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
-     "region": "",
-     "d1": 4.51,
-     "date": "2026-10-23",
-     "prev_date": "2026-10-22",
-     "price": 1344.0,
-     "unit": "USD/short ton",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=yf_hrc"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Giá thép hôm nay 26/10: Thị trường thép cuộn cán nóng toàn cầu phân hóa",
@@ -54,18 +39,47 @@
      "date": "2026-10-26",
      "score": 10.0,
      "source": "VietnamBiz"
+    },
+    {
+     "title": "Trung Quốc tăng nhập khẩu quặng sắt",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQdVVXVTBWZ01JMWJscl9FcnFIUDNMZDMxd3VKRVdBT0NDemlHQTd0MjFyOHo1cnNMTHczZzhVZ2FaMmNLdFZQSHpPcTRKSmRKMjVVeE1XMWtTWV9wMXJkcFI0LTNCSG1LR3FFd3hlYkpveG03ZVhDelNFWHRIQVluRTdwdU9zUQ?oc=5",
+     "date": "2026-10-26",
+     "score": 9.0,
+     "source": "VietnamBiz"
+    },
+    {
+     "title": "Giá thép hôm nay 26/10: Thị trường thép cuộn cán nóng toàn cầu trái chiều",
+     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNbHZCT0NxM2NKb09xSDl4ZG4zb29rVnlMZURRVUwybGtKOXI1ZWlZMEpxWDVFMHJVdzZfNXZrUXFrMG1HcmJMXzV5aEpaWVBxUk5CVEZ3RUlzOEtxdDM1ZVVmUjFTbnl4WlROZ3B6eHhJUzdnQ0JrTFFZOE9uNzNiMGNuaDUxLUhvZ2lVTTVoSTRrUEdwQnJmWGZsdDkybXBKb0QwWUZpVHB6ak1CQmREby05ZW9fQklrZjhB?oc=5",
+     "date": "2026-10-26",
+     "score": 8.0,
+     "source": "Thuonghieucongluan.com.vn"
     }
    ],
-   "n_news": 1,
-   "n_moves": 1,
-   "rank": 2.55,
+   "n_news": 3,
+   "n_moves": 0,
+   "rank": 0.9,
    "link": "danh-muc.html?c=xd"
   },
   {
    "id": "mep",
    "name": "MEP",
    "icon": "⚡",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_aluminium",
+     "name": "Nhôm (COMEX Aluminum)",
+     "region": "",
+     "d1": -3.98,
+     "date": "2026-10-25",
+     "prev_date": "2026-10-23",
+     "price": 3138.5,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_aluminium"
+    }
+   ],
    "news": [
     {
      "title": "Đề xuất bỏ thủ tục công an kiểm tra nghiệm thu PCCC trước khi đưa công trình vào sử dụng – chủ đầu tư tự nghiệm thu, hậu kiểm theo rủi ro (dự kiến hiệu lực 01/3/2027)",
@@ -75,16 +89,23 @@
      "source": "VnExpress 25/10/2026"
     },
     {
-     "title": "Copper prices rebound",
-     "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1JU3ViS2ZCd0h1dW5EQWVxTzM0OGdIbGdORVN1cUtLcTZBT0ZOYzcxdk9MNXBGVHdCQ1JUamZaU0dqODlDaHg0VkJhYnU5YmFIcXkyUnB30gFWQVVfeXFMTUlTdWJLZkJ3SHV1bkRBZXFPMzQ4Z0hsZ05FU3VxS0txNkFPRk5jNzF2T0w1cEZUd0JDUlRqZlpTR2o4OUNoeDRWQmFidTliYUhxeTJScHc?oc=5",
-     "date": "2026-10-25",
-     "score": 6.7,
-     "source": "Business Recorder"
+     "title": "Coteccons approves plan to increase after-tax profit by 34% in fiscal year 2027.",
+     "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOVTNFV1N5c1NRTElvWWtlbGl3WUpSNGtPMXhlc2Z6V2o0R094RWRJNDRqRF9kbjZ2TFpUa2N5ejJac0JLZzJlQkJSTlRSQzBFRk9FbWdmM2ViMGl4OGlmNUJIdHRYN2FtVm1vUEhwU2JzQ0RqcGJvV2szbXZJdmZfVTRPNjdrOFVVbDU1aVl0cllmRUNfdmxvamZR?oc=5",
+     "date": "2026-10-26",
+     "score": 9.0,
+     "source": "Vietnam.vn"
+    },
+    {
+     "title": "Copper priceeases as LME stocks rise",
+     "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA2VS1GdERuVl8wdnZOeks3NHY1UnVLaUNOZThtZnpjRUlKcWxIUGtJblI4b0dBQ3RYajRsa29CNl9sdzM0RUJSdEJ4ekg1MWFXVWl5SkxWdVQ0ZTNIOHlIS3BQNGZybEszQUxF?oc=5",
+     "date": "2026-10-26",
+     "score": 9.0,
+     "source": "Mining.com.au"
     }
    ],
-   "n_news": 2,
-   "n_moves": 0,
-   "rank": 0.6,
+   "n_news": 5,
+   "n_moves": 1,
+   "rank": 3.49,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -156,23 +177,23 @@
      "source": "Nhadautu.vn"
     },
     {
+     "title": "Canada tiếp tục áp thuế chống bán phá giá với ống thép Việt Nam",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNcGhaYjZvc1JPcklURWRKaEJUSWFJVDRERDVjM0FyQnZwV3ByZjhyTGZ1VUNkYVNUSUxyRXp3aFRjQlk2WGFFRl9FdG5kSTRQTHBocHNZLWxRaklISC1lajlIeDM2M3EzTVlzRThoTUFxOUJWZ3VoWWdDYWZRc19KRmZPSlpvX1Bjb05kMzRsWkRpMjNxU1J3ejlMaW0?oc=5",
+     "date": "2026-10-26",
+     "score": 9.0,
+     "source": "Báo Dân Việt"
+    },
+    {
      "title": "Canada tiếp tục duy trì biện pháp chống bán phá giá với ống thép dẫn dầu Việt Nam",
      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPRTA5QlN0RWF5TkZSc29obXN0Uk1lRk0tQ0RjdW5LWFpFNFJOY2lqcVVvMUxtdmgxY2RpcS1pRGd2LUUtbWxhUE9JY2p4ZDVhWjMyendELS1LSmVEb0VrYXg3bWJLVEhjU1N6dmtocDJRSFFpS2NqMHpvLVRpbWhUOUdBVFJ5cGVfbWVTVXExTlBuT05nODg4T1ZkbXI2aEpxVEpuQ00tUDAxT1Eyem1VeHVyQ0FKbHBZQ0l0UWhzVUtjWU1UMFNj?oc=5",
      "date": "2026-10-25",
      "score": 8.7,
      "source": "Thuonghieucongluan.com.vn"
-    },
-    {
-     "title": "UBND tỉnh chỉ đạo triển khai các giải pháp tháo gỡ khó khăn, vướng mắc về nguồn cung vật liệu xây ...",
-     "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNRWxGZXdIY2lYb2RQTlN5bFBHeURmRHFqSm5ETkVNMDZwc3djR1hybHN0UGNsUnM3d2pQNERmaHlCRTExSWlQUGlCSVlLbV9lMTE1OVpqcFJsdGMzYl9kaWdqWlpaczh4Wk1STjJrWE1oR2RpWHQ3aF9PS0VsWHpveVVnbWN4cUdTaXJJRWhLU2lhaUFjaWQwTllJdTRpQ0hYQldsNllpZFhVZTlWSlNjYV93clh3VkdWSnBuUEkzdUVIS0JoMHpUMXY3Mk40ZkQ4NEtPbmJqU3BlRGRLUkpQODN1Mng5dzNYZml0TWtfU0tBQV9uQ2lvOWN6OXZmUnhkYmJIYlV6aw?oc=5",
-     "date": "2026-10-26",
-     "score": 7.0,
-     "source": "langson.gov.vn"
     }
    ],
-   "n_news": 5,
+   "n_news": 8,
    "n_moves": 0,
-   "rank": 1.5,
+   "rank": 2.4,
    "link": "danh-muc.html?c=tt"
   }
  ]
