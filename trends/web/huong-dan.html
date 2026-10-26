@@ -80,5 +80,11 @@
  <li>Màu sắc: <span class="up">▲ đỏ = giá tăng</span> (bất lợi bên mua), <span class="down">▼ xanh = giá giảm</span>.</li>
  <li>Phát hiện số liệu bất thường? Mở link nguồn ở từng dòng để đối chiếu và báo lại cho quản trị hệ thống.</li>
 </ul></div>
+<h2 id="dung-voi-ai">7. Dùng dữ liệu hub với AI</h2>
+<div class="card"><ul>
+ <li>Gửi cho Claude (hoặc AI khác) <b>một link</b>: <a href="llms.txt">llms.txt</a> – mô tả hub, từng file dữ liệu, ý nghĩa các trường, quy ước đọc số (đơn vị, VAT, sụt 12±2, trung vị Hà Nội–TP.HCM, “mới thu”) và giới hạn dữ liệu. Các file kèm theo: <a href="prices.csv">prices.csv</a> (giá mới nhất, mỗi mã một dòng) và <a href="hub.sqlite">hub.sqlite</a> (cơ sở dữ liệu SQLite: giá, lịch sử, nhà cung cấp, tin). Tự cập nhật theo 5 lần dựng/ngày.</li>
+ <li>Đoạn mẫu để dán: <code>Đọc https://cscm-vn.github.io/llms.txt rồi trả lời: giá bê tông M400 ở TP.HCM hôm nay là bao nhiêu và theo điều kiện nào (VAT, độ sụt)? Nêu rõ ngày giá và nguồn.</code></li>
+ <li>Lưu ý: AI chỉ đọc được dữ liệu công khai trên hub; giá là tham khảo, không phải chào giá – đối chiếu ngày giá và link nguồn trước khi dùng cho quyết định.</li>
+</ul></div>
 <div class="foot">Masterise Construction SCM Hub · Dữ liệu tổng hợp tự động từ nguồn công khai.</div>
 </main></body></html>

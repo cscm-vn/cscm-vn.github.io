@@ -48,7 +48,7 @@ self.addEventListener("fetch", e => {
   const req = e.request, url = new URL(req.url);
   if (req.method !== "GET" || url.origin !== self.location.origin) return;       // khác nguồn / không phải GET: để trình duyệt tự xử lý
   if (url.pathname.startsWith("/api/") || req.headers.has("range")) return;        // không cache /api
-  if (url.pathname === "/sw.js" || /\.(csv|xlsx|zip|pdf)$/i.test(url.pathname)) return;  // tải về file: không qua cache
+  if (url.pathname === "/sw.js" || /\.(csv|xlsx|zip|pdf|sqlite|txt|xml)$/i.test(url.pathname)) return;  // tải về file: không qua cache
   if (req.mode === "navigate") {
     e.respondWith(networkFirst(req).catch(async () => (await (await caches.open(CACHE)).match(key(new URL("index.html", self.location).href))) || new Response("Đang ngoại tuyến và trang này chưa được lưu. Kết nối mạng rồi mở lại.", {status: 503, headers: {"Content-Type": "text/plain; charset=utf-8"}})));
     return;

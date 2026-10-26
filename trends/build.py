@@ -203,4 +203,7 @@ def main():
             if f.endswith(".html") and 'rel="manifest"' not in n and "</head>" in n:  # brand icons + PWA (manifest, apple-touch-icon SCM, service worker) on every page
                 n = n.replace("</head>", PWA_HEAD + "</head>", 1)
             if n != t: open(f, "w", encoding="utf-8").write(n)
+    try:  # dữ liệu cho AI ở gốc site: prices.csv, hub.sqlite, llms.txt, robots.txt, sitemap.xml (sinh lại mỗi lần CI)
+        sys.path.insert(0, H); import aidata; aidata.main()
+    except Exception as e: print("aidata failed:", type(e).__name__, e)
 if __name__ == "__main__": main()

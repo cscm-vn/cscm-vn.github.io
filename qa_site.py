@@ -481,6 +481,115 @@ def xh_checks(pg, w, f, fails, groups=True):
         errs = [e for e in errs if "zgo.at" not in e and "goatcounter" not in e.lower()]
         if errs: fails.append((w, f, "xu hướng: console " + " | ".join(errs[:3])))
         p2.close()
+def ai_page_checks(pg, w, f, fails):
+    """huong-dan.html: mục 'Dùng dữ liệu hub với AI' có link llms.txt/prices.csv/hub.sqlite + đoạn mẫu; không tràn ngang."""
+    if f != "huong-dan.html": return
+    r = pg.evaluate("""() => { const h = document.querySelector('#dung-voi-ai'); if (!h) return null; const c = h.nextElementSibling;
+      return {links: [...c.querySelectorAll('a')].map(a => a.getAttribute('href')), code: (c.querySelector('code')||{}).textContent || '', vis: !!h.offsetParent, ov: document.documentElement.scrollWidth - document.documentElement.clientWidth}; }""")
+    if not r: return fails.append((w, f, "ai: thiếu mục #dung-voi-ai"))
+    for need in ("llms.txt", "prices.csv", "hub.sqlite"):
+        if need not in r["links"]: fails.append((w, f, f"ai: mục AI thiếu link {need}"))
+    if "https://cscm-vn.github.io/llms.txt" not in r["code"]: fails.append((w, f, "ai: thiếu đoạn mẫu để dán"))
+    if not r["vis"] or r["ov"] > 0: fails.append((w, f, f"ai: mục AI không hiện/tràn ngang {r['ov']}px"))
+def ai_checks(br, fails):
+    """Dữ liệu cho AI: file tồn tại + 200 + kích thước; prices.csv & hub.sqlite khớp hub.json (mọi mã); mọi link trong llms.txt/sitemap sống; SQL mẫu chạy được; SW không cache chúng."""
+    import sqlite3, csv as _csv, io as _io, tempfile, random
+    F = lambda m: fails.append(("-", "AI-data", m))
+    root = B.rstrip("/")
+    got = {}
+    for name, maxb in (("llms.txt", 200_000), ("prices.csv", 2_000_000), ("hub.sqlite", 25_000_000), ("robots.txt", 5_000), ("sitemap.xml", 200_000)):
+        try:
+            st, ct, b = _get(B + name)
+            if st != 200 or not b: F(f"{name}: HTTP {st}, {len(b or b'')} byte"); continue
+            if len(b) > maxb: F(f"{name}: {len(b)} byte > {maxb}")
+            got[name] = b
+        except Exception as e: F(f"{name}: {e}")
+    if len(got) < 5: return
+    llms = got["llms.txt"].decode("utf-8"); first = llms.split("\n", 1)[0]
+    if not re.match(r"generated_at: 20\d\d-\d\d-\d\dT\d\d:\d\d\+07:00", first): F(f"llms.txt dòng đầu không có generated_at: {first[:60]}")
+    for k in ("Chưa có BCTC công khai", "Tên pháp nhân cần xác nhận", "12±2", "trung vị", "mới thu", "VAT"):
+        if k not in llms: F(f"llms.txt thiếu nội dung quy ước: {k}")
+    if "??" in llms or "{EX}" in llms: F("llms.txt còn chỗ chưa điền (?? hoặc {EX})")
+    if "\ufffd" in llms or re.search(r"[ÃÂ][\x80-\xbf]|â€", llms): F("llms.txt lỗi mã hoá UTF-8")
+    hub = json.loads(urllib.request.urlopen(B + "data/hub.json", timeout=60).read()); H = {x["id"]: x for x in hub["items"]}
+    csvb = got["prices.csv"]
+    if csvb[:3] == b"\xef\xbb\xbf": F("prices.csv có BOM (cột đầu bị sai tên khi đọc bằng pandas)")
+    rows = list(_csv.DictReader(_io.StringIO(csvb.decode("utf-8"))))
+    if list(rows[0].keys())[0] != "generated_at": F("prices.csv: cột đầu phải là generated_at")
+    if len(rows) != len(H) or {r["item_id"] for r in rows} != set(H): F(f"prices.csv {len(rows)} dòng khác hub.json {len(H)} mã")
+    def eqn(a, b, tol=1e-9):
+        if a in ("", None): return b is None
+        if b is None: return False
+        return abs(float(a) - float(b)) <= tol * max(1, abs(float(b)))
+    bad = 0
+    for r in rows:
+        x = H.get(r["item_id"]);
+        if not x: continue
+        for col, k in (("price", "price"), ("price_high", "price_high"), ("vnd", "vnd"), ("d1_pct", "d1"), ("w1_pct", "w1"), ("mom_pct", "mom"), ("yoy_pct", "yoy"), ("s0_pct", "s0"), ("n_hist", "n_hist")):
+            if not eqn(r[col], x.get(k)): bad += 1; bad < 4 and F(f"prices.csv {r['item_id']}.{col}={r[col]} ≠ hub.json {x.get(k)}")
+        for col, k in (("as_of", "as_of"), ("unit", "unit"), ("first_date", "first_date")):
+            if (r[col] or None) != x.get(k): bad += 1; bad < 4 and F(f"prices.csv {r['item_id']}.{col}={r[col]} ≠ hub.json {x.get(k)}")
+        if r["is_new"] != ("1" if (x.get("n_hist") or 0) < 2 else "0"): F(f"prices.csv {r['item_id']}.is_new sai")
+        if r["mat_hang_url"] != f"https://cscm-vn.github.io/mat-hang.html?id={r['item_id']}": F(f"prices.csv {r['item_id']}.mat_hang_url sai")
+    if bad: F(f"prices.csv lệch hub.json {bad} ô")
+    if not any("Bê tông" in r["name"] for r in rows): F("prices.csv: tiếng Việt lỗi (không thấy 'Bê tông')")
+    tf = tempfile.NamedTemporaryFile(suffix=".sqlite", delete=False); tf.write(got["hub.sqlite"]); tf.close()
+    try:
+        db = sqlite3.connect(tf.name); meta = dict(db.execute("select key, value from meta"))
+        for k in ("generated_at", "build_commit", "hub_built", "schema_version"):
+            if not meta.get(k): F(f"hub.sqlite meta thiếu {k}")
+        if meta.get("generated_at") != first.split()[1]: F(f"generated_at lệch: sqlite {meta.get('generated_at')} vs llms.txt {first.split()[1]}")
+        if rows[0]["generated_at"] != meta.get("generated_at"): F("generated_at prices.csv ≠ hub.sqlite")
+        for t in ("taxonomy", "items", "prices_latest", "price_history", "compare_hn_hcm", "compare_parts", "suppliers", "supplier_fin", "news"):
+            n = db.execute(f"select count(*) from {t}").fetchone()[0]
+            if n == 0: F(f"hub.sqlite bảng {t} rỗng")
+            if str(n) != meta.get(f"rows.{t}"): F(f"hub.sqlite meta rows.{t}={meta.get(f'rows.{t}')} ≠ {n}")
+            cols = [c[1] for c in db.execute(f"pragma table_info({t})")]
+            for c in cols:
+                if f"- {c} (" not in llms: F(f"llms.txt không mô tả cột {t}.{c}")
+        if db.execute("select count(*) from items").fetchone()[0] != len(H): F("hub.sqlite items ≠ hub.json")
+        for iid in random.sample(sorted(H), min(30, len(H))):
+            x = H[iid]; q = db.execute("select price, price_high, as_of, d1_pct, s0_pct, n_hist, first_date from prices_latest where item_id=?", (iid,)).fetchone()
+            if not q or not (eqn(q[0], x["price"]) and eqn(q[1], x.get("price_high")) and q[2] == x["as_of"] and eqn(q[3], x.get("d1")) and eqn(q[4], x.get("s0")) and q[5] == x["n_hist"] and q[6] == x.get("first_date")): F(f"hub.sqlite prices_latest {iid} lệch hub.json")
+            n = db.execute("select count(*) from price_history where item_id=?", (iid,)).fetchone()[0]
+            h = json.loads(urllib.request.urlopen(B + f"history/{iid}.json", timeout=30).read())["points"]
+            if n != len([p for p in h if p.get("price") is not None]): F(f"hub.sqlite price_history {iid}: {n} ≠ history json {len(h)}")
+        for c in hub["compare"]:
+            q = db.execute("select hn, hcm, diff_pct from compare_hn_hcm where label=?", (c["label"],)).fetchone()
+            if not q or q[0] != c["hn"] or q[1] != c["hcm"] or q[2] != c["diff_pct"]: F(f"hub.sqlite compare {c['label']} lệch hub.json")
+        sup = json.loads(urllib.request.urlopen(B + "data/suppliers.json", timeout=30).read())["units"]
+        if db.execute("select count(*) from suppliers").fetchone()[0] != len(sup): F("hub.sqlite suppliers ≠ suppliers.json")
+        if db.execute("select count(*) from suppliers where has_fin=1").fetchone()[0] != sum(1 for u in sup if u.get("fin")): F("hub.sqlite has_fin ≠ suppliers.json")
+        nconf = sum(1 for u in sup if any(f.get("t") == "Tên pháp nhân cần xác nhận" for f in (u.get("flags") or [])))
+        if db.execute("select count(*) from suppliers where name_needs_confirm=1").fetchone()[0] < nconf: F("hub.sqlite name_needs_confirm ít hơn suppliers.json")
+        if db.execute("select count(*) from suppliers where has_fin=0 and exists(select 1 from supplier_fin where supplier_id=suppliers.id)").fetchone()[0]: F("nhà cung cấp has_fin=0 mà có số BCTC")
+        mk = json.loads(urllib.request.urlopen(B + "data/market.json", timeout=30).read())["items"]
+        if db.execute("select count(*) from news where kind='market'").fetchone()[0] != len(mk): F("hub.sqlite news(market) ≠ market.json")
+        for i, q in enumerate(re.findall(r"```sql\n(.*?)\n```", llms, re.S), 1):
+            for st in [re.sub(r"--.*", "", x).strip() for x in q.split(";")]:
+                if st:
+                    try:
+                        if not db.execute(st).fetchall(): F(f"SQL mẫu #{i} không trả dòng nào")
+                    except Exception as e: F(f"SQL mẫu #{i} lỗi: {e}")
+        db.close()
+    finally: os.unlink(tf.name)
+    urls = set(re.findall(r"https://cscm-vn\.github\.io/[^\s)>\]\"'`,;]*[^\s)>\]\"'`,;.]", llms)) | set(re.findall(r"<loc>([^<]+)</loc>", got["sitemap.xml"].decode()))
+    urls = {u.replace("https://cscm-vn.github.io", root) for u in urls if "<" not in u and ">" not in u}
+    if len(urls) < 30: F(f"llms.txt+sitemap chỉ có {len(urls)} URL")
+    for u in sorted(urls):
+        if not link_ok(u): F(f"link chết trong llms.txt/sitemap: {u}")
+    rb = got["robots.txt"].decode()
+    if "Sitemap:" not in rb or re.search(r"^Disallow:\s*/\s*$", rb, re.M): F("robots.txt chặn đọc hoặc thiếu Sitemap")
+    # service worker không được cache các file này
+    try:
+        ctx = br.new_context(); pg = ctx.new_page(); ctx.route("**/gc.zgo.at/**", lambda r: r.fulfill(status=200, content_type="application/javascript", body="")); ctx.route("**/*.goatcounter.com/**", lambda r: r.fulfill(status=200, content_type="application/json", body="{}"))
+        pg.goto(B + "index.html", wait_until="networkidle", timeout=90000); pg.wait_for_timeout(2500)
+        r = pg.evaluate("""async () => { await navigator.serviceWorker.ready; for (const u of ['llms.txt', 'prices.csv', 'hub.sqlite', 'sitemap.xml']) await fetch(u + '?x=' + Date.now()).then(r => r.arrayBuffer());
+          const keys = []; for (const c of await caches.keys()) for (const q of await (await caches.open(c)).keys()) keys.push(new URL(q.url).pathname); return keys; }""")
+        for k in r:
+            if re.search(r"(llms\.txt|prices\.csv|hub\.sqlite|sitemap\.xml)$", k): F(f"service worker đã cache {k}")
+        ctx.close()
+    except Exception as e: F(f"kiểm SW cache lỗi: {e}")
 def link_ok(u):
     try: return urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=20).status < 400
     except Exception:
@@ -590,9 +699,11 @@ with sync_playwright() as p:
             pwa_head_checks(pg, w, f, fails)
             xh_checks(pg, w, f, fails, groups=(w in (390, 1366)))
             nc_checks(pg, w, f, fails)
+            ai_page_checks(pg, w, f, fails)
             pg.close()
         ctx.close()
     pwa_checks(br, fails)
+    ai_checks(br, fails)
     br.close()
 try:  # sanity: cùng thành phố & cùng cơ sở, mác cao hơn không được rẻ hơn mác thấp hơn
     import json as _j
