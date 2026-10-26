@@ -112,7 +112,7 @@ TR = [  # trade remedies
   note="Gia hạn sau rà soát cuối kỳ lần 1; áp dụng đến 02/10/2029.", use="Cửa, vách kính, mặt dựng (façade).", sources=src("TV_AD05")),
  dict(code="AD03", product="Thép hình chữ H", origin=["Trung Quốc (gồm Hồng Kông)"], measure="Chống bán phá giá", status="dang-ra-soat", decision="2084/QĐ-BCT (kết quả rà soát lần 3) + biện pháp nền", decision_date="2026-08-22",
   rates="Theo QĐ 1640/QĐ-BCT: Rizhao 31,24%, DN khác 33,51%; theo QĐ 2084/QĐ-BCT: Hebei Jinxi 6,78% (xem bảng 17 dòng).", hs=["7216.33.00","7216.33.11","7216.33.19","7216.33.90","7228.70.10","7228.70.90"],
-  note="Đang rà soát cuối kỳ lần 2 (ER02.AD03, QĐ 1454/QĐ-BCT ngày 19/6/2026) – có thể gia hạn hoặc chấm dứt.", use="Kết cấu thép nhà xưởng, podium, cầu.", sources=src("TV_AD03")),
+  note="Đang rà soát cuối kỳ lần 2 (ER02.AD03, QĐ 1454/QĐ-BCT ngày 19/6/2026) – có thể gia hạn hoặc chấm dứt. Ngày 05/10/2026 khởi xướng rà soát giữa kỳ lần 4 (QĐ 2506/QĐ-BCT, theo đề nghị Posco Yamato Vina; liên quan Jinxi), hạn đăng ký bên liên quan 28/12/2026.", use="Kết cấu thép nhà xưởng, podium, cầu.", sources=src("TV_AD03")+[dict(name="Giới Diện (界面新闻) 12/10/2026", url="https://www.jiemian.com/article/15180669.html")]),
  dict(code="AD12", product="Thép hình chữ H", origin=["Ma-lai-xi-a"], measure="Chống bán phá giá", status="da-ket-thuc", decision="915/QĐ-BCT", decision_date="2026-04-16", expiry="2026-04-16",
   rates="10,64% (trước khi kết thúc).", hs=["7216.33.11","7216.33.19","7216.33.90","7228.70.10","7228.70.90"],
   note="Kết quả rà soát cuối kỳ: không gia hạn, biện pháp kết thúc từ 16/4/2026 → thép H xuất xứ Malaysia không còn chịu thuế CBPG.", use="Kết cấu thép.", sources=src("TV_AD12")),
