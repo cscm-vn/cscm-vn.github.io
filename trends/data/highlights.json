@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "built": "2026-10-26T22:08+07:00",
- "today": "2026-10-26",
- "news_since": "2026-10-25",
+ "built": "2026-10-27T06:34+07:00",
+ "today": "2026-10-27",
+ "news_since": "2026-10-26",
  "thresholds": {
   "world": {
    "abs_pct": 2.0,
@@ -23,8 +23,8 @@
  },
  "top": [
   "mep",
-  "tt",
-  "xd"
+  "xd",
+  "tt"
  ],
  "groups": [
   {
@@ -36,10 +36,10 @@
      "id": "yf_hrc",
      "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
      "region": "",
-     "d1": 2.83,
+     "d1": 3.27,
      "date": "2026-10-26",
      "prev_date": "2026-10-23",
-     "price": 1382.0,
+     "price": 1388.0,
      "unit": "USD/short ton",
      "kind": "world",
      "threshold": 2.0,
@@ -49,30 +49,30 @@
    ],
    "news": [
     {
+     "title": "Vinasteel và VAS Việt Mỹ tăng giá thép xây dựng từ 26/10/2026: thép cuộn +100 đồng/kg, thanh D10 CB400-V/CB500-V +250 đồng/kg",
+     "url": "thi-truong.html#56c203a30a63",
+     "date": "2026-10-27",
+     "score": 13,
+     "source": "Vật liệu Xây dựng (BIDC) 27/10/2026"
+    },
+    {
      "title": "Giá thép hôm nay 26/10: Thị trường thép cuộn cán nóng toàn cầu phân hóa",
      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNRHpBS091TU1GSVFCTVVZMDRFbEstNHhHVVl6SkVZSVJfV2FYWW1OZWRqTlBiUDZCYVVjMWxWeEViMUtWcmNmNk9yN1JUVWxqNE5MSGxielMzZ3V1TzdVLWFlOHpQMENaOFFCUlRCWUdibDBaVm1HUm0xc0V1R1VoNFlYNExvcU5nZy1TMGdfZ2lRMGxyVDBZOVJCVUdoN1pkQ0NMMTZTeF9PUm8yM2ZYUmV3?oc=5",
      "date": "2026-10-26",
-     "score": 10.0,
+     "score": 9.7,
      "source": "VietnamBiz"
     },
     {
      "title": "Trung Quốc tăng nhập khẩu quặng sắt",
      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQdVVXVTBWZ01JMWJscl9FcnFIUDNMZDMxd3VKRVdBT0NDemlHQTd0MjFyOHo1cnNMTHczZzhVZ2FaMmNLdFZQSHpPcTRKSmRKMjVVeE1XMWtTWV9wMXJkcFI0LTNCSG1LR3FFd3hlYkpveG03ZVhDelNFWHRIQVluRTdwdU9zUQ?oc=5",
      "date": "2026-10-26",
-     "score": 9.0,
+     "score": 8.7,
      "source": "VietnamBiz"
-    },
-    {
-     "title": "Giá thép hôm nay 26/10: Thị trường thép cuộn cán nóng toàn cầu trái chiều",
-     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNbHZCT0NxM2NKb09xSDl4ZG4zb29rVnlMZURRVUwybGtKOXI1ZWlZMEpxWDVFMHJVdzZfNXZrUXFrMG1HcmJMXzV5aEpaWVBxUk5CVEZ3RUlzOEtxdDM1ZVVmUjFTbnl4WlROZ3B6eHhJUzdnQ0JrTFFZOE9uNzNiMGNuaDUxLUhvZ2lVTTVoSTRrUEdwQnJmWGZsdDkybXBKb0QwWUZpVHB6ak1CQmREby05ZW9fQklrZjhB?oc=5",
-     "date": "2026-10-26",
-     "score": 8.0,
-     "source": "Thuonghieucongluan.com.vn"
     }
    ],
-   "n_news": 3,
+   "n_news": 4,
    "n_moves": 1,
-   "rank": 2.31,
+   "rank": 2.83,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -93,34 +93,62 @@
      "threshold": 2.0,
      "tax": "mep.ong-nuoc",
      "url": "mat-hang.html?id=te_polypropylene"
+    },
+    {
+     "id": "te_polyethylene",
+     "name": "Polyethylene (PE, DCE LLDPE)",
+     "region": "",
+     "d1": 2.98,
+     "date": "2026-10-26",
+     "prev_date": "2026-10-23",
+     "price": 9083.0,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_polyethylene"
+    },
+    {
+     "id": "te_pvc",
+     "name": "PVC (Polyvinyl chloride, DCE)",
+     "region": "",
+     "d1": 2.73,
+     "date": "2026-10-26",
+     "prev_date": "2026-10-23",
+     "price": 5189.0,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_pvc"
     }
    ],
    "news": [
     {
-     "title": "Đề xuất bỏ thủ tục công an kiểm tra nghiệm thu PCCC trước khi đưa công trình vào sử dụng – chủ đầu tư tự nghiệm thu, hậu kiểm theo rủi ro (dự kiến hiệu lực 01/3/2027)",
-     "url": "thi-truong.html#9df6a9f1b3ab",
-     "date": "2026-10-25",
-     "score": 13,
-     "source": "VnExpress 25/10/2026"
+     "title": "Column: Quantum copper steals the show at LME Week",
+     "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9wdUpDbmw2dG80Vm5GZ3hBUnBWS3VKWi1BdXFoNE9tc1pWcmtka0x4eU1fQndadXVIbnFCcnNWWVhVbzB0UVRqalVqWllkR1JYdkd4cDRyMDU3ekpFTUZfdjNTVEpVWTBoY2FnNDhtRjNZQmJLU3dhVm15Y1E?oc=5",
+     "date": "2026-10-27",
+     "score": 9.0,
+     "source": "Mining.com.au"
     },
     {
      "title": "Copper price eases as LME stocks rise",
      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA2VS1GdERuVl8wdnZOeks3NHY1UnVLaUNOZThtZnpjRUlKcWxIUGtJblI4b0dBQ3RYajRsa29CNl9sdzM0RUJSdEJ4ekg1MWFXVWl5SkxWdVQ0ZTNIOHlIS3BQNGZybEszQUxF?oc=5",
      "date": "2026-10-26",
-     "score": 9.0,
+     "score": 8.7,
      "source": "Mining.com.au"
     },
     {
      "title": "London copper eases on rising LME stocks, demand worries",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPdVh3UDNhZjU4ZUQzcjVraXJlSW5ORElMNHZSZUtBb1RkUjlZal8yamFqeW80WEQ4QUpwUml1RWYyZkRqRXBEZTBaLXJOU09NcVJodWQ3cFVFZGZWMlJpZ3p3ekQ2Ym5wM3dHNDFDWTVKTG82QlhkUzhkUU5nYVg1SDFESUt3N1FNZzEtX25iQkNVVEZsdVluLVA3RdIBVkFVX3lxTE9LVGtPLW14SlFNQ2N0YUdrNkNRZ2I0cGgxeTRZdThYNTZUV0h0VkxkVHFxeU4wQjQ2bWxvbGZoY0RnQTVORGxoNTgzUmVkdjFLdEVlb053?oc=5",
      "date": "2026-10-26",
-     "score": 9.0,
+     "score": 8.7,
      "source": "Business Recorder"
     }
    ],
-   "n_news": 8,
-   "n_moves": 1,
-   "rank": 4.38,
+   "n_news": 6,
+   "n_moves": 3,
+   "rank": 6.63,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -133,7 +161,7 @@
      "title": "JYMEC Paint has 34 products that achieved the Vietnam National Brand status in 2026.",
      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNd0dwSlQtTF9rOGV4aVJ2ZG1CaHVoRnllNkc5Q0VtS1BURjBJYXlLbjE4YXFwZFJNOTNoRUdSeXJ4aENpQXVoZXRKbHk3X1NEcU1tN2lVWWlKZU9TNHBYOXFiRlRXVkdnS1dBOVVOWnJuRWpCX0xIdTE1Z29ja2lFTGZUdHYzRlE3M3ZtMnZkREFnb2EwWENaaA?oc=5",
      "date": "2026-10-26",
-     "score": 7.0,
+     "score": 6.7,
      "source": "Vietnam.vn"
     }
    ],
@@ -152,7 +180,7 @@
      "title": "Trung Quốc tung loạt thiết bị công nghệ lạ: Robot lau kính giá 70.000 USD, khung xương trợ lực chỉ 1,85 kg",
      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNU1VXeFk4eG1JaXF6SG9DQ2pqd19RbEc3TDZtMGxtQmpBdU5VT21KLU9JdElyTUpqOG5MQ2xiWDhULUw2OUp6WjNrM1BGeTBwZERSRmI3WEVlUWRiQUx4NkVrSDZFLXdLVGhaazN2Z2M3TUY3cjVmUEp6ZWVkTHQzajZkYV9zNHg2cjRXdUR4U1hURmFDOC1GMExtbnhCZHFjQ2hXLTVpX0ZHOFZkaS13YWxmUUxMUThWeTZCZFU2MFNobzFvNlpHWFZBXzFzSVdVb3BNT2hR?oc=5",
      "date": "2026-10-26",
-     "score": 7.0,
+     "score": 6.7,
      "source": "VIETTIMES"
     }
    ],
@@ -182,7 +210,7 @@
      "title": "Di dời cây xanh, xén vỉa hè xây hầm chui Dương Đình Nghệ",
      "url": "https://cafef.vn/di-doi-cay-xanh-xen-via-he-xay-ham-chui-duong-dinh-nghe-188261026191635684.chn",
      "date": "2026-10-26",
-     "score": 7.0,
+     "score": 6.7,
      "source": "CafeF Bất động sản"
     }
    ],
@@ -209,30 +237,30 @@
    "prices": [],
    "news": [
     {
-     "title": "Đà Nẵng tìm nguồn cung mới, gỡ nút thắt vật liệu xây dựng",
-     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPZEN3U3FFTFJsU2JNdEk5RGtseE1XeGNGOWwtLXFwU3kxamZHTXZ2b09SaXRQbE1zUXJVNFpTblVqNlZKTUU1djg4LUlYYXlWQnFKRktObzVvcEFlWFViZ292YWlMWTkwckY2S3B5a2V5b1VCcVBnVWNuWU1YSGJmZkxzRFltQkxJWURQYnRVV2pkMzg?oc=5",
-     "date": "2026-10-25",
-     "score": 9.7,
-     "source": "Nhadautu.vn"
-    },
-    {
      "title": "Canada tiếp tục áp thuế chống bán phá giá với ống thép Việt Nam",
      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNcGhaYjZvc1JPcklURWRKaEJUSWFJVDRERDVjM0FyQnZwV3ByZjhyTGZ1VUNkYVNUSUxyRXp3aFRjQlk2WGFFRl9FdG5kSTRQTHBocHNZLWxRaklISC1lajlIeDM2M3EzTVlzRThoTUFxOUJWZ3VoWWdDYWZRc19KRmZPSlpvX1Bjb05kMzRsWkRpMjNxU1J3ejlMaW0?oc=5",
      "date": "2026-10-26",
-     "score": 9.0,
+     "score": 8.7,
      "source": "Báo Dân Việt"
     },
     {
-     "title": "Canada tiếp tục duy trì biện pháp chống bán phá giá với ống thép dẫn dầu Việt Nam",
-     "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPRTA5QlN0RWF5TkZSc29obXN0Uk1lRk0tQ0RjdW5LWFpFNFJOY2lqcVVvMUxtdmgxY2RpcS1pRGd2LUUtbWxhUE9JY2p4ZDVhWjMyendELS1LSmVEb0VrYXg3bWJLVEhjU1N6dmtocDJRSFFpS2NqMHpvLVRpbWhUOUdBVFJ5cGVfbWVTVXExTlBuT05nODg4T1ZkbXI2aEpxVEpuQ00tUDAxT1Eyem1VeHVyQ0FKbHBZQ0l0UWhzVUtjWU1UMFNj?oc=5",
-     "date": "2026-10-25",
-     "score": 8.7,
-     "source": "Thuonghieucongluan.com.vn"
+     "title": "7 nhóm hàng xuất khẩu của Việt Nam có nguy cơ bị điều tra phòng vệ thương mại",
+     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPU2VrQUtkdXhvVHNReHltTm5GWmgweXFpVTdUaEVIeERLZFA0NzVra0VSUTZ5UXItN0xodThMMGN0T1p0SjRhelA0TXY0RUl0VnpTRGM1WG1rZlF1NmpfZnF6T3BnYnpmZlpEMnhCeE5WYmhBem03NUhHUDc1VUxVU01hTUxTTEJkaE8xaVB2N2gtdFlBSkZZazduQV9NQnBCVXA4Q0t4Q0pwN2JmbTVqdXl5MDhXNjJjWnkwU3pyOA?oc=5",
+     "date": "2026-10-26",
+     "score": 8,
+     "source": "Tạp chí điện tử Thương Trường"
+    },
+    {
+     "title": "Canada tiếp tục áp thuế chống bán phá giá với ống thép dẫn dầu Việt Nam - Tạp chí Kinh tế",
+     "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPbUNwZzhxSDNhUE9QRkF5YV9UME1tdHNhMnd3ZTVMc01iWVJ4R2ZuRTJMNV82aWl1TWxrYVBuNjBWWjEzai10Rk82eU12OE9vTHRiTzVaMVZySzV6T2xfeTQxU0RycERyamZEUWxGdzM5NzUxNjZZT0hVR0tHOFdRMDJqcWRmblF0UjBLekVZNFB6ejZtMGlWRVZ5dmk1MVdKVTdzUmgzbElPaFpXUllMQXV1eUlLY0tpa0hocm1tZmVDbmVFZlE?oc=5",
+     "date": "2026-10-26",
+     "score": 8,
+     "source": "Tạp chí Kinh tế - Tài chính Online"
     }
    ],
-   "n_news": 9,
+   "n_news": 7,
    "n_moves": 0,
-   "rank": 2.7,
+   "rank": 2.1,
    "link": "danh-muc.html?c=tt"
   }
  ]
