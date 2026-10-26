@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-26T14:44+07:00",
+ "built": "2026-10-26T20:19+07:00",
  "today": "2026-10-26",
  "news_since": "2026-10-25",
  "thresholds": {
@@ -22,16 +22,31 @@
   }
  },
  "top": [
-  "mep",
   "tt",
-  "xd"
+  "xd",
+  "mep"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": 2.68,
+     "date": "2026-10-26",
+     "prev_date": "2026-10-23",
+     "price": 1380.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
      "title": "Giá thép hôm nay 26/10: Thị trường thép cuộn cán nóng toàn cầu phân hóa",
@@ -56,30 +71,15 @@
     }
    ],
    "n_news": 3,
-   "n_moves": 0,
-   "rank": 0.9,
+   "n_moves": 1,
+   "rank": 2.24,
    "link": "danh-muc.html?c=xd"
   },
   {
    "id": "mep",
    "name": "MEP",
    "icon": "⚡",
-   "prices": [
-    {
-     "id": "yf_aluminium",
-     "name": "Nhôm (COMEX Aluminum)",
-     "region": "",
-     "d1": -3.98,
-     "date": "2026-10-25",
-     "prev_date": "2026-10-23",
-     "price": 3138.5,
-     "unit": "USD/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=yf_aluminium"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Đề xuất bỏ thủ tục công an kiểm tra nghiệm thu PCCC trước khi đưa công trình vào sử dụng – chủ đầu tư tự nghiệm thu, hậu kiểm theo rủi ro (dự kiến hiệu lực 01/3/2027)",
@@ -96,16 +96,16 @@
      "source": "Vietnam.vn"
     },
     {
-     "title": "Copper priceeases as LME stocks rise",
+     "title": "Copper price eases as LME stocks rise",
      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFA2VS1GdERuVl8wdnZOeks3NHY1UnVLaUNOZThtZnpjRUlKcWxIUGtJblI4b0dBQ3RYajRsa29CNl9sdzM0RUJSdEJ4ekg1MWFXVWl5SkxWdVQ0ZTNIOHlIS3BQNGZybEszQUxF?oc=5",
      "date": "2026-10-26",
      "score": 9.0,
      "source": "Mining.com.au"
     }
    ],
-   "n_news": 5,
-   "n_moves": 1,
-   "rank": 3.49,
+   "n_news": 7,
+   "n_moves": 0,
+   "rank": 2.1,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -113,10 +113,18 @@
    "name": "Hoàn thiện",
    "icon": "🛁",
    "prices": [],
-   "news": [],
-   "n_news": 0,
+   "news": [
+    {
+     "title": "JYMEC Paint has 34 products that achieved the Vietnam National Brand status in 2026.",
+     "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNd0dwSlQtTF9rOGV4aVJ2ZG1CaHVoRnllNkc5Q0VtS1BURjBJYXlLbjE4YXFwZFJNOTNoRUdSeXJ4aENpQXVoZXRKbHk3X1NEcU1tN2lVWWlKZU9TNHBYOXFiRlRXVkdnS1dBOVVOWnJuRWpCX0xIdTE1Z29ja2lFTGZUdHYzRlE3M3ZtMnZkREFnb2EwWENaaA?oc=5",
+     "date": "2026-10-26",
+     "score": 7.0,
+     "source": "Vietnam.vn"
+    }
+   ],
+   "n_news": 1,
    "n_moves": 0,
-   "rank": 0.0,
+   "rank": 0.3,
    "link": "danh-muc.html?c=ht"
   },
   {
@@ -124,10 +132,18 @@
    "name": "Mặt dựng & cửa nhôm kính",
    "icon": "🏢",
    "prices": [],
-   "news": [],
-   "n_news": 0,
+   "news": [
+    {
+     "title": "Trung Quốc tung loạt thiết bị công nghệ lạ: Robot lau kính giá 70.000 USD, khung xương trợ lực chỉ 1,85 kg",
+     "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNU1VXeFk4eG1JaXF6SG9DQ2pqd19RbEc3TDZtMGxtQmpBdU5VT21KLU9JdElyTUpqOG5MQ2xiWDhULUw2OUp6WjNrM1BGeTBwZERSRmI3WEVlUWRiQUx4NkVrSDZFLXdLVGhaazN2Z2M3TUY3cjVmUEp6ZWVkTHQzajZkYV9zNHg2cjRXdUR4U1hURmFDOC1GMExtbnhCZHFjQ2hXLTVpX0ZHOFZkaS13YWxmUUxMUThWeTZCZFU2MFNobzFvNlpHWFZBXzFzSVdVb3BNT2hR?oc=5",
+     "date": "2026-10-26",
+     "score": 7.0,
+     "source": "VIETTIMES"
+    }
+   ],
+   "n_news": 1,
    "n_moves": 0,
-   "rank": 0.0,
+   "rank": 0.3,
    "link": "danh-muc.html?c=md"
   },
   {
@@ -191,9 +207,9 @@
      "source": "Thuonghieucongluan.com.vn"
     }
    ],
-   "n_news": 8,
+   "n_news": 9,
    "n_moves": 0,
-   "rank": 2.4,
+   "rank": 2.7,
    "link": "danh-muc.html?c=tt"
   }
  ]
