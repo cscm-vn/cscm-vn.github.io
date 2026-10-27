@@ -69,7 +69,8 @@
 .ncc-home .ncc-intro{margin:0 0 2px}
 .ncc-home .ncc-sb{margin:6px 0}
 .ncc-home .ncc-sb input{padding:9px 12px 9px 36px;font-size:14.5px}
-.ncc-home #ncc-out{margin-top:8px}
+.ncc-home #ncc-out{margin-top:8px;flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.ncc.ncc-home{display:flex;flex-direction:column}.ncc-home>*:not(#ncc-out){flex:none}
 .ncc-cmpct{border-top:1px solid var(--line);padding-top:8px}
 .ncc-cmpct h3{font-size:15.5px;margin:0 0 4px;font-family:var(--serif);font-weight:600}
 .ncc-cmpct .ncc-row{margin:6px 0 0}

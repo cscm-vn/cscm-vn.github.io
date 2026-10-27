@@ -154,7 +154,7 @@
  const nccP = document.getElementById("ncc"), nccLoad = () => nccLoad.p ||= new Promise(ok => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "supplier-lookup.css"; l.onload = l.onerror = ok; document.head.append(l);
   const sc = document.createElement("script"); sc.src = "supplier-lookup.js"; document.body.append(sc); });
  document.querySelectorAll("#orgseg button").forEach(b => b.onclick = async () => { document.querySelectorAll("#orgseg button").forEach(z => z.classList.toggle("on", z === b)); const ol = document.getElementById("orgl");
-  if (b.dataset.k === "ncc") { if (!ol.hidden) { nccP.style.minHeight = ol.offsetHeight + "px"; ol.hidden = true; } await nccLoad(); if (b.classList.contains("on")) nccP.hidden = false; }
+  if (b.dataset.k === "ncc") { if (!ol.hidden) { nccP.style.minHeight = nccP.style.height = ol.offsetHeight + "px"; ol.hidden = true; } await nccLoad(); if (b.classList.contains("on")) nccP.hidden = false; }
   else { nccP.hidden = true; ol.hidden = false; orgl(b.dataset.k); } }); orgl("contractor");
  HUB.get("policy-feed.json").then(P => { const el = document.getElementById("pol"); if (!P || !P.items || !P.items.length) { el.innerHTML = '<div class="card mute">Chưa có tin chính sách mới.</div>'; return; } // xếp hạng theo trends/policy_feed.py
   const today = new Date().toLocaleDateString("en-CA", {timeZone: "Asia/Ho_Chi_Minh"});
