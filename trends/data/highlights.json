@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "built": "2026-10-28T18:16+07:00",
- "today": "2026-10-28",
- "news_since": "2026-10-27",
+ "built": "2026-10-29T06:32+07:00",
+ "today": "2026-10-29",
+ "news_since": "2026-10-28",
  "thresholds": {
   "world": {
    "abs_pct": 2.0,
@@ -22,42 +22,57 @@
   }
  },
  "top": [
+  "xd",
   "tt",
-  "mep",
-  "xd"
+  "mep"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
-   "news": [
+   "prices": [
     {
-     "title": "Vinasteel và VAS Việt Mỹ tăng giá thép xây dựng từ 26/10/2026: thép cuộn +100 đồng/kg, thanh D10 CB400-V/CB500-V +250 đồng/kg",
-     "url": "thi-truong.html#56c203a30a63",
-     "date": "2026-10-27",
-     "score": 13,
-     "source": "Vật liệu Xây dựng (BIDC) 27/10/2026"
-    },
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": 7.74,
+     "date": "2026-10-28",
+     "prev_date": "2026-10-27",
+     "price": 1392.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
+   "news": [
     {
      "title": "Giá thép hôm nay 28/10: Giá quặng sắt xuống mức thấp nhất hơn hai năm",
      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQdVUzVXVzYmZTUEFFRkRQUXZ3T09IRmxKRGNHNmhUMmlJR29zNVV2WUtNQ3dzMndkajRTRERiYXdBQXVSVnA0VUxkS2JuME9xNDNMQTRYTUd2R2V3UmN2cjFpSTNyalF1ajc5ZGZWdUIzVkZ1Nk4wZ3RlMHRadjZGczRzNVlSa3Z6U2JkN3RReDViUFpabHA3SklhOTFhaVJkRTNEOEd2Qk1lako5c0t4bg?oc=5",
      "date": "2026-10-28",
-     "score": 10.0,
+     "score": 9.7,
      "source": "VietnamBiz"
     },
     {
-     "title": "Giá thép ngày hôm nay 27/10/2026: Quặng sắt giảm, tồn kho Trung Quốc tăng",
-     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQRURXOHQxTWhNaHVpOEpTNEg3NVZPNVI2cWJHRFgzbkF0Zm9sczQzcUlOUUlPM3JVTVVlYnBfNG5VQXE0dmxsQXJqekYwZzdmZzNxa0RQN0Y5Tm1UdzRqMnQyU2F3UEJRSWxpRU5FT3k5YXVTTExtYUptRVREdy1ZREdyemctaERZLTBBcHpPR205TWpxUzNuVjFfRU8?oc=5",
-     "date": "2026-10-27",
-     "score": 9.7,
-     "source": "index.vn"
+     "title": "Giá thép hôm nay 28/10: Thị trường quặng sắt chịu sức ép giảm giá mạnh",
+     "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOSVY3blB6QlNIbUd1XzAzdnktQl9OTDJONEliUEUyZFc1allvUHdONlV2NFg5MGlITzhvSnpGeVIxTWZLZjBLSW03bXdLZU1fVDFjUzF2VG5QZUZYYk9HSVJJNTFncWxhSWtYcUhLbUJZbm4xdmN0WTBFUERjUGdTT0gwaVZVV09yNGJ1eW1RYVlucnMzZlVvOHE1cFN4ZmwxRTlGVDVlQm9oZnBIcjR2NFFtbDFCZkU?oc=5",
+     "date": "2026-10-28",
+     "score": 7.7,
+     "source": "Thuonghieucongluan.com.vn"
+    },
+    {
+     "title": "Sức tiêu thụ nội địa dẫn dắt thị trường xi măng, thép",
+     "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQaFJmSnFwdEVDcjRKdS1JZnl6elZudlhuVG1SUV9qdmoyWTZlY2puVTZMYTNrc01veE1tS1ltd0JQcFRNS2NWMC05am85LTZHdFFWSlJPcmRyVTlETmJTREd1NGkxOWtNaFlVd1pqYU9ENXo1Qnp5T1ZSczB4RVhSVnZ2M083MGpycUF1QzY3aURnNjE4Q3N6UUI4Rzlwdw?oc=5",
+     "date": "2026-10-28",
+     "score": 6.7,
+     "source": "Báo Xây dựng"
     }
    ],
-   "n_news": 6,
-   "n_moves": 0,
-   "rank": 1.8,
+   "n_news": 3,
+   "n_moves": 1,
+   "rank": 4.77,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -85,27 +100,27 @@
      "title": "Copper price climbs on AI rebound, China demand strength",
      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5JeVlYUzdPdURnTG4wY1NxMmp2cUI3NFVwWUlXdHhYVG5vd0xiU2pQN2FiQ0plTEJ5SWhOQU9VZTJJR2Y2ZmVwZDNRN0U5aUlpOExYbUJSTjZOWHRXYkRoeWxKMUYzX3FKMVdZUXBUNDA?oc=5",
      "date": "2026-10-28",
-     "score": 9.0,
+     "score": 8.7,
      "source": "Mining.com.au"
     },
     {
-     "title": "Column: Quantum copper steals the show at LME Week",
-     "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9wdUpDbmw2dG80Vm5GZ3hBUnBWS3VKWi1BdXFoNE9tc1pWcmtka0x4eU1fQndadXVIbnFCcnNWWVhVbzB0UVRqalVqWllkR1JYdkd4cDRyMDU3ekpFTUZfdjNTVEpVWTBoY2FnNDhtRjNZQmJLU3dhVm15Y1E?oc=5",
-     "date": "2026-10-27",
-     "score": 8.7,
-     "source": "Mining.com.au"
+     "title": "Further approaches to reducing emissions towards Net Zero from CO₂ capture, utilization, and storage technologies.",
+     "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNQm8zRG4tVUdham5kSVpWbWtsd0J5QXZ4YzVxMVVoZjVWa3pyVzVIZ3NMWnhIX0wwOUJLYnVBZ29HZHRyY0hhQzJxODhVNnlnQ015d1pvWTltRXlvR3JIT1ZDb21kUFJvblZuVzAwVHZDYTAwSHQwUlhLalRiTlNhNlA2NldTZ0ZwRjhFMkg5eTl3cklaWlNCS2RDWmdKaFo3Y2pDWEVIZ1JIZ2xQY2Z0cXF3dU9Vbjhyb3BkUnF2YzZrWEdQMmMyUFVfalFadw?oc=5",
+     "date": "2026-10-28",
+     "score": 6.7,
+     "source": "Vietnam.vn"
     },
     {
      "title": "Aluminium price gains on tight supply, risk-on mood",
      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1kY2NacFVFSUxXSlpaSVhMdHY4QjBfZnREci1wbnFqbUx5S1lIaFBnRE10ZmdQSzc0WVlseDVfNlV2eGVHTHRmQTJMaDhEY3pnaHpaMEdIcG5mLUJwWVlTZ1dkbkJaa09oTGM5YnVDUVZQSmlXM2tlUkVHcHpwZw?oc=5",
      "date": "2026-10-28",
-     "score": 7.0,
+     "score": 6.7,
      "source": "Mining.com.au"
     }
    ],
-   "n_news": 4,
+   "n_news": 3,
    "n_moves": 1,
-   "rank": 2.31,
+   "rank": 2.01,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -146,10 +161,18 @@
    "name": "Cảnh quan & tiện ích",
    "icon": "🌳",
    "prices": [],
-   "news": [],
-   "n_news": 0,
+   "news": [
+    {
+     "title": "Chủ tịch Tổng Công ty Cây xanh Công Minh thu lợi 264 tỷ đồng, bị truy tố vắng mặt",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQYmNIUEJqTG02RUMyWlY3SnpXS3NXNUxxMEdPaGd1Uk56UkFhZmZGVWJOc1NPbkpHUF92dnNEMjFiYmFNbmJMMURYTGdWX00wbzlQOGRvV0ljZTNjVE9mM2h1RmYxdjNnXzlLbW1ZLWY0cTA3dDZvTE1FS0dkSTFBS00xc3hiU0Y3bjc5QUJ5RWNScHkwbGkwdXZnTTJXT3ZiaVRHbGp2RzVLT0tRdkU4?oc=5",
+     "date": "2026-10-28",
+     "score": 6.7,
+     "source": "Báo VietNamNet"
+    }
+   ],
+   "n_news": 1,
    "n_moves": 0,
-   "rank": 0.0,
+   "rank": 0.3,
    "link": "danh-muc.html?c=cq"
   },
   {
@@ -159,23 +182,16 @@
    "prices": [],
    "news": [
     {
-     "title": "Vietnam eyes carbon capture technology to advance net-zero goal",
-     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOU1VHeFdQLXRKQUVYb0h5YzR4ZWVYdVNhSW9qXzdTUnRVUV8xS3NLMExCdjRlUVIydWhkdmROZGFlT2hCY3BJR1hhUHUwRDV2LW0zYi1qdjhNUFVtNVByR3l0cTgyWTNhVHVSZXh4QWp2cEdmYXVvTGRTUEt4Q3hNYktpRmhLRkpDNlVqT3l1OHdqTjhYeTVrRHJEbEg0cDVWM2hDeQ?oc=5",
-     "date": "2026-10-27",
-     "score": 3.7,
-     "source": "SGGP English Edition"
-    },
-    {
-     "title": "Vietnam needs a synchronized mechanism to develop carbon storage technology.",
-     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQVTR4NWhsdEZ4NWJETmM3VjhEdy04WFZFSzhsaks3N1VfRkFfLUVvaS1tWEJOYnYwMWtDc1ZFdjB0TEpZdzFBbVVLQ1JOQmpSMGN2amJZM0JvX0o3OTlPbG11ekRITTB6VVpFSVQ4d3liNzh3RjhaSTZyTkJJZ3BycGJ6M01GNGhSZlFQSHloQjZHQVB4SkE4?oc=5",
-     "date": "2026-10-27",
+     "title": "Vietnam needs a 'pathway' to develop a carbon capture and storage industry.",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNbFFyNEJmeGdrY2l0YnNpYXVYU0ZrbVdIV3V6a01LT21nRE53V1FWUFJxd2RoUEF1WTR3bU53eFA5UUhrTXBTZEZ4WF8yYnpTdVdDU2NWOVNDcDUyZzNOb1drZVJOVFVNZTN1YmE4UzBNck1GdHF4MVFGbS1QNWVGSWFmME9tS3p2Wk5nZnZTbkliS3FVNXdVa01sdWJlOFF1Q1ZNSlFwRnY?oc=5",
+     "date": "2026-10-28",
      "score": 3.7,
      "source": "Vietnam.vn"
     }
    ],
-   "n_news": 2,
+   "n_news": 1,
    "n_moves": 0,
-   "rank": 0.6,
+   "rank": 0.3,
    "link": "danh-muc.html?c=esg"
   },
   {
@@ -185,17 +201,10 @@
    "prices": [],
    "news": [
     {
-     "title": "Tiếp nhận hồ sơ rà soát thuế chống bán phá giá thép cán nguội từ Trung Quốc",
-     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNZ1B6Q0wzYVF3bGNpNmdUQ0hzYjZhejloaHFodEJzYlNDVjFKQnRLR0ptVU5aZmQ4bTJtOUREVjhBVkNTdVRYekdTLTFDUU1lYUUzWTJ5QndiQ0VFTW05ZU85Q1ZCU2dIQm1vQ2Z0U0JDWU11NFRTWFNxWFFPX1NNZE5hUkxqOTJaeUJaU0RlYmR1RzVTOHlOZWF1NGhjSDJqeDdNV2ZDTktuX0ZrZFlWREZ2Wlc4SjZHc2RZMFl0Yw?oc=5",
-     "date": "2026-10-27",
-     "score": 13.7,
-     "source": "Thuonghieucongluan.com.vn"
-    },
-    {
      "title": "CHALIECO: Nhà thầu Trung Quốc trúng dự án công nghiệp nhôm 833 triệu USD tại Việt Nam",
      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPQlo3NzE4T2w5TGtGTm5aVms4ZVNYTmNBdjZmYkpiUE5xY1ZkczYydm5taWluNUZoWk1oWkdDSUw1Mkk4LWs1cEFqZGt3U1d0eGpoc3NIc1pfZFFPcXh2VkZLTGlLQjhybmhOZkNrWFFBcEJWZlVjeFlCTnJOM2tLOC03TS1TSm5NZ2ZqVWZObkpJRWZCcFV4TERGMzRvMkh3MWgtNmlmNEY0bndEbXlTb2lxajk?oc=5",
      "date": "2026-10-28",
-     "score": 9.0,
+     "score": 8.7,
      "source": "VietnamFinance"
     },
     {
@@ -204,9 +213,16 @@
      "date": "2026-10-28",
      "score": 8,
      "source": "Thương hiệu và Pháp luật"
+    },
+    {
+     "title": "Doanh nghiệp xuất khẩu thịt lợn sang Philippines ứng phó với điều tra chống bán phá giá",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOeUp3NFZVaFNWbjJVWGZqZUxoNnY4aExYczlLbzltTVRmbkRIckJIWHJCNXBiTW5WZWp4RnlVS1phdUt2dGgyc25sZ3Zua1lyaF94amg2WW5aVTlFNFNDbERMc21qTnlJU1RVdU00aGxCOWFoblZLem5UMkNKRXo0eGtYVGJtMjBRSEg2eWhfVE43dGhNRUtXS21aOXh1bnpLZl9zY21lT3YtSGl2YXlV?oc=5",
+     "date": "2026-10-28",
+     "score": 7.7,
+     "source": "Vietnam.vn"
     }
    ],
-   "n_news": 17,
+   "n_news": 10,
    "n_moves": 0,
    "rank": 3.0,
    "link": "danh-muc.html?c=tt"
