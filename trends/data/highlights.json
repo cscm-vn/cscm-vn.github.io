@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-28T09:11+07:00",
+ "built": "2026-10-28T18:16+07:00",
  "today": "2026-10-28",
  "news_since": "2026-10-27",
  "thresholds": {
@@ -22,31 +22,16 @@
   }
  },
  "top": [
-  "xd",
   "tt",
-  "mep"
+  "mep",
+  "xd"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "yf_hrc",
-     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
-     "region": "",
-     "d1": 7.28,
-     "date": "2026-10-27",
-     "prev_date": "2026-10-26",
-     "price": 1386.0,
-     "unit": "USD/short ton",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=yf_hrc"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Vinasteel và VAS Việt Mỹ tăng giá thép xây dựng từ 26/10/2026: thép cuộn +100 đồng/kg, thanh D10 CB400-V/CB500-V +250 đồng/kg",
@@ -70,16 +55,31 @@
      "source": "index.vn"
     }
    ],
-   "n_news": 4,
-   "n_moves": 1,
-   "rank": 4.84,
+   "n_news": 6,
+   "n_moves": 0,
+   "rank": 1.8,
    "link": "danh-muc.html?c=xd"
   },
   {
    "id": "mep",
    "name": "MEP",
    "icon": "⚡",
-   "prices": [],
+   "prices": [
+    {
+     "id": "te_pvc",
+     "name": "PVC (Polyvinyl chloride, DCE)",
+     "region": "",
+     "d1": 2.22,
+     "date": "2026-10-28",
+     "prev_date": "2026-10-27",
+     "price": 5212.0,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_pvc"
+    }
+   ],
    "news": [
     {
      "title": "Copper price climbs on AI rebound, China demand strength",
@@ -96,16 +96,16 @@
      "source": "Mining.com.au"
     },
     {
-     "title": "Nhà gần 200 m2 không dùng điều hòa nhờ thông gió tự nhiên",
-     "url": "https://vnexpress.net/nha-gan-200-m2-khong-dung-dieu-hoa-nho-thong-gio-tu-nhien-5137076.html",
-     "date": "2026-10-27",
-     "score": 6.7,
-     "source": "VnExpress Bất động sản"
+     "title": "Aluminium price gains on tight supply, risk-on mood",
+     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1kY2NacFVFSUxXSlpaSVhMdHY4QjBfZnREci1wbnFqbUx5S1lIaFBnRE10ZmdQSzc0WVlseDVfNlV2eGVHTHRmQTJMaDhEY3pnaHpaMEdIcG5mLUJwWVlTZ1dkbkJaa09oTGM5YnVDUVZQSmlXM2tlUkVHcHpwZw?oc=5",
+     "date": "2026-10-28",
+     "score": 7.0,
+     "source": "Mining.com.au"
     }
    ],
-   "n_news": 3,
-   "n_moves": 0,
-   "rank": 0.9,
+   "n_news": 4,
+   "n_moves": 1,
+   "rank": 2.31,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -192,21 +192,21 @@
      "source": "Thuonghieucongluan.com.vn"
     },
     {
-     "title": "CHALIECO: Nhà thầu Trung Quốc trúng dự án alumina 833 triệu USD tại Việt Nam",
+     "title": "CHALIECO: Nhà thầu Trung Quốc trúng dự án công nghiệp nhôm 833 triệu USD tại Việt Nam",
      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPQlo3NzE4T2w5TGtGTm5aVms4ZVNYTmNBdjZmYkpiUE5xY1ZkczYydm5taWluNUZoWk1oWkdDSUw1Mkk4LWs1cEFqZGt3U1d0eGpoc3NIc1pfZFFPcXh2VkZLTGlLQjhybmhOZkNrWFFBcEJWZlVjeFlCTnJOM2tLOC03TS1TSm5NZ2ZqVWZObkpJRWZCcFV4TERGMzRvMkh3MWgtNmlmNEY0bndEbXlTb2lxajk?oc=5",
      "date": "2026-10-28",
      "score": 9.0,
      "source": "VietnamFinance"
     },
     {
-     "title": "7 nhóm hàng xuất khẩu được cảnh báo rủi ro phòng vệ thương mại",
-     "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNMi1zR2xhNURLS3pZYWptN2lhU1UwLWNzRWZQbFAzZU1BaTlXLU92bWhiSGRsWWFvVUZ0QlNrbjVVckZSaHN3MHlxcnpiSmFPWEprVjhFUERwTV9yMXltaWNHUmdYdzFiUldQNE9lYmxaUnUtTlZUTUM1alR2bm1BQzNCal9lR1VRT0xoUGlxVWpQZDgy?oc=5",
-     "date": "2026-10-27",
+     "title": "Cục Phòng vệ thương mại cảnh báo 7 nhóm hàng xuất khẩu đối mặt rủi ro",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNbjhqS3RuQjMwYTVUd3NuWWwwRlFNaVFtWFdJa0tnWjBZSHBQSmlpYmZGZk00bmt5T2lYcVFFWGQtRHQxeGRWZE5mYTdwcnI3LW02VXN3Ynl6c3FvMWNNeTZndWVwb1JNbi0xbWVIZ2p0a2tDS3gtQnpzZlE4TEtwODJPcVpJSVpIOVhHZFFMMklraVFtVnFENTQ4RnN6eVl2bG95TTdPREhybXVDeU5vYzRmcw?oc=5",
+     "date": "2026-10-28",
      "score": 8,
-     "source": "Tạp chí Kinh tế chứng khoán Việt Nam"
+     "source": "Thương hiệu và Pháp luật"
     }
    ],
-   "n_news": 13,
+   "n_news": 17,
    "n_moves": 0,
    "rank": 3.0,
    "link": "danh-muc.html?c=tt"
