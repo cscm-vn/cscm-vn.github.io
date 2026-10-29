@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-29T09:20+07:00",
+ "built": "2026-10-29T18:29+07:00",
  "today": "2026-10-29",
  "news_since": "2026-10-28",
  "thresholds": {
@@ -22,9 +22,9 @@
   }
  },
  "top": [
+  "mep",
   "xd",
-  "tt",
-  "mep"
+  "tt"
  ],
  "groups": [
   {
@@ -36,10 +36,10 @@
      "id": "yf_hrc",
      "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
      "region": "",
-     "d1": 7.74,
+     "d1": 4.02,
      "date": "2026-10-28",
      "prev_date": "2026-10-27",
-     "price": 1392.0,
+     "price": 1344.0,
      "unit": "USD/short ton",
      "kind": "world",
      "threshold": 2.0,
@@ -70,42 +70,57 @@
      "source": "Tạp chí Doanh nghiệp và Hội nhập"
     }
    ],
-   "n_news": 5,
+   "n_news": 6,
    "n_moves": 1,
-   "rank": 5.37,
+   "rank": 3.81,
    "link": "danh-muc.html?c=xd"
   },
   {
    "id": "mep",
    "name": "MEP",
    "icon": "⚡",
-   "prices": [],
-   "news": [
+   "prices": [
     {
-     "title": "Copper price climbs on AI rebound, China demand strength",
-     "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5JeVlYUzdPdURnTG4wY1NxMmp2cUI3NFVwWUlXdHhYVG5vd0xiU2pQN2FiQ0plTEJ5SWhOQU9VZTJJR2Y2ZmVwZDNRN0U5aUlpOExYbUJSTjZOWHRXYkRoeWxKMUYzX3FKMVdZUXBUNDA?oc=5",
+     "id": "yf_aluminium",
+     "name": "Nhôm (COMEX Aluminum)",
+     "region": "",
+     "d1": 2.91,
      "date": "2026-10-28",
-     "score": 8.7,
-     "source": "Mining.com.au"
-    },
-    {
-     "title": "Further approaches to reducing emissions towards Net Zero from CO₂ capture, utilization, and storage technologies.",
-     "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNQm8zRG4tVUdham5kSVpWbWtsd0J5QXZ4YzVxMVVoZjVWa3pyVzVIZ3NMWnhIX0wwOUJLYnVBZ29HZHRyY0hhQzJxODhVNnlnQ015d1pvWTltRXlvR3JIT1ZDb21kUFJvblZuVzAwVHZDYTAwSHQwUlhLalRiTlNhNlA2NldTZ0ZwRjhFMkg5eTl3cklaWlNCS2RDWmdKaFo3Y2pDWEVIZ1JIZ2xQY2Z0cXF3dU9Vbjhyb3BkUnF2YzZrWEdQMmMyUFVfalFadw?oc=5",
-     "date": "2026-10-28",
-     "score": 6.7,
-     "source": "Vietnam.vn"
-    },
-    {
-     "title": "Aluminium price gains on tight supply, risk-on mood",
-     "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1kY2NacFVFSUxXSlpaSVhMdHY4QjBfZnREci1wbnFqbUx5S1lIaFBnRE10ZmdQSzc0WVlseDVfNlV2eGVHTHRmQTJMaDhEY3pnaHpaMEdIcG5mLUJwWVlTZ1dkbkJaa09oTGM5YnVDUVZQSmlXM2tlUkVHcHpwZw?oc=5",
-     "date": "2026-10-28",
-     "score": 6.7,
-     "source": "Mining.com.au"
+     "prev_date": "2026-10-27",
+     "price": 3278.0,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_aluminium"
     }
    ],
-   "n_news": 3,
-   "n_moves": 0,
-   "rank": 0.9,
+   "news": [
+    {
+     "title": "LME aluminium cash bid gains $22.50/t as alumina prices jump 2.13%",
+     "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPQ0xmODlqUEctQnp4YjV2bHEwQktqcmU3OG1HR0VBU0RGTndob3RZNHNqSkltd0MxODlfcklaOGpyeFU2ZkFXSVg4enlfRVlobTV0TF8wVVZ0WUprN0JSWlNIbFBNYXpJYzJDdXJiN01YQW1YclVEbXRhMVVySnN2SldvQllOVzFUdEItYnRLY0lHRk5NTU9nT3RJcEp6Z3lvalVJ?oc=5",
+     "date": "2026-10-29",
+     "score": 9.0,
+     "source": "AL Circle"
+    },
+    {
+     "title": "Copper eases but holds near two-week highs as tight China supply offers support",
+     "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1KdmNMVGlEOFV0WS1NUEh2dFkxbXE2M285dXlMNkxOcWhiakM2QVRwWE1Jem5Bemd4dDNSRXI3UDNNOW1OdENIaUdPdjZwYzZ0M3BrMklB0gFWQVVfeXFMTUp2Y0xUaUQ4VXRZLU1QSHZ0WTFtcTYzbzl1eUw2TE5xaGJqQzZBVHBYTUl6bkF6Z3h0M1JFcjdQM005bU50Q0hpR092NnBjNnQzcGsySUE?oc=5",
+     "date": "2026-10-29",
+     "score": 9.0,
+     "source": "Business Recorder"
+    },
+    {
+     "title": "Copper’s $16,000 target contrasts with a cautious aluminium outlook, says Navneet Damani",
+     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPRG5RZi1BNzJjOXRVb25kcURvdXBIMlNHX0gxMEpBblZ2bkN2eTZYRWFqZEhHbkNocWtlWDlpQ01ZaHBpcXI0UlFpQXp1dTlZVXE2M25vWXB2bDNBcEQtcThSWnVfUmJTTVVXVE9JSl9lb1cwSjJKUGhOQ3pRODVjQk9CdExocng0Mm5BODZfc29wNkpHR054WGRCVlM5a0lDc1ZneGFnYnRUTmVidVNvRml6c01NT29WRGNkYXNUOA?oc=5",
+     "date": "2026-10-29",
+     "score": 9.0,
+     "source": "AL Circle"
+    }
+   ],
+   "n_news": 11,
+   "n_moves": 1,
+   "rank": 4.46,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -186,6 +201,13 @@
    "prices": [],
    "news": [
     {
+     "title": "Chân dung 'gã khổng lồ' luyện kim Trung Quốc trúng thầu dự án alumina 833 triệu USD tại Việt Nam",
+     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPRVJ5elA5bFlDSS10OFVmQ09OVk5mZW9YcHV3M0l1LW1aSVZDcmNGSXV5OGE3a2lQQmZtR1liMlJYY1FhZ3NjeGtFc1hwdGVJaFJUSWZfZUVNWno2a29oVUN5ZlRZRWRXcXVGVG1BcXprU1R0cFFFbXFVV3NOdmE1T3lPcXNlMTlXZkxHN3llMi1lN1gyMWpYdW0tOGFLazdIM1ExU0ZGamc0dlBIZ1ZqTnkwUFZoZlNKOENwTWRwaXFaTFlhZzg5WFVkYVN5ZTl1VlhEeA?oc=5",
+     "date": "2026-10-29",
+     "score": 12.0,
+     "source": "VietnamBiz"
+    },
+    {
      "title": "CHALIECO: Nhà thầu Trung Quốc trúng dự án công nghiệp nhôm 833 triệu USD tại Việt Nam",
      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPQlo3NzE4T2w5TGtGTm5aVms4ZVNYTmNBdjZmYkpiUE5xY1ZkczYydm5taWluNUZoWk1oWkdDSUw1Mkk4LWs1cEFqZGt3U1d0eGpoc3NIc1pfZFFPcXh2VkZLTGlLQjhybmhOZkNrWFFBcEJWZlVjeFlCTnJOM2tLOC03TS1TSm5NZ2ZqVWZObkpJRWZCcFV4TERGMzRvMkh3MWgtNmlmNEY0bndEbXlTb2lxajk?oc=5",
      "date": "2026-10-28",
@@ -198,16 +220,9 @@
      "date": "2026-10-28",
      "score": 8,
      "source": "Thương hiệu và Pháp luật"
-    },
-    {
-     "title": "Doanh nghiệp xuất khẩu thịt lợn sang Philippines ứng phó với điều tra chống bán phá giá",
-     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOeUp3NFZVaFNWbjJVWGZqZUxoNnY4aExYczlLbzltTVRmbkRIckJIWHJCNXBiTW5WZWp4RnlVS1phdUt2dGgyc25sZ3Zua1lyaF94amg2WW5aVTlFNFNDbERMc21qTnlJU1RVdU00aGxCOWFoblZLem5UMkNKRXo0eGtYVGJtMjBRSEg2eWhfVE43dGhNRUtXS21aOXh1bnpLZl9zY21lT3YtSGl2YXlV?oc=5",
-     "date": "2026-10-28",
-     "score": 7.7,
-     "source": "Vietnam.vn"
     }
    ],
-   "n_news": 12,
+   "n_news": 14,
    "n_moves": 0,
    "rank": 3.0,
    "link": "danh-muc.html?c=tt"
