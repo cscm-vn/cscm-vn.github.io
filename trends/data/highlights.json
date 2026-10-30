@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "built": "2026-10-30T18:48+07:00",
- "today": "2026-10-30",
- "news_since": "2026-10-29",
+ "built": "2026-10-31T06:27+07:00",
+ "today": "2026-10-31",
+ "news_since": "2026-10-30",
  "thresholds": {
   "world": {
    "abs_pct": 2.0,
@@ -22,8 +22,8 @@
   }
  },
  "top": [
-  "mep",
   "tt",
+  "mep",
   "xd"
  ],
  "groups": [
@@ -33,18 +33,18 @@
    "icon": "🏗️",
    "prices": [
     {
-     "id": "te_hrc",
-     "name": "Thép HRC (CME US Midwest, tham chiếu TE)",
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
      "region": "",
-     "d1": 2.37,
+     "d1": 4.47,
      "date": "2026-10-30",
      "prev_date": "2026-10-29",
-     "price": 1425.0,
+     "price": 1402.0,
      "unit": "USD/short ton",
      "kind": "world",
      "threshold": 2.0,
      "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=te_hrc"
+     "url": "mat-hang.html?id=yf_hrc"
     }
    ],
    "news": [
@@ -52,13 +52,6 @@
      "title": "Giá thép hôm nay 30/10: Quặng sắt lên mức cao nhất gần hai tuần",
      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPV04yUEJMZXJHM0o0d0JOc1ZuN3dIMlM2MThDWEVqdWEwdjFYX21sOFNIRUdPVTctX3dJbUp2eWhjdXFJYVAtZkZQcW5fbUFBX2JFREFuMjB6QzZhWi1Lb2NVVDVkQV85NWZndUlkTWFqNmdxSC1wUGF5RzhyNXFNZ0ttaFRuS0NkbzExMEQwNWhoOWo2OW5KTDB5LUJoVU12ajF5aDQ0aw?oc=5",
      "date": "2026-10-30",
-     "score": 10.0,
-     "source": "VietnamBiz"
-    },
-    {
-     "title": "Giá thép hôm nay 29/10: Quặng sắt hồi phục khi các nhà máy nối lại sản xuất",
-     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQOGxPMmZld3VwRjVrRTJ3MjNCWVQ0d0R4Sll3WEpjNXNwQjMyNzIyWV9kWHJ1TW00MGpLWmFMTGMtV1dVUXU3WjV3a1NJZWhhMUtPWU5TR3JXU2xXM3cyeDVVMjZKcENFWG9tTlpsam1TY2hZOE1ucFBuTWV3SjdObmhOZENTc0FDSzAya2RpYmdWNHpQcUFWdjR3cmRTVHQwNVd3TUhLczRVNWtKUXNsZFktVmd2dFpw?oc=5",
-     "date": "2026-10-29",
      "score": 9.7,
      "source": "VietnamBiz"
     },
@@ -66,13 +59,13 @@
      "title": "Giá thép hôm nay 30/10/2026: Quặng sắt lập đỉnh gần hai tuần",
      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNV0RKdHB3eEVZTFIxYkx2T3I2eVV1Z2JHZlhSNldzWkhXNmpZVnRscUZ4VElBd1RIQTRzNHFSMkc5MEs1N1h6NTMzQ1kyR0syYnltYm9TU0Y0TEFlRUUxQXhWT2VqRWRpT3hXTDU2WFppTUtUdWMzNElXc0R5cGNVeFZJWjJHVGg0dW9sRzRYRWV6YkR4eEJ4WFZOc1I0VG1p?oc=5",
      "date": "2026-10-30",
-     "score": 8.0,
+     "score": 7.7,
      "source": "Tạp chí Doanh nghiệp và Hội nhập"
     }
    ],
-   "n_news": 5,
+   "n_news": 2,
    "n_moves": 1,
-   "rank": 2.69,
+   "rank": 2.83,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -80,6 +73,20 @@
    "name": "MEP",
    "icon": "⚡",
    "prices": [
+    {
+     "id": "yf_aluminium",
+     "name": "Nhôm (COMEX Aluminum)",
+     "region": "",
+     "d1": -4.99,
+     "date": "2026-10-30",
+     "prev_date": "2026-10-29",
+     "price": 3166.0,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_aluminium"
+    },
     {
      "id": "lme_tin",
      "name": "Thiếc LME",
@@ -100,27 +107,27 @@
      "title": "Copper edges lower as higher oil, AI doubts weigh",
      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE14dXhtU2FVVEhoUmNJUHZVc0xGeXlkNkUwZDlmc0dRbFpucEs5VUMzX3hwb2JldjkxU2UyZXBJS3JuaDhFUUx2MUtnXzFFM0lRanVobzJn0gFWQVVfeXFMTXh1eG1TYVVUSGhSY0lQdlVzTEZ5eWQ2RTBkOWZzR1FsWm5wSzlVQzNfeHBvYmV2OTFTZTJlcElLcm5oOEVRTHYxS2dfMUUzSVFqdWhvMmc?oc=5",
      "date": "2026-10-30",
-     "score": 11.0,
+     "score": 10.7,
      "source": "Business Recorder"
     },
     {
      "title": "LME aluminium price cools nearly 1% on October 29; Asian Ref Price jumps to $3,078.5/t",
      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNYXlpSnhkeTJSbE4wdFZXQ2F1TEVMTW5Qc2pQMXo3MjNSVkxqdVRsNnFrY3UxY3I2RGxkeVk5V2I3SG1IemxtNnBncFNjbEIxOGdIUFlNcjZpbTR1SnRFV2YwMk5BQzdWaHRONjEzNmt5UUpZVFJxWmJrRDRSekNKenlYLXJKZWktV2xHdnBhNUM0YkVnWWZHWUpaZ2phMWlLZU8wM3RrVkF5ZHJIMDRlNjBwdUZiUWYzZ18wNA?oc=5",
      "date": "2026-10-30",
-     "score": 9.0,
+     "score": 8.7,
      "source": "AL Circle"
     },
     {
      "title": "Copper Prices in 2026: Will Mine Shortages Sustain the AI-Driven Rally?",
      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNUnh4T3lsTkJmTHVPcFptMkgwbzJzOFVnd3ljeGZYOFYzMVZYbmliVjI0eHdJTWZfdXVGWjFKcFZIUEMyUWpXekRZV2o1b2dzSHJkRzlmaHlDbC0xSjZVYjlIQWhUckdOYmNNNWtmYVVDNW9jNnJGT0I1V2NSdlJqUUR6RENoNTF2eFZCUG5UWUJvMW14TjVleUFwalQ?oc=5",
      "date": "2026-10-30",
-     "score": 9.0,
+     "score": 8.7,
      "source": "CarbonCredits.com"
     }
    ],
-   "n_news": 16,
-   "n_moves": 1,
-   "rank": 4.25,
+   "n_news": 7,
+   "n_moves": 2,
+   "rank": 5.85,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -166,21 +173,21 @@
      "title": "Ba cựu chủ tịch huyện tạo điều kiện cho doanh nghiệp trúng thầu cây xanh",
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOajdSMkV5djhPMnJKdjZjX2FTdjVFRE4taUEwY2hySTJSR2NYZEVNVXZXYjI5ZVRMZDlrNkhsT2pyLU0zN2w5QnYtUVlpMXhMbzRYMktINXlnRmR1eVlPZWN4bjV0UTk3ck4yVnRMUm9UVy1Wc2FZRjdpUnpHNHZYd3U3WlhtOGJrS2ppUFM3VVRJc2FST1ZxMXN0SXhTMlY4VHZoTWhwMzNJdFpyaS10dzVpMktCblc0Nmd5WFJDb1ZlZFNw?oc=5",
      "date": "2026-10-30",
-     "score": 10.0,
+     "score": 9.7,
      "source": "Báo Dân trí"
     },
     {
      "title": "Hé lộ cách Công ty Cây xanh Công Minh trúng thầu 6 dự án tại Gio Linh",
      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQdUUyVDNRVDN4YUZrUXU1YXhzYVIzbEpWV0ZuN3oyeHhINEJlLWpUWWplRnZPRXFjYWhiemEzNjY2SkkwUDQ1MmxLcjV5ZHR1QXIwMGx0WkVmNDlLODdKSklUT0RjVnF0MUV0MXg2VFlkOWdYRzZUcWI5My1SVjcxSlB0RThKanRUVlNqWnJ4VC1YM01NRG9IbGxZNHBSSzJNTm9OcHBB?oc=5",
      "date": "2026-10-30",
-     "score": 10.0,
+     "score": 9.7,
      "source": "VTC News"
     },
     {
      "title": "Ba cựu Chủ tịch huyện “giúp” ông chủ Cây xanh Công Minh trúng thầu như thế nào?",
      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPQk9IOEdtYjJnQ0tmT0dQZkZVWENYX2tvZUZfbFp4ZWNUMXVxN3dVd2dkWk5GWHlUODJjZFBPc3loek91YzFybVM4bktlRkVZMXBYbW45M2h3dXZyWEVVWUphV29aZEdHNDNLRktaYy14TEx0eGdFUHpKN3J4VXU3Qm5La0p4bV9SSG1fM0U2UVJRempNVmJCYlBacE13UFNISzFmc3k1Y2ZYYzNZQW84?oc=5",
      "date": "2026-10-30",
-     "score": 10.0,
+     "score": 9.7,
      "source": "Nghệ An 24h"
     }
    ],
@@ -196,11 +203,11 @@
    "prices": [],
    "news": [
     {
-     "title": "Từ phụ phẩm cây gai dầu đến vật liệu cho công trình phát thải thấp",
-     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOZGFVRWNad3ZHdzU4amVjUnRxT3kxdnJYeEdIX3dYQjJPVGgzUGFSbEZkNDdkeU9jN2xqamhRVlhNRV9CNjJDbGZsZHlOV2kxZEtTRTRONnhoYjNmZnAwQlJ5c2RleENja0w5OHhhek1EWWlkc1lyb3JRbm8wVDFVUm1LVTU0eWRDcjF5SUwzWno3WkpGTnJaaWpCMkpHUnNkN1QweFpWS2NQcDFWY1pN?oc=5",
-     "date": "2026-10-29",
-     "score": 4.7,
-     "source": "Báo Xây dựng"
+     "title": "The Institute of Construction Science and Technology inaugurates a model of a low-carbon prefabricated house.",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNYUdaVjdTODl2eGJLeXdqdHd3YlZYY042VFJISHlta3Y2QXJINVllTm10MWFYOE9BMzJTZ0prQjFfZjd3TWFnRlpiQmNnaU9FMWlfMFB1bGZCZnJjYzhRR3hNSWlaczNUZU1fd0VvSi0taVpvQnFteUQwa3k5dHdMbG8zTU9fdzJBbVBiQ3pBUklPajZDVEFvdHFKbkZHcjdzWUE5U1NrR19uVGJfYlhCQlk5RQ?oc=5",
+     "date": "2026-10-30",
+     "score": 3.7,
+     "source": "Vietnam.vn"
     }
    ],
    "n_news": 1,
@@ -217,43 +224,57 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -2.17,
+     "d1": -4.81,
      "date": "2026-10-30",
      "prev_date": "2026-10-29",
-     "price": 50.5,
+     "price": 49.1349983215332,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
      "tax": "tt.ty-gia",
      "url": "mat-hang.html?id=yf_silver"
+    },
+    {
+     "id": "yf_gold",
+     "name": "Vàng (COMEX Gold)",
+     "region": "",
+     "d1": -3.37,
+     "date": "2026-10-30",
+     "prev_date": "2026-10-29",
+     "price": 3884.89990234375,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=yf_gold"
     }
    ],
    "news": [
     {
+     "title": "Vinhomes quý III/2026: lãi sau thuế 23.021 tỷ đồng (+419%), doanh số bán hàng 71.500 tỷ; doanh số chưa bàn giao 185.600 tỷ đồng",
+     "url": "thi-truong.html#d221eafc3e52",
+     "date": "2026-10-30",
+     "score": 13,
+     "source": "VietTimes 30/10/2026"
+    },
+    {
+     "title": "Hà Nội bổ sung 580 dự án thu hồi đất (~10.660 ha): Sun Group đăng ký tái thiết đô thị Vĩnh Hưng 447 ha (thu hồi 206 ha) và công viên safari Ba Vì 299,51 ha",
+     "url": "thi-truong.html#b7193519873a",
+     "date": "2026-10-30",
+     "score": 13,
+     "source": "Thanh Niên 30/10/2026"
+    },
+    {
      "title": "Doanh nghiệp Trung Quốc trúng thầu dự án alumin 833 triệu USD tại Việt Nam",
      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOc1o5ZXlDOEtFOFRTNEx2R0F0SXhmS2Y3aVdwZURFb3VkdjhudFpxbzRMd2R2YVJXRkZadFNHdnQxSzV4TzhEdjJZZUJwRVp5SDRrbDlWQlFqSmdITzFveFVuWnBOMzBBZ2xuMU1TRy13R3d4a3RnMmlCanBoS2Q4SE9mYWYzRzdXbG5hNUZEcVY2WnI0MkZRdFdPdllRZw?oc=5",
      "date": "2026-10-30",
-     "score": 12.0,
-     "source": "Vietnam.vn"
-    },
-    {
-     "title": "Chân dung 'gã khổng lồ' luyện kim Trung Quốc trúng thầu dự án alumina 833 triệu USD tại Việt Nam",
-     "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPRVJ5elA5bFlDSS10OFVmQ09OVk5mZW9YcHV3M0l1LW1aSVZDcmNGSXV5OGE3a2lQQmZtR1liMlJYY1FhZ3NjeGtFc1hwdGVJaFJUSWZfZUVNWno2a29oVUN5ZlRZRWRXcXVGVG1BcXprU1R0cFFFbXFVV3NOdmE1T3lPcXNlMTlXZkxHN3llMi1lN1gyMWpYdW0tOGFLazdIM1ExU0ZGamc0dlBIZ1ZqTnkwUFZoZlNKOENwTWRwaXFaTFlhZzg5WFVkYVN5ZTl1VlhEeA?oc=5",
-     "date": "2026-10-29",
      "score": 11.7,
-     "source": "VietnamBiz"
-    },
-    {
-     "title": "Tăng mạnh nguồn cung, bù đắp thiếu hụt vật liệu xây dựng năm 2027",
-     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPV1VVTUgtUHJhUGM1TVZWZk0zYzdnbDd6ZXRuVmxyLXBLMmFNWjYwRWJWSlJOVFZWRHFZYmtUM211R3lhTjdjVjFNdWluY1JfNEd4SEZqMGRybzR2VnZQLXMwZlc1NXpBa3FHbVFpMmdYZGRhbktaUXUwUjdVZGdtTGVfYVpYY3hCVUQ1OWlrekd6dDg?oc=5",
-     "date": "2026-10-30",
-     "score": 10.0,
-     "source": "VnEconomy"
+     "source": "Vietnam.vn"
     }
    ],
-   "n_news": 11,
-   "n_moves": 1,
-   "rank": 4.08,
+   "n_news": 10,
+   "n_moves": 2,
+   "rank": 7.09,
    "link": "danh-muc.html?c=tt"
   }
  ]

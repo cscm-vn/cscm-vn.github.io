@@ -2048,6 +2048,7 @@ date,item_id,region,source,price,price_high,unit,currency,change_pct,fetched_at
 2026-10-30,fx_cny_vnd,,Vietcombank,3817.97,,VND/CNY,VND,,2026-10-30T18:16:49+07:00
 2026-10-30,fx_eur_vnd,,Vietcombank,28425.26,,VND/EUR,VND,,2026-10-30T18:16:49+07:00
 2026-10-30,fx_usd_vnd,,Vietcombank,25610,,VND/USD,VND,,2026-10-30T18:16:49+07:00
+2026-10-30,lbma_gold,,Westmetall (LBMA),3981.1,,USD/oz,USD,,2026-10-31T06:23:24+07:00
 2026-10-30,mesh_fiberglass_eblock,TP.HCM,eblock.com.vn (niêm yết nhà máy),7000,,VND/m,VND,,2026-10-30T09:29:48+07:00
 2026-10-30,mortar_aac_eblock_ebs301,TP.HCM,eblock.com.vn (niêm yết nhà máy),6600,,VND/kg,VND,,2026-10-30T09:29:48+07:00
 2026-10-30,mortar_aac_mater_m75,Hà Nội,gachbetongnhe.com.vn (tổng kho HN),3000,,VND/kg,VND,,2026-10-30T09:29:48+07:00
@@ -2107,7 +2108,7 @@ date,item_id,region,source,price,price_high,unit,currency,change_pct,fetched_at
 2026-10-30,te_nickel,,Trading Economics,15474,,USD/tấn,USD,-0.26,2026-10-30T18:44:10+07:00
 2026-10-30,te_polyethylene,,Trading Economics,9352,,CNY/tấn,CNY,,2026-10-30T09:29:48+07:00
 2026-10-30,te_polypropylene,,Trading Economics,10299,,CNY/tấn,CNY,,2026-10-30T09:29:48+07:00
-2026-10-30,te_pvc,,Trading Economics,5295,,CNY/tấn,CNY,,2026-10-30T16:21:49+07:00
+2026-10-30,te_pvc,,Trading Economics,5269,,CNY/tấn,CNY,,2026-10-31T06:23:24+07:00
 2026-10-30,te_rebar_shfe,,Trading Economics,3040,,CNY/tấn,CNY,-0.36,2026-10-30T15:49:20+07:00
 2026-10-30,te_scrap,,Trading Economics,403,,USD/tấn,USD,0.62,2026-10-30T16:21:49+07:00
 2026-10-30,te_tin,,Trading Economics,49697,,USD/tấn,USD,-2.01,2026-10-30T18:16:49+07:00
@@ -2169,6 +2170,81 @@ date,item_id,region,source,price,price_high,unit,currency,change_pct,fetched_at
 2026-10-30,vnsteel_viet_y_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,13940,,VND/kg,VND,,2026-10-30T09:29:48+07:00
 2026-10-30,vnsteel_viet_y_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-10-30T09:29:48+07:00
 2026-10-30,vnsteel_viet_y_mien_bac_cb500_d16,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-10-30T09:29:48+07:00
-2026-10-30,yf_copper,,Yahoo Finance (HG=F),6.519000053405762,,USD/lb,USD,-0.942103012044393,2026-10-30T18:44:10+07:00
-2026-10-30,yf_gold,,Yahoo Finance (GC=F),3986.39990234375,,USD/oz,USD,-1.1162375623871568,2026-10-30T18:44:10+07:00
-2026-10-30,yf_silver,,Yahoo Finance (SI=F),50.5,,USD/oz,USD,-3.2400257339113003,2026-10-30T18:44:10+07:00
+2026-10-30,yf_aluminium,,Yahoo Finance (ALI=F),3166,,USD/tấn,USD,-4.989121464475954,2026-10-31T06:23:24+07:00
+2026-10-30,yf_copper,,Yahoo Finance (HG=F),6.509500026702881,,USD/lb,USD,-1.086458382317046,2026-10-31T06:23:24+07:00
+2026-10-30,yf_gold,,Yahoo Finance (GC=F),3884.89990234375,,USD/oz,USD,-3.633973397549295,2026-10-31T06:23:24+07:00
+2026-10-30,yf_hrc,,Yahoo Finance (HRC=F),1402,,USD/short ton,USD,4.470938897168408,2026-10-31T06:23:24+07:00
+2026-10-30,yf_silver,,Yahoo Finance (SI=F),49.1349983215332,,USD/oz,USD,-5.855422313745262,2026-10-31T06:23:24+07:00
+2026-10-31,aac_hcm_eblock_b3_d100,TP.HCM,eblock.com.vn (niêm yết nhà máy),1720000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,aac_hcm_eblock_b3_d75,TP.HCM,eblock.com.vn (niêm yết nhà máy),1720000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,aac_hn_viglacera_d100,Hà Nội,betongsieunhe.vn (đại lý Viglacera HN),1350000,1540000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,aac_hn_viglacera_d75,Hà Nội,betongsieunhe.vn (đại lý Viglacera HN),1450000,1680000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,cable_cxv_cadivi_1x120,,thanhdattech.com.vn (bảng giá niêm yết đại lý CADIVI),540232,,VND/m,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,cable_cxv_cadivi_1x70,,thanhdattech.com.vn (bảng giá niêm yết đại lý CADIVI),301411,,VND/m,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,cable_cxv_cadivi_1x95,,thanhdattech.com.vn (bảng giá niêm yết đại lý CADIVI),414249,,VND/m,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,ceiling_vinhtuong_mr_tika,,vinhtuong.com (giá tham khảo hãng),240000,,VND/m²,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,ceiling_vinhtuong_std_tika,,vinhtuong.com (giá tham khảo hãng),210000,,VND/m²,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,fx_cny_vnd,,Vietcombank,3817.97,,VND/CNY,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,fx_eur_vnd,,Vietcombank,28425.26,,VND/EUR,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,fx_usd_vnd,,Vietcombank,25610,,VND/USD,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,mesh_fiberglass_eblock,TP.HCM,eblock.com.vn (niêm yết nhà máy),7000,,VND/m,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,mortar_aac_eblock_ebs301,TP.HCM,eblock.com.vn (niêm yết nhà máy),6600,,VND/kg,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,mortar_aac_mater_m75,Hà Nội,gachbetongnhe.com.vn (tổng kho HN),3000,,VND/kg,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,mortar_aac_sako_m75_s900,Hà Nội,gachbetongnhe.com.vn (tổng kho HN),5000,,VND/kg,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,pipe_hdpe_pe100_d110_pn10,Miền Nam,ongnuoctienphong.vn (đại lý Tiền Phong),151091,,VND/m,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,pipe_hdpe_pe100_d63_pn10,Miền Nam,ongnuoctienphong.vn (đại lý Tiền Phong),49273,,VND/m,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m100,TP.HCM,betongdongnam.com,1220000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m150,TP.HCM,betongdongnam.com,1270000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m200,TP.HCM,betongdongnam.com,1320000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m250,TP.HCM,betongdongnam.com,1270000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m300,TP.HCM,betongdongnam.com,1320000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m350,TP.HCM,betongdongnam.com,1370000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m400,TP.HCM,betongdongnam.com,1420000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m450,TP.HCM,betongdongnam.com,1470000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m500,TP.HCM,betongdongnam.com,1520000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m600,TP.HCM,betongdongnam.com,1570000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dn_m700,TP.HCM,betongdongnam.com,1620000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dvc_m200,TP.HCM,betongdvc.com,1450000,1550000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dvc_m250,TP.HCM,betongdvc.com,1550000,1650000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dvc_m300,TP.HCM,betongdvc.com,1650000,1750000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_dvc_m350,TP.HCM,betongdvc.com,1750000,1850000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_mk_m100,TP.HCM,mekongthuongtin.com,1050000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_mk_m150,TP.HCM,mekongthuongtin.com,1100000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_mk_m200,TP.HCM,mekongthuongtin.com,1150000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_mk_m250,TP.HCM,mekongthuongtin.com,1200000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_mk_m300,TP.HCM,mekongthuongtin.com,1250000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_mk_m350,TP.HCM,mekongthuongtin.com,1300000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hcm_mk_m400,TP.HCM,mekongthuongtin.com,1350000,,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_btHN_m100,Hà Nội,betonghanoi.com.vn,1330000,1440000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_btHN_m150,Hà Nội,betonghanoi.com.vn,1360000,1470000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_btHN_m200,Hà Nội,betonghanoi.com.vn,1390000,1500000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_btHN_m250,Hà Nội,betonghanoi.com.vn,1430000,1530000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_btHN_m300,Hà Nội,betonghanoi.com.vn,1470000,1580000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_btHN_m350,Hà Nội,betonghanoi.com.vn,1510000,1620000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_btHN_m400,Hà Nội,betonghanoi.com.vn,1560000,1660000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_btHN_m450,Hà Nội,betonghanoi.com.vn,1600000,1720000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_chem_m100,Hà Nội,betongtuoichem.com,980000,1120000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_chem_m150,Hà Nội,betongtuoichem.com,1000000,1140000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_chem_m200,Hà Nội,betongtuoichem.com,1030000,1170000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_chem_m250,Hà Nội,betongtuoichem.com,1070000,1210000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_chem_m300,Hà Nội,betongtuoichem.com,1110000,1250000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_chem_m350,Hà Nội,betongtuoichem.com,1160000,1300000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,rmc_hn_chem_m400,Hà Nội,betongtuoichem.com,1210000,1350000,VND/m³,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,sika_latex_th_25l,TP.HCM,hoachatxaydung.vn (đại lý Sika Chính Tiến),57600,,VND/lít,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,sjc_bar,,giavang.org (giá SJC),141400000,,VND/lượng,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,sjc_bar_webgia,,webgia.com,141400000,,VND/lượng,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,sjc_ring,,giavang.org (giá SJC),138300000,,VND/lượng,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,skimcoat_eblock_ebs302,TP.HCM,eblock.com.vn (niêm yết nhà máy),7400,,VND/kg,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,skimcoat_mater_401,Hà Nội,gachbetongnhe.com.vn (tổng kho HN),6000,,VND/kg,VND,,2026-10-31T06:23:24+07:00
+2026-10-31,te_aluminium,,Trading Economics,3059.7,,USD/tấn,USD,-0.38,2026-10-31T06:23:24+07:00
+2026-10-31,te_cokingcoal,,Trading Economics,268.04,,USD/tấn,USD,0,2026-10-31T06:23:24+07:00
+2026-10-31,te_copper,,Trading Economics,6.4475,,USD/lb,USD,-2.03,2026-10-31T06:23:24+07:00
+2026-10-31,te_hrc,,Trading Economics,1434,,USD/short ton,USD,0.84,2026-10-31T06:23:24+07:00
+2026-10-31,te_ironore,,Trading Economics,90.71,,USD/tấn,USD,0,2026-10-31T06:23:24+07:00
+2026-10-31,te_ironore_cny,,Trading Economics,672,,CNY/tấn,CNY,-1.47,2026-10-31T06:23:24+07:00
+2026-10-31,te_lead,,Trading Economics,1911.58,,USD/tấn,USD,-0.24,2026-10-31T06:23:24+07:00
+2026-10-31,te_nickel,,Trading Economics,15220,,USD/tấn,USD,-1.9,2026-10-31T06:23:24+07:00
+2026-10-31,te_rebar_shfe,,Trading Economics,3035,,CNY/tấn,CNY,-0.52,2026-10-31T06:23:24+07:00
+2026-10-31,te_scrap,,Trading Economics,403,,USD/tấn,USD,0.62,2026-10-31T06:23:24+07:00
+2026-10-31,te_tin,,Trading Economics,49697,,USD/tấn,USD,-2.01,2026-10-31T06:23:24+07:00
+2026-10-31,te_zinc,,Trading Economics,3837.55,,USD/tấn,USD,-1.06,2026-10-31T06:23:24+07:00
