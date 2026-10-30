@@ -179,8 +179,12 @@ def main():
         open(page, "w", encoding="utf-8").write(s)
     # top_history.json: snapshot of the homepage top-N trend ids per VN date (persisted by CI) -> "⚡ Mới" = new vs previous VN date
     TOPN = 6; thp = os.path.join(H, "data", "top_history.json"); th = J(thp, {}) or {}; days = th.get("days", {})
-    days[dt.datetime.now(TZ).strftime("%Y-%m-%d")] = [x["id"] for x in J(os.path.join(H, "data", "trends.json"), {"items": []})["items"][:TOPN]]
-    days = dict(sorted(days.items())[-14:]); json.dump(dict(n=TOPN, days=days), open(thp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    # homepage top: items published within the last FRESH days (VN date, build time) first by score, older ones only fill remaining slots
+    FRESH = 7; today = dt.datetime.now(TZ).date(); cut = (today - dt.timedelta(days=FRESH - 1)).isoformat()
+    TI = sorted(J(os.path.join(H, "data", "trends.json"), {"items": []})["items"], key=lambda x: -(x.get("score") or 0))
+    home = ([x for x in TI if str(x.get("date") or "")[:10] >= cut] + [x for x in TI if str(x.get("date") or "")[:10] < cut])[:TOPN]
+    days[today.isoformat()] = [x["id"] for x in home]
+    days = dict(sorted(days.items())[-14:]); json.dump(dict(n=TOPN, fresh_days=FRESH, fresh_from=cut, home=days[today.isoformat()], days=days), open(thp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for f in glob.glob(os.path.join(H, "web", "*")): shutil.copy(f, SITE)
     stamp_sw()  # PWA: đóng dấu VERSION cache của sw.js theo nội dung tài nguyên tĩnh
     for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json", "orgs.json", "legal.json", "fidic.json", "trade-remedies.json", "disputes.json", "quiz.json", "checklist.json", "legal-feed.json", "policy-feed.json", "highlights.json", "top_history.json", "suppliers.json"):
