@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-30T16:46+07:00",
+ "built": "2026-10-30T18:21+07:00",
  "today": "2026-10-30",
  "news_since": "2026-10-29",
  "thresholds": {
@@ -36,10 +36,10 @@
      "id": "te_hrc",
      "name": "Thép HRC (CME US Midwest, tham chiếu TE)",
      "region": "",
-     "d1": 2.66,
+     "d1": 2.31,
      "date": "2026-10-30",
      "prev_date": "2026-10-29",
-     "price": 1429.0,
+     "price": 1424.09,
      "unit": "USD/short ton",
      "kind": "world",
      "threshold": 2.0,
@@ -72,7 +72,7 @@
    ],
    "n_news": 5,
    "n_moves": 1,
-   "rank": 2.83,
+   "rank": 2.66,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -212,7 +212,22 @@
    "id": "tt",
    "name": "Vĩ mô & thương mại",
    "icon": "🌏",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_silver",
+     "name": "Bạc (COMEX Silver)",
+     "region": "",
+     "d1": -2.05,
+     "date": "2026-10-30",
+     "prev_date": "2026-10-29",
+     "price": 50.560001373291016,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=yf_silver"
+    }
+   ],
    "news": [
     {
      "title": "Doanh nghiệp Trung Quốc trúng thầu dự án alumin 833 triệu USD tại Việt Nam",
@@ -236,9 +251,9 @@
      "source": "VnEconomy"
     }
    ],
-   "n_news": 10,
-   "n_moves": 0,
-   "rank": 3.0,
+   "n_news": 11,
+   "n_moves": 1,
+   "rank": 4.03,
    "link": "danh-muc.html?c=tt"
   }
  ]
