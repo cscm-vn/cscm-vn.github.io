@@ -1,6 +1,6 @@
 """Landed-cost China vs Vietnam builder (SCM tab).
 Source of truth: trends/data/landed-cost.json (editorial: items, taxes, prices, sources, assumptions).
-This script refreshes FX automatically (Hub price board USD/VND + open.er-api.com USD/CNY), flags stale freight,
+This script refreshes FX automatically (Hub price board USD/VND; CNY/VND Vietcombank from data/history/prices, fallback open.er-api.com), flags stale freight,
 computes baseline results per item × region with the SAME formula as scm.html, and writes site/data/landed-cost.json.
 Usage: python trends/landed.py [--site site] [--write-source]"""
 import json, os, sys, datetime as dt, urllib.request, unicodedata
@@ -39,9 +39,11 @@ def main():
     er = fetch_json("https://open.er-api.com/v6/latest/USD")
     if hub.get("usd_vnd"): d["fx"]["usd_vnd"] = round(hub["usd_vnd"])
     elif er: d["fx"]["usd_vnd"] = round(er["rates"]["VND"])
-    if er: d["fx"]["cny_vnd"] = round(d["fx"]["usd_vnd"] / er["rates"]["CNY"], 1)
+    sys.path.insert(0, H); import rmb_vnd; vcb, vday = rmb_vnd.rate()  # CNY/VND Vietcombank (chuyển khoản), cùng tỷ giá quy đổi tin TQ
+    if vcb: d["fx"]["cny_vnd"] = round(vcb, 1); d["fx"]["cny_src"] = "Vietcombank (chuyển khoản)"; d["fx"]["cny_date"] = vday; d["fx"]["src"] = dict(name="Bảng giá Hub (USD/VND) + Vietcombank (CNY/VND, chuyển khoản)", url="https://www.vietcombank.com.vn/vi-VN/KHCN/Cong-cu-Tien-ich/Ty-gia", date=vday)
+    elif er: d["fx"]["cny_vnd"] = round(d["fx"]["usd_vnd"] / er["rates"]["CNY"], 1); d["fx"]["cny_src"] = "open.er-api.com"; d["fx"]["cny_date"] = None
     d["fx"]["asof"] = (hub.get("updated") or now.isoformat(timespec="minutes"))[:16]
-    d["fx"]["text"] = ("USD/VND từ Bảng giá Hub" if hub.get("usd_vnd") else "USD/VND từ open.er-api.com") + (" · USD/CNY từ open.er-api.com" if er else " · USD/CNY lần cập nhật trước")
+    d["fx"]["text"] = ("USD/VND từ Bảng giá Hub" if hub.get("usd_vnd") else "USD/VND từ open.er-api.com") + (f" · CNY/VND Vietcombank (chuyển khoản) ngày {dt.date.fromisoformat(vday):%d/%m/%Y}" if vcb else " · USD/CNY từ open.er-api.com" if er else " · USD/CNY lần cập nhật trước")
     fa = d["freight"]["src"].get("date", "")
     try: d["freight"]["stale"] = (now.date() - dt.date.fromisoformat(fa + "-01" if len(fa) == 7 else fa)).days > 45
     except Exception: d["freight"]["stale"] = True

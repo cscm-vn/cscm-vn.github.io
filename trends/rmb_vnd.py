@@ -32,16 +32,27 @@ SIGN = [""]
 SCALE = {"nghìn": 1e3, "ngàn": 1e3, "vạn": 1e4, "万": 1e4, "triệu": 1e6, "tỷ": 1e9, "亿": 1e8}
 UNIT = {"tấn": "tấn", "t": "tấn", "吨": "tấn", "kg": "kg", "m²": "m²", "m2": "m²", "m³": "m³", "m3": "m³", "tấm": "tấm", "m": "m"}
 N = r"\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?"
-RX = re.compile(r"(?<![\w.,/])(?P<tilde>~\s?)?(?P<sign>[+−]|-(?=\d))?(?P<a>" + N + r")(?:\s*[–—-]\s*(?P<b>" + N + r"))?"
+RX = re.compile(r"(?<![\w.,/])(?P<op>\(\s?)?(?P<tilde>~\s?)?(?P<sign>[+−]|-(?=\d))?(?P<a>" + N + r")(?:\s*[–—-]\s*(?P<b>" + N + r"))?"
                 r"(?:\s*(?P<sc>nghìn|ngàn|vạn|triệu|tỷ|万|亿))?\s*(?P<cur>NDT|nhân dân tệ|元|CNY|RMB|yuan)(?![\w])"
                 r"(?P<u>\s*/\s*(?:tấn|吨|kg|m²|m2|m³|m3|tấm|t|m)(?![\wáàảãạâấầẩẫậ]))?")
 RXP = re.compile(r"(?<![\w])(?P<cur>¥|CNY|RMB)\s?(?P<a>" + N + r")(?:\s*[–—-]\s*(?P<b>" + N + r"))?(?:\s*(?P<sc>nghìn|triệu|tỷ|万|亿))?"
                  r"(?P<u>\s*/\s*(?:tấn|吨|kg|m²|m2|t)(?![\w]))?")
 
+LIST = re.compile(r"((?:[^\W\d_][^\d,;()]{0,25}?\s[+−]?(?:" + N + r")\s*,\s*)+)(?=[^\W\d_][^\d,;()]{0,25}?\s[+−]?(?:" + N + r")\s*(?:NDT|nhân dân tệ|元|CNY|RMB)\s*(?P<u>/\s*(?:tấn|吨|t|kg|m²|m2|m³|m3)\b|/\s*吨))")
+ITEM = re.compile(r"(?<![\w.,])(?P<sign>[+−])?(?P<a>" + N + r")(?=\s*,)")
+
 def convert(s, r):
     n = [0]
+    def lst(m):  # "Thượng Hải 445, Bắc Kinh 340, Quảng Châu 385 NDT/tấn": the shared unit applies to every number
+        u = "/" + UNIT[re.sub(r"[\s/]", "", m.group("u"))]
+        def one(x):
+            sg = x.group("sign") or ""; SIGN[0] = "+" if sg == "+" else ""; n[0] += 1
+            return f"≈ {fmt((-1 if sg == '−' else 1) * num(x.group('a')) * r)} đ{u} ({x.group(0)})"
+        return ITEM.sub(one, m.group(1))
+    s = LIST.sub(lst, s)
     def rep(m):
-        if m.string[max(0, m.start() - 1):m.start()] == "(" and any(x.end() == len(m.string[:m.start() - 1].rstrip()) for x in RX.finditer(m.string[:m.start() - 1].rstrip())): return m.group(0)  # alias of an amount just converted
+        op = m.groupdict().get("op") or ""; pre = m.string[:m.start()].rstrip()
+        if op and any(x.end() == len(pre) for x in RX.finditer(pre)): return m.group(0)  # alias of an amount just converted
         a = m.group("a"); b = m.group("b"); sc = SCALE.get(m.group("sc") or "", 1)
         sg = m.groupdict().get("sign") or ""; SIGN[0] = "+" if sg == "+" else ""
         mul = -1 if sg in ("−", "-") else 1
@@ -52,7 +63,8 @@ def convert(s, r):
             tb = fmt(mul * num(b) * sc * r).lstrip("+"); ua, ub = txt.split(" ", 1)[1:] or [""], tb.split(" ", 1)[1:] or [""]
             txt = (txt.split(" ", 1)[0] + "–" + tb) if ua == ub and ua != [""] else (txt + "–" + tb)
         n[0] += 1
-        return f"≈ {txt} đ{us} ({m.group(0).strip()})" if not m.groupdict().get("tilde") else f"≈ {txt} đ{us} ({m.group(0).strip()})"
+        orig = m.group(0)[len(op):].strip()
+        return f"≈ {txt} đ{us} ({orig}" if op else f"≈ {txt} đ{us} ({orig})"  # already inside "(": VND goes before it, no nested paren
     s2 = RX.sub(rep, s); s2 = RXP.sub(rep, s2) if "≈" not in s2 or RXP.search(s2) else s2
     return s2, n[0]
 
