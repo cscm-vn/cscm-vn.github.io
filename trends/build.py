@@ -189,6 +189,13 @@ def main():
     stamp_sw()  # PWA: đóng dấu VERSION cache của sw.js theo nội dung tài nguyên tĩnh
     for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json", "orgs.json", "legal.json", "fidic.json", "trade-remedies.json", "disputes.json", "quiz.json", "checklist.json", "legal-feed.json", "policy-feed.json", "highlights.json", "top_history.json", "suppliers.json"):
         if os.path.exists(os.path.join(H, "data", f)): shutil.copy(os.path.join(H, "data", f), OUT)
+    # homepage "Luật & chính sách mới": chỉ tin đăng trong FRESH ngày gần nhất (giờ VN lúc build), cùng quy tắc pick_home; hop-dong.html không dùng "home7"
+    pfp = os.path.join(OUT, "policy-feed.json"); PF = J(pfp, None)
+    if PF and PF.get("items"):
+        sys.path.insert(0, H); import policy_feed as _pf
+        rec = [x for x in PF["items"] if str(x.get("published") or x.get("found") or "")[:10] >= cut]
+        PF["home7"] = [dict(id=x["id"], same=PF.get("clusters", {}).get(x.get("cluster"), {}).get("n", 1) - 1) for x in _pf.pick_home(rec)] if rec else []
+        PF["home7_from"] = cut; json.dump(PF, open(pfp, "w", encoding="utf-8"), ensure_ascii=False)
     shutil.copy(TAXF, os.path.join(OUT, "taxonomy.json"))
     fd = J(os.path.join(OUT, "feed.json"))  # slim the public feed (UI never shows snippets) for faster first load
     if fd:
