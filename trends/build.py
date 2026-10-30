@@ -198,6 +198,7 @@ def main():
     fc = next((p for p in ("du-bao.html", "du-bao/index.html", "forecast.html", "forecast/index.html") if os.path.exists(os.path.join(SITE, p))), None)
     json.dump(dict(forecast_page=fc), open(os.path.join(OUT, "site-config.json"), "w"))
     write_mt(); n, c = build(); print(f"hub built: {n} price items mapped, {c} HN/HCM comparisons, forecast page: {fc}")
+    sys.path.insert(0, H); import rmb_vnd; rmb_vnd.apply(OUT)  # NDT -> VND (tỷ giá Vietcombank) trong tin TQ, chỉ ở bản build
     import unicodedata  # normalize every generated text file to NFC (decomposed Vietnamese marks render detached)
     for f in glob.glob(os.path.join(SITE, "**", "*"), recursive=True):
         if f.endswith((".html", ".json", ".csv", ".js", ".css")) and os.path.isfile(f):
