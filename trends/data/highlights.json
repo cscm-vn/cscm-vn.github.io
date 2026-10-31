@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-10-31T09:18+07:00",
+ "built": "2026-10-31T17:53+07:00",
  "today": "2026-10-31",
  "news_since": "2026-10-30",
  "thresholds": {
@@ -24,29 +24,14 @@
  "top": [
   "tt",
   "mep",
-  "xd"
+  "cq"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "yf_hrc",
-     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
-     "region": "",
-     "d1": 4.47,
-     "date": "2026-10-30",
-     "prev_date": "2026-10-29",
-     "price": 1402.0,
-     "unit": "USD/short ton",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=yf_hrc"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Giá thép hôm nay 30/10: Quặng sắt lên mức cao nhất gần hai tuần",
@@ -64,8 +49,8 @@
     }
    ],
    "n_news": 2,
-   "n_moves": 1,
-   "rank": 2.83,
+   "n_moves": 0,
+   "rank": 0.6,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -73,20 +58,6 @@
    "name": "MEP",
    "icon": "⚡",
    "prices": [
-    {
-     "id": "yf_aluminium",
-     "name": "Nhôm (COMEX Aluminum)",
-     "region": "",
-     "d1": -4.99,
-     "date": "2026-10-30",
-     "prev_date": "2026-10-29",
-     "price": 3166.0,
-     "unit": "USD/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=yf_aluminium"
-    },
     {
      "id": "lme_tin",
      "name": "Thiếc LME",
@@ -104,6 +75,13 @@
    ],
    "news": [
     {
+     "title": "Weekly round-up: LME aluminium, zinc gain; Indian copper prices recover",
+     "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNVEVldGNVTFRCbXVHOVlfeTZrcEZjekQyaFN4bUd3RkNuSFNyZnpZd0gySG5SVlJ6QTY4MnM3THZ3VmhETjk0WVJHYjA0UERpNGQzT2tyTHR1OXU3bHI1X1JyLTNQZlBaZW95bVdRUGhibG80STEwTVl0TzF5V3daUDNodWNVMk13d2tWa01fNlVrNFo0enJnTmMyRWtoMU5OcW95WlY1NnVHWUN4QWJrZXJTWmo?oc=5",
+     "date": "2026-10-31",
+     "score": 11.0,
+     "source": "BigMint"
+    },
+    {
      "title": "Copper edges lower as higher oil, AI doubts weigh",
      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE14dXhtU2FVVEhoUmNJUHZVc0xGeXlkNkUwZDlmc0dRbFpucEs5VUMzX3hwb2JldjkxU2UyZXBJS3JuaDhFUUx2MUtnXzFFM0lRanVobzJn0gFWQVVfeXFMTXh1eG1TYVVUSGhSY0lQdlVzTEZ5eWQ2RTBkOWZzR1FsWm5wSzlVQzNfeHBvYmV2OTFTZTJlcElLcm5oOEVRTHYxS2dfMUUzSVFqdWhvMmc?oc=5",
      "date": "2026-10-30",
@@ -116,18 +94,11 @@
      "date": "2026-10-30",
      "score": 8.7,
      "source": "AL Circle"
-    },
-    {
-     "title": "Copper Prices in 2026: Will Mine Shortages Sustain the AI-Driven Rally?",
-     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNUnh4T3lsTkJmTHVPcFptMkgwbzJzOFVnd3ljeGZYOFYzMVZYbmliVjI0eHdJTWZfdXVGWjFKcFZIUEMyUWpXekRZV2o1b2dzSHJkRzlmaHlDbC0xSjZVYjlIQWhUckdOYmNNNWtmYVVDNW9jNnJGT0I1V2NSdlJqUUR6RENoNTF2eFZCUG5UWUJvMW14TjVleUFwalQ?oc=5",
-     "date": "2026-10-30",
-     "score": 8.7,
-     "source": "CarbonCredits.com"
     }
    ],
-   "n_news": 7,
-   "n_moves": 2,
-   "rank": 6.19,
+   "n_news": 9,
+   "n_moves": 1,
+   "rank": 4.29,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -184,16 +155,16 @@
      "source": "VTC News"
     },
     {
-     "title": "Ba cựu Chủ tịch huyện “giúp” ông chủ Cây xanh Công Minh trúng thầu như thế nào?",
-     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPQk9IOEdtYjJnQ0tmT0dQZkZVWENYX2tvZUZfbFp4ZWNUMXVxN3dVd2dkWk5GWHlUODJjZFBPc3loek91YzFybVM4bktlRkVZMXBYbW45M2h3dXZyWEVVWUphV29aZEdHNDNLRktaYy14TEx0eGdFUHpKN3J4VXU3Qm5La0p4bV9SSG1fM0U2UVJRempNVmJCYlBacE13UFNISzFmc3k1Y2ZYYzNZQW84?oc=5",
+     "title": "'Cảm ơn' cán bộ, Cây xanh Công Minh được tạo điều kiện trúng thầu ra sao?",
+     "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNOWdKcXVZSnJOVWxBQVRMN1JxaVlvb09DODZ2SE1LTW5NTkJTTkx4WlVILVFSek1CcWY0X1QzdTNaSlFiQnZUeGpYeGNlakc4dzIzN0pDT3NNdG1JR3M3TlllUHo2VEdZZ0sxRW9LM0Yyczh5cjVnMlpUVEVoa3FScWx1NzZlYnI5LTcxaDVDdlRjVDRiWV85UkRLZ0w0N0dUNTVhMjZR?oc=5",
      "date": "2026-10-30",
      "score": 9.7,
-     "source": "Nghệ An 24h"
+     "source": "VTC News"
     }
    ],
-   "n_news": 5,
+   "n_news": 7,
    "n_moves": 0,
-   "rank": 1.5,
+   "rank": 2.1,
    "link": "danh-muc.html?c=cq"
   },
   {
@@ -224,10 +195,10 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -4.81,
+     "d1": -4.89,
      "date": "2026-10-30",
      "prev_date": "2026-10-29",
-     "price": 49.1349983215332,
+     "price": 49.09700012207031,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
@@ -238,10 +209,10 @@
      "id": "yf_gold",
      "name": "Vàng (COMEX Gold)",
      "region": "",
-     "d1": -3.37,
+     "d1": -3.02,
      "date": "2026-10-30",
      "prev_date": "2026-10-29",
-     "price": 3884.89990234375,
+     "price": 3898.89990234375,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
@@ -272,9 +243,9 @@
      "source": "Vietnam.vn"
     }
    ],
-   "n_news": 10,
+   "n_news": 11,
    "n_moves": 2,
-   "rank": 7.09,
+   "rank": 6.96,
    "link": "danh-muc.html?c=tt"
   }
  ]
