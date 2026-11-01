@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-01T09:07+07:00",
+ "built": "2026-11-01T16:09+07:00",
  "today": "2026-11-01",
  "news_since": "2026-10-31",
  "thresholds": {
@@ -22,20 +22,43 @@
   }
  },
  "top": [
-  "tt",
   "mep",
-  "cq"
+  "tt",
+  "xd"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
-   "news": [],
-   "n_news": 0,
-   "n_moves": 0,
-   "rank": 0.0,
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": 4.17,
+     "date": "2026-10-30",
+     "prev_date": "2026-10-29",
+     "price": 1398.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
+   "news": [
+    {
+     "title": "Giá thép hôm nay 1/11/2026: Quặng sắt tuần qua trồi sụt, áp lực tồn kho cảng biển bủa vây",
+     "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPd0RJRmNnSFVIaloxTTc1dk5JZ2FDal8tamo3Vnk5WHEzRjhMOHZHcG1kV21FanRxeFFyMlZnVWRzTkxmVXg4ZVhPa3pXRFlVWVE5T0NwQld0X2lhbngzWUxBQmdqQkUxLXBWN3B3YVkwQ2x0dUNVU2RGZnpiXzNVak5SWWxUSkdaVTNnMVJOaS1yX05wTm0zZ3VSblRkMHdmamhkRkZYM0Q4R0pIUFpJVDVkcVMydy1XdThQOFNySjhzR2Y2Ymc?oc=5",
+     "date": "2026-11-01",
+     "score": 8.0,
+     "source": "Tạp chí Doanh nghiệp và Hội nhập"
+    }
+   ],
+   "n_news": 1,
+   "n_moves": 1,
+   "rank": 2.38,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -43,6 +66,20 @@
    "name": "MEP",
    "icon": "⚡",
    "prices": [
+    {
+     "id": "yf_aluminium",
+     "name": "Nhôm (COMEX Aluminum)",
+     "region": "",
+     "d1": -4.94,
+     "date": "2026-10-30",
+     "prev_date": "2026-10-29",
+     "price": 3167.5,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_aluminium"
+    },
     {
      "id": "lme_tin",
      "name": "Thiếc LME",
@@ -67,23 +104,23 @@
      "source": "BigMint"
     },
     {
-     "title": "Thông tin Chính phủ. . 🔥 ‼️ NGUY HIỂM 😰 --- 📹 Tuyên truyền về Phòng cháy, chữa cháy của Phòng CS PCCC&CNCH Công an TPHCM",
-     "url": "https://news.google.com/rss/articles/CBMiyAJBVV95cUxPekhic0hndXVLeVFFM0J5RlRkRDBENVNRaUVDZG1hVy1UZFlibzNkWWh0Q1RCdWQ1X0xBQkc5aTNYdXBMZ0lVc3lkQTRNbHI4dFFJVUFVdU9fcXhxWHpiVS11MHJhZE94cjBoMUFGRGlIT013VDRFbG51YTJOdTI3a0FvMERaeXhBeHd2eDdaRk5iel9mMXZNbmhabUFTcjJWd3RQcTh4c09JLUJYaFJuMERPNWtHNVFoRWRqalYwS3R2cHZTVFB2eHZUOXVmcTRPcWpnNHZvdkVpdWJMclJuNlFMd0p4Rk5CUkNJOWc4QmltVEs2MHJtdUhzSEJUeTBVdklibTFlLUZqMnFRRlVEQ2VEVU9LUzU1dHJUQmhlaER4bFh6TTBxbTdlTlY3OW11cWMzUlEtNXNwaWFDeUxLVWZpcXZWMkVt?oc=5",
-     "date": "2026-10-31",
-     "score": 6.7,
+     "title": "🔥 ‼️ NGUY HIỂM 😰 --- 📹 Tuyên truyền về Phòng cháy, chữa cháy của Phòng CS PCCC&CNCH Công an TPHCM",
+     "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxQQTBTandlQzhSTmJOaVoyb1E3UVR1V0dvUUZzN3g4NFk5TFJfRm92V01xZW5NajhyLWJ2YjViYTVPM0lqbFBHZDNoYVN1U0hpSkVSWEpDX0FOcEFBWW1wSTZVSWhiXzRlMkNlYVFySkFqYlJfX3NXUWxyZ0ZISVhKeENVMDRRSjhhR1FMOTJ0TUd0VjQwUkx3NnBIUHVHQzNIWmVWUlJSamRaUUJqbXNucXYzOHg3RDVpaWJuQTEzOHpGbTdicWJoem1GQnhPaGZfWTVFNmY2VlY2a25GMjN2cDZUWnYyai1NSWtpSmM1Zll1ZXRzWmRIRTlTS3hmdXVieGgxRU1fcXg5X2JJbmRkUThrNHdpQVN0cEdvTi1aRmlMenJMOHNvWmRIV2kxSmZsVldDZWVFU0NqekVtaTBDaWl5TUExZlE?oc=5",
+     "date": "2026-11-01",
+     "score": 7.0,
      "source": "Facebook"
     },
     {
-     "title": "🔥 ‼️ NGUY HIỂM 😰 --- 📹 Tuyên truyền về Phòng cháy, chữa cháy của Phòng CS PCCC&CNCH Công an TPHCM",
-     "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxQQTBTandlQzhSTmJOaVoyb1E3UVR1V0dvUUZzN3g4NFk5TFJfRm92V01xZW5NajhyLWJ2YjViYTVPM0lqbFBHZDNoYVN1U0hpSkVSWEpDX0FOcEFBWW1wSTZVSWhiXzRlMkNlYVFySkFqYlJfX3NXUWxyZ0ZISVhKeENVMDRRSjhhR1FMOTJ0TUd0VjQwUkx3NnBIUHVHQzNIWmVWUlJSamRaUUJqbXNucXYzOHg3RDVpaWJuQTEzOHpGbTdicWJoem1GQnhPaGZfWTVFNmY2VlY2a25GMjN2cDZUWnYyai1NSWtpSmM1Zll1ZXRzWmRIRTlTS3hmdXVieGgxRU1fcXg5X2JJbmRkUThrNHdpQVN0cEdvTi1aRmlMenJMOHNvWmRIV2kxSmZsVldDZWVFU0NqekVtaTBDaWl5TUExZlE?oc=5",
+     "title": "Thông tin Chính phủ. . 🔥 ‼️ NGUY HIỂM 😰 --- 📹 Tuyên truyền về Phòng cháy, chữa cháy của Phòng CS PCCC&CNCH Công an TPHCM",
+     "url": "https://news.google.com/rss/articles/CBMiyAJBVV95cUxPekhic0hndXVLeVFFM0J5RlRkRDBENVNRaUVDZG1hVy1UZFlibzNkWWh0Q1RCdWQ1X0xBQkc5aTNYdXBMZ0lVc3lkQTRNbHI4dFFJVUFVdU9fcXhxWHpiVS11MHJhZE94cjBoMUFGRGlIT013VDRFbG51YTJOdTI3a0FvMERaeXhBeHd2eDdaRk5iel9mMXZNbmhabUFTcjJWd3RQcTh4c09JLUJYaFJuMERPNWtHNVFoRWRqalYwS3R2cHZTVFB2eHZUOXVmcTRPcWpnNHZvdkVpdWJMclJuNlFMd0p4Rk5CUkNJOWc4QmltVEs2MHJtdUhzSEJUeTBVdklibTFlLUZqMnFRRlVEQ2VEVU9LUzU1dHJUQmhlaER4bFh6TTBxbTdlTlY3OW11cWMzUlEtNXNwaWFDeUxLVWZpcXZWMkVt?oc=5",
      "date": "2026-10-31",
      "score": 6.7,
      "source": "Facebook"
     }
    ],
    "n_news": 5,
-   "n_moves": 1,
-   "rank": 3.09,
+   "n_moves": 2,
+   "rank": 5.56,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -165,10 +202,10 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -4.89,
+     "d1": -4.54,
      "date": "2026-10-30",
      "prev_date": "2026-10-29",
-     "price": 49.09700012207031,
+     "price": 49.2760009765625,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
@@ -199,6 +236,13 @@
      "source": "Tin nhanh chứng khoán 31/10/2026"
     },
     {
+     "title": "Khởi tố Tổng Giám đốc sinh năm 1993 cùng nhóm đối tượng lừa đảo tiền cọc mua bất động sản",
+     "url": "https://cafef.vn/khoi-to-tong-giam-doc-sinh-nam-1993-cung-nhom-doi-tuong-lua-dao-tien-coc-mua-bat-dong-san-188261101141728943.chn",
+     "date": "2026-11-01",
+     "score": 4.0,
+     "source": "CafeF Bất động sản"
+    },
+    {
      "title": "Cần Thơ kiên quyết thay thế nhà thầu yếu kém, không để chậm tiến độ cao tốc",
      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPOFlqRXBZRmhYM0s1b2hxYllia2gtQ3EtTTdRRU9BZHJvMVFpMFRaVWNDb0JUc1JpcnZZd0t2LUdUcGRwU1l3OVd0X3BlVmowQXNfUDlFMnp3WUpLcm9lNzc5S24wZFFONm5xaGlaX1RUWjlRcDBYNDhzZnFlS2VBeExpZ2Y0Wl9CN0gwYkVlVm83VEY3Zm14T3ZaTlM3Zw?oc=5",
      "date": "2026-10-31",
@@ -206,9 +250,9 @@
      "source": "Vietnam.vn"
     }
    ],
-   "n_news": 2,
+   "n_news": 3,
    "n_moves": 2,
-   "rank": 4.55,
+   "rank": 4.68,
    "link": "danh-muc.html?c=tt"
   }
  ]
