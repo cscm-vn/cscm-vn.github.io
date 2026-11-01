@@ -271,6 +271,9 @@ def src_tthh():
             have = {r["id"] for r in out}
             out += [r for r in d["items"] if r["id"] not in have]
             print("tthh: using snapshot", d["saved_at"], file=sys.stderr)
+            age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(d["saved_at"])).days
+            if not have and age > 10:  # nguồn không còn dữ liệu/relay không làm mới >10 ngày -> báo lỗi để giữ giá cũ nhưng gắn cờ "cũ"
+                raise RuntimeError(f"tthh: bản chụp relay đã {age} ngày (lưu {d['saved_at'][:10]}); nguồn: {'; '.join(errs)[:200]}")
         if not out: raise RuntimeError("; ".join(errs))
     return out
 
