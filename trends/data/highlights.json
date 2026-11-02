@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-02T09:21+07:00",
+ "built": "2026-11-02T20:23+07:00",
  "today": "2026-11-02",
  "news_since": "2026-11-01",
  "thresholds": {
@@ -23,30 +23,15 @@
  },
  "top": [
   "mep",
-  "xd",
-  "tt"
+  "tt",
+  "xd"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "yf_hrc",
-     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
-     "region": "",
-     "d1": 4.17,
-     "date": "2026-10-30",
-     "prev_date": "2026-10-29",
-     "price": 1398.0,
-     "unit": "USD/short ton",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=yf_hrc"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Vật liệu xây dựng cuối năm: 65% doanh nghiệp xây dựng báo giá nguyên vật liệu tăng cao (quý III/2026); đá thực tế 300.000 đ/m³ so với 200.000 đ/m³ trong hợp đồng; Bộ Xây dựng yêu cầu công bố giá hằng tháng khi biến động",
@@ -71,8 +56,8 @@
     }
    ],
    "n_news": 4,
-   "n_moves": 1,
-   "rank": 3.29,
+   "n_moves": 0,
+   "rank": 1.2,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -80,20 +65,6 @@
    "name": "MEP",
    "icon": "⚡",
    "prices": [
-    {
-     "id": "yf_aluminium",
-     "name": "Nhôm (COMEX Aluminum)",
-     "region": "",
-     "d1": -4.94,
-     "date": "2026-10-30",
-     "prev_date": "2026-10-29",
-     "price": 3167.5,
-     "unit": "USD/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=yf_aluminium"
-    },
     {
      "id": "lme_tin",
      "name": "Thiếc LME",
@@ -111,16 +82,30 @@
    ],
    "news": [
     {
-     "title": "🔥 ‼️ NGUY HIỂM 😰 --- 📹 Tuyên truyền về Phòng cháy, chữa cháy của Phòng CS PCCC&CNCH Công an TPHCM",
-     "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxQQTBTandlQzhSTmJOaVoyb1E3UVR1V0dvUUZzN3g4NFk5TFJfRm92V01xZW5NajhyLWJ2YjViYTVPM0lqbFBHZDNoYVN1U0hpSkVSWEpDX0FOcEFBWW1wSTZVSWhiXzRlMkNlYVFySkFqYlJfX3NXUWxyZ0ZISVhKeENVMDRRSjhhR1FMOTJ0TUd0VjQwUkx3NnBIUHVHQzNIWmVWUlJSamRaUUJqbXNucXYzOHg3RDVpaWJuQTEzOHpGbTdicWJoem1GQnhPaGZfWTVFNmY2VlY2a25GMjN2cDZUWnYyai1NSWtpSmM1Zll1ZXRzWmRIRTlTS3hmdXVieGgxRU1fcXg5X2JJbmRkUThrNHdpQVN0cEdvTi1aRmlMenJMOHNvWmRIV2kxSmZsVldDZWVFU0NqekVtaTBDaWl5TUExZlE?oc=5",
-     "date": "2026-11-01",
-     "score": 6.7,
-     "source": "Facebook"
+     "title": "LME aluminium cash bid rises $43 as alumina prices gain 2.46%",
+     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNY0ppUUppckd4eG84dW03MmNwbVc1RXVlRVFWb05hNWNDOUNvRVVpTVNYek5aR2xfV1VsVHZ1OXIxck05Wi1INXFXT2kzeEN0YnV2RGtSaENFVlZJbEZNckxKZ2I0N1BhbHZPQXEzUjUxVmh1TWdYaGFYejhHMDY5VlNXUTF2eG1QZXZRekVraHVjS3YxbVByazNxT3ZYdU5s?oc=5",
+     "date": "2026-11-02",
+     "score": 9.0,
+     "source": "AL Circle"
+    },
+    {
+     "title": "London Copper Climbs as Tight Supply, Falling Oil Offer Support",
+     "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBmVzdTbGxVRFJ1VUVEaW9FRF9UQVgxSUljZzQ5aFpNa2M1X3FSaW5LdjRiTm1rQlNCOHE4azdwU1Vac1VFcVBIMC0zRUd5YUw2S19R?oc=5",
+     "date": "2026-11-02",
+     "score": 7.0,
+     "source": "شبكة تواصل الإخبارية"
+    },
+    {
+     "title": "Copper rises on weaker dollar and downgrade to Chile production outlook",
+     "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE45TF9WQ2hyVTZiM0l1VzJya2psZ19PSHR5dXIxb0E0YUJGMVFnMXFIRmZUTGdfQ1dNWm9wZTB2RmIxTGZvNjlLakhmMWh5U1hTOGFSSUJR0gFWQVVfeXFMTjlMX1ZDaHJVNmIzSXVXMnJramxnX09IdHl1cjFvQTRhQkYxUWcxcUhGZlRMZ19DV01ab3BlMHZGYjFMZm82OUtqSGYxaHlTWFM4YVJJQlE?oc=5",
+     "date": "2026-11-02",
+     "score": 7.0,
+     "source": "Business Recorder"
     }
    ],
-   "n_news": 1,
-   "n_moves": 2,
-   "rank": 4.36,
+   "n_news": 5,
+   "n_moves": 1,
+   "rank": 3.09,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -185,30 +170,30 @@
    "prices": [],
    "news": [
     {
+     "title": "Bàn giải pháp quản lý nguồn cung, giá vật liệu xây dựng",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOTy1zbW1sRkl6QWtxVEc1MFpuNkxIVEdWWWtWUTNwSWM1MHpYMHpwWGEyY2RhWHNCSXFBMWVtWmFUdXg5OGV2dUpqazVBS3lYR1QtOUlxZjNqOXdDcGNUcnZWSFFQSVlKTmx0UnBoS0wyNkMyNTMzLWoyR0Vka2VBUFJjNWk5ckJULVV3UDk2ZTZ6YU5LcjFfem9zVEhDdmJwQ3hRV25SUnV2SXJpaFZj?oc=5",
+     "date": "2026-11-02",
+     "score": 10.0,
+     "source": "Báo Đắk Lắk điện tử"
+    },
+    {
+     "title": "Bổ sung nguồn cung vật liệu xây dựng phục vụ các dự án trọng điểm",
+     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQRnlqTnBjSnJyaEFVT0ZCS2hSTjBhNE85WWlCeFE5TUVpT2pUUEVkazc0VUtSOFZOSjRUaDVFTUppeEpxSXZyRHhza2x5d2V3UmFrTnpoUUdNOEJIaURYQ2ZpTFl0dnVlN29UcUUwV0w0b1o4Wk5rOUw0TVJ2SkNzUkRHdi1kTjZNTXl2SmtOaUNSVVlsbjhnMF9WbU5RaVAw?oc=5",
+     "date": "2026-11-02",
+     "score": 10.0,
+     "source": "Báo Đà Nẵng"
+    },
+    {
      "title": "Nâng công suất mỏ khai thác đá, đảm bảo nguồn cung vật liệu xây dựng",
      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNWVBLUlJMNXhYVWxVYko0aEZUTWtHODN5OHQ4eFJSQlpUQ0dXQ1lWalJTN2EzUGFKejNqM0tfRTFleVJrX2d3ZlZqQnozQzRzcHQ2Qzk5MEJZdGdha19YbVUxYW5SNTVxcjlKMS1YOU1PeXJKczRBMnRwNXI0NTVTME5GRE5ybHZ5Uk15TktQT0JHN0FUTU1uT0RXZC1pNDRnanNKV1F3?oc=5",
      "date": "2026-11-02",
      "score": 10.0,
      "source": "Tạp Chí Điện Tử Thiên Nhiên Và Môi Trường"
-    },
-    {
-     "title": "Hoa Kỳ chấm dứt rà soát thuế chống bán phá giá và chống trợ cấp đối với đĩa giấy Việt Nam",
-     "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNdnlIeDZ6WE1NaVBuYnhQMTFLOEFNdG1YWU5uYkFmNjhEdXZtTkRfQVBkWk5kVDhUN05ELWw1bXBYam1GZHpaWVlISDJGMTZzZ1phT3oxSmZZaUU3RHZfRXk2QUlNVzBab1lJM0pYNlNoODJqQkEzYXdBOF9GNlB5d3FKNG9KWThqU1c4NVh2dEViZW9IMXdKMlNMUW10WEg0LUJSYUFSb1lITUJ5cDdHY1RyYXoxU2d1ZXJKbGx2YlV3QkVwcDEtOUtzYWRxaHg0N3c?oc=5",
-     "date": "2026-11-01",
-     "score": 5.7,
-     "source": "Thuonghieucongluan.com.vn"
-    },
-    {
-     "title": "Khởi tố Tổng Giám đốc sinh năm 1993 cùng nhóm đối tượng lừa đảo tiền cọc mua bất động sản",
-     "url": "https://cafef.vn/khoi-to-tong-giam-doc-sinh-nam-1993-cung-nhom-doi-tuong-lua-dao-tien-coc-mua-bat-dong-san-188261101141728943.chn",
-     "date": "2026-11-01",
-     "score": 3.7,
-     "source": "CafeF Bất động sản"
     }
    ],
-   "n_news": 3,
+   "n_news": 7,
    "n_moves": 0,
-   "rank": 0.9,
+   "rank": 2.1,
    "link": "danh-muc.html?c=tt"
   }
  ]
