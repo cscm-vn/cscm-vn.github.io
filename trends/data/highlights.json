@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-03T11:10+07:00",
+ "built": "2026-11-03T19:46+07:00",
  "today": "2026-11-03",
  "news_since": "2026-11-02",
  "thresholds": {
@@ -23,30 +23,15 @@
  },
  "top": [
   "tt",
-  "xd",
-  "mep"
+  "mep",
+  "xd"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "yf_hrc",
-     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
-     "region": "",
-     "d1": 4.38,
-     "date": "2026-11-02",
-     "prev_date": "2026-10-30",
-     "price": 1406.0,
-     "unit": "USD/short ton",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=yf_hrc"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Giá thép hôm nay 3/11: Quặng sắt ổn định khi nhu cầu Trung Quốc giảm chậm hơn dự kiến",
@@ -71,16 +56,38 @@
     }
    ],
    "n_news": 3,
-   "n_moves": 1,
-   "rank": 3.09,
+   "n_moves": 0,
+   "rank": 0.9,
    "link": "danh-muc.html?c=xd"
   },
   {
    "id": "mep",
    "name": "MEP",
    "icon": "⚡",
-   "prices": [],
+   "prices": [
+    {
+     "id": "te_polypropylene",
+     "name": "Polypropylene (PP, DCE)",
+     "region": "",
+     "d1": -2.12,
+     "date": "2026-11-03",
+     "prev_date": "2026-11-02",
+     "price": 10212.0,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_polypropylene"
+    }
+   ],
    "news": [
+    {
+     "title": "Daily round-up: LME base metals trade mixed; domestic copper scrap prices decline, aluminium remains stable",
+     "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOMlFmQndsR2pSZjBqNXp6WERoWUZ1bmc1dHNJTUlaejdKMkRJMmt6eHFxU2JwNmZLVVRLQm1EZjZvOXZ6RU9fUWx5czN1cmVDYWpPeFBrREw3czI2NWhwTnA2aXMzT2J2ZEhTamlIY3M1RVcwMWlkcl9kckp6YUw3TjRuNDFncUpSU1ZRMnBEWndXVEFZM2dabzJuRGpiaFY1UTlCZEFuWS15TWJXNEx3dXZHdEpLdjVOdEJzMFZ3bXhIREhvN01xX19OME9wdWFSR3R2aFFaX2Y0ZDVScjF3TjhqU1k?oc=5",
+     "date": "2026-11-03",
+     "score": 11.0,
+     "source": "BigMint"
+    },
     {
      "title": "LME Aluminium Slips While Energy Costs and Smelter Margins Remain in Focus",
      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOTy1zRjhjM2FLUGdPRnBESnh3bmdzNjZaWVpBTU9kdXdkbXp2dHFaei01cEZCX0RSSVdueE1BcHUzalFqdzRWR1lqY2NHYXhJYzZ6ZmgtUzBNY24zZFppLTZLYVM2SmhBNWVPSWZnQTVXSXRUekxTWnAxajhMM0lrTU9oWHZna0tJaVFxYVRsbWZCX1k0UjNySkJHMGROX1ExYXo4MGU1S1hFNEgtVjk5NQ?oc=5",
@@ -94,18 +101,11 @@
      "date": "2026-11-02",
      "score": 8.7,
      "source": "AL Circle"
-    },
-    {
-     "title": "Copper rises on weaker dollar and downgrade to Chile production outlook",
-     "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE45TF9WQ2hyVTZiM0l1VzJya2psZ19PSHR5dXIxb0E0YUJGMVFnMXFIRmZUTGdfQ1dNWm9wZTB2RmIxTGZvNjlLakhmMWh5U1hTOGFSSUJR0gFWQVVfeXFMTjlMX1ZDaHJVNmIzSXVXMnJramxnX09IdHl1cjFvQTRhQkYxUWcxcUhGZlRMZ19DV01ab3BlMHZGYjFMZm82OUtqSGYxaHlTWFM4YVJJQlE?oc=5",
-     "date": "2026-11-02",
-     "score": 6.7,
-     "source": "Business Recorder"
     }
    ],
-   "n_news": 6,
-   "n_moves": 0,
-   "rank": 1.8,
+   "n_news": 8,
+   "n_moves": 1,
+   "rank": 3.46,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -185,6 +185,13 @@
    ],
    "news": [
     {
+     "title": "Căn hộ hạng sang Triton Crown 'may đo' nội thất từ cảm hứng hoa sen",
+     "url": "https://vnexpress.net/can-ho-hang-sang-triton-crown-may-do-noi-that-tu-cam-hung-hoa-sen-5131083.html",
+     "date": "2026-11-03",
+     "score": 12.0,
+     "source": "VnExpress Bất động sản"
+    },
+    {
      "title": "Đà Nẵng rà soát toàn bộ mỏ vật liệu xây dựng, khơi thông nguồn cung cho các dự án",
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNZGtobGZyY0U1N0IyYTBMOTI5Uy05VHgxNmQwRHJvVWJIZjhxQ2M4c2s5bTJSdTlZbXpBeEZsV0ZSRHAyYmhvSU5idkpVSjR1LTFCNXYtel9VazNrQmd3Q05HNVRUM3hBMXRRempFYzRWcC11cm5hSjRoX29fcHMzM0J6dXlsUk5VaTZWVkQtaGJBY01qNGNhV3VHRWZHSldTNFlTWUxyMXR0bmZuczViM2xtWVFUSXZaaEd2cHpjVEQ4WmJV?oc=5",
      "date": "2026-11-03",
@@ -197,18 +204,11 @@
      "date": "2026-11-02",
      "score": 9.7,
      "source": "Báo Đắk Lắk điện tử"
-    },
-    {
-     "title": "Tăng nguồn cung, kiểm soát chặt giá vật liệu xây dựng phục vụ các công trình - Chi tiết tin - Trang chủ",
-     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQQndnZ05MSVVfeVRvdlVTOXdlbVFIaXd2aG42aEJWeFpWY056cnNWcjkzejA1d3dKZXhwOWVIYzBWS1hJVFY4eW1IdlNpa0R6dzZjMU1Kdnl5X2MxbllYVW1kVGpsSkJZb3dja2t0MnJvM1NDczNYaHJubnVwa19PdkozSFkzSE5MN1J5YXo0WEk4aGVNa0hzLWppM3dydkN3?oc=5",
-     "date": "2026-11-02",
-     "score": 9.7,
-     "source": "Cổng thông tin điện tử tỉnh Đắk Lắk"
     }
    ],
-   "n_news": 9,
+   "n_news": 10,
    "n_moves": 1,
-   "rank": 3.76,
+   "rank": 4.06,
    "link": "danh-muc.html?c=tt"
   }
  ]
