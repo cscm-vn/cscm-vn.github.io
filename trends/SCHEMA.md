@@ -6,7 +6,8 @@
 | `data/taxonomy.json` | Cây danh mục dùng chung (cấp 1 → cấp 2, id dạng `xd.cot-thep`) + quy tắc tự gán (`match.cats/ids/kw`). Mọi trang (Giá, Dự báo, Xu hướng, Thị trường) đọc tệp này. | người |
 | `trends/data/trends.json` | Xu hướng & cơ hội (có lịch sử, không xóa) | `trends/merge.py` |
 | `trends/data/market.json` | Tin thị trường biên tập | `trends/merge.py` |
-| `trends/data/feed.json` | Tin tự động RSS/Google News (cuộn 45 ngày) | `trends/feeds.py` (GitHub Actions) |
+| `trends/data/feed.json` | Tin tự động RSS/Google News (cuộn 45 ngày), gồm `site:` zh-CN: zhulong.com, co188.com, goods.jc001.cn, home.163.com | `trends/feeds.py` (GitHub Actions) |
+| `trends/data/orgs.json` | Đơn vị theo dõi (nhà thầu, CĐT) — truy vấn Google News vi + `query_zh` | người |
 | `site/data/hub.json` | Sinh khi build: giá gắn danh mục, MoM/YoY, chuỗi tháng, so sánh Hà Nội–TP.HCM, digest tháng | `trends/build.py` |
 
 ## Mục xu hướng (`type: "trend"`)
@@ -44,8 +45,8 @@ git add trends data/taxonomy.json && git commit -m "trends: cập nhật 2026-10
 
 ## v3 – Nhà thầu & Chủ đầu tư (trong `market.json`)
 Thêm vào mục `market`: `"org":"Coteccons"`, `"org_type":"contractor|developer"`, `"mseg":"hang-sang|cao-cap|trung-cap|noxh|thap-tang|nghi-duong|van-phong"` (tùy chọn).
-Tên `org` phải trùng tên trong `ORGS` của `trends/feeds.py` để bộ lọc gộp tin biên tập + tin RSS. Cùng một URL có thể dùng cho 2 đơn vị khác nhau (merge.py giữ cả hai nếu `org` và tiêu đề khác nhau).
-Thêm đơn vị theo dõi mới: thêm 1 dòng vào `ORGS` (tên, loại, truy vấn Google News, từ khóa không dấu khớp tiêu đề).
+Tên `org` phải trùng `name` trong `trends/data/orgs.json` (feeds.py nạp thành `ORGS`) để bộ lọc gộp tin biên tập + tin RSS. Cùng một URL có thể dùng cho 2 đơn vị khác nhau (merge.py giữ cả hai nếu `org` và tiêu đề khác nhau).
+Thêm đơn vị theo dõi mới: thêm một object vào `orgs.json` (`name`, `type`, `query`, `kws`; `query_zh` nếu cần Google News zh-CN; `aliases` gồm tên tiếng Trung khi có). Không điền MST hay BCTC nếu chưa đối chiếu nguồn. Nguồn báo Trung Quốc thêm vào `CN_SITES` trong `trends/feeds.py` (cùng dạng `site:domain … when:Nd` + `zh-CN`/`CN`/`zh-Hans`). Mỗi lần fetch bọc try/except — nguồn lỗi không làm fail cả feed.
 
 ## v3 – SCM (`trends/data/scm.json`, sinh từ `trends/seed/scm_YYYY-MM-DD.py`)
 Mỗi nhóm: `id, name, tax[], signal (du-cung|can-bang|khan-hiem|chua-du), trend (up|down|flat), headline, supply[], demand[], trade[], rec, rec_detail, clusters[{name,where,examples}], risks[], levers[], timing, calc{unit,fob,qty,cont,duty,ad,vat,logi,note,vn,vn_note}|null, sources[{name,url,date}]`.
