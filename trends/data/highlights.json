@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-05T10:27+07:00",
+ "built": "2026-11-05T20:06+07:00",
  "today": "2026-11-05",
  "news_since": "2026-11-04",
  "thresholds": {
@@ -22,8 +22,8 @@
   }
  },
  "top": [
-  "tt",
   "mep",
+  "tt",
   "xd"
  ],
  "groups": [
@@ -31,7 +31,22 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": -3.83,
+     "date": "2026-11-04",
+     "prev_date": "2026-11-03",
+     "price": 1355.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
      "title": "Giá thép hôm nay 5/11: Quặng sắt lên mức cao nhất gần một tuần",
@@ -56,8 +71,8 @@
     }
    ],
    "n_news": 5,
-   "n_moves": 0,
-   "rank": 1.5,
+   "n_moves": 1,
+   "rank": 3.42,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -69,31 +84,59 @@
      "id": "te_nickel",
      "name": "Niken (TE/LME)",
      "region": "",
-     "d1": 3.21,
+     "d1": 3.76,
      "date": "2026-11-05",
      "prev_date": "2026-11-04",
-     "price": 16138.0,
+     "price": 16224.0,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
      "url": "mat-hang.html?id=te_nickel"
+    },
+    {
+     "id": "te_polypropylene",
+     "name": "Polypropylene (PP, DCE)",
+     "region": "",
+     "d1": -3.07,
+     "date": "2026-11-05",
+     "prev_date": "2026-11-04",
+     "price": 9841.0,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_polypropylene"
+    },
+    {
+     "id": "te_pvc",
+     "name": "PVC (Polyvinyl chloride, DCE)",
+     "region": "",
+     "d1": -2.4,
+     "date": "2026-11-05",
+     "prev_date": "2026-11-04",
+     "price": 4971.0,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_pvc"
     }
    ],
    "news": [
+    {
+     "title": "Copper price rebounds as tightness offsets tariff and AI fears",
+     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQV2RWcW1lLTRBVS0zc3VWRzNWbkh1czZOamZ1WlEybHkwRzlsZ0pyUFhTZ1pTR0wta3RkOHpLQUhnQlp6RU5nQXVibHQ0N1hWODIwMURQQTVld3Z1aFExZ1hRTzFoRXhWT2FvVHZETEdTUUl3WlJTX2N3VkNGOW84R0hGU0RTZw?oc=5",
+     "date": "2026-11-05",
+     "score": 9.0,
+     "source": "Mining.com.au"
+    },
     {
      "title": "Base metals fell collectively, LME tin continued to decline, LME copper and zinc, SHFE tin, LME aluminum and lead, SHFE silver led the losses [Overnight Market]",
      "url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxPNXpfc3Byb3pEVW04V0VveUZ0c1BvTXRFNUFRWmNFUUJjeHdmenhpakNPWXc1QTVqdFc1MF8yQWNDdUNTTktNbElFaWJRT1Nmd0Z5SWJ2MVRtUmV0SDRPbDFCclpNVFVHMHJDM1lYd1k4V1FQRWJycFF1MzRzeWhDR201cThuWl81OGxqQzkzTUxrYmpuZDNMNzl4Tm1rN1BsdGI0ME1aT2ZBSGNMZDFpRXFLX3QzZ0xVR0ZsUV9KZkFnT1V6RnprMTF4VHluU2tESzZwZDlwOTQ2LUFvOUxPdm1RcjJsNW1SZmp4NG5VV2tZQVpMQmNoRF9zakhiQXFGMHFLaEFOUXJ6MkdCX0JyTncwcGl0WTVFdnpXNzFtbklhSV9K?oc=5",
      "date": "2026-11-04",
      "score": 8.7,
      "source": "Shanghai Metals Market"
-    },
-    {
-     "title": "Copper price claws back earlier losses after US midterms",
-     "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQV2RWcW1lLTRBVS0zc3VWRzNWbkh1czZOamZ1WlEybHkwRzlsZ0pyUFhTZ1pTR0wta3RkOHpLQUhnQlp6RU5nQXVibHQ0N1hWODIwMURQQTVld3Z1aFExZ1hRTzFoRXhWT2FvVHZETEdTUUl3WlJTX2N3VkNGOW84R0hGU0RTZw?oc=5",
-     "date": "2026-11-04",
-     "score": 6.7,
-     "source": "Mining.com.au"
     },
     {
      "title": "Copper price holds above $14,000 after hitting 2-1/2-month low",
@@ -104,8 +147,8 @@
     }
    ],
    "n_news": 3,
-   "n_moves": 1,
-   "rank": 2.5,
+   "n_moves": 3,
+   "rank": 5.52,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -191,34 +234,6 @@
    "icon": "🌏",
    "prices": [
     {
-     "id": "yf_silver",
-     "name": "Bạc (COMEX Silver)",
-     "region": "",
-     "d1": 7.66,
-     "date": "2026-11-04",
-     "prev_date": "2026-11-03",
-     "price": 53.150001525878906,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=yf_silver"
-    },
-    {
-     "id": "yf_gold",
-     "name": "Vàng (COMEX Gold)",
-     "region": "",
-     "d1": 4.87,
-     "date": "2026-11-04",
-     "prev_date": "2026-11-03",
-     "price": 4142.39990234375,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=yf_gold"
-    },
-    {
      "id": "lbma_gold",
      "name": "Vàng London Fixing (LBMA)",
      "region": "",
@@ -257,8 +272,8 @@
     }
    ],
    "n_news": 8,
-   "n_moves": 3,
-   "rank": 10.47,
+   "n_moves": 1,
+   "rank": 4.21,
    "link": "danh-muc.html?c=tt"
   }
  ]
