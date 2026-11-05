@@ -98,7 +98,7 @@ FILES_DOC = [  # (đường dẫn, mô tả) – chỉ liệt kê nếu file có
  ("lich-su-gia.csv", "LỊCH SỬ giá mọi mã gộp 1 file (Ngày giá, Mã, Mặt hàng, Danh mục, Khu vực, Giá, Giá cao, Đơn vị, Tiền tệ, Nguồn) – có BOM. Thay cho 'prices-history.csv' (không tạo file trùng); cùng dữ liệu với bảng price_history."),
  ("data/market.json", "Tin thị trường biên tập (segment, region, date, summary, takeaway = hàm ý mua sắm/đấu thầu, tax, sources[])."),
  ("data/trends.json", "Xu hướng vật liệu/thiết kế/công nghệ (score 0–100, why, impact, sources[])."),
- ("data/feed.json · data/legal-feed.json · data/policy-feed.json", "Tin tự động (RSS/Google News) theo từ khóa – CHƯA biên tập, có thể nhiễu."),
+ ("data/feed.json · data/legal-feed.json · data/policy-feed.json", "Tin tự động (RSS/Google News vi/en/zh, gồm site: zhulong.com, co188.com, goods.jc001.cn, home.163.com) theo từ khóa – CHƯA biên tập, có thể nhiễu."),
  ("data/suppliers.json", "Nhà cung cấp/nhà thầu: units[] (bản ghi thuế reg, flags, fin = BCTC kiểm toán nếu có), rules/bands/disclaimer của nhãn sàng lọc."),
  ("data/legal.json", "Văn bản pháp luật mới (kind, issuer, number, issued, effective, status, summary, impact, sources[])."),
  ("data/scm.json", "Tín hiệu cung–cầu theo 14 nhóm hàng (signal, trend, headline, supply/demand/trade, rec, timing, sources[]), cước vận tải, giả định."),

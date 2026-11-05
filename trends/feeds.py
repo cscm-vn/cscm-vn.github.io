@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Free automated news pull (runs in GitHub Actions + locally): Google News RSS (vi/en/zh) + VnExpress/CafeF/CafeLand RSS.
+"""Free automated news pull (runs in GitHub Actions + locally): Google News RSS (vi/en/zh) + VnExpress/CafeF/CafeLand RSS
++ Google News site: queries (zh-CN) for 筑龙网, 土木在线, 九正建材网, 网易家居.
 Writes trends/data/feed.json (rolling 45 days, dedup by URL/title), each item auto-tagged to taxonomy and keyword-scored.
-Never raises: on any source error it keeps the previous items."""
+Never raises: on any source error it keeps the previous items. Each fetch is isolated — one dead source is logged and skipped."""
 import json, os, re, sys, time, hashlib, unicodedata, datetime as dt, urllib.request, urllib.parse
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
@@ -23,6 +24,15 @@ Q = [  # (query, hl, gl, lang, kind)
  ("佛山 陶瓷 出口 when:14d", "zh-CN", "CN", "zh-Hans", "trend"), ("智能马桶 出口 when:14d", "zh-CN", "CN", "zh-Hans", "trend"),
  ("建材 出口 越南 when:30d", "zh-CN", "CN", "zh-Hans", "trend"),
 ]
+# Chinese trade media via Google News `site:` (label, domain, query, hl, gl, lang, kind).
+# site: + when:Nd matches policy_feed.py; hl/gl/lang match the zh rows in Q.
+# A failed host is recorded in feed.json errors and does not abort the run (see main()).
+CN_SITES = [
+ ("筑龙网", "zhulong.com", "site:zhulong.com (BIM OR 造价 OR 工程量 OR 施工) when:14d", "zh-CN", "CN", "zh-Hans", "trend"),  # construction, BIM, QS
+ ("土木在线", "co188.com", "site:co188.com (机电 OR 暖通 OR 消防 OR 规范) when:14d", "zh-CN", "CN", "zh-Hans", "trend"),  # MEP, HVAC, fire, standards
+ ("九正建材网", "goods.jc001.cn", "site:goods.jc001.cn (建材 OR 品牌) when:14d", "zh-CN", "CN", "zh-Hans", "trend"),  # building materials, brands
+ ("网易家居", "home.163.com", "site:home.163.com (家居 OR 装修 OR 软装 OR 室内) when:14d", "zh-CN", "CN", "zh-Hans", "trend"),  # interior, finishing trends
+]
 def load_orgs():
     """Registry of tracked contractors / suppliers / developers: trends/data/orgs.json (name, legal, short, type, group, brands, website, query, kws)."""
     p = os.path.join(D, "orgs.json")
@@ -39,11 +49,12 @@ MSEG = [  # market segment tags (accent-free keywords) – same ids as trends/da
 RSS = [("VnExpress Bất động sản", "https://vnexpress.net/rss/bat-dong-san.rss", "market"), ("CafeF Bất động sản", "https://cafef.vn/bat-dong-san.rss", "market"),
        ("CafeLand", "https://cafeland.vn/rss/tin-tuc.rss", "market"), ("VnExpress Kinh doanh", "https://vnexpress.net/rss/kinh-doanh.rss", "market")]
 KW = {  # keyword -> weight (accent-free, lower)
- "masterise": 6, "coteccons": 2, "newtecons": 2, "ricons": 2, "vinhomes": 1, "sun group": 1, "novaland": 1, "capitaland": 1, "keppel": 1, "gamuda": 1, "can ho": 2, "ha noi": 2, "tp.hcm": 2, "tphcm": 2, "hang sang": 3, "cao cap": 2, "gia thep": 3, "vat lieu": 3, "xi mang": 2,
+ "masterise": 6, "coteccons": 2, "newtecons": 2, "ricons": 2, "vinhomes": 1, "sun group": 1, "novaland": 1, "capitaland": 1, "keppel": 1, "gamuda": 1, "longfor": 1, "can ho": 2, "ha noi": 2, "tp.hcm": 2, "tphcm": 2, "hang sang": 3, "cao cap": 2, "gia thep": 3, "vat lieu": 3, "xi mang": 2,
  "chong ban pha gia": 4, "trung thau": 3, "tong thau": 3, "nguon cung": 2, "gia ban": 2, "lai suat": 2, "chi so gia xay dung": 4,
  "smart toilet": 4, "sanitary": 3, "canton": 4, "foshan": 3, "sintered": 3, "tile": 2, "cement": 2, "green steel": 3, "low carbon": 3,
  "aluminium": 2, "copper": 2, "lme": 2, "vietnam": 2, "thang may": 3, "nha thong minh": 3, "edge": 2, "lotus": 2, "cong trinh xanh": 3,
  "佛山": 3, "陶瓷": 3, "智能马桶": 4, "出口": 2, "越南": 3, "建材": 3, "卫浴": 3,
+ "造价": 3, "工程量": 3, "bim": 3, "施工": 2, "机电": 3, "暖通": 3, "消防": 2, "规范": 2, "家居": 2, "装修": 2, "软装": 3, "室内": 2, "龙湖": 3,
 }
 def strip(s):
     s = unicodedata.normalize("NFD", (s or "").lower()); return "".join(c for c in s if unicodedata.category(c) != "Mn").replace("đ", "d")
@@ -78,6 +89,7 @@ def main():
     rules = tax_rules(); new = []; errs = []
     jobs = [(GN.format(q=urllib.parse.quote(q), hl=hl, gl=gl, lang=lang), "Google News", k) for q, hl, gl, lang, k in Q] + [(u, n, k) for n, u, k in RSS]
     jobs = [(u, s_, k, None) for u, s_, k in jobs]
+    jobs += [(GN.format(q=urllib.parse.quote(q), hl=hl, gl=gl, lang=lang), f"Google News {label}", k, None) for label, _dom, q, hl, gl, lang, k in CN_SITES]
     jobs += [(GN.format(q=urllib.parse.quote(q + " when:30d"), hl="vi", gl="VN", lang="vi"), "Google News", typ, n) for n, typ, q, _ in ORGS]
     jobs += [(GN.format(q=urllib.parse.quote(q + " when:30d"), hl="zh-CN", gl="CN", lang="zh-Hans"), "Google News", typ, n) for n, typ, q in ORGS_ZH]
     for url, src, kind, qorg in jobs:
