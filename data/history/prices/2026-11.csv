@@ -703,11 +703,12 @@ date,item_id,region,source,price,price_high,unit,currency,change_pct,fetched_at
 2026-11-05,vnsteel_viet_y_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,13940,,VND/kg,VND,,2026-11-05T10:22:57+07:00
 2026-11-05,vnsteel_viet_y_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-11-05T10:22:57+07:00
 2026-11-05,vnsteel_viet_y_mien_bac_cb500_d16,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-11-05T10:22:57+07:00
-2026-11-05,yf_aluminium,,Yahoo Finance (ALI=F),3165,,USD/tấn,USD,-2.727621974644645,2026-11-06T06:28:53+07:00
-2026-11-05,yf_copper,,Yahoo Finance (HG=F),6.229499816894531,,USD/lb,USD,-2.709668348318861,2026-11-06T06:28:53+07:00
-2026-11-05,yf_gold,,Yahoo Finance (GC=F),4083.60009765625,,USD/oz,USD,0.260252827307883,2026-11-06T06:28:53+07:00
+2026-11-05,yf_aluminium,,Yahoo Finance (ALI=F),3177.5,,USD/tấn,USD,-2.3434498655397595,2026-11-06T10:20:34+07:00
+2026-11-05,yf_copper,,Yahoo Finance (HG=F),6.242000102996826,,USD/lb,USD,-2.5144428861822554,2026-11-06T10:20:34+07:00
+2026-11-05,yf_gold,,Yahoo Finance (GC=F),4062.800048828125,,USD/oz,USD,-0.25042845990362883,2026-11-06T10:20:34+07:00
 2026-11-05,yf_hrc,,Yahoo Finance (HRC=F),1438,,USD/short ton,USD,6.125461254612552,2026-11-06T06:28:53+07:00
-2026-11-05,yf_silver,,Yahoo Finance (SI=F),51.30500030517578,,USD/oz,USD,-1.5636965529759461,2026-11-06T06:28:53+07:00
+2026-11-05,yf_ironore,,Yahoo Finance (TIO=F),93.12000274658203,,USD/tấn,USD,1.2724370170435373,2026-11-06T10:20:34+07:00
+2026-11-05,yf_silver,,Yahoo Finance (SI=F),51.744998931884766,,USD/oz,USD,-0.7194934913373308,2026-11-06T10:20:34+07:00
 2026-11-06,aac_hcm_eblock_b3_d100,TP.HCM,eblock.com.vn (niêm yết nhà máy),1720000,,VND/m³,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,aac_hcm_eblock_b3_d75,TP.HCM,eblock.com.vn (niêm yết nhà máy),1720000,,VND/m³,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,aac_hn_viglacera_d100,Hà Nội,betongsieunhe.vn (đại lý Viglacera HN),1350000,1540000,VND/m³,VND,,2026-11-06T06:28:53+07:00
@@ -717,9 +718,9 @@ date,item_id,region,source,price,price_high,unit,currency,change_pct,fetched_at
 2026-11-06,cable_cxv_cadivi_1x95,,thanhdattech.com.vn (bảng giá niêm yết đại lý CADIVI),414249,,VND/m,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,ceiling_vinhtuong_mr_tika,,vinhtuong.com (giá tham khảo hãng),240000,,VND/m²,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,ceiling_vinhtuong_std_tika,,vinhtuong.com (giá tham khảo hãng),210000,,VND/m²,VND,,2026-11-06T06:28:53+07:00
-2026-11-06,fx_cny_vnd,,Vietcombank,3781.02,,VND/CNY,VND,,2026-11-06T06:28:53+07:00
-2026-11-06,fx_eur_vnd,,Vietcombank,28334.23,,VND/EUR,VND,,2026-11-06T06:28:53+07:00
-2026-11-06,fx_usd_vnd,,Vietcombank,25420,,VND/USD,VND,,2026-11-06T06:28:53+07:00
+2026-11-06,fx_cny_vnd,,Vietcombank,3782.38,,VND/CNY,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,fx_eur_vnd,,Vietcombank,28297.4,,VND/EUR,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,fx_usd_vnd,,Vietcombank,25430,,VND/USD,VND,,2026-11-06T10:20:34+07:00
 2026-11-06,mesh_fiberglass_eblock,TP.HCM,eblock.com.vn (niêm yết nhà máy),7000,,VND/m,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,mortar_aac_eblock_ebs301,TP.HCM,eblock.com.vn (niêm yết nhà máy),6600,,VND/kg,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,mortar_aac_mater_m75,Hà Nội,gachbetongnhe.com.vn (tổng kho HN),3000,,VND/kg,VND,,2026-11-06T06:28:53+07:00
@@ -764,20 +765,80 @@ date,item_id,region,source,price,price_high,unit,currency,change_pct,fetched_at
 2026-11-06,rmc_hn_chem_m350,Hà Nội,betongtuoichem.com,1160000,1300000,VND/m³,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,rmc_hn_chem_m400,Hà Nội,betongtuoichem.com,1210000,1350000,VND/m³,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,sika_latex_th_25l,TP.HCM,hoachatxaydung.vn (đại lý Sika Chính Tiến),57600,,VND/lít,VND,,2026-11-06T06:28:53+07:00
-2026-11-06,sjc_bar,,giavang.org (giá SJC),142500000,,VND/lượng,VND,,2026-11-06T06:28:53+07:00
-2026-11-06,sjc_bar_webgia,,webgia.com,142500000,,VND/lượng,VND,,2026-11-06T06:28:53+07:00
-2026-11-06,sjc_ring,,giavang.org (giá SJC),142000000,,VND/lượng,VND,,2026-11-06T06:28:53+07:00
+2026-11-06,sjc_bar,,giavang.org (giá SJC),141000000,,VND/lượng,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,sjc_bar_webgia,,webgia.com,141000000,,VND/lượng,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,sjc_ring,,giavang.org (giá SJC),140500000,,VND/lượng,VND,,2026-11-06T10:20:34+07:00
 2026-11-06,skimcoat_eblock_ebs302,TP.HCM,eblock.com.vn (niêm yết nhà máy),7400,,VND/kg,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,skimcoat_mater_401,Hà Nội,gachbetongnhe.com.vn (tổng kho HN),6000,,VND/kg,VND,,2026-11-06T06:28:53+07:00
 2026-11-06,te_aluminium,,Trading Economics,3061.5,,USD/tấn,USD,-0.27,2026-11-06T06:28:53+07:00
 2026-11-06,te_cokingcoal,,Trading Economics,257.75,,USD/tấn,USD,-0.29,2026-11-06T06:28:53+07:00
-2026-11-06,te_copper,,Trading Economics,6.216,,USD/lb,USD,-2.92,2026-11-06T06:28:53+07:00
+2026-11-06,te_copper,,Trading Economics,6.2181,,USD/lb,USD,-0.49,2026-11-06T10:20:34+07:00
 2026-11-06,te_hrc,,Trading Economics,1435,,USD/short ton,USD,0.14,2026-11-06T06:28:53+07:00
 2026-11-06,te_ironore,,Trading Economics,93.12,,USD/tấn,USD,1.27,2026-11-06T06:28:53+07:00
-2026-11-06,te_ironore_cny,,Trading Economics,691,,CNY/tấn,CNY,1.32,2026-11-06T06:28:53+07:00
-2026-11-06,te_lead,,Trading Economics,1895.55,,USD/tấn,USD,0.67,2026-11-06T06:28:53+07:00
-2026-11-06,te_nickel,,Trading Economics,16315,,USD/tấn,USD,2.77,2026-11-06T06:28:53+07:00
-2026-11-06,te_rebar_shfe,,Trading Economics,3046,,CNY/tấn,CNY,0.96,2026-11-06T06:28:53+07:00
+2026-11-06,te_ironore_cny,,Trading Economics,688.5,,CNY/tấn,CNY,-0.36,2026-11-06T10:20:34+07:00
+2026-11-06,te_lead,,Trading Economics,1888.55,,USD/tấn,USD,-0.37,2026-11-06T10:20:34+07:00
+2026-11-06,te_nickel,,Trading Economics,16194,,USD/tấn,USD,-0.5,2026-11-06T10:20:34+07:00
+2026-11-06,te_polyethylene,,Trading Economics,9106,,CNY/tấn,CNY,,2026-11-06T10:20:34+07:00
+2026-11-06,te_polypropylene,,Trading Economics,9841,,CNY/tấn,CNY,,2026-11-06T10:20:34+07:00
+2026-11-06,te_pvc,,Trading Economics,4971,,CNY/tấn,CNY,,2026-11-06T10:20:34+07:00
+2026-11-06,te_rebar_shfe,,Trading Economics,3036,,CNY/tấn,CNY,-0.33,2026-11-06T10:20:34+07:00
 2026-11-06,te_scrap,,Trading Economics,406.5,,USD/tấn,USD,0.12,2026-11-06T06:28:53+07:00
-2026-11-06,te_tin,,Trading Economics,47487,,USD/tấn,USD,1.05,2026-11-06T06:28:53+07:00
-2026-11-06,te_zinc,,Trading Economics,3796.45,,USD/tấn,USD,-0.48,2026-11-06T06:28:53+07:00
+2026-11-06,te_tin,,Trading Economics,46995,,USD/tấn,USD,-0.93,2026-11-06T10:20:34+07:00
+2026-11-06,te_zinc,,Trading Economics,3769.85,,USD/tấn,USD,-0.7,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_bac_cb240_d6_cuon,Miền Bắc,steelonline.vn,14920,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,14210,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,14410,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_bac_cb500_d16,Miền Bắc,steelonline.vn,14410,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_nam_cb240_d6_cuon,Miền Nam,steelonline.vn,14920,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_nam_cb300_d10,Miền Nam,steelonline.vn,14720,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_nam_cb400_d16,Miền Nam,steelonline.vn,14920,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_nam_cb500_d16,Miền Nam,steelonline.vn,14920,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_trung_cb240_d6_cuon,Miền Trung,steelonline.vn,14920,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_trung_cb300_d10,Miền Trung,steelonline.vn,14210,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_trung_cb400_d16,Miền Trung,steelonline.vn,14410,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_hoa_phat_mien_trung_cb500_d16,Miền Trung,steelonline.vn,14410,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_kyoei_mien_bac_cb240_d6_cuon,Miền Bắc,steelonline.vn,15050,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_kyoei_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_kyoei_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,14440,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_kyoei_mien_bac_cb500_d16,Miền Bắc,steelonline.vn,14440,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_mien_nam_mien_nam_cb240_d6_cuon,Miền Nam,steelonline.vn,15120,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_mien_nam_mien_nam_cb300_d10,Miền Nam,steelonline.vn,14720,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_mien_nam_mien_nam_cb400_d16,Miền Nam,steelonline.vn,14510,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_pomina_mien_nam_cb240_d6_cuon,Miền Nam,steelonline.vn,14850,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_pomina_mien_nam_cb300_d10,Miền Nam,steelonline.vn,14190,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_pomina_mien_nam_cb400_d16,Miền Nam,steelonline.vn,14340,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_pomina_mien_nam_cb500_d16,Miền Nam,steelonline.vn,14340,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_pomina_mien_trung_cb240_d6_cuon,Miền Trung,steelonline.vn,14850,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_pomina_mien_trung_cb300_d10,Miền Trung,steelonline.vn,14390,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_pomina_mien_trung_cb400_d16,Miền Trung,steelonline.vn,14540,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_pomina_mien_trung_cb500_d16,Miền Trung,steelonline.vn,14540,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_thai_nguyen_mien_bac_cb240_d6_cuon,Miền Bắc,steelonline.vn,14990,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_thai_nguyen_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,14890,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_thai_nguyen_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,15200,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_tungho_mien_nam_cb240_d6_cuon,Miền Nam,steelonline.vn,14850,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_tungho_mien_nam_cb300_d10,Miền Nam,steelonline.vn,13840,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_tungho_mien_nam_cb400_d16,Miền Nam,steelonline.vn,14340,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_bac_cb240_d6_cuon,Miền Bắc,steelonline.vn,14950,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,13840,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_nam_cb240_d6_cuon,Miền Nam,steelonline.vn,14950,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_nam_cb300_d10,Miền Nam,steelonline.vn,13840,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_nam_cb400_d16,Miền Nam,steelonline.vn,14240,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_trung_cb240_d6_cuon,Miền Trung,steelonline.vn,15050,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_trung_cb300_d10,Miền Trung,steelonline.vn,14140,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_vas_mien_trung_cb400_d16,Miền Trung,steelonline.vn,14640,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_duc_mien_bac_cb240_d6_cuon,Miền Bắc,steelonline.vn,14650,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_duc_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,13950,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_duc_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,14150,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_duc_mien_bac_cb500_d16,Miền Bắc,steelonline.vn,14150,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_duc_mien_trung_cb240_d6_cuon,Miền Trung,steelonline.vn,15150,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_duc_mien_trung_cb300_d10,Miền Trung,steelonline.vn,14250,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_duc_mien_trung_cb400_d16,Miền Trung,steelonline.vn,14650,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_duc_mien_trung_cb500_d16,Miền Trung,steelonline.vn,14650,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_sing_mien_bac_cb240_d6_cuon,Miền Bắc,steelonline.vn,14750,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_sing_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,14040,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_sing_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_y_mien_bac_cb240_d6_cuon,Miền Bắc,steelonline.vn,14750,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_y_mien_bac_cb300_d10,Miền Bắc,steelonline.vn,13940,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_y_mien_bac_cb400_d16,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-11-06T10:20:34+07:00
+2026-11-06,vnsteel_viet_y_mien_bac_cb500_d16,Miền Bắc,steelonline.vn,14240,,VND/kg,VND,,2026-11-06T10:20:34+07:00
