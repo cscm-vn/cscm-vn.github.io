@@ -8,9 +8,20 @@ UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, 
       "Accept-Language": "vi,en;q=0.8"}
 TODAY = dt.datetime.now(ZoneInfo("Asia/Saigon")).date().isoformat()
 
+def _browser(u):
+    """Retry as Chrome (curl_cffi TLS impersonation): some NCC sites' Cloudflare rules block python-requests from GitHub runners."""
+    try:
+        from curl_cffi import requests as cr
+        b = cr.get(u, impersonate="chrome", timeout=30)
+        return b.text if b.status_code < 400 else None
+    except Exception: return None
 def _get(u):
     try:
-        r = requests.get(u, headers=UA, timeout=30); r.raise_for_status(); return r.text
+        r = requests.get(u, headers=UA, timeout=30)
+        if r.status_code in (403, 429, 503) or (r.ok and "<table" not in r.text and "just a moment" in r.text.lower()):
+            t = _browser(u)
+            if t: return t
+        r.raise_for_status(); return r.text
     except requests.exceptions.SSLError:  # một số site VN lỗi TLS với requests -> dùng curl
         import subprocess
         return subprocess.run(["curl", "-sL", "-m", "30", "-A", UA["User-Agent"], u], capture_output=True, text=True, check=True).stdout

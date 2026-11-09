@@ -9,7 +9,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install requests curl_cffi
-      - run: python probe/probe.py probe_out
-      - uses: actions/upload-artifact@v4
-        with: {name: probe_out, path: probe_out, retention-days: 3}
+      - run: pip install -r requirements.txt
+      - run: python probe/probe.py
+      - name: Full fetch with the fix (not committed, not deployed)
+        run: python fetcher.py 2>&1 | grep -E "^(OK|FAIL)|errors|snapshot|browser_get" || true
+      - name: HCM material items parsed
+        run: |
+          python -c "
+          import json; d=json.load(open('data/registry/items.json')) if False else None
+          import fetcher
+          rows = fetcher.src_tthh()
+          print('TTHH rows', len(rows))
+          for r in rows: print('TTHH |', r['as_of'], '|', r['category'], '|', r['name'], '|', r['price'], r.get('price_high'), r['unit'], '|', r['src'])
+          "

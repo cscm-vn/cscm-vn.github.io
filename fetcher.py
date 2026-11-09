@@ -20,8 +20,20 @@ def slug(t):
     t = unicodedata.normalize("NFKD", t.replace("đ", "d").replace("Đ", "D")).encode("ascii", "ignore").decode().lower()
     return re.sub(r"[^a-z0-9]+", "_", t).strip("_")
 def now_iso(): return dt.datetime.now(TZ).isoformat(timespec="seconds")
+def browser_get(url, **kw):
+    """Same GET via curl_cffi impersonating Chrome's TLS/HTTP2 fingerprint. Some sites' Cloudflare rules reject the
+    python-requests fingerprint (403) from GitHub runners while serving Chrome normally. None if curl_cffi is missing/fails."""
+    try:
+        from curl_cffi import requests as cr
+        return cr.get(url, impersonate="chrome", timeout=30, **kw)
+    except Exception as e:
+        print("browser_get", url, type(e).__name__, e, file=sys.stderr); return None
 def get(url, **kw):
-    r = requests.get(url, headers=UA, timeout=30, **kw); r.raise_for_status(); return r
+    r = requests.get(url, headers=UA, timeout=30, **kw)
+    if r.status_code in (403, 429, 503):  # bot rule (e.g. thitruonghanghoa.com on GitHub runners) -> retry as Chrome
+        b = browser_get(url, **kw)
+        if b is not None and b.status_code < 400: return b
+    r.raise_for_status(); return r
 
 def num(s, dec=","):
     """Parse number. dec=',' means ',' thousands -> '1,234.5'; dec='.' means VN style '1.234,5'."""
