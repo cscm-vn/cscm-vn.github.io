@@ -24,6 +24,7 @@ saved = []
 for tag, fid in FOLDERS.items():
     try:
         h = get(f"https://drive.google.com/drive/folders/{fid}").text
+        open(os.path.join(OUT, f"drive_{tag}.html"), "w").write(h)
         files = dict(re.findall(r'\\?"([\w-]{25,60})\\?",\[\\?"%s\\?"\],\\?"([^"\\]+)' % fid, h))
         if not files:  # fallback pattern: data-id + aria-label
             files = dict(re.findall(r'data-id="([\w-]{25,60})"[^>]*?aria-label="([^"]+)"', h))
