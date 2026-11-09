@@ -1,13 +1,21 @@
 {
- "reviewed": "2026-11-02",
+ "reviewed": "2026-11-10",
  "note": "Danh sách yếu tố vĩ mô/địa chính trị do người phân tích rà soát thủ công (cập nhật hàng tuần). 'impact' = % điều chỉnh giá ở kỳ hạn 12 tháng cho kịch bản Tăng (up) hoặc Giảm (down); kỳ hạn h tháng dùng impact×sqrt(h/12). Kịch bản Cơ sở = mô hình thống kê/futures, KHÔNG cộng các điều chỉnh này.",
  "drivers": [
   {
    "id": "mideast",
    "title": "Xung đột Trung Đông / eo Hormuz – rủi ro vận tải & năng lượng",
    "dir": "up",
-   "summary": "Brent hợp đồng T12 chốt 117,64 USD/thùng (30/10, +2,4% phiên, +0,79% tuần; cả tháng 10 +13,6%) – cao nhất từ cuối tháng 4; hợp đồng T1/2027 (nay là tháng giao chính) 113,43 USD. Nguyên nhân: tàu dầu bị tấn công bằng mìn dính ở eo Hormuz, Houthi đe dọa nhà máy lọc dầu Ả Rập Xê Út, lo ngại Mỹ nối lại không kích Iran sau bầu cử giữa kỳ 3/11. Drewry 29/10: chỉ 2 tàu qua Hormuz/tuần. Leo thang thêm sẽ đẩy dầu, than, nhựa (PP/PE/PVC), nhựa đường và phụ phí nhiên liệu vận tải.",
+   "summary": "Rủi ro giảm bớt nhưng chưa hết (rà soát 10/11): Brent hợp đồng T1/2027 chốt 92,57 USD/thùng ngày 9/11 (−5,85% phiên; tuần trước −16%, mạnh nhất từ đầu đại dịch COVID-19) – thấp nhất từ 31/8, sau khi ông Trump nói khó nối lại không kích Iran nếu đàm phán tiến triển; dầu vẫn lưu thông mạnh qua Hormuz, Iraq thỏa thuận luồng xuất qua gần Oman. So với 30/10: T12 117,64 USD, T1 113,43 USD. Rủi ro còn: tàu bị tấn công gần Hormuz, Houthi tấn công văn phòng Aramco (Riyadh), đường ống Đông–Tây Ả Rập Xê Út bị trúng. Nếu leo thang trở lại sẽ đẩy dầu, than, nhựa (PP/PE/PVC), nhựa đường và phụ phí nhiên liệu vận tải.",
    "links": [
+    [
+     "Reuters qua Euronext 09/11/2026 – Brent 92,57 USD, Trump hạn chế tấn công Iran",
+     "https://live.euronext.com/en/financial-news/oil-down-more-7-barrel-post-settlement-trade-trump-signals-restraint-iran"
+    ],
+    [
+     "Xinhua 10/11/2026 – Brent T1 92,57 USD, WTI 86,85 USD",
+     "https://english.news.cn/20261110/2e0c821081f643969c0e9b30bc883ae4/c.html"
+    ],
     [
      "EnergyNow 30/10/2026 – Brent 117,64 USD (Reuters settlement)",
      "https://energynow.com/2026/10/october-oil-gains-exceed-13-oil-climbs-more-than-2-friday-as-middle-east-attacks-intensify-wti-and-brent-finish-week-higher-october-gains-exceed-13/"
@@ -36,8 +44,16 @@
    "id": "deesc",
    "title": "Hạ nhiệt Trung Đông – dầu đi theo đường futures (backwardation)",
    "dir": "down",
-   "summary": "Đường cong Brent futures dốc xuống (~87 USD cho T12/2027). Nếu xung đột hạ nhiệt, giá năng lượng/nhựa giảm nhanh hơn mô hình.",
+   "summary": "Kịch bản đang diễn ra (10/11): Brent về 92,57 USD/thùng (9/11), thấp nhất từ 31/8; JPMorgan ước thặng dư dầu tháng 10 ~1,4 triệu thùng/ngày, OPEC tháng 10 tăng 1,38 triệu thùng/ngày lên 22,87 triệu; Dated Brent chiết khấu so với futures (Morgan Stanley) – thị trường vật chất dư cung. Đường cong futures dốc xuống (~87 USD cho T12/2027). Nếu đàm phán Mỹ–Iran tiến triển, giá năng lượng/nhựa giảm nhanh hơn mô hình.",
    "links": [
+    [
+     "Reuters qua Euronext 09/11/2026 – Brent 92,57 USD, Trump hạn chế tấn công Iran",
+     "https://live.euronext.com/en/financial-news/oil-down-more-7-barrel-post-settlement-trade-trump-signals-restraint-iran"
+    ],
+    [
+     "Xinhua 10/11/2026 – Brent T1 92,57 USD, WTI 86,85 USD",
+     "https://english.news.cn/20261110/2e0c821081f643969c0e9b30bc883ae4/c.html"
+    ],
     [
      "Yahoo Finance – Brent BZZ27",
      "https://finance.yahoo.com/quote/BZZ27.NYM"
@@ -55,8 +71,12 @@
    "id": "chinaprop",
    "title": "Bất động sản Trung Quốc suy yếu kéo dài – cầu thép giảm",
    "dir": "down",
-   "summary": "worldsteel (10/2026): cầu thép TQ -2% năm 2026, -1% năm 2027. NBS: đầu tư BĐS TQ 9T/2026 -20,6%, khởi công mới -24,9%; PMI ngành xây dựng T10 còn 48,0% (-2,3 điểm). Sản lượng xi măng 9T -8,6%, xuất khẩu clinker 9T +397,87% (14,67 triệu tấn) với giá xuất giảm – dư cung vật liệu tràn ra khu vực. Thép cây SHFE ~3.035 NDT/tấn (2/11, gần như đi ngang so với 26/10). Áp lực xuất khẩu thép, xi măng, gốm sứ giá rẻ sang ASEAN.",
+   "summary": "worldsteel (10/2026): cầu thép TQ -2% năm 2026, -1% năm 2027. NBS: đầu tư BĐS TQ 9T/2026 -20,6%, khởi công mới -24,9%; PMI ngành xây dựng T10 còn 48,0% (-2,3 điểm). Sản lượng xi măng 9T -8,6%, xuất khẩu clinker 9T +397,87% (14,67 triệu tấn) với giá xuất giảm – dư cung vật liệu tràn ra khu vực. Thép cây SHFE ~3.037 NDT/tấn (10/11, TE); Mysteel giao ngay bình quân 3.307 NDT/tấn (9/11, +1), xi măng P.O42.5 rời 331 NDT/tấn (−1), chỉ số xi măng 344 NDT/tấn (−0,26%) – đi ngang ở đáy. Áp lực xuất khẩu thép, xi măng, gốm sứ giá rẻ sang ASEAN.",
    "links": [
+    [
+     "Mysteel 09/11/2026 – thép cây 3.307, xi măng 331 NDT/tấn",
+     "https://gc.mysteel.com/a/26110917/C818F2594D5D22BC.html"
+    ],
     [
      "worldsteel SRO 10/2026",
      "https://worldsteel.org/media/press-releases/2026/worldsteel-short-range-outlook-october-2026/"
@@ -145,8 +165,16 @@
    "id": "copper",
    "title": "Đồng: thuế Mỹ có thể bị hủy, gián đoạn mỏ Chile, cầu data center",
    "dir": "mixed",
-   "summary": "LME đồng giao ngay 14.449 USD/t (30/10; 26/10: 14.500) – đi ngang ở vùng rất cao sau khi từng rơi về đáy 5 tuần 14.078 USD (3 tháng, 22/10). Đồng điện phân Trường Giang giảm về ~110.470 NDT/tấn (30/10, −580). Hỗ trợ giá: Chile dự kiến sản lượng 2026 −8–9%, nhà máy luyện TQ cắt giảm do thiếu tinh quặng; cầu data center/lưới điện. Rủi ro giảm: thuế đồng tinh luyện của Mỹ có thể bị hủy, tồn kho LME tăng.",
+   "summary": "LME đồng giao ngay 13.955 USD/t (6/11, −1,1%; 3 tháng 13.780) – hạ từ 14.449 (30/10); tồn kho LME 319.675 tấn (+1.000), SHFE 43.512 tấn (−1.100). Đồng điện phân Trường Giang 110.220 NDT/tấn (9/11, +400; ~428 triệu đ/tấn), bù giá 2.620; ống đồng R410A 115.220 NDT. Hỗ trợ giá: Chile dự kiến sản lượng 2026 −8–9%, nhà máy luyện TQ cắt giảm do thiếu tinh quặng, hàng đăng ký giao ngay TQ khan; cầu data center/lưới điện. Rủi ro giảm: thuế đồng tinh luyện của Mỹ có thể bị hủy, tồn kho LME tăng.",
    "links": [
+    [
+     "CNMN – 长江有色现货 09/11/2026",
+     "https://www.cnmn.com.cn/ShowNews1.aspx?id=475305"
+    ],
+    [
+     "China Cable – 现货铜铝 11月9日 (tồn kho LME/SHFE)",
+     "https://webadmin.chinacable.com/news/details/12039"
+    ],
     [
      "Westmetall – LME Cu cash 2026",
      "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Cu_cash&year=2026"
@@ -171,8 +199,12 @@
    "id": "alu",
    "title": "Nhôm: nguồn cung ngoài vùng Vịnh phục hồi, TQ tăng xuất khẩu",
    "dir": "mixed",
-   "summary": "LME nhôm giao ngay 3.114 USD/t (30/10, +2,2% so với 3.047,5 ngày 26/10); nhôm A00 Trường Giang 23.780 NDT/tấn (30/10, +40). Hỗ trợ: chi phí năng lượng cao (Brent >110 USD), rủi ro vùng Vịnh. Áp lực giảm: EGA khôi phục dần lò Al Taweelah (hoàn tất Q1/2027), xuất khẩu nhôm TQ +25,9% (T9), Indonesia >150 kt/tháng.",
+   "summary": "LME nhôm giao ngay 3.117 USD/t (6/11, −1,4%; 3 tháng 3.050) – từ 3.114 (30/10); nhôm A00 Trường Giang 23.540 NDT/tấn (9/11, +200; ~91 triệu đ/tấn). Hỗ trợ: rủi ro vùng Vịnh. Áp lực giảm: Brent rơi về ~93 USD (9/11) giảm chi phí năng lượng, EGA khôi phục dần lò Al Taweelah (hoàn tất Q1/2027), xuất khẩu nhôm TQ +25,9% (T9), Indonesia >150 kt/tháng.",
    "links": [
+    [
+     "CNMN – 长江有色现货 09/11/2026",
+     "https://www.cnmn.com.cn/ShowNews1.aspx?id=475305"
+    ],
     [
      "Westmetall – LME Al cash 2026",
      "https://www.westmetall.com/en/markdaten.php?action=table&field=LME_Al_cash&year=2026"

@@ -3,7 +3,7 @@
 RULE: every item cites URLs that were actually opened; unverifiable facts are omitted."""
 import json, os, unicodedata
 D = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
-REVIEWED = "2026-10-22"
+REVIEWED = "2026-11-10"
 S = {  # source registry: key -> (name, url)
  "LXD": ("Công báo Chính phủ – Luật 135/2025/QH15", "https://congbao.chinhphu.vn/van-ban/luat-so-135-2025-qh15-468695.htm"),
  "LXD_VB": ("Văn bản Chính phủ – Luật 135/2025/QH15", "https://vanban.chinhphu.vn/?docid=216514&pageid=27160"),
@@ -28,6 +28,8 @@ S = {  # source registry: key -> (name, url)
  "QD2310": ("Thư viện Pháp luật – QĐ 2310/QĐ-BCT (AD19)", "https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-2310-QD-BCT-2025-ap-dung-thue-chong-ban-pha-gia-chinh-thuc-thep-ma-co-xuat-xu-tu-Trung-Hoa-669822.aspx"),
  "QD1959": ("Thư viện Pháp luật – QĐ 1959/QĐ-BCT (AD20)", "https://thuvienphapluat.vn/van-ban/Thuong-mai/Quyet-dinh-1959-QD-BCT-2025-ap-dung-thue-chong-ban-pha-gia-chinh-thuc-thep-can-nong-tu-Trung-Hoa-664264.aspx"),
  "MOIT1959": ("Bộ Công Thương – áp thuế CBPG chính thức thép cán nóng", "https://moit.gov.vn/tin-tuc/ap-dung-thue-chong-ban-pha-gia-chinh-thuc-doi-voi-mot-so-san-pham-thep-can-nong-co-xuat-xu-tu-cong-hoa-nhan-dan-trung-ho.html"),
+ "MOIT_AD25": ("Bộ Công Thương – QĐ 2948/QĐ-BCT điều tra CBPG thép không gỉ cán nguội (AD25)", "https://moit.gov.vn/tin-tuc/bo-truong-bo-cong-thuong-ban-hanh-quyet-dinh-dieu-tra-chong-ban-pha-gia-thep-khong-gi-can-nguoi-tu-trung-quoc-indoneisa-.html"),
+ "ASL_AR01AD17": ("ASL Law – kết quả rà soát lần 1 AD17 (QĐ 2927/QĐ-BCT, 04/11/2026)", "https://aslgate.com/vi/viet-nam-ban-hanh-ket-qua-ra-soat-lan-thu-nhat-bien-phap-chong-ban-pha-gia-doi-voi-cap-thep-du-ung-luc-nhap-khau-tu-malaysia-thai-lan-va-trung-quoc/"),
  "VNP_AD24": ("VietnamPlus – điều tra CBPG thanh thép dự ứng lực (AD24)", "https://www.vietnamplus.vn/bo-cong-thuong-dieu-tra-chong-ban-pha-gia-voi-thanh-thep-du-ung-luc-trung-quoc-post1126999.vnp"),
  **{f"TV_{c}": (f"Thư viện XNK – hồ sơ vụ việc {c}", f"https://thuvienxuatnhapkhau.com/chong-ban-pha-gia/{c}") for c in ["AD03","AD04","AD05","AD08","AD12","AD15","AD17","AD18","AD19","AD20","AD22","AD23"]},
  # disputes
@@ -119,8 +121,10 @@ TR = [  # trade remedies
  dict(code="AD08", product="Thép cán nguội (dạng cuộn hoặc tấm)", origin=["Trung Quốc"], measure="Chống bán phá giá", status="dang-ap-dung", decision="3765/QĐ-BCT", decision_date="2025-12-26", expiry="2030-12-27",
   rates="Theo từng NSX/XK; ví dụ: Bazhou Jinshangyi 4,43%, Baosteel 15,50%, Angang 15,74%, BX Steel 25,22%.", hs=["7209.16.10","7209.16.90","7209.17.10","7209.17.90","7209.18.91","7209.18.99","7209.26.10","7209.26.90","7209.27.10","7209.27.90","7209.28.10","7209.28.90"],
   note="Gia hạn sau rà soát cuối kỳ lần 1, áp dụng đến 27/12/2030 (nguồn liệt kê 20 mã HS).", use="Tủ điện, máng cáp, cửa thép, ống gió.", sources=src("TV_AD08")),
- dict(code="AD17", product="Cáp thép dự ứng lực", origin=["Ma-lai-xi-a","Thái Lan","Trung Quốc"], measure="Chống bán phá giá", status="dang-ra-soat", decision="143/QĐ-BCT", decision_date="2025-01-14",
-  rates="9,79% – 28% tùy NSX/XK.", hs=["7312.10.91","7312.10.99"], note="Đang rà soát lần 1 (AR01.AD17, khởi xướng 21/01/2026; gia hạn 3 tháng ngày 22/5/2026).", use="Sàn/dầm bê tông dự ứng lực căng sau.", sources=src("TV_AD17")),
+ dict(code="AD17", product="Cáp thép dự ứng lực", origin=["Ma-lai-xi-a","Thái Lan","Trung Quốc"], measure="Chống bán phá giá", status="dang-ap-dung", decision="143/QĐ-BCT", decision_date="2025-01-14",
+  rates="9,79% – 28% tùy NSX/XK.", hs=["7312.10.91","7312.10.99"], note="Rà soát lần 1 (AR01.AD17, khởi xướng 21/01/2026) đã có kết quả: QĐ 2927/QĐ-BCT ngày 04/11/2026 thay đổi mức bán phá giá của nhóm Boxing Victory Metal Materials (TQ; trước đó 10,48%) – mức mới xem Thông báo kèm QĐ 2927; các DN khác giữ mức theo QĐ 143.", use="Sàn/dầm bê tông dự ứng lực căng sau.", sources=src("TV_AD17","ASL_AR01AD17")),
+ dict(code="AD25", product="Thép không gỉ cán nguội (cuộn, tấm, dải, dày ≤3,5 mm)", origin=["Trung Quốc","In-đô-nê-xi-a","Đài Loan (Trung Quốc)"], measure="Chống bán phá giá", status="dang-dieu-tra", decision="2948/QĐ-BCT (khởi xướng điều tra)", decision_date="2026-11-06",
+  rates="Chưa có (đang điều tra). Biên độ bên yêu cầu đề nghị: TQ 76,6%, Indonesia 75,5%, Đài Loan 51%.", hs=["7219.32.00","7219.33.00","7219.34.00","7219.35.00","7219.90.00","7220.20.10","7220.20.90","7220.90.10","7220.90.90"], note="Bên yêu cầu: Posco VST, Kim loại Tân Việt. Thời kỳ điều tra bán phá giá 01/10/2025–30/09/2026. Hạn đăng ký bên liên quan 05/01/2027 (TRAV ONLINE). Có thể áp thuế tạm thời sau điều tra sơ bộ.", use="Chậu rửa, thiết bị bếp, cabin/cửa thang máy, lan can, phụ kiện inox.", sources=src("MOIT_AD25")),
  dict(code="AD24", product="Thanh thép dự ứng lực", origin=["Trung Quốc"], measure="Chống bán phá giá", status="dang-dieu-tra", decision="1903/QĐ-BCT (khởi xướng điều tra)", decision_date="2026-07-29",
   rates="Chưa có (đang điều tra).", hs=["7227.20.00","7228.20.11","7228.20.19","7229.20.00"], note="Bên yêu cầu: Thép dự ứng lực Hòa Phát, Thép dự ứng lực Việt Nhật. Hạn đăng ký bên liên quan 16/10/2026. Có thể áp thuế tạm thời sau điều tra sơ bộ.", use="Cọc ly tâm, cấu kiện bê tông dự ứng lực.", sources=src("VNP_AD24")),
  dict(code="AD22", product="Kính nổi không màu", origin=["In-đô-nê-xi-a","Ma-lai-xi-a"], measure="Chống bán phá giá", status="dang-ap-dung", decision="1400/QĐ-BCT", decision_date="2026-06-12",
