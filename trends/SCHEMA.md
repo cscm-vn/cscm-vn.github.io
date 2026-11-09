@@ -50,7 +50,7 @@ Thêm đơn vị theo dõi mới: thêm một object vào `orgs.json` (`name`, `
 
 ## v3 – SCM (`trends/data/scm.json`, sinh từ `trends/seed/scm_YYYY-MM-DD.py`)
 Mỗi nhóm: `id, name, tax[], signal (du-cung|can-bang|khan-hiem|chua-du), trend (up|down|flat), headline, supply[], demand[], trade[], rec, rec_detail, clusters[{name,where,examples}], risks[], levers[], timing, calc{unit,fob,qty,cont,duty,ad,vat,logi,note,vn,vn_note}|null, sources[{name,url,date}]`.
-Quy tắc: mọi số liệu phải có trong nguồn ghi kèm; FOB/giả định ghi chữ **GIẢ ĐỊNH** trong `calc.note`. Cập nhật **hằng tháng** hoặc khi có biến động lớn (thuế CBPG mới, giá LME, báo cáo VSA/VNCA). Cước biển: `freight` (cập nhật hằng tháng).
+Quy tắc: mọi số liệu phải có trong nguồn ghi kèm; FOB/giả định ghi chữ **GIẢ ĐỊNH** trong `calc.note`. Cập nhật **hằng tuần – sáng thứ Hai** (lịch tự động "CSCM weekly SCM supply-demand review"; vá `scm.json` bằng script `trends/seed/scm_YYYY-MM-DD.py`, xem mẫu `scm_2026-11-02.py`) và ngay khi có biến động lớn (thuế CBPG mới, giá LME, báo cáo VSA/VNCA). Cước biển: `freight` (rà soát hằng tuần).
 
 ## v3 – Phân khúc (`trends/data/segments.json`, sinh từ `trends/seed/segments_YYYYQn.py`)
 7 phân khúc × {hn, hcm}: `price, trend, supply, absorption, inventory, projects, sources[]` + `spec, cost{structure,fitout,sources}, implications`. Cập nhật **hằng quý** khi CBRE/Savills/DKRA/VARS/NAI công bố (thường giữa tháng đầu quý sau). Dòng ước tính phải có chữ **ƯỚC TÍNH**.
