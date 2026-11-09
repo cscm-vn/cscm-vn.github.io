@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-09T11:57+07:00",
+ "built": "2026-11-09T12:09+07:00",
  "today": "2026-11-09",
  "news_since": "2026-11-08",
  "thresholds": {
@@ -22,8 +22,8 @@
   }
  },
  "top": [
-  "tt",
   "mep",
+  "tt",
   "xd"
  ],
  "groups": [
@@ -31,7 +31,22 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": 4.42,
+     "date": "2026-11-08",
+     "prev_date": "2026-11-06",
+     "price": 1417.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
      "title": "Giá thép hôm nay 9/11: Giá thép thành phẩm Trung Quốc tăng mạnh hơn nguyên liệu thô",
@@ -49,8 +64,8 @@
     }
    ],
    "n_news": 2,
-   "n_moves": 0,
-   "rank": 0.6,
+   "n_moves": 1,
+   "rank": 2.81,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -85,6 +100,20 @@
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
      "url": "mat-hang.html?id=lme_zinc"
+    },
+    {
+     "id": "yf_copper",
+     "name": "Đồng (COMEX Copper HG)",
+     "region": "",
+     "d1": 2.26,
+     "date": "2026-11-08",
+     "prev_date": "2026-11-06",
+     "price": 6.358500003814697,
+     "unit": "USD/lb",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_copper"
     }
    ],
    "news": [
@@ -104,8 +133,8 @@
     }
    ],
    "n_news": 2,
-   "n_moves": 2,
-   "rank": 3.97,
+   "n_moves": 3,
+   "rank": 5.09,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -180,7 +209,7 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": 2.39,
+     "d1": 2.67,
      "date": "2026-11-08",
      "prev_date": "2026-11-06",
      "price": 53.185001373291016,
@@ -216,7 +245,7 @@
    ],
    "n_news": 10,
    "n_moves": 1,
-   "rank": 4.2,
+   "rank": 4.33,
    "link": "danh-muc.html?c=tt"
   }
  ]
