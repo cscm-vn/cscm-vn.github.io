@@ -30,7 +30,7 @@ def browser_get(url, **kw):
         print("browser_get", url, type(e).__name__, e, file=sys.stderr); return None
 def get(url, **kw):
     r = requests.get(url, headers=UA, timeout=30, **kw)
-    if r.status_code in (403, 429, 503):  # bot rule (e.g. thitruonghanghoa.com on GitHub runners) -> retry as Chrome
+    if r.status_code in (403, 429, 503):  # bot rule (Cloudflare on some VN sites, from GitHub runners) -> retry as Chrome
         b = browser_get(url, **kw)
         if b is not None and b.status_code < 400: return b
     r.raise_for_status(); return r
@@ -237,57 +237,7 @@ def src_steelonline():
         except Exception as e: print("steelonline chart", u, e)
     return out
 
-TTHH = [("gia-xi-mang-hom-nay", "Xi măng"), ("gia-cat-xay-dung-hom-nay", "Cát"),
-        ("gia-da-xay-dung-hom-nay", "Đá xây dựng"), ("gia-gach-xay-dung-hom-nay", "Gạch xây")]
-def src_tthh():
-    out, errs = [], []
-    for pslug, cat in TTHH:
-        url = f"https://www.thitruonghanghoa.com/gia-ca-thi-truong-viet-nam/{pslug}"
-        try:
-            lines = BeautifulSoup(get(url).content, "html.parser").get_text("\n", strip=True).split("\n")
-            i = lines.index("Giá ngày")
-            d, meta = lines[i + 1], lines[i + 2]
-            as_of = dt.datetime.strptime(d, "%d/%m/%Y").date().isoformat()
-            loc = re.search(r"tại\s+([^·]+)", meta); unitm = re.search(r"đơn vị\s+([^\s·]+)", meta)
-            loc = loc.group(1).strip() if loc else ""; unit = unitm.group(1) if unitm else ""
-            j = lines.index("So với phiên trước", i) + 1
-            while j + 1 < len(lines) and not lines[j].startswith("Giá tham khảo"):
-                name, val = lines[j], lines[j + 1]
-                chg = lines[j + 2] if j + 2 < len(lines) else "—"
-                nums = re.findall(r"\d[\d.]*", val)
-                if not nums: break
-                lo = num(nums[0], "."); hi = num(nums[1], ".") if len(nums) > 1 else None
-                try: pct = float(chg.replace("%", "").replace(",", ".").replace("+", "")) if "%" in chg else None
-                except ValueError: pct = None
-                sid = slug(cat + " " + name)
-                out.append(item("vnmat_" + sid, "vn", cat, name, unit.replace("đ", "VND"), "VND", lo,
-                                "thitruonghanghoa.com (tổng hợp công bố giá Sở XD)", url, as_of=as_of,
-                                price_high=hi, region=loc, change_pct=pct,
-                                note="Giá công bố định kỳ (tháng), chưa VAT"))
-                j += 3
-        except Exception as e:
-            errs.append(f"{pslug}: {e}")
-    if errs: print("tthh errors", errs, file=sys.stderr)
-    snap = os.path.join(BASE, "data", "tthh_snapshot.json")
-    if out and not errs:
-        old = json.load(open(snap, encoding="utf-8"))["items"] if os.path.exists(snap) else None
-        if old != out:
-            json.dump({"saved_at": now_iso(), "items": out}, open(snap, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
-    if not out or errs:
-        # e.g. site blocks GitHub runner IPs: fall back to the snapshot relayed from the always-on box
-        if os.path.exists(snap):
-            d = json.load(open(snap, encoding="utf-8"))
-            for r in d["items"]:
-                r["note"] = (r.get("note") or "") + f" · lấy qua bản chụp lúc {d['saved_at'][:16].replace('T', ' ')} (nguồn chặn máy chủ GitHub)"
-                r["src"] = r["src"].split(" [")[0] + " [relay]"
-            have = {r["id"] for r in out}
-            out += [r for r in d["items"] if r["id"] not in have]
-            print("tthh: using snapshot", d["saved_at"], file=sys.stderr)
-            age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(d["saved_at"])).days
-            if not have and age > 10:  # nguồn không còn dữ liệu/relay không làm mới >10 ngày -> báo lỗi để giữ giá cũ nhưng gắn cờ "cũ"
-                raise RuntimeError(f"tthh: bản chụp relay đã {age} ngày (lưu {d['saved_at'][:10]}); nguồn: {'; '.join(errs)[:200]}")
-        if not out: raise RuntimeError("; ".join(errs))
-    return out
+from hcm_sxd import src_hcm_sxd  # xi măng/cát/đá/gạch TP.HCM (thay thitruonghanghoa.com, ngừng dữ liệu 10/2026)
 
 def src_hanoi_static():
     p = os.path.join(BASE, "hanoi_sxd_q3_2026.json")
@@ -296,7 +246,7 @@ def src_hanoi_static():
 
 SOURCES = [("Vietcombank", src_vcb), ("Westmetall/LME", src_westmetall), ("Yahoo Finance", src_yahoo),
            ("Trading Economics", src_te), ("SJC (giavang.org)", src_sjc), ("SJC (webgia đối chiếu)", src_sjc_check),
-           ("steelonline.vn", src_steelonline), ("thitruonghanghoa.com", src_tthh),
+           ("steelonline.vn", src_steelonline), ("Sở XD TP.HCM – công bố giá tháng", src_hcm_sxd),
            ("Sở XD Hà Nội Q3/2026 (tĩnh)", src_hanoi_static)]
 
 # Nguồn bổ sung (bê tông thương phẩm, nhựa PE/PVC/PP, ống HDPE) – module forecast/sources.py

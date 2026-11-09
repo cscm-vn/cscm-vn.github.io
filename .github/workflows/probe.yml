@@ -1,7 +1,7 @@
 name: probe-hcm-sources
 on:
-  push: {branches: ["probe/**"], paths: ["probe/*.py", ".github/workflows/probe.yml"]}
-permissions: {contents: write}
+  push: {branches: ["probe/**"], paths: ["probe/*.py", ".github/workflows/probe.yml", "hcm_sxd.py", "fetcher.py"]}
+permissions: {contents: read}
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -9,9 +9,27 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install curl_cffi beautifulsoup4
-      - run: python probe/discover.py
-      - name: Save downloaded files to the probe branch for inspection
+      - run: pip install -r requirements.txt
+      - name: Full fetch (live discovery, no cache) – test only, not committed
+        run: python fetcher.py 2>&1 | grep -E "^(OK|FAIL)|hcm_sxd|errors" || true
+      - name: Cache produced + items
         run: |
-          git config user.name "price-bot" && git config user.email "price-bot@users.noreply.github.com"
-          git add probe/files && git commit -m "probe: downloaded notices [skip ci]" && git push || echo "nothing to push"
+          ls -la data/hcm_sxd/
+          python -c "
+          import json,glob
+          for f in sorted(glob.glob('data/hcm_sxd/*.json')):
+              c=json.load(open(f)); print('CACHE', f, c['tb'], c['issued'], {k:(v['file'],v['n_rows']) for k,v in c['appendices'].items()})
+          import hcm_sxd
+          for r in hcm_sxd.src_hcm_sxd(): print('ITEM', r['id'], r['price'], r.get('price_high'), r['as_of'], r.get('change_pct'), '|', r['src'])
+          "
+      - name: Downstream steps still work
+        run: |
+          python store.py check && python export_static.py && echo EXPORT_OK
+          python forecast/build.py --site site 2>&1 | grep -v Warning | tail -3
+          python dieu_chinh/build.py --site site 2>&1 | tail -3 && echo DC_OK
+          python trends/build.py 2>&1 | tail -2 && echo HUB_OK
+          python -c "
+          import json; d=json.load(open('site/prices.json')) if __import__('os').path.exists('site/prices.json') else None
+          print('SITE_JSON', 'prices.json' if d else 'n/a')
+          " || true
+          grep -rl "Sở Xây dựng TP.HCM" site | head -5
