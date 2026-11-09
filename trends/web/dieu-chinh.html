@@ -170,7 +170,7 @@ dialog#dlg::backdrop{background:#0e1a2b8c}
   const bl = ref.map((v, i) => `<line x1="2" x2="${w - 2}" y1="${Y(v).toFixed(1)}" y2="${Y(v).toFixed(1)}" stroke="${i ? "#b08d57" : "#14325a"}" stroke-dasharray="3 2" stroke-width="1" opacity=".55"/>`).join("");
   return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-label="Diễn biến ${s.length} ngày">${bl}<polyline fill="none" stroke="${col}" stroke-width="1.8" points="${s.map((v, i) => X(i).toFixed(1) + "," + Y(v).toFixed(1)).join(" ")}"/></svg>`;
  };
- const short = s => { s = String(s || ""); if (/Sở Xây dựng Hà Nội/.test(s)) return "Sở XD Hà Nội (quý)"; if (/thitruonghanghoa/.test(s)) return "Sở XD TP.HCM (tháng)";
+ const short = s => { s = String(s || ""); if (/Sở Xây dựng Hà Nội/.test(s)) return "Sở XD Hà Nội (quý)"; if (/thitruonghanghoa|Sở Xây dựng TP\.HCM/.test(s)) return "Sở XD TP.HCM (tháng)";
   return s.replace(/\s*\(.*$/, "").slice(0, 40); };
  const first = s => { s = String(s || ""); const i = s.search(/\.\s/); return i > 0 && i < 160 ? s.slice(0, i + 1) : s.slice(0, 160) + (s.length > 160 ? "…" : ""); };
  const mkCell = r => {

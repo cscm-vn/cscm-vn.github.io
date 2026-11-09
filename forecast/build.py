@@ -278,11 +278,11 @@ def main():
     ccp = concrete_pct()
     def g(i): return items.get(i, {}).get("price")
     local = [
-      ("cement", "cement", "Xi măng PCB40 bao", [("HN", g("hn_sxd_q3_08"), "Sở XD Hà Nội Q3/2026 – Vicem Bút Sơn PCB40 bao (tại NM)"), ("HCM", g("vnmat_xi_mang_xi_mang_pcb40_bao"), "thitruonghanghoa.com (công bố giá Sở XD TP.HCM)")], "VND/tấn", cp,
+      ("cement", "cement", "Xi măng PCB40 bao", [("HN", g("hn_sxd_q3_08"), "Sở XD Hà Nội Q3/2026 – Vicem Bút Sơn PCB40 bao (tại NM)"), ("HCM", g("vnmat_xi_mang_xi_mang_pcb40_bao"), "Sở XD TP.HCM – công bố giá tháng (PCB40 bao, thấp nhất giữa NCC)")], "VND/tấn", cp,
        "Chi phí: 30% than + 8% dầu + 62% khác (lạm phát 3,5%/năm, giả định) + sai số riêng 5%/năm"),
-      ("sand", "sand_stone", "Cát vàng / cát bê tông", [("HN", g("hn_sxd_q3_01"), "Sở XD Hà Nội Q3/2026 – cát vàng bãi Trung Hà"), ("HCM", g("vnmat_cat_cat_be_tong_gia_binh_quan_khu_vuc"), "thitruonghanghoa.com – cát bê tông BQ khu vực")], "VND/m³", sp,
+      ("sand", "sand_stone", "Cát vàng / cát bê tông", [("HN", g("hn_sxd_q3_01"), "Sở XD Hà Nội Q3/2026 – cát vàng bãi Trung Hà"), ("HCM", g("vnmat_cat_cat_be_tong_gia_binh_quan_khu_vuc"), "Sở XD TP.HCM – cát bê tông BQ khu vực (công bố tháng)")], "VND/m³", sp,
        "Xu hướng: lạm phát+1%/năm, 15% theo dầu (vận chuyển), sai số riêng 7%/năm"),
-      ("stone", "sand_stone", "Đá 1x2", [("HN", (g("hn_sxd_q3_04") + g("hn_sxd_q3_05")) / 2 if g("hn_sxd_q3_04") and g("hn_sxd_q3_05") else None, "Sở XD Hà Nội Q3/2026 – TB 2 điểm KD"), ("HCM", g("vnmat_da_xay_dung_da_1x2_gia_binh_quan_khu_vuc"), "thitruonghanghoa.com – BQ khu vực")], "VND/m³", sp,
+      ("stone", "sand_stone", "Đá 1x2", [("HN", (g("hn_sxd_q3_04") + g("hn_sxd_q3_05")) / 2 if g("hn_sxd_q3_04") and g("hn_sxd_q3_05") else None, "Sở XD Hà Nội Q3/2026 – TB 2 điểm KD"), ("HCM", g("vnmat_da_xay_dung_da_1x2_gia_binh_quan_khu_vuc"), "Sở XD TP.HCM – đá 1x2 BQ khu vực (công bố tháng)")], "VND/m³", sp,
        "Như cát"),
     ]
     # bê tông: lấy nguồn bổ sung (DB nếu đã tích hợp vào fetcher, nếu không gọi trực tiếp)

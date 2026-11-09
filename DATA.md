@@ -14,7 +14,7 @@ data/
     prices/YYYY-MM.csv     # giá, dạng long: 1 dòng / (item_id, date); lần lấy muộn nhất trong ngày thắng
     runs/YYYY-MM.csv       # nhật ký chạy từng nguồn (fetched_at, source, ok, n, error)
   taxonomy.json            # cây danh mục cho các trang hub
-  tthh_snapshot.json       # bản chụp relay từ box (nguồn chặn runner GitHub)
+  hcm_sxd/YYYY-MM.json     # công bố giá Sở XD TP.HCM đã đọc từ Phụ lục (mỗi tháng 1 tệp; có thì không tải lại)
   prices.db                # (gitignored) SQLite dựng từ CSV
 ```
 

@@ -23,7 +23,7 @@ cờ "dữ liệu cũ" khi nguồn lỗi (giữ giá tốt gần nhất – khô
 | SHFE rebar (CNY/t), HRC, quặng sắt, phế liệu, than cốc, kim loại màu | tradingeconomics.com/commodities (trang công khai) | gần thời gian thực |
 | Vàng SJC | giavang.org (chính), webgia.com (đối chiếu) | trong ngày |
 | Thép xây dựng VN (Hòa Phát, Việt Ý, Việt Đức, Kyoei, Thái Nguyên, VAS, Pomina, Việt Sing, TungHo, Miền Nam; Bắc/Trung/Nam) | steelonline.vn/price-list | ngày |
-| Xi măng, cát, đá, gạch (TP.HCM) | thitruonghanghoa.com (tổng hợp công bố giá Sở XD) | tháng |
+| Xi măng, cát, đá, gạch (TP.HCM) | Công bố giá hằng tháng của Sở XD TP.HCM – đọc Phụ lục PDF (`hcm_sxd.py`; tìm thông báo qua thuviennhadat.vn, tải từ Google Drive vì trang Sở chặn máy chủ GitHub) | tháng (trễ ~6 tuần) |
 | Xi măng, cát, đá, thép – Hà Nội | Sở XD Hà Nội, công bố giá Quý III/2026 (dữ liệu tĩnh) | quý |
 
 ## Lịch cập nhật (cron trên box, giờ VN)
