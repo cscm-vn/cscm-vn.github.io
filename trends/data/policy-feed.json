@@ -1,6 +1,6 @@
 {
 "schema_version": 1,
-"updated": "2026-11-09T11:05+07:00",
+"updated": "2026-11-09T11:57+07:00",
 "window_days": 30,
 "topics": {
 "dat-dai": "Đất đai",
@@ -114,16 +114,16 @@
 "label": "Nghị quyết 96/2026/NQ-HDND",
 "n": 1
 },
-"doc:th-ng-t-81-2026-tt-bxd": {
-"label": "Thông tư 81/2026/TT-BXD",
-"n": 2
-},
 "law:luat-pccc": {
 "label": "Luật PCCC",
 "n": 5
 },
 "law:luat-ppp": {
 "label": "Luật PPP",
+"n": 2
+},
+"doc:th-ng-t-81-2026-tt-bxd": {
+"label": "Thông tư 81/2026/TT-BXD",
 "n": 2
 },
 "doc:ngh-quy-t-28-2026-nq-hdnd": {
@@ -249,14 +249,14 @@
 },
 "home_rule": "Trang chủ: tối đa 1 tin/cụm văn bản và 1 tin/chủ đề con, 2 tin/chủ đề chính, điểm ≥ 40 (thiếu thì bù tới 5).",
 "sources": {
-"Google News: nghị định Luật Đất đai when:14d": 20,
+"Google News: nghị định Luật Đất đai when:14d": 19,
 "Google News: bảng giá đất Hà Nội TP.HCM when:14d": 7,
-"Google News: thông tư Bộ Xây dựng mới when:14d": 9,
+"Google News: thông tư Bộ Xây dựng mới when:14d": 10,
 "Google News: Luật Xây dựng 2025 nghị định hướng dẫn when:14d": 8,
-"Google News: Luật Nhà ở chung cư nghị định when:14d": 11,
+"Google News: Luật Nhà ở chung cư nghị định when:14d": 12,
 "Google News: thời hạn sở hữu chung cư when:30d": 5,
 "Google News: Luật Kinh doanh bất động sản nghị định when:14d": 10,
-"Google News: nhà ở xã hội quy định chủ đầu tư when:14d": 7,
+"Google News: nhà ở xã hội quy định chủ đầu tư when:14d": 6,
 "Google News: giấy phép xây dựng quy định mới when:14d": 5,
 "Google News: phòng cháy chữa cháy chung cư quy định when:14d": 1,
 "Google News: Luật Địa chất và Khoáng sản nghị định when:14d": 12,
@@ -270,7 +270,7 @@
 "Google News: sắp xếp đơn vị hành chính cấp xã thành lập phường when:30d": 3,
 "Google News: đổi tên địa danh hành chính cập nhật giấy tờ địa chỉ when:30d": 2,
 "Google News: Luật Đầu tư theo phương thức đối tác công tư nghị định hướng dẫn when:30d": 12,
-"Google News: hợp đồng BT thanh toán bằng quỹ đất nghị định when:30d": 5,
+"Google News: hợp đồng BT thanh toán bằng quỹ đất nghị định when:30d": 4,
 "Google News: nghị định PPP sửa đổi hợp đồng BOT BT when:30d": 4,
 "Google News: quyết toán thanh toán dự án BT vướng mắc cơ chế when:30d": 6,
 "Google News: Luật Đầu tư công nghị định hướng dẫn when:30d": 5,
@@ -279,11 +279,11 @@
 "Google News: lựa chọn nhà đầu tư PPP đấu thầu qua mạng when:30d": 6,
 "Google News: dự án PPP cao tốc đường sắt cơ chế chính sách mới when:30d": 0,
 "Google News: site:chinhphu.vn bất động sản OR đất đai OR xây dựng when:14d": 3,
-"Google News: site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d": 23,
+"Google News: site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d": 22,
 "Google News: site:moc.gov.vn when:30d": 10,
-"Google News: site:xaydung.gov.vn when:30d": 1,
+"Google News: site:xaydung.gov.vn when:30d": 0,
 "Google News: site:cafeland.vn chính sách when:14d": 5,
-"Google News: site:baochinhphu.vn nhà ở OR đất đai when:14d": 7,
+"Google News: site:baochinhphu.vn nhà ở OR đất đai when:14d": 8,
 "Chinhphu.vn – Chính sách mới": 4,
 "Báo Chính phủ – Chính sách mới": 4,
 "VnExpress – Pháp luật": 2,
@@ -312,10 +312,10 @@
 "dyn": 19,
 "rec": 20
 },
-"impact": "rà soát địa danh/đơn vị hành chính trong địa chỉ các bên và địa điểm dự án; ghi theo tên và ngày hiệu lực của văn bản gốc.",
 "theme": "dia-gioi:17",
 "cluster": "theme:dia-gioi:17",
-"cluster_label": "Sáp nhập, sắp xếp & đổi tên đơn vị hành chính"
+"cluster_label": "Sáp nhập, sắp xếp & đổi tên đơn vị hành chính",
+"impact": "rà soát địa danh/đơn vị hành chính trong địa chỉ các bên và địa điểm dự án; ghi theo tên và ngày hiệu lực của văn bản gốc."
 },
 {
 "id": "e44ede3ae757",
@@ -1332,43 +1332,6 @@
 "cluster_label": "Nghị quyết 96/2026/NQ-HDND"
 },
 {
-"id": "d0419b180311",
-"title": "Lộ trình dán nhãn năng lượng đối với vật liệu xây dựng",
-"url": "https://baochinhphu.vn/lo-trinh-dan-nhan-nang-luong-doi-voi-vat-lieu-xay-dung-102261105173750049.htm",
-"source": "Báo Chính phủ – Chính sách mới",
-"summary": "(Chinhphu.vn) - Bộ trưởng Bộ Xây dựng ban hành Thông tư 81/2026/TT-BXD quy định việc dán nhãn năng lượng đối với vật liệu xây dựng thuộc phạm vi quản lý của Bộ Xây dựng.",
-"topics": [
-"xay-dung",
-"khoang-san"
-],
-"published": "2026-11-05T17:37+07:00",
-"found": "2026-11-05T20:06+07:00",
-"score": 49,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công · văn bản mới ban hành/thông qua",
-"parts": {
-"rel": 12,
-"dyn": 19,
-"rec": 18
-},
-"theme": "xay-dung:8",
-"cluster": "doc:th-ng-t-81-2026-tt-bxd",
-"cluster_label": "Thông tư 81/2026/TT-BXD",
-"also": [
-{
-"source": "Chinhphu.vn – Chính sách mới",
-"url": "https://xaydungchinhsach.chinhphu.vn/danh-muc-vat-lieu-xay-dung-phai-dan-nhan-nang-luong-va-lo-trinh-thuc-hien-119261105155342363.htm"
-},
-{
-"source": "Tạp chí Người xây dựng",
-"url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQQUlrMlMxWllWLVZhWnRWWnQwamlDU29YSU1EaVNRUUxQRlZjWkc4ZmliZUhranlNcF9aajZOMUpiN1Zfc0k0QThXRnlSVGc3cks5Q1BFNkc4WUx1dEFIekVEWFUtZTFZWEdQdjh4LU92UURucEVtS25vYTV1UnBEQjRXcE1xXzNhaFY4d0NEbDFBSW5TTWw2N2pITmstcnc4WGEyNTFhWHo?oc=5"
-},
-{
-"source": "Thuonghieucongluan.com.vn",
-"url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPcG5YTTd2aXFMbjk3Y2g2SU9DajRVbTBobjBXQVdVQnFNRFBoWS1sal94WmdsRmFKZzIyTnhiajE5UkkzMjBkRlVYa19iQkRoWl9sQnRpZTdtbTlnNkpRYVZGM2tBcDhCRmtfdzJpYTVqNXNsZEowUy1kcFRzR05uRDZNejZlNWdNNFk2M3h6V2xsX3JFWkVQUjZwWUJLRTZickRXVzJIdmxoRDdHUUkwV2QyeFlSRFdNbnYwZ3VnRQ?oc=5"
-}
-]
-},
-{
 "id": "2648d152d5fb",
 "title": "ĐBQH góp ý nội dung sửa đổi của Luật Phòng cháy chữa cháy và cứu nạn, cứu hộ",
 "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUkhkMHhQcmpJY0N2Ql9qdHlXUXhiN2ZaYnd2Z2JmYzBDMjRQUEt0Vk84cnc5T3hZZW5xTHJsd0QyTXdKeVNyYlFnTHFnU29GcWhlSWc4SzhBeGw2cGozaW1pWUFpZFROOF94NlF5dVVxNW9kZWROYnhqdDdrM2hERExlSU9tV1ItZlZpYklhVElENEtfNUFWSE00ejY2YjZBVktZelN1MjViNENEaUVxSUhRWmg2UVU?oc=5",
@@ -1415,6 +1378,43 @@
 "theme": "ppp:18",
 "cluster": "law:luat-ppp",
 "cluster_label": "Luật PPP"
+},
+{
+"id": "d0419b180311",
+"title": "Lộ trình dán nhãn năng lượng đối với vật liệu xây dựng",
+"url": "https://baochinhphu.vn/lo-trinh-dan-nhan-nang-luong-doi-voi-vat-lieu-xay-dung-102261105173750049.htm",
+"source": "Báo Chính phủ – Chính sách mới",
+"summary": "(Chinhphu.vn) - Bộ trưởng Bộ Xây dựng ban hành Thông tư 81/2026/TT-BXD quy định việc dán nhãn năng lượng đối với vật liệu xây dựng thuộc phạm vi quản lý của Bộ Xây dựng.",
+"topics": [
+"xay-dung",
+"khoang-san"
+],
+"published": "2026-11-05T17:37+07:00",
+"found": "2026-11-05T20:06+07:00",
+"score": 48,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công · văn bản mới ban hành/thông qua",
+"parts": {
+"rel": 12,
+"dyn": 19,
+"rec": 17
+},
+"theme": "xay-dung:8",
+"cluster": "doc:th-ng-t-81-2026-tt-bxd",
+"cluster_label": "Thông tư 81/2026/TT-BXD",
+"also": [
+{
+"source": "Chinhphu.vn – Chính sách mới",
+"url": "https://xaydungchinhsach.chinhphu.vn/danh-muc-vat-lieu-xay-dung-phai-dan-nhan-nang-luong-va-lo-trinh-thuc-hien-119261105155342363.htm"
+},
+{
+"source": "Tạp chí Người xây dựng",
+"url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQQUlrMlMxWllWLVZhWnRWWnQwamlDU29YSU1EaVNRUUxQRlZjWkc4ZmliZUhranlNcF9aajZOMUpiN1Zfc0k0QThXRnlSVGc3cks5Q1BFNkc4WUx1dEFIekVEWFUtZTFZWEdQdjh4LU92UURucEVtS25vYTV1UnBEQjRXcE1xXzNhaFY4d0NEbDFBSW5TTWw2N2pITmstcnc4WGEyNTFhWHo?oc=5"
+},
+{
+"source": "Thuonghieucongluan.com.vn",
+"url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPcG5YTTd2aXFMbjk3Y2g2SU9DajRVbTBobjBXQVdVQnFNRFBoWS1sal94WmdsRmFKZzIyTnhiajE5UkkzMjBkRlVYa19iQkRoWl9sQnRpZTdtbTlnNkpRYVZGM2tBcDhCRmtfdzJpYTVqNXNsZEowUy1kcFRzR05uRDZNejZlNWdNNFk2M3h6V2xsX3JFWkVQUjZwWUJLRTZickRXVzJIdmxoRDdHUUkwV2QyeFlSRFdNbnYwZ3VnRQ?oc=5"
+}
+]
 },
 {
 "id": "dc9655e63d26",
@@ -7367,28 +7367,6 @@
 "cluster_label": "Nghị định 292/2025/NĐ-CP"
 },
 {
-"id": "b96e4aeb8c08",
-"title": "Cục Địa chất và Khoáng sản Việt Nam tổ chức tuyên truyền, phổ biến pháp luật tại Lào Cai",
-"url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOaDBGWEZJcnFoQ2h4eDZKSDFfOEo1U3hEdmEydVRqbjA5LS14MU16MEJGSXBNejhJUDNhUGZleHdqeVFMekpOcHN4NWowX0puY2ZrazBuYUtKZ3BlU3JBenpKbnd1NGp5MlpOR1huUGNzNXl4U21Qc25KSDlrSTlWOE52M0tJeVQ5eGhEQkxRRGF3T0F3Qzk3NzhHLW4zazRIRHdjWkhuNzhybnRDbG5vX3lYcVhyZWJjbzVRNHM0ZG02WHpaa1E?oc=5",
-"source": "Tạp chí Công Thương",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-10-24T17:57+07:00",
-"found": "2026-10-26T08:09+07:00",
-"score": 30,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 8,
-"rec": 10
-},
-"theme": "khoang-san:8",
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
-},
-{
 "id": "7725848fdb69",
 "title": "VIGLACERA TỔ CHỨC TẬP HUẤN, PHỔ BIẾN PHÁP LUẬT VỀ PHÒNG CHÁY, CHỮA CHÁY VÀ CỨU NẠN, CỨU HỘ",
 "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPbTNBTkQtWlp5VHg5ejd0T3dMSHdjdWFUZUNzRExRVm92UW5ROFVjMzlWSmtYMHV3RTcxajFTQ3dnckdpX28zSmNhM0hkX1RoX2tXLXlMcXRScWhkMzZOczE0MkRWdFJWcXRJTnprYWEzbEVZWnBFLVVBUUtCeTR5c0J0V1lfUUM5Vm9sR2ZtYWtOSU9GMnZzRGpoVFVndU1Ld3hmdkhhc0JtUzItNm5J?oc=5",
@@ -7857,6 +7835,28 @@
 "theme": "nha-o:4",
 "cluster": "theme:nha-o:4",
 "cluster_label": "Chung cư & nhà ở thương mại"
+},
+{
+"id": "b96e4aeb8c08",
+"title": "Cục Địa chất và Khoáng sản Việt Nam tổ chức tuyên truyền, phổ biến pháp luật tại Lào Cai",
+"url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOaDBGWEZJcnFoQ2h4eDZKSDFfOEo1U3hEdmEydVRqbjA5LS14MU16MEJGSXBNejhJUDNhUGZleHdqeVFMekpOcHN4NWowX0puY2ZrazBuYUtKZ3BlU3JBenpKbnd1NGp5MlpOR1huUGNzNXl4U21Qc25KSDlrSTlWOE52M0tJeVQ5eGhEQkxRRGF3T0F3Qzk3NzhHLW4zazRIRHdjWkhuNzhybnRDbG5vX3lYcVhyZWJjbzVRNHM0ZG02WHpaa1E?oc=5",
+"source": "Tạp chí Công Thương",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-10-24T17:57+07:00",
+"found": "2026-10-26T08:09+07:00",
+"score": 29,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 8,
+"rec": 9
+},
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
 },
 {
 "id": "dfd79bc100ba",
@@ -9409,7 +9409,13 @@
 },
 "theme": "xay-dung:None",
 "cluster": "topic:xay-dung",
-"cluster_label": "Xây dựng"
+"cluster_label": "Xây dựng",
+"also": [
+{
+"source": "VietQ.vn",
+"url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPS215Zk1WMVZEN2s0TmNqbG1tcU9jZTBRUkVaTng1eXpNU29CbGtWTGFZTm0zQnV2VlFWa3M5WU9xNVd6bTlfVXVMbXFXZE9TZ2hmSHUwNE04UzlaS2VuSXA5bk10R21pM3c0TWpZSmxUeTkwTGtIcDc0YjdyOTV1WUluT0NreHhIa0gtVHRaNzNxWXl0LVY2QmR4TGZTSFJNWEk5c1Z4U3dIa0RtVEFPTl9n?oc=5"
+}
+]
 },
 {
 "id": "5fb170095f8d",
