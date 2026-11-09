@@ -1,0 +1,15 @@
+name: probe-hcm-sources
+on:
+  push: {branches: ["probe/**"]}
+permissions: {contents: read}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests curl_cffi
+      - run: python probe/probe.py probe_out
+      - uses: actions/upload-artifact@v4
+        with: {name: probe_out, path: probe_out, retention-days: 3}
