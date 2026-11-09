@@ -3,7 +3,8 @@
 import os
 from curl_cffi import requests as cr
 OUT = "probe/files"; os.makedirs(OUT, exist_ok=True)
-F = {"t9_pl02": "1GmWZdNMap_bVSezxR0w_HD7Lgcr4NEMT", "t9_pl07": "1wJXgm6hsoBGLuofZgZr4moOlFlbUUEnY",
+F = {"t8_pl06": "1Kwkm6GaGblP5mDeavL8kpwQ7T4Us8jZA", "t8_pl08": "1kJ_F6rPnO9ixM10WuE5Rw13m071XqcYx", "t8_pl05": "1PZXfAlSqzemTgqKM_M6miYCI7rGi59MM"}
+F0 = {"t9_pl02": "1GmWZdNMap_bVSezxR0w_HD7Lgcr4NEMT", "t9_pl07": "1wJXgm6hsoBGLuofZgZr4moOlFlbUUEnY",
      "t9_pl09": "1XbA8usdGUs5ysq-_SHSmQ8yrH2Cws9BJ", "t9_pl10": "1g71vGbVC-dMEQ6ktADxFtOcb4OdM1_Xt",
      "t8_pl02": "14cFo-mDdnA9Y1NBNXs5SuTqu0ts3x8yi", "t8_pl07": "1iiSrcl3f8SzAdlT07XJCq79uvFNi1Nb6",
      "t8_pl09": "10fNmXlUQppgN-h_GIG20cAyPswPjVPqa", "t8_pl10": "1Uj11PZIsB8Ub9bfHNDCWi9c6sKVa-ff3"}
