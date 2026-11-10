@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "built": "2026-11-10T20:28+07:00",
- "today": "2026-11-10",
- "news_since": "2026-11-09",
+ "built": "2026-11-11T06:31+07:00",
+ "today": "2026-11-11",
+ "news_since": "2026-11-10",
  "thresholds": {
   "world": {
    "abs_pct": 2.0,
@@ -22,8 +22,8 @@
   }
  },
  "top": [
-  "tt",
   "mep",
+  "tt",
   "xd"
  ],
  "groups": [
@@ -34,16 +34,16 @@
    "prices": [],
    "news": [
     {
+     "title": "Bộ Xây dựng: nhựa đường tháng 10 bình quân 26.689 đ/kg (+16,7% m/m), đá 618.324 đ/m³ (+1,04%), xi măng 2.222 đ/kg (+0,1%); dự báo giá VLXD tiếp tục tăng cuối năm",
+     "url": "thi-truong.html#036d0494d29d",
+     "date": "2026-11-10",
+     "score": 13,
+     "source": "Báo Chính phủ – Giá vật liệu xây dựng biến động, Bộ Xây dựng triển khai giải pháp kiểm soát, 10/11/2026"
+    },
+    {
      "title": "Giá thép hôm nay 10/11: Quặng sắt giảm khi Trung Quốc hạn chế sản xuất",
      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQNDdXNl9WYlpwMUZqdG9hcHczeTNJekl3UFAwODFOWFRSZWtFSXFFdUk2MlpQR1FSZ1JzUm1ONUpENUdFVTVlUFdUYV8xVXhIRmpPYkN6aHJHUTlBeFFpNTVHM2ozWUlYM3dEQmpabkh3ZVBnQ2tlMHotT1FISnZWWW1XbFIxeW9JejFiak5acGQxbkcyWkxWQ1ZMOGJFTXBIa29kSlZubmZOTWNRYnQ0?oc=5",
      "date": "2026-11-10",
-     "score": 12.0,
-     "source": "VietnamBiz"
-    },
-    {
-     "title": "Giá thép hôm nay 9/11: Giá thép thành phẩm Trung Quốc tăng mạnh hơn nguyên liệu thô",
-     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPUV9sOXBPYXRyZjRGMFRtMDlTTHkwaVdpZXhfYV81dzdSV3Nhb0xJWnN0d0EzenFTanZDSl9mNkRkT19rMWYzdDBGVVpoaWptdDNtUVhDM0dfN29fY2dOMkJMYjc5M2JHUzd4SjJOZXRiOE9CYmhRWVJzemV5dGw2V1h0LUt6eXNRQkVnSkdiZGJfUlFPdkFwYm9wdTBOdTMzQV9wZmEyNm1rR2F2eDJTcGEzZ25tUUdWWUo0Ykk4LWo?oc=5",
-     "date": "2026-11-09",
      "score": 11.7,
      "source": "VietnamBiz"
     },
@@ -51,46 +51,75 @@
      "title": "Giá thép hôm nay 10/11: Giá thép thanh và quặng sắt đồng loạt giảm",
      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxORThrblZvOU1Ma215YnVDZmZaZWxLZWVwVUtIR3BWSlVoeUxUMFhyTDctVWhyeGFsTlYwckI3VmxNWWwyTjU4dFFEeFhuUWFrdnIwcGpkMzVnTkFEbTh1c3Q2TVZPSE5mREJPYzR2Ykp3ZGhnUUlieFNfby0xS3ZNVVFCR0FXY1dPWWFHYVM0eURhT0NWMkhsSllQQ2ZsLWVsenU2R2phdUxFODZhMzRBVnBn?oc=5",
      "date": "2026-11-10",
-     "score": 10.0,
+     "score": 9.7,
      "source": "Thuonghieucongluan.com.vn"
     }
    ],
-   "n_news": 6,
+   "n_news": 5,
    "n_moves": 0,
-   "rank": 1.8,
+   "rank": 1.5,
    "link": "danh-muc.html?c=xd"
   },
   {
    "id": "mep",
    "name": "MEP",
    "icon": "⚡",
-   "prices": [],
+   "prices": [
+    {
+     "id": "te_polyethylene",
+     "name": "Polyethylene (PE, DCE LLDPE)",
+     "region": "",
+     "d1": -3.36,
+     "date": "2026-11-10",
+     "prev_date": "2026-11-09",
+     "price": 8380.0,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_polyethylene"
+    },
+    {
+     "id": "yf_aluminium",
+     "name": "Nhôm (COMEX Aluminum)",
+     "region": "",
+     "d1": -2.24,
+     "date": "2026-11-10",
+     "prev_date": "2026-11-09",
+     "price": 3113.75,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_aluminium"
+    }
+   ],
    "news": [
     {
-     "title": "LME Metals Take Centre Stage as Copper, Aluminium, Zinc, Nickel, Lead and Tin Reassess Supply",
-     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQaGFocTZna3RyLVowaWFhVXA0LVlVVnVSYTZnQ2VVc1lrd3VaZUZlVnpZWGVwTDd6bmdXWUlEakR1b0xmTzJQX29FNTdWMkd6MWVrYkp0UUYydm9SRENWZmh2b0xXd09PcHpBeVRxRHFLaXBqZThOLXdpeWRPZEFWd0VSOHBSMWwtSnVPOVBOOFprTnBqZk5OcEl3RWNVX3dnZXIyaVBvTDBzckZfTTN5S1FBclVkeTNoakhDallhcndiVU94?oc=5",
-     "date": "2026-11-09",
+     "title": "Copper Rebounds as China Supply Tightness Keeps LME Prices Under Pressure",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNUWhiWFNfRHljZnJNUFNjOGR0bFlUX01SU2stcjRHbUdfSEt4Wk1Za3Z4SVAxOGdLX055TzJ0TXZrZkF5azVHR2tWTnhsNXBIUTJZdnQ1bFVVS2ptMFp2Z2JsaWFhX2dJMVlWN3JsQks3YVEwYTdiSURhOUZjWmNIbXVDVW1ieXFVNTZUTHVLU1p1SVQ0cHF4UDVPSnZyT0dQREp1TXBOeWZYb3V3UzY0?oc=5",
+     "date": "2026-11-10",
      "score": 10.7,
      "source": "kalkine.ca"
+    },
+    {
+     "title": "Tight stocks drive premium for near-term LME aluminium to five-month high",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOTUltWnN3ZGdMeV83UHprTmZJa1djeXl4WFVGLVJfX09zTWhMQXJ2M2Jha0pCYVlMVUIxLXRCVThXRnNJV0JZTlF6OFYxZTJGVzdzRUdSRTIzRGwyTnVkM1pXTGdxQUlHODVjR0FyVmN2M1pVZTZTbFEtYWxPTDZVU3RNcEtHZjBickxpeGUzNGRzcURsU0xILWJHZjc?oc=5",
+     "date": "2026-11-10",
+     "score": 8.7,
+     "source": "Mining.com.au"
     },
     {
      "title": "Copper price rebounds on firmer risk sentiment and tight supply in China",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOYnpMSkdaUE5TNHo0UC15d0lQNzZJV3hqODBZUFEwMVZTRGNNbUpSNTBDbHNtbkxKQWhOSDlkQkNVRkpGQm9pOEwtVDc5ZjN5T2lyZkk5X29BZTlESFFZOEdzSU9ac3Q5aEJPdjE4Z0RoQldScTVyeGcwUXhyZUtlVlI3TTRReXhOajliRElUR055d1F1dmc3cy1yZw?oc=5",
      "date": "2026-11-10",
-     "score": 9.0,
-     "source": "Mining.com.au"
-    },
-    {
-     "title": "Aluminium squeeze deepens as LME inventories hit multi-decade lows",
-     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOeHYxUEphd1F6T1hXOVpZQlk4SVltOU5HdjdNZzNGT1Bsc1VVcWtUUWdfT3dqNlFIX0FFWEJqNkNkZDhSdkFUck1MVnVrWUdDQUlabnViVW11SUMycTg0S0R6dFdpYXc0TGFHMDR3VkVhZFc5NzFpZktRVnAwUDEwWFpNZHdEakYyY2o5ak1pY2YwNFU?oc=5",
-     "date": "2026-11-10",
-     "score": 9.0,
+     "score": 8.7,
      "source": "Mining.com.au"
     }
    ],
-   "n_news": 9,
-   "n_moves": 0,
-   "rank": 2.7,
+   "n_news": 7,
+   "n_moves": 2,
+   "rank": 4.9,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -98,18 +127,10 @@
    "name": "Hoàn thiện",
    "icon": "🛁",
    "prices": [],
-   "news": [
-    {
-     "title": "Phát hiện một công trình hơn 4.300 tỷ đồng tại Hà Nội: Huy động 5.000 người thi công, sử dụng 14.000 tấn cốt thép, 34.000m² đá ốp lát, thuộc top lớn nhất Đông Nam Á",
-     "url": "https://cafef.vn/phat-hien-mot-cong-trinh-hon-4300-ty-dong-tai-ha-noi-huy-dong-5000-nguoi-thi-cong-su-dung-14000-tan-cot-thep-34000m-da-op-lat-thuoc-top-lon-nhat-dong-nam-a-188261109105524364.chn",
-     "date": "2026-11-09",
-     "score": 6.7,
-     "source": "CafeF Bất động sản"
-    }
-   ],
-   "n_news": 1,
+   "news": [],
+   "n_news": 0,
    "n_moves": 0,
-   "rank": 0.3,
+   "rank": 0.0,
    "link": "danh-muc.html?c=ht"
   },
   {
@@ -133,7 +154,7 @@
      "title": "Hà Nội: Đề xuất lắp camera AI tại công trình xây dựng để kiểm soát bụi",
      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQV1JIX0xHN0tzMVlfN2VWVTcwNlNNZFFfcXUyVFhhSllNWV9NTTlYazJrUE9WWHRmc2VOX21nQ1FFZW16S0ZNYW5MTjFWbFN6X1g1UEp6QmNkRkRRLXBIZERtWWF5ZDlWbjlMZ0ZTNkhSTnQ1dlY3anh5SHpnU2lXREZLUDI2ZGtyQ3JlWHA2T01YcFlxVG1IejNpTEJmaGtNUkpCNmNJNlg?oc=5",
      "date": "2026-11-10",
-     "score": 7.0,
+     "score": 6.7,
      "source": "nguoiquansat.vn"
     }
    ],
@@ -170,46 +191,60 @@
    "icon": "🌏",
    "prices": [
     {
-     "id": "fx_eur_vnd",
-     "name": "EUR/VND Vietcombank (chuyển khoản)",
+     "id": "yf_silver",
+     "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": 0.93,
+     "d1": -3.08,
      "date": "2026-11-10",
      "prev_date": "2026-11-09",
-     "price": 28310.56,
-     "unit": "VND/EUR",
-     "kind": "fx",
-     "threshold": 0.5,
+     "price": 51.494998931884766,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
      "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=fx_eur_vnd"
+     "url": "mat-hang.html?id=yf_silver"
+    },
+    {
+     "id": "yf_gold",
+     "name": "Vàng (COMEX Gold)",
+     "region": "",
+     "d1": -2.0,
+     "date": "2026-11-10",
+     "prev_date": "2026-11-09",
+     "price": 4041.39990234375,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=yf_gold"
     }
    ],
    "news": [
     {
-     "title": "Bộ Công Thương khởi xướng điều tra chống bán phá giá thép nhập khẩu từ Trung Quốc, Indonesia",
-     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPS0lKVnl4LUtRcXBINXEzcEVlSXpoWk1Wa1BaSVRQRWRiSW1aMHdKbzl3ZHI2SkgwXzZDajBBY1ZkSW9lNU1UdFlObFlyMmhXd1hUWUFGMFRzWEI4eFk2QUFiUDF0MFdkbVRYbUJNak9GSmkza3VBV0tpR01QZ2RKMDdaNUU5M2Zmd0NHSnlJeDh0blJFeVVkb2JHbE9zdE03enE4Sm9CTWNqVmR4OGFKbEhvZURLMmVTQXB4MnlOUm9rUQ?oc=5",
-     "date": "2026-11-09",
-     "score": 13.7,
-     "source": "Báo Dân Việt"
-    },
-    {
      "title": "Lãnh đạo tỉnh Đắk Lắk kiểm tra, chỉ đạo gỡ khó về nguồn cung vật liệu xây dựng",
      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQjdfNzRYYTVXU3ExeGQtTURud3VaUER6ZG41Wjdnc1NWSEhPb2hNdjdoc215OGh2UlBYdW9CVURiZEc2RUQzVlpabnRnZzFNZlBrMG1VVHJWMUJELXdveVE3LTEyTnlsVWFuMENoOG5JUF9uSDNzUWs4MGQtTTI2UTlvX0xHWGF0LUItT2RkSG5IenNnQjM0SzJERmlELUd1eklkUTZBbDZlYlhVTnNIQ2pCX0Qta2UwWWFoclZOVUNkVHl1?oc=5",
      "date": "2026-11-10",
-     "score": 10.0,
+     "score": 9.7,
      "source": "Báo Đắk Lắk điện tử"
     },
     {
      "title": "Lâm Đồng tháo gỡ vướng mắc, tăng nguồn cung vật liệu xây dựng",
      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVE81YTJQUU9uTmZFdTdSc2Y5SThMWkpSUENHX21WR1dmQWJFc1R1R3l4UW9lZ1JOYUVpNjBBSFk1bnhNY0hxclNrbmFVZy1PaU9RNHAtMExGWEZTaklDeW1EakQyWmNFVTd0WUlMQWJQLU5HNC1lZDIwX19HN25qTk5ESDUtd1VybGxqbzFnMkFvUWVGU0FhbmRzdld3SHlqZ0FMdXdTNA?oc=5",
      "date": "2026-11-10",
-     "score": 10.0,
+     "score": 9.7,
      "source": "Báo Thanh Niên"
+    },
+    {
+     "title": "Một nhà thầu lớn sẽ thi công loạt hạng mục quan trọng tại tuyến metro gần 4 tỷ USD, dài 54km nối Bến Thành - Cần Giờ của tỷ phú Phạm Nhật Vượng",
+     "url": "https://cafef.vn/mot-nha-thau-lon-se-thi-cong-loat-hang-muc-quan-trong-tai-tuyen-metro-gan-4-ty-usd-dai-54km-noi-ben-thanh-can-gio-cua-ty-phu-pham-nhat-vuong-188261110110233935.chn",
+     "date": "2026-11-10",
+     "score": 5.7,
+     "source": "CafeF Bất động sản"
     }
    ],
-   "n_news": 16,
-   "n_moves": 1,
-   "rank": 4.86,
+   "n_news": 4,
+   "n_moves": 2,
+   "rank": 3.74,
    "link": "danh-muc.html?c=tt"
   }
  ]
