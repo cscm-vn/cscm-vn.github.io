@@ -640,7 +640,7 @@ with sync_playwright() as p:
                     if pq["ov"]: fails.append((w, f, f"policy overflow in {pq['ov']} cards"))
                     if w == W[0]:  # dữ liệu: 1 tin/cụm, ≤2/chủ đề, khớp số thẻ; link '+N tin' trỏ đúng cụm có trên hop-dong
                         import json as _js
-                        _p = _js.load(urllib.request.urlopen(B + "data/policy-feed.json", timeout=30)); _I = {x["id"]: x for x in _p["items"]}; _H = [_I[h["id"]] for h in _p["home"] if h["id"] in _I]
+                        _p = _js.load(urllib.request.urlopen(B + "data/policy-feed.json", timeout=30)); _I = {x["id"]: x for x in _p["items"]}; _H = [_I[h["id"]] for h in (_p.get("home7") or _p["home"]) if h["id"] in _I]  # trang chủ dùng home7 (7 ngày) nếu có
                         if len(_H) != pq["k"]: fails.append((w, f, f"policy cards {pq['k']} != home data {len(_H)}"))
                         _L = [v["label"] for v in _p["clusters"].values()]
                         if len(set(_L)) != len(_L): fails.append((w, f, "policy duplicate cluster labels"))
