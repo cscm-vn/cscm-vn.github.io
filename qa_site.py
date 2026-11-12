@@ -198,7 +198,7 @@ BL_BANKS = {"Vietcombank": "https://www.vietcombank.com.vn/vi-VN/To-chuc/SMEs/SM
   "Eximbank": "https://eximbank.com.vn/tra-cuu-bao-lanh", "NCB": "https://www.ncb-bank.vn/mdonline/", "TPBank": "https://xacthucbaolanh.tpb.vn/xacthucbaolanh/", "HDBank": "https://hdbank.com.vn/vi/corporate/cong-cu/guarantee"}
 BL_NOLINK = ["ACB", "SHB", "Agribank", "VPBank"]
 BL_EX = ["https://baoquangninh.vn/canh-bao-thu-doan-lam-gia-chung-thu-bao-lanh-ngan-hang-post2317160.html", "https://baodauthau.vn/lam-gia-tai-lieu-ngan-hang-khi-du-thau-hau-qua-lon-can-xu-nghiem-post115293.html"]
-BL_BOT_BLOCKED = {"https://www.ncb-bank.vn/mdonline/"}  # NCB trả 403 cho trình duyệt tự động/curl (đã mở được bằng trình duyệt thật khi xác minh) → chỉ kiểm đúng địa chỉ, không HEAD
+BL_BOT_BLOCKED = {"https://www.ncb-bank.vn/mdonline/", "https://www.mbbank.com.vn/Form/documents"}  # MB: Akamai trả 403 cho cả trang chủ từ IP máy chủ (13/11/2026)  # NCB trả 403 cho trình duyệt tự động/curl (đã mở được bằng trình duyệt thật khi xác minh) → chỉ kiểm đúng địa chỉ, không HEAD
 def bl_link_ok(u):
     for _ in range(3):  # máy chủ một số ngân hàng chập chờn → thử lại tối đa 3 lần
         try:
@@ -718,7 +718,7 @@ try:  # tin nhân công trong market.json: mỗi tin có hàm ý mua sắm/đấ
     if len(_m) < 12: fails.append(("-", "market.json", f"tin nhân công {len(_m)} < 12"))
     _seen = set()
     for x in _m:
-        if not x.get("takeaway") or "đấu thầu" not in x["takeaway"] and "mua sắm" not in x["takeaway"].lower(): fails.append(("-", "market.json", "thiếu hàm ý mua sắm/đấu thầu: " + x["title"][:50]))
+        if not x.get("takeaway") or "đấu thầu" not in x["takeaway"].lower() and "mua sắm" not in x["takeaway"].lower(): fails.append(("-", "market.json", "thiếu hàm ý mua sắm/đấu thầu: " + x["title"][:50]))
         if not x.get("sources") or not all(s["url"].startswith("https://") for s in x["sources"]): fails.append(("-", "market.json", "nguồn không https: " + x["title"][:50]))
         if not re.match(r"20\d\d-\d\d-\d\d$", x.get("date", "")): fails.append(("-", "market.json", "ngày sai: " + x["title"][:50]))
         for s_ in x.get("sources", []):
