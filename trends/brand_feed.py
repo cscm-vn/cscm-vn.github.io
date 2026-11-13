@@ -29,7 +29,7 @@ def jobs(reg):
     """[(category, [brand ids], query url)] – quoted names lấy từ trường query của từng hãng."""
     out = []
     for c, meta in reg.get("cats", {}).items():
-        bs = [b for b in reg["brands"] if c in b["tax"]]
+        bs = [b for b in reg["brands"] + reg.get("emerging", []) if c in b["tax"] and b.get("query") and b.get("kws")]  # + hãng mới nổi
         for i in range(0, len(bs), CHUNK):
             part = bs[i:i + CHUNK]; names = [n for b in part for n in re.findall(r'"[^"]+"', b["query"])]
             ctx = [w.strip().strip('"') for w in meta.get("ctx", "").strip("() ").split(" OR ") if w.strip()]
@@ -38,7 +38,7 @@ def jobs(reg):
             out.append((c, [b["id"] for b in part], GN.format(q=urllib.parse.quote(q))))
     return out
 def main():
-    reg = json.load(open(REG, encoding="utf-8")); RX = {b["id"]: rx(b["kws"]) for b in reg["brands"]}
+    reg = json.load(open(REG, encoding="utf-8")); RX = {b["id"]: rx(b["kws"]) for b in reg["brands"] + reg.get("emerging", []) if b.get("kws")}
     old = {}
     try: old = json.load(open(OUT, encoding="utf-8"))
     except Exception: pass

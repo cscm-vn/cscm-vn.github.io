@@ -14,6 +14,7 @@
  const P = h.items.filter(x => ids.includes(x.tax)), T = tr.items.filter(x => inC(x.tax)), M = mk.items.filter(x => inC(x.tax)), F = (fd?.items || []).filter(x => inC(x.tax));
  const C = h.compare.filter(x => ids.includes(x.tax)); const S = (scm?.categories || []).filter(x => x.tax.some(id => ids.includes(id))); const FC = (fc?.items || []).filter(x => ids.includes(x.tax));
  const BT = br?.tiers || [], BR = (br?.brands || []).filter(b => ids.some(id => b.tax[id])).map(b => ({...b, cs: ids.filter(id => b.tax[id])}));  // tab Thương hiệu: brands.json (biên tập) + brand-feed.json (tin tự động)
+ const EM = (br?.emerging || []).filter(b => ids.some(id => b.tax[id])).map(b => ({...b, cs: ids.filter(id => b.tax[id])}));  // box "Thương hiệu mới nổi" (lịch tuần)
  const BN = (bf?.items || []).filter(x => x.tax.some(id => ids.includes(id)));
  const counts = {}; h.items.forEach(x => counts[x.tax] = (counts[x.tax] || 0) + 1); tr.items.forEach(x => x.tax.forEach(id => counts[id] = (counts[id] || 0) + 1));
  HUB.sidebar(document.getElementById("side"), c, counts);
@@ -22,8 +23,8 @@
  document.getElementById("title").textContent = (node.icon || node.parent.icon) + " " + node.name;
  document.getElementById("desc").textContent = `${P.length} mã giá · ${C.length} so sánh Hà Nội/TP.HCM · ${T.length} xu hướng · ${M.length + F.length} tin`;
  if (node.level === 1) document.getElementById("subs").innerHTML = node.children.map(x => `<a class="chip" href="danh-muc.html?c=${x.id}">${E(x.name)} <span class="mute">${counts[x.id] || 0}</span></a>`).join("");
- const tabs = [["gia", `Giá (${P.length})`], ["cmp", `Hà Nội vs TP.HCM (${C.length})`], ["trend", `Xu hướng (${T.length})`], ["news", `Tin (${M.length + F.length})`], ["brand", `Thương hiệu (${BR.length})`], ["fc", "Dự báo"], ["scm", `SCM – Cung cầu (${S.length})`]];
- let tab = HUB.qs("tab") || (P.length ? "gia" : BR.length ? "brand" : T.length ? "trend" : "news");
+ const tabs = [["gia", `Giá (${P.length})`], ["cmp", `Hà Nội vs TP.HCM (${C.length})`], ["trend", `Xu hướng (${T.length})`], ["news", `Tin (${M.length + F.length})`], ["brand", `Thương hiệu (${BR.length}${EM.length ? " · " + EM.length + " mới nổi" : ""})`], ["fc", "Dự báo"], ["scm", `SCM – Cung cầu (${S.length})`]];
+ let tab = HUB.qs("tab") || (P.length ? "gia" : BR.length + EM.length ? "brand" : T.length ? "trend" : "news");
  const R = {
   gia() { if (!P.length) return `<div class="empty">Chưa có nguồn giá tự động cho mục này. Xem tab <b>Xu hướng</b>/<b>Tin</b>, hoặc đề xuất nguồn giá để bổ sung.</div>`;
    const regs = [...new Set(P.map(x => x.reg))]; return `<div class="filters"><input id="q" type="search" placeholder="Lọc trong ${E(node.name)}… (vd: hòa phát, d16, pcb40)">
@@ -40,7 +41,7 @@
     <div><span class="pill">${E(x.region)}</span><span class="small mute">${HUB.date(x.date)}</span></div><div class="small">${E(x.summary)}</div><div class="why"><b>Ý nghĩa với Masterise:</b> ${E(x.why)}</div></div></div></div>`).join("")}</div>` : `<div class="empty">Chưa có xu hướng cho mục này.</div>`; },
   news() { const L = [...M.map(x => ({t: x.title, u: x.sources[0].url, s: x.sources[0].name, d: x.date, r: x.region, cur: 1})), ...F.map(x => ({t: x.title, u: x.url, s: x.source, d: x.date}))].sort((a, b) => b.d.localeCompare(a.d));
    return L.length ? `<ul class="news card">${L.slice(0, 60).map(x => `<li>${x.cur ? '<span class="pill cat">Biên tập</span>' : ""}<a href="${E(x.u)}" target="_blank" rel="noopener">${E(x.t)}</a> <span class="small mute">${HUB.date(x.d)} · ${E(x.s)}</span></li>`).join("")}</ul>` : `<div class="empty">Chưa có tin.</div>`; },
-  brand() { if (!BR.length) return `<div class="empty">Chưa có danh bạ thương hiệu cho mục này. Danh bạ hiện phủ hoàn thiện, MEP, mặt dựng và smart home/an ninh (<code>trends/data/brands.json</code>).</div>`;
+  brand() { if (!BR.length && !EM.length) return `<div class="empty">Chưa có danh bạ thương hiệu cho mục này. Danh bạ hiện phủ hoàn thiện, MEP, mặt dựng và smart home/an ninh (<code>trends/data/brands.json</code>).</div>`;
    const tierOf = b => b.tax[b.cs[0]], CD = ids.map(id => br.cats?.[id]?.digest && {id, ...br.cats[id].digest}).filter(Boolean);
    const src = L => (L || []).map(q => `<a href="${E(q.url)}" target="_blank" rel="noopener">${E(q.name)}</a>`).join(" · ");
    const news = b => BN.filter(x => x.brands.includes(b.id) && x.tax.some(id => b.cs.includes(id)));
@@ -51,7 +52,14 @@
        : `<p class="small mute" style="margin:8px 0 0">${g ? "" : "Chưa có tin trong 90 ngày."}</p>`}</div>`; };
    const sec = BT.map(tr => { const L = BR.filter(b => tierOf(b) === tr.id).sort((a, b) => news(b).length - news(a).length || a.name.localeCompare(b.name));
     return L.length ? `<section class="btier" data-t="${tr.id}"><h2 style="margin:16px 0 6px">${E(tr.name)} <span class="small mute" style="font-weight:400">· ${L.length} hãng · thường dùng cho: ${E(tr.use)}</span></h2><div class="grid g3 bgrid" style="align-items:start">${L.map(card).join("")}</div></section>` : ""; }).join("");
-   return `${CD.map(d => `<div class="card"><b>${ids.length > 1 ? E(t.byId[d.id].name) + " – " : ""}Diễn biến thị trường thương hiệu</b> <span class="pill cat">Biên tập ${HUB.date(d.date)}</span><p style="margin:6px 0">${E(d.text)}</p>${d.impl ? `<div class="ins"><b>Hàm ý mua sắm:</b> ${E(d.impl)}</div>` : ""}<div class="small mute" style="margin-top:4px">Nguồn: ${src(d.sources)}</div></div>`).join("")}
+   const SIG = {"vao-vn": "Mới vào VN", "mo-rong": "Mở rộng", "m-a": "M&A", "du-an": "Kênh dự án", "san-pham": "Sản phẩm mới"}, tn = id => BT.find(x => x.id === id)?.name || id;
+   const emBox = EM.length ? `<div class="card emerging" style="border-left:3px solid var(--gold,#b7791f);margin-bottom:12px"><b>🌱 Thương hiệu mới nổi</b> <span class="small mute">· ${EM.length} hãng đang theo dõi · cập nhật hằng tuần (thứ Năm)</span>
+     <div class="grid g2" style="margin-top:8px;align-items:start">${EM.map(b => { const N = news(b); return `<div id="e-${E(b.id)}"><b>${E(b.name)}</b> <span class="pill">${E(b.origin)}</span><span class="pill cat">${E(SIG[b.signal] || b.signal || "")}</span>${b.cs.map(id => `<span class="pill">${node.level === 1 ? E(t.byId[id].name) + " · " : ""}${E(tn(b.tax[id]))}</span>`).join("")}
+       <div class="small" style="margin-top:4px">${E(b.why)}</div>${b.impl ? `<div class="small" style="margin-top:3px"><b>Hàm ý mua sắm:</b> ${E(b.impl)}</div>` : ""}
+       <div class="small mute" style="margin-top:3px">Ghi nhận ${HUB.date(b.first_seen)}${b.date !== b.first_seen ? " · cập nhật " + HUB.date(b.date) : ""} · ${src(b.sources)}</div>
+       ${N.length ? `<ul class="news small" style="margin-top:4px">${N.slice(0, 2).map(x => `<li><a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.title)}</a> <span class="mute">${HUB.date(x.date)}</span></li>`).join("")}</ul>` : ""}</div>`; }).join("")}</div></div>` : "";
+   if (!BR.length) return emBox + `<div class="empty">Chưa có danh bạ thương hiệu chính cho mục này.</div>`;
+   return `${emBox}${CD.map(d => `<div class="card"><b>${ids.length > 1 ? E(t.byId[d.id].name) + " – " : ""}Diễn biến thị trường thương hiệu</b> <span class="pill cat">Biên tập ${HUB.date(d.date)}</span><p style="margin:6px 0">${E(d.text)}</p>${d.impl ? `<div class="ins"><b>Hàm ý mua sắm:</b> ${E(d.impl)}</div>` : ""}<div class="small mute" style="margin-top:4px">Nguồn: ${src(d.sources)}</div></div>`).join("")}
     <div class="filters" id="btf"><button class="chip on" data-t="">Tất cả</button>${BT.filter(tr => BR.some(b => tierOf(b) === tr.id)).map(tr => `<button class="chip" data-t="${tr.id}">${E(tr.name)}</button>`).join("")}</div>${sec}
     <p class="small mute">${E(br.note || "")} Tin tự động: Google News (90 ngày, chỉ giữ tin có tiêu đề nêu tên hãng), cập nhật mỗi lần bot chạy (5 lần/ngày) – chưa biên tập. Ô “Biên tập” = tóm tắt hằng tuần kèm nguồn.</p>`; },
   scm() { if (!S.length) return `<div class="empty">Chưa có phân tích cung cầu cho mục này. Xem <a href="scm.html">trang SCM</a> cho 14 nhóm vật tư chính.</div>`;

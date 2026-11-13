@@ -1,7 +1,7 @@
 # Khởi tạo trends/data/brands.json (13/11/2026): danh bạ thương hiệu theo danh mục cấp 2 + phân khúc định vị tại VN.
 # Phân khúc = định vị giá phổ biến trên thị trường VN (biên tập, tham khảo) – một hãng có nhiều dòng; xác nhận lại theo báo giá thực tế.
 # kws: từ khoá KHÔNG DẤU, khớp nguyên từ trong tiêu đề tin (trends/brand_feed.py). Tên dễ trùng (Trần Phú, Tiền Phong, Bình Minh, TOA…) dùng cụm có ngữ cảnh.
-# Giữ nguyên các trường biên tập (digest, cats[].digest) nếu brands.json đã có – script này chỉ (re)sinh danh bạ.
+# Giữ nguyên các trường biên tập (digest, cats[].digest, emerging[]) nếu brands.json đã có – script này chỉ (re)sinh danh bạ.
 import json, os, unicodedata
 N = lambda s: unicodedata.normalize("NFC", s)
 p = "trends/data/brands.json"; old = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {}
@@ -183,9 +183,9 @@ for bid, name, origin, note, kws, q, tax in R:
         if k in ob.get(bid, {}): b[k] = ob[bid][k]
     brands.append(b)
 cats = {c: dict(ctx=N(CTX[c]), **{k: v for k, v in old.get("cats", {}).get(c, {}).items() if k != "ctx"}) for c in CTX}
-assert len({b["id"] for b in brands}) == len(brands) and all(t in CTX for b in brands for t in b["tax"])
+assert len({b["id"] for b in brands} | {e["id"] for e in old.get("emerging", [])}) == len(brands) + len(old.get("emerging", [])) and all(t in CTX for b in brands for t in b["tax"])
 assert all(v in {t["id"] for t in TIERS} for b in brands for v in b["tax"].values())
-d = dict(schema_version=1, updated=old.get("updated", "2026-11-13"), registry_updated="2026-11-13",
+d = dict(schema_version=1, updated=old.get("updated", "2026-11-13"), registry_updated="2026-11-13", emerging=old.get("emerging", []),
          note=N("Phân khúc = định vị giá phổ biến tại VN (biên tập, tham khảo); một hãng có nhiều dòng sản phẩm – xác nhận theo báo giá/hồ sơ dự án."),
          tiers=[{k: N(v) for k, v in t.items()} for t in TIERS], cats=cats, brands=brands)
 json.dump(d, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1); print("brands:", len(brands), "cats:", len(cats))
