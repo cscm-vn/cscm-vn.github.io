@@ -187,7 +187,7 @@ def main():
     days = dict(sorted(days.items())[-14:]); json.dump(dict(n=TOPN, fresh_days=FRESH, fresh_from=cut, home=days[today.isoformat()], days=days), open(thp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     for f in glob.glob(os.path.join(H, "web", "*")): shutil.copy(f, SITE)
     stamp_sw()  # PWA: đóng dấu VERSION cache của sw.js theo nội dung tài nguyên tĩnh
-    for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json", "orgs.json", "legal.json", "fidic.json", "trade-remedies.json", "disputes.json", "quiz.json", "checklist.json", "legal-feed.json", "policy-feed.json", "highlights.json", "top_history.json", "suppliers.json"):
+    for f in ("trends.json", "market.json", "feed.json", "scm.json", "segments.json", "orgs.json", "legal.json", "fidic.json", "trade-remedies.json", "disputes.json", "quiz.json", "checklist.json", "legal-feed.json", "policy-feed.json", "highlights.json", "top_history.json", "suppliers.json", "brands.json", "brand-feed.json"):
         if os.path.exists(os.path.join(H, "data", f)): shutil.copy(os.path.join(H, "data", f), OUT)
     # homepage "Luật & chính sách mới": chỉ tin đăng trong FRESH ngày gần nhất (giờ VN lúc build), cùng quy tắc pick_home; hop-dong.html không dùng "home7"
     pfp = os.path.join(OUT, "policy-feed.json"); PF = J(pfp, None)

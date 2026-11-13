@@ -1,0 +1,1858 @@
+{
+ "schema_version": 1,
+ "updated": "2026-11-13",
+ "registry_updated": "2026-11-13",
+ "note": "Phân khúc = định vị giá phổ biến tại VN (biên tập, tham khảo); một hãng có nhiều dòng sản phẩm – xác nhận theo báo giá/hồ sơ dự án.",
+ "tiers": [
+  {
+   "id": "hang-sang",
+   "name": "Hạng sang",
+   "use": "Branded residence, penthouse, biệt thự hạng sang"
+  },
+  {
+   "id": "cao-cap",
+   "name": "Cao cấp",
+   "use": "Căn hộ cao cấp, khu vực tiện ích chung, khách sạn 5 sao"
+  },
+  {
+   "id": "trung-cap",
+   "name": "Trung cấp",
+   "use": "Căn hộ trung cấp, hạng mục kỹ thuật/khu vực phụ"
+  },
+  {
+   "id": "pho-thong",
+   "name": "Phổ thông",
+   "use": "NOXH, khu kỹ thuật, hạng mục tạm/BOH"
+  }
+ ],
+ "cats": {
+  "ht.tbvs": {
+   "ctx": "(vệ sinh OR bồn OR sen OR vòi OR nhà tắm OR showroom)"
+  },
+  "ht.thiet-bi-bep": {
+   "ctx": "(bếp OR gia dụng OR máy rửa bát OR tủ lạnh OR lò)"
+  },
+  "ht.tu-bep": {
+   "ctx": "(tủ bếp OR nội thất OR phụ kiện OR gỗ)"
+  },
+  "ht.gach-da": {
+   "ctx": "(gạch OR đá OR gốm OR ốp lát)"
+  },
+  "ht.san": {
+   "ctx": "(sàn OR gỗ OR vinyl)"
+  },
+  "ht.son": {
+   "ctx": "(sơn OR phủ)"
+  },
+  "ht.cua": {
+   "ctx": "(khóa OR cửa OR phụ kiện)"
+  },
+  "md.kinh": {
+   "ctx": "(kính OR glass)"
+  },
+  "md.nhom": {
+   "ctx": "(nhôm OR cửa OR mặt dựng)"
+  },
+  "md.mat-dung": {
+   "ctx": "(mặt dựng OR ốp OR lam OR tấm)"
+  },
+  "mep.hvac": {
+   "ctx": "(điều hòa OR HVAC OR chiller OR làm lạnh)"
+  },
+  "mep.thang-may": {
+   "ctx": "(thang máy OR thang cuốn)"
+  },
+  "mep.cap-dien": {
+   "ctx": "(cáp OR dây điện OR đồng)"
+  },
+  "mep.ong-nuoc": {
+   "ctx": "(ống OR nhựa)"
+  },
+  "mep.tu-dien": {
+   "ctx": "(điện OR tủ điện OR thiết bị)"
+  },
+  "mep.may-phat": {
+   "ctx": "(máy phát OR máy biến áp OR điện)"
+  },
+  "mep.pccc": {
+   "ctx": "(PCCC OR báo cháy OR chữa cháy OR an ninh)"
+  },
+  "elv.smart-home": {
+   "ctx": "(nhà thông minh OR smart home OR căn hộ)"
+  },
+  "elv.an-ninh": {
+   "ctx": "(camera OR an ninh OR kiểm soát ra vào)"
+  }
+ },
+ "brands": [
+  {
+   "id": "duravit",
+   "name": "Duravit",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "duravit"
+   ],
+   "query": "\"Duravit\"",
+   "tax": {
+    "ht.tbvs": "hang-sang"
+   }
+  },
+  {
+   "id": "villeroy-boch",
+   "name": "Villeroy & Boch",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "villeroy"
+   ],
+   "query": "\"Villeroy\"",
+   "tax": {
+    "ht.tbvs": "hang-sang"
+   }
+  },
+  {
+   "id": "axor",
+   "name": "Axor",
+   "origin": "Đức",
+   "note": "Dòng hạng sang của Hansgrohe",
+   "kws": [
+    "axor"
+   ],
+   "query": "\"Axor\" sen vòi",
+   "tax": {
+    "ht.tbvs": "hang-sang"
+   }
+  },
+  {
+   "id": "gessi",
+   "name": "Gessi",
+   "origin": "Ý",
+   "note": "",
+   "kws": [
+    "gessi"
+   ],
+   "query": "\"Gessi\"",
+   "tax": {
+    "ht.tbvs": "hang-sang"
+   }
+  },
+  {
+   "id": "kohler",
+   "name": "Kohler",
+   "origin": "Mỹ",
+   "note": "",
+   "kws": [
+    "kohler"
+   ],
+   "query": "\"Kohler\"",
+   "tax": {
+    "ht.tbvs": "cao-cap"
+   }
+  },
+  {
+   "id": "grohe",
+   "name": "Grohe",
+   "origin": "Đức",
+   "note": "Thuộc LIXIL",
+   "kws": [
+    "grohe"
+   ],
+   "query": "\"Grohe\"",
+   "tax": {
+    "ht.tbvs": "cao-cap"
+   }
+  },
+  {
+   "id": "toto",
+   "name": "TOTO",
+   "origin": "Nhật Bản",
+   "note": "",
+   "kws": [
+    "toto"
+   ],
+   "query": "\"TOTO\"",
+   "tax": {
+    "ht.tbvs": "cao-cap"
+   }
+  },
+  {
+   "id": "hansgrohe",
+   "name": "Hansgrohe",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "hansgrohe"
+   ],
+   "query": "\"Hansgrohe\"",
+   "tax": {
+    "ht.tbvs": "cao-cap"
+   }
+  },
+  {
+   "id": "american-standard",
+   "name": "American Standard",
+   "origin": "Mỹ",
+   "note": "Thuộc LIXIL",
+   "kws": [
+    "american standard"
+   ],
+   "query": "\"American Standard\"",
+   "tax": {
+    "ht.tbvs": "trung-cap"
+   }
+  },
+  {
+   "id": "inax",
+   "name": "INAX",
+   "origin": "Nhật Bản",
+   "note": "Thuộc LIXIL",
+   "kws": [
+    "inax",
+    "lixil"
+   ],
+   "query": "\"INAX\" OR \"LIXIL\"",
+   "tax": {
+    "ht.tbvs": "trung-cap"
+   }
+  },
+  {
+   "id": "caesar",
+   "name": "Caesar",
+   "origin": "Đài Loan",
+   "note": "",
+   "kws": [
+    "thiet bi ve sinh caesar",
+    "caesar"
+   ],
+   "query": "\"Caesar\" thiết bị vệ sinh",
+   "tax": {
+    "ht.tbvs": "trung-cap"
+   }
+  },
+  {
+   "id": "viglacera",
+   "name": "Viglacera",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "viglacera",
+    "vgc"
+   ],
+   "query": "\"Viglacera\"",
+   "tax": {
+    "ht.tbvs": "pho-thong",
+    "ht.gach-da": "pho-thong",
+    "md.kinh": "trung-cap"
+   }
+  },
+  {
+   "id": "gaggenau",
+   "name": "Gaggenau",
+   "origin": "Đức",
+   "note": "Thuộc BSH",
+   "kws": [
+    "gaggenau"
+   ],
+   "query": "\"Gaggenau\"",
+   "tax": {
+    "ht.thiet-bi-bep": "hang-sang"
+   }
+  },
+  {
+   "id": "miele",
+   "name": "Miele",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "miele"
+   ],
+   "query": "\"Miele\"",
+   "tax": {
+    "ht.thiet-bi-bep": "hang-sang"
+   }
+  },
+  {
+   "id": "sub-zero-wolf",
+   "name": "Sub-Zero & Wolf",
+   "origin": "Mỹ",
+   "note": "",
+   "kws": [
+    "sub-zero",
+    "sub zero"
+   ],
+   "query": "\"Sub-Zero\"",
+   "tax": {
+    "ht.thiet-bi-bep": "hang-sang"
+   }
+  },
+  {
+   "id": "v-zug",
+   "name": "V-ZUG",
+   "origin": "Thụy Sĩ",
+   "note": "",
+   "kws": [
+    "v-zug",
+    "vzug"
+   ],
+   "query": "\"V-ZUG\"",
+   "tax": {
+    "ht.thiet-bi-bep": "hang-sang"
+   }
+  },
+  {
+   "id": "bosch",
+   "name": "Bosch",
+   "origin": "Đức",
+   "note": "Gia dụng thuộc BSH; mảng an ninh Bosch",
+   "kws": [
+    "bosch"
+   ],
+   "query": "\"Bosch\"",
+   "tax": {
+    "ht.thiet-bi-bep": "cao-cap",
+    "elv.an-ninh": "cao-cap"
+   }
+  },
+  {
+   "id": "siemens",
+   "name": "Siemens",
+   "origin": "Đức",
+   "note": "Gia dụng thuộc BSH; thiết bị điện Siemens",
+   "kws": [
+    "siemens"
+   ],
+   "query": "\"Siemens\"",
+   "tax": {
+    "ht.thiet-bi-bep": "cao-cap",
+    "mep.tu-dien": "cao-cap"
+   }
+  },
+  {
+   "id": "smeg",
+   "name": "Smeg",
+   "origin": "Ý",
+   "note": "",
+   "kws": [
+    "smeg"
+   ],
+   "query": "\"Smeg\"",
+   "tax": {
+    "ht.thiet-bi-bep": "cao-cap"
+   }
+  },
+  {
+   "id": "hafele",
+   "name": "Häfele",
+   "origin": "Đức",
+   "note": "Phân phối thiết bị bếp, phụ kiện nội thất, khóa",
+   "kws": [
+    "hafele"
+   ],
+   "query": "\"Hafele\" OR \"Häfele\"",
+   "tax": {
+    "ht.thiet-bi-bep": "trung-cap",
+    "ht.tu-bep": "cao-cap",
+    "ht.cua": "cao-cap"
+   }
+  },
+  {
+   "id": "teka",
+   "name": "Teka",
+   "origin": "Tây Ban Nha",
+   "note": "",
+   "kws": [
+    "teka"
+   ],
+   "query": "\"Teka\"",
+   "tax": {
+    "ht.thiet-bi-bep": "trung-cap"
+   }
+  },
+  {
+   "id": "electrolux",
+   "name": "Electrolux",
+   "origin": "Thụy Điển",
+   "note": "",
+   "kws": [
+    "electrolux"
+   ],
+   "query": "\"Electrolux\"",
+   "tax": {
+    "ht.thiet-bi-bep": "trung-cap"
+   }
+  },
+  {
+   "id": "malloca",
+   "name": "Malloca",
+   "origin": "Việt Nam / châu Á",
+   "note": "",
+   "kws": [
+    "malloca"
+   ],
+   "query": "\"Malloca\"",
+   "tax": {
+    "ht.thiet-bi-bep": "trung-cap"
+   }
+  },
+  {
+   "id": "sunhouse",
+   "name": "Sunhouse",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "sunhouse"
+   ],
+   "query": "\"Sunhouse\"",
+   "tax": {
+    "ht.thiet-bi-bep": "pho-thong"
+   }
+  },
+  {
+   "id": "canzy",
+   "name": "Canzy",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "canzy"
+   ],
+   "query": "\"Canzy\"",
+   "tax": {
+    "ht.thiet-bi-bep": "pho-thong"
+   }
+  },
+  {
+   "id": "poggenpohl",
+   "name": "Poggenpohl",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "poggenpohl"
+   ],
+   "query": "\"Poggenpohl\"",
+   "tax": {
+    "ht.tu-bep": "hang-sang"
+   }
+  },
+  {
+   "id": "bulthaup",
+   "name": "Bulthaup",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "bulthaup"
+   ],
+   "query": "\"Bulthaup\"",
+   "tax": {
+    "ht.tu-bep": "hang-sang"
+   }
+  },
+  {
+   "id": "siematic",
+   "name": "SieMatic",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "siematic"
+   ],
+   "query": "\"SieMatic\"",
+   "tax": {
+    "ht.tu-bep": "hang-sang"
+   }
+  },
+  {
+   "id": "blum",
+   "name": "Blum",
+   "origin": "Áo",
+   "note": "Phụ kiện bản lề, ray, tay nâng",
+   "kws": [
+    "blum"
+   ],
+   "query": "\"Blum\" phụ kiện",
+   "tax": {
+    "ht.tu-bep": "cao-cap"
+   }
+  },
+  {
+   "id": "hettich",
+   "name": "Hettich",
+   "origin": "Đức",
+   "note": "Phụ kiện nội thất",
+   "kws": [
+    "hettich"
+   ],
+   "query": "\"Hettich\"",
+   "tax": {
+    "ht.tu-bep": "cao-cap"
+   }
+  },
+  {
+   "id": "an-cuong",
+   "name": "An Cường",
+   "origin": "Việt Nam",
+   "note": "Ván MFC/MDF, tủ bếp, nội thất dự án (HOSE: ACG)",
+   "kws": [
+    "go an cuong",
+    "an cuong",
+    "acg"
+   ],
+   "query": "\"Gỗ An Cường\" OR \"An Cường\" nội thất",
+   "tax": {
+    "ht.tu-bep": "trung-cap"
+   }
+  },
+  {
+   "id": "oppein",
+   "name": "OPPEIN",
+   "origin": "Trung Quốc",
+   "note": "Tủ bếp, tủ áo theo dự án",
+   "kws": [
+    "oppein"
+   ],
+   "query": "\"OPPEIN\"",
+   "tax": {
+    "ht.tu-bep": "trung-cap"
+   }
+  },
+  {
+   "id": "porcelanosa",
+   "name": "Porcelanosa",
+   "origin": "Tây Ban Nha",
+   "note": "",
+   "kws": [
+    "porcelanosa"
+   ],
+   "query": "\"Porcelanosa\"",
+   "tax": {
+    "ht.gach-da": "hang-sang"
+   }
+  },
+  {
+   "id": "florim",
+   "name": "Florim",
+   "origin": "Ý",
+   "note": "",
+   "kws": [
+    "florim"
+   ],
+   "query": "\"Florim\"",
+   "tax": {
+    "ht.gach-da": "hang-sang"
+   }
+  },
+  {
+   "id": "laminam",
+   "name": "Laminam",
+   "origin": "Ý",
+   "note": "Tấm gốm mỏng khổ lớn",
+   "kws": [
+    "laminam"
+   ],
+   "query": "\"Laminam\"",
+   "tax": {
+    "ht.gach-da": "hang-sang"
+   }
+  },
+  {
+   "id": "antolini",
+   "name": "Antolini",
+   "origin": "Ý",
+   "note": "Đá tự nhiên",
+   "kws": [
+    "antolini"
+   ],
+   "query": "\"Antolini\"",
+   "tax": {
+    "ht.gach-da": "hang-sang"
+   }
+  },
+  {
+   "id": "marazzi",
+   "name": "Marazzi",
+   "origin": "Ý",
+   "note": "",
+   "kws": [
+    "marazzi"
+   ],
+   "query": "\"Marazzi\"",
+   "tax": {
+    "ht.gach-da": "cao-cap"
+   }
+  },
+  {
+   "id": "atlas-concorde",
+   "name": "Atlas Concorde",
+   "origin": "Ý",
+   "note": "",
+   "kws": [
+    "atlas concorde"
+   ],
+   "query": "\"Atlas Concorde\"",
+   "tax": {
+    "ht.gach-da": "cao-cap"
+   }
+  },
+  {
+   "id": "neolith",
+   "name": "Neolith",
+   "origin": "Tây Ban Nha",
+   "note": "Đá nung kết",
+   "kws": [
+    "neolith"
+   ],
+   "query": "\"Neolith\"",
+   "tax": {
+    "ht.gach-da": "cao-cap"
+   }
+  },
+  {
+   "id": "prime",
+   "name": "Prime",
+   "origin": "Việt Nam",
+   "note": "Thuộc SCG",
+   "kws": [
+    "gach prime",
+    "prime group"
+   ],
+   "query": "\"Prime Group\" OR \"gạch Prime\"",
+   "tax": {
+    "ht.gach-da": "trung-cap"
+   }
+  },
+  {
+   "id": "dong-tam",
+   "name": "Đồng Tâm",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "gach dong tam",
+    "dong tam group",
+    "dtl"
+   ],
+   "query": "\"Đồng Tâm\" gạch",
+   "tax": {
+    "ht.gach-da": "trung-cap"
+   }
+  },
+  {
+   "id": "taicera",
+   "name": "Taicera",
+   "origin": "Đài Loan",
+   "note": "",
+   "kws": [
+    "taicera"
+   ],
+   "query": "\"Taicera\"",
+   "tax": {
+    "ht.gach-da": "trung-cap"
+   }
+  },
+  {
+   "id": "catalan",
+   "name": "Catalan",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "gach catalan"
+   ],
+   "query": "\"gạch Catalan\"",
+   "tax": {
+    "ht.gach-da": "pho-thong"
+   }
+  },
+  {
+   "id": "listone-giordano",
+   "name": "Listone Giordano",
+   "origin": "Ý",
+   "note": "",
+   "kws": [
+    "listone giordano"
+   ],
+   "query": "\"Listone Giordano\"",
+   "tax": {
+    "ht.san": "hang-sang"
+   }
+  },
+  {
+   "id": "kahrs",
+   "name": "Kährs",
+   "origin": "Thụy Điển",
+   "note": "",
+   "kws": [
+    "kahrs"
+   ],
+   "query": "\"Kahrs\" OR \"Kährs\"",
+   "tax": {
+    "ht.san": "cao-cap"
+   }
+  },
+  {
+   "id": "quick-step",
+   "name": "Quick-Step",
+   "origin": "Bỉ",
+   "note": "Thuộc Unilin",
+   "kws": [
+    "quick-step",
+    "quickstep"
+   ],
+   "query": "\"Quick-Step\" sàn",
+   "tax": {
+    "ht.san": "cao-cap"
+   }
+  },
+  {
+   "id": "pergo",
+   "name": "Pergo",
+   "origin": "Bỉ",
+   "note": "Thuộc Unilin",
+   "kws": [
+    "pergo"
+   ],
+   "query": "\"Pergo\"",
+   "tax": {
+    "ht.san": "cao-cap"
+   }
+  },
+  {
+   "id": "egger",
+   "name": "Egger",
+   "origin": "Áo",
+   "note": "",
+   "kws": [
+    "egger"
+   ],
+   "query": "\"Egger\"",
+   "tax": {
+    "ht.san": "trung-cap"
+   }
+  },
+  {
+   "id": "inovar",
+   "name": "Inovar",
+   "origin": "Malaysia",
+   "note": "",
+   "kws": [
+    "inovar"
+   ],
+   "query": "\"Inovar\"",
+   "tax": {
+    "ht.san": "trung-cap"
+   }
+  },
+  {
+   "id": "robina",
+   "name": "Robina",
+   "origin": "Malaysia",
+   "note": "",
+   "kws": [
+    "robina"
+   ],
+   "query": "\"Robina\" sàn gỗ",
+   "tax": {
+    "ht.san": "trung-cap"
+   }
+  },
+  {
+   "id": "jotun",
+   "name": "Jotun",
+   "origin": "Na Uy",
+   "note": "",
+   "kws": [
+    "jotun"
+   ],
+   "query": "\"Jotun\"",
+   "tax": {
+    "ht.son": "cao-cap"
+   }
+  },
+  {
+   "id": "dulux",
+   "name": "Dulux",
+   "origin": "Hà Lan/Anh",
+   "note": "Thuộc AkzoNobel",
+   "kws": [
+    "dulux",
+    "akzonobel"
+   ],
+   "query": "\"Dulux\" OR \"AkzoNobel\"",
+   "tax": {
+    "ht.son": "cao-cap"
+   }
+  },
+  {
+   "id": "nippon-paint",
+   "name": "Nippon Paint",
+   "origin": "Nhật Bản",
+   "note": "",
+   "kws": [
+    "nippon paint",
+    "son nippon"
+   ],
+   "query": "\"Nippon Paint\"",
+   "tax": {
+    "ht.son": "cao-cap"
+   }
+  },
+  {
+   "id": "toa",
+   "name": "TOA",
+   "origin": "Thái Lan",
+   "note": "",
+   "kws": [
+    "son toa",
+    "toa paint"
+   ],
+   "query": "\"sơn TOA\" OR \"TOA Paint\"",
+   "tax": {
+    "ht.son": "trung-cap"
+   }
+  },
+  {
+   "id": "kova",
+   "name": "Kova",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "son kova",
+    "kova"
+   ],
+   "query": "\"sơn Kova\"",
+   "tax": {
+    "ht.son": "trung-cap"
+   }
+  },
+  {
+   "id": "maxilite",
+   "name": "Maxilite",
+   "origin": "Hà Lan/Anh",
+   "note": "Dòng kinh tế của AkzoNobel",
+   "kws": [
+    "maxilite"
+   ],
+   "query": "\"Maxilite\"",
+   "tax": {
+    "ht.son": "pho-thong"
+   }
+  },
+  {
+   "id": "dormakaba",
+   "name": "dormakaba",
+   "origin": "Thụy Sĩ",
+   "note": "Khóa, phụ kiện cửa, cửa tự động",
+   "kws": [
+    "dormakaba"
+   ],
+   "query": "\"dormakaba\"",
+   "tax": {
+    "ht.cua": "cao-cap"
+   }
+  },
+  {
+   "id": "assa-abloy",
+   "name": "ASSA ABLOY",
+   "origin": "Thụy Điển",
+   "note": "",
+   "kws": [
+    "assa abloy"
+   ],
+   "query": "\"Assa Abloy\"",
+   "tax": {
+    "ht.cua": "cao-cap"
+   }
+  },
+  {
+   "id": "yale",
+   "name": "Yale",
+   "origin": "Thụy Điển",
+   "note": "Thuộc ASSA ABLOY",
+   "kws": [
+    "khoa yale",
+    "yale lock"
+   ],
+   "query": "\"khóa Yale\"",
+   "tax": {
+    "ht.cua": "trung-cap"
+   }
+  },
+  {
+   "id": "austdoor",
+   "name": "Austdoor",
+   "origin": "Việt Nam",
+   "note": "Cửa cuốn, cửa chống cháy, nhôm Topal",
+   "kws": [
+    "austdoor",
+    "topal"
+   ],
+   "query": "\"Austdoor\"",
+   "tax": {
+    "ht.cua": "trung-cap",
+    "md.nhom": "trung-cap"
+   }
+  },
+  {
+   "id": "viet-tiep",
+   "name": "Việt Tiệp",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "khoa viet tiep"
+   ],
+   "query": "\"khóa Việt Tiệp\"",
+   "tax": {
+    "ht.cua": "pho-thong"
+   }
+  },
+  {
+   "id": "saint-gobain",
+   "name": "Saint-Gobain",
+   "origin": "Pháp",
+   "note": "",
+   "kws": [
+    "saint-gobain",
+    "saint gobain"
+   ],
+   "query": "\"Saint-Gobain\"",
+   "tax": {
+    "md.kinh": "cao-cap"
+   }
+  },
+  {
+   "id": "agc",
+   "name": "AGC",
+   "origin": "Nhật Bản",
+   "note": "",
+   "kws": [
+    "agc glass",
+    "kinh agc",
+    "agc"
+   ],
+   "query": "\"AGC\" kính",
+   "tax": {
+    "md.kinh": "cao-cap"
+   }
+  },
+  {
+   "id": "guardian",
+   "name": "Guardian Glass",
+   "origin": "Mỹ",
+   "note": "",
+   "kws": [
+    "guardian glass"
+   ],
+   "query": "\"Guardian Glass\"",
+   "tax": {
+    "md.kinh": "cao-cap"
+   }
+  },
+  {
+   "id": "xinyi",
+   "name": "Xinyi Glass",
+   "origin": "Trung Quốc",
+   "note": "",
+   "kws": [
+    "xinyi"
+   ],
+   "query": "\"Xinyi\"",
+   "tax": {
+    "md.kinh": "trung-cap"
+   }
+  },
+  {
+   "id": "taiwan-glass",
+   "name": "Taiwan Glass",
+   "origin": "Đài Loan",
+   "note": "",
+   "kws": [
+    "taiwan glass"
+   ],
+   "query": "\"Taiwan Glass\"",
+   "tax": {
+    "md.kinh": "trung-cap"
+   }
+  },
+  {
+   "id": "schuco",
+   "name": "Schüco",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "schuco",
+    "schueco"
+   ],
+   "query": "\"Schüco\" OR \"Schuco\"",
+   "tax": {
+    "md.nhom": "hang-sang"
+   }
+  },
+  {
+   "id": "reynaers",
+   "name": "Reynaers",
+   "origin": "Bỉ",
+   "note": "",
+   "kws": [
+    "reynaers"
+   ],
+   "query": "\"Reynaers\"",
+   "tax": {
+    "md.nhom": "hang-sang"
+   }
+  },
+  {
+   "id": "technal",
+   "name": "Technal",
+   "origin": "Pháp",
+   "note": "Thuộc Hydro",
+   "kws": [
+    "technal"
+   ],
+   "query": "\"Technal\"",
+   "tax": {
+    "md.nhom": "cao-cap"
+   }
+  },
+  {
+   "id": "ykk-ap",
+   "name": "YKK AP",
+   "origin": "Nhật Bản",
+   "note": "",
+   "kws": [
+    "ykk ap",
+    "ykk"
+   ],
+   "query": "\"YKK AP\"",
+   "tax": {
+    "md.nhom": "cao-cap"
+   }
+  },
+  {
+   "id": "eurowindow",
+   "name": "Eurowindow",
+   "origin": "Việt Nam",
+   "note": "Cửa uPVC/nhôm",
+   "kws": [
+    "eurowindow"
+   ],
+   "query": "\"Eurowindow\"",
+   "tax": {
+    "md.nhom": "trung-cap"
+   }
+  },
+  {
+   "id": "xingfa",
+   "name": "Xingfa",
+   "origin": "Trung Quốc",
+   "note": "Hệ nhôm phổ biến tại VN (nhiều hàng nhái tên)",
+   "kws": [
+    "xingfa"
+   ],
+   "query": "\"Xingfa\"",
+   "tax": {
+    "md.nhom": "trung-cap"
+   }
+  },
+  {
+   "id": "viet-phap",
+   "name": "Nhôm Việt Pháp",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "nhom viet phap"
+   ],
+   "query": "\"nhôm Việt Pháp\"",
+   "tax": {
+    "md.nhom": "pho-thong"
+   }
+  },
+  {
+   "id": "alucobond",
+   "name": "Alucobond",
+   "origin": "Đức",
+   "note": "Tấm ACP (3A Composites)",
+   "kws": [
+    "alucobond"
+   ],
+   "query": "\"Alucobond\"",
+   "tax": {
+    "md.mat-dung": "cao-cap"
+   }
+  },
+  {
+   "id": "alpolic",
+   "name": "Alpolic",
+   "origin": "Nhật Bản",
+   "note": "Tấm ACP (Mitsubishi Chemical)",
+   "kws": [
+    "alpolic"
+   ],
+   "query": "\"Alpolic\"",
+   "tax": {
+    "md.mat-dung": "cao-cap"
+   }
+  },
+  {
+   "id": "hunter-douglas",
+   "name": "Hunter Douglas",
+   "origin": "Hà Lan",
+   "note": "Lam, trần, rèm",
+   "kws": [
+    "hunter douglas"
+   ],
+   "query": "\"Hunter Douglas\"",
+   "tax": {
+    "md.mat-dung": "cao-cap"
+   }
+  },
+  {
+   "id": "daikin",
+   "name": "Daikin",
+   "origin": "Nhật Bản",
+   "note": "",
+   "kws": [
+    "daikin"
+   ],
+   "query": "\"Daikin\"",
+   "tax": {
+    "mep.hvac": "cao-cap"
+   }
+  },
+  {
+   "id": "mitsubishi-electric",
+   "name": "Mitsubishi Electric",
+   "origin": "Nhật Bản",
+   "note": "Điều hòa, thang máy, thiết bị điện",
+   "kws": [
+    "mitsubishi electric"
+   ],
+   "query": "\"Mitsubishi Electric\"",
+   "tax": {
+    "mep.hvac": "cao-cap",
+    "mep.thang-may": "cao-cap"
+   }
+  },
+  {
+   "id": "trane",
+   "name": "Trane",
+   "origin": "Mỹ",
+   "note": "Chiller",
+   "kws": [
+    "trane"
+   ],
+   "query": "\"Trane\"",
+   "tax": {
+    "mep.hvac": "cao-cap"
+   }
+  },
+  {
+   "id": "carrier",
+   "name": "Carrier",
+   "origin": "Mỹ",
+   "note": "",
+   "kws": [
+    "dieu hoa carrier",
+    "carrier vietnam",
+    "carrier viet nam"
+   ],
+   "query": "\"Carrier\" điều hòa",
+   "tax": {
+    "mep.hvac": "cao-cap"
+   }
+  },
+  {
+   "id": "lg",
+   "name": "LG",
+   "origin": "Hàn Quốc",
+   "note": "",
+   "kws": [
+    "lg electronics",
+    "lg"
+   ],
+   "query": "\"LG\" điều hòa",
+   "tax": {
+    "mep.hvac": "trung-cap"
+   }
+  },
+  {
+   "id": "samsung",
+   "name": "Samsung",
+   "origin": "Hàn Quốc",
+   "note": "",
+   "kws": [
+    "samsung"
+   ],
+   "query": "\"Samsung\" điều hòa",
+   "tax": {
+    "mep.hvac": "trung-cap"
+   }
+  },
+  {
+   "id": "panasonic",
+   "name": "Panasonic",
+   "origin": "Nhật Bản",
+   "note": "",
+   "kws": [
+    "panasonic"
+   ],
+   "query": "\"Panasonic\"",
+   "tax": {
+    "mep.hvac": "trung-cap"
+   }
+  },
+  {
+   "id": "gree",
+   "name": "Gree",
+   "origin": "Trung Quốc",
+   "note": "",
+   "kws": [
+    "gree"
+   ],
+   "query": "\"Gree\" điều hòa",
+   "tax": {
+    "mep.hvac": "pho-thong"
+   }
+  },
+  {
+   "id": "midea",
+   "name": "Midea",
+   "origin": "Trung Quốc",
+   "note": "",
+   "kws": [
+    "midea"
+   ],
+   "query": "\"Midea\"",
+   "tax": {
+    "mep.hvac": "pho-thong"
+   }
+  },
+  {
+   "id": "reetech",
+   "name": "Reetech",
+   "origin": "Việt Nam",
+   "note": "Thuộc REE",
+   "kws": [
+    "reetech"
+   ],
+   "query": "\"Reetech\"",
+   "tax": {
+    "mep.hvac": "pho-thong"
+   }
+  },
+  {
+   "id": "kone",
+   "name": "KONE",
+   "origin": "Phần Lan",
+   "note": "",
+   "kws": [
+    "kone"
+   ],
+   "query": "\"KONE\" thang máy",
+   "tax": {
+    "mep.thang-may": "cao-cap"
+   }
+  },
+  {
+   "id": "schindler",
+   "name": "Schindler",
+   "origin": "Thụy Sĩ",
+   "note": "",
+   "kws": [
+    "schindler"
+   ],
+   "query": "\"Schindler\"",
+   "tax": {
+    "mep.thang-may": "cao-cap"
+   }
+  },
+  {
+   "id": "otis",
+   "name": "Otis",
+   "origin": "Mỹ",
+   "note": "",
+   "kws": [
+    "otis"
+   ],
+   "query": "\"Otis\" thang máy",
+   "tax": {
+    "mep.thang-may": "cao-cap"
+   }
+  },
+  {
+   "id": "tk-elevator",
+   "name": "TK Elevator",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "tk elevator",
+    "thyssenkrupp"
+   ],
+   "query": "\"TK Elevator\" OR \"thyssenkrupp\" thang máy",
+   "tax": {
+    "mep.thang-may": "cao-cap"
+   }
+  },
+  {
+   "id": "hitachi-elevator",
+   "name": "Hitachi (thang máy)",
+   "origin": "Nhật Bản",
+   "note": "",
+   "kws": [
+    "thang may hitachi",
+    "hitachi elevator"
+   ],
+   "query": "\"thang máy Hitachi\"",
+   "tax": {
+    "mep.thang-may": "cao-cap"
+   }
+  },
+  {
+   "id": "fujitec",
+   "name": "Fujitec",
+   "origin": "Nhật Bản",
+   "note": "",
+   "kws": [
+    "fujitec"
+   ],
+   "query": "\"Fujitec\"",
+   "tax": {
+    "mep.thang-may": "trung-cap"
+   }
+  },
+  {
+   "id": "hyundai-elevator",
+   "name": "Hyundai Elevator",
+   "origin": "Hàn Quốc",
+   "note": "",
+   "kws": [
+    "hyundai elevator",
+    "thang may hyundai"
+   ],
+   "query": "\"thang máy Hyundai\"",
+   "tax": {
+    "mep.thang-may": "trung-cap"
+   }
+  },
+  {
+   "id": "thien-nam",
+   "name": "Thiên Nam",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "thang may thien nam"
+   ],
+   "query": "\"thang máy Thiên Nam\"",
+   "tax": {
+    "mep.thang-may": "pho-thong"
+   }
+  },
+  {
+   "id": "ls-vina",
+   "name": "LS Cable / LS-VINA",
+   "origin": "Hàn Quốc",
+   "note": "",
+   "kws": [
+    "ls-vina",
+    "ls vina",
+    "ls cable"
+   ],
+   "query": "\"LS-VINA\" OR \"LS Cable\"",
+   "tax": {
+    "mep.cap-dien": "cao-cap"
+   }
+  },
+  {
+   "id": "cadivi",
+   "name": "Cadivi",
+   "origin": "Việt Nam",
+   "note": "Thuộc GELEX",
+   "kws": [
+    "cadivi"
+   ],
+   "query": "\"Cadivi\"",
+   "tax": {
+    "mep.cap-dien": "cao-cap"
+   }
+  },
+  {
+   "id": "taya",
+   "name": "Taya",
+   "origin": "Đài Loan",
+   "note": "",
+   "kws": [
+    "taya"
+   ],
+   "query": "\"Taya\" cáp điện",
+   "tax": {
+    "mep.cap-dien": "trung-cap"
+   }
+  },
+  {
+   "id": "tran-phu",
+   "name": "Cáp điện Trần Phú",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "cap dien tran phu",
+    "day cap tran phu",
+    "tran phu cable"
+   ],
+   "query": "\"cáp điện Trần Phú\" OR \"dây cáp Trần Phú\"",
+   "tax": {
+    "mep.cap-dien": "trung-cap"
+   }
+  },
+  {
+   "id": "daphaco",
+   "name": "Daphaco",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "daphaco"
+   ],
+   "query": "\"Daphaco\"",
+   "tax": {
+    "mep.cap-dien": "pho-thong"
+   }
+  },
+  {
+   "id": "cadisun",
+   "name": "Cadisun",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "cadisun"
+   ],
+   "query": "\"Cadisun\"",
+   "tax": {
+    "mep.cap-dien": "pho-thong"
+   }
+  },
+  {
+   "id": "aquatherm",
+   "name": "Aquatherm",
+   "origin": "Đức",
+   "note": "Ống PPR",
+   "kws": [
+    "aquatherm"
+   ],
+   "query": "\"Aquatherm\"",
+   "tax": {
+    "mep.ong-nuoc": "cao-cap"
+   }
+  },
+  {
+   "id": "rehau",
+   "name": "Rehau",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "rehau"
+   ],
+   "query": "\"Rehau\"",
+   "tax": {
+    "mep.ong-nuoc": "cao-cap"
+   }
+  },
+  {
+   "id": "wavin",
+   "name": "Wavin",
+   "origin": "Hà Lan",
+   "note": "",
+   "kws": [
+    "wavin"
+   ],
+   "query": "\"Wavin\"",
+   "tax": {
+    "mep.ong-nuoc": "cao-cap"
+   }
+  },
+  {
+   "id": "tien-phong",
+   "name": "Nhựa Tiền Phong",
+   "origin": "Việt Nam",
+   "note": "HNX: NTP",
+   "kws": [
+    "nhua tien phong",
+    "ntp"
+   ],
+   "query": "\"Nhựa Tiền Phong\"",
+   "tax": {
+    "mep.ong-nuoc": "trung-cap"
+   }
+  },
+  {
+   "id": "binh-minh",
+   "name": "Nhựa Bình Minh",
+   "origin": "Việt Nam",
+   "note": "HOSE: BMP",
+   "kws": [
+    "nhua binh minh",
+    "bmp"
+   ],
+   "query": "\"Nhựa Bình Minh\"",
+   "tax": {
+    "mep.ong-nuoc": "trung-cap"
+   }
+  },
+  {
+   "id": "hoa-sen",
+   "name": "Nhựa Hoa Sen",
+   "origin": "Việt Nam",
+   "note": "Thuộc Tập đoàn Hoa Sen",
+   "kws": [
+    "nhua hoa sen",
+    "tap doan hoa sen",
+    "hsg"
+   ],
+   "query": "\"Hoa Sen\" ống nhựa",
+   "tax": {
+    "mep.ong-nuoc": "pho-thong"
+   }
+  },
+  {
+   "id": "de-nhat",
+   "name": "Nhựa Đệ Nhất",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "nhua de nhat"
+   ],
+   "query": "\"nhựa Đệ Nhất\"",
+   "tax": {
+    "mep.ong-nuoc": "pho-thong"
+   }
+  },
+  {
+   "id": "schneider",
+   "name": "Schneider Electric",
+   "origin": "Pháp",
+   "note": "Thiết bị đóng cắt, nhà thông minh Wiser",
+   "kws": [
+    "schneider"
+   ],
+   "query": "\"Schneider Electric\"",
+   "tax": {
+    "mep.tu-dien": "cao-cap",
+    "elv.smart-home": "cao-cap"
+   }
+  },
+  {
+   "id": "abb",
+   "name": "ABB",
+   "origin": "Thụy Sĩ",
+   "note": "",
+   "kws": [
+    "abb"
+   ],
+   "query": "\"ABB\"",
+   "tax": {
+    "mep.tu-dien": "cao-cap"
+   }
+  },
+  {
+   "id": "ls-electric",
+   "name": "LS Electric",
+   "origin": "Hàn Quốc",
+   "note": "",
+   "kws": [
+    "ls electric"
+   ],
+   "query": "\"LS Electric\"",
+   "tax": {
+    "mep.tu-dien": "trung-cap"
+   }
+  },
+  {
+   "id": "chint",
+   "name": "Chint",
+   "origin": "Trung Quốc",
+   "note": "",
+   "kws": [
+    "chint"
+   ],
+   "query": "\"Chint\"",
+   "tax": {
+    "mep.tu-dien": "trung-cap"
+   }
+  },
+  {
+   "id": "sino",
+   "name": "Sino (Vanlock)",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "sino vanlock",
+    "vanlock"
+   ],
+   "query": "\"Vanlock\" OR \"Sino Vanlock\"",
+   "tax": {
+    "mep.tu-dien": "pho-thong"
+   }
+  },
+  {
+   "id": "cummins",
+   "name": "Cummins",
+   "origin": "Mỹ",
+   "note": "",
+   "kws": [
+    "cummins"
+   ],
+   "query": "\"Cummins\"",
+   "tax": {
+    "mep.may-phat": "cao-cap"
+   }
+  },
+  {
+   "id": "caterpillar",
+   "name": "Caterpillar",
+   "origin": "Mỹ",
+   "note": "",
+   "kws": [
+    "caterpillar"
+   ],
+   "query": "\"Caterpillar\" máy phát",
+   "tax": {
+    "mep.may-phat": "cao-cap"
+   }
+  },
+  {
+   "id": "mtu",
+   "name": "MTU (Rolls-Royce)",
+   "origin": "Đức",
+   "note": "",
+   "kws": [
+    "mtu"
+   ],
+   "query": "\"MTU\" máy phát",
+   "tax": {
+    "mep.may-phat": "cao-cap"
+   }
+  },
+  {
+   "id": "hitachi-energy",
+   "name": "Hitachi Energy",
+   "origin": "Thụy Sĩ / Nhật Bản",
+   "note": "Máy biến áp",
+   "kws": [
+    "hitachi energy"
+   ],
+   "query": "\"Hitachi Energy\"",
+   "tax": {
+    "mep.may-phat": "cao-cap"
+   }
+  },
+  {
+   "id": "thibidi",
+   "name": "THIBIDI",
+   "origin": "Việt Nam",
+   "note": "Máy biến áp, thuộc GELEX",
+   "kws": [
+    "thibidi"
+   ],
+   "query": "\"THIBIDI\"",
+   "tax": {
+    "mep.may-phat": "trung-cap"
+   }
+  },
+  {
+   "id": "eemc",
+   "name": "EEMC (Thiết bị điện Đông Anh)",
+   "origin": "Việt Nam",
+   "note": "Máy biến áp, thuộc GELEX",
+   "kws": [
+    "eemc",
+    "thiet bi dien dong anh"
+   ],
+   "query": "\"EEMC\" OR \"Thiết bị điện Đông Anh\"",
+   "tax": {
+    "mep.may-phat": "trung-cap"
+   }
+  },
+  {
+   "id": "huu-toan",
+   "name": "Hữu Toàn",
+   "origin": "Việt Nam",
+   "note": "Máy phát lắp ráp",
+   "kws": [
+    "may phat huu toan"
+   ],
+   "query": "\"máy phát Hữu Toàn\"",
+   "tax": {
+    "mep.may-phat": "pho-thong"
+   }
+  },
+  {
+   "id": "tyco",
+   "name": "Tyco",
+   "origin": "Mỹ",
+   "note": "Thuộc Johnson Controls",
+   "kws": [
+    "tyco",
+    "johnson controls"
+   ],
+   "query": "\"Tyco\" OR \"Johnson Controls\"",
+   "tax": {
+    "mep.pccc": "cao-cap"
+   }
+  },
+  {
+   "id": "honeywell",
+   "name": "Honeywell",
+   "origin": "Mỹ",
+   "note": "Báo cháy (Notifier), an ninh",
+   "kws": [
+    "honeywell",
+    "notifier"
+   ],
+   "query": "\"Honeywell\"",
+   "tax": {
+    "mep.pccc": "cao-cap",
+    "elv.an-ninh": "cao-cap"
+   }
+  },
+  {
+   "id": "hochiki",
+   "name": "Hochiki",
+   "origin": "Nhật Bản",
+   "note": "Báo cháy",
+   "kws": [
+    "hochiki"
+   ],
+   "query": "\"Hochiki\"",
+   "tax": {
+    "mep.pccc": "cao-cap"
+   }
+  },
+  {
+   "id": "horing",
+   "name": "Horing Lih",
+   "origin": "Đài Loan",
+   "note": "Báo cháy",
+   "kws": [
+    "horing"
+   ],
+   "query": "\"Horing\"",
+   "tax": {
+    "mep.pccc": "trung-cap"
+   }
+  },
+  {
+   "id": "crestron",
+   "name": "Crestron",
+   "origin": "Mỹ",
+   "note": "",
+   "kws": [
+    "crestron"
+   ],
+   "query": "\"Crestron\"",
+   "tax": {
+    "elv.smart-home": "hang-sang"
+   }
+  },
+  {
+   "id": "control4",
+   "name": "Control4",
+   "origin": "Mỹ",
+   "note": "Thuộc Snap One",
+   "kws": [
+    "control4"
+   ],
+   "query": "\"Control4\"",
+   "tax": {
+    "elv.smart-home": "hang-sang"
+   }
+  },
+  {
+   "id": "lumi",
+   "name": "Lumi",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "lumi smart",
+    "lumi viet nam",
+    "lumi smarthome"
+   ],
+   "query": "\"Lumi\" nhà thông minh",
+   "tax": {
+    "elv.smart-home": "trung-cap"
+   }
+  },
+  {
+   "id": "bkav-smarthome",
+   "name": "BKAV SmartHome",
+   "origin": "Việt Nam",
+   "note": "",
+   "kws": [
+    "bkav smarthome",
+    "bkav smart home"
+   ],
+   "query": "\"Bkav SmartHome\"",
+   "tax": {
+    "elv.smart-home": "trung-cap"
+   }
+  },
+  {
+   "id": "aqara",
+   "name": "Aqara",
+   "origin": "Trung Quốc",
+   "note": "",
+   "kws": [
+    "aqara"
+   ],
+   "query": "\"Aqara\"",
+   "tax": {
+    "elv.smart-home": "pho-thong"
+   }
+  },
+  {
+   "id": "axis",
+   "name": "Axis Communications",
+   "origin": "Thụy Điển",
+   "note": "",
+   "kws": [
+    "axis communications"
+   ],
+   "query": "\"Axis Communications\"",
+   "tax": {
+    "elv.an-ninh": "cao-cap"
+   }
+  },
+  {
+   "id": "hanwha-vision",
+   "name": "Hanwha Vision",
+   "origin": "Hàn Quốc",
+   "note": "",
+   "kws": [
+    "hanwha vision"
+   ],
+   "query": "\"Hanwha Vision\"",
+   "tax": {
+    "elv.an-ninh": "trung-cap"
+   }
+  },
+  {
+   "id": "hikvision",
+   "name": "Hikvision",
+   "origin": "Trung Quốc",
+   "note": "",
+   "kws": [
+    "hikvision"
+   ],
+   "query": "\"Hikvision\"",
+   "tax": {
+    "elv.an-ninh": "pho-thong"
+   }
+  },
+  {
+   "id": "dahua",
+   "name": "Dahua",
+   "origin": "Trung Quốc",
+   "note": "",
+   "kws": [
+    "dahua"
+   ],
+   "query": "\"Dahua\"",
+   "tax": {
+    "elv.an-ninh": "pho-thong"
+   }
+  }
+ ]
+}

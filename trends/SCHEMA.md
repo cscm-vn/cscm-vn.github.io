@@ -52,6 +52,13 @@ Thêm đơn vị theo dõi mới: thêm một object vào `orgs.json` (`name`, `
 Mỗi nhóm: `id, name, tax[], signal (du-cung|can-bang|khan-hiem|chua-du), trend (up|down|flat), headline, supply[], demand[], trade[], rec, rec_detail, clusters[{name,where,examples}], risks[], levers[], timing, calc{unit,fob,qty,cont,duty,ad,vat,logi,note,vn,vn_note}|null, sources[{name,url,date}]`.
 Quy tắc: mọi số liệu phải có trong nguồn ghi kèm; FOB/giả định ghi chữ **GIẢ ĐỊNH** trong `calc.note`. Cập nhật **hằng tuần – sáng thứ Hai** (lịch tự động "CSCM weekly SCM supply-demand review"; vá `scm.json` bằng script `trends/seed/scm_YYYY-MM-DD.py`, xem mẫu `scm_2026-11-02.py`) và ngay khi có biến động lớn (thuế CBPG mới, giá LME, báo cáo VSA/VNCA). Cước biển: `freight` (rà soát hằng tuần).
 
+## v3 – Thương hiệu (`trends/data/brands.json` + `trends/data/brand-feed.json`; tab "Thương hiệu" ở `danh-muc.html`)
+`brands.json`: `tiers[{id: hang-sang|cao-cap|trung-cap|pho-thong, name, use}]`, `cats{<tax cấp 2>: {ctx, digest?}}`, `brands[{id, name, origin, note, kws[], query, tax{<tax cấp 2>: <tier>}, digest?}]`.
+- Danh bạ (hãng, phân khúc, kws, query) sinh bằng `trends/seed/brands_YYYY-MM-DD.py` (script giữ nguyên `digest` đã có). Thêm hãng/danh mục: sửa danh sách `R`/`CTX` trong script mới nhất rồi chạy lại. `kws` không dấu, khớp nguyên từ trong tiêu đề; tên dễ trùng (Trần Phú, Tiền Phong, TOA…) dùng cụm có ngữ cảnh.
+- Phân khúc = định vị giá phổ biến tại VN (biên tập, tham khảo); một hãng có thể khác phân khúc theo danh mục.
+- `digest` (biên tập, lịch tuần thứ Năm "CSCM weekly brand digest"): `{date, text, impl, sources[{name,url,date}]}` cho hãng và cho `cats[c]`. Quy tắc như SCM: mọi số liệu có trong nguồn đã mở; viết lại bằng lời mình; vá bằng `trends/seed/brands_digest_YYYY-MM-DD.py`; bỏ digest > 60 ngày không còn đúng.
+- `brand-feed.json` (tự động, `trends/brand_feed.py` trong update.yml, 5 lần/ngày): Google News vi/VN, mỗi danh mục gộp ≤6 hãng/truy vấn + `ctx`; chỉ giữ tin có tiêu đề nêu hãng của danh mục; cuộn 90 ngày; `items[{id,title,url,source,date,brands[],tax[]}]`. CHƯA biên tập.
+
 ## v3 – Phân khúc (`trends/data/segments.json`, sinh từ `trends/seed/segments_YYYYQn.py`)
 7 phân khúc × {hn, hcm}: `price, trend, supply, absorption, inventory, projects, sources[]` + `spec, cost{structure,fitout,sources}, implications`. Cập nhật **hằng quý** khi CBRE/Savills/DKRA/VARS/NAI công bố (thường giữa tháng đầu quý sau). Dòng ước tính phải có chữ **ƯỚC TÍNH**.
 
