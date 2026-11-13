@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-13T06:58+07:00",
+ "built": "2026-11-13T07:36+07:00",
  "today": "2026-11-13",
  "news_since": "2026-11-12",
  "thresholds": {
@@ -62,10 +62,10 @@
      "id": "lme_aluminium",
      "name": "Nhôm LME",
      "region": "",
-     "d1": 2.76,
-     "date": "2026-11-11",
-     "prev_date": "2026-11-10",
-     "price": 3223.5,
+     "d1": -2.11,
+     "date": "2026-11-12",
+     "prev_date": "2026-11-11",
+     "price": 3155.5,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
@@ -98,7 +98,7 @@
    ],
    "n_news": 7,
    "n_moves": 1,
-   "rank": 3.48,
+   "rank": 3.16,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -165,29 +165,15 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -2.95,
+     "d1": -2.82,
      "date": "2026-11-12",
      "prev_date": "2026-11-11",
-     "price": 50.0,
+     "price": 50.064998626708984,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
      "tax": "tt.ty-gia",
      "url": "mat-hang.html?id=yf_silver"
-    },
-    {
-     "id": "yf_gold",
-     "name": "Vàng (COMEX Gold)",
-     "region": "",
-     "d1": -2.67,
-     "date": "2026-11-12",
-     "prev_date": "2026-11-11",
-     "price": 3881.699951171875,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=yf_gold"
     },
     {
      "id": "lbma_gold",
@@ -202,15 +188,36 @@
      "threshold": 2.0,
      "tax": "tt.ty-gia",
      "url": "mat-hang.html?id=lbma_gold"
+    },
+    {
+     "id": "yf_gold",
+     "name": "Vàng (COMEX Gold)",
+     "region": "",
+     "d1": -2.47,
+     "date": "2026-11-12",
+     "prev_date": "2026-11-11",
+     "price": 3889.5,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=yf_gold"
     }
    ],
    "news": [
     {
+     "title": "TS. Cấn Văn Lực: NIM ngân hàng chỉ còn ~2,5% (từ ~3% cuối năm trước) trong khi Thủ tướng, Thống đốc định hướng giảm lãi suất cho vay 1,5–2 điểm %; đề xuất thử giảm lãi suất huy động ~0,5 điểm % trước",
+     "url": "thi-truong.html#ddf9dd6794ed",
+     "date": "2026-11-13",
+     "score": 10,
+     "source": "Người Quan Sát – TS. Cấn Văn Lực: NIM ngân hàng chỉ còn 2,5%, áp lực giảm lãi suất cho vay 1,5-2 điểm % ngày càng lớn, 13/11/2026"
+    },
+    {
      "title": "Rà soát nguồn cung vật liệu xây dựng, đáp ứng nhu cầu các dự án",
-     "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPQkR3R1ZsV3lWWU0tenlQZ1dLQ084T0k4S3BXYUZTQ2J4Y3pmTzhPMVI1My1kLUpObEg2U0F2RWNJa1BXS2xSdFNGbi1HbGpDb2cwSVRGdk5uVkNCa1Vac0wybHhGQ3NIb25ySm54UUFsS1pHZE12ZjdZdHpOVF9OelpXSVBSVHEyMHB0OVlR?oc=5",
+     "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQWlVkelRCZU9SSXF0X3JuVmZYdVVnRUJtQm9sR0tPQUMxZG9aejAxbDU4eXVENTllckZlX0ZQTWtaalV6azdGNDVIOFhTVl9ibWFRMHRwWlFJaW5kbm1FTko1WmxlVjhYeEw3dXZXenEzMVdvdnhQNW0yUzlmbk5vUS1wckJvbEZTdzRZWlc1Z1Flc29rdTFhY29GVy1IdFZDUHdfSEYybDJwdVZJeEE?oc=5",
      "date": "2026-11-12",
-     "score": 11.7,
-     "source": "Vietnam.vn"
+     "score": 9.7,
+     "source": "Báo và phát thanh, truyền hình Quảng Trị"
     },
     {
      "title": "Searefico - Từ nhà thầu cơ điện đến đầu tư tài sản công nghiệp",
@@ -218,18 +225,11 @@
      "date": "2026-11-12",
      "score": 3.7,
      "source": "Báo VietNamNet"
-    },
-    {
-     "title": "6 giá trị tạo sức hút cho “kiệt tác” căn hộ cao tầng Eurowindow Sport Garden",
-     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOWEpwdHZiV3o2aERBZlFIN1VhVmh2VEh2QkZqRHhCVFUxdXJKU190aThFYmE5MXBBaTQtSTdXN0VfbnlnX2VuTGN1US1VQXo0XzJMRlZNNnhlUkx3SktRSEl1Uk5qRUVjT2xtb0owcVdQazlXMjNoUm1UOW9jTXdELXNwY2pxX2N3ZUxuUU9qb1dJeHZNOFBTVHRDVjQ5M0lnSlRxN19QanJ3aTkyMXpVN1hvUjU3SjJVV0p0bmJRVzdid1pT?oc=5",
-     "date": "2026-11-12",
-     "score": 3.7,
-     "source": "VOV.VN"
     }
    ],
-   "n_news": 3,
+   "n_news": 4,
    "n_moves": 3,
-   "rank": 5.0,
+   "rank": 5.13,
    "link": "danh-muc.html?c=tt"
   }
  ]
