@@ -19,9 +19,12 @@ import os, re, io, sys, json, html, unicodedata, datetime as dt, urllib.parse
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(BASE, "data", "hcm_sxd")
+NBACK = 4  # số thông báo gần nhất được đọc/bổ sung (lịch sử thép/cáp/bê tông/vữa)
 TOPIC = "https://thuviennhadat.vn/chu-de/gia-vat-lieu-xay-dung-tphcm"
 REGION = "TP. Hồ Chí Minh"
 KINDS = {"xi_mang": "xi măng", "gach": "gạch không nung", "da": "đá xây dựng", "cat": "cát xây dựng"}
+# Phụ lục bổ sung (từ 11/2026): thay nguồn web đại lý/NCC đứng giá. Không bắt buộc – thiếu thì bỏ qua, không làm hỏng xi măng/cát/đá/gạch.
+EXTRA = {"thep": "thép xây dựng", "cap": "vật tư ngành điện", "be_tong": "bê tông thương phẩm", "vua": "vữa"}
 
 def _http(url, binary=False):
     """GET as Chrome (curl_cffi) – thuviennhadat/Drive sit behind bot rules; fall back to requests."""
@@ -83,7 +86,7 @@ def drive_pdf(did):
 # ---------------- PDF tables ----------------
 def appendix_kind(first_page_text):
     t = ascii_(first_page_text[:400])
-    for k, v in KINDS.items():
+    for k, v in {**KINDS, **EXTRA}.items():
         if re.search(r"cong bo gia san pham " + ascii_(v) + r"\b", t): return k
     return None
 
@@ -101,7 +104,8 @@ def table_rows(pdf_bytes):
                     if len(c) < 12: continue
                     if not any(c[:3]) and c[-1] and not re.search(r"\d", c[-1]): sec = c[-1]; continue
                     if not re.fullmatch(r"\d+", c[0]): continue
-                    rows.append(dict(section=sec, name=c[2], unit=c[3], spec=c[5], supplier=c[6], cond=c[8], note=c[10],
+                    sup = c[6] if c[6] and c[6] not in ('"', "“", "”", "''") else (rows[-1]["supplier"] if rows else "")
+                    rows.append(dict(section=sec, name=c[2], unit=c[3], std=c[4], spec=c[5], supplier=sup, cond=c[8], note=c[10],
                                      prices=[vnd(x) for x in c[11:]]))
     return kind, title, rows
 
@@ -170,6 +174,115 @@ def aggregate(kind, rows):
         if k and p: groups.setdefault(k, []).append(p)
     return {k: (min(v), max(v), len(v)) for k, v in groups.items()}
 
+# ---------------- phụ lục bổ sung: thép / cáp điện / bê tông thương phẩm / vữa ----------------
+def mill_name(sup):
+    a = ascii_(sup)
+    for pat, nm in ((r"mien nam|vnsteel", "Thép Miền Nam (VNSteel)"), (r"kyoei", "Vina Kyoei"), (r"pomina", "Pomina"), (r"hoa phat", "Hòa Phát"),
+                    (r"tung ?ho", "TungHo"), (r"viet nhat|vina ?japan", "Việt Nhật"), (r"\bvas\b|viet my", "VAS"), (r"posco", "Posco"),
+                    (r"viet duc", "Việt Đức"), (r"viet y\b", "Việt Ý"), (r"thai nguyen|tisco", "Thái Nguyên"),
+                    (r"cadivi|day cap dien viet nam", "CADIVI"), (r"cadisun", "CADISUN"), (r"tran phu", "Trần Phú"), (r"ls[- ]?vina", "LS-VINA"),
+                    (r"viet han", "Việt Hàn"), (r"hodeco", "HODECO")):
+        if re.search(pat, a): return nm
+    s2 = re.sub(r"^(C[ôo]ng\s*ty|Cty)\s+(TNHH|C[ổo]\s*ph[ầa]n|CP)?\s*(MTV|M[ộo]t\s+Th[àa]nh\s+Vi[êe]n)?\s*", "", sup, flags=re.I).strip()
+    return ("Nhà máy vữa Sài Gòn" if s2.lower().startswith("nhà máy") else s2[:48]) or "?"
+def steel_key(r):
+    """-> (key, label, VND/kg) cho thép cuộn/thanh vằn; bỏ thép góc, tròn trơn, gân ren, cán kéo/không logo."""
+    n = ascii_(r["name"]); full = ascii_(" ".join((r["name"], r.get("std") or "", r["spec"])))
+    if re.search(r"goc|tron tron|gan ren|can keo|khong logo|\bhinh\b|\btam\b", n): return None
+    coil = "cuon" in n
+    if not coil and "van" not in n: return None
+    d = [int(x) for x in re.findall(r"(?:\bd|ф|ø|phi)\s*(\d{1,2})(?![\d,.])", r["name"].lower().replace("ф", "ф")) + re.findall(r"(\d{1,2})\s*(?:,0\s*)?mm", r["name"])]
+    m = re.search(r"\bd\s*(\d{1,2})\s*-\s*d?\s*(\d{1,2})\b", n)
+    if m: d += [int(m.group(1)), int(m.group(2))]
+    if not d: d = [int(x) for x in re.findall(r"[фø]\s*(\d{1,2})", r["name"].lower())]
+    if not d: return None
+    lo, hi = min(d), max(d)
+    g = re.search(r"\b(cb\s*\d{3})\s*-?\s*([tv])?\b|\b(sd\s*\d{3})\b", full)
+    grade = (g.group(1).replace(" ", "").upper() + ("-" + g.group(2).upper() if g.group(2) else "")) if g and g.group(1) else (g.group(3).replace(" ", "").upper() if g else "")
+    if coil: prod = f"cuộn D{lo}" if lo == hi else f"cuộn D{lo}–D{hi}"
+    else: prod = f"thanh vằn D{lo}" if lo == hi else f"thanh vằn D{lo}–D{hi}"
+    mill = mill_name(r["supplier"])
+    p = next((x for x in r["prices"] if x), None)
+    if not p: return None
+    if "tan" in ascii_(r["unit"]): p = p / 1000
+    if not 8_000 < p < 40_000: return None
+    return f"{mill}|{prod}|{grade}", f"Thép {prod}{' ' + grade if grade else ''} – {mill}", p
+
+CABLE_KEEP = r"^(cv-(50|240)|cvv-(25|50|95|150)|cvv-4x(16|50|120)|cvv-3x95\+1x50|cv/fr-1x240|cxv/se-dsta-3x400|av-120)$"
+def cable_key(r):
+    code = re.split(r"\s*[–-]\s*(?:\d+[,.]?\d*/\d+|\d+/\d+)", r["spec"])[0]
+    code = re.sub(r"\s*\(.*?\)", "", code); code = re.sub(r"\s+", "", code).rstrip("-–")
+    if not re.match(CABLE_KEEP, code.lower()): return None
+    p = next((x for x in r["prices"] if x), None)
+    if not p: return None
+    volt = re.search(r"(0,6/1\s*kV|300/500\s*V|12/20\(24\)\s*kV)", r["spec"])
+    return code.lower(), f"Cáp {code}{' ' + volt.group(1).replace(' ', '') if volt else ''} – {mill_name(r['supplier'])}", p
+
+def rmc_key(r):
+    m = re.search(r"\bm\s*(\d{3})\b", ascii_(r["name"]))
+    p = next((x for x in r["prices"] if x), None)
+    if not m or not p or not 500_000 < p < 5_000_000: return None
+    return f"m{m.group(1)}", f"Bê tông thương phẩm M{m.group(1)}", p
+
+def mortar_key(r):
+    p = next((x for x in r["prices"] if x), None)
+    if not p: return None
+    nm = re.sub(r"\s+", " ", nfc(r["name"])).strip()
+    return slug(nm), nm, p
+
+def aggregate_extra(kind, rows):
+    """-> {key: [lo, hi, n, label, suppliers]}"""
+    fn = {"thep": steel_key, "cap": cable_key, "be_tong": rmc_key, "vua": mortar_key}[kind]; g = {}
+    for r in rows:
+        k = fn(r)
+        if not k: continue
+        key, label, p = k; e = g.setdefault(key, [p, p, 0, label, []])
+        e[0], e[1], e[2] = min(e[0], p), max(e[1], p), e[2] + 1
+        sup = mill_name(r["supplier"])
+        if sup not in e[4]: e[4].append(sup)
+    return g
+XCAT = {"thep": ("Thép xây dựng", "VND/kg", "thep"), "cap": ("Cáp điện (MEP)", "VND/m", "cap"),
+        "be_tong": ("Bê tông thương phẩm", "VND/m³", "rmc"), "vua": ("Vữa & hoàn thiện", "VND/bao", "vua")}
+
+def parse_extra(c):
+    """Bổ sung c['series'] (thép/cáp/bê tông/vữa) cho một thông báo đã cache; tải lại Drive nếu thiếu."""
+    have = c.get("series") or {}
+    if all(k in have for k in EXTRA): return False
+    files = drive_files(c["drive"])
+    pri = [f for f in files if re.search(r"thep|cap|day dien|be tong thuong|vua", ascii_(f[1]))]
+    rest = [f for f in files if f not in pri and not re.search(r"xi ?mang|gach|\bda\b|\bcat\b|thong bao", ascii_(f[1]))]
+    done = dict(have)
+    for did, name in pri + rest:
+        if all(k in done for k in EXTRA): break
+        try: kind, title, rows = table_rows(drive_pdf(did))
+        except Exception as e: print("hcm_sxd extra", name, e, file=sys.stderr); continue
+        if kind in EXTRA and kind not in done:
+            done[kind] = aggregate_extra(kind, rows)
+            c.setdefault("appendices", {})[kind] = {"file": name, "drive_id": did, "n_rows": len(rows)}
+    for k in EXTRA: done.setdefault(k, {})  # không có phụ lục tháng đó -> rỗng, không thử lại mãi
+    c["series"] = done; return True
+
+def extra_items(c, prev, hist):
+    out = []; m, y = int(c["month"][5:]), c["month"][:4]
+    tb = f"TB {c['tb']}/TB-SXD-KTVLXD" if c.get("tb") else "TB công bố giá"
+    for kind, g in (c.get("series") or {}).items():
+        cat, unit, pre = XCAT[kind]
+        for key, (lo, hi, n, label, sups) in sorted(g.items()):
+            iid = f"sxd_hcm_{pre}_" + slug(key)
+            pv = ((prev or {}).get("series") or {}).get(kind, {}).get(key)
+            pct = round((lo / pv[0] - 1) * 100, 2) if pv and pv[0] else None
+            note = f"Sở XD TP.HCM công bố giá tháng {m}/{y} ({tb}); giá NSX/NCC kê khai, chưa VAT"
+            if kind == "be_tong": note += f"; khoảng thấp–cao giữa {n} NCC: {', '.join(sups[:6])}; độ sụt/điều kiện giao theo từng NCC"
+            elif n > 1: note += f"; khoảng thấp–cao giữa {n} dòng giá"
+            bf = [(h.get("issued") or h["month"] + "-28", h["series"][kind][key][0]) for h in hist
+                  if h is not c and key in ((h.get("series") or {}).get(kind) or {})]
+            out.append(dict(id=iid, grp="vn", category=cat, name=label + (" (Sở XD TP.HCM)" if kind != "be_tong" else " – các NCC (Sở XD TP.HCM)"),
+                            unit=unit, currency="VND", price=lo, price_high=hi if hi != lo else None,
+                            src=f"Sở Xây dựng TP.HCM – công bố giá tháng {m}/{y}", url=c.get("drive") or c.get("article"),
+                            as_of=c.get("issued") or f"{c['month']}-28", region=REGION, change_pct=pct, note=note,
+                            brand=sups[0] if len(sups) == 1 else None, backfill=bf))
+    return out
+
 CAT = {"xi_mang": ("Xi măng", "VND/tấn"), "gach": ("Gạch xây", "VND/viên"), "da": ("Đá xây dựng", "VND/m³"), "cat": ("Cát", "VND/m³")}
 
 def parse_notice(notice):
@@ -180,7 +293,7 @@ def parse_notice(notice):
         if len(appx) == len(KINDS): break
         if re.search(r"thong bao|^\d{4,6}[- ]", ascii_(name)) and "phu luc" not in ascii_(name): continue
         kind, title, rows = table_rows(drive_pdf(did))
-        if kind and kind not in appx: appx[kind] = {"file": name, "drive_id": did, "rows": rows}
+        if kind in KINDS and kind not in appx: appx[kind] = {"file": name, "drive_id": did, "rows": rows}
     miss = [k for k in KINDS if k not in appx]
     if miss: raise RuntimeError(f"thiếu phụ lục: {miss}")
     groups = {k: {n: list(v) for n, v in aggregate(k, a["rows"]).items()} for k, a in appx.items()}
@@ -212,7 +325,7 @@ def src_hcm_sxd():
     """fetcher source: newest parsed notice (download only if not cached)."""
     os.makedirs(CACHE, exist_ok=True); errs = []
     try:
-        for n in latest_notices(2):
+        for n in latest_notices(NBACK):
             p = os.path.join(CACHE, n["month"] + ".json")
             if not os.path.exists(p):
                 try:
@@ -223,9 +336,15 @@ def src_hcm_sxd():
     if errs: print("hcm_sxd errors", errs, file=sys.stderr)
     months = sorted(f[:-5] for f in os.listdir(CACHE) if re.fullmatch(r"\d{4}-\d\d\.json", f))
     if not months: raise RuntimeError("; ".join(errs) or "chưa có thông báo nào")
-    cur = json.load(open(os.path.join(CACHE, months[-1] + ".json"), encoding="utf-8"))
-    prev = json.load(open(os.path.join(CACHE, months[-2] + ".json"), encoding="utf-8")) if len(months) > 1 else None
-    return items_from_cache(cur, prev)
+    hist = [json.load(open(os.path.join(CACHE, k + ".json"), encoding="utf-8")) for k in months[-NBACK:]]
+    for k, c in zip(months[-NBACK:], hist):  # thép/cáp/bê tông/vữa: bổ sung vào cache cũ (một lần cho mỗi tháng)
+        try:
+            if parse_extra(c):
+                json.dump(c, open(os.path.join(CACHE, k + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+                print("hcm_sxd: extra", k, {x: len(v) for x, v in c["series"].items()}, file=sys.stderr)
+        except Exception as e: errs.append(f"extra {k}: {e}"); print("hcm_sxd extra error", k, e, file=sys.stderr)
+    cur, prev = hist[-1], (hist[-2] if len(hist) > 1 else None)
+    return items_from_cache(cur, prev) + extra_items(cur, prev, hist)
 
 if __name__ == "__main__":
     for r in src_hcm_sxd(): print(r["id"], r["price"], r.get("price_high"), r["unit"], r["as_of"], r.get("change_pct"))

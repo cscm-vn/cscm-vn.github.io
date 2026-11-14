@@ -54,6 +54,10 @@ def rows(nmonths=2, want=r"thep|cap dien|be tong thuong|vua|^phu ?luc \\d+\\.pdf
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "rows": rows(); sys.exit()
+    if len(sys.argv) > 1 and sys.argv[1] == "hcm":  # chạy thử src_hcm_sxd (trên runner, không commit) và in các mã sinh ra
+        items = H.src_hcm_sxd()
+        for r in items: print("I", r["id"], "|", r["name"], "|", r["price"], r.get("price_high"), r["unit"], r["as_of"], r.get("change_pct"), "| bf", r.get("backfill"))
+        print("TOTAL", len(items)); sys.exit()
     mode = sys.argv[1] if len(sys.argv) > 1 else "all"
     if mode in ("all", "sxd"): sxd()
     if mode in ("all", "web"): web([l.strip() for l in open(os.path.join(os.path.dirname(__file__), "probe_urls.txt")) if l.strip() and not l.startswith("#")])
