@@ -59,3 +59,17 @@
 /* wide screens: room for 11 nav items + search inside the container */
 @media (min-width:1681px){.hn-in{max-width:1600px}}
 .hn-vchart .vb rect.na{fill:#9aa7b8}.hn-vchart .vb rect.na.pre{fill:#d6dbe3;opacity:.6}
+/* Nhãn MỚI (24 giờ) + dải "Mới hôm nay" trang chủ – HUB.decorate / HUB.freshStrip trong hub-common.js */
+.newtag{display:inline-block;margin-left:6px;padding:0 6px;border-radius:4px;font:700 10.5px/17px -apple-system,"Segoe UI",Roboto,Arial,sans-serif;letter-spacing:.5px;color:#fff;background:#c0392b;vertical-align:1px;white-space:nowrap;cursor:help;text-decoration:none}
+h1 .newtag{font-size:12px;line-height:20px;vertical-align:4px}
+.freshbar{margin:12px 0 6px;background:#fff;border:1px solid var(--line,#e7e3da);border-left:4px solid #c0392b;border-radius:12px;padding:10px 14px;box-shadow:0 1px 2px #0e1a2b0d}
+.freshbar[hidden]{display:none}
+.freshbar .fb-h{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:13.5px;color:var(--mute,#6b7280)}
+.freshbar .fb-h>b:first-child{font-family:var(--serif,Georgia,serif);font-size:16px;color:var(--ink,#1a2233)}.freshbar .fb-h b{color:var(--ink,#1a2233)}
+.freshbar .fb-tg{margin-left:auto}
+.freshbar .fb-b{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:4px 22px;margin-top:8px}.freshbar .fb-b[hidden]{display:none}
+.freshbar .fb-c{min-width:0}.freshbar h3{font-size:13.5px;margin:6px 0 4px}.freshbar .fb-n{display:inline-block;min-width:20px;padding:0 6px;border-radius:999px;background:#fbeae8;color:#c0392b;font-size:11.5px;text-align:center}
+.freshbar ul{margin:0;padding:0;list-style:none;font-size:13px;line-height:1.4}.freshbar li{padding:4px 0;border-bottom:1px dashed #eee;min-width:0;overflow-wrap:anywhere}.freshbar li:last-child{border-bottom:0}
+.freshbar .fb-p{white-space:nowrap;font-variant-numeric:tabular-nums}.freshbar p{margin:4px 0 0}
+.freshbar a.fb-t{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hk{position:relative}.hk>.newtag{position:absolute;top:6px;right:6px;margin:0}

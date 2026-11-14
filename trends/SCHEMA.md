@@ -87,3 +87,9 @@ QA: `python trends/hopdong/qa.py <BASE_URL> [--shots]` (tràn ngang mọi trang 
 - Tin biên tập: `market` với `segment: "Nhân công"`, `tax: ["tt.nhan-cong","tt.bds"]`, `takeaway` = 1 dòng ảnh hưởng đến mua sắm/đấu thầu; số liệu chỉ trích đúng như trong nguồn.
 - Tin tự động: `feeds.py` gắn `tt.nhan-cong` (đứng đầu `tax`) khi khớp **từ nhân công** (`LABOR`) **và** ngữ cảnh xây dựng (`LABOR_CTX`), khớp nguyên từ, loại `LABOR_NOT` (xây dựng Đảng, nông thôn mới…). Điểm cộng `LKW` chỉ áp cho tin đã khớp, nên điểm các tin khác không đổi.
 
+
+## Mới hôm nay & nhãn MỚI (`trends/fresh.py` → `data/fresh.json`)
+- CI chạy `trends/fresh.py` sau feeds/policy/highlights, trước `trends/build.py`. Xuất tin (trends, market, RSS feed, policy-feed) và giá đổi trong ~30 giờ, mỗi mục có `ts`.
+- `ts` tin = lần đầu site thấy mục đó, lưu ở `trends/data/fresh_seen.json` (CI commit; không sửa tay; `~` = giờ ước tính lúc khởi tạo). policy-feed dùng `found`. Chỉ tính tin có ngày/`added` là hôm nay hoặc hôm qua (giờ VN).
+- `ts` giá = `fetched_at` của dòng lịch sử gần nhất có giá khác dòng trước (bỏ mã đang `stale`).
+- Trình duyệt (`hub-common.js`: `HUB.fresh`, `HUB.decorate`, `HUB.freshStrip`) lọc lại theo giờ người xem: nhãn MỚI tự mất sau 24 giờ dù site chưa build lại. Nhãn gắn theo URL nguồn, `xu-huong.html?id=`, `thi-truong.html?id=`, `mat-hang.html?id=`, `button.hist[data-id]` (bảng giá) và đếm "MỚI n" trên tiêu đề nhóm master data. Bỏ qua vùng có class `newtag-skip`.

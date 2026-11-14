@@ -120,3 +120,80 @@ HUB.sidebar = async (el, active, counts) => {
 };
 HUB.foot = (extra) => { const f = document.getElementById("foot"); if (f) f.innerHTML = `${extra || ""} Giá tham khảo từ nguồn công khai, chưa VAT/vận chuyển trừ khi ghi chú; không thay thế báo giá chính thức. Xu hướng do nhóm mua sắm & trợ lý nghiên cứu, mỗi mục có nguồn để kiểm chứng.`; };
 document.addEventListener("DOMContentLoaded", HUB.nav);
+/* "Mới hôm nay" + nhãn MỚI (data/fresh.json do trends/fresh.py sinh). Lọc theo giờ của người xem: nhãn tự mất sau 24 giờ kể từ `ts`. */
+HUB.FRESH_MS = 24 * 3600e3;
+HUB.normUrl = u => String(u || "").trim().replace(/^https?:\/\/(www\.)?/i, "").split("#")[0].replace(/\/+$/, "");
+HUB.short = (s, n) => (s = String(s || "")).length > n ? s.slice(0, n - 1).trimEnd() + "…" : s;
+HUB.hm = ts => { const d = new Date(ts); return isNaN(d) ? "" : d.toLocaleString("vi-VN", {timeZone: "Asia/Ho_Chi_Minh", hour: "2-digit", minute: "2-digit", day: "2-digit", month: "2-digit"}); };
+HUB.fresh = () => HUB._freshP ||= HUB.get("fresh.json").then(f => {
+  if (!f) return null; const now = Date.now(), live = x => now - Date.parse(x.ts) < HUB.FRESH_MS && Date.parse(x.ts) <= now + 36e5;
+  const news = (f.news || []).filter(live), prices = (f.prices || []).filter(live);
+  const byUrl = new Map(), byNews = new Map(), byPrice = new Map();
+  for (const x of news) { if (x.u) byUrl.set(x.u, x); byNews.set(x.kind + ":" + x.id, x); }
+  for (const x of prices) byPrice.set(x.id, x);
+  return {...f, news, prices, byUrl, byNews, byPrice};
+});
+HUB.newTag = (x, kind) => {
+  const s = document.createElement("span"); s.className = "newtag"; s.textContent = "MỚI"; s.dataset.exp = Date.parse(x.ts) + HUB.FRESH_MS;
+  s.title = kind === "price" ? `Giá đổi trong 24 giờ qua (${HUB.hm(x.ts)}): ${HUB.num(x.old)} → ${HUB.num(x.new)} ${x.unit || ""}${x.pct != null ? ` (${x.pct > 0 ? "+" : ""}${String(x.pct).replace(".", ",")}%)` : ""}`
+                            : `Tin mới trong 24 giờ qua – ${x.est ? "ngày " + HUB.date(x.date) : "lên trang lúc " + HUB.hm(x.ts)}`;
+  return s;
+};
+HUB._tagIn = (box, x, kind, after) => {
+  if (!box || box.dataset.newtag) return; box.dataset.newtag = kind;
+  const t = HUB.newTag(x, kind);
+  if (after === box) box.appendChild(t); else if (after && box.contains(after)) after.after(t); else (box.querySelector("td") || box).appendChild(t);
+};
+HUB.decorate = async (root) => {
+  const F = await HUB.fresh(); if (!F || (!F.news.length && !F.prices.length)) return; root = root || document.body;
+  if (document.body.dataset.page === "home" && root === document.body) HUB.freshStrip(F);
+  root.querySelectorAll?.('[id^="t-"],[id^="m-"]').forEach(c => { const x = F.byNews.get((c.id[0] === "t" ? "trend:" : "market:") + c.id.slice(2)); if (x) HUB._tagIn(c, x, "news", c.querySelector("h3 a, b")?.closest("a") || c.querySelector("h3 a, b")); });
+  root.querySelectorAll?.("a[href]").forEach(a => {
+    if (a.closest("#hubnav, #freshbar, .newtag-skip, .hl")) return;
+    const h = a.getAttribute("href"); let x = null, kind = "news", m;
+    if ((m = h.match(/^mat-hang\.html\?id=([^&#]+)/))) { x = F.byPrice.get(decodeURIComponent(m[1])); kind = "price"; }
+    else if ((m = h.match(/^xu-huong\.html\?id=([^&#]+)/))) x = F.byNews.get("trend:" + m[1]);
+    else if ((m = h.match(/^thi-truong\.html\?id=([^&#]+)/))) x = F.byNews.get("market:" + m[1]);
+    else if (/^https?:/i.test(h)) x = F.byUrl.get(HUB.normUrl(h));
+    if (!x) return;
+    const box = a.closest(kind === "price" ? "tr, .hk, li" : "li, tr, .card, .hk") || a;
+    if (kind === "news" && box.classList?.contains("card") && box.querySelectorAll("a[href^='http']").length > 1 && !a.closest("h3")) return;  // thẻ có nhiều nguồn: chỉ gắn theo tiêu đề
+    if (box === a && !a.classList.contains("hk")) { if (a.dataset.newtag) return; a.dataset.newtag = kind; a.insertAdjacentElement("afterend", HUB.newTag(x, kind)); }
+    else HUB._tagIn(box, x, kind, a);
+  });
+  root.querySelectorAll?.("button.hist[data-id]").forEach(b => { const x = F.byPrice.get(b.dataset.id), tr = b.closest("tr"); if (x && tr) HUB._tagIn(tr, x, "price", tr.querySelector("td.name")?.firstChild); });
+  root.querySelectorAll?.("tr.mtg-h[data-c]").forEach(g => {  // bảng giá nhóm master data: nhóm đang thu gọn vẫn thấy có giá mới bên trong
+    const c = g.dataset.c, tb = g.closest("tbody, table"); if (!tb) return;
+    const rows = [...tb.querySelectorAll('tr[data-newtag="price"]')].filter(r => (r.dataset.p || "").split(" ").includes(c)); if (!rows.length || g.dataset.newn == rows.length) return;
+    g.dataset.newn = rows.length; g.querySelector(".newtag")?.remove();
+    const exp = Math.max(...rows.map(r => +(r.querySelector(".newtag")?.dataset.exp || 0))), t = document.createElement("span");
+    t.className = "newtag"; t.dataset.exp = exp; t.textContent = `MỚI ${rows.length}`; t.title = `${rows.length} mã trong nhóm đổi giá trong 24 giờ qua`;
+    (g.querySelector(".mtg-n") || g.querySelector("td")).after(t);
+  });
+  if (/mat-hang\.html$/.test(location.pathname)) { const x = F.byPrice.get(HUB.qs("id")), h1 = document.querySelector("main h1"); if (x && h1 && !h1.dataset.newtag) { h1.dataset.newtag = "price"; h1.appendChild(HUB.newTag(x, "price")); } }
+};
+HUB.freshStrip = (F) => {
+  const host = document.getElementById("freshbar"); if (!host || host.dataset.done) return; host.dataset.done = 1;
+  const E = HUB.esc, ed = F.news.filter(x => x.kind === "trend" || x.kind === "market"), pol = F.news.filter(x => x.kind === "policy"), rss = F.news.filter(x => x.kind === "feed").sort((a, b) => (b.score || 0) - (a.score || 0));
+  const P = F.prices, upd = F.prices_updated || F.built;
+  const nl = x => `<li><a class="fb-t" href="${E(x.kind === "trend" || x.kind === "market" ? x.href : x.url)}"${x.kind === "trend" || x.kind === "market" ? "" : ' target="_blank" rel="noopener"'}>${E(x.title)}</a> <span class="small mute">${E(HUB.short(x.src, 34))} · ${x.est ? HUB.date(x.date) : HUB.hm(x.ts)}</span></li>`;
+  const pl = x => `<li><a href="mat-hang.html?id=${encodeURIComponent(x.id)}">${E(x.name)}</a>${x.region ? ` <span class="small mute">${E(x.region)}</span>` : ""} <span class="fb-p">${HUB.num(x.old)} → <b>${HUB.num(x.new)}</b> <span class="small mute">${E(x.unit || "")}</span> ${HUB.pct(x.pct)}</span></li>`;
+  const sm = innerWidth < 700, more = (L, n, f) => (n = sm ? Math.min(n, 3) : n, L.length <= n ? L.map(f).join("") : L.slice(0, n).map(f).join("") + `<template>${L.slice(n).map(f).join("")}</template><li><button type="button" class="chip fb-x">+ ${L.length - n} mục nữa</button></li>`);
+  const col = (t, L, n, f, extra) => L.length ? `<div class="fb-c"><h3>${t} <span class="fb-n">${L.length}</span></h3><ul>${more(L, n, f)}</ul>${extra || ""}</div>` : "";
+  const nNews = ed.length + pol.length + rss.length;
+  host.innerHTML = `<div class="fb-h"><b>🆕 Mới hôm nay</b><span>Cập nhật lúc <b>${HUB.hm(upd)}</b> (giờ VN) · trong 24 giờ qua: <b>${nNews}</b> tin, <b>${P.length}</b> giá thay đổi</span><button type="button" class="chip fb-tg" aria-expanded="true">Thu gọn</button></div>
+   <div class="fb-b">${col("📰 Tin biên tập", ed, 6, nl)}${col("⚖️ Luật & chính sách", pol, 4, nl)}${col("💹 Giá thay đổi", P, 8, pl, '<p class="small mute">Xếp theo mức đổi lớn nhất. Giá so với lần ghi trước của chính mã đó.</p>')}${col("🛰️ Tin tự động (RSS)", rss, 5, nl, '<p class="small"><a href="thi-truong.html#feed">Xem toàn bộ tin RSS →</a></p>')}
+   ${!nNews && !P.length ? '<p class="mute">Chưa có tin hay giá mới trong 24 giờ qua.</p>' : ""}</div>`;
+  host.hidden = false;
+  host.querySelectorAll(".fb-x").forEach(b => b.onclick = () => { const li = b.closest("li"), tp = li.previousElementSibling; tp.insertAdjacentHTML("afterend", tp.innerHTML); tp.remove(); li.remove(); });
+  const tg = host.querySelector(".fb-tg"), body = host.querySelector(".fb-b"), K = "fb-collapsed";
+  const set = c => { body.hidden = c; tg.textContent = c ? "Mở rộng" : "Thu gọn"; tg.setAttribute("aria-expanded", !c); try { localStorage.setItem(K, c ? "1" : ""); } catch (e) {} };
+  tg.onclick = () => set(!body.hidden); try { if (localStorage.getItem(K)) set(true); } catch (e) {}
+};
+HUB._freshObs = () => {
+  let q = null; const run = () => { q = null; HUB.decorate(); };
+  new MutationObserver(ms => { if (ms.some(m => [...m.addedNodes].some(n => n.nodeType === 1 && !n.classList?.contains("newtag")))) q ||= setTimeout(run, 120); }).observe(document.body, {childList: true, subtree: true});
+  run();
+  setInterval(() => document.querySelectorAll(".newtag").forEach(t => { if (Date.now() > +t.dataset.exp) t.remove(); }), 60e3);  // nhãn tự mất khi quá 24 giờ
+};
+document.addEventListener("DOMContentLoaded", HUB._freshObs);

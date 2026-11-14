@@ -19,6 +19,7 @@
 </style></head>
 <body class="hub" data-page="home" data-hub-page><div id="hubnav"></div>
 <main class="wrap" id="main">
+ <section id="freshbar" class="freshbar" hidden aria-label="Mới hôm nay"></section>
  <section class="hero"><div class="hero-in">
   <div class="eyebrow" id="today">Bản tin mua sắm</div>
   <h1>Tổng quan hôm nay</h1>
@@ -113,7 +114,7 @@
     return `<a href="${g.link}">${g.icon} ${E(g.name)}: ${r ? `<span class="${r.d1 > 0 ? "up" : "down"}">${fp(r.d1)}</span> ${E(r.name)}` : `${g.n_news} tin mới`}</a>`; }).join(""); st.hidden = false; } });
  const thP = HUB.get("top_history.json").catch(() => null); thP.then(th => { const byId = Object.fromEntries(tr.items.map(x => [x.id, x])), hm = ((th && th.home) || []).map(i => byId[i]).filter(Boolean); // ưu tiên tin trong 7 ngày gần nhất (trends/build.py)
  document.getElementById("top5").innerHTML = (hm.length ? hm : tr.items.slice(0, 6)).map((x, i) => `<div class="card"><div class="trend"><span class="score" title="Điểm tổng hợp /100">${Math.round(x.score)}</span>
-  <div><a href="xu-huong.html?id=${x.id}"><b>${i + 1}. ${E(x.title)}</b></a><span class="newb" data-id="${x.id}" hidden title="Mới vào top hôm nay (không có trong top 6 của ngày hôm trước)">⚡ Mới</span><div>${HUB.catLink(x.tax[0], x.category).replace("<a", '<a class="pill cat"')} <span class="pill">${E(x.region)}</span> <span class="small mute">${HUB.date(x.date)}</span></div>
+  <div><a href="xu-huong.html?id=${x.id}"><b>${i + 1}. ${E(x.title)}</b></a><span class="newb" data-id="${x.id}" hidden title="Mới vào top hôm nay (không có trong top 6 của ngày hôm trước)">⚡ Vào top</span><div>${HUB.catLink(x.tax[0], x.category).replace("<a", '<a class="pill cat"')} <span class="pill">${E(x.region)}</span> <span class="small mute">${HUB.date(x.date)}</span></div>
   <div class="small" style="margin-top:4px">${E(x.why)}</div></div></div></div>`).join("");
  const d = Object.keys((th && th.days) || {}).sort(), today = new Date().toLocaleDateString("en-CA", {timeZone: "Asia/Ho_Chi_Minh"}), pv = d.filter(x => x < today).pop(); if (!pv) return; // ⚡ Mới = không có trong top của ngày VN trước đó
   const prev = new Set(th.days[pv]); document.querySelectorAll("#top5 .newb").forEach(b => { if (!prev.has(b.dataset.id)) { b.hidden = false; b.title += " · so với " + HUB.date(pv); } }); }).catch(() => {});
@@ -164,7 +165,7 @@
   const I = Object.fromEntries(P.items.map(x => [x.id, x])), H = (P.home7 || P.home || []).filter(h => I[h.id]); // chỉ tin trong 7 ngày gần nhất (trends/build.py), tối đa 1 tin/cụm (policy_feed.pick_home)
   if (P.home7 && !H.length) { el.className = ""; el.innerHTML = `<div class="card mute">Không có văn bản mới trong 7 ngày (từ ${HUB.date(P.home7_from)}). <a href="hop-dong.html#chinh-sach">Xem tab Hợp đồng →</a></div>`; return; }
   el.innerHTML = H.map((h, i) => { const x = I[h.id], d = (x.published || x.found || "").slice(0, 10); return `<div class="card"><div class="trend"><span class="score" title="Điểm liên quan Masterise + tính mới /100">${x.score}</span>
-  <div><a href="${E(x.url)}" target="_blank" rel="noopener"><b>${i + 1}. ${E(x.title)}</b></a>${d === today ? '<span class="newb" title="Đăng hôm nay (giờ VN)">⚡ Mới</span>' : ""}<div>${x.topics.slice(0, 2).map(t => `<span class="pill cat">${E(P.topics[t])}</span>`).join(" ")} <span class="small mute">${HUB.date(d)} · ${E(x.source)}</span></div>
+  <div><a href="${E(x.url)}" target="_blank" rel="noopener"><b>${i + 1}. ${E(x.title)}</b></a><div>${x.topics.slice(0, 2).map(t => `<span class="pill cat">${E(P.topics[t])}</span>`).join(" ")} <span class="small mute">${HUB.date(d)} · ${E(x.source)}</span></div>
   <div class="small" style="margin-top:4px">${E(x.why)}</div>${x.impact ? `<div class="small" style="margin-top:4px"><b>${E(x.impact_label || "Ảnh hưởng đến soạn hợp đồng")}:</b> ${E(x.impact)}</div>` : ""}${h.same ? `<a class="small pmore" style="display:inline-block;margin-top:4px" href="hop-dong.html?pc=${encodeURIComponent(x.cluster)}#chinh-sach" title="${E(P.clusters[x.cluster].label)}">+${h.same} tin cùng chủ đề →</a>` : ""}</div></div></div>`; }).join(""); }).catch(() => {});
  HUB.foot();
 })();
