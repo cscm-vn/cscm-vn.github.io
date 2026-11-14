@@ -78,6 +78,7 @@ def prices(now):
         k = next((i for i in range(len(ds) - 1, 0, -1) if (S[ds[i]]["p"], S[ds[i]]["h"]) != (S[ds[i - 1]]["p"], S[ds[i - 1]]["h"])), None)
         if k is None: continue
         cur, prev = S[ds[k]], S[ds[k - 1]]; ts = parse(cur["ts"])
+        if all(str(S[d]["ts"] or "").endswith("T00:00:00+07:00") for d in ds[:k]): continue  # mã mới: mọi điểm trước là lịch sử nạp bù, không phải giá vừa đổi
         if not ts or (now - ts).total_seconds() > WINDOW_H * 3600: continue
         mid = lambda x: (x["p"] + x["h"]) / 2 if x["h"] else x["p"]
         m = meta.get(iid) or {}; g = reg.get(iid) or {}

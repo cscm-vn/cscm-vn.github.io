@@ -99,3 +99,9 @@ QA: `python trends/hopdong/qa.py <BASE_URL> [--shots]` (tràn ngang mọi trang 
 - `frozen` = nghi nguồn chưa cập nhật: hàng hóa/tỷ giá ≥10 ngày; thép (`vnsteel*`), cáp (`cable_*`) ≥21 ngày; bảng giá NCC khác ≥45 ngày; công bố Sở XD (định kỳ) không xét.
 - `frozen_sources[]` gom theo nguồn -> banner cảnh báo ở gia.html; nhãn "⚠ đứng giá từ dd/mm" / "không đổi từ dd/mm" ở bảng giá, danh mục, mặt hàng, ô KPI trang chủ (`HUB.flat`).
 - Lưu ý: fetcher gán `as_of` = ngày tải cho nguồn trang web tĩnh, nên "Ngày giá" không cho biết NCC đổi giá lúc nào – dùng `flat_since`.
+
+## Nguồn chính thức thay nguồn web đứng giá (Sở XD TP.HCM, `hcm_sxd.py`)
+- Ngoài xi măng/cát/đá/gạch, `hcm_sxd.py` đọc thêm phụ lục **thép xây dựng, vật tư ngành điện (cáp CADIVI), bê tông thương phẩm, vữa** (nhận diện theo tiêu đề trang 1) → mã `sxd_hcm_thep_*`, `sxd_hcm_cap_*`, `sxd_hcm_rmc_m*`, `sxd_hcm_vua_*`; giá NSX/NCC kê khai, chưa VAT, đơn vị VND/kg (thép quy từ đ/tấn), VND/m, VND/m³, VND/bao. Lưu trong `data/hcm_sxd/YYYY-MM.json` khóa `series`; lịch sử các tháng trước nạp bù qua `backfill`.
+- Bê tông: khoảng thấp–cao giữa các NCC theo mác; cáp: danh sách mã đại diện `CABLE_KEEP`. Thép: theo nhà máy × sản phẩm (cuộn/thanh vằn, dải đường kính) × mác.
+- Các nguồn web cũ (steelonline, đại lý CADIVI, web NCC bê tông) vẫn giữ nhưng có nhãn đứng giá; ô KPI trang chủ dùng nguồn Sở XD cho phía TP.HCM.
+- Thăm dò nguồn mới: workflow tay `probe-sources` (`tools/probe_sources.py`: `sxd` liệt kê phụ lục, `rows` in dòng, `hcm` chạy thử, `web` tải thử URL trong `tools/probe_urls.txt`).

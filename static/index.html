@@ -58,7 +58,7 @@ async function load(){let r=null;if(!HOSTED){try{r=await fetch("api/prices");if(
  reg.innerHTML='<option value="">Mọi khu vực</option>'+regs.map(c=>`<option>${esc(c)}</option>`).join("");
  if(window.MT){await MT.load();try{const h=await(await fetch("data/hub.json",{cache:"no-cache"})).json();HUBX=Object.fromEntries(h.items.map(x=>[x.id,x]));HUBF=h.frozen_sources;HTAX=await(await fetch("data/taxonomy.json",{cache:"no-cache"})).json()}catch(e){}}
  kpis();render();srcs();frz();}
-function kpis(){const k=["fx_usd_vnd","lme_copper","lme_aluminium","te_rebar_shfe","te_ironore","vnsteel_hoa_phat_mien_bac_cb300_d10","sjc_bar"];
+function kpis(){const k=["fx_usd_vnd","lme_copper","lme_aluminium","te_rebar_shfe","te_ironore","vnsteel_hoa_phat_mien_bac_cb300_d10","sxd_hcm_thep_thep_mien_nam_vnsteel_thanh_van_d10","sjc_bar"];
  document.getElementById("kpis").innerHTML=k.map(id=>DATA.items.find(i=>i.id==id)).filter(Boolean).map(i=>`<div class="kpi"><div class="l">${esc(i.name)}${i.region?" · "+esc(i.region):""}</div><div class="v">${nf(i.price)} <span class="note">${esc(i.unit)}</span></div>${chg(i.change_pct)}</div>`).join("");}
 function chg(c){if(c==null)return'<span class="note">–</span>';const cl=c>0?"up":c<0?"dn":"";return`<span class="${cl}">${c>0?"▲ +":c<0?"▼ ":""}${c.toFixed(2)}%</span>`}
 function match(i){const q=document.getElementById("q").value.trim().toLowerCase();

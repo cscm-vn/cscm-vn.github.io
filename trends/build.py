@@ -106,7 +106,9 @@ def flat_info(it, pts, today):
     i = len(pts) - 1
     while i > 0 and key(pts[i - 1]) == key(pts[-1]): i -= 1
     since = pts[i]["date"]; days = (today - dt.date.fromisoformat(since)).days
-    lim = flat_limit(it); out = dict(flat_since=since, flat_days=days, flat_open=i == 0)  # flat_open: chưa từng đổi kể từ ngày bắt đầu theo dõi
+    lim = flat_limit(it)
+    if lim is None: return {}  # công bố định kỳ (tháng/quý): "Ngày giá" đã là ngày công bố, không gắn nhãn đứng giá
+    out = dict(flat_since=since, flat_days=days, flat_open=i == 0)  # flat_open: chưa từng đổi kể từ ngày bắt đầu theo dõi
     if lim and days >= lim: out["frozen"] = True
     return out if days >= FLAT_INFO else {}
 def build():
