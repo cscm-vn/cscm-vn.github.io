@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-14T11:40+07:00",
+ "built": "2026-11-14T19:05+07:00",
  "today": "2026-11-14",
  "news_since": "2026-11-13",
  "thresholds": {
@@ -22,8 +22,8 @@
   }
  },
  "top": [
-  "tt",
   "mep",
+  "tt",
   "xd"
  ],
  "groups": [
@@ -31,7 +31,22 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": -3.43,
+     "date": "2026-11-13",
+     "prev_date": "2026-11-12",
+     "price": 1353.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
      "title": "Giá thép hôm nay 14/11: Quặng sắt ghi nhận tuần giảm mạnh nhất trong 5 tuần",
@@ -48,16 +63,16 @@
      "source": "VietnamBiz"
     },
     {
-     "title": "Giá thép hôm nay 14/11/2026: Quặng sắt ghi nhận tuần giảm sâu nhất 5 tuần",
-     "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOdU05OVZxMHNkVUNCZjVBRzhiWElHWXBzZFVISjl3YVd2a19ORlEyT1d6RGpWVWp2YUk0MVI4aGJmbnVJZWt3TEd1UFcwVENGNlZ4ODlNSmhHYWxDZHlWbHNpWUZzQ2d5ZUhsU1VXNnJhcnhmbzJuQUp5TVBQaEJtSlBZdVNNNFpVbTI5SFRuX2ZncXlsRmtGSG5iUElWblZ6VVF5MV9TX1JkMUhBXzF4ekdB?oc=5",
+     "title": "VCBS: Giá thép Việt Nam kỳ vọng tăng, quặng sắt tiếp tục chịu áp lực giảm trong quý IV",
+     "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOTEdWODdhRm1BOXJmclpsVGdLTU94aDVOY2FDb0NsN3JlYkRxMTVZOWR3My1GNTg2NE9zSlRkdmpQVXNPTEJWaGpJc0xtUmNuQnhpVXRjUnRjeVowVXNBT0tSb3JyeWxYZnZndjBWbFlyNTAxN0pIdml4bEJOQjZ5SHlnYUZkRmktZUFidFI5cEJJcDRiVXppSEszRHRnNDlhZlYyWFRLbloxdGVaSklhYnVpak4tMWQzYzJ0Z0RlMVZqZw?oc=5",
      "date": "2026-11-14",
      "score": 8.0,
-     "source": "Tạp chí Doanh nghiệp và Hội nhập"
+     "source": "CafeF"
     }
    ],
-   "n_news": 6,
-   "n_moves": 0,
-   "rank": 1.8,
+   "n_news": 7,
+   "n_moves": 1,
+   "rank": 3.82,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -92,6 +107,20 @@
      "threshold": 2.0,
      "tax": "mep.ong-nuoc",
      "url": "mat-hang.html?id=te_polypropylene"
+    },
+    {
+     "id": "yf_copper",
+     "name": "Đồng (COMEX Copper HG)",
+     "region": "",
+     "d1": -2.12,
+     "date": "2026-11-13",
+     "prev_date": "2026-11-12",
+     "price": 6.079500198364258,
+     "unit": "USD/lb",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_copper"
     }
    ],
    "news": [
@@ -110,16 +139,16 @@
      "source": "Mining.com.au"
     },
     {
-     "title": "Copper price hits four-month low; focus on demand, US rates",
-     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOcmx0cW1VQmpSQWlzeFU0Uzl1cy1IWjZOMDZZSmtEZFNmdUlaRkhFRUR0RTYwMFZhMnlVSV9RWDFJU1pDd3N2Q1Jlcl90VzhFeEwyVk9QbzBPY0YwbUN2ZXRBeHlFZlFoNzllRktWaWlWX3ZQeWlpVVp1aFBmWDBxdGt6M1ZhNUk?oc=5",
-     "date": "2026-11-13",
-     "score": 6.7,
-     "source": "Mining.com.au"
+     "title": "Thép Hòa Phát Hải Dương thực tập chữa cháy, cứu nạn tại ký túc xá công nhân",
+     "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQVNkVGxwZHEzRnNZaXNqeDJFT3VyeFBhbjVJTTVLb05LRk9vU0RRNVU2SWhDTFhhaUVWSXlRRUdtNDY0VDVsZDVacC1haXJoVk1yRjdETzBZTERLUTgtbUdqV1Y2QTMyYjdjemxKSS1leHdCdkh6ZXh4d1ppLXlEaUhPZ21YU0hkeW15TG9ZSHF6ZXlSUnk2dEVGZUNiZw?oc=5",
+     "date": "2026-11-14",
+     "score": 7.0,
+     "source": "Vietnam.vn"
     }
    ],
-   "n_news": 3,
-   "n_moves": 2,
-   "rank": 3.9,
+   "n_news": 4,
+   "n_moves": 3,
+   "rank": 5.26,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -188,23 +217,23 @@
      "source": "Báo Nông nghiệp và Môi trường"
     },
     {
-     "title": "Hà Nội đề xuất mở rộng vùng phát thải thấp, hạn chế nhiều loại phương tiện",
-     "url": "https://cafef.vn/ha-noi-de-xuat-mo-rong-vung-phat-thai-thap-han-che-nhieu-loai-phuong-tien-18826111321044518.chn",
-     "date": "2026-11-13",
-     "score": 3.7,
-     "source": "CafeF Bất động sản"
+     "title": "Việt Nam thúc đẩy hợp tác phát triển công trình xanh, giao thông xanh tại COP31",
+     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPbHVqQ0xZLW1MWDJaOHdfWngyYUU1UjgxMWVLWVlPNWpnYVhBaEdpUm1BT1dCR2drOGdZTXIzU3M3THhDdE4xS3N5MXBpdFZkVmVvY2hPRFFPWldIaDhlRzVMWExGQmFJMlRFNUxPdjgwSllZUk1mdWcxWS11b2xmX2xLYVhlb1VPbS1kUHBqQ1N6YmdTRTZrakVGODFCRlpZbzNLVUMwbEtyVG0wd2VzT1VqX3NuUy1rTnF0TVFHNjM?oc=5",
+     "date": "2026-11-14",
+     "score": 5.0,
+     "source": "Báo Xây dựng"
     },
     {
-     "title": "“Siêu thành phố” trung hòa carbon đầu tiên trên thế giới, điểm nhấn là tòa tháp cao bậc nhất khu vực Đông Nam Á vừa có diễn biến mới",
-     "url": "https://cafef.vn/sieu-thanh-pho-trung-hoa-carbon-dau-tien-tren-the-gioi-diem-nhan-la-toa-thap-cao-bac-nhat-khu-vuc-dong-nam-a-vua-co-dien-bien-moi-188261113102746544.chn",
-     "date": "2026-11-13",
-     "score": 3.7,
-     "source": "CafeF Bất động sản"
+     "title": "Introducing Vietnam's carbon market to the international community.",
+     "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPZlA1eHZTdVpacHYwNzRmeEx2d1pGc2hDdnBKQmxJMVozOFBBbm9EeG1XX21HanJoMHZjaUdhQzZPTkFPc3VzbzhlanN4bjI0c25MLU5mTzFrQ2FsaW9jZzRvQ0RjdGMyT0pNQ0NJWHVUejVsZ2JIQjFBakFBTmN5cQ?oc=5",
+     "date": "2026-11-14",
+     "score": 4.0,
+     "source": "Vietnam.vn"
     }
    ],
-   "n_news": 3,
+   "n_news": 7,
    "n_moves": 0,
-   "rank": 0.9,
+   "rank": 2.1,
    "link": "danh-muc.html?c=esg"
   },
   {
@@ -216,10 +245,10 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -2.67,
+     "d1": -2.85,
      "date": "2026-11-13",
      "prev_date": "2026-11-12",
-     "price": 49.12099838256836,
+     "price": 49.03099822998047,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
@@ -250,9 +279,9 @@
      "source": "شبكة تواصل الإخبارية"
     }
    ],
-   "n_news": 9,
+   "n_news": 10,
    "n_moves": 1,
-   "rank": 4.04,
+   "rank": 4.42,
    "link": "danh-muc.html?c=tt"
   }
  ]
