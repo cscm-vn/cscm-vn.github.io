@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-14T11:33+07:00",
+ "built": "2026-11-14T11:40+07:00",
  "today": "2026-11-14",
  "news_since": "2026-11-13",
  "thresholds": {
@@ -22,8 +22,8 @@
   }
  },
  "top": [
-  "mep",
   "tt",
+  "mep",
   "xd"
  ],
  "groups": [
@@ -92,20 +92,6 @@
      "threshold": 2.0,
      "tax": "mep.ong-nuoc",
      "url": "mat-hang.html?id=te_polypropylene"
-    },
-    {
-     "id": "yf_copper",
-     "name": "Đồng (COMEX Copper HG)",
-     "region": "",
-     "d1": -2.37,
-     "date": "2026-11-13",
-     "prev_date": "2026-11-12",
-     "price": 6.063499927520752,
-     "unit": "USD/lb",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=yf_copper"
     }
    ],
    "news": [
@@ -132,8 +118,8 @@
     }
    ],
    "n_news": 3,
-   "n_moves": 3,
-   "rank": 5.09,
+   "n_moves": 2,
+   "rank": 3.9,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -230,10 +216,10 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -3.61,
+     "d1": -2.67,
      "date": "2026-11-13",
      "prev_date": "2026-11-12",
-     "price": 48.650001525878906,
+     "price": 49.12099838256836,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
@@ -266,7 +252,7 @@
    ],
    "n_news": 9,
    "n_moves": 1,
-   "rank": 4.5,
+   "rank": 4.04,
    "link": "danh-muc.html?c=tt"
   }
  ]
