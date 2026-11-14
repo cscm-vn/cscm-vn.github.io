@@ -2,7 +2,7 @@ name: probe-sources
 on:
   workflow_dispatch:
     inputs:
-      mode: {description: "all | sxd | web", default: "all"}
+      mode: {description: "all | sxd | web | rows", default: "all"}
 permissions: {contents: read}
 jobs:
   probe:
