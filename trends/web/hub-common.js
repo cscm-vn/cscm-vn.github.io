@@ -13,6 +13,8 @@ HUB.tax = async () => {
   if (!t.byId) { t.byId = {}; for (const n of t.tree) { t.byId[n.id] = {...n, level: 1}; for (const c of n.children) t.byId[c.id] = {...c, level: 2, parent: n}; } }
   return t;
 };
+HUB.flatTip = x => `Nguồn vẫn tải được hằng ngày nhưng con số không đổi ${x.flat_days} ngày${x.flat_open ? ` (chưa đổi lần nào kể từ khi bắt đầu theo dõi ${HUB.date(x.flat_since)})` : ` (từ ${HUB.date(x.flat_since)})`}.` + (x.frozen ? " Trang nguồn có thể chưa cập nhật – đối chiếu báo giá NCC/nhà máy trước khi dùng." : " Bảng giá niêm yết của NCC thường ít thay đổi.");
+HUB.flat = (x, inline) => !x || !x.flat_days ? "" : `<span class="flatp${x.frozen ? " fz" : ""}" title="${HUB.esc(HUB.flatTip(x))}">${x.frozen ? "⚠ đứng giá" : "không đổi"} từ ${HUB.date(x.flat_since).slice(0, 5)}${inline ? "" : ` · ${x.flat_days} ngày`}</span>`;
 HUB.catLink = (id, label) => `<a href="danh-muc.html?c=${encodeURIComponent(id)}">${HUB.esc(label)}</a>`;
 HUB.crumb = async (parts) => { const el = document.getElementById("crumb"); if (el) el.innerHTML = [`<a href="index.html">Trang chủ</a>`, ...parts].join(" › "); };
 HUB.nav = () => HUB._navP ||= HUB._nav();  // idempotent: mọi lời gọi dùng chung 1 lần dựng

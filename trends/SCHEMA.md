@@ -93,3 +93,9 @@ QA: `python trends/hopdong/qa.py <BASE_URL> [--shots]` (tràn ngang mọi trang 
 - `ts` tin = lần đầu site thấy mục đó, lưu ở `trends/data/fresh_seen.json` (CI commit; không sửa tay; `~` = giờ ước tính lúc khởi tạo). policy-feed dùng `found`. Chỉ tính tin có ngày/`added` là hôm nay hoặc hôm qua (giờ VN).
 - `ts` giá = `fetched_at` của dòng lịch sử gần nhất có giá khác dòng trước (bỏ mã đang `stale`).
 - Trình duyệt (`hub-common.js`: `HUB.fresh`, `HUB.decorate`, `HUB.freshStrip`) lọc lại theo giờ người xem: nhãn MỚI tự mất sau 24 giờ dù site chưa build lại. Nhãn gắn theo URL nguồn, `xu-huong.html?id=`, `thi-truong.html?id=`, `mat-hang.html?id=`, `button.hist[data-id]` (bảng giá) và đếm "MỚI n" trên tiêu đề nhóm master data. Bỏ qua vùng có class `newtag-skip`.
+
+## Đứng giá (`flat_*` trong `site/data/hub.json`, `trends/build.py: flat_info`)
+- Mỗi mã: `flat_since` = ngày bắt đầu chuỗi giá (và giá cao) không đổi tới điểm mới nhất, `flat_days`, `flat_open` (chưa đổi lần nào từ khi bắt đầu theo dõi). Chỉ ghi khi `flat_days >= 14`.
+- `frozen` = nghi nguồn chưa cập nhật: hàng hóa/tỷ giá ≥10 ngày; thép (`vnsteel*`), cáp (`cable_*`) ≥21 ngày; bảng giá NCC khác ≥45 ngày; công bố Sở XD (định kỳ) không xét.
+- `frozen_sources[]` gom theo nguồn -> banner cảnh báo ở gia.html; nhãn "⚠ đứng giá từ dd/mm" / "không đổi từ dd/mm" ở bảng giá, danh mục, mặt hàng, ô KPI trang chủ (`HUB.flat`).
+- Lưu ý: fetcher gán `as_of` = ngày tải cho nguồn trang web tĩnh, nên "Ngày giá" không cho biết NCC đổi giá lúc nào – dùng `flat_since`.

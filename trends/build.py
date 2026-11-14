@@ -91,6 +91,24 @@ def write_mt():
         for it in fc.get("items", []):
             d = material_map.map_text(f"{it.get('group','')} | {it.get('key','')} | {it.get('name','')}"); it["mt"], it["mt_conf"] = d.get("code"), d.get("conf")
         json.dump(fc, open(fp, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+# "Đứng giá": số ngày giá (và giá cao) không đổi liên tục tới điểm mới nhất. Nguồn trang web tĩnh (đại lý/NCC) vẫn tải OK mỗi ngày
+# nhưng con số không đổi -> as_of = ngày tải gây hiểu nhầm. flat >= FLAT_INFO ngày: hiện "đứng giá từ"; >= ngưỡng theo loại: cảnh báo nguồn nghi chưa cập nhật.
+FLAT_INFO = 14
+def flat_limit(it):
+    iid, cat = it.get("id", ""), it.get("category") or ""
+    if it.get("grp") == "world" or iid.startswith("fx_"): return 10      # hàng hóa/tỷ giá biến động hằng ngày
+    if iid.startswith("vnmat_") or iid.startswith("sxd_") or "Sở XD" in (it.get("src") or ""): return None  # công bố định kỳ (tháng/quý) – xét riêng
+    if iid.startswith(("vnsteel", "cable_")): return 21                  # thép, cáp đồng: nhà máy/đại lý điều chỉnh vài tuần một lần
+    return 45                                                             # bảng giá niêm yết NCC (bê tông, gạch, vữa…)
+def flat_info(it, pts, today):
+    if len(pts) < 2: return {}
+    key = lambda p: (p["price"], p.get("price_high"))
+    i = len(pts) - 1
+    while i > 0 and key(pts[i - 1]) == key(pts[-1]): i -= 1
+    since = pts[i]["date"]; days = (today - dt.date.fromisoformat(since)).days
+    lim = flat_limit(it); out = dict(flat_since=since, flat_days=days, flat_open=i == 0)  # flat_open: chưa từng đổi kể từ ngày bắt đầu theo dõi
+    if lim and days >= lim: out["frozen"] = True
+    return out if days >= FLAT_INFO else {}
 def build():
     prices = J(os.path.join(SITE, "prices.json"), {"items": []}); items = []; trk = {}
     for it in prices["items"]:
@@ -109,6 +127,7 @@ def build():
             reg=region(it), tax=classify(it), d1=it.get("change_pct"), w1=pct(last, w and w["price"]), s0=pct(last, pts[0]["price"]) if len(pts) >= 2 else None, mom=pct(last, m and m["price"]), yoy=pct(last, y and y["price"]),
             n_hist=len(pts), spark=[p["price"] for p in pts[-90:]] if len(pts) >= 10 else None, first_date=pts[0]["date"] if pts else None,
             monthly=[dict(m=k, p=v, chg=pct(v, ms[i - 1][1]) if i else None) for i, (k, v) in enumerate(ms)]))
+        items[-1].update(flat_info(it, pts, dt.datetime.now(TZ).date()))
         mt = MT_MAP["items"].get(it["id"]) or {}
         items[-1].update(mt=mt.get("code"), mt_conf=mt.get("conf"))
     # Hà Nội vs TP.HCM
@@ -145,7 +164,11 @@ def build():
         digest.append(dict(month=mo, n_trends=len(tm), n_market=len(mm), top_trends=[dict(id=x["id"], title=x["title"], score=x["score"], category=x["category"]) for x in tm[:5]],
                            headlines=[dict(title=x["title"], url=x["sources"][0]["url"], region=x.get("region")) for x in mm[:6]]))
     movers = sorted([x for x in items if x["mom"] is not None], key=lambda x: -abs(x["mom"]))[:12]
-    hub = dict(updated=prices.get("updated_at"), built=dt.datetime.now(TZ).isoformat(timespec="minutes"), usd_vnd=prices.get("usd_vnd"),
+    fz = {}  # nguồn nghi đứng giá: gom theo nguồn
+    for x in items:
+        if x.get("frozen"): g = fz.setdefault(x.get("src") or "?", dict(src=x.get("src"), url=x.get("url"), n=0, since=x["flat_since"], open=False)); g["n"] += 1; g["since"] = min(g["since"], x["flat_since"]); g["open"] |= bool(x.get("flat_open"))
+    frozen_sources = sorted(fz.values(), key=lambda g: (g["since"], -g["n"]))
+    hub = dict(frozen_sources=frozen_sources, updated=prices.get("updated_at"), built=dt.datetime.now(TZ).isoformat(timespec="minutes"), usd_vnd=prices.get("usd_vnd"),
                items=items, compare=comps, steel_brand_pairs=brand_pairs, digest=digest, mom_movers=[x["id"] for x in movers])
     json.dump(hub, open(os.path.join(OUT, "hub.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     json.dump(trk, open(os.path.join(OUT, "trk.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))

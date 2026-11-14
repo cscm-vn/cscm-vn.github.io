@@ -15,7 +15,7 @@
  const sib = h.items.filter(i => i.tax === x.tax && i.id !== id && i.name === x.name);
  const T = tr.items.filter(i => i.tax.includes(x.tax)).slice(0, 5), M = mk.items.filter(i => (i.tax || []).includes(x.tax)).slice(0, 5);
  const F = (fc?.items || []).filter(i => i.tax === x.tax && (!i.region || x.reg === "world" || (/hn|bac/i.test(i.region) ? "hn" : /hcm|nam/i.test(i.region) ? "hcm" : x.reg) === x.reg));
- main.innerHTML = `<h1>${E(x.name)}</h1><p class="sub">${HUB.regPill(x.reg)} ${E(x.region || "")} · Nguồn: <a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.src)}</a> · ngày giá ${HUB.date(x.as_of)} ${x.stale ? '· <b class="up">dữ liệu cũ (nguồn lỗi)</b>' : ""}</p>
+ main.innerHTML = `<h1>${E(x.name)}</h1><p class="sub">${HUB.regPill(x.reg)} ${E(x.region || "")} · Nguồn: <a href="${E(x.url)}" target="_blank" rel="noopener">${E(x.src)}</a> · ngày giá ${HUB.date(x.as_of)} ${HUB.flat(x)} ${x.stale ? '· <b class="up">dữ liệu cũ (nguồn lỗi)</b>' : ""}</p>
   ${(() => { if (!MT.d) return ""; const P = MT.path(x.id, x.category), mi = MT.info(x.id) || {}, leaf = P[P.length - 1];
     const G = h.items.filter(i => MT.text(i.id, i.category) === MT.text(x.id, x.category));
     const M = i => ({w1: i.w1, mom: i.mom, s0: i.s0, f0: i.first_date, d1: i.d1});

@@ -68,24 +68,24 @@
   const chg = n ? ((x.spark[n - 1] / x.spark[0] - 1) * 100) : null;
   return `<a class="hk" href="mat-hang.html?id=${id}" title="${E(x.name)} – ${E(x.src || "")}, ngày ${HUB.date(x.as_of)}"><span class="l">${l}</span>
    <div class="v">${x.price_high ? "<small>từ</small> " : ""}${HUB.num(x.price)} <small>${E(x.unit)}</small></div>
-   <span class="c">${n ? `${n} phiên: ${HUB.pct(chg)}` : x.d1 != null ? `Phiên: ${HUB.pct(x.d1)}` : "Giá niêm yết"} · ${HUB.date(x.as_of)}</span>${spark(x.spark)}</a>`; }).join("") + (() => { // KPI bổ sung: Gạch AAC Bắc/Nam + Cáp đồng ≥70 mm² (mặt hàng có nguồn ghi rõ, cập nhật cùng bảng giá)
+   <span class="c">${n ? `${n} phiên: ${HUB.pct(chg)}` : x.d1 != null ? `Phiên: ${HUB.pct(x.d1)}` : "Giá niêm yết"} · ${x.flat_days ? HUB.flat(x, 1) : HUB.date(x.as_of)}</span>${spark(x.spark)}</a>`; }).join("") + (() => { // KPI bổ sung: Gạch AAC Bắc/Nam + Cáp đồng ≥70 mm² (mặt hàng có nguồn ghi rõ, cập nhật cùng bảng giá)
   const a = by("aac_hn_viglacera_d100"), b = by("aac_hcm_eblock_b3_d100"), c95 = by("cable_cxv_cadivi_1x95"), c70 = by("cable_cxv_cadivi_1x70"), out = [];
   const chg = x => { const n = x.spark ? x.spark.length : 0; // cùng logic với ô KPI chính: ≥10 điểm thật mới vẽ xu hướng
    if (n) return `${n} phiên: ${HUB.pct((x.spark[n - 1] / x.spark[0] - 1) * 100)}`;
    if ((x.n_hist || 0) > 1) return `đang tích lũy dữ liệu (${x.n_hist} phiên${x.d1 != null ? ", phiên " + HUB.pct(x.d1) : ""})`;
    return x.d1 != null ? `phiên ${HUB.pct(x.d1)}` : "giá niêm yết"; };
   const sp = x => x && x.spark ? spark(x.spark).replace("<svg ", '<svg style="height:18px;margin-top:3px" ') : "";
-  const row = (lab, x, basis) => x ? `<div class="v" style="font-size:16px;margin-top:2px"><small>${lab}</small> ${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""}</div><span class="c" style="display:block">${chg(x)} · ${E((x.src || "").split(" (")[0])} · ${HUB.date(x.as_of)}${basis ? " · " + basis : ""}</span>${sp(x)}` : "";
+  const row = (lab, x, basis) => x ? `<div class="v" style="font-size:16px;margin-top:2px"><small>${lab}</small> ${HUB.num(x.price)}${x.price_high ? "–" + HUB.num(x.price_high) : ""}</div><span class="c" style="display:block">${chg(x)} · ${E((x.src || "").split(" (")[0])} · ${x.flat_days ? HUB.flat(x, 1) : HUB.date(x.as_of)}${basis ? " · " + basis : ""}</span>${sp(x)}` : "";
   const two = (href, lab, unit, n, nb, s, sb, tip) => (n || s) ? `<a class="hk" href="${href}" title="${E(tip)}"><span class="l">${lab} <small>(${unit})</small></span>${row("HN", n, nb)}${row("HCM", s, sb)}</a>` : "";
   out.push(two("mat-hang.html?id=vnsteel_hoa_phat_mien_bac_cb300_d10", "Thép Hòa Phát CB300 D10", "VND/kg", by("vnsteel_hoa_phat_mien_bac_cb300_d10"), "", by("vnsteel_hoa_phat_mien_nam_cb300_d10"), "", "Giá đại lý steelonline.vn, cùng cơ sở 2 miền: chưa VAT & vận chuyển"));
   const c4 = (h.compare || []).find(c => /M400/.test(c.label) && c.parts), RMC_BASIS = "chưa VAT · sụt 12±2 · chưa gồm bơm";
   if (c4) { const pt = r => c4.parts[r].map(q => `${q.src.split(" (")[0]} ${HUB.num(q.norm)}`).join(" / "), asof = by(c4.hn_ids[0])?.as_of,
-    o = (v, r) => ({price: v, src: `trung vị ${c4.parts[r].length} NCC`, as_of: asof, n_hist: 0});
+    o = (v, r) => { const fx = c4[r + "_ids"].map(by).filter(z => z && z.flat_days); const f = fx.length === c4[r + "_ids"].length && fx.length ? fx.reduce((a, z) => z.flat_since > a.flat_since ? z : a) : {}; return {price: v, src: `trung vị ${c4.parts[r].length} NCC`, as_of: asof, n_hist: 0, flat_days: f.flat_days, flat_since: f.flat_since, flat_open: f.flat_open, frozen: f.frozen}; };
    out.push(two("danh-muc.html?c=xd.be-tong&tab=cmp", "Bê tông M400 đá 1×2 · cùng cơ sở", "VND/m³", o(c4.hn, "hn"), RMC_BASIS + " · " + pt("hn"), o(c4.hcm, "hcm"), RMC_BASIS + " · " + pt("hcm"),
     "Cùng phương pháp với thẻ Hà Nội vs TP.HCM: giá niêm yết NCC quy về chưa VAT (bảng gồm VAT chia 1,08; betonghanoi không ghi thuế suất – giả định 8%), sụt 12±2 (bảng sụt 10±2 cộng phụ phí tăng sụt do chính NCC công bố), chưa gồm bơm; lấy trung vị. HN có khoảng giá thì lấy điểm giữa. Loại betongdvc.com (không nêu độ sụt/VAT).")); }
   out.push(two("gia.html?nhom=KC.gach-aac", "Gạch AAC ≥100 mm", "VND/m³", a, "đại lý, VAT chưa rõ", b, "nhà máy, chưa VAT & v/c", "Gạch AAC 600×200×100. Cơ sở khác nhau: HN giá đại lý Viglacera; HCM giá niêm yết nhà máy EBLOCK"));
   if (c95) out.push(`<a class="hk" href="mat-hang.html?id=cable_cxv_cadivi_1x95" title="${E(c95.name)} – ${E(c95.src)}. ${E(c95.note || "")}"><span class="l">Cáp đồng CXV 1×95 mm² · CADIVI</span>
-   <div class="v">${HUB.num(c95.price)} <small>VND/m</small></div><span class="c">${c70 ? `1×70: ${HUB.num(c70.price)} đ/m · ` : ""}giá niêm yết đại lý toàn quốc (chưa có nguồn tách HN/HCM), chưa chiết khấu · ${HUB.date(c95.as_of)}</span>${spark(c95.spark)}</a>`);
+   <div class="v">${HUB.num(c95.price)} <small>VND/m</small></div><span class="c">${c70 ? `1×70: ${HUB.num(c70.price)} đ/m · ` : ""}giá niêm yết đại lý toàn quốc (chưa có nguồn tách HN/HCM), chưa chiết khấu · ${c95.flat_days ? HUB.flat(c95, 1) : HUB.date(c95.as_of)}</span>${spark(c95.spark)}</a>`);
   return out.join(""); })();
  HUB.get("dieu-chinh-summary.json").then(ds => { const c = ds?.contracts?.[0]; if (!c) return; const S = c.summary, el = document.getElementById("dcw");
   const box = (reg, lab) => `<a class="c" href="dieu-chinh.html?r=${reg}"><span>${lab} · vượt ngưỡng GIẢM</span><b class="down">${S[reg].ctd.down}</b> <small>CTD</small> · <b class="down">${S[reg].ntc.down}</b> <small>NTC</small></a>
