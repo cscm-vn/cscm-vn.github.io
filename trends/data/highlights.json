@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "built": "2026-11-13T20:02+07:00",
- "today": "2026-11-13",
- "news_since": "2026-11-12",
+ "built": "2026-11-14T07:49+07:00",
+ "today": "2026-11-14",
+ "news_since": "2026-11-13",
  "thresholds": {
   "world": {
    "abs_pct": 2.0,
@@ -34,30 +34,30 @@
    "prices": [],
    "news": [
     {
-     "title": "Giá thép hôm nay 12/11: Quặng sắt đi xuống khi Trung Quốc hạn chế sản xuất",
-     "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPc3VpZjd3WWV2Ynk2b0JKQmpYM3VlS2dwZnUxcURERDZ6a29keGw5RUdnYnY1dHdqMVZFQjhyeFd5MGVlVVhzRmYtQV9UMkZWcjRUaW5CLWl6UzdkTVUwMzFvX19kOHVZU3FwdkZQLXRmLWV3SHYzR0V1TzExU25oQ2NjUFBEQTZRVXl3OHdLVkNRNDZrQlVPd0hpbEFvN3VQT0RMX3JtUVRycFN3b3FWZkE0SWladzA?oc=5",
-     "date": "2026-11-12",
-     "score": 11.7,
-     "source": "VietnamBiz"
-    },
-    {
      "title": "Giá thép hôm nay 13/11: Quặng sắt xuống thấp nhất hai tuần",
      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQbU9UbnpVS1hvblJpTmhNbHpDWktQd2ljUi1LeGZhWTNDZk83YlpzY1QxM01yNk5WRC01OWhwc1RvaEJLdGkwS0xlMndKTnMxOHBKekFlTHZRaHRGMXFQUHpib0doMFZnQXlOVGtSdURlR3VZUHFWUmtkM1EtbzIxNVZwMllSaWhQdElDSTUwXzhvOW1DQ19jSFhjV3JMWDZQckE?oc=5",
      "date": "2026-11-13",
-     "score": 10.0,
+     "score": 9.7,
      "source": "VietnamBiz"
+    },
+    {
+     "title": "Giá thép hôm nay 13/11: Thị trường nguyên liệu thép đi xuống, quặng sắt",
+     "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOOVRhaHplbGxxNE9CQ0Z6dUhpdWxEYU9MdElXRzJZZV94Mm1zMmJCeFJET3RYTmJoOERqOTVycko2UFRPLUpuSy1TMDFfUHVVbWRQeUNEcGx1ejJkcVAtaWJhb2tWSmtYektNQlFMWmduMFlfTElhSlJuejFpNGY3cWdsdk5tMWlBZ1QyX29CZF9VODl5RGZ3OW5manZrdVhIOGdPaHFodFFSWl9YRjRrOGJjb01oZzA?oc=5",
+     "date": "2026-11-13",
+     "score": 7.7,
+     "source": "Thuonghieucongluan.com.vn"
     },
     {
      "title": "VCBS: Giá thép Việt Nam kỳ vọng tăng, quặng sắt tiếp tục chịu áp lực giảm tróng quý IV",
      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQWThCVUszb0U4ZFZfdkRYWlhXRDlpOWYtLVh6ZGdKcDR4MU1kUkl0ZW1TcU4ydEZCV2tjQlZLZ1owOUs4allBRHB0VWdpdTNFMlFua1B5ZEZWSkhMcHpRRDBlLW5XbUNkTzJRckFZV3VsakRJNWk2Q2pDZWF4WnItSzlzdHgzaXdxby1GbXp2YTRpb1BYRzc3bk9IcFBGV0huVmdvejhyNkQ4YmowYjR2UW5aMG81b0xmYktr?oc=5",
      "date": "2026-11-13",
-     "score": 8.0,
+     "score": 7.7,
      "source": "Tạp chí Nhịp sống thị trường"
     }
    ],
-   "n_news": 6,
+   "n_news": 4,
    "n_moves": 0,
-   "rank": 1.8,
+   "rank": 1.2,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -65,6 +65,20 @@
    "name": "MEP",
    "icon": "⚡",
    "prices": [
+    {
+     "id": "lme_tin",
+     "name": "Thiếc LME",
+     "region": "",
+     "d1": 3.53,
+     "date": "2026-11-13",
+     "prev_date": "2026-11-12",
+     "price": 48295.0,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=lme_tin"
+    },
     {
      "id": "te_polypropylene",
      "name": "Polypropylene (PP, DCE)",
@@ -80,18 +94,18 @@
      "url": "mat-hang.html?id=te_polypropylene"
     },
     {
-     "id": "lme_aluminium",
-     "name": "Nhôm LME",
+     "id": "yf_copper",
+     "name": "Đồng (COMEX Copper HG)",
      "region": "",
-     "d1": -2.11,
-     "date": "2026-11-12",
-     "prev_date": "2026-11-11",
-     "price": 3155.5,
-     "unit": "USD/tấn",
+     "d1": -2.37,
+     "date": "2026-11-13",
+     "prev_date": "2026-11-12",
+     "price": 6.063499927520752,
+     "unit": "USD/lb",
      "kind": "world",
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_aluminium"
+     "url": "mat-hang.html?id=yf_copper"
     }
    ],
    "news": [
@@ -99,27 +113,27 @@
      "title": "Crude oil strengthens, metals broadly decline, LME copper and LME aluminum lead losses, gold and silver plunge, COMEX gold breaks below 3,900! [Overnight market]",
      "url": "https://news.google.com/rss/articles/CBMizAJBVV95cUxPRVE3YjNmTDdEcXNuUUhNeXBoMmJxc2FCUUhXTmNXMHkwckliX1BMc0ktdUwtbTFJeEtRb1JrdTJfU3FoUGZDTjl5eUZRQTNKa3NVREd2MGw2eHZzMUctcjFDYTA5bEF3bmRTRlFtbTZLUFdya1hreEpHSHZCYjlEamFhcnZoZlJpZ0gwdEdkTHhuUkNBMnpJWF9ERDRxWk1JSWMwS3hMQUxDWkx1MGNjd29zWGxtLTdwZEItS1NoR05SVi1YeU5xcGxQdWZwc0dGc3ZCZmQzQzZpUzZDTUJHcjBUczlMa2NnMzJOYlNLc0RZSjZ1RVo3SHg2YzVhVWtnRWcxNEh3S1hHZllyeFZ3c2phUHFGMGsycEZVNDZ0a3ZQeUVVcUJiZHhsMV9ZMnNnMUZMeUpjWUYwcTBvNDZZWEJrY0xnZW1uNkQyTw?oc=5",
      "date": "2026-11-13",
-     "score": 9.0,
+     "score": 8.7,
      "source": "Shanghai Metals Market"
     },
     {
      "title": "Aluminium squeeze deepens as LME backwardation hits 36-year high",
      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNOURrSW1tSUczNUV0Mk5ZSm0xUmZSYTl6dzlSQWtqeVV6MGxWdUdzYkVITXdzb3NDSWdvR05YNWkwU0ctVEVsSjVtUTUyU0VTU2FLT3VOcGlfODRabWxIdDFRRzV4RVh0ZGJDNmN3NWNHQXdMTHE1YkpXdVF4QjdON1ZoUm1OX2s5dGtwTlZkMDE?oc=5",
      "date": "2026-11-13",
-     "score": 9.0,
+     "score": 8.7,
      "source": "Mining.com.au"
     },
     {
-     "title": "Copper price snaps back as AI worries fade, shortages persist in China",
-     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNdUpwYkg4TmxNb2pwdU8yX1N0RlBsNVJFSG1hSjJ1ZDN4UXd3VlZIU1Zva0Z2OTl4Z0dUNEd6MWJYWlNJMkVUelR2c2o3aS1XdV9HWldxUmJaWEEzWGlBOW1uZjcxWmloaFd3MkpubEk2cTdXVzV6eHMxX2hNSmgwUlZ6ZjdmcmVUNU5TMnVHX1FzeWpsOVFr?oc=5",
-     "date": "2026-11-12",
-     "score": 8.7,
+     "title": "Copper price hits four-month low; focus on demand, US rates",
+     "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOcmx0cW1VQmpSQWlzeFU0Uzl1cy1IWjZOMDZZSmtEZFNmdUlaRkhFRUR0RTYwMFZhMnlVSV9RWDFJU1pDd3N2Q1Jlcl90VzhFeEwyVk9QbzBPY0YwbUN2ZXRBeHlFZlFoNzllRktWaWlWX3ZQeWlpVVp1aFBmWDBxdGt6M1ZhNUk?oc=5",
+     "date": "2026-11-13",
+     "score": 6.7,
      "source": "Mining.com.au"
     }
    ],
-   "n_news": 8,
-   "n_moves": 2,
-   "rank": 4.7,
+   "n_news": 3,
+   "n_moves": 3,
+   "rank": 5.09,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -165,7 +179,7 @@
      "title": "Hà Nội: Phát triển 517 vườn hoa “bỏ túi”, tiểu cảnh",
      "url": "https://cafef.vn/ha-noi-phat-trien-517-vuon-hoa-bo-tui-tieu-canh-188261113155320171.chn",
      "date": "2026-11-13",
-     "score": 7.0,
+     "score": 6.7,
      "source": "CafeF Bất động sản"
     }
    ],
@@ -184,20 +198,27 @@
      "title": "COP31: Việt Nam phát triển đồng bộ công trình xanh và giao thông phát thải thấp",
      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNZENJVmFNVDVzWTJJaFdqc2FMR0dXWlZvMlFzaHJpQ0hicVpIUlBWYW0xRWJlbjc5REtCQzFCLW5YSTlORktyQ01KbjEwNUxHOVptYU8xclNqT3FFR1pYMVUtUm5ZVjd0QjAtNkVyY2tXTC1UaWhwRlh0NXp3aG1BenpURWFGRnBvU0RvdkR4RlhoYXlNNElRWVk0ZE5xMUJyRWZTMDEyUVVkeUFtSS10SHF2cW5UMF82c0IxcEdfaw?oc=5",
      "date": "2026-11-13",
-     "score": 7.0,
+     "score": 6.7,
      "source": "Báo Nông nghiệp và Môi trường"
+    },
+    {
+     "title": "Hà Nội đề xuất mở rộng vùng phát thải thấp, hạn chế nhiều loại phương tiện",
+     "url": "https://cafef.vn/ha-noi-de-xuat-mo-rong-vung-phat-thai-thap-han-che-nhieu-loai-phuong-tien-18826111321044518.chn",
+     "date": "2026-11-13",
+     "score": 3.7,
+     "source": "CafeF Bất động sản"
     },
     {
      "title": "“Siêu thành phố” trung hòa carbon đầu tiên trên thế giới, điểm nhấn là tòa tháp cao bậc nhất khu vực Đông Nam Á vừa có diễn biến mới",
      "url": "https://cafef.vn/sieu-thanh-pho-trung-hoa-carbon-dau-tien-tren-the-gioi-diem-nhan-la-toa-thap-cao-bac-nhat-khu-vuc-dong-nam-a-vua-co-dien-bien-moi-188261113102746544.chn",
      "date": "2026-11-13",
-     "score": 4.0,
+     "score": 3.7,
      "source": "CafeF Bất động sản"
     }
    ],
-   "n_news": 2,
+   "n_news": 3,
    "n_moves": 0,
-   "rank": 0.6,
+   "rank": 0.9,
    "link": "danh-muc.html?c=esg"
   },
   {
@@ -206,28 +227,21 @@
    "icon": "🌏",
    "prices": [
     {
-     "id": "lbma_gold",
-     "name": "Vàng London Fixing (LBMA)",
+     "id": "yf_silver",
+     "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -2.58,
-     "date": "2026-11-12",
-     "prev_date": "2026-11-11",
-     "price": 3945.75,
+     "d1": -3.61,
+     "date": "2026-11-13",
+     "prev_date": "2026-11-12",
+     "price": 48.650001525878906,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
      "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=lbma_gold"
+     "url": "mat-hang.html?id=yf_silver"
     }
    ],
    "news": [
-    {
-     "title": "Rà soát nguồn cung vật liệu xây dựng, đáp ứng nhu cầu các dự án",
-     "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPQkR3R1ZsV3lWWU0tenlQZ1dLQ084T0k4S3BXYUZTQ2J4Y3pmTzhPMVI1My1kLUpObEg2U0F2RWNJa1BXS2xSdFNGbi1HbGpDb2cwSVRGdk5uVkNCa1Vac0wybHhGQ3NIb25ySm54UUFsS1pHZE12ZjdZdHpOVF9OelpXSVBSVHEyMHB0OVlR?oc=5",
-     "date": "2026-11-12",
-     "score": 11.7,
-     "source": "Vietnam.vn"
-    },
     {
      "title": "TS. Cấn Văn Lực: NIM ngân hàng chỉ còn ~2,5% (từ ~3% cuối năm trước) trong khi Thủ tướng, Thống đốc định hướng giảm lãi suất cho vay 1,5–2 điểm %; đề xuất thử giảm lãi suất huy động ~0,5 điểm % trước",
      "url": "thi-truong.html#ddf9dd6794ed",
@@ -239,13 +253,20 @@
      "title": "Bảo đảm nguồn cung vật liệu xây dựng cho các dự án trọng điểm dịp cuối năm",
      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPN1hBanpId1ByQ1ZVd1dvVzFKUEJJaFc1aWxKLWZBdUVHdzJZMktDRGR4VzdaRlI3YnJPbWQ4R2l6alJZQXVWRXZjeC1ubG50ZWFZbEtxcmtQUVpwLUpQcW1VRXo0T09HS3ZEMVpSeWFvcVNDYnlub0NiZl80RkZOUmRWaDk5ZlhRMFNmZDhvbFI3eUZod0UyMGQ5R1hhTFhfdFdORE9ReWZHMmlHb2c?oc=5",
      "date": "2026-11-13",
-     "score": 10.0,
-     "source": "Báo Cao Bằng"
+     "score": 9.7,
+     "source": "Báo Cao Bằng điện tử"
+    },
+    {
+     "title": "Đang triển khai điều tra, đánh giá và xây dựng bản đồ số nguồn cung vật liệu xây dựng phục vụ phát triển hạ tầng vùng ĐBSCL",
+     "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9wUTQxdXE4RXk3ZkN6TXZiVnNMSFQ1aUxJc25WSFFNQl9vX1dydkVTNHJCbjU3TVZObXR0VUtXZ0F2VWlSZlBOSDBZNnhLSldlNTNv?oc=5",
+     "date": "2026-11-13",
+     "score": 9.7,
+     "source": "شبكة تواصل الإخبارية"
     }
    ],
-   "n_news": 11,
+   "n_news": 7,
    "n_moves": 1,
-   "rank": 4.29,
+   "rank": 3.91,
    "link": "danh-muc.html?c=tt"
   }
  ]
