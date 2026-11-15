@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-15T09:35+07:00",
+ "built": "2026-11-15T19:42+07:00",
  "today": "2026-11-15",
  "news_since": "2026-11-14",
  "thresholds": {
@@ -22,31 +22,16 @@
   }
  },
  "top": [
+  "tt",
   "mep",
-  "xd",
-  "tt"
+  "xd"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "yf_hrc",
-     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
-     "region": "",
-     "d1": -3.43,
-     "date": "2026-11-13",
-     "prev_date": "2026-11-12",
-     "price": 1353.0,
-     "unit": "USD/short ton",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=yf_hrc"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Giá thép hôm nay 14/11: Quặng sắt ghi nhận tuần giảm mạnh nhất trong 5 tuần",
@@ -56,23 +41,23 @@
      "source": "VietnamBiz"
     },
     {
+     "title": "Giá thép hôm nay 15/11/2026: Thị trường thép và quặng sắt tuần qua giảm sâu",
+     "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOWHVqTG5RcW54WnBmeURfZXFKVmk4dDZPNDU1blNnQk5vN1Q0T1M1eVl2cXM3UFdUVklVZ0NTUEdLZWhfMnJBRWVFX19ILU1DQTVndFNmY2xyV0RBdmhOX2Z5RVdka0x0Zy1xSmtoZTR2U0lMbV9jSk5JRjd6UzB5eGJOZFljVmYtTERfU2pTRnFiczJfTTFybDFRUHFpWXZCd2VUZ0hZRjdiYlp3alVsYzJtQmg?oc=5",
+     "date": "2026-11-15",
+     "score": 8.0,
+     "source": "Tạp chí Doanh nghiệp và Hội nhập"
+    },
+    {
      "title": "VCBS: Giá thép Việt Nam kỳ vọng tăng, quặng sắt tiếp tục chịu áp lực giảm trong quý IV",
      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOTEdWODdhRm1BOXJmclpsVGdLTU94aDVOY2FDb0NsN3JlYkRxMTVZOWR3My1GNTg2NE9zSlRkdmpQVXNPTEJWaGpJc0xtUmNuQnhpVXRjUnRjeVowVXNBT0tSb3JyeWxYZnZndjBWbFlyNTAxN0pIdml4bEJOQjZ5SHlnYUZkRmktZUFidFI5cEJJcDRiVXppSEszRHRnNDlhZlYyWFRLbloxdGVaSklhYnVpak4tMWQzYzJ0Z0RlMVZqZw?oc=5",
      "date": "2026-11-14",
      "score": 7.7,
      "source": "CafeF"
-    },
-    {
-     "title": "Giá thép hôm nay 14/11/2026: Quặng sắt ghi nhận tuần giảm sâu nhất 5 tuần",
-     "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOdU05OVZxMHNkVUNCZjVBRzhiWElHWXBzZFVISjl3YVd2a19ORlEyT1d6RGpWVWp2YUk0MVI4aGJmbnVJZWt3TEd1UFcwVENGNlZ4ODlNSmhHYWxDZHlWbHNpWUZzQ2d5ZUhsU1VXNnJhcnhmbzJuQUp5TVBQaEJtSlBZdVNNNFpVbTI5SFRuX2ZncXlsRmtGSG5iUElWblZ6VVF5MV9TX1JkMUhBXzF4ekdB?oc=5",
-     "date": "2026-11-14",
-     "score": 7.7,
-     "source": "Tạp chí Doanh nghiệp và Hội nhập"
     }
    ],
-   "n_news": 4,
-   "n_moves": 1,
-   "rank": 2.92,
+   "n_news": 5,
+   "n_moves": 0,
+   "rank": 1.5,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -107,20 +92,6 @@
      "threshold": 2.0,
      "tax": "mep.ong-nuoc",
      "url": "mat-hang.html?id=te_polypropylene"
-    },
-    {
-     "id": "yf_copper",
-     "name": "Đồng (COMEX Copper HG)",
-     "region": "",
-     "d1": -2.12,
-     "date": "2026-11-13",
-     "prev_date": "2026-11-12",
-     "price": 6.079500198364258,
-     "unit": "USD/lb",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=yf_copper"
     }
    ],
    "news": [
@@ -133,8 +104,8 @@
     }
    ],
    "n_news": 1,
-   "n_moves": 3,
-   "rank": 4.36,
+   "n_moves": 2,
+   "rank": 3.3,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -223,10 +194,10 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -2.85,
+     "d1": -2.67,
      "date": "2026-11-13",
      "prev_date": "2026-11-12",
-     "price": 49.03099822998047,
+     "price": 49.12099838256836,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
@@ -257,9 +228,9 @@
      "source": "Vietnam+ (VietnamPlus)"
     }
    ],
-   "n_news": 5,
+   "n_news": 8,
    "n_moves": 1,
-   "rank": 2.92,
+   "rank": 3.73,
    "link": "danh-muc.html?c=tt"
   }
  ]
