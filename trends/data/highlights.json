@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-16T09:45+07:00",
+ "built": "2026-11-16T20:34+07:00",
  "today": "2026-11-16",
  "news_since": "2026-11-15",
  "thresholds": {
@@ -22,16 +22,31 @@
   }
  },
  "top": [
-  "tt",
   "mep",
-  "xd"
+  "xd",
+  "tt"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": -3.43,
+     "date": "2026-11-13",
+     "prev_date": "2026-11-12",
+     "price": 1353.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
      "title": "Giá thép hôm nay 16/11: Quặng sắt có thể ngừng giảm nhờ đơn hàng xuất khẩu thép cải thiện",
@@ -56,8 +71,8 @@
     }
    ],
    "n_news": 4,
-   "n_moves": 0,
-   "rank": 1.2,
+   "n_moves": 1,
+   "rank": 2.92,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -80,10 +95,32 @@
      "url": "mat-hang.html?id=lme_tin"
     }
    ],
-   "news": [],
-   "n_news": 0,
+   "news": [
+    {
+     "title": "Clip cảnh sát giải cứu 9 người bị mắc kẹt trong thang máy ở TPHCM",
+     "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQc3Y3N0VPYUgyZm9BQWc0c0E3MzRBTEtKTWVEY2ZQN3FVeGJzTm5UdzhZVEN1ZFNLdGNTbHgteFFWUkM0NHBtS1JJOEhxblBxSHNwRUtzM1JjaW1oYXVtMmVOWkNnb2wxVVpGNXo3aFBxT1k4N2xXT21LdS1kdkZFUGdVS29BeTJIMWlqNWdMR3VGMVY4c1hNaU1iOGFMNmMwb1E?oc=5",
+     "date": "2026-11-16",
+     "score": 12.0,
+     "source": "Báo VietNamNet"
+    },
+    {
+     "title": "Taihan Cable trúng thầu dự án lưới điện 203 triệu USD tại Singapore",
+     "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPR3AyUGgxZ0ZDZG94OHBtTHROY09uYldRWE04emxCUFFIdFBrQjI1bG9WS0g1NXBabGk1cXUtLTdPSmdnemppX1JWcTBaZmxkbGw1bUU2UTRLd1oxbGtBalJ5LThzT2xqdlJ0OHkxS0c1c1VwU1FzOUJiWV9pUFA1Y01pT2ktNjJoSnhEUkx1S0JOUTBRNWVKbDhFYWc?oc=5",
+     "date": "2026-11-16",
+     "score": 10.0,
+     "source": "Bnews.vn"
+    },
+    {
+     "title": "Giải cứu 9 cô gái mắc kẹt trong thang máy ở TP.HCM",
+     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNT0FGRmNPRjBBRzdrOHNWQjBJX3l4ZVhMd1lwVG5iVlh5VFIza0pRNHRCWkFOM3pLXzlIbmFPajlJbWpiZ1V4YTdXdUMzekpiYmR0UWlRTXNmY2pOR2M3UXFWYjlfLU1NcXlfVjlweUZiN1Y2MFM3Tl9OMllyX19mVTVtSG53T1NoT0kweUJfUk95bUE?oc=5",
+     "date": "2026-11-16",
+     "score": 10.0,
+     "source": "CafeF"
+    }
+   ],
+   "n_news": 6,
    "n_moves": 1,
-   "rank": 1.76,
+   "rank": 3.56,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -153,23 +190,15 @@
    "id": "tt",
    "name": "Vĩ mô & thương mại",
    "icon": "🌏",
-   "prices": [
-    {
-     "id": "yf_silver",
-     "name": "Bạc (COMEX Silver)",
-     "region": "",
-     "d1": -2.78,
-     "date": "2026-11-15",
-     "prev_date": "2026-11-13",
-     "price": 47.755001068115234,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=yf_silver"
-    }
-   ],
+   "prices": [],
    "news": [
+    {
+     "title": "Phát hiện 450 xe tải liên tục đổ 60.000 m³ bê tông suốt 63 giờ, từng giúp các kỹ sư Trung Quốc xây tòa tháp cao bậc nhất thế giới, vượt Landmark 81 gần 200m",
+     "url": "https://cafef.vn/phat-hien-450-xe-tai-lien-tuc-do-60000-m-be-tong-suot-63-gio-tung-giup-cac-ky-su-trung-quoc-xay-toa-thap-cao-bac-nhat-the-gioi-vuot-landmark-81-gan-200m-188261116103354457.chn",
+     "date": "2026-11-16",
+     "score": 10.0,
+     "source": "CafeF Bất động sản"
+    },
     {
      "title": "Khải Hoàn Prime: Căn hộ sắp bàn giao ghi điểm với tiêu chuẩn hoàn thiện cao cấp",
      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOOHhEVTVMMDdUSUVSdW5MNlZsVl9GcEpXU2kzMkxtRkxsc0ZGekdxdkliWXViWFdocXpGZlNOUDVjbWpqNE5aMkEybmJnUlBMdWVRV2g5OUltTHJoeWxQQzhBTGxLT05VREZZdHExeV9aVGp4cHI5My0zei1tenpzcjEwcWRIS1N2UER0Y205Y3Z2Vk5ocjRBMVk1OFB4eFBDZkd3?oc=5",
@@ -183,18 +212,11 @@
      "date": "2026-11-16",
      "score": 7.0,
      "source": "Vietnam.vn"
-    },
-    {
-     "title": "Vật liệu tăng giá, khan hàng, nhà thầu thêm áp lực",
-     "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBZSF9VbGhGWU9MN2pjN2JCeTgzcnMteFNxU1BMTlBUMzdSS01RT29oZVZGSmR2V2NicmVOcy0yYnBib1FSLVB4c0Y4NXMtOVhxcklaUWxEMHhEa1JqUHhqMkpDTG45c3lNdG5tWDk0ZElFaHBCcGJLMEU0MA?oc=5",
-     "date": "2026-11-15",
-     "score": 6.7,
-     "source": "Vietnam.vn"
     }
    ],
-   "n_news": 8,
-   "n_moves": 1,
-   "rank": 3.79,
+   "n_news": 9,
+   "n_moves": 0,
+   "rank": 2.7,
    "link": "danh-muc.html?c=tt"
   }
  ]
