@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-17T12:05+07:00",
+ "built": "2026-11-17T21:19+07:00",
  "today": "2026-11-17",
  "news_since": "2026-11-16",
  "thresholds": {
@@ -23,22 +23,37 @@
  },
  "top": [
   "mep",
-  "tt",
-  "xd"
+  "xd",
+  "tt"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": 5.76,
+     "date": "2026-11-17",
+     "prev_date": "2026-11-16",
+     "price": 1432.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
-     "title": "Giá thép hôm nay 17/11: Quặng sắt xuống thấp nhất hơn 16 tháng",
-     "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNNDNuamlIYXhYY0I3d2VUYXBsS1lkd09MVmpqZnZRU3pFTEw0elhubVRSUUhHelZ6X1BmLUtydjNwNkFJUWR0cGhzYXd5NVhWTDFNNEF1SDhuVHV6ZE5Sa1ZiZ2d4N0tKazN0UEZrbW0ySUtDdkZvbmZfYTNjVVFscThPS1V2NWw3Q1pOalFYTDMxUl90M0l2NTFQcFdSdHlGNzIzbHVLZw?oc=5",
+     "title": "EU áp thuế chống bán phá giá thép cuộn cán nguội từ Ấn Độ, Nhật Bản, Đài Loan, Thổ Nhĩ Kỳ và Việt Nam",
+     "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOU09PMmpkVUtZWkpsa1dGQVJvdE5OWEMxNFVVZi1oWGh1VUFNTnhQRVZuV0hhQi1ReEdqX1NSNEpJME5HY1UzZVg4dWNGOC10VWpSVk1adEFOQVcxTnE0dTdzTTRNdWpIVmRTblBzd1lVcmpWY2J4VlhKbWx1VmJ6czdSRXJtVzVqZjh1R19BaG41MlJ3V0tXalJZVnhpd0R0ME1CTkZJSXZUZWxJR194UndiU0dzVU40RlBOSWNmTmd6aTFhSHNObklFVzJfbEw4elZTU1ptQmxuS3QyVTllTUc0WQ?oc=5",
      "date": "2026-11-17",
-     "score": 10.0,
-     "source": "VietnamBiz"
+     "score": 14.0,
+     "source": "Vinanet"
     },
     {
      "title": "Giá thép hôm nay 17/11/2026: Thép thanh quốc tế tăng nhẹ, quặng sắt giảm",
@@ -48,16 +63,16 @@
      "source": "Tạp chí Doanh nghiệp và Hội nhập"
     },
     {
-     "title": "Giá thép hôm nay 16/11: Quặng sắt có thể ngừng giảm nhờ đơn hàng xuất khẩu thép cải thiện",
-     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOb3hiVkMxU1FYb19lUWh2U2hWMFdzTFoweDFlYkhmZkI2TEY1ZEY5WDYzYk10RHVVSGR1X3dld3V3QkdjQ19OUlFUMjZVRU5jUzE4Mm5SVFFXZEFqN0NYaWJLTjU3dHB4cC1mLVItbGJlWDk1U0ZPcUJwemlQcllBYldzN2tBR3lQSzNaUGdMRmZWcXhHV0VFYkZyejlURUlhUWtqWFgxQ1hLSU80WkpxZ2I0ZXYwNUd2b0hwelRzR1Rlck9mNktvMGNWcw?oc=5",
-     "date": "2026-11-16",
-     "score": 9.7,
+     "title": "Giá thép hôm nay 17/11: Quặng sắt xuống thấp nhất hơn 16 tháng",
+     "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNNDNuamlIYXhYY0I3d2VUYXBsS1lkd09MVmpqZnZRU3pFTEw0elhubVRSUUhHelZ6X1BmLUtydjNwNkFJUWR0cGhzYXd5NVhWTDFNNEF1SDhuVHV6ZE5Sa1ZiZ2d4N0tKazN0UEZrbW0ySUtDdkZvbmZfYTNjVVFscThPS1V2NWw3Q1pOalFYTDMxUl90M0l2NTFQcFdSdHlGNzIzbHVLZw?oc=5",
+     "date": "2026-11-17",
+     "score": 10.0,
      "source": "VietnamBiz"
     }
    ],
-   "n_news": 7,
-   "n_moves": 0,
-   "rank": 2.1,
+   "n_news": 8,
+   "n_moves": 1,
+   "rank": 5.28,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -94,18 +109,18 @@
      "url": "mat-hang.html?id=lme_tin"
     },
     {
-     "id": "lme_zinc",
-     "name": "Kẽm LME",
+     "id": "te_polyethylene",
+     "name": "Polyethylene (PE, DCE LLDPE)",
      "region": "",
-     "d1": 2.75,
-     "date": "2026-11-16",
-     "prev_date": "2026-11-13",
-     "price": 3848.0,
-     "unit": "USD/tấn",
+     "d1": -2.8,
+     "date": "2026-11-17",
+     "prev_date": "2026-11-16",
+     "price": 8221.0,
+     "unit": "CNY/tấn",
      "kind": "world",
      "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_zinc"
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_polyethylene"
     }
    ],
    "news": [
@@ -117,23 +132,23 @@
      "source": "Báo VietNamNet"
     },
     {
+     "title": "Daily round-up: LME base metals decline; copper leads losses, domestic aluminium scrap prices remain stable",
+     "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPakdTMzVBOHB4WW1tZTcwOVFkUjBrVHFKS0tERmtHcmVBNDJib3JBZjFGNU5RN1FhbnQwX2p3aHd4R3ZNNVQtQnJycjBOOEd3VGl3cmUxQURtQnkyY3dNa1ZDVUhuQll4Y0g4MkNaak05eVdCZkg2SmRVRlhXamVCa0h1MDNrYmViT2M1OVA2R1dCblVFMWpFVTMxYVFkUVVrMmtXYmNkOEYySFU3R1VsVmxWRlV2Z2tKd3pnUUZFcldRQWtSLVkyVEZKNFRHWDZheFJHZjNraEZmOVR5UUhXVk0xZGI?oc=5",
+     "date": "2026-11-17",
+     "score": 11.0,
+     "source": "BigMint"
+    },
+    {
      "title": "Taihan Cable trúng thầu dự án lưới điện 203 triệu USD tại Singapore",
      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPR3AyUGgxZ0ZDZG94OHBtTHROY09uYldRWE04emxCUFFIdFBrQjI1bG9WS0g1NXBabGk1cXUtLTdPSmdnemppX1JWcTBaZmxkbGw1bUU2UTRLd1oxbGtBalJ5LThzT2xqdlJ0OHkxS0c1c1VwU1FzOUJiWV9pUFA1Y01pT2ktNjJoSnhEUkx1S0JOUTBRNWVKbDhFYWc?oc=5",
      "date": "2026-11-16",
      "score": 9.7,
      "source": "Bnews.vn"
-    },
-    {
-     "title": "Giải cứu 9 cô gái mắc kẹt trong thang máy ở TP.HCM",
-     "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNT0FGRmNPRjBBRzdrOHNWQjBJX3l4ZVhMd1lwVG5iVlh5VFIza0pRNHRCWkFOM3pLXzlIbmFPajlJbWpiZ1V4YTdXdUMzekpiYmR0UWlRTXNmY2pOR2M3UXFWYjlfLU1NcXlfVjlweUZiN1Y2MFM3Tl9OMllyX19mVTVtSG53T1NoT0kweUJfUk95bUE?oc=5",
-     "date": "2026-11-16",
-     "score": 9.7,
-     "source": "CafeF"
     }
    ],
-   "n_news": 11,
-   "n_moves": 3,
-   "rank": 8.71,
+   "n_news": 14,
+   "n_moves": 5,
+   "rank": 8.73,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -143,6 +158,13 @@
    "prices": [],
    "news": [
     {
+     "title": "Chủ tịch Hà Nội: Không sử dụng đất lúa trái quy định để làm sân golf",
+     "url": "https://cafef.vn/chu-tich-ha-noi-khong-su-dung-dat-lua-trai-quy-dinh-de-lam-san-golf-188261117153152788.chn",
+     "date": "2026-11-17",
+     "score": 7.0,
+     "source": "CafeF Bất động sản"
+    },
+    {
      "title": "VIGLACERA THAM GIA CHUỖI SỰ KIỆN KHOA HỌC CÔNG NGHỆ - ĐỔI MỚI SÁNG TẠO & CHUYỂN ĐỔI SỐ NGÀNH XÂY DỰNG",
      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNOUtJUGptV0dQRmM1NU51eUxkTGtadFB6dV9FaUFxeENWc1pMc2xzcUVkYjVZSjA3emVQVGNzeVM4eUdFUlJCYjByODczYkVWeUJaLTlZNlp4UVV4RUk4VU9fdWw1dHVpc3AyZnVfOG44aktsamIzbElqMFBic1hUdXYxNi05QjBQY1gxNmhHY0lhclBRMldrTlI2NHNrOG4ycWloWDVNZkF5cEhGQW9kcUZ1U014Y1lhQVlPMw?oc=5",
      "date": "2026-11-16",
@@ -150,9 +172,9 @@
      "source": "Vietnam.vn"
     }
    ],
-   "n_news": 1,
+   "n_news": 2,
    "n_moves": 0,
-   "rank": 0.3,
+   "rank": 0.6,
    "link": "danh-muc.html?c=ht"
   },
   {
@@ -201,32 +223,32 @@
    "name": "ESG & công trình xanh",
    "icon": "♻️",
    "prices": [],
-   "news": [],
-   "n_news": 0,
+   "news": [
+    {
+     "title": "Generating investment incentives from the carbon market.",
+     "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE85bHdjdFJwLUJMWHlpUzR1cXhCbUF4MDIwN2lGajZQWFpBYzNLRG1kdG8wbHI4UHRFVldYSDhKV2dlU25tSm1FejNHTXFLQkN0c0k1TDgtMHY1ekVYZlIxVkUzaVdBejlwaFIyZHZDVG9LQVFY?oc=5",
+     "date": "2026-11-17",
+     "score": 4.0,
+     "source": "Vietnam.vn"
+    },
+    {
+     "title": "Why has Vietnam's carbon market failed to thrive?",
+     "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOaFEtcWp6NWtnZ3dPVmwwbTljRVZlcmdhQXhqSG1iaFVBQTFsNUFxaE5Rb25vSGhFQnZqd0VDanI5cWUxcDJBcGkwbkRhVzVxamxIMkRXOUdzM2toMlpKb3hyUU83STBVUDNERGdJUGNLWW50dGhFalo4dmxGd0s5R3dMRQ?oc=5",
+     "date": "2026-11-16",
+     "score": 3.7,
+     "source": "Vietnam.vn"
+    }
+   ],
+   "n_news": 2,
    "n_moves": 0,
-   "rank": 0.0,
+   "rank": 0.6,
    "link": "danh-muc.html?c=esg"
   },
   {
    "id": "tt",
    "name": "Vĩ mô & thương mại",
    "icon": "🌏",
-   "prices": [
-    {
-     "id": "yf_silver",
-     "name": "Bạc (COMEX Silver)",
-     "region": "",
-     "d1": -2.03,
-     "date": "2026-11-16",
-     "prev_date": "2026-11-15",
-     "price": 46.78499984741211,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=yf_silver"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Vinhomes được Hà Nội chấp thuận chủ trương đầu tư KĐT đa mục tiêu Bình Minh – Tam Hưng: ~598,2 ha, tổng vốn ~111.137 tỷ đồng, khởi công quý IV/2026, hoàn thành quý IV/2030",
@@ -236,23 +258,23 @@
      "source": "CafeF – Vinhomes làm siêu dự án đa mục tiêu 600ha gần sân vận động 135.000 chỗ, 16/11/2026"
     },
     {
+     "title": "EU áp thuế chống bán phá giá 16% với thép cán nguội Việt Nam",
+     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNM2tCbUc4YmJ6MWhTbmdYYkVNOS1rMlBvSUFFbkRmdHZDODJnemtNeEFzckw3bmZFRkRXMC16UldhNlpzU21QMHl5N1BtbDM1RzUtVVF0MWdPVndGb1h6VTlQWEMxUEg5RDZTRUs2WWRNb1pvZGJySkVwWDVmczVMdjZtS0Y3c09EdE1NRUJmZVRfcE1sY1YwN0t6NmNsbk1jb1pmQQ?oc=5",
+     "date": "2026-11-17",
+     "score": 11.0,
+     "source": "Vietnam+ (VietnamPlus)"
+    },
+    {
      "title": "Tuyên Quang siết chặt quản lý, nâng cao chất lượng công bố giá vật liệu xây dựng và bình ổn nguồn cung",
      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPd2ZfSzRkQUZYWjVmTHpnZzhrWlc4UTNObkE2blBoSzNNWjJpbnVpaDNra1JSWXUyLWFuWkpsRmh6TTlEaXpiRW85Vkp5cDg4RW5ZZmdmRWNZQjZQMFRxRFZ0TzAzUGJ3NktLcDNEQUdwQ2RMUE84dHlIbDVyVzkwR0pWNEVXbHR4QktDVVgzVVlMTmMzd0NjanFiYUhQMTZQYWVBYnBET1dSczJadGpXNFMyMC1LSFhTXzZ3NlJ1V09JOFlleG9LVUFUMTB4RDVuVUtFQTN3cVdIVXQ4djB6dlln?oc=5",
      "date": "2026-11-17",
      "score": 10.0,
      "source": "Thuonghieucongluan.com.vn"
-    },
-    {
-     "title": "NHNN bơm ròng 5.262 tỷ đồng phiên 16/11 qua kênh cầm cố, trúng thầu 100% ở 4,5%/năm; lãi suất liên ngân hàng qua đêm ~5,6% (chốt 13/11)",
-     "url": "thi-truong.html#453ddf9a6297",
-     "date": "2026-11-16",
-     "score": 10,
-     "source": "Người Quan Sát – Phiên 16/11: NHNN bơm ròng 5.262 tỷ đồng, lãi suất neo mức 5,6%"
     }
    ],
-   "n_news": 14,
-   "n_moves": 1,
-   "rank": 4.01,
+   "n_news": 22,
+   "n_moves": 0,
+   "rank": 3.0,
    "link": "danh-muc.html?c=tt"
   }
  ]
