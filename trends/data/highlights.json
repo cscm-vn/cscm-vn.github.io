@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "built": "2026-11-18T20:50+07:00",
- "today": "2026-11-18",
- "news_since": "2026-11-17",
+ "built": "2026-11-19T06:41+07:00",
+ "today": "2026-11-19",
+ "news_since": "2026-11-18",
  "thresholds": {
   "world": {
    "abs_pct": 2.0,
@@ -23,56 +23,41 @@
  },
  "top": [
   "mep",
-  "xd",
-  "tt"
+  "tt",
+  "xd"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "yf_hrc",
-     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
-     "region": "",
-     "d1": 2.06,
-     "date": "2026-11-18",
-     "prev_date": "2026-11-17",
-     "price": 1434.0,
-     "unit": "USD/short ton",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=yf_hrc"
-    }
-   ],
+   "prices": [],
    "news": [
-    {
-     "title": "EU áp thuế chống bán phá giá thép cuộn cán nguội từ Ấn Độ, Nhật Bản, Đài Loan, Thổ Nhĩ Kỳ và Việt Nam",
-     "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOU09PMmpkVUtZWkpsa1dGQVJvdE5OWEMxNFVVZi1oWGh1VUFNTnhQRVZuV0hhQi1ReEdqX1NSNEpJME5HY1UzZVg4dWNGOC10VWpSVk1adEFOQVcxTnE0dTdzTTRNdWpIVmRTblBzd1lVcmpWY2J4VlhKbWx1VmJ6czdSRXJtVzVqZjh1R19BaG41MlJ3V0tXalJZVnhpd0R0ME1CTkZJSXZUZWxJR194UndiU0dzVU40RlBOSWNmTmd6aTFhSHNObklFVzJfbEw4elZTU1ptQmxuS3QyVTllTUc0WQ?oc=5",
-     "date": "2026-11-17",
-     "score": 13.7,
-     "source": "Vinanet"
-    },
-    {
-     "title": "Giá vật liệu xây dựng không giảm theo xăng dầu: thép phi 10 cao hơn ~1 triệu đ/tấn so với cuối 2025, cát đá mỏ Thanh Hóa +30.000–50.000 đ/m³ từ đầu 2026",
-     "url": "thi-truong.html#668e0a32a4ef",
-     "date": "2026-11-17",
-     "score": 13,
-     "source": "Tiền Phong – Giá xăng liên tục giảm, giá vật liệu xây dựng vẫn neo cao, 17/11/2026"
-    },
     {
      "title": "Giá thép hôm nay 18/11/2026: Thép thanh thủng mốc 3.000 NDT, quặng sắt giảm 5 phiên liên tiếp",
      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNNTJjb0xwN0VnQ0VYaDhvY3duYnpFbmhLak0xb0ZUZTlhUUxyLWF3cEk0ZkxmN0ZsQzFsNVM5Q05zM2liTWxENU9rMTlWTk9ZYlRhaThIUDhqUkFxTGFwNGVLYVRYelRWWFpTS0pwWGtIeE52UFJRaUhHM0VlWkRVUHZMSGk3UDR1MEM3NkF1TWpNR1YxQ2hoUVdaQ2JKWHZFZ3pXSmJ0Mk5OX195eTlSUE0xdzc5Nmx5YnZQMjJESjBFOGNqeFd4LWJR?oc=5",
      "date": "2026-11-18",
-     "score": 10.0,
+     "score": 9.7,
      "source": "Tạp chí Doanh nghiệp và Hội nhập"
+    },
+    {
+     "title": "Giá thép hôm nay 18/11: Quặng sắt giảm phiên thứ 5 liên tiếp",
+     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPYXZTbFZLeE9iSDFzV3FzTThHWW8tMWNmdTVuRzUxeEh6RVBSWGdVSEx1dmdvVmxGczdoX3lGS044X2V5Qy1haVZIYWRQblNjdm40Mm16ZU1jRjM5TDJ1TXFQdjY2c1JxUFItVnVzaG1HZjA1NThyUFZJX2NqUnNlN2NLMkpCX0tINWIwTDVMNDRlRS1HRWZDdmthVFNXUHhQTzkwVw?oc=5",
+     "date": "2026-11-18",
+     "score": 9.7,
+     "source": "VietnamBiz"
+    },
+    {
+     "title": "Giá quặng sắt về vùng thấp nhất 2 năm, Hòa Phát (HPG) vẫn chịu sức ép từ một nguyên liệu chủ chốt",
+     "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQMDkyWDAwcGh1UlYxOXV1UFhtQ1l4d2RGdWx2X2RFd0dzOFBrdEotejRQNHNpenNrWFlETExWSFI2RWdsX2QxeUhIZGo2UEExTTRrVnY2NThacUI3VnhWOU9DQTJmbTF2cG43c2piMHlSbVI4dEJuN0p4UHl6Z0RfM0l6SVFSQ1FzZGJsM3l6UjczZEZJU2FSMFV0cUJ2ZWc4X2RENW84Rkt4VzR5dkNBdmFiamc2WVlaQlNLVE1VWQ?oc=5",
+     "date": "2026-11-18",
+     "score": 8.7,
+     "source": "Tạp chí Kinh tế chứng khoán Việt Nam"
     }
    ],
-   "n_news": 10,
-   "n_moves": 1,
-   "rank": 4.03,
+   "n_news": 4,
+   "n_moves": 0,
+   "rank": 1.2,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -95,27 +80,13 @@
      "url": "mat-hang.html?id=lme_aluminium"
     },
     {
-     "id": "te_pvc",
-     "name": "PVC (Polyvinyl chloride, DCE)",
-     "region": "",
-     "d1": -3.28,
-     "date": "2026-11-18",
-     "prev_date": "2026-11-17",
-     "price": 4871.0,
-     "unit": "CNY/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.ong-nuoc",
-     "url": "mat-hang.html?id=te_pvc"
-    },
-    {
      "id": "yf_copper",
      "name": "Đồng (COMEX Copper HG)",
      "region": "",
-     "d1": -3.18,
+     "d1": -3.53,
      "date": "2026-11-18",
      "prev_date": "2026-11-17",
-     "price": 5.703999996185303,
+     "price": 5.683499813079834,
      "unit": "USD/lb",
      "kind": "world",
      "threshold": 2.0,
@@ -125,30 +96,30 @@
    ],
    "news": [
     {
-     "title": "Đồng LME xuống 13.144 USD/tấn (17/11) – thấp nhất từ 1/7; nhôm 2.967 USD, chênh lệch giao ngay–3 tháng 278 USD/tấn cao nhất từ 1988",
-     "url": "thi-truong.html#3367d4816de3",
-     "date": "2026-11-17",
-     "score": 13,
-     "source": "Business Recorder – Copper falls to lowest since July as tech weakness saps risk appetite, 17/11/2026"
-    },
-    {
      "title": "NDMC approves five park cafes, smart toilets; clears Rs 106 cr for drain cleaning",
      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNYkpqNFlMTXZnZmNCLXZIaUh2bEFxaW5faW9KaFh5NGp0OV9HNmVjR3Zvcks5RG1nZ0trUXUtenQ4X3NJcWZWZ2ZFTWZ3NDhGN0YzN1BBYkQ0aGRyYnBiSnVoVjJMZS1fRzljZUJyOVpWSFR0c1J0MlJVQmYxMnRCSk5jU3ozYnpCa3FtQk5YTVZjckY1cUtFVVd5QWZ1MWxtcWpiSFFyZU0zTEFRbmQ4Sno3TVZiT2R1S2tvSdIBvAFBVV95cUxNYkpqNFlMTXZnZmNCLXZIaUh2bEFxaW5faW9KaFh5NGp0OV9HNmVjR3Zvcks5RG1nZ0trUXUtenQ4X3NJcWZWZ2ZFTWZ3NDhGN0YzN1BBYkQ0aGRyYnBiSnVoVjJMZS1fRzljZUJyOVpWSFR0c1J0MlJVQmYxMnRCSk5jU3ozYnpCa3FtQk5YTVZjckY1cUtFVVd5QWZ1MWxtcWpiSFFyZU0zTEFRbmQ4Sno3TVZiT2R1S2tvSQ?oc=5",
      "date": "2026-11-18",
-     "score": 11.0,
+     "score": 10.7,
      "source": "The Tribune"
     },
     {
-     "title": "Daily round-up: LME base metals decline; copper leads losses, domestic aluminium scrap prices remain stable",
-     "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPakdTMzVBOHB4WW1tZTcwOVFkUjBrVHFKS0tERmtHcmVBNDJib3JBZjFGNU5RN1FhbnQwX2p3aHd4R3ZNNVQtQnJycjBOOEd3VGl3cmUxQURtQnkyY3dNa1ZDVUhuQll4Y0g4MkNaak05eVdCZkg2SmRVRlhXamVCa0h1MDNrYmViT2M1OVA2R1dCblVFMWpFVTMxYVFkUVVrMmtXYmNkOEYySFU3R1VsVmxWRlV2Z2tKd3pnUUZFcldRQWtSLVkyVEZKNFRHWDZheFJHZjNraEZmOVR5UUhXVk0xZGI?oc=5",
-     "date": "2026-11-17",
-     "score": 10.7,
-     "source": "BigMint"
+     "title": "Tăng tốc thi công dự án hồ điều hòa Cự Khối",
+     "url": "https://cafef.vn/tang-toc-thi-cong-du-an-ho-dieu-hoa-cu-khoi-188261118133330802.chn",
+     "date": "2026-11-18",
+     "score": 8.7,
+     "source": "CafeF Bất động sản"
+    },
+    {
+     "title": "Copper falls to near five-month low as firm dollar, AI concerns weigh",
+     "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOZXJJN29vY2J3RDJsODl5ZTF0WUpyamNMZ29BaUdqRUgxT0tyS2hFWDRkRjRZejBIYzVJZDdKSGZSX2x4ZVpMTEQzZ2VDcURBWUd0U0RaNEVBTDhmNjBBd2U2eVpPYjcwbzgtc0RXcUp2b1IzWVF0T2VSYnZ0MUFoLVhEY0RqNmRLdk90cGtBNkNBX0hWMTRtYnoxSGprNnp3QXRpQWpRd3BTaThZeE1iTWFiNzhxOEtEbHZIaC1vZXd0ODNGUXpLbWVCTWprcDJnUTlQLUUtRjFNd9IB3wFBVV95cUxOWUxaOUlyRmNfenhEcWVQYkx4TDhHX1lBT0Y2V0EtMnRJYzhlMW9CVDdUa1FIdUkxQzZ1eGMxRTZNUWRVcW9fSzVFNm9wUUxlOXJGdWc3bmpyRC1fd0R0MzViakM3ZE92UFNhaEJsT3ViLU1ScWpzYV9xNmlpNC1xeUp4N0liU05YRGdyVU4xZTJYMGxHcWozbEc4cjltOEZ3WWtHNnhGTW9BcWZJSzlTMXVPdG90T0c1R1h1X1llQW1DMlB3bU8yX2dZMWtrOGk5TGJBWEpoeDV5Z0VzM2Zr?oc=5",
+     "date": "2026-11-18",
+     "score": 6.7,
+     "source": "Business Standard"
     }
    ],
-   "n_news": 17,
-   "n_moves": 3,
-   "rank": 10.3,
+   "n_news": 10,
+   "n_moves": 2,
+   "rank": 8.84,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -156,18 +127,10 @@
    "name": "Hoàn thiện",
    "icon": "🛁",
    "prices": [],
-   "news": [
-    {
-     "title": "Chủ tịch Hà Nội: Không sử dụng đất lúa trái quy định để làm sân golf",
-     "url": "https://cafef.vn/chu-tich-ha-noi-khong-su-dung-dat-lua-trai-quy-dinh-de-lam-san-golf-188261117153152788.chn",
-     "date": "2026-11-17",
-     "score": 6.7,
-     "source": "CafeF Bất động sản"
-    }
-   ],
-   "n_news": 1,
+   "news": [],
+   "n_news": 0,
    "n_moves": 0,
-   "rank": 0.3,
+   "rank": 0.0,
    "link": "danh-muc.html?c=ht"
   },
   {
@@ -213,20 +176,13 @@
      "title": "Will the Paris Agreement's carbon market generate high-quality carbon credits?",
      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQcnI5NG11UzFLMDNKaEZfbGZVUnVveFo3V294eTMxNGlReW81NEdkN25jdl94YWhHWTlpT2QtNFRpZU8wbTJMa3o3dHBzMmVPeVBWNlJwNW96RzdOd2lvd0tuWmNaWDFBSE41WFV1RHYzd0tkMThYTXp4TmJDTFFZZ1poTXdneGpYWlBnY081STBFU091WnFWblBuWlVueU0?oc=5",
      "date": "2026-11-18",
-     "score": 4.0,
-     "source": "Vietnam.vn"
-    },
-    {
-     "title": "Generating investment incentives from the carbon market.",
-     "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE85bHdjdFJwLUJMWHlpUzR1cXhCbUF4MDIwN2lGajZQWFpBYzNLRG1kdG8wbHI4UHRFVldYSDhKV2dlU25tSm1FejNHTXFLQkN0c0k1TDgtMHY1ekVYZlIxVkUzaVdBejlwaFIyZHZDVG9LQVFY?oc=5",
-     "date": "2026-11-17",
      "score": 3.7,
      "source": "Vietnam.vn"
     }
    ],
-   "n_news": 2,
+   "n_news": 1,
    "n_moves": 0,
-   "rank": 0.6,
+   "rank": 0.3,
    "link": "danh-muc.html?c=esg"
   },
   {
@@ -236,28 +192,28 @@
    "prices": [],
    "news": [
     {
-     "title": "EU chính thức áp thuế chống bán phá giá 16% với thép cán nguội Việt Nam (hiệu lực 17/11/2026); Ấn Độ 9,5%, Nhật 27,9%, Đài Loan 20,7–27%, Thổ Nhĩ Kỳ 3–7,8%",
-     "url": "thi-truong.html#0aed3e6d0300",
-     "date": "2026-11-17",
-     "score": 13,
-     "source": "Vietnam+ – EU áp thuế chống bán phá giá 16% với thép cán nguội Việt Nam, 17/11/2026"
+     "title": "Ukraine khởi xướng điều tra chống lẩn tránh biện pháp chống bán phá giá đối với mặt hàng dây thép của Việt Nam",
+     "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOcERhWHM0NXdSYWd2ay1GdmNiZ3g4cW1ON3o3UTlKN0QxSnZXUUJibEZ5SmtoUUFydTF5bkRxTmJ3ZTNiSVIxVHhCZjlkOVFsRkV6X1hmeW10SWk1ZkVmb2QzX25EOTdRcHFPLWY4WEs2cmUzbTZaNHljUnRZNUFvZkJzc0RYakxzeHVJQ2c1SlZlWVRHajE1MWp6Y0xyY2JPQUtMYWVhTFIyTzJFRDR3a1hIZlFSOFZvSDkyaHk0TmpPY014blZPWTVMdXYxOXlvVWltRzlFNm56QlU?oc=5",
+     "date": "2026-11-18",
+     "score": 8.7,
+     "source": "moit.gov.vn"
     },
     {
      "title": "Thép cán nguội Việt Nam vào EU đối mặt thuế chống bán phá giá 16%",
-     "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOOU4xZ25USTZGMzlsNHlBQlcxZFEyemZ3UXQzbnpIRGFFQUxUZkkxNXVZRS1oY2p1Q0d5QU12dGZqZ0NHNWc0NnZNbWY5WmVndVlOVW1saVFMYjBUMXNtWnZJakNwZGtfU3FnUmpaOU1VdmJHSkV4YzM5V0JEdExXaW9mM1dWcHQyN2p2clEwQzU?oc=5",
+     "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSDY3OGE0VEFfTEMydDlIcW9yVVlGVFNQQmtoOURkcG1fZWxoeGZiSVZCRjUtRXBGY1BSSE4zOXBkV21iYVFzSkhwTGNjNk9kVTZyUmNzWTloQkl5Ry1PSlBBMm1xUGlCdFE4enZ3V25ONlQ1N2RsRms0UlliSGxaOHBOQjc0S1M3dTU0ZHZRLUFpR291VFpHLVI4V3FGMGplMlZRbGw1c28?oc=5",
      "date": "2026-11-18",
-     "score": 11.0,
-     "source": "Vietnam.vn"
+     "score": 8.7,
+     "source": "Báo Gia Lai điện tử"
     },
     {
-     "title": "EU áp thuế chống bán phá giá 16% với thép cán nguội Việt Nam",
-     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNM2tCbUc4YmJ6MWhTbmdYYkVNOS1rMlBvSUFFbkRmdHZDODJnemtNeEFzckw3bmZFRkRXMC16UldhNlpzU21QMHl5N1BtbDM1RzUtVVF0MWdPVndGb1h6VTlQWEMxUEg5RDZTRUs2WWRNb1pvZGJySkVwWDVmczVMdjZtS0Y3c09EdE1NRUJmZVRfcE1sY1YwN0t6NmNsbk1jb1pmQQ?oc=5",
-     "date": "2026-11-17",
-     "score": 10.7,
-     "source": "Vietnam+ (VietnamPlus)"
+     "title": "Ukraine khởi xướng điều tra chống lẩn tránh thuế đối với dây thép từ Việt Nam",
+     "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQTmVFVjVBSUp4a3ZZZWhCY1RoREEzbWFoNWtxWXZrLWlhdzJ3cGVORXJfMWFJb1N3bHpkcnBoeUhOZDhkTDFGYTFXRGZxQklIX1ZTVjNfSUlfTU5rVDB1YW9ZTWxySktGeXh5UWFpTUJvLTBLNy1ybmlLUTN0MlJhUjNfZlRpaWo0N0U1emtKcWoyQU1ySEpFTFNxQW82OG01RG1qaw?oc=5",
+     "date": "2026-11-19",
+     "score": 8,
+     "source": "VnEconomy"
     }
    ],
-   "n_news": 23,
+   "n_news": 11,
    "n_moves": 0,
    "rank": 3.0,
    "link": "danh-muc.html?c=tt"
