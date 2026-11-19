@@ -1,6 +1,6 @@
 {
 "schema_version": 1,
-"updated": "2026-11-19T14:28+07:00",
+"updated": "2026-11-19T21:18+07:00",
 "window_days": 30,
 "topics": {
 "dat-dai": "Đất đai",
@@ -26,7 +26,7 @@
 },
 {
 "id": "6347b97cdf1f",
-"same": 52
+"same": 53
 },
 {
 "id": "1bc1e1757798",
@@ -34,7 +34,7 @@
 },
 {
 "id": "e44ede3ae757",
-"same": 44
+"same": 43
 },
 {
 "id": "a12bfc8a1c6f",
@@ -52,7 +52,7 @@
 },
 "theme:dat-dai:2": {
 "label": "Giá đất & tiền sử dụng đất",
-"n": 53
+"n": 54
 },
 "theme:dia-gioi:17": {
 "label": "Sáp nhập, sắp xếp & đổi tên đơn vị hành chính",
@@ -60,11 +60,11 @@
 },
 "law:luat-dat-dai": {
 "label": "Luật Đất đai",
-"n": 45
+"n": 44
 },
 "theme:dat-dai:3": {
 "label": "Quyền sử dụng đất & giao đất",
-"n": 33
+"n": 34
 },
 "doc:ngh-quy-t-254-2025": {
 "label": "Nghị quyết 254/2025",
@@ -88,7 +88,7 @@
 },
 "theme:nha-o:10": {
 "label": "Nhà ở xã hội",
-"n": 12
+"n": 13
 },
 "theme:kd-bds:5": {
 "label": "Kinh doanh BĐS (mở bán, chuyển nhượng)",
@@ -118,6 +118,14 @@
 "label": "Đấu thầu & lựa chọn nhà thầu/nhà đầu tư",
 "n": 4
 },
+"theme:dia-gioi:15": {
+"label": "Nâng tỉnh lên thành phố trực thuộc TW",
+"n": 1
+},
+"theme:khoang-san:8": {
+"label": "Khoáng sản & VLXD (cát, đá, đất)",
+"n": 25
+},
 "theme:xay-dung:14": {
 "label": "Chi phí & HĐ xây dựng",
 "n": 1
@@ -130,21 +138,13 @@
 "label": "Nghị quyết 57/2026/NQ-HDND",
 "n": 1
 },
-"theme:dia-gioi:15": {
-"label": "Nâng tỉnh lên thành phố trực thuộc TW",
-"n": 1
-},
-"theme:khoang-san:8": {
-"label": "Khoáng sản & VLXD (cát, đá, đất)",
-"n": 24
-},
 "doc:ngh-quy-t-87-2025-nq-hdnd": {
 "label": "Nghị quyết 87/2025/NQ-HDND",
 "n": 1
 },
 "theme:pccc:7": {
 "label": "Phòng cháy chữa cháy",
-"n": 8
+"n": 7
 },
 "doc:ngh-quy-t-96-2026-nq-hdnd": {
 "label": "Nghị quyết 96/2026/NQ-HDND",
@@ -153,10 +153,6 @@
 "doc:th-ng-t-81-2026-tt-bxd": {
 "label": "Thông tư 81/2026/TT-BXD",
 "n": 2
-},
-"law:luat-dau-tu-cong": {
-"label": "Luật Đầu tư công",
-"n": 3
 },
 "doc:ngh-nh-339-2026-n-cp": {
 "label": "Nghị định 339/2026/NĐ-CP",
@@ -169,6 +165,10 @@
 "doc:ngh-quy-t-28-2026-nq-hdnd": {
 "label": "Nghị quyết 28/2026/NQ-HDND",
 "n": 1
+},
+"law:luat-dau-tu-cong": {
+"label": "Luật Đầu tư công",
+"n": 3
 },
 "theme:xay-dung:6": {
 "label": "Cấp phép & thẩm định xây dựng",
@@ -192,11 +192,7 @@
 },
 "topic:kd-bds": {
 "label": "Kinh doanh BĐS",
-"n": 5
-},
-"topic:xay-dung": {
-"label": "Xây dựng",
-"n": 9
+"n": 6
 },
 "theme:xay-dung:13": {
 "label": "Quy hoạch",
@@ -206,13 +202,13 @@
 "label": "Thông tư 89/2026",
 "n": 1
 },
-"theme:thue:9": {
-"label": "Thuế & phí BĐS",
+"topic:xay-dung": {
+"label": "Xây dựng",
 "n": 7
 },
-"doc:th-ng-t-80-2026-tt-bxd": {
-"label": "Thông tư 80/2026/TT-BXD",
-"n": 3
+"theme:thue:9": {
+"label": "Thuế & phí BĐS",
+"n": 6
 },
 "doc:ngh-quy-t-171-2024-qh15": {
 "label": "Nghị quyết 171/2024/QH15",
@@ -229,6 +225,10 @@
 "doc:ngh-nh-377-2026-n-cp": {
 "label": "Nghị định 377/2026/NĐ-CP",
 "n": 1
+},
+"doc:th-ng-t-80-2026-tt-bxd": {
+"label": "Thông tư 80/2026/TT-BXD",
+"n": 3
 },
 "doc:ngh-quy-t-70-2026-nq-hdnd": {
 "label": "Nghị quyết 70/2026/NQ-HDND",
@@ -269,36 +269,40 @@
 },
 "home_rule": "Trang chủ: tối đa 1 tin/cụm văn bản và 1 tin/chủ đề con, 2 tin/chủ đề chính, điểm ≥ 40 (thiếu thì bù tới 5).",
 "sources": {
-"Google News: nghị định Luật Đất đai when:14d": 14,
+"Google News: nghị định Luật Đất đai when:14d": 12,
 "Google News: bảng giá đất Hà Nội TP.HCM when:14d": 9,
-"Google News: thông tư Bộ Xây dựng mới when:14d": 6,
-"Google News: Luật Xây dựng 2025 nghị định hướng dẫn when:14d": 6,
-"Google News: Luật Nhà ở chung cư nghị định when:14d": 8,
+"Google News: thông tư Bộ Xây dựng mới when:14d": 5,
+"Google News: Luật Xây dựng 2025 nghị định hướng dẫn when:14d": 4,
+"Google News: Luật Nhà ở chung cư nghị định when:14d": 9,
+"Google News: thời hạn sở hữu chung cư when:30d": 7,
 "Google News: Luật Kinh doanh bất động sản nghị định when:14d": 11,
-"Google News: giấy phép xây dựng quy định mới when:14d": 4,
-"Google News: phòng cháy chữa cháy chung cư quy định when:14d": 1,
+"Google News: nhà ở xã hội quy định chủ đầu tư when:14d": 4,
+"Google News: giấy phép xây dựng quy định mới when:14d": 3,
+"Google News: phòng cháy chữa cháy chung cư quy định when:14d": 4,
 "Google News: Luật Địa chất và Khoáng sản nghị định when:14d": 10,
-"Google News: khai thác cát sỏi vật liệu xây dựng quy định when:14d": 2,
-"Google News: mỏ đá mỏ đất san lấp cấp phép when:14d": 4,
+"Google News: khai thác cát sỏi vật liệu xây dựng quy định when:14d": 3,
+"Google News: mỏ đá mỏ đất san lấp cấp phép when:14d": 5,
 "Google News: thuế chuyển nhượng bất động sản dự thảo when:14d": 9,
-"Google News: dự thảo nghị định bất động sản lấy ý kiến when:14d": 10,
+"Google News: dự thảo nghị định bất động sản lấy ý kiến when:14d": 8,
 "Google News: Masterise Homes when:30d": 0,
-"Google News: sắp xếp đơn vị hành chính cấp xã thành lập phường when:30d": 2,
-"Google News: đổi tên địa danh hành chính cập nhật giấy tờ địa chỉ when:30d": 4,
+"Google News: thành lập thành phố trực thuộc trung ương nghị quyết Quốc hội when:30d": 0,
+"Google News: sáp nhập đổi tên tỉnh thành phố đơn vị hành chính when:30d": 0,
+"Google News: sắp xếp đơn vị hành chính cấp xã thành lập phường when:30d": 1,
+"Google News: đổi tên địa danh hành chính cập nhật giấy tờ địa chỉ when:30d": 2,
 "Google News: Luật Đầu tư theo phương thức đối tác công tư nghị định hướng dẫn when:30d": 10,
 "Google News: hợp đồng BT thanh toán bằng quỹ đất nghị định when:30d": 6,
-"Google News: nghị định PPP sửa đổi hợp đồng BOT BT when:30d": 4,
+"Google News: nghị định PPP sửa đổi hợp đồng BOT BT when:30d": 5,
 "Google News: quyết toán thanh toán dự án BT vướng mắc cơ chế when:30d": 7,
 "Google News: Luật Đầu tư công nghị định hướng dẫn when:30d": 4,
 "Google News: giải ngân vốn đầu tư công Thủ tướng công điện nghị định when:30d": 0,
-"Google News: Luật Đấu thầu nghị định lựa chọn nhà thầu when:30d": 18,
+"Google News: Luật Đấu thầu nghị định lựa chọn nhà thầu when:30d": 19,
 "Google News: lựa chọn nhà đầu tư PPP đấu thầu qua mạng when:30d": 3,
-"Google News: dự án PPP cao tốc đường sắt cơ chế chính sách mới when:30d": 2,
+"Google News: dự án PPP cao tốc đường sắt cơ chế chính sách mới when:30d": 1,
 "Google News: site:chinhphu.vn bất động sản OR đất đai OR xây dựng when:14d": 6,
-"Google News: site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d": 25,
-"Google News: site:moc.gov.vn when:30d": 10,
+"Google News: site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d": 31,
+"Google News: site:moc.gov.vn when:30d": 8,
 "Google News: site:xaydung.gov.vn when:30d": 0,
-"Google News: site:cafeland.vn chính sách when:14d": 8,
+"Google News: site:cafeland.vn chính sách when:14d": 6,
 "Google News: site:baochinhphu.vn nhà ở OR đất đai when:14d": 4,
 "Chinhphu.vn – Chính sách mới": 2,
 "Báo Chính phủ – Chính sách mới": 5,
@@ -307,12 +311,7 @@
 "Báo Chính phủ – Kinh tế (lọc BT/PPP/ĐTC)": 0,
 "Chinhphu.vn – Đầu tư & kinh doanh (lọc BT/PPP/ĐTC)": 0
 },
-"errors": [
-"Google News: thời hạn sở hữu chung cư when:30d: HTTPError",
-"Google News: nhà ở xã hội quy định chủ đầu tư when:14d: HTTPError",
-"Google News: thành lập thành phố trực thuộc trung ương nghị quyết Quốc hội when:30d: HTTPError",
-"Google News: sáp nhập đổi tên tỉnh thành phố đơn vị hành chính when:30d: HTTPError"
-],
+"errors": [],
 "count": 400,
 "items": [
 {
@@ -378,12 +377,12 @@
 ],
 "published": "2026-11-17T10:50+07:00",
 "found": "2026-11-17T21:18+07:00",
-"score": 65,
+"score": 64,
 "why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · dự thảo đang lấy ý kiến, thay đổi quy định",
 "parts": {
 "rel": 22,
 "dyn": 24,
-"rec": 19
+"rec": 18
 },
 "theme": "dat-dai:2",
 "cluster": "theme:dat-dai:2",
@@ -610,52 +609,6 @@
 "cluster_label": "Nghị quyết 254/2025"
 },
 {
-"id": "6e4d5bcc3ab5",
-"title": "HĐND cấp tỉnh sẽ ban hành, sửa đổi bảng giá đất, hệ số điều chỉnh",
-"url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQUGVrZDZLRWR5ZHRHbzBwSmEtMmpTWGJFcjRtaTVrTHBaODdjMy1kdFpzTEFwdllfbk5hUEQxbEFaaEJndm91Q2JaS1VMSG1McFBueHdnTUtZUXIteDJMVEY1aGR6REloS1ZLR2lieGVxdkpYTkFCczJhZ1RqQjFBWkVwa1dMZV9ZWmhXazUzTF9QMGxnQm85a0ZIWXJLSk5HdHgydw?oc=5",
-"source": "Tạp chí Người xây dựng",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-11T09:48+07:00",
-"found": "2026-11-14T07:49+07:00",
-"score": 56,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · văn bản mới ban hành/thông qua, thay đổi quy định",
-"parts": {
-"rel": 22,
-"dyn": 19,
-"rec": 15
-},
-"theme": "dat-dai:2",
-"cluster": "theme:dat-dai:2",
-"cluster_label": "Giá đất & tiền sử dụng đất"
-},
-{
-"id": "a12bfc8a1c6f",
-"title": "TPHCM thông qua quy hoạch tổng thể đầu tiên sau sáp nhập, tầm nhìn 100 năm",
-"url": "https://baochinhphu.vn/tphcm-thong-qua-quy-hoach-tong-the-dau-tien-sau-sap-nhap-tam-nhin-100-nam-101261030135933672.htm",
-"source": "Báo Chính phủ – Kinh tế (lọc BT/PPP/ĐTC)",
-"summary": "(Chinhphu.vn) - Ngày 30/10, HĐND TPHCM khóa XI, nhiệm kỳ 2026–2031, bế mạc Kỳ họp thứ sáu sau một ngày rưỡi làm việc. Tại kỳ họp, HĐND Thành phố thông qua quy hoạch tổng thể thời kỳ 2025–2050, tầm nhìn 100 năm, cùng nhiều nghị quyết quan trọng về cơ chế, chính sách, ngân sách, đầu tư công và các dự ",
-"topics": [
-"ppp"
-],
-"published": "2026-10-30T14:45+07:00",
-"found": "2026-10-30T15:53+07:00",
-"score": 56,
-"why": "Quy hoạch – ảnh hưởng quỹ đất; BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu · văn bản mới ban hành/thông qua",
-"parts": {
-"rel": 30,
-"dyn": 19,
-"rec": 7
-},
-"theme": "ppp:19",
-"cluster": "theme:ppp:19",
-"cluster_label": "Đầu tư công, giải ngân & quyết toán",
-"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
-},
-{
 "id": "8e0ad06139ea",
 "title": "Điểm nổi bật trong Dự thảo Luật Nhà ở mới mà người sở hữu chung cư cần lưu ý",
 "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNVDc5WlhGS2Zkbkp5WkkwVUdQeDFTLWRDZzNwTVJ0bjc3OWNiWnFSWDZKa1JMSUdKUkEwV1JodUNKS21RdmF5a1RLeWFZeWZPZERnMWk5X0k4REItTWFISUFXeDRhNC1DcGxSMXBDRHpJSTBtd1cyeV9iV0hxMkZub2hNd3kyWW5DejkzdVE4cE1OS24xMTdadllyX1ZTNkVxc3M1QUluYkNnZw?oc=5",
@@ -700,6 +653,28 @@
 "cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
+"id": "6e4d5bcc3ab5",
+"title": "HĐND cấp tỉnh sẽ ban hành, sửa đổi bảng giá đất, hệ số điều chỉnh",
+"url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQUGVrZDZLRWR5ZHRHbzBwSmEtMmpTWGJFcjRtaTVrTHBaODdjMy1kdFpzTEFwdllfbk5hUEQxbEFaaEJndm91Q2JaS1VMSG1McFBueHdnTUtZUXIteDJMVEY1aGR6REloS1ZLR2lieGVxdkpYTkFCczJhZ1RqQjFBWkVwa1dMZV9ZWmhXazUzTF9QMGxnQm85a0ZIWXJLSk5HdHgydw?oc=5",
+"source": "Tạp chí Người xây dựng",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-11T09:48+07:00",
+"found": "2026-11-14T07:49+07:00",
+"score": 55,
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · văn bản mới ban hành/thông qua, thay đổi quy định",
+"parts": {
+"rel": 22,
+"dyn": 19,
+"rec": 14
+},
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
 "id": "fc73247146a1",
 "title": "Phó Thủ tướng: Giữ phương án HĐND cấp tỉnh ban hành, sửa đổi bảng giá đất",
 "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxON1huWGtiZWtZRHJMc3Jic3IwSkVPTWtOczNLS0wxcVB5bEFiYTEyR2EtMHBGb1JSM2J2enJxeFV0eXBpakxMejl2REJUeUlsZldudDRYdl9ycERIYmRnY3lVY0cwQk1rX29VWEN4SlAwVThqNHFmMHZVeUxtTnQtdlBtTlQ3dVEtZVl3ekdQVUQ2dExLMWY4TVhBRVpzUW9HMzljUXZqMWE?oc=5",
@@ -720,6 +695,30 @@
 "theme": "dat-dai:2",
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
+"id": "a12bfc8a1c6f",
+"title": "TPHCM thông qua quy hoạch tổng thể đầu tiên sau sáp nhập, tầm nhìn 100 năm",
+"url": "https://baochinhphu.vn/tphcm-thong-qua-quy-hoach-tong-the-dau-tien-sau-sap-nhap-tam-nhin-100-nam-101261030135933672.htm",
+"source": "Báo Chính phủ – Kinh tế (lọc BT/PPP/ĐTC)",
+"summary": "(Chinhphu.vn) - Ngày 30/10, HĐND TPHCM khóa XI, nhiệm kỳ 2026–2031, bế mạc Kỳ họp thứ sáu sau một ngày rưỡi làm việc. Tại kỳ họp, HĐND Thành phố thông qua quy hoạch tổng thể thời kỳ 2025–2050, tầm nhìn 100 năm, cùng nhiều nghị quyết quan trọng về cơ chế, chính sách, ngân sách, đầu tư công và các dự ",
+"topics": [
+"ppp"
+],
+"published": "2026-10-30T14:45+07:00",
+"found": "2026-10-30T15:53+07:00",
+"score": 55,
+"why": "Quy hoạch – ảnh hưởng quỹ đất; BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu · văn bản mới ban hành/thông qua",
+"parts": {
+"rel": 30,
+"dyn": 19,
+"rec": 6
+},
+"theme": "ppp:19",
+"cluster": "theme:ppp:19",
+"cluster_label": "Đầu tư công, giải ngân & quyết toán",
+"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
 "id": "cbff2606fe21",
@@ -1035,8 +1034,8 @@
 "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNdFl4ekthNGhEWUl3WHVzYno0T1ctUk55R3JDQklGRDROaWNFTmVUV0tDdkRXMHpZLW85N0hrVmtRc1I0QmtOMFFKM3VGbUYwVDF5LVpfRzUxbUYySlZuT2JpWFhQNXhHN0c1TjU4YVF6bEtHd2phbzNNMHMxdTI0UlZNVll5bDRKTFlfbUduRUNqLVZLaUNwRXM5cVVrbUVOc0wwQUxTZ3hNYVBuMkxuZ0JDeE1rVUtsdF9EQm9td2FSc3M3RXFGZUdvdnhsZw?oc=5"
 },
 {
-"source": "Báo Vĩnh Long",
-"url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQTU1EYVMwMXVxRDNWSkNCX0l4dU44MHp0ckc5dDh2Vk81bW81ZllZY29TMVIxTTZUQWFEZ0hTNldWWDJ4aTRtTzh6YnVGelh6VGtIaHVXYUtkN3hsajJSTUxDQ1hWZnVNLXN4Z3NHUkVfQS1kSUlhazVqUXg4OTJQUGlFOTZicGJ4UTlDa0JYbExacXROa1NmaER1eEFuemJWQjRrUDJaSHBremdMQkxmdklaUUNtNzkxNnN3X0ROaDB5cnAzWnFURldXWQ?oc=5"
+"source": "baochinhphu.vn",
+"url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPYjE3cnZOQm9xTy0wZzhzYzkxYmdUS3lxU1kxakFrVzlSbEF4S3I1Q3hERFlKenRrd011WE5EaW1adjBkMmcxekdHal8za2RQVDFHWTFkeGE2QUcxZ29KUjdJaDFMNGQzelZ5R3NRV0xGVnl6dzlJWVlsQkpjWUJody1QTThtVkNaV0F5bFV6cThsaldXY3B1Q28tbzVkN3RFNS1Vc2JTRTI3MlVzMU9BVXBSc1UxcnN4ZzBVTDNRQWFDdw?oc=5"
 }
 ]
 },
@@ -1203,29 +1202,6 @@
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
-"id": "a1e4b597ee26",
-"title": "Hộ gia đình, cá nhân có phải khai lại thuế sử dụng đất phi nông nghiệp khi bảng giá đất của tỉnh thay đổi không?",
-"url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPa3p3RVRZVlpSSVVKSUxrdGlBMl9HNnY2a09JSmxzYnRYVjVBaGQ5cWFFUUhKa0FFMFR6NVVsRS13NlQ1MGxHd2EtVGZPOXVVUmh5d1J2UWxfWk5iNzRUZUd0ejBHUHhFUkRrVEdQMGlGcjVVMEtVNlc4VkNnVFRpb1NTRHdzR29KdUtQRTVPRDczZEt2NlNjTE03UkFLQzNvY2EyVzdESjhmTFpGVkozaWwzNzQzMzZRS2JwYS1rdUZiUXlKbzkwUUZlOEZhNmNxbzVJdHl3aVpDRDBveUtLOWdSc1FDNHVQMXVoY1VCTm9NZWRKb1Fj?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"dat-dai",
-"thue"
-],
-"published": "2026-11-12T22:45+07:00",
-"found": "2026-11-13T06:26+07:00",
-"score": 49,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán; Thuế/phí BĐS – tác động cầu & giá bán",
-"parts": {
-"rel": 33,
-"dyn": 0,
-"rec": 16
-},
-"theme": "dat-dai:2",
-"cluster": "theme:dat-dai:2",
-"cluster_label": "Giá đất & tiền sử dụng đất"
-},
-{
 "id": "c00b9c6d7bb5",
 "title": "Nghị định số 377/2026/NĐ-CP sửa đổi các nghị định hướng dẫn Luật Đầu tư theo phương thức đối tác công tư (PPP, BT)",
 "url": "https://vanban.chinhphu.vn/?docid=219746&pageid=27160",
@@ -1297,22 +1273,23 @@
 "cluster_label": "Nghị quyết 32/2026/NQ-HDND"
 },
 {
-"id": "0510015e8a50",
-"title": "Tổng hợp Nghị quyết bảng giá đất Đồng Nai 2026",
-"url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOSmFvcWkwQ0s3WUF2c1hhUlJWTXBTcVptZloweU9vQTNIdDc4TzJUY3RwMFJIRnhLa1hVVVptTS1zeXVURXNqdTlUNlhjN2ttbWxidHBXWW54OGdJTHYxclZpVVZKTDhQUjBsWlpsaGIwNFJacnRtN1RUOVRmYkRpTjdsSkIwNXlmWHdvTVpaWEFZaEROSVQwYXAyRzJ1Z3ZNcmZFVTMwS0ozZmVvTHRZbm8tZFVwdWdmQUVnd2JXMkVBbEJhR2NEd2xxU1JTMC1wbTlYOA?oc=5",
+"id": "a1e4b597ee26",
+"title": "Hộ gia đình, cá nhân có phải khai lại thuế sử dụng đất phi nông nghiệp khi bảng giá đất của tỉnh thay đổi không?",
+"url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPa3p3RVRZVlpSSVVKSUxrdGlBMl9HNnY2a09JSmxzYnRYVjVBaGQ5cWFFUUhKa0FFMFR6NVVsRS13NlQ1MGxHd2EtVGZPOXVVUmh5d1J2UWxfWk5iNzRUZUd0ejBHUHhFUkRrVEdQMGlGcjVVMEtVNlc4VkNnVFRpb1NTRHdzR29KdUtQRTVPRDczZEt2NlNjTE03UkFLQzNvY2EyVzdESjhmTFpGVkozaWwzNzQzMzZRS2JwYS1rdUZiUXlKbzkwUUZlOEZhNmNxbzVJdHl3aVpDRDBveUtLOWdSc1FDNHVQMXVoY1VCTm9NZWRKb1Fj?oc=5",
 "source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
-"dat-dai"
+"dat-dai",
+"thue"
 ],
-"published": "2026-11-17T10:41+07:00",
-"found": "2026-11-17T21:18+07:00",
+"published": "2026-11-12T22:45+07:00",
+"found": "2026-11-13T06:26+07:00",
 "score": 48,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán; Thuế/phí BĐS – tác động cầu & giá bán",
 "parts": {
-"rel": 22,
-"dyn": 7,
-"rec": 19
+"rel": 33,
+"dyn": 0,
+"rec": 15
 },
 "theme": "dat-dai:2",
 "cluster": "theme:dat-dai:2",
@@ -1453,51 +1430,26 @@
 "cluster_label": "Luật Đất đai"
 },
 {
-"id": "64219bd7b7e2",
-"title": "Đà Nẵng ban hành Nghị quyết về sắp xếp đơn vị hành chính cấp xã",
-"url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPbEU4OEdraFo2bnZWRC10Qy1rS1pPQzR6ejl4bTlfVFNseG5Pd2RpWDFhcUZTVTBmLWpoUHV2c1haTlJkczNDaWpXM0REU3hrNzlVdThqbWNRUXQtX1dRV3F1ZkVjeTdsY2RSdThfRzZkTjVKc0FFSDBtU2Y1RmNEc2h4Ry02OE5ZeHA3MHhGN2tYUGlXOFdCdl9zQlBVb3ZEdktudVlUVQ?oc=5",
-"source": "VOV.VN",
+"id": "0510015e8a50",
+"title": "Tổng hợp Nghị quyết bảng giá đất Đồng Nai 2026",
+"url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOSmFvcWkwQ0s3WUF2c1hhUlJWTXBTcVptZloweU9vQTNIdDc4TzJUY3RwMFJIRnhLa1hVVVptTS1zeXVURXNqdTlUNlhjN2ttbWxidHBXWW54OGdJTHYxclZpVVZKTDhQUjBsWlpsaGIwNFJacnRtN1RUOVRmYkRpTjdsSkIwNXlmWHdvTVpaWEFZaEROSVQwYXAyRzJ1Z3ZNcmZFVTMwS0ozZmVvTHRZbm8tZFVwdWdmQUVnd2JXMkVBbEJhR2NEd2xxU1JTMC1wbTlYOA?oc=5",
+"source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
-"dia-gioi"
+"dat-dai"
 ],
-"published": "2026-10-21T14:00+07:00",
-"found": "2026-11-02T20:22+07:00",
-"score": 48,
-"why": "Địa giới/tên đơn vị hành chính thay đổi – ảnh hưởng địa chỉ & địa điểm trong hợp đồng · văn bản mới ban hành/thông qua",
-"parts": {
-"rel": 28,
-"dyn": 19,
-"rec": 1
-},
-"theme": "dia-gioi:17",
-"cluster": "theme:dia-gioi:17",
-"cluster_label": "Sáp nhập, sắp xếp & đổi tên đơn vị hành chính",
-"impact": "cập nhật tên tỉnh/xã sau sáp nhập – đổi tên trong địa chỉ các bên, địa điểm dự án, hồ sơ pháp lý; ghi tên cũ (nay là …) khi cần đối chiếu giấy tờ cũ."
-},
-{
-"id": "d2fb129842d2",
-"title": "Quyết định 3691/QĐ-UBND Đắk Lắk 2026 phê duyệt quy trình nội bộ liên thông thủ tục đầu tư công tư",
-"url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNRUtwVGFxTVBNWXMxaTlWQ1JEY0RGeE00VzNvTEs1RG9YX3ZDek1oRlFEX1l4Rlc1WjRaV2Fmd1pRZXRTTWszZk9fTWRwbUlib0lfemZNUlJyU0pBN1NWcXJPTGJzYTdad1JsV3JyZ0d5N2lHT1RNcUxCNFB0MnVvRlFGdGdtVFFJa1ZVREhLT0hFd1Nqem5iX3BBSWxuXzRXRFdCM3owblotYmdkTGFZLWdiN2ZJeVVqRGRTZktraFZ6cXZpM3dobkNaVXpteGIzZWlEY0hJajN1UQ?oc=5",
-"source": "LuatVietnam",
-"summary": "",
-"topics": [
-"ppp"
-],
-"published": "2026-11-17T09:46+07:00",
-"found": "2026-11-18T20:50+07:00",
+"published": "2026-11-17T10:41+07:00",
+"found": "2026-11-17T21:18+07:00",
 "score": 47,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
 "parts": {
-"rel": 24,
-"dyn": 4,
-"rec": 19
+"rel": 22,
+"dyn": 7,
+"rec": 18
 },
-"theme": "ppp:19",
-"cluster": "theme:ppp:19",
-"cluster_label": "Đầu tư công, giải ngân & quyết toán",
-"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
 "id": "28c82b1fbcae",
@@ -1529,52 +1481,6 @@
 ]
 },
 {
-"id": "3ff769037647",
-"title": "Chỉ đạo mới nhất của Phó Thủ tướng về các dự án sửa đổi Luật Kinh doanh bất động sản, Luật Nhà ở và Luật Đất đai",
-"url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOVnpJNVFCNU55Y0xEaFA5VXZlMDdfTmxNM1lWSkFfN0pmTFBZYUo1UnVpN1hwRUFGQk8zQkdpLWpiVjZuRkNxbF9GR0hscEZwZE1UY3RwX0l5SDM5Y1YyM2ZLUTdhanROYXhpRHpDaVpUV1Z1Z3V6ZTRjNzI1LWMwdng1azVKcGhNQUZlMG5LVlZMNkcwM2FmS1RYSENsaXlrZjFFR0hCcjBuSEVWZG5Pb1Q1dWFLdU9BR1dnNmxBdmQxOEdWXzZ1T1QtQkVBVjEzSWRPdnpzNm0zSVhmQmR6Rk4temlNTVlsd3c?oc=5",
-"source": "Chuyển động Thị trường",
-"summary": "",
-"topics": [
-"dat-dai",
-"nha-o",
-"kd-bds"
-],
-"published": "2026-11-16T00:18+07:00",
-"found": "2026-11-16T08:39+07:00",
-"score": 47,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
-"parts": {
-"rel": 14,
-"dyn": 15,
-"rec": 18
-},
-"theme": "dat-dai:5",
-"cluster": "law:luat-kinh-doanh-bds",
-"cluster_label": "Luật Kinh doanh BĐS"
-},
-{
-"id": "8615767fbe9c",
-"title": "Nghị quyết 64/NQ-HĐND Huế 2026 danh mục công trình dự án thu hồi đất bổ sung đợt 3",
-"url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOUmVjNmVacERYb1NTSUhlTngwUnN2UC02bVJRSXdVaTF6dUp5MkswTGkwMUhhNmU1bTFtZWZZS1NBYTQ5OVU0b3g1MHY0SmJ4Qy03MkVMSnZSc3lfbjNXcG00Mm9wd3ZlMHF0OUVicExkdklIUHZ2cUo3RWNZMDBjb1d2aGpWY05jcG1uMmdhajZTX3ZhaWViRVd0TEMwdThPWE16TlN3X3hWTFNpUEFRSGlTTjRIbmNvQk1KcDlDSnhwa2FjNjRj?oc=5",
-"source": "LuatVietnam",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-14T10:40+07:00",
-"found": "2026-11-14T11:40+07:00",
-"score": 47,
-"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án · thay đổi quy định",
-"parts": {
-"rel": 16,
-"dyn": 14,
-"rec": 17
-},
-"theme": "dat-dai:3",
-"cluster": "theme:dat-dai:3",
-"cluster_label": "Quyền sử dụng đất & giao đất"
-},
-{
 "id": "0e716999d34b",
 "title": "Quy định mới về cơ chế, chính sách gỡ khó cho dự án BT chuyển tiếp",
 "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPallfN1JOaWt3c01HMUNpd3BrNFA0Z1NfRDVKRDVMYzgxUWNQd2swaEt5S0NfOVZqZ0diQnpNZ3RXNnVKNGtsYV9FaUhmZlZYVmxfdjBSX2ZYR0Q1RFZsZGJUR3Bkd2lYU0tSdkd6NUlsb1VzUWV0Y0FNNU9iaEZZMkJOOTM3Ynl3VU1Ra25NYmJhdmxTZ0hmQVY1UExya0lwWHdFWi14Qm40NlJESzdR?oc=5",
@@ -1599,8 +1505,8 @@
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
 "also": [
 {
-"source": "dangcongsan.vn",
-"url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVG5wMVNqNjZhMzNGUnN4ZmlkUV9zNGQ3Q2U0LWtqeG5BYk1JY0hPRDhMeC02ZzAxZEs2aEJFQWIyWWlUS1IyNWhNMkZCWmY3Rkw1eW5aSC1PbFN0U3U3N1BXalpzZWNWRk9RaVE4LXdtc0F6dlY5UUF4Z0pOSzVtVS1rY1hDMTlIRWdKOHhIbFAyOGYyTFNqMGd1dXpibDN4NmduSDBnRENmdnJiaHc1b3hB?oc=5"
+"source": "baoninhbinh.org.vn",
+"url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOX3NYRDBkTnZwc0tDdEVmYW43eWpOdDV1Z3BRR25UbmstLUpyTnNpYU5TWmFsRzlLYXF0cmVxWmRacHNNbnpkQzJCMG9oTDRxLW9ZRUQ4Z1JPN2VpX3hFRFlJT19Wb19KQVJzUGdtV2hTLThHVUUxYldMdV9RMnhmNWxfUFQxQTZGNXNuRW9qTlhFdERtdnc1QVJoN2RRY3hOVklVd256X1g?oc=5"
 },
 {
 "source": "baodautu",
@@ -1633,6 +1539,29 @@
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
+"id": "64219bd7b7e2",
+"title": "Đà Nẵng ban hành Nghị quyết về sắp xếp đơn vị hành chính cấp xã",
+"url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPbEU4OEdraFo2bnZWRC10Qy1rS1pPQzR6ejl4bTlfVFNseG5Pd2RpWDFhcUZTVTBmLWpoUHV2c1haTlJkczNDaWpXM0REU3hrNzlVdThqbWNRUXQtX1dRV3F1ZkVjeTdsY2RSdThfRzZkTjVKc0FFSDBtU2Y1RmNEc2h4Ry02OE5ZeHA3MHhGN2tYUGlXOFdCdl9zQlBVb3ZEdktudVlUVQ?oc=5",
+"source": "VOV.VN",
+"summary": "",
+"topics": [
+"dia-gioi"
+],
+"published": "2026-10-21T14:00+07:00",
+"found": "2026-11-02T20:22+07:00",
+"score": 47,
+"why": "Địa giới/tên đơn vị hành chính thay đổi – ảnh hưởng địa chỉ & địa điểm trong hợp đồng · văn bản mới ban hành/thông qua",
+"parts": {
+"rel": 28,
+"dyn": 19,
+"rec": 0
+},
+"theme": "dia-gioi:17",
+"cluster": "theme:dia-gioi:17",
+"cluster_label": "Sáp nhập, sắp xếp & đổi tên đơn vị hành chính",
+"impact": "cập nhật tên tỉnh/xã sau sáp nhập – đổi tên trong địa chỉ các bên, địa điểm dự án, hồ sơ pháp lý; ghi tên cũ (nay là …) khi cần đối chiếu giấy tờ cũ."
+},
+{
 "id": "0c11ab7db6bc",
 "title": "TAND tỉnh Quảng Trị chấp nhận kháng cáo, hủy quyết định truy thu hơn 14,1 tỷ đồng tiền sử dụng đất đối với doanh nghiệp",
 "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPTFhLVFhRNHEydjBDd1dzYTNyRW5TVTk1ekIzcW1HWmNFTXhNNWR5Y1RfM2ZJYkVhNkJUckJJNi10XzZnXzZXR2RUTEFEUnFyQlc0cFJEeGhHS1djVUpEOFROc2FnaFpCcnVnNHdjWUw2MTRQYWR1STY4b29RcHY1YUZiTVRhbTB6LW1GclZGMnp1Z1VSdGp5V0JURENpbnNPNUhIdWhjVDFBNXpsaEtJbzFWeF93QjdnR1A3M1pWUklOajlJSHZLX01EVUFUWnN4c1RlV0pOMndUUjNqLUNEbnZYM0M?oc=5",
@@ -1653,6 +1582,54 @@
 "theme": "dat-dai:2",
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
+"id": "d2fb129842d2",
+"title": "Quyết định 3691/QĐ-UBND Đắk Lắk 2026 phê duyệt quy trình nội bộ liên thông thủ tục đầu tư công tư",
+"url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNRUtwVGFxTVBNWXMxaTlWQ1JEY0RGeE00VzNvTEs1RG9YX3ZDek1oRlFEX1l4Rlc1WjRaV2Fmd1pRZXRTTWszZk9fTWRwbUlib0lfemZNUlJyU0pBN1NWcXJPTGJzYTdad1JsV3JyZ0d5N2lHT1RNcUxCNFB0MnVvRlFGdGdtVFFJa1ZVREhLT0hFd1Nqem5iX3BBSWxuXzRXRFdCM3owblotYmdkTGFZLWdiN2ZJeVVqRGRTZktraFZ6cXZpM3dobkNaVXpteGIzZWlEY0hJajN1UQ?oc=5",
+"source": "LuatVietnam",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-11-17T09:46+07:00",
+"found": "2026-11-18T20:50+07:00",
+"score": 46,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"parts": {
+"rel": 24,
+"dyn": 4,
+"rec": 18
+},
+"theme": "ppp:19",
+"cluster": "theme:ppp:19",
+"cluster_label": "Đầu tư công, giải ngân & quyết toán",
+"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
+},
+{
+"id": "3ff769037647",
+"title": "Chỉ đạo mới nhất của Phó Thủ tướng về các dự án sửa đổi Luật Kinh doanh bất động sản, Luật Nhà ở và Luật Đất đai",
+"url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOVnpJNVFCNU55Y0xEaFA5VXZlMDdfTmxNM1lWSkFfN0pmTFBZYUo1UnVpN1hwRUFGQk8zQkdpLWpiVjZuRkNxbF9GR0hscEZwZE1UY3RwX0l5SDM5Y1YyM2ZLUTdhanROYXhpRHpDaVpUV1Z1Z3V6ZTRjNzI1LWMwdng1azVKcGhNQUZlMG5LVlZMNkcwM2FmS1RYSENsaXlrZjFFR0hCcjBuSEVWZG5Pb1Q1dWFLdU9BR1dnNmxBdmQxOEdWXzZ1T1QtQkVBVjEzSWRPdnpzNm0zSVhmQmR6Rk4temlNTVlsd3c?oc=5",
+"source": "Chuyển động Thị trường",
+"summary": "",
+"topics": [
+"dat-dai",
+"nha-o",
+"kd-bds"
+],
+"published": "2026-11-16T00:18+07:00",
+"found": "2026-11-16T08:39+07:00",
+"score": 46,
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
+"parts": {
+"rel": 14,
+"dyn": 15,
+"rec": 17
+},
+"theme": "dat-dai:5",
+"cluster": "law:luat-kinh-doanh-bds",
+"cluster_label": "Luật Kinh doanh BĐS"
 },
 {
 "id": "a68267cc75e2",
@@ -1677,26 +1654,26 @@
 "cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
-"id": "6fcda75990e8",
-"title": "Từ 16/11, Đắk Lắk áp dụng quy định mới: Những yếu tố nào ảnh hưởng đến giá đất?",
-"url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPaFF3VWc0TEU2YmhNbDhuMHVzNFJWM21zRHFXUmsxelhNcWN0VnNfa0lQaDJYOTZjNWx1YWYzbGEzZ0szMllOYklEU3V0Y191S2tvU2JrVHJPelplWUpFSzdXVmhHQW5hQ0l6NDc5ZXROQk8tVjVhRUdfTjJYTnBOR3RQZURYaUxaUnYwS0xlRlVTUzc3UGo2RmczNHBCazh2Y0xCNVVjOVpYaE1UQU8tcDVmNmh4Wm56?oc=5",
-"source": "cafeland.vn",
+"id": "8615767fbe9c",
+"title": "Nghị quyết 64/NQ-HĐND Huế 2026 danh mục công trình dự án thu hồi đất bổ sung đợt 3",
+"url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOUmVjNmVacERYb1NTSUhlTngwUnN2UC02bVJRSXdVaTF6dUp5MkswTGkwMUhhNmU1bTFtZWZZS1NBYTQ5OVU0b3g1MHY0SmJ4Qy03MkVMSnZSc3lfbjNXcG00Mm9wd3ZlMHF0OUVicExkdklIUHZ2cUo3RWNZMDBjb1d2aGpWY05jcG1uMmdhajZTX3ZhaWViRVd0TEMwdThPWE16TlN3X3hWTFNpUEFRSGlTTjRIbmNvQk1KcDlDSnhwa2FjNjRj?oc=5",
+"source": "LuatVietnam",
 "summary": "",
 "topics": [
 "dat-dai"
 ],
-"published": "2026-11-14T10:05+07:00",
-"found": "2026-11-14T11:25+07:00",
+"published": "2026-11-14T10:40+07:00",
+"found": "2026-11-14T11:40+07:00",
 "score": 46,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · thay đổi quy định",
+"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án · thay đổi quy định",
 "parts": {
-"rel": 22,
-"dyn": 7,
-"rec": 17
+"rel": 16,
+"dyn": 14,
+"rec": 16
 },
-"theme": "dat-dai:2",
-"cluster": "theme:dat-dai:2",
-"cluster_label": "Giá đất & tiền sử dụng đất"
+"theme": "dat-dai:3",
+"cluster": "theme:dat-dai:3",
+"cluster_label": "Quyền sử dụng đất & giao đất"
 },
 {
 "id": "13d7471447d5",
@@ -1721,58 +1698,6 @@
 "cluster_label": "PPP & hợp đồng BOT/BT/BOO",
 "impact": "đối chiếu căn cứ pháp lý, loại hợp đồng (PPP/BT), điều kiện thanh toán – quyết toán (quỹ đất/ngân sách) và điều khoản chuyển tiếp của văn bản với hợp đồng/dự án đang làm.",
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
-},
-{
-"id": "b18d8d75c2dc",
-"title": "Quyết định 96/2026/QĐ-UBND 2026 ban hành khung giá dịch vụ quản lý vận hành nhà chung cư trên địa bàn TPHCM có nội dung gì?",
-"url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNZ2diTmFEQlZyU3RhX0Ixd1JmWHh1WFljUjlfTGkyWXdsYXR3RFB5QUs3ZXcyN2d6aXk5bHUyOGRhU3pDTlpHMTFvTmpfNEVaV0Fha1U1RGlQcXBIdDRUNWVmeVFad05BeHhZZ0hhMVlTa3hJVzYzN0dtX2xyZFZaWm1JekxGbEd3SUh4WEZWQm04VTNpXzE0bUdzdHdSdDdTckJ0ZnBONm1ldlJTcHZYRmRLUkVnNy1BUEltSnFGRXVSdzJzV1dYWktBT3gwZHVRWHJZeURrNnpNM0dUNFBGV2J1VjVaU3hYbm5WSUptQS1NM1o3OHVWQg?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"nha-o"
-],
-"published": "2026-11-11T11:05+07:00",
-"found": "2026-11-11T19:38+07:00",
-"score": 46,
-"why": "Liên quan chung cư / nhà ở thương mại – sản phẩm chính · văn bản mới ban hành/thông qua",
-"parts": {
-"rel": 15,
-"dyn": 16,
-"rec": 15
-},
-"theme": "nha-o:4",
-"cluster": "theme:nha-o:4",
-"cluster_label": "Chung cư & nhà ở thương mại"
-},
-{
-"id": "b3b9eefb7ae2",
-"title": "Nghị quyết 61/NQ-HĐND Huế 2026 điều chỉnh Kế hoạch đầu tư công ngân sách địa phương",
-"url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQQVp5NG4tMkhOVXAwS3VkZkZtc3o4VkZQQmE4Rjk0Z2ttRG9jSE5rQ21sVW1Td2Y3NjVQVEVuRlVydWhkVUUzOGk1NW5UMy1abEZydlpUa1pSbGs4SnhUV21EZXVPRXJhQU1Dc3YtN3JlNkFyeG1TWXdjQzdtdHNkcnpBN3B3WE14c1plX2pKYjBqbEZSTDdrLVR6V0Z1cmVqM3ZRT0pYdUFnZ1hWYkNBVWRNekZ1NmxDSmNKSGR4Tjl2bngtM1VV?oc=5",
-"source": "LuatVietnam",
-"summary": "",
-"topics": [
-"ppp"
-],
-"published": "2026-11-11T10:21+07:00",
-"found": "2026-11-11T19:38+07:00",
-"score": 46,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
-"parts": {
-"rel": 24,
-"dyn": 7,
-"rec": 15
-},
-"theme": "ppp:19",
-"cluster": "theme:ppp:19",
-"cluster_label": "Đầu tư công, giải ngân & quyết toán",
-"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
-"also": [
-{
-"source": "LuatVietnam",
-"url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPUC1mODRRNXVHdXZGZC0tb09iclpwR29qSmlxUEl2WnJzeHNTaHZMNTYwWnF1eHdaTjlTUHF4UWZUMlF5WFl5U3Bvd2syeGcydlFZUk9nNTlvS1J5R01JTUc5cEZ2NnFxSE9hSzVCcE1CVENKRWJSbWFKQlJWT1RCampNb2JsR2hoM0daVE9VS0JzczU1QzlnbmRiSzZQcnVhaFV6LU0yMThIVjFZdUlaeW16N3JGOU0yazAzc3NGTklHNUt5dnZYdFpWV3AzVG5abG1WNmVsS3d2QQ?oc=5"
-}
-]
 },
 {
 "id": "17963782901b",
@@ -1863,28 +1788,6 @@
 "cluster_label": "Chung cư & nhà ở thương mại"
 },
 {
-"id": "8ebef34a4ff5",
-"title": "Quyết định 3933/QĐ-UBND Phú Thọ 2026 phê duyệt dự án hệ số điều chỉnh giá đất 2027",
-"url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPOW02Z05KYjl6ZUhpcE1EclpXcVJQaUstcmJHYjI1S1RqdUpyY3FEeDVpdEhxaThaLXZwWlhsdzRSWEZGNjNScFB2RWFyNWpnWWdraGhSNnVveXdWdGUwYW9aLWdEMHhoTnM2cWJfM3V2cDkxVzlYRGNRZWwwcVpFNVhsRV9Yby1qWElYekJhLWRjRHYxSjlPZks3ZVlVRWF5RjZrNmxwOXpXdlpYYjc2M0F6dm5NQzU4VTRLckwweTR5b1NGRzRN?oc=5",
-"source": "LuatVietnam",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-17T11:04+07:00",
-"found": "2026-11-17T21:18+07:00",
-"score": 45,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
-"parts": {
-"rel": 22,
-"dyn": 4,
-"rec": 19
-},
-"theme": "dat-dai:2",
-"cluster": "theme:dat-dai:2",
-"cluster_label": "Giá đất & tiền sử dụng đất"
-},
-{
 "id": "e091a6dd2e51",
 "title": "Quyết định 85/2026/QĐ-UBND sửa đổi Quy định bố trí tái định cư khi Nhà nước thu hồi đất Phú Thọ",
 "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxOR2poM01PRk1WUzctd1FvNGphc2xmcjBuQ29VMXRzMkw1VUhmMXVRdG5wZ05YRUM4T0M3bkNxTDVaQTJGbTNXYmpHa2YtZU5iM2pLUDdzS2pydUNDRlNfeGRMbnVQTmM1ODdtOEV3QVRvSEpHWW1GaExpOUQ5N2VZNUpGdFRxVHozLWphWHNwa0Q1MzlJbjg4dVg4VmtIQ1NFQ3I2M3k3dTdrc2JZczJUNGQ2cnpBOHV1Z0VkTEZPTXZQRVNDbXZoaXZxOEwyYm94YTFJS0ZBbW9zTlJyNDJmX0dEV3VqNVFQUGRkWWxPTkx0WXM?oc=5",
@@ -1907,48 +1810,26 @@
 "cluster_label": "Quyền sử dụng đất & giao đất"
 },
 {
-"id": "53877f05186d",
-"title": "Nhận tiền đặt cọc hợp đồng xây dựng có cần xuất hóa đơn không? Xuất hóa đơn cần có các nội dung nào theo Nghị định 254?",
-"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQVzctT2F3VWY4eTRKT1NmRERPSldHVERDODlyRmtiM0s2NTR6TFhSWElBYlRtQUFxbFNzeWhBS09XTjUyUXF5T2RvNWVQME1hMllJeDEzcllKWEhiWlBCVG4tb0VtSGNsSnVoTW5lZEFOOUY5aTRRSjVidWRDU2tUTTBlR3FTekxWbUFrbGg0R3dRQUNueUJaczdoaUhpNUgxRGh1MzRxdFAwRWdwTmU0SGxfazNqOTV5YmFVMXdDYzJtQzJ3VlhZMkRVbFJ2c3ZId2E2Sy03VmhnV1R5VTNMNw?oc=5",
-"source": "Thư Viện Pháp Luật",
+"id": "6fcda75990e8",
+"title": "Từ 16/11, Đắk Lắk áp dụng quy định mới: Những yếu tố nào ảnh hưởng đến giá đất?",
+"url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPaFF3VWc0TEU2YmhNbDhuMHVzNFJWM21zRHFXUmsxelhNcWN0VnNfa0lQaDJYOTZjNWx1YWYzbGEzZ0szMllOYklEU3V0Y191S2tvU2JrVHJPelplWUpFSzdXVmhHQW5hQ0l6NDc5ZXROQk8tVjVhRUdfTjJYTnBOR3RQZURYaUxaUnYwS0xlRlVTUzc3UGo2RmczNHBCazh2Y0xCNVVjOVpYaE1UQU8tcDVmNmh4Wm56?oc=5",
+"source": "cafeland.vn",
 "summary": "",
 "topics": [
-"xay-dung"
+"dat-dai"
 ],
-"published": "2026-11-14T11:20+07:00",
-"found": "2026-11-14T19:05+07:00",
+"published": "2026-11-14T10:05+07:00",
+"found": "2026-11-14T11:25+07:00",
 "score": 45,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng; Quản lý chi phí / HĐ xây dựng",
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · thay đổi quy định",
 "parts": {
-"rel": 20,
-"dyn": 8,
-"rec": 17
+"rel": 22,
+"dyn": 7,
+"rec": 16
 },
-"theme": "xay-dung:14",
-"cluster": "theme:xay-dung:14",
-"cluster_label": "Chi phí & HĐ xây dựng"
-},
-{
-"id": "bc0c7f02c1dc",
-"title": "Sửa đổi Luật Phòng cháy chữa cháy: Giảm thủ tục, không giảm trách nhiệm",
-"url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9LU1c1TzFyS3JJOTdfa2dHeDlNMjNLWlRubF8tdS00dDRhSDZHVi1vc2RGQW9ac1BFb3hxSVB1a1pZRnU4cV9HZUZydVFSQWh1emFXb0l30gFWQVVfeXFMT0tTVzVPMXJLckk5N19rZ0d4OU0yM0taVG5sXy11LTR0NGFINkdWLW9zZEZBb1pzUEVveHFJUHVrWllGdThxX0dlRnJ1UVJBaHV6YVdvSXc?oc=5",
-"source": "HueNgayNay",
-"summary": "",
-"topics": [
-"pccc"
-],
-"published": "2026-11-14T10:20+07:00",
-"found": "2026-11-17T07:34+07:00",
-"score": 45,
-"why": "PCCC – điều kiện nghiệm thu, vận hành chung cư · thay đổi quy định",
-"parts": {
-"rel": 13,
-"dyn": 15,
-"rec": 17
-},
-"theme": "pccc:7",
-"cluster": "law:luat-pccc",
-"cluster_label": "Luật PCCC"
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
 "id": "09f9926153e6",
@@ -1971,6 +1852,58 @@
 "theme": "dat-dai:2",
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
+"id": "b18d8d75c2dc",
+"title": "Quyết định 96/2026/QĐ-UBND 2026 ban hành khung giá dịch vụ quản lý vận hành nhà chung cư trên địa bàn TPHCM có nội dung gì?",
+"url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNZ2diTmFEQlZyU3RhX0Ixd1JmWHh1WFljUjlfTGkyWXdsYXR3RFB5QUs3ZXcyN2d6aXk5bHUyOGRhU3pDTlpHMTFvTmpfNEVaV0Fha1U1RGlQcXBIdDRUNWVmeVFad05BeHhZZ0hhMVlTa3hJVzYzN0dtX2xyZFZaWm1JekxGbEd3SUh4WEZWQm04VTNpXzE0bUdzdHdSdDdTckJ0ZnBONm1ldlJTcHZYRmRLUkVnNy1BUEltSnFGRXVSdzJzV1dYWktBT3gwZHVRWHJZeURrNnpNM0dUNFBGV2J1VjVaU3hYbm5WSUptQS1NM1o3OHVWQg?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"nha-o"
+],
+"published": "2026-11-11T11:05+07:00",
+"found": "2026-11-11T19:38+07:00",
+"score": 45,
+"why": "Liên quan chung cư / nhà ở thương mại – sản phẩm chính · văn bản mới ban hành/thông qua",
+"parts": {
+"rel": 15,
+"dyn": 16,
+"rec": 14
+},
+"theme": "nha-o:4",
+"cluster": "theme:nha-o:4",
+"cluster_label": "Chung cư & nhà ở thương mại"
+},
+{
+"id": "b3b9eefb7ae2",
+"title": "Nghị quyết 61/NQ-HĐND Huế 2026 điều chỉnh Kế hoạch đầu tư công ngân sách địa phương",
+"url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQQVp5NG4tMkhOVXAwS3VkZkZtc3o4VkZQQmE4Rjk0Z2ttRG9jSE5rQ21sVW1Td2Y3NjVQVEVuRlVydWhkVUUzOGk1NW5UMy1abEZydlpUa1pSbGs4SnhUV21EZXVPRXJhQU1Dc3YtN3JlNkFyeG1TWXdjQzdtdHNkcnpBN3B3WE14c1plX2pKYjBqbEZSTDdrLVR6V0Z1cmVqM3ZRT0pYdUFnZ1hWYkNBVWRNekZ1NmxDSmNKSGR4Tjl2bngtM1VV?oc=5",
+"source": "LuatVietnam",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-11-11T10:21+07:00",
+"found": "2026-11-11T19:38+07:00",
+"score": 45,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"parts": {
+"rel": 24,
+"dyn": 7,
+"rec": 14
+},
+"theme": "ppp:19",
+"cluster": "theme:ppp:19",
+"cluster_label": "Đầu tư công, giải ngân & quyết toán",
+"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
+"also": [
+{
+"source": "LuatVietnam",
+"url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPUC1mODRRNXVHdXZGZC0tb09iclpwR29qSmlxUEl2WnJzeHNTaHZMNTYwWnF1eHdaTjlTUHF4UWZUMlF5WFl5U3Bvd2syeGcydlFZUk9nNTlvS1J5R01JTUc5cEZ2NnFxSE9hSzVCcE1CVENKRWJSbWFKQlJWT1RCampNb2JsR2hoM0daVE9VS0JzczU1QzlnbmRiSzZQcnVhaFV6LU0yMThIVjFZdUlaeW16N3JGOU0yazAzc3NGTklHNUt5dnZYdFpWV3AzVG5abG1WNmVsS3d2QQ?oc=5"
+}
+]
 },
 {
 "id": "b3fe9bc92c84",
@@ -2017,28 +1950,6 @@
 "theme": "dat-dai:3",
 "cluster": "theme:dat-dai:3",
 "cluster_label": "Quyền sử dụng đất & giao đất"
-},
-{
-"id": "bd1013d0739a",
-"title": "Nghị quyết 57/2026/NQ-HĐND sửa đổi bảng giá đất thành phố Cần Thơ năm 2026 ra sao?",
-"url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPNy1yY2xCSHJ1dzY4bGdWM0JpSTNrcVpEQWlhcDNsNHJ6a24tZkZZSDlCeFhTaTg5T1RwQUdJdW1GVTRmMm5UVkhieUJBc0NkaUFINVNjaXZhREVuTXl2N0MybGV0Y0NVMmJKQTRjLUptel91WGxsakRwRVJITEVRalA4eXhJYzJrZDhuaXQ4TXhKSi1LUTFETU41VFU4MDV2WDk3TG1wWklPUlVCbmxlY2NhT2hsUmRCT3p1MXVLS0hYY1daNjBXd2Z6WW1UNWtWenc4RzJFRnFVWGR1NDdqNGVzQl9tb1MwbmFOWnZ1TkM4TG55YlVtNDNENUwxbjlKQlEw?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-02T13:30+07:00",
-"found": "2026-11-04T10:03+07:00",
-"score": 45,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · thay đổi quy định",
-"parts": {
-"rel": 22,
-"dyn": 14,
-"rec": 9
-},
-"theme": "dat-dai:2",
-"cluster": "doc:ngh-quy-t-57-2026-nq-hdnd",
-"cluster_label": "Nghị quyết 57/2026/NQ-HDND"
 },
 {
 "id": "da9d9c54ce7c",
@@ -2088,7 +1999,13 @@
 },
 "theme": "kd-bds:5",
 "cluster": "law:luat-kinh-doanh-bds",
-"cluster_label": "Luật Kinh doanh BĐS"
+"cluster_label": "Luật Kinh doanh BĐS",
+"also": [
+{
+"source": "Báo Kiểm toán",
+"url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPX0cwckt2QkRRaGZURG92N3E4dVAzZklKdVR3Rm9CN3dhN2VoYi1SbW43TEZwdHptdzEwV21iS3EzTXJTek5nNUZ6RmZScTZCTXQwTkw2WkRoWTgtT3MwNC1HOVB1TGpJQ3JuMmxwRmppT0NaLW5fNk1CVFVyTUlucTZ4YjNSTVVreGhMWXFZb056YmdIQXViZXJMajNpbkVBYnJIY3l6akprRHltbHFqSDdadjNZS2RDUjkxRHBKb0YxYjcwdGVmOTlnNUgwTEdQSHZuckZtTDJSZGMt?oc=5"
+}
+]
 },
 {
 "id": "b7665b1c6b62",
@@ -2158,26 +2075,26 @@
 "cluster_label": "Luật Nhà ở"
 },
 {
-"id": "dd8df5230797",
-"title": "TOÀN VĂN Dự thảo Luật Đất đai sửa đổi 2026 mới nhất ngày 20/7/2026? File PDF Dự thảo Luật Đất đai 2026?",
-"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNdTI4dkVOTjNueGk2WXVnUDNPbk4yZDFWZk9pU3MtdWJ0SG9Id18wY3lMU1NjSlNuSGotc1hsanQzZ2wzaUc5ZGxpV2VyZjVSSjR5dmloUC1YSmxZQ0hnRFhFR2t1Q2tsQXR2WENWTEtHSHBEUHYwc1NndVNwbmd0OTd3azRfOWNlaVVfTXRvNTFsMTZNQ29lOFpraUJ4d0VaOG5wcTgyU0VOWUhWNkFGMTdWV2F3RE5aWUJOdzB3OVB6alFMekQ5UHlqOXRhTTdJdk5McTdQSlZDUFM5blZsdENnWjhWUQ?oc=5",
-"source": "Thư Viện Pháp Luật",
+"id": "8ebef34a4ff5",
+"title": "Quyết định 3933/QĐ-UBND Phú Thọ 2026 phê duyệt dự án hệ số điều chỉnh giá đất 2027",
+"url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPOW02Z05KYjl6ZUhpcE1EclpXcVJQaUstcmJHYjI1S1RqdUpyY3FEeDVpdEhxaThaLXZwWlhsdzRSWEZGNjNScFB2RWFyNWpnWWdraGhSNnVveXdWdGUwYW9aLWdEMHhoTnM2cWJfM3V2cDkxVzlYRGNRZWwwcVpFNVhsRV9Yby1qWElYekJhLWRjRHYxSjlPZks3ZVlVRWF5RjZrNmxwOXpXdlpYYjc2M0F6dm5NQzU4VTRLckwweTR5b1NGRzRN?oc=5",
+"source": "LuatVietnam",
 "summary": "",
 "topics": [
 "dat-dai"
 ],
-"published": "2026-11-17T08:34+07:00",
-"found": "2026-11-18T07:39+07:00",
+"published": "2026-11-17T11:04+07:00",
+"found": "2026-11-17T21:18+07:00",
 "score": 44,
-"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến, thay đổi quy định",
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
 "parts": {
-"rel": 0,
-"dyn": 25,
-"rec": 19
+"rel": 22,
+"dyn": 4,
+"rec": 18
 },
-"theme": "dat-dai:None",
-"cluster": "law:luat-dat-dai",
-"cluster_label": "Luật Đất đai"
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
 "id": "2533f3a93525",
@@ -2200,6 +2117,50 @@
 "theme": "nha-o:10",
 "cluster": "law:luat-nha-o",
 "cluster_label": "Luật Nhà ở"
+},
+{
+"id": "53877f05186d",
+"title": "Nhận tiền đặt cọc hợp đồng xây dựng có cần xuất hóa đơn không? Xuất hóa đơn cần có các nội dung nào theo Nghị định 254?",
+"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQVzctT2F3VWY4eTRKT1NmRERPSldHVERDODlyRmtiM0s2NTR6TFhSWElBYlRtQUFxbFNzeWhBS09XTjUyUXF5T2RvNWVQME1hMllJeDEzcllKWEhiWlBCVG4tb0VtSGNsSnVoTW5lZEFOOUY5aTRRSjVidWRDU2tUTTBlR3FTekxWbUFrbGg0R3dRQUNueUJaczdoaUhpNUgxRGh1MzRxdFAwRWdwTmU0SGxfazNqOTV5YmFVMXdDYzJtQzJ3VlhZMkRVbFJ2c3ZId2E2Sy03VmhnV1R5VTNMNw?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"xay-dung"
+],
+"published": "2026-11-14T11:20+07:00",
+"found": "2026-11-14T19:05+07:00",
+"score": 44,
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng; Quản lý chi phí / HĐ xây dựng",
+"parts": {
+"rel": 20,
+"dyn": 8,
+"rec": 16
+},
+"theme": "xay-dung:14",
+"cluster": "theme:xay-dung:14",
+"cluster_label": "Chi phí & HĐ xây dựng"
+},
+{
+"id": "bc0c7f02c1dc",
+"title": "Sửa đổi Luật Phòng cháy chữa cháy: Giảm thủ tục, không giảm trách nhiệm",
+"url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9LU1c1TzFyS3JJOTdfa2dHeDlNMjNLWlRubF8tdS00dDRhSDZHVi1vc2RGQW9ac1BFb3hxSVB1a1pZRnU4cV9HZUZydVFSQWh1emFXb0l30gFWQVVfeXFMT0tTVzVPMXJLckk5N19rZ0d4OU0yM0taVG5sXy11LTR0NGFINkdWLW9zZEZBb1pzUEVveHFJUHVrWllGdThxX0dlRnJ1UVJBaHV6YVdvSXc?oc=5",
+"source": "HueNgayNay",
+"summary": "",
+"topics": [
+"pccc"
+],
+"published": "2026-11-14T10:20+07:00",
+"found": "2026-11-17T07:34+07:00",
+"score": 44,
+"why": "PCCC – điều kiện nghiệm thu, vận hành chung cư · thay đổi quy định",
+"parts": {
+"rel": 13,
+"dyn": 15,
+"rec": 16
+},
+"theme": "pccc:7",
+"cluster": "law:luat-pccc",
+"cluster_label": "Luật PCCC"
 },
 {
 "id": "393feceadfd3",
@@ -2253,44 +2214,6 @@
 "cluster_label": "Chung cư & nhà ở thương mại"
 },
 {
-"id": "4a5ffcda95da",
-"title": "ĐBQH: Luật đấu thầu tốt phải để người ngay không sợ, kẻ gian không dám",
-"url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOeFR5elFKbnRRYkcwRlN2QThXZS0zUEtLcGZ2eDJyNGdQMjJ2WHpLUEtUSmNHYVFfV1htVmFjb09qdGJNeXBONnlNc0hUTlJCRzM5SFZ0eEVvV2tWemhtazdObmhwYlRvbmVkM2UzNGtVTGdNZ0t5NFVReDhQc0xfZ2dDT0dRcWdRbjhid3EyV2lIM2dpS3ZIdmdOUWlhcThydmdobVdIbDcxOG8z?oc=5",
-"source": "CafeF",
-"summary": "",
-"topics": [
-"ppp"
-],
-"published": "2026-11-06T21:40+07:00",
-"found": "2026-11-07T08:31+07:00",
-"score": 44,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
-"parts": {
-"rel": 24,
-"dyn": 8,
-"rec": 12
-},
-"theme": "ppp:20",
-"cluster": "law:luat-dau-thau",
-"cluster_label": "Luật Đấu thầu",
-"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
-"also": [
-{
-"source": "Laodong.vn",
-"url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOaTJjUDBFNUdRRjVpNHZRNktQcXRnWEtiSUx4RGtpOENYOXFSUzVTUk9pMmxNVWJOQU9XWXI0MjYxRjhudmkxS3NxN1l6STNCOTR1N3QteEJZUHh5T2NpMWZLUUdWYWxuQkxZdFJ2SzdDdXNnTXNFU3I0VEpqNjd6Nms5Y2l3Y3phbWRra3A1ajU4ajBBc2gydEZSMnVkenQ2RmxRTFJsYWtVZDRJWFhpeGxlYTNHRFRLS0ZXTVhxMl9qb3Y5?oc=5"
-},
-{
-"source": "Báo Bảo vệ pháp luật",
-"url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPSk4tcER1TkNqNjFQaU96d2g3dGFRSU14NEJTZ1k2Y1RWSE5fXzVHbzk0ODA3M01sY20wS2FpZjUzeGdaaUFMVC1kczRMajZITVJhY2k5OXBvQmxIVW1oUlVBWTl3TDR4LURQem5DaUpYbWVkbU4yQWxEZnlXbDNiMW82bWFmdjlCX3h1ZFlaT2hycEIxQ284bU1KanVIRm5aTFg2QVdObGVWRHJ2c0RUQXZxRFJMQjc5M2FXcnU0QTdMRmxNYnJucHBaSQ?oc=5"
-},
-{
-"source": "Báo Thanh Niên",
-"url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOcUl6UjRkc01tQ1VldmYwOEEtRGVpVWIwdmJsazRhM2QwNnc3cWZnVG1ySXRBZVg5T3NrbkNhaTFXWnNyRmhlVzNFQTVIZkdxdTF3NjZMd2NzbDdoRnNLSzQzNmEtZUdRYWEzRFNQaGFOZ1dKcVB3NDRBX3JYU0ltNF9EckV5RDlQNVZ1VGdJRG9RYk1MREhpTXQxcjByNHdQanpEa2VJZnJqMjg?oc=5"
-}
-]
-},
-{
 "id": "05daf6764591",
 "title": "Lâm Đồng ban hành quy định mới về quản lý, sử dụng nhà chung cư",
 "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOZEhFb2xnaHMyMTljdnFLM2duNnprRXk3bGhuQTV3cGxOenZFR1dad3NqUUhSLVZ2UE9aRndoZWNCQk8wcTRRTWxhcnVzcDhlOGQxZlJjdktRY05OSDl2Q0lsWTM0dlV4QVdSRTJldVA0SG40a2RIdG43aklVZU9UMzRlXzNDdFYtcnMtV1VBTUR6Y05HUnFBU2otbGdJbno0X2VPSlVQOA?oc=5",
@@ -2311,6 +2234,28 @@
 "theme": "nha-o:4",
 "cluster": "theme:nha-o:4",
 "cluster_label": "Chung cư & nhà ở thương mại"
+},
+{
+"id": "bd1013d0739a",
+"title": "Nghị quyết 57/2026/NQ-HĐND sửa đổi bảng giá đất thành phố Cần Thơ năm 2026 ra sao?",
+"url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPNy1yY2xCSHJ1dzY4bGdWM0JpSTNrcVpEQWlhcDNsNHJ6a24tZkZZSDlCeFhTaTg5T1RwQUdJdW1GVTRmMm5UVkhieUJBc0NkaUFINVNjaXZhREVuTXl2N0MybGV0Y0NVMmJKQTRjLUptel91WGxsakRwRVJITEVRalA4eXhJYzJrZDhuaXQ4TXhKSi1LUTFETU41VFU4MDV2WDk3TG1wWklPUlVCbmxlY2NhT2hsUmRCT3p1MXVLS0hYY1daNjBXd2Z6WW1UNWtWenc4RzJFRnFVWGR1NDdqNGVzQl9tb1MwbmFOWnZ1TkM4TG55YlVtNDNENUwxbjlKQlEw?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-02T13:30+07:00",
+"found": "2026-11-04T10:03+07:00",
+"score": 44,
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · thay đổi quy định",
+"parts": {
+"rel": 22,
+"dyn": 14,
+"rec": 8
+},
+"theme": "dat-dai:2",
+"cluster": "doc:ngh-quy-t-57-2026-nq-hdnd",
+"cluster_label": "Nghị quyết 57/2026/NQ-HDND"
 },
 {
 "id": "11bbbfead0bf",
@@ -2376,6 +2321,28 @@
 "rec": 1
 },
 "theme": "dat-dai:2",
+"cluster": "law:luat-dat-dai",
+"cluster_label": "Luật Đất đai"
+},
+{
+"id": "dd8df5230797",
+"title": "TOÀN VĂN Dự thảo Luật Đất đai sửa đổi 2026 mới nhất ngày 20/7/2026? File PDF Dự thảo Luật Đất đai 2026?",
+"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNdTI4dkVOTjNueGk2WXVnUDNPbk4yZDFWZk9pU3MtdWJ0SG9Id18wY3lMU1NjSlNuSGotc1hsanQzZ2wzaUc5ZGxpV2VyZjVSSjR5dmloUC1YSmxZQ0hnRFhFR2t1Q2tsQXR2WENWTEtHSHBEUHYwc1NndVNwbmd0OTd3azRfOWNlaVVfTXRvNTFsMTZNQ29lOFpraUJ4d0VaOG5wcTgyU0VOWUhWNkFGMTdWV2F3RE5aWUJOdzB3OVB6alFMekQ5UHlqOXRhTTdJdk5McTdQSlZDUFM5blZsdENnWjhWUQ?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-17T08:34+07:00",
+"found": "2026-11-18T07:39+07:00",
+"score": 43,
+"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến, thay đổi quy định",
+"parts": {
+"rel": 0,
+"dyn": 25,
+"rec": 18
+},
+"theme": "dat-dai:None",
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai"
 },
@@ -2446,6 +2413,44 @@
 "theme": "dat-dai:2",
 "cluster": "doc:ngh-quy-t-87-2025-nq-hdnd",
 "cluster_label": "Nghị quyết 87/2025/NQ-HDND"
+},
+{
+"id": "4a5ffcda95da",
+"title": "ĐBQH: Luật đấu thầu tốt phải để người ngay không sợ, kẻ gian không dám",
+"url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOeFR5elFKbnRRYkcwRlN2QThXZS0zUEtLcGZ2eDJyNGdQMjJ2WHpLUEtUSmNHYVFfV1htVmFjb09qdGJNeXBONnlNc0hUTlJCRzM5SFZ0eEVvV2tWemhtazdObmhwYlRvbmVkM2UzNGtVTGdNZ0t5NFVReDhQc0xfZ2dDT0dRcWdRbjhid3EyV2lIM2dpS3ZIdmdOUWlhcThydmdobVdIbDcxOG8z?oc=5",
+"source": "CafeF",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-11-06T21:40+07:00",
+"found": "2026-11-07T08:31+07:00",
+"score": 43,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"parts": {
+"rel": 24,
+"dyn": 8,
+"rec": 11
+},
+"theme": "ppp:20",
+"cluster": "law:luat-dau-thau",
+"cluster_label": "Luật Đấu thầu",
+"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
+"also": [
+{
+"source": "Laodong.vn",
+"url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOaTJjUDBFNUdRRjVpNHZRNktQcXRnWEtiSUx4RGtpOENYOXFSUzVTUk9pMmxNVWJOQU9XWXI0MjYxRjhudmkxS3NxN1l6STNCOTR1N3QteEJZUHh5T2NpMWZLUUdWYWxuQkxZdFJ2SzdDdXNnTXNFU3I0VEpqNjd6Nms5Y2l3Y3phbWRra3A1ajU4ajBBc2gydEZSMnVkenQ2RmxRTFJsYWtVZDRJWFhpeGxlYTNHRFRLS0ZXTVhxMl9qb3Y5?oc=5"
+},
+{
+"source": "Báo Bảo vệ pháp luật",
+"url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPSk4tcER1TkNqNjFQaU96d2g3dGFRSU14NEJTZ1k2Y1RWSE5fXzVHbzk0ODA3M01sY20wS2FpZjUzeGdaaUFMVC1kczRMajZITVJhY2k5OXBvQmxIVW1oUlVBWTl3TDR4LURQem5DaUpYbWVkbU4yQWxEZnlXbDNiMW82bWFmdjlCX3h1ZFlaT2hycEIxQ284bU1KanVIRm5aTFg2QVdObGVWRHJ2c0RUQXZxRFJMQjc5M2FXcnU0QTdMRmxNYnJucHBaSQ?oc=5"
+},
+{
+"source": "Báo Thanh Niên",
+"url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOcUl6UjRkc01tQ1VldmYwOEEtRGVpVWIwdmJsazRhM2QwNnc3cWZnVG1ySXRBZVg5T3NrbkNhaTFXWnNyRmhlVzNFQTVIZkdxdTF3NjZMd2NzbDdoRnNLSzQzNmEtZUdRYWEzRFNQaGFOZ1dKcVB3NDRBX3JYU0ltNF9EckV5RDlQNVZ1VGdJRG9RYk1MREhpTXQxcjByNHdQanpEa2VJZnJqMjg?oc=5"
+}
+]
 },
 {
 "id": "0cf299ec5fe9",
@@ -2611,16 +2616,16 @@
 "cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
 },
 {
-"id": "d767ed233e90",
-"title": "Bảng giá đất ở Xã Đá Bạc tỉnh Cà Mau 2026 như thế nào? Tải về Bảng giá đất Xã Đá Bạc file PDF ở đâu?",
-"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPbWE3bHg0eDZ2c0ZCVUMyZFFYZ1pad1dIRGN2bFJIUGtDQXRrd0lwNXRrZkpvTkRLVDFja2tGRTJhc1FLOUdkTXBYQlBkWjJramRNSUM5aEpTQmVtZWlfUmtoTm5aRmkxa2pnMTJzdjFNS2t3ZFZ3VzZqTnhzSXJ3amZNMXlvX2VCUkZobnJ1UjFiak1iQjJyWXMtYjNzcGF2a1dmNzdMdmRud0gwWVdQZzJrc3k2Sm1rVlB1MlY5cU55TlZnb09ST3ZrUVVIUVFja05CQlBVai10NmNReHFIXw?oc=5",
+"id": "aa45a62d464b",
+"title": "Bảng giá đất ở Xã Sông Đốc tỉnh Cà Mau 2026 gồm những gì? Tải Bảng giá đất Xã Sông Đốc file PDF ở đâu?",
+"url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNQmNzbXJiazg5czZycmJDQi1sMmo2WnpEX0J2X3lGcU5nV3A4RlBidjJFQ3VibTU5amJiaHJld2hQc3hOTE42LWRSWFpnTjNOVm11Y1JabkR2a054YTdDclY5UFpwblFqSEx4STAtZVk1cnlMcXF1NFRUb3ZjbkdzVVg2ZHduT1kxRW90QXpJWE5Ec3RJd2xVcHRCdklscVZPemVUeDRNZk5aZzZjdklwQ1Qtdll3Wm5sTlltWEpRcEhsQkF3YXIzVks0TnpEVE5ZMFFQQUZkVmc4WkRHZWcwZkln?oc=5",
 "source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
 "dat-dai"
 ],
-"published": "2026-11-19T11:16+07:00",
-"found": "2026-11-19T14:28+07:00",
+"published": "2026-11-19T20:04+07:00",
+"found": "2026-11-19T21:18+07:00",
 "score": 42,
 "why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
 "parts": {
@@ -2631,24 +2636,74 @@
 "also": [
 {
 "source": "Thư Viện Pháp Luật",
+"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOb240bzhMSkJJRktCM3JtRkxrRVpMd3NlRHpmN3pHR19ZQ3FTSlNtazczODVodWZ0aGJNUGs1RlhNYzVhbmlyc0otaUtVOW1mVkJpRVFPY1NvU2JQZl9ITFBhVFRzY21mOEswRUNsRl9uYzYxSndwZFNWMi15UTJMOFZpc1ZmdmVRdjdYbmJ2eVJpOXlXZTF6N1RobGJNMFlkNFpJMzdpMmYxaEVyRlVjeWJ2cC1PTmFVbk1KekNIYlA0WUY5SlY0YVBLakU0MzlTY29PenlwREs5U2dDNDFURA?oc=5"
+},
+{
+"source": "Thư Viện Pháp Luật",
+"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPVk9NbmIxSnRUM0FEVlFUSGJ2bVg4YXE5dTNKb2RkeUp2UVREeUVvYWx6S21vM1NDSFBLVjBCaEM3S29rXzVqYUk3Vkw2N1FiUUIzR0JwWnU0WVozeEt6Nndaak1RWjlJOUhaLVJkYUszVkh1dGdmNmFpQURNSWdMNVAwTEg5ZExCM21YamlTZF91a0otY0FWRjAxeVVsR2ZSaU43WTZNdDNZSTRPWGRSNXMxV2dvZlZEMENURWllWFZDV2Nxc3NqbGR6QnRvWWFsUk16X3JKNDlod2FJQ1hqQw?oc=5"
+},
+{
+"source": "Thư Viện Pháp Luật",
+"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPbWE3bHg0eDZ2c0ZCVUMyZFFYZ1pad1dIRGN2bFJIUGtDQXRrd0lwNXRrZkpvTkRLVDFja2tGRTJhc1FLOUdkTXBYQlBkWjJramRNSUM5aEpTQmVtZWlfUmtoTm5aRmkxa2pnMTJzdjFNS2t3ZFZ3VzZqTnhzSXJ3amZNMXlvX2VCUkZobnJ1UjFiak1iQjJyWXMtYjNzcGF2a1dmNzdMdmRud0gwWVdQZzJrc3k2Sm1rVlB1MlY5cU55TlZnb09ST3ZrUVVIUVFja05CQlBVai10NmNReHFIXw?oc=5"
+},
+{
+"source": "Thư Viện Pháp Luật",
 "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPN1pSQ1puOHJ1b3FPeXpSbUZ3a0g3LTZ4d0hMWU1IUU1SdzNXOEVRcW1uWmxFQ2R6RmpjNFQxbGlNVWkxOUlXVU83MW5TeDhzSlpveXg4dm44dDZ5MGxRdWdrV3dOa1hWMWpkbmQySEh0ekZmZjZJUE9ZZ0VRNjVlNkxMTUdYNU9LU0xXZ2tEQTZnQWJYZ3Rodm5jSmpDODlBQktLSEZTY3pXZThveTZaeGFUYkhIb1dpZ20tSDRWWkZ1UXM4dU5EbXNNZl8yX3laSDVDdzVIYlRpMl82OVN3alVR?oc=5"
-},
-{
-"source": "Thư Viện Pháp Luật",
-"url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxNU3JtbHc1SEc2b1JiUUZTMTRGX1Q0ck9INGRWVHg2RkJ3WGJVZEtxcmxNd1c4dnlnYThldjEzUEhYLS1QbjVsYklOREs4MW5Ga1NYem5uZ0hHNUF0QWhtcVZhR3BjUFBLSjJONmkxclg0N2NKa200STdSaUpRc3hycE1XbjBGMGpZMzE1Qmdkakx5VmV3cHkxLTZGZTNfMllFQzIwbUpfemRBTk9zOGZiaGlXMzM4SXRTRFdBdG9ZV0xQN05pMnJ5NDBfbUFISURRNjY1RHJZMHl3YlQy?oc=5"
-},
-{
-"source": "Thư Viện Pháp Luật",
-"url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPZ08tZmlDRHhaMzZSVEJEY2xnQ0liLWZHelFTQmdnSWN6QXp3d09ySUNiZFhhbC0zX29tYzFJWHZyaGROLWE4dXhEV1FvY0hHdjN6eHhzYWx0WHBUQTNxbjN1QTZ5R1dDSDNQMmtyeTB2SjRvbGRmZkVJa19SVlBfdmg5NGVxb1N3dU8xVVZSN2JIcVJFbEtYWUZ0Wm1fTVkzY0ptU3FFQ2RwbEVuaDZuMmNWZXZaWXcyYmFrbkxNenVERE9QMU1QdGI4S2diRWVUcXZ4NUlfc0RtOW5EUlBxSWxR?oc=5"
-},
-{
-"source": "Thư Viện Pháp Luật",
-"url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPblhaWUhZLU9UazJTOUFLVXBGeGNTQmdkYk13VG1XQlQxWXg2dVRtSWpMOVRWMUlFVWdPZHlvb0tPQUc0aFJrYzRCVHNJei14dUxaLTlFU1ZIbnhWOEtHSnVuYzFPcHpnS1NDNXllcm8yZmFJOGZ6M3FKZmVvSHZ0NTJJa19aQllYNVRHQ3JEbUZqZVJaTHZnVUFXN1JVRkpMeW45V2djeTZMQnB1X0I4bXByTTVLMU54OHl6RUlRWWc4Mmx3MmlBeVVPMGZYdEhsdXhSX3NRZkxKeVhs?oc=5"
 }
 ],
 "theme": "dat-dai:2",
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
+"id": "e32ab7026bb7",
+"title": "Bảng giá đất ở Xã Tân Lộc tỉnh Cà Mau 2026 như thế nào? Tải Bảng giá đất file PDF cụ thể ra sao?",
+"url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNdERLd2Z6RUx4bVV2Mkpnc0xoQ05KckNTa1dWWUx1TVhsclpsYlhpRldqUnFTdWpNcE83MDNCa3hmYjNkZ0QzTnAyVlVwQ01acklTTnBralU0ZW9OSVpVOGVCOEpzcElKU2hfcEg4QzBRck5tWGt6TGpINW92bWdrOFBTWGQyNnQ3SVpOVG9ya3R6b3Q2UEt3bW9LY09MTFpwVV9HdFdiekpncndYVkp4Y1RTcU9aSDEzbE1QcmY2cEdmRExreWVsV1E5TjMyX0JXNFdaT09vU1c3ZGs?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-19T20:04+07:00",
+"found": "2026-11-19T21:18+07:00",
+"score": 42,
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
+"parts": {
+"rel": 22,
+"dyn": 0,
+"rec": 20
+},
+"also": [
+{
+"source": "Thư Viện Pháp Luật",
+"url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPTktXYmlsM1NwZmdHZFNUSUZVeDYyQ1hXdmo0VnpBM0luX1Q2MFIxMk9RZFhJV0ozcGItVERkX0EzUGFta2JXY2liNXB3U25kblYteG9KYXBTUjU4b2Q2Mk9KQW9fd2FGWHVERmF3T2ZMUFRvRlBqVEZhTURoYXhJREVFc3VZY05tMFJUMlozN3BDdHdaTmxjVVE4anpJeEJwdXl2ZGppcTdodjM2clR5Uk5nOC1JdnVLSDhCWTlENDBsVVBvaEt3UkoydWI5RXdmLUJoTUd1SWxmc1M0YWFKNEJUTDUxdWl0QUE?oc=5"
+}
+],
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
+"id": "5bc316a7e3b9",
+"title": "UBND tỉnh cho ý kiến vào dự thảo Quy chế phối hợp trong công tác quản lý nhà nước về tài nguyên địa chất, khoáng sản trên địa bàn tỉnh",
+"url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPMm5Bd3R3b2tNdWRBcVRxQWZwLTZ1YklzSHpQb1puMGNnNHNYcFNqeTlvdEMzWDNZMF9VUkxrUDNqNkkyRVRVb3dzS2JweVFRLTRBY0l0MjhxNGZWRWQya1pOUnVmQzFkMnpTdW5XYURjVnNxNDZ5YTZpbkoxcHZqempEaHFLN2dFOHdMLWtYSUVyTUF6UnZPUHBDMnRPaGhYWjBfR0NuNm53b3lvU292ZWZVQ2d0YXJUT00xMEZ1bExjTFpVUDRDSUp2QTRnVnBBamx6MktqS2FzcUlJeE5tb2NvRHNBVHdGb3doU18zY1BPM0Q1MzNUTTVaWQ?oc=5",
+"source": "Nghệ An 24h",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-11-19T14:34+07:00",
+"found": "2026-11-19T21:18+07:00",
+"score": 42,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công · dự thảo đang lấy ý kiến",
+"parts": {
+"rel": 12,
+"dyn": 10,
+"rec": 20
+},
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
 },
 {
 "id": "57e005c63bb1",
@@ -2681,50 +2736,6 @@
 "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOQlIwOEpPaFdqa01WSzZzTklVSktlOC1uWDdsaWRxUEg3dUtMMENhXy1BbEtIVElqS0hVVW9xYXdJRVVvZHMtcXJNWDl2QXhlREh6bGdXRFpkMFZETDdMNElOUlFJaG1GRXkzX0FvWEMySHktdU4zNDRuWnJpemw0V2V0ZFZtUy1SdWJ6R193RlVIRnk0ZXl4eE84SmIyR1dub1VUc0JTd0FXRUFfTWR1dUtJejc3NDV5aEM1UXZPeFJVS2tQNG1xaFRpNUVCSjd6cHZuN19Fb2dWSTA?oc=5"
 }
 ]
-},
-{
-"id": "6846901ee74c",
-"title": "Danh sách 40 dự án phải thu hồi đất tại TPHCM đợt 3.2026 theo Nghị quyết 122 NQ HĐND chi tiết?",
-"url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOZjhXVjlTcHB2RFBIem01eGN0QVZKUTJJNTYyOVFtZWs0bVdwM21iVTM0dHVGYldrSU42Z3NRNmVRVC1wTFRPUkdLVHlZaGppNnl0N3dSY0N3RUFLYWV5aXptUWc5LXQ1UjNZVG9zdFByLTFMVEZOTW0ySEx4OFhZckNFVGgzRFA4VlJOa0paeTdPaEFrbWRaTmZvOWZ4UUktS19yX0hjVVNOSUMzNWlQZ3prZEY4TXRYa052SXc4UHdZdWl4LWJaQXdjUG0zWVRsSm5HUUdVUGN1MGtD?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-17T09:57+07:00",
-"found": "2026-11-17T21:18+07:00",
-"score": 42,
-"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
-"parts": {
-"rel": 16,
-"dyn": 7,
-"rec": 19
-},
-"theme": "dat-dai:3",
-"cluster": "theme:dat-dai:3",
-"cluster_label": "Quyền sử dụng đất & giao đất"
-},
-{
-"id": "06a2e99ce405",
-"title": "Những điểm mới mang tính bước ngoặt trong dự thảo Luật Quản lý, sử dụng vũ khí, vật liệu nổ, công cụ hỗ trợ và Luật Phòng cháy chữa cháy và cứu nạn cứu hộ",
-"url": "https://news.google.com/rss/articles/CBMi2wJBVV95cUxPTjBCT0Qxd3A3MTVLRzRvejd3S2JnSFNlTGNYaHJsaVBMeVd4dEJ4eW5ZZjV5Y1RvS2JtVlRSSDJIOG9QOWlOcnpkdGtuTDN5LU1mV3pJVTJ0VklHRjFwSkVDRktQY0dxeUpoMGRFT1FMZzNFNjJoSklpSWhKb1ZGMmxLaE5MTWpjNzctcUtrXzh2cy1teTA0ZGF4ZGFLMUwxcXFiRmxyNFlSRHdpbGN2bkFfMGVUOGcyYmtsaXk3ektjVGwteFYyTi1KVnBIanNHTEJZQXdjMW1uMDlqUGtKa1JRZ3VXMnpKS2YzbU1pdEFiQVlBR3pmcEtacFNVblZ3SnF3RXJwX3BscDRkTHpsNE5Va3RVMlYwcE9vSGFkcXRXdXphaG5naUlheVhBc2laeUsxREFyM2E1V0tWS2JUaGhhcGw3alByRkFvaWczbnRhR3hZd2JTLWw3TQ?oc=5",
-"source": "CÔNG AN THÀNH PHỐ CẦN THƠ",
-"summary": "",
-"topics": [
-"pccc"
-],
-"published": "2026-11-17T08:58+07:00",
-"found": "2026-11-17T21:18+07:00",
-"score": 42,
-"why": "PCCC – điều kiện nghiệm thu, vận hành chung cư · dự thảo đang lấy ý kiến · (chỉ là phần phụ của dự luật gộp – giảm điểm)",
-"parts": {
-"rel": 5,
-"dyn": 18,
-"rec": 19
-},
-"theme": "pccc:7",
-"cluster": "law:luat-pccc",
-"cluster_label": "Luật PCCC"
 },
 {
 "id": "a577e6ec4cb6",
@@ -2912,54 +2923,6 @@
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
-"id": "162ece898f58",
-"title": "Luật Đầu tư công mới nhất 2026 và các văn bản hướng dẫn Luật Đầu tư công",
-"url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPaDBaZDhfNmJJZjVNeGlicmJXVHNsQ1NiZWNvX056SjdmS3NLc3lReTQ1QmVIWk5JMkVmSk12NkVCYlo3WnlDT1BSY1dVdU1kaEhKMFZwZlgtNWEwQTV2ellxaGpXVExaM2lPZEREMWxiUXhtMXIzSDFYVnR5LUlSWUpuZHFhNEdCZVNCTEd6MHliMWdCNnpndXRzUjhTbldCUThiQ1NhRXN4Q3A4NEhHa0FVN1NiNmJPemF4RWRlLWhoRUN6bm92Yi1IMS1zQQ?oc=5",
-"source": "LuatVietnam",
-"summary": "",
-"topics": [
-"ppp"
-],
-"published": "2026-10-24T14:00+07:00",
-"found": "2026-10-26T08:09+07:00",
-"score": 42,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu · thay đổi quy định",
-"parts": {
-"rel": 24,
-"dyn": 15,
-"rec": 3
-},
-"theme": "ppp:19",
-"cluster": "law:luat-dau-tu-cong",
-"cluster_label": "Luật Đầu tư công",
-"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
-},
-{
-"id": "236f415202ff",
-"title": "Sửa đổi Luật Đấu thầu: Đẩy mạnh phân cấp, siết chặt trách nhiệm",
-"url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPQVRmZzdTakNsazBwZXlpeG5IRTZ6Z3A2dnJDVFcyU0VseVFEdXVFazZFbmtpanZBRjlwb1Itc0RWVWdpaFNMZ0xTLTNubUhkUDc2WmlfVXFrdDRhQXcwYjN0emltNklFMlZsZVF5UWJDaXBjT2JtaHRJMV9qX3pLYnpqMW5nNlNkcldsZGQwbnBYMExqNE5YT0ROcDM?oc=5",
-"source": "Báo Kiểm toán",
-"summary": "",
-"topics": [
-"ppp"
-],
-"published": "2026-10-24T10:21+07:00",
-"found": "2026-10-26T08:09+07:00",
-"score": 42,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu · thay đổi quy định",
-"parts": {
-"rel": 24,
-"dyn": 15,
-"rec": 3
-},
-"theme": "ppp:20",
-"cluster": "law:luat-dau-thau",
-"cluster_label": "Luật Đấu thầu",
-"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
-},
-{
 "id": "273dbaf66832",
 "title": "Bảng giá đất Tây Ninh: Biến động đến mức nào thì phải sửa?",
 "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOLVlXWnU1NllvWjV1cjViR3BlT3JUOWRUcmtjSlAyOXpKWVpZa0pucDNrUEZPck41aHljdXBJaWZIU2pzTVpHZmxPcEt4RU1HM0VrZEdtQlo2ekxXSTM5aEo2QkRfNlk5d25SSGFvQzBEQW95VlNEdUJHQUJVM2U2TDYtZ1YxMXJIRkh1QUVoZkhQb2loS3hHd0prZEg?oc=5",
@@ -3004,27 +2967,48 @@
 "cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
-"id": "b28a64a03ef2",
-"title": "Sửa Luật Đất đai, kinh doanh bất động sản: Không làm phát sinh thủ tục và chi phí tuân thủ",
-"url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPdTZpNm8zNDJCcUtySEZ3VHhJaTNVZmdkWmZDNFllZlVPOV9rakFWU2sxNnRKNjJGYVZxNVNuejZyQTV5UnA0bzliNjUxc215Mi04bUNjVFBNcW5hVHh4Y2NhenRNaG5ieHRpc1c2ODBNWmt0Q1RUNjZidXlNTVhvZWZsOUtOS3p6OG5Wc0pGNlBlanB3ZEFjMEFwT1pYS2dHSVFIZXB4RklDZGdmUEJCYTkwbVlpSFl6Z0thSmRqUUZBUTFseUpOYTNFbENHV0ZuaVZRMEhhMnRfcmZBNkE?oc=5",
-"source": "Báo Thanh tra",
+"id": "6846901ee74c",
+"title": "Danh sách 40 dự án phải thu hồi đất tại TPHCM đợt 3.2026 theo Nghị quyết 122 NQ HĐND chi tiết?",
+"url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOZjhXVjlTcHB2RFBIem01eGN0QVZKUTJJNTYyOVFtZWs0bVdwM21iVTM0dHVGYldrSU42Z3NRNmVRVC1wTFRPUkdLVHlZaGppNnl0N3dSY0N3RUFLYWV5aXptUWc5LXQ1UjNZVG9zdFByLTFMVEZOTW0ySEx4OFhZckNFVGgzRFA4VlJOa0paeTdPaEFrbWRaTmZvOWZ4UUktS19yX0hjVVNOSUMzNWlQZ3prZEY4TXRYa052SXc4UHdZdWl4LWJaQXdjUG0zWVRsSm5HUUdVUGN1MGtD?oc=5",
+"source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
-"dat-dai",
-"kd-bds"
+"dat-dai"
 ],
-"published": "2026-11-17T14:56+07:00",
+"published": "2026-11-17T09:57+07:00",
 "found": "2026-11-17T21:18+07:00",
 "score": 41,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng",
+"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
 "parts": {
-"rel": 14,
-"dyn": 8,
-"rec": 19
+"rel": 16,
+"dyn": 7,
+"rec": 18
 },
-"theme": "dat-dai:5",
-"cluster": "law:luat-dat-dai",
-"cluster_label": "Luật Đất đai"
+"theme": "dat-dai:3",
+"cluster": "theme:dat-dai:3",
+"cluster_label": "Quyền sử dụng đất & giao đất"
+},
+{
+"id": "06a2e99ce405",
+"title": "Những điểm mới mang tính bước ngoặt trong dự thảo Luật Quản lý, sử dụng vũ khí, vật liệu nổ, công cụ hỗ trợ và Luật Phòng cháy chữa cháy và cứu nạn cứu hộ",
+"url": "https://news.google.com/rss/articles/CBMi2wJBVV95cUxPTjBCT0Qxd3A3MTVLRzRvejd3S2JnSFNlTGNYaHJsaVBMeVd4dEJ4eW5ZZjV5Y1RvS2JtVlRSSDJIOG9QOWlOcnpkdGtuTDN5LU1mV3pJVTJ0VklHRjFwSkVDRktQY0dxeUpoMGRFT1FMZzNFNjJoSklpSWhKb1ZGMmxLaE5MTWpjNzctcUtrXzh2cy1teTA0ZGF4ZGFLMUwxcXFiRmxyNFlSRHdpbGN2bkFfMGVUOGcyYmtsaXk3ektjVGwteFYyTi1KVnBIanNHTEJZQXdjMW1uMDlqUGtKa1JRZ3VXMnpKS2YzbU1pdEFiQVlBR3pmcEtacFNVblZ3SnF3RXJwX3BscDRkTHpsNE5Va3RVMlYwcE9vSGFkcXRXdXphaG5naUlheVhBc2laeUsxREFyM2E1V0tWS2JUaGhhcGw3alByRkFvaWczbnRhR3hZd2JTLWw3TQ?oc=5",
+"source": "CÔNG AN THÀNH PHỐ CẦN THƠ",
+"summary": "",
+"topics": [
+"pccc"
+],
+"published": "2026-11-17T08:58+07:00",
+"found": "2026-11-17T21:18+07:00",
+"score": 41,
+"why": "PCCC – điều kiện nghiệm thu, vận hành chung cư · dự thảo đang lấy ý kiến · (chỉ là phần phụ của dự luật gộp – giảm điểm)",
+"parts": {
+"rel": 5,
+"dyn": 18,
+"rec": 18
+},
+"theme": "pccc:7",
+"cluster": "law:luat-pccc",
+"cluster_label": "Luật PCCC"
 },
 {
 "id": "ec3fc5b1c9b5",
@@ -3122,30 +3106,6 @@
 "cluster_label": "Chung cư & nhà ở thương mại"
 },
 {
-"id": "95e53f384094",
-"title": "Văn bản hợp nhất 58/2026/VBHN-NĐ-BTC 2026 quy định chi tiết Luật Đầu tư theo phương thức đối tác công tư",
-"url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQX1RKdFctanZOdjN5NnA0SzZWZzNObUtES1hLMEFtQ25BMkNnQm95eE1TTGxqT2drLTdURXhzMkIzU0VrYldJQ29Ha2NLT1NaU3l4OVZCNzdyMTViVkdtVGZWM04yRmVWeXFueFN1dHFpLTBMZ1JKX3NGUm1CbzFYem9xQmlvWHdyUTR6bk1DRV8wSDNfTWU3bHN5WUFFVkdldU5xR2x1Wlp3TllXT3pzOUlFQU96OEJkc3pZdm5uQXczeGJVdk1PRXRpRXdOamxJdmtHX2tpbndlREVjbDdYcWQzZw?oc=5",
-"source": "LuatVietnam",
-"summary": "",
-"topics": [
-"ppp"
-],
-"published": "2026-11-02T09:30+07:00",
-"found": "2026-11-06T10:25+07:00",
-"score": 41,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
-"parts": {
-"rel": 24,
-"dyn": 8,
-"rec": 9
-},
-"theme": "ppp:18",
-"cluster": "law:luat-ppp",
-"cluster_label": "Luật PPP",
-"impact": "đối chiếu căn cứ pháp lý, loại hợp đồng (PPP/BT), điều kiện thanh toán – quyết toán (quỹ đất/ngân sách) và điều khoản chuyển tiếp của văn bản với hợp đồng/dự án đang làm.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
-},
-{
 "id": "dc9655e63d26",
 "title": "Góp ý dự án Luật Nhà ở (sửa đổi): Hoàn thiện chính sách nhà ở xã hội và nhà công vụ",
 "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQUi1TSG1QRzVsa2tjSjY5QmFIeDFqYVFpYl9tQkhpdDBwbmlkbXRfekxHUTIzcjREeHZZMXFTSWNwd3lGNG1ldTZ2NkVEMUF4bzV5VDEySE1DX3hleVQ0Y1RTem51MjM0MEhrMkQ3d1czSDdMRXBfSmxQcUROYWNoa3YwZ3dFUHRxamU5N2JDLWFCUEYwQ0pGUmJYcjNoWGhkdXZPaDNLUFlQdkplTFlBYVFMSQ?oc=5",
@@ -3188,6 +3148,54 @@
 "theme": "dat-dai:2",
 "cluster": "doc:ngh-quy-t-28-2026-nq-hdnd",
 "cluster_label": "Nghị quyết 28/2026/NQ-HDND"
+},
+{
+"id": "162ece898f58",
+"title": "Luật Đầu tư công mới nhất 2026 và các văn bản hướng dẫn Luật Đầu tư công",
+"url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPaDBaZDhfNmJJZjVNeGlicmJXVHNsQ1NiZWNvX056SjdmS3NLc3lReTQ1QmVIWk5JMkVmSk12NkVCYlo3WnlDT1BSY1dVdU1kaEhKMFZwZlgtNWEwQTV2ellxaGpXVExaM2lPZEREMWxiUXhtMXIzSDFYVnR5LUlSWUpuZHFhNEdCZVNCTEd6MHliMWdCNnpndXRzUjhTbldCUThiQ1NhRXN4Q3A4NEhHa0FVN1NiNmJPemF4RWRlLWhoRUN6bm92Yi1IMS1zQQ?oc=5",
+"source": "LuatVietnam",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-10-24T14:00+07:00",
+"found": "2026-10-26T08:09+07:00",
+"score": 41,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu · thay đổi quy định",
+"parts": {
+"rel": 24,
+"dyn": 15,
+"rec": 2
+},
+"theme": "ppp:19",
+"cluster": "law:luat-dau-tu-cong",
+"cluster_label": "Luật Đầu tư công",
+"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
+},
+{
+"id": "236f415202ff",
+"title": "Sửa đổi Luật Đấu thầu: Đẩy mạnh phân cấp, siết chặt trách nhiệm",
+"url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPQVRmZzdTakNsazBwZXlpeG5IRTZ6Z3A2dnJDVFcyU0VseVFEdXVFazZFbmtpanZBRjlwb1Itc0RWVWdpaFNMZ0xTLTNubUhkUDc2WmlfVXFrdDRhQXcwYjN0emltNklFMlZsZVF5UWJDaXBjT2JtaHRJMV9qX3pLYnpqMW5nNlNkcldsZGQwbnBYMExqNE5YT0ROcDM?oc=5",
+"source": "Báo Kiểm toán",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-10-24T10:21+07:00",
+"found": "2026-10-26T08:09+07:00",
+"score": 41,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu · thay đổi quy định",
+"parts": {
+"rel": 24,
+"dyn": 15,
+"rec": 2
+},
+"theme": "ppp:20",
+"cluster": "law:luat-dau-thau",
+"cluster_label": "Luật Đấu thầu",
+"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
 "id": "422aafd0845a",
@@ -3362,6 +3370,28 @@
 "cluster_label": "Luật Nhà ở"
 },
 {
+"id": "6a6af11ea481",
+"title": "Mẫu Đơn đề nghị chuyển mục đích sử dụng đất tại TPHCM theo Quyết định 44/2026/QĐ-UBND thế nào?",
+"url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNa2w0bDZtd2Z0eUFhaGx1OE9pcmNjTFhuVjFvYnFmRUNDWGRxWVdmcGdOQ0Zpc294SUw3MEdnSVp6dm1pVTJRTzZaX2NvdURGRm1BVlFkd1JzSjJ4czNfSVFxSUhNMkhxY3RjQnY1TVpxS09OdWpVNlpLcDNublQ4NWVyU2FIZ1FIM0N4QUhFeGFXcGphZmpQSTJ6VG1mUXE2R3NXUWJDVlQ5WFlETGVXWkI0NjFoMlUtVlBZMlhOR3pnQmlnMlBVaXJZcjRrV3JlTTVXMmtoWUV0NzRZbVhYd1ZFREtRSDItS1VNajRZS1FFd1FVdlpn?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-19T15:53+07:00",
+"found": "2026-11-19T21:18+07:00",
+"score": 40,
+"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
+"parts": {
+"rel": 16,
+"dyn": 4,
+"rec": 20
+},
+"theme": "dat-dai:3",
+"cluster": "theme:dat-dai:3",
+"cluster_label": "Quyền sử dụng đất & giao đất"
+},
+{
 "id": "0fdda7cc0247",
 "title": "Hỏi - Đáp pháp luật: Trường hợp được miễn giấy phép xây dựng khi khởi công xây dựng công trình",
 "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPVTJLS01UXzB4TlFVbVgtU1Fpc3FiN3NEbTA0dUlhTzR1aXprcHJTc0FlZHFta0JvMXhjUTFQZV9sWFpiYnRUeUItUVMzbS1PTWp3dFpHalVxalQxMk5zRjdWQU1xRmV0aXlhQk9ENUhUbzRqUFJXQndLUGVGOXJIUVNSdnFlV3FnLUxrRml2Qi16UkdVd3c3VWt1ekJiMEtadzFpSGFoOGRfTTFFbXVsTzY1a3ZMMWJ2NmJzOWxieVdzdENhcXBJRU9FaW5HSkpLSW1fZldB?oc=5",
@@ -3384,26 +3414,27 @@
 "cluster_label": "Cấp phép & thẩm định xây dựng"
 },
 {
-"id": "1f312ee6de6e",
-"title": "Nhà thầu thi công khai khống khối lượng nghiệm thu công trình xây dựng bị phạt bao nhiêu theo Nghị định 339?",
-"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQdXZEWDlqQjZpWVdpekJMZkQ4M081SktJZmRzTExnbDU3cHI3RF85TV8wMU5uSnd0SlJvMzRSRTdlM09RdW85aHAtSVd6SkphZVdNR2ZjazUzTWVtdzZWNGJGVS1NblhkTE5QTWV5aDlSU3VBSmlEQ1dBYVFyYWh1ZEQ0NTRPRlhlZHVxdnJYbXpyVEw5QUxFUHY4TEw2OEtPeDN4YzhhRTBsOUZKYlBFTXloeTh1TEpyNmZkMjZUMFF4cjlNMmxLNGx6ZjRhTTRpNEtXQU16THpwUHgxbHZpTA?oc=5",
-"source": "Thư Viện Pháp Luật",
+"id": "b28a64a03ef2",
+"title": "Sửa Luật Đất đai, kinh doanh bất động sản: Không làm phát sinh thủ tục và chi phí tuân thủ",
+"url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPdTZpNm8zNDJCcUtySEZ3VHhJaTNVZmdkWmZDNFllZlVPOV9rakFWU2sxNnRKNjJGYVZxNVNuejZyQTV5UnA0bzliNjUxc215Mi04bUNjVFBNcW5hVHh4Y2NhenRNaG5ieHRpc1c2ODBNWmt0Q1RUNjZidXlNTVhvZWZsOUtOS3p6OG5Wc0pGNlBlanB3ZEFjMEFwT1pYS2dHSVFIZXB4RklDZGdmUEJCYTkwbVlpSFl6Z0thSmRqUUZBUTFseUpOYTNFbENHV0ZuaVZRMEhhMnRfcmZBNkE?oc=5",
+"source": "Báo Thanh tra",
 "summary": "",
 "topics": [
-"xay-dung"
+"dat-dai",
+"kd-bds"
 ],
-"published": "2026-11-17T10:50+07:00",
+"published": "2026-11-17T14:56+07:00",
 "found": "2026-11-17T21:18+07:00",
 "score": 40,
-"why": "Cấp phép / thẩm định xây dựng – tiến độ dự án",
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng",
 "parts": {
-"rel": 13,
+"rel": 14,
 "dyn": 8,
-"rec": 19
+"rec": 18
 },
-"theme": "xay-dung:6",
-"cluster": "theme:xay-dung:6",
-"cluster_label": "Cấp phép & thẩm định xây dựng"
+"theme": "dat-dai:5",
+"cluster": "law:luat-dat-dai",
+"cluster_label": "Luật Đất đai"
 },
 {
 "id": "a67db8d33a4f",
@@ -3455,28 +3486,6 @@
 "theme": "nha-o:4",
 "cluster": "theme:nha-o:4",
 "cluster_label": "Chung cư & nhà ở thương mại"
-},
-{
-"id": "eb41cd51e595",
-"title": "Bảng so sánh Dự thảo Luật Đất đai sửa đổi 2026 theo Tờ trình 943/TTr-CP và tiếp thu ý kiến ĐBQH chi tiết ra sao?",
-"url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPMHQ4Q2hIdWhURFh5bUhjSTdZbUVBVXJ1UUwtOVRIbVZZblFoTHR3TDVSQzBmWGlidXVRaDBNX3pCeDVEZlZ2SnRkME1venNHY09ueElpTmNycTl0Ykp3UUpYaVlzWGUwWmU2RFBTRkQzZ3pwdlc2Rlh3RmhmV3hrRElaQlBGY0dVN2lQZlhGLUFJczJqTnpETUJJVm9YSW0wLW94RFF5WjhMOTR1ejAyakpEZTJtOV9udVllY256c3dVZXFLV3JXSkliRDVTX09DX0VLRkJmWnFsd2lqeGdhZjk0V0g?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-11T09:40+07:00",
-"found": "2026-11-11T19:38+07:00",
-"score": 40,
-"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến, thay đổi quy định",
-"parts": {
-"rel": 0,
-"dyn": 25,
-"rec": 15
-},
-"theme": "dat-dai:None",
-"cluster": "law:luat-dat-dai",
-"cluster_label": "Luật Đất đai"
 },
 {
 "id": "c6ccd02ff489",
@@ -3569,6 +3578,30 @@
 "cluster_label": "Luật Nhà ở"
 },
 {
+"id": "95e53f384094",
+"title": "Văn bản hợp nhất 58/2026/VBHN-NĐ-BTC 2026 quy định chi tiết Luật Đầu tư theo phương thức đối tác công tư",
+"url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQX1RKdFctanZOdjN5NnA0SzZWZzNObUtES1hLMEFtQ25BMkNnQm95eE1TTGxqT2drLTdURXhzMkIzU0VrYldJQ29Ha2NLT1NaU3l4OVZCNzdyMTViVkdtVGZWM04yRmVWeXFueFN1dHFpLTBMZ1JKX3NGUm1CbzFYem9xQmlvWHdyUTR6bk1DRV8wSDNfTWU3bHN5WUFFVkdldU5xR2x1Wlp3TllXT3pzOUlFQU96OEJkc3pZdm5uQXczeGJVdk1PRXRpRXdOamxJdmtHX2tpbndlREVjbDdYcWQzZw?oc=5",
+"source": "LuatVietnam",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-11-02T09:30+07:00",
+"found": "2026-11-06T10:25+07:00",
+"score": 40,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"parts": {
+"rel": 24,
+"dyn": 8,
+"rec": 8
+},
+"theme": "ppp:18",
+"cluster": "law:luat-ppp",
+"cluster_label": "Luật PPP",
+"impact": "đối chiếu căn cứ pháp lý, loại hợp đồng (PPP/BT), điều kiện thanh toán – quyết toán (quỹ đất/ngân sách) và điều khoản chuyển tiếp của văn bản với hợp đồng/dự án đang làm.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
+},
+{
 "id": "3ac97ef22004",
 "title": "TP.HCM quy định mới về giá đất: Các siêu dự án được tính thời gian bán hàng tới 11 năm",
 "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNbTlERnRTWVByTXhkNGhlVnR1RGpiSWg0bWd2S2FzWDJaaG05VTdWMENfNTQ0X1hLVmtGbkVIN3Jyd1puQWdNWUVzZVplZTFHRG5COENkS0JNLWcxcVpySVBBbUVKN2lTTHk2YW5FQ0lQZ2ZnZHE0aVJWdHF2dmtFeEtMTWZEVlFyamQxa3g1ZFFGUjJuckNyMVFzQ3VNUUpZSm41dm1zVUVFVjVXQ0xqekhhdFRBbTBPMzE4blc4Um5lQQ?oc=5",
@@ -3613,26 +3646,32 @@
 "cluster_label": "Luật Kinh doanh BĐS"
 },
 {
-"id": "606580190293",
-"title": "07 nội dung sửa đổi tại dự thảo Luật Kinh doanh bất động sản (sửa đổi) ra sao?",
-"url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOU1gtNm5KY0hpaDJHY3F2YVJ6eklNX2tGNkRCR0Jjdi1kclJ1SDVnWlV6Snh1U1FhOFRVcUVJa1RST3BlUlNrSUVLWDlhUF9KNTc3dHB1YnRSclRLeGhlc0FqbV9MVTctdlYwRlNINlR0UzlQdDBERm02UVdGSWlxVV9uSEFRMW9ObmtBcFJCZER5TGZIR2RUaGdxOFlPRE1DMFV6WFRpSmkzSEJibnUySVhDYjl6WHNfTk1UdEdpNDNRY1hBNnFVTWpjaDd0U1hmbTdtLWtfUy1kaTdDTnIzZk9oQUhGRjhaNmg5SUxLNmJ0bkxxZG9qV3QwTQ?oc=5",
+"id": "80dc3403a378",
+"title": "Bán, cho thuê, cho thuê mua nhà ở xã hội sai đối tượng theo quy định bị phạt bao nhiêu theo Nghị định 339?",
+"url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPaWRVNlBaUDNrS0JPSU1jYVUwQnl5U2dnd3I5WHJLczlUNXdCcVpkVEdNdjNQS1dRYUVVSV8xekVydUJQNU03bUdLMXR0YktfZnVzLWNPZnNWOVM4ZGdfdzZTZWctRkRJanBYY1RHaXNfZ0NwSDFzTVVsOW9ZRFV5ZnZJSUJnZm1LZ2tCQXV0UUFrSFRvSzlJcWdGclV4ZnZnSUdBSGxUNklrOEhidUhVbVpLN1V2ZWRpMW9IYlROZ1g2QmV1UTlYOGZCdzc0UThvd0x1Um03UDZuUGcyNzVkTTJR?oc=5",
 "source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
-"kd-bds"
+"nha-o"
 ],
-"published": "2026-10-21T14:00+07:00",
-"found": "2026-11-01T16:09+07:00",
-"score": 40,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · dự thảo đang lấy ý kiến, thay đổi quy định",
+"published": "2026-11-19T19:19+07:00",
+"found": "2026-11-19T21:18+07:00",
+"score": 39,
+"why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư",
 "parts": {
-"rel": 14,
-"dyn": 25,
-"rec": 1
+"rel": 11,
+"dyn": 8,
+"rec": 20
 },
-"theme": "kd-bds:5",
-"cluster": "law:luat-kinh-doanh-bds",
-"cluster_label": "Luật Kinh doanh BĐS"
+"also": [
+{
+"source": "Thư Viện Pháp Luật",
+"url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPUjVBOWpsbEk0WXlJeTh4Ul9iNDgwdU9oRmxmUC1nT0czbmtpUmRoS3F4ZkYtSHFYT1BZRTIwSlUxU2REcE5Za25SWUdJSFZnQzJHS2dIZHhUUnBFU2pnbzZkSlNZb1RGeXJ0c3Z5RlFkcnFLNVl4TWF0THRvdUEwN3VzVENKREVRWUIwZ1ItNWd1QVZKcDNQOVh3R2RpM3E3dC1wdkk2VnpERmxEVzB2ZHVDOExkMU41RV9NdXFrYkw0RnVGUTlXcWxScm1VWVdHLTlsRHVwWkE3X1RDc1NNRVV3?oc=5"
+}
+],
+"theme": "nha-o:10",
+"cluster": "theme:nha-o:10",
+"cluster_label": "Nhà ở xã hội"
 },
 {
 "id": "cd16b9181b56",
@@ -3699,6 +3738,28 @@
 "theme": "dat-dai:3",
 "cluster": "theme:dat-dai:3",
 "cluster_label": "Quyền sử dụng đất & giao đất"
+},
+{
+"id": "1f312ee6de6e",
+"title": "Nhà thầu thi công khai khống khối lượng nghiệm thu công trình xây dựng bị phạt bao nhiêu theo Nghị định 339?",
+"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQdXZEWDlqQjZpWVdpekJMZkQ4M081SktJZmRzTExnbDU3cHI3RF85TV8wMU5uSnd0SlJvMzRSRTdlM09RdW85aHAtSVd6SkphZVdNR2ZjazUzTWVtdzZWNGJGVS1NblhkTE5QTWV5aDlSU3VBSmlEQ1dBYVFyYWh1ZEQ0NTRPRlhlZHVxdnJYbXpyVEw5QUxFUHY4TEw2OEtPeDN4YzhhRTBsOUZKYlBFTXloeTh1TEpyNmZkMjZUMFF4cjlNMmxLNGx6ZjRhTTRpNEtXQU16THpwUHgxbHZpTA?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"xay-dung"
+],
+"published": "2026-11-17T10:50+07:00",
+"found": "2026-11-17T21:18+07:00",
+"score": 39,
+"why": "Cấp phép / thẩm định xây dựng – tiến độ dự án",
+"parts": {
+"rel": 13,
+"dyn": 8,
+"rec": 18
+},
+"theme": "xay-dung:6",
+"cluster": "theme:xay-dung:6",
+"cluster_label": "Cấp phép & thẩm định xây dựng"
 },
 {
 "id": "2b5eeb76956c",
@@ -3910,24 +3971,24 @@
 "cluster_label": "Quyền sử dụng đất & giao đất"
 },
 {
-"id": "1c2f739ce7cb",
-"title": "Bảo đảm quyền tiếp cận thông tin của người sử dụng đất trong thu hồi đất nông nghiệp theo Luật Đất đai năm 2024 và kiến nghị hoàn thiện pháp luật",
-"url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPRUxOYlAtTHcyUXlmTDFUSmxsVGM5cXE1Znd5eTFGTjNrMFZJVEprOXVGVi11TjFScG9INkFVeTMtbXlaaVBqdFYtOFlPMTVQeFlBWTlxZ0g4YmVOeDUtYmNfTG1rY2ptaEF6ZHpHalkzZHpweGtWcGJmelRhM19veGJibEJ4dmJQb1VJVElSQXRla2VqbzBDYmpRX1RfdzRMVnBYdXkzQnZnSlRGaUVFWTNKV1Jwb2ZiblpsYUs1Y1J5MjEzcmd3YTdjYlFkUEhtelZKTERnbUNtMmY4R01vdjNLZ0pJMDBHeHFpaGN4dmp0ejFsUm44Q045bDFlTGg4ZjBteg?oc=5",
-"source": "Tạp chí Điện tử Luật sư Việt Nam",
+"id": "eb41cd51e595",
+"title": "Bảng so sánh Dự thảo Luật Đất đai sửa đổi 2026 theo Tờ trình 943/TTr-CP và tiếp thu ý kiến ĐBQH chi tiết ra sao?",
+"url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPMHQ4Q2hIdWhURFh5bUhjSTdZbUVBVXJ1UUwtOVRIbVZZblFoTHR3TDVSQzBmWGlidXVRaDBNX3pCeDVEZlZ2SnRkME1venNHY09ueElpTmNycTl0Ykp3UUpYaVlzWGUwWmU2RFBTRkQzZ3pwdlc2Rlh3RmhmV3hrRElaQlBGY0dVN2lQZlhGLUFJczJqTnpETUJJVm9YSW0wLW94RFF5WjhMOTR1ejAyakpEZTJtOV9udVllY256c3dVZXFLV3JXSkliRDVTX09DX0VLRkJmWnFsd2lqeGdhZjk0V0g?oc=5",
+"source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
 "dat-dai"
 ],
-"published": "2026-11-11T12:13+07:00",
+"published": "2026-11-11T09:40+07:00",
 "found": "2026-11-11T19:38+07:00",
 "score": 39,
-"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
+"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến, thay đổi quy định",
 "parts": {
-"rel": 16,
-"dyn": 8,
-"rec": 15
+"rel": 0,
+"dyn": 25,
+"rec": 14
 },
-"theme": "dat-dai:3",
+"theme": "dat-dai:None",
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai"
 },
@@ -4177,48 +4238,48 @@
 "cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
 },
 {
-"id": "8d052b6b7163",
-"title": "Tất cả người dân có bất động sản chú ý quy định mới nhất vừa ban hành",
-"url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNN294TGNZX3JKTDBOY0lYMFYxbGw5ZWdyUFpPMzg5UUREbUxibXFjOFhNQ05zbE10cE9OLXZiNFFSaTJ4bUlFemNDVG9fdndReEZ0S2ZKRC1mWWRkaHVxNXB4STZLLS1XVWlnaXBlNDBvXzNwczA4eWtsNUtpODRjZDFWTzhsQVZoMUtlLWV6MWZoQlFjWjRKcExESzljNVpGeWpQTTVqYWlnVFRtTnc?oc=5",
-"source": "CafeF",
+"id": "606580190293",
+"title": "07 nội dung sửa đổi tại dự thảo Luật Kinh doanh bất động sản (sửa đổi) ra sao?",
+"url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxOU1gtNm5KY0hpaDJHY3F2YVJ6eklNX2tGNkRCR0Jjdi1kclJ1SDVnWlV6Snh1U1FhOFRVcUVJa1RST3BlUlNrSUVLWDlhUF9KNTc3dHB1YnRSclRLeGhlc0FqbV9MVTctdlYwRlNINlR0UzlQdDBERm02UVdGSWlxVV9uSEFRMW9ObmtBcFJCZER5TGZIR2RUaGdxOFlPRE1DMFV6WFRpSmkzSEJibnUySVhDYjl6WHNfTk1UdEdpNDNRY1hBNnFVTWpjaDd0U1hmbTdtLWtfUy1kaTdDTnIzZk9oQUhGRjhaNmg5SUxLNmJ0bkxxZG9qV3QwTQ?oc=5",
+"source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
 "kd-bds"
 ],
-"published": "2026-11-17T13:50+07:00",
-"found": "2026-11-17T21:18+07:00",
+"published": "2026-10-21T14:00+07:00",
+"found": "2026-11-01T16:09+07:00",
+"score": 39,
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · dự thảo đang lấy ý kiến, thay đổi quy định",
+"parts": {
+"rel": 14,
+"dyn": 25,
+"rec": 0
+},
+"theme": "kd-bds:5",
+"cluster": "law:luat-kinh-doanh-bds",
+"cluster_label": "Luật Kinh doanh BĐS"
+},
+{
+"id": "37496e84eeef",
+"title": "Chính phủ lưu ý các nội dung cần tiếp thu, giải trình tại 2 dự thảo luật về bất động sản và nhà ở",
+"url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTmlxbmhhYW0zZkRGNExJXzZiOGFWZmxkYVp0VHhMZ0Q2c1JWb2JvRVRUaFMyNkpxbmNNMzBfT0xkbEdYV3d5d1dTV2tZVGxSU2VCT2dQeVhhRkhtQnM0bDYtbmVhV2pBdUhNT0cxdDd4ekJmMGIycXB4WWQxRmhPMGNENHg1NkZkYmlEaDl6SmU5V1FmRF82VGtmSlB6WWpRVlJlWE5vLUFFRW9oVExoWXFJenlqUHVPQk43VzNBeVVia1E?oc=5",
+"source": "Tạp chí Điện tử Luật sư Việt Nam",
+"summary": "",
+"topics": [
+"kd-bds"
+],
+"published": "2026-11-19T18:24+07:00",
+"found": "2026-11-19T21:18+07:00",
 "score": 38,
-"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua, thay đổi quy định",
+"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến",
 "parts": {
 "rel": 0,
-"dyn": 19,
-"rec": 19
+"dyn": 18,
+"rec": 20
 },
 "theme": "kd-bds:None",
 "cluster": "topic:kd-bds",
 "cluster_label": "Kinh doanh BĐS"
-},
-{
-"id": "d05104769dcc",
-"title": "Bộ Xây dựng ban hành Kế hoạch thực hiện Nghị quyết số 336/NQ-CP về thu hút và trọng dụng nhân tài trong các ngành, lĩnh vực mũi nhọn",
-"url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNQzlMWjE5a0M0czdUMWtac2FWTGFGYnBrZ0NiUnZJVHR6eks5VU1abnAtMkE0QXJxQWl4NXAtbFQyUDRrclFSOHJfYzA0NHc4Ym8xU1Q5ZXVqWEFnTktNNFVkNG8ydEZSMVVmVndRMTUwZmh5cmk5UE1LOFVFUE8yZjlYUVA2ZVFZdWNPMVpubzdfSDM4UmR4WEU0TDhJSTE5N1RxVzBvZ0lNY3BSMi1Da3ZXc0x4MXhOTGZkMlJGejNFS3RFMlBaWlFMTXFSMlZIWDBMWUZVN21MZVFZVnVvUW1jLWNQd29wSk93a0hfeE8xTV8zNmRFWjFrSnpxMmYxSzNQaVMzVQ?oc=5",
-"source": "Bộ Xây dựng",
-"summary": "",
-"topics": [
-"xay-dung"
-],
-"published": "2026-11-17T10:37+07:00",
-"found": "2026-11-17T21:18+07:00",
-"score": 38,
-"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua",
-"parts": {
-"rel": 0,
-"dyn": 19,
-"rec": 19
-},
-"theme": "xay-dung:None",
-"cluster": "topic:xay-dung",
-"cluster_label": "Xây dựng"
 },
 {
 "id": "9fef872c6d58",
@@ -4241,6 +4302,28 @@
 "theme": "nha-o:4",
 "cluster": "theme:nha-o:4",
 "cluster_label": "Chung cư & nhà ở thương mại"
+},
+{
+"id": "1c2f739ce7cb",
+"title": "Bảo đảm quyền tiếp cận thông tin của người sử dụng đất trong thu hồi đất nông nghiệp theo Luật Đất đai năm 2024 và kiến nghị hoàn thiện pháp luật",
+"url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPRUxOYlAtTHcyUXlmTDFUSmxsVGM5cXE1Znd5eTFGTjNrMFZJVEprOXVGVi11TjFScG9INkFVeTMtbXlaaVBqdFYtOFlPMTVQeFlBWTlxZ0g4YmVOeDUtYmNfTG1rY2ptaEF6ZHpHalkzZHpweGtWcGJmelRhM19veGJibEJ4dmJQb1VJVElSQXRla2VqbzBDYmpRX1RfdzRMVnBYdXkzQnZnSlRGaUVFWTNKV1Jwb2ZiblpsYUs1Y1J5MjEzcmd3YTdjYlFkUEhtelZKTERnbUNtMmY4R01vdjNLZ0pJMDBHeHFpaGN4dmp0ejFsUm44Q045bDFlTGg4ZjBteg?oc=5",
+"source": "Tạp chí Điện tử Luật sư Việt Nam",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-11T12:13+07:00",
+"found": "2026-11-11T19:38+07:00",
+"score": 38,
+"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
+"parts": {
+"rel": 16,
+"dyn": 8,
+"rec": 14
+},
+"theme": "dat-dai:3",
+"cluster": "law:luat-dat-dai",
+"cluster_label": "Luật Đất đai"
 },
 {
 "id": "4b86409a8c86",
@@ -4310,52 +4393,6 @@
 "cluster_label": "Nhà ở xã hội"
 },
 {
-"id": "245b7d2bc5c2",
-"title": "Điều kiện áp dụng chính sách giảm tiền sử dụng đất theo Nghị quyết 254",
-"url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNX2RmWkd2MC1nZzNLOVptZENDeFM4dy1tVmxzN0hQZzhXZVpfTFQ5QUJJU0NqLUNkZGRmTEhmVWlRT1puRmEtUXR6YWZPby1Sdmx4R3RYaFJHNVpzQk15UGw5NU95RUhDNGR5YW1vYmlKWUx0eDB4MnpuUmtvYS1lY0JzZkprSDBQR0RlZUdxNVQ1X2lHTmZWSE5WcEl3MlpxbmdrUFNKTlRJS0lydUFCQk5PWTROUGFhbTYzZV9UT1dHdHd5NlR5M29B?oc=5",
-"source": "xaydungchinhsach.chinhphu.vn",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-02T15:09+07:00",
-"found": "2026-11-02T20:22+07:00",
-"score": 38,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
-"parts": {
-"rel": 22,
-"dyn": 7,
-"rec": 9
-},
-"theme": "dat-dai:2",
-"cluster": "theme:dat-dai:2",
-"cluster_label": "Giá đất & tiền sử dụng đất"
-},
-{
-"id": "6510538b3e6d",
-"title": "Nghị định 349/2026/NĐ-CP - Những điểm mới cần lưu ý trong lựa chọn nhà thầu và cung ứng sản phẩm, dịch vụ công",
-"url": "https://news.google.com/rss/articles/CBMilwJBVV95cUxOdDVXdG82TVFMTDhFZnVqQkZ5TGtlSl9jaEJOVERlM2JiYUVzMWxKSlBDRFFNbENUWExzZUFxNF9IUDVoVmFWdWFUWUFGSTc4Q2JvZTk2eU1RYkNORTZzdUNjQ1EwVWxkYTB4RGV4bTFoT0FPaVFMNnVhQjVNNzQ3dHFoMTF6M1dub3dpMVlrZFptLVd4RHRmTkpUR2JGejh6blp4ZmljZ0hIakdqdmRfODRXeDQ0cGcxeHB0cTJtc2hGdDQ3VzZXMkNTTzd5b3BaS3dZOTNwN01HaWlNMFBnR3d6NHpTbEFyTkU3X1hEUEFkd1Vpcm93RDFEY1lzTTZLZXV0ZnlsM1gxWm9CUkZrNGxmb1d2Zzg?oc=5",
-"source": "CÔNG AN THÀNH PHỐ CẦN THƠ",
-"summary": "",
-"topics": [
-"ppp"
-],
-"published": "2026-10-28T22:53+07:00",
-"found": "2026-10-29T06:31+07:00",
-"score": 38,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
-"parts": {
-"rel": 24,
-"dyn": 8,
-"rec": 6
-},
-"theme": "ppp:20",
-"cluster": "doc:ngh-nh-349-2026-n-cp",
-"cluster_label": "Nghị định 349/2026/NĐ-CP",
-"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
-},
-{
 "id": "d261e3548fbc",
 "title": "Luật Đất đai (sửa đổi): Thay đổi cơ chế thu hồi, bồi thường và định giá đất",
 "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPTmp1ZVNsVGNPeGdzaHdRdjhQQTlqUE9aNGR5RzJiZldhNnppU3J3bTh1Sm9mb1R3amR1WXJpOTlhdWpMcEtDdEh5N1FtVkEwUDZKTnBmSU84NmNxc21LSUp5MEFXZkRLMFFIRnY0dFJNeGlQcmZ4YTRtTjVXdFp0VE1UUUR3NmVaczB6NjJmRlNoNDJYb1JlbWl4ZE9NcmszRDBNdDgxcXRCSHRIaGQ1WExR?oc=5",
@@ -4422,26 +4459,48 @@
 "cluster_label": "Thông tư 89/2026"
 },
 {
-"id": "79f9b691d3fa",
-"title": "Dự thảo Luật Nhà ở năm 2026 ngày 09/11/2026 chi tiết như thế nào? Tải về Dự thảo Luật Nhà ở năm 2026 ra sao?",
-"url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOcHc3MGR1Y1BhejNJNGRfZE83UEJvcXczaGFkYllXeEhzdENNMWxwWklFc0p0S09hSlRralpUbDQ4VG5vQk85dWhKN0c0MnRPaWVNRzR1N2NhTDdDbWRLTXVBNGlFcXllLTJNUWJSOWQ4ODNfZ3ZkOHo1UmEtNXkyUjRQdUp0S1ptWElXX09HX1Jnb3Y3WFNzN3dseEJ0MDhHcmEtMmRPT1ZGUzYtM1lBTUx1c0JNM21jclp4ZmpmbDBQVzFqV0RoZ0lra3VNVFl2TFlDTlNwV3pSNUtpUTlZSHhJWnVoTUlSdUhCZDFuZ2RUNndqU1IzWQ?oc=5",
-"source": "Thư Viện Pháp Luật",
+"id": "8d052b6b7163",
+"title": "Tất cả người dân có bất động sản chú ý quy định mới nhất vừa ban hành",
+"url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNN294TGNZX3JKTDBOY0lYMFYxbGw5ZWdyUFpPMzg5UUREbUxibXFjOFhNQ05zbE10cE9OLXZiNFFSaTJ4bUlFemNDVG9fdndReEZ0S2ZKRC1mWWRkaHVxNXB4STZLLS1XVWlnaXBlNDBvXzNwczA4eWtsNUtpODRjZDFWTzhsQVZoMUtlLWV6MWZoQlFjWjRKcExESzljNVpGeWpQTTVqYWlnVFRtTnc?oc=5",
+"source": "CafeF",
 "summary": "",
 "topics": [
-"nha-o"
+"kd-bds"
 ],
-"published": "2026-11-17T14:08+07:00",
-"found": "2026-11-19T11:07+07:00",
+"published": "2026-11-17T13:50+07:00",
+"found": "2026-11-17T21:18+07:00",
 "score": 37,
-"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến",
+"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua, thay đổi quy định",
 "parts": {
 "rel": 0,
-"dyn": 18,
-"rec": 19
+"dyn": 19,
+"rec": 18
 },
-"theme": "nha-o:None",
-"cluster": "law:luat-nha-o",
-"cluster_label": "Luật Nhà ở"
+"theme": "kd-bds:None",
+"cluster": "topic:kd-bds",
+"cluster_label": "Kinh doanh BĐS"
+},
+{
+"id": "d05104769dcc",
+"title": "Bộ Xây dựng ban hành Kế hoạch thực hiện Nghị quyết số 336/NQ-CP về thu hút và trọng dụng nhân tài trong các ngành, lĩnh vực mũi nhọn",
+"url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxNQzlMWjE5a0M0czdUMWtac2FWTGFGYnBrZ0NiUnZJVHR6eks5VU1abnAtMkE0QXJxQWl4NXAtbFQyUDRrclFSOHJfYzA0NHc4Ym8xU1Q5ZXVqWEFnTktNNFVkNG8ydEZSMVVmVndRMTUwZmh5cmk5UE1LOFVFUE8yZjlYUVA2ZVFZdWNPMVpubzdfSDM4UmR4WEU0TDhJSTE5N1RxVzBvZ0lNY3BSMi1Da3ZXc0x4MXhOTGZkMlJGejNFS3RFMlBaWlFMTXFSMlZIWDBMWUZVN21MZVFZVnVvUW1jLWNQd29wSk93a0hfeE8xTV8zNmRFWjFrSnpxMmYxSzNQaVMzVQ?oc=5",
+"source": "Bộ Xây dựng",
+"summary": "",
+"topics": [
+"xay-dung"
+],
+"published": "2026-11-17T10:37+07:00",
+"found": "2026-11-17T21:18+07:00",
+"score": 37,
+"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua",
+"parts": {
+"rel": 0,
+"dyn": 19,
+"rec": 18
+},
+"theme": "xay-dung:None",
+"cluster": "topic:xay-dung",
+"cluster_label": "Xây dựng"
 },
 {
 "id": "ca3cdfb2bb69",
@@ -4532,6 +4591,28 @@
 "cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
+"id": "245b7d2bc5c2",
+"title": "Điều kiện áp dụng chính sách giảm tiền sử dụng đất theo Nghị quyết 254",
+"url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNX2RmWkd2MC1nZzNLOVptZENDeFM4dy1tVmxzN0hQZzhXZVpfTFQ5QUJJU0NqLUNkZGRmTEhmVWlRT1puRmEtUXR6YWZPby1Sdmx4R3RYaFJHNVpzQk15UGw5NU95RUhDNGR5YW1vYmlKWUx0eDB4MnpuUmtvYS1lY0JzZkprSDBQR0RlZUdxNVQ1X2lHTmZWSE5WcEl3MlpxbmdrUFNKTlRJS0lydUFCQk5PWTROUGFhbTYzZV9UT1dHdHd5NlR5M29B?oc=5",
+"source": "xaydungchinhsach.chinhphu.vn",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-02T15:09+07:00",
+"found": "2026-11-02T20:22+07:00",
+"score": 37,
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
+"parts": {
+"rel": 22,
+"dyn": 7,
+"rec": 8
+},
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
 "id": "97f5da750ca9",
 "title": "Sửa 3 luật liên quan thị trường bất động sản: Cầm trịch giá đất, siết đầu cơ, bảo vệ người mua nhà",
 "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQeVpmQXM2Mll1RU1IUnVCdWszcEVhSjdnWkVCSnBGS0pXSzZDcnBTb0xhSktWWThiWlNqQkpPWUpSYlltRkd1RWlWSWlyd0VCdU5qamJYWnIyMGVJMDBVVUNGcHJvcWFENkxzOE9jcjRYNVFMUGVkc1JPdzFCRXBtM3FqRzd6TTI1UUJEbkQ4d3JENFo5WklQTEpmeEV4eGVZZGtrUGx2QVZJVmp4ZDY1QjFVb3BYM3pyTUY3LWctTE15bGpNb0VpY0lCbUttWW1Qencw0gHTAUFVX3lxTFB5WmZBczYyWXVFTUhSdUJ1azNwRWFKN2daRUJKcEZLSldLNkNycFNvTGFKS1ZZOGJaU2pCSk9ZSlJiWW1GR3VFaVZJaXJ3RUJ1TmpqYlhacjIwZUkwMFVVQ0Zwcm9xYUQ2THM4T2NyNFg1UUxQZWRzUk93MUJFcG0zcWpHN3pNMjVRQkRuRDh3ckQ0WjlaSVBMSmZ4RXh4ZVlka2tQbHZBVklWanhkNjVCMVVvcFgzenJNRjctZy1MTXlsak1vRWljSUJtS21ZbVB6dzA?oc=5",
@@ -4553,6 +4634,30 @@
 "theme": "dat-dai:2",
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
+"id": "6510538b3e6d",
+"title": "Nghị định 349/2026/NĐ-CP - Những điểm mới cần lưu ý trong lựa chọn nhà thầu và cung ứng sản phẩm, dịch vụ công",
+"url": "https://news.google.com/rss/articles/CBMilwJBVV95cUxOdDVXdG82TVFMTDhFZnVqQkZ5TGtlSl9jaEJOVERlM2JiYUVzMWxKSlBDRFFNbENUWExzZUFxNF9IUDVoVmFWdWFUWUFGSTc4Q2JvZTk2eU1RYkNORTZzdUNjQ1EwVWxkYTB4RGV4bTFoT0FPaVFMNnVhQjVNNzQ3dHFoMTF6M1dub3dpMVlrZFptLVd4RHRmTkpUR2JGejh6blp4ZmljZ0hIakdqdmRfODRXeDQ0cGcxeHB0cTJtc2hGdDQ3VzZXMkNTTzd5b3BaS3dZOTNwN01HaWlNMFBnR3d6NHpTbEFyTkU3X1hEUEFkd1Vpcm93RDFEY1lzTTZLZXV0ZnlsM1gxWm9CUkZrNGxmb1d2Zzg?oc=5",
+"source": "CÔNG AN THÀNH PHỐ CẦN THƠ",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-10-28T22:53+07:00",
+"found": "2026-10-29T06:31+07:00",
+"score": 37,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"parts": {
+"rel": 24,
+"dyn": 8,
+"rec": 5
+},
+"theme": "ppp:20",
+"cluster": "doc:ngh-nh-349-2026-n-cp",
+"cluster_label": "Nghị định 349/2026/NĐ-CP",
+"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
 "id": "1514ef4e8c1c",
@@ -4644,6 +4749,28 @@
 "cluster_label": "Quyền sử dụng đất & giao đất"
 },
 {
+"id": "79f9b691d3fa",
+"title": "Dự thảo Luật Nhà ở năm 2026 ngày 09/11/2026 chi tiết như thế nào? Tải về Dự thảo Luật Nhà ở năm 2026 ra sao?",
+"url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOcHc3MGR1Y1BhejNJNGRfZE83UEJvcXczaGFkYllXeEhzdENNMWxwWklFc0p0S09hSlRralpUbDQ4VG5vQk85dWhKN0c0MnRPaWVNRzR1N2NhTDdDbWRLTXVBNGlFcXllLTJNUWJSOWQ4ODNfZ3ZkOHo1UmEtNXkyUjRQdUp0S1ptWElXX09HX1Jnb3Y3WFNzN3dseEJ0MDhHcmEtMmRPT1ZGUzYtM1lBTUx1c0JNM21jclp4ZmpmbDBQVzFqV0RoZ0lra3VNVFl2TFlDTlNwV3pSNUtpUTlZSHhJWnVoTUlSdUhCZDFuZ2RUNndqU1IzWQ?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"nha-o"
+],
+"published": "2026-11-17T14:08+07:00",
+"found": "2026-11-19T11:07+07:00",
+"score": 36,
+"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến",
+"parts": {
+"rel": 0,
+"dyn": 18,
+"rec": 18
+},
+"theme": "nha-o:None",
+"cluster": "law:luat-nha-o",
+"cluster_label": "Luật Nhà ở"
+},
+{
 "id": "df39ab1ed8aa",
 "title": "Thuế sử dụng đất phi nông nghiệp là gì theo Sách Giáo dục Kinh tế và pháp luật 10 Kết nối tri thức - Cánh diều?",
 "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPUWs4blRzVTdIT29MSnl6NUJva1IwUnJiaVNVYTFJY2lqSmJyU2JSR2ZZMGx1Yl9IaEplSEQwU3RFSUpvd2RpZDhYYjlIcUNlekxuc1cxUG1FRFhxTWI3dXNRdVVBdjFNa3lqRlVmMkVXai1BNXRVT2JScFlKUmwtckpBaEdlVlFnVDEyQkNVMVFDNG10alhHWEJORWNnSjFXbG11ekltR1ZaUEJndy1rU05JVlR4aEtmZ2hVcUloUkRCeUZjaFNhQ2RJTW1OOEJYRlhwd3gxdGhvUUwtVWJmandsdUtXZTh6c3l6QjRWcWUwR0YyRlE?oc=5",
@@ -4664,72 +4791,6 @@
 "theme": "thue:9",
 "cluster": "theme:thue:9",
 "cluster_label": "Thuế & phí BĐS"
-},
-{
-"id": "3636f2b5f20f",
-"title": "Mẫu số 24 Báo cáo về tình hình hoạt động trong lĩnh vực vật liệu xây dựng theo Thông tư 80/2026/TT-BXD thế nào?",
-"url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxObzBFZUdsMHBjTHFtc1hSUk10N0F3Q3EwbVNvcUNQaVhvXzZDOS1MT2tac2xqdGVtM0lHd0tydXdTOXMzX25sSGtZdXZkWnBLYUMzMW1uQmp3SUcyamxzYWxtRzNQNUNsOTBDcTNtbGpHNlFOWnVDYk5wSWNtYURpN2F5TU1mc3NzVnRaTjR2MXNjT082cTNfYjhhdE9JOElOaUQtWDJua3Q2MDdkMlBxQmwzeDNTemJteHF6MHBqN205c0JsSUZvN2hpMnQ2dFJ5TGc0VXJ6OGJtcTVISVBMZzlUUktQa1VCbkVJRTl4YTZ5NkwyYmpzdHZpSllIU0FfUHhVQ3ZRQk94Y2RtSWc?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-11-14T12:00+07:00",
-"found": "2026-11-15T19:41+07:00",
-"score": 36,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 7,
-"rec": 17
-},
-"theme": "khoang-san:8",
-"cluster": "doc:th-ng-t-80-2026-tt-bxd",
-"cluster_label": "Thông tư 80/2026/TT-BXD"
-},
-{
-"id": "5b14e18eeb6b",
-"title": "Thu tiền ứng trước của người mua nhà ở xã hội không đúng quy định bị xử phạt ra sao theo Nghị định 339/2026/NĐ-CP?",
-"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPRmtxOG8wSi1OU1J2WnNGRzZoTDNZcGRXWUtPX25hVnViV2ZxdXpPUFFPWHhaWjZVSEh6djhVOU9Zd09NVWFvU044V09lTWgtZGxvR2txbWhtZ3BzZzNFQjlWS09Ya193Qnp5cVpaeUkwakExV3VQcGpCSjdsMFdXaXZtRXdCaTFPZnRsalJiVDNZblZuenNMYkhoNjdIU3dSeGMyb3BQMkZnclpQenFXVHRPOGpYZTdXb2ZCRDMxVzFCdkVhRkpxUFpTdHRiYXdITWo5dGVHQjQ1YW1WTnRCZw?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"nha-o"
-],
-"published": "2026-11-14T10:00+07:00",
-"found": "2026-11-14T10:08+07:00",
-"score": 36,
-"why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư",
-"parts": {
-"rel": 11,
-"dyn": 8,
-"rec": 17
-},
-"theme": "nha-o:10",
-"cluster": "doc:ngh-nh-339-2026-n-cp",
-"cluster_label": "Nghị định 339/2026/NĐ-CP"
-},
-{
-"id": "22d48c7d55de",
-"title": "Giảm thủ tục, không giảm an toàn: Những điểm mới về phòng cháy, chữa cháy trong dự án Luật trình Quốc hội",
-"url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNeVBCaGJHRGxiZnQ4ZlJZWmxnVlBvTkMwOTFLaFZDTS1BT3ZzUTFHZXo0eDlWM2djTFIxLVNLZmtVTmFiSmJLSnlZclNiU1IxeGRKcG1ncTNVeHNSWHFrWFNVam5POEw0OHlreGh6MmVxa3ZjNmpjeHhaOW11dmxia3JvUTVMV205UzdKTnVDRXFnU0VfdURmdW1ybEhrMEZKcWdlNUFHdjM3bkpDb2hWMElrbTc3VDBkcDFtY1haOFc3ZmItVDZJYU5RRURORmNPa01XVDNLRlpNaE5KVVhpdkFJNE5YYU42QVRzc2I3bGoxdUk?oc=5",
-"source": "Cổng thông tin điện tử tỉnh Đắk Lắk",
-"summary": "",
-"topics": [
-"pccc"
-],
-"published": "2026-11-11T09:08+07:00",
-"found": "2026-11-12T20:43+07:00",
-"score": 36,
-"why": "PCCC – điều kiện nghiệm thu, vận hành chung cư",
-"parts": {
-"rel": 13,
-"dyn": 8,
-"rec": 15
-},
-"theme": "pccc:7",
-"cluster": "theme:pccc:7",
-"cluster_label": "Phòng cháy chữa cháy"
 },
 {
 "id": "e3dde7ae8d70",
@@ -4817,13 +4878,7 @@
 },
 "theme": "khoang-san:8",
 "cluster": "doc:th-ng-t-81-2026-tt-bxd",
-"cluster_label": "Thông tư 81/2026/TT-BXD",
-"also": [
-{
-"source": "xaydungchinhsach.chinhphu.vn",
-"url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNaW93Y3RGdmp6bnZ4UDk3VmxuSmFpSTBQdWVJOXh3ZTJLT25CRFYxdkJFYmZYOUhVaHk1QW4wNjdSeGhXSUdQSl9KaVJyOTFnQTNQcTRrY292cmtFTHh5RXA4V3dHZUxSMzFubzNmOWZQcmMtSGNZQ1N6UERPVGJGZjRmWERNQ3prMm9OTFFCMkxGREJIb2tWWDg3Qi1rbWdCTGJ0RWNZMjN5dlhMeVdlX1diblYwZUZyQUhSWWs2ek1ob19QQUdYT2o2ZHlCNVRsVWJKRVd0a1NnOGFiSTZfbV84YTl6NkE?oc=5"
-}
-]
+"cluster_label": "Thông tư 81/2026/TT-BXD"
 },
 {
 "id": "aae696fe7e84",
@@ -4902,116 +4957,6 @@
 ],
 "published": "2026-10-30T15:22+07:00",
 "found": "2026-10-30T18:21+07:00",
-"score": 36,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
-"parts": {
-"rel": 14,
-"dyn": 15,
-"rec": 7
-},
-"theme": "kd-bds:5",
-"cluster": "law:luat-kinh-doanh-bds",
-"cluster_label": "Luật Kinh doanh BĐS"
-},
-{
-"id": "fbc8e7586e29",
-"title": "Luật Kinh doanh bất động sản (sửa đổi): Thiết lập cơ chế để chủ đầu tư không thể vi phạm",
-"url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQVGhpczIzLU5hNjVvQ1lCQWp4M01vRjZzM3MyU2pTTUlabVR2MzNEYkd4Sy1obmNZcDBtdDFBR2w3VkVBMC16ZWU2SHdUbTB6a0VINTNSUkZWbDlBMHZXMEQ5SFRDY3hlT2ZkTjlaMFBJeEJFc2RWcGM4NXJtREhubE5fZDhFcjZlMk1QbmpGNXFadUx2dWFleTNFZVdFUkVhNGhfYkFvSnNNcGZ3NE1rZHQ4ZE8tQWRUNU5nbTB5QWdIUQ?oc=5",
-"source": "Thời Báo Ngân Hàng",
-"summary": "",
-"topics": [
-"kd-bds"
-],
-"published": "2026-10-30T14:08+07:00",
-"found": "2026-10-30T15:53+07:00",
-"score": 36,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
-"parts": {
-"rel": 14,
-"dyn": 15,
-"rec": 7
-},
-"theme": "kd-bds:5",
-"cluster": "law:luat-kinh-doanh-bds",
-"cluster_label": "Luật Kinh doanh BĐS"
-},
-{
-"id": "91b6a1550938",
-"title": "Thảo luận về dự án Luật Kinh doanh bất động sản (sửa đổi): Không để chủ đầu tư cố tình sai phạm, rồi \"chỉ cần nộp phạt là xong\"",
-"url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxOa0p4MzVvNnpTWndDbW9VMXV2MTZwdGtKbTNSX3FwVHNWUk5SVVdKZW15M2xaSXNJQUQzNS12Z3dVWDRkNENLXzBtT0poYWVtbEttcm5oa0lhc1Q4bDBOcEZhNTJVMS1KVWJxNnFEN24zXzhtdW5JTzV1ZVdWbk1sa0VQOHMzMUtDQjVKNVBWTUMxYUM2WkpPUmJ2Q0pmczk0eVd6N2R5NG96MlU4eXVXb19faGVCLWpXaXIxbzZ0MkJfRUp4UEdScTFWRjJKTUY2RnlEUk5XQkM3LU92WWJVUHl4a0lvUzByblYxdHFUdmxwU28?oc=5",
-"source": "CafeF",
-"summary": "",
-"topics": [
-"kd-bds"
-],
-"published": "2026-10-30T13:59+07:00",
-"found": "2026-11-02T20:22+07:00",
-"score": 36,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
-"parts": {
-"rel": 14,
-"dyn": 15,
-"rec": 7
-},
-"theme": "kd-bds:5",
-"cluster": "law:luat-kinh-doanh-bds",
-"cluster_label": "Luật Kinh doanh BĐS"
-},
-{
-"id": "79db8e66329d",
-"title": "BẢNG GIÁ ĐẤT Lâm Đồng 2026 chuẩn bị thay đổi, nhiều vị trí chưa có giá sẽ được BỔ SUNG",
-"url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPV0J6ZFZPMkt1bFF0aWFNM2FSS1lGcTBfZWJubUZuVDJGYy1GdEdYVGlKWnJOMVhCaFkzTC1aVGYtZkJDb0VzMTNHYnR3a3pObVRKSlU1R09jbHlXc01uNlJXbmt3dzl1ZHhVZW9ockZmSFM2MXpPbkFraXpXQXlwWDE5d2thc0swT0JSNnNLLXdDVGlOUGNGWTNNU09YTnUtcFZoRTZXRXFXekVGMkNoUkM1bWFnVDFNSTJ4eURxa0pVTTg?oc=5",
-"source": "CafeLand",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-10-30T13:29+07:00",
-"found": "2026-10-30T15:53+07:00",
-"score": 36,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · thay đổi quy định",
-"parts": {
-"rel": 22,
-"dyn": 7,
-"rec": 7
-},
-"theme": "dat-dai:2",
-"cluster": "theme:dat-dai:2",
-"cluster_label": "Giá đất & tiền sử dụng đất"
-},
-{
-"id": "80a5a43ab5d6",
-"title": "Sửa đổi Luật Kinh doanh bất động sản: Đề xuất siết đầu cơ, thao túng thị trường bất động sản",
-"url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQkhUQmdUZERWUngwWEhPS0kwZVZDRDV2c3dCdnE5XzRVWk5sNWxWcFVtUy11S0FRUENQQzJRRmtLWGExS1k4Z1N1WjJhQXRrWEthcXkwSW9DTVlIbTZyZGluVVkxLXBRdlU5LTUwNnZoYWhOclhHb1hPWjFKb3laQ1QxcTVKdjlTMS0zMDlVLWlfRGNBei01bmVIS0RFQW5WUl9pSXFHRm5JSlhITXdhV3FKUVBtQUFKNXBBTmxzOTg4T1U?oc=5",
-"source": "Báo Nhân Dân điện tử",
-"summary": "",
-"topics": [
-"kd-bds"
-],
-"published": "2026-10-30T10:36+07:00",
-"found": "2026-10-30T15:53+07:00",
-"score": 36,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
-"parts": {
-"rel": 14,
-"dyn": 15,
-"rec": 7
-},
-"theme": "kd-bds:5",
-"cluster": "law:luat-kinh-doanh-bds",
-"cluster_label": "Luật Kinh doanh BĐS"
-},
-{
-"id": "534e23082c33",
-"title": "Sáng 30/10, Quốc hội thảo luận ở hội trường về dự án Luật Kinh doanh bất động sản (sửa đổi) và dự án Luật Thực hiện dân chủ ở cơ sở (sửa đổi)",
-"url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBTTXZ2cGtwWWZZN2pYcmtqWkQ3QXN6TkppYklUWTJGMll4XzJrbVpYUHdKOGlkV2NMbVFQaDZuRU9RMTl2S2kyUDVIY2MwWktZajAxUmlhdjdmOTZKMURua0pDWWNDNVRFbmhhQlJ0V3p5OUVD?oc=5",
-"source": "Cổng Thông tin điện tử Quốc hội",
-"summary": "",
-"topics": [
-"kd-bds"
-],
-"published": "2026-10-30T08:36+07:00",
-"found": "2026-11-08T18:52+07:00",
 "score": 36,
 "why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
 "parts": {
@@ -5279,26 +5224,48 @@
 "cluster_label": "Quy hoạch"
 },
 {
-"id": "126e5b943074",
-"title": "Kế hoạch 533/KH-UBND Lào Cai thực hiện Nghị quyết 303/NQ-CP phát triển nhà ở xã hội 2026-2030",
-"url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNVWVwNnpRSnRWNjMwQlBIVjdRYXQyOVdJY3pxU3hQa21JLTNacC0tdUpSdF9ya2h2TU9CaXM1Yi03NHQ3YkdEUmtiTm5KXzNyZUJENkdXeGlmNEFFZ05PcUpmMERUeXFWNU1yMUkyWXphQzd6dG9EZGRNVkxIUGpNbDYzWk94NW5KUFdpQk9kTFBJWUtTeVdJUFoyLU1YSXFvQWJFZTFURTBIaTNVUV85N3VjUFBSRFRXRjFjWkZNeWFSSllLYUw2VFk1ejktb3p3OExZMDlB?oc=5",
-"source": "LuatVietnam",
+"id": "3636f2b5f20f",
+"title": "Mẫu số 24 Báo cáo về tình hình hoạt động trong lĩnh vực vật liệu xây dựng theo Thông tư 80/2026/TT-BXD thế nào?",
+"url": "https://news.google.com/rss/articles/CBMijgJBVV95cUxObzBFZUdsMHBjTHFtc1hSUk10N0F3Q3EwbVNvcUNQaVhvXzZDOS1MT2tac2xqdGVtM0lHd0tydXdTOXMzX25sSGtZdXZkWnBLYUMzMW1uQmp3SUcyamxzYWxtRzNQNUNsOTBDcTNtbGpHNlFOWnVDYk5wSWNtYURpN2F5TU1mc3NzVnRaTjR2MXNjT082cTNfYjhhdE9JOElOaUQtWDJua3Q2MDdkMlBxQmwzeDNTemJteHF6MHBqN205c0JsSUZvN2hpMnQ2dFJ5TGc0VXJ6OGJtcTVISVBMZzlUUktQa1VCbkVJRTl4YTZ5NkwyYmpzdHZpSllIU0FfUHhVQ3ZRQk94Y2RtSWc?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-11-14T12:00+07:00",
+"found": "2026-11-15T19:41+07:00",
+"score": 35,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 7,
+"rec": 16
+},
+"theme": "khoang-san:8",
+"cluster": "doc:th-ng-t-80-2026-tt-bxd",
+"cluster_label": "Thông tư 80/2026/TT-BXD"
+},
+{
+"id": "5b14e18eeb6b",
+"title": "Thu tiền ứng trước của người mua nhà ở xã hội không đúng quy định bị xử phạt ra sao theo Nghị định 339/2026/NĐ-CP?",
+"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPRmtxOG8wSi1OU1J2WnNGRzZoTDNZcGRXWUtPX25hVnViV2ZxdXpPUFFPWHhaWjZVSEh6djhVOU9Zd09NVWFvU044V09lTWgtZGxvR2txbWhtZ3BzZzNFQjlWS09Ya193Qnp5cVpaeUkwakExV3VQcGpCSjdsMFdXaXZtRXdCaTFPZnRsalJiVDNZblZuenNMYkhoNjdIU3dSeGMyb3BQMkZnclpQenFXVHRPOGpYZTdXb2ZCRDMxVzFCdkVhRkpxUFpTdHRiYXdITWo5dGVHQjQ1YW1WTnRCZw?oc=5",
+"source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
 "nha-o"
 ],
-"published": "2026-11-14T08:44+07:00",
-"found": "2026-11-14T09:51+07:00",
+"published": "2026-11-14T10:00+07:00",
+"found": "2026-11-14T10:08+07:00",
 "score": 35,
 "why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư",
 "parts": {
 "rel": 11,
-"dyn": 7,
-"rec": 17
+"dyn": 8,
+"rec": 16
 },
 "theme": "nha-o:10",
-"cluster": "theme:nha-o:10",
-"cluster_label": "Nhà ở xã hội"
+"cluster": "doc:ngh-nh-339-2026-n-cp",
+"cluster_label": "Nghị định 339/2026/NĐ-CP"
 },
 {
 "id": "0a0043ea2a1e",
@@ -5320,13 +5287,7 @@
 },
 "theme": "xay-dung:None",
 "cluster": "doc:th-ng-t-80-2026-tt-bxd",
-"cluster_label": "Thông tư 80/2026/TT-BXD",
-"also": [
-{
-"source": "Bộ Xây dựng",
-"url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOTkliTG1NaC1JVUI0aXNZcXptc2xSMGdJeE52VEMxaC1xbmdwZWhYS1R3eTVTOXBweHJVVl81blNMa2ZiUHp4bXJlMzh1OElvN1hBME9UcGx3cER0MFE1SGM0TkxsYlpfYmdteFBFN3VXYm5FZ2VxY1IwcWEwM2hPVU9oXzF2YmhoRHRZX01vVVEtVjJRTDVGNV9vaUkwMEk4VDVCdXRsMVdRaURqTm9TVzhTenVjTEl5bm80VHFNTnpCdzV2WWNFNlVwWGNTZw?oc=5"
-}
-]
+"cluster_label": "Thông tư 80/2026/TT-BXD"
 },
 {
 "id": "6b02f63bbc65",
@@ -5349,6 +5310,28 @@
 "theme": "khoang-san:8",
 "cluster": "theme:khoang-san:8",
 "cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
+},
+{
+"id": "22d48c7d55de",
+"title": "Giảm thủ tục, không giảm an toàn: Những điểm mới về phòng cháy, chữa cháy trong dự án Luật trình Quốc hội",
+"url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNeVBCaGJHRGxiZnQ4ZlJZWmxnVlBvTkMwOTFLaFZDTS1BT3ZzUTFHZXo0eDlWM2djTFIxLVNLZmtVTmFiSmJLSnlZclNiU1IxeGRKcG1ncTNVeHNSWHFrWFNVam5POEw0OHlreGh6MmVxa3ZjNmpjeHhaOW11dmxia3JvUTVMV205UzdKTnVDRXFnU0VfdURmdW1ybEhrMEZKcWdlNUFHdjM3bkpDb2hWMElrbTc3VDBkcDFtY1haOFc3ZmItVDZJYU5RRURORmNPa01XVDNLRlpNaE5KVVhpdkFJNE5YYU42QVRzc2I3bGoxdUk?oc=5",
+"source": "Cổng thông tin điện tử tỉnh Đắk Lắk",
+"summary": "",
+"topics": [
+"pccc"
+],
+"published": "2026-11-11T09:08+07:00",
+"found": "2026-11-12T20:43+07:00",
+"score": 35,
+"why": "PCCC – điều kiện nghiệm thu, vận hành chung cư",
+"parts": {
+"rel": 13,
+"dyn": 8,
+"rec": 14
+},
+"theme": "pccc:7",
+"cluster": "theme:pccc:7",
+"cluster_label": "Phòng cháy chữa cháy"
 },
 {
 "id": "f69bd6e67d0c",
@@ -5484,52 +5467,114 @@
 "cluster_label": "Phòng cháy chữa cháy"
 },
 {
-"id": "845c75a96d3d",
-"title": "Quyết định 2436/QĐ-UBND Điện Biên giao kế hoạch đầu tư công trung hạn vốn ngân sách trung ương 2026-2030",
-"url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPN0VvWlZUS1dWOS1vN1RDbGlGc2hhWmdsdEtkdXREeHJGSmloRzhNTk5XQnZJYXJpUEsydV9XM1k5U3pOVXpINXFyWlR0dkpKYU1FMjJSazNnUXd6czRHcUhzOU9CTzh3TElzOUlBRzI0bHJuVmNPU3RkekUzN3JGTER3TDJoeHJKdENhU29DWi02UXljUFF3ZGJuay01MHlMM3NPVlRpcWtHWG1nam5qajhuMlE1VW9xS09QbnZsT1NtYWpndVFaa1NvcWhwUExFWFJlX2NGcDR1V3k3RVZoWHJBNA?oc=5",
-"source": "LuatVietnam",
+"id": "fbc8e7586e29",
+"title": "Luật Kinh doanh bất động sản (sửa đổi): Thiết lập cơ chế để chủ đầu tư không thể vi phạm",
+"url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQVGhpczIzLU5hNjVvQ1lCQWp4M01vRjZzM3MyU2pTTUlabVR2MzNEYkd4Sy1obmNZcDBtdDFBR2w3VkVBMC16ZWU2SHdUbTB6a0VINTNSUkZWbDlBMHZXMEQ5SFRDY3hlT2ZkTjlaMFBJeEJFc2RWcGM4NXJtREhubE5fZDhFcjZlMk1QbmpGNXFadUx2dWFleTNFZVdFUkVhNGhfYkFvSnNNcGZ3NE1rZHQ4ZE8tQWRUNU5nbTB5QWdIUQ?oc=5",
+"source": "Thời Báo Ngân Hàng",
 "summary": "",
 "topics": [
-"ppp"
+"kd-bds"
 ],
-"published": "2026-10-30T14:06+07:00",
-"found": "2026-10-31T06:27+07:00",
+"published": "2026-10-30T14:08+07:00",
+"found": "2026-10-30T15:53+07:00",
 "score": 35,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
 "parts": {
-"rel": 24,
-"dyn": 4,
-"rec": 7
+"rel": 14,
+"dyn": 15,
+"rec": 6
 },
-"theme": "ppp:19",
-"cluster": "theme:ppp:19",
-"cluster_label": "Đầu tư công, giải ngân & quyết toán",
-"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
+"theme": "kd-bds:5",
+"cluster": "law:luat-kinh-doanh-bds",
+"cluster_label": "Luật Kinh doanh BĐS"
 },
 {
-"id": "230fbb0cf526",
-"title": "Hoàn thiện Luật Đấu thầu: Siết chỉ định thầu, minh bạch giá",
-"url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPMFdfMFdDcUtJZWt4eDh6dHpqSnRXdC15VENwN0twYk5RYldSU3M4Wjc3TUlfUE4wakZYRkUxeDVyRnNNWDJ5Tk5ySkt1VF90eVpSTVNEVndVOXNBSUwtQldhRy1mbUtlRFpiUVFCWG5jZFNrUHA5MHlaVVNBT0R2M1JTODVxRFU?oc=5",
-"source": "Vietnam.vn",
+"id": "91b6a1550938",
+"title": "Thảo luận về dự án Luật Kinh doanh bất động sản (sửa đổi): Không để chủ đầu tư cố tình sai phạm, rồi \"chỉ cần nộp phạt là xong\"",
+"url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxOa0p4MzVvNnpTWndDbW9VMXV2MTZwdGtKbTNSX3FwVHNWUk5SVVdKZW15M2xaSXNJQUQzNS12Z3dVWDRkNENLXzBtT0poYWVtbEttcm5oa0lhc1Q4bDBOcEZhNTJVMS1KVWJxNnFEN24zXzhtdW5JTzV1ZVdWbk1sa0VQOHMzMUtDQjVKNVBWTUMxYUM2WkpPUmJ2Q0pmczk0eVd6N2R5NG96MlU4eXVXb19faGVCLWpXaXIxbzZ0MkJfRUp4UEdScTFWRjJKTUY2RnlEUk5XQkM3LU92WWJVUHl4a0lvUzByblYxdHFUdmxwU28?oc=5",
+"source": "CafeF",
 "summary": "",
 "topics": [
-"ppp"
+"kd-bds"
 ],
-"published": "2026-10-24T12:28+07:00",
-"found": "2026-10-26T08:09+07:00",
+"published": "2026-10-30T13:59+07:00",
+"found": "2026-11-02T20:22+07:00",
 "score": 35,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
 "parts": {
-"rel": 24,
-"dyn": 8,
-"rec": 3
+"rel": 14,
+"dyn": 15,
+"rec": 6
 },
-"theme": "ppp:20",
-"cluster": "law:luat-dau-thau",
-"cluster_label": "Luật Đấu thầu",
-"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
+"theme": "kd-bds:5",
+"cluster": "law:luat-kinh-doanh-bds",
+"cluster_label": "Luật Kinh doanh BĐS"
+},
+{
+"id": "79db8e66329d",
+"title": "BẢNG GIÁ ĐẤT Lâm Đồng 2026 chuẩn bị thay đổi, nhiều vị trí chưa có giá sẽ được BỔ SUNG",
+"url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPV0J6ZFZPMkt1bFF0aWFNM2FSS1lGcTBfZWJubUZuVDJGYy1GdEdYVGlKWnJOMVhCaFkzTC1aVGYtZkJDb0VzMTNHYnR3a3pObVRKSlU1R09jbHlXc01uNlJXbmt3dzl1ZHhVZW9ockZmSFM2MXpPbkFraXpXQXlwWDE5d2thc0swT0JSNnNLLXdDVGlOUGNGWTNNU09YTnUtcFZoRTZXRXFXekVGMkNoUkM1bWFnVDFNSTJ4eURxa0pVTTg?oc=5",
+"source": "CafeLand",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-10-30T13:29+07:00",
+"found": "2026-10-30T15:53+07:00",
+"score": 35,
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán · thay đổi quy định",
+"parts": {
+"rel": 22,
+"dyn": 7,
+"rec": 6
+},
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
+"id": "80a5a43ab5d6",
+"title": "Sửa đổi Luật Kinh doanh bất động sản: Đề xuất siết đầu cơ, thao túng thị trường bất động sản",
+"url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQkhUQmdUZERWUngwWEhPS0kwZVZDRDV2c3dCdnE5XzRVWk5sNWxWcFVtUy11S0FRUENQQzJRRmtLWGExS1k4Z1N1WjJhQXRrWEthcXkwSW9DTVlIbTZyZGluVVkxLXBRdlU5LTUwNnZoYWhOclhHb1hPWjFKb3laQ1QxcTVKdjlTMS0zMDlVLWlfRGNBei01bmVIS0RFQW5WUl9pSXFHRm5JSlhITXdhV3FKUVBtQUFKNXBBTmxzOTg4T1U?oc=5",
+"source": "Báo Nhân Dân điện tử",
+"summary": "",
+"topics": [
+"kd-bds"
+],
+"published": "2026-10-30T10:36+07:00",
+"found": "2026-10-30T15:53+07:00",
+"score": 35,
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
+"parts": {
+"rel": 14,
+"dyn": 15,
+"rec": 6
+},
+"theme": "kd-bds:5",
+"cluster": "law:luat-kinh-doanh-bds",
+"cluster_label": "Luật Kinh doanh BĐS"
+},
+{
+"id": "534e23082c33",
+"title": "Sáng 30/10, Quốc hội thảo luận ở hội trường về dự án Luật Kinh doanh bất động sản (sửa đổi) và dự án Luật Thực hiện dân chủ ở cơ sở (sửa đổi)",
+"url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBTTXZ2cGtwWWZZN2pYcmtqWkQ3QXN6TkppYklUWTJGMll4XzJrbVpYUHdKOGlkV2NMbVFQaDZuRU9RMTl2S2kyUDVIY2MwWktZajAxUmlhdjdmOTZKMURua0pDWWNDNVRFbmhhQlJ0V3p5OUVD?oc=5",
+"source": "Cổng Thông tin điện tử Quốc hội",
+"summary": "",
+"topics": [
+"kd-bds"
+],
+"published": "2026-10-30T08:36+07:00",
+"found": "2026-11-08T18:52+07:00",
+"score": 35,
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng · thay đổi quy định",
+"parts": {
+"rel": 14,
+"dyn": 15,
+"rec": 6
+},
+"theme": "kd-bds:5",
+"cluster": "law:luat-kinh-doanh-bds",
+"cluster_label": "Luật Kinh doanh BĐS"
 },
 {
 "id": "3dccb02390d7",
@@ -5710,49 +5755,26 @@
 "cluster_label": "Luật Đất đai"
 },
 {
-"id": "968919c45f99",
-"title": "Công văn 1422 chính sách thuế sử dụng đất phi nông nghiệp với hộ gia đình của Thuế CS1 Vĩnh Long ra sao?",
-"url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQVzY1SnZFSWdJYTU0enNoUmZHMDlJdWN1MnVyenNvVjRMaXhVMlplUUo4b3hBbTVZdGVYUU4zalhReHc5dlB3VTBvVlpDOFFQU1dTMGxXR2luMzFTWExKWkd4T1JjUm5nVno4QWJHQzZ1YTUySjcxYzhxRHpxek9pbXBOSUxpdml6UnYza3lzLU5jMGRZS3kya1M0VjZBcjdGNlRmbDY2c2dzUzNmY3B6V1BpcDQ4eGkzcHFSZk5sdXJ3ZTRseHBrMkZTeEV4NldXUFlJVnBEejZMaVJONTZSYjJ1b0ZqVXlhZndhRlVZT1l4dFN5czFId2J0SmdIdm96eHZSSGRBRUU4SWt0OUhBY05yYU9mRl9JVGV6d21uSXA?oc=5",
-"source": "Thư Viện Pháp Luật",
+"id": "126e5b943074",
+"title": "Kế hoạch 533/KH-UBND Lào Cai thực hiện Nghị quyết 303/NQ-CP phát triển nhà ở xã hội 2026-2030",
+"url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNVWVwNnpRSnRWNjMwQlBIVjdRYXQyOVdJY3pxU3hQa21JLTNacC0tdUpSdF9ya2h2TU9CaXM1Yi03NHQ3YkdEUmtiTm5KXzNyZUJENkdXeGlmNEFFZ05PcUpmMERUeXFWNU1yMUkyWXphQzd6dG9EZGRNVkxIUGpNbDYzWk94NW5KUFdpQk9kTFBJWUtTeVdJUFoyLU1YSXFvQWJFZTFURTBIaTNVUV85N3VjUFBSRFRXRjFjWkZNeWFSSllLYUw2VFk1ejktb3p3OExZMDlB?oc=5",
+"source": "LuatVietnam",
 "summary": "",
 "topics": [
-"thue"
+"nha-o"
 ],
-"published": "2026-11-17T15:10+07:00",
-"found": "2026-11-17T21:18+07:00",
+"published": "2026-11-14T08:44+07:00",
+"found": "2026-11-14T09:51+07:00",
 "score": 34,
-"why": "Thuế/phí BĐS – tác động cầu & giá bán",
+"why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư",
 "parts": {
 "rel": 11,
-"dyn": 4,
-"rec": 19
+"dyn": 7,
+"rec": 16
 },
-"theme": "thue:9",
-"cluster": "theme:thue:9",
-"cluster_label": "Thuế & phí BĐS"
-},
-{
-"id": "c8bb0b2a2cd3",
-"title": "Công văn 8472/CT-QLNT 2026 Hướng dẫn thuế TNCN, lệ phí trước bạ hoạt động chuyển nhượng bất động sản như thế nào?",
-"url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNeWdPTVQySzFfQ0l3VVFrTjdNbXdZSDBHbGZzem8wYjZzZzB6Wm5HVUM4WE9DcHdXWWpEcVNwSjFDN19IMXE4YjFmMXFidTdJQ19uUjBXbjIweC1iY3hDRWxOQ2c3M1BpNXByeS1fNy1Ob0QyaU9UZ19XMVJfSDZqMTVjMkZEdDZQSkl5WFhiY2xlTGFXdWJRWWRraWRfMXQ4SXRpQWgtTFhsNDVCUXJ1M3Q0dzRsd0psYjF2M1d5ZnlaQmpUTllVVlVOVVNfNm9yeWk3S25PTlZ0NTRQZFJLaTJEOEM?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"kd-bds",
-"thue"
-],
-"published": "2026-11-17T10:05+07:00",
-"found": "2026-11-17T21:18+07:00",
-"score": 34,
-"why": "Thuế/phí BĐS – tác động cầu & giá bán",
-"parts": {
-"rel": 11,
-"dyn": 4,
-"rec": 19
-},
-"theme": "kd-bds:9",
-"cluster": "theme:kd-bds:9",
-"cluster_label": "Thuế & phí BĐS · Kinh doanh BĐS"
+"theme": "nha-o:10",
+"cluster": "theme:nha-o:10",
+"cluster_label": "Nhà ở xã hội"
 },
 {
 "id": "6d8b0abb822e",
@@ -5827,50 +5849,6 @@
 ]
 },
 {
-"id": "72308c7e1d41",
-"title": "Công an phường Sơn Nam tuyên truyền, ký cam kết chấp hành pháp luật đối với các bến thuỷ nội địa, bãi tập kết cát, sỏi, vật liệu xây dựng",
-"url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNaDhDS3Z0RlNfYk9wZ0JnS0E0NzNIWU9aX2EyUW8zZkppTXUybkNhVW9tNWU5WWN2d1RUQ3J0bmRJUkN2ZUxpV1BSNEhfdWNILVhMZXF3Rm1wU2F5T2dCNDUzTGlGbm90aUdWa2swNXNKSU9GSnRHSWcza0dCNnp1RU9CaXE2cUpid3FzNDJ1RUhwUEVLemtRUTE2QU1naUFIR0xLdmJIanBQQUdmRlcyZ2ZlN2F0R1ZJRGFWLUV4NmgzMGxKdzVoUmFPQTFMblp1eHI1UURxZUNadTA?oc=5",
-"source": "Công an Hưng Yên",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-11-09T21:10+07:00",
-"found": "2026-11-10T06:27+07:00",
-"score": 34,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 8,
-"rec": 14
-},
-"theme": "khoang-san:8",
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
-},
-{
-"id": "a277bf1f91b4",
-"title": "Kiến nghị luật hóa Nghị quyết 171 để tháo gỡ vướng mắc cho dự án nhà ở thương mại - Tạp chí Kinh tế",
-"url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPY25YZXdzTEJxUUdXZ0xybXRfdlc1MWVxeUVPYVE4SmxRV2k0NFJoZnRhcE43bEpSckczOGdpYjV4Q1Q3RVg5bTV6UnlDV2pwVDZzY0Z4dmdjV1ZOdS1RQ1FURnBIbWgzX0cyT3BtbVREdVN0bHZicGpUVFNtTEoyNDc4ZHhUcjNBVEROQ3FyUVJwZW9NLUVvMWF1QjhsN0tBOGM5a1pVLVhBN1ZCNms4SnpNbmp3THFvSUtxYTRnYUllUWs?oc=5",
-"source": "Tạp chí Kinh tế - Tài chính Online",
-"summary": "",
-"topics": [
-"nha-o"
-],
-"published": "2026-11-05T15:00+07:00",
-"found": "2026-11-15T07:48+07:00",
-"score": 34,
-"why": "Liên quan chung cư / nhà ở thương mại – sản phẩm chính",
-"parts": {
-"rel": 15,
-"dyn": 8,
-"rec": 11
-},
-"theme": "nha-o:4",
-"cluster": "theme:nha-o:4",
-"cluster_label": "Chung cư & nhà ở thương mại"
-},
-{
 "id": "b04e4311d87d",
 "title": "Hợp tác sản xuất, kinh doanh bằng quyền sử dụng đất - Một số bất cập và kiến nghị hoàn thiện Luật Đất đai",
 "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOOTA5bEhkWmZXVFcxRkt0dTBOX1NscFJGcFNjdUtBYnFWNXFVcGVXNjQ5SUU3R3hpZ0tyX3NJVUF2T1NrUGNxeE1rUWk5WFNmZnVQSnhNQjNYMVRma1JUYUN1dkhHMktXaVRxX2pVV3JKNFlwclZONmZhZEhHaUp3WG44eVlOR3ppcmhWYTJZSE1kVnhtM2RUbGc3X3ZfX0N5VjBjNV9MZDNBOFBrcV9WVWNVbVBpOWt6MEM4ZHRkRGRNbFhxeW5ndGtlZ2ZtTVA3bUVWV2lB?oc=5",
@@ -5891,30 +5869,6 @@
 "theme": "dat-dai:3",
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai"
-},
-{
-"id": "48e0030e9c4d",
-"title": "Kỳ họp thứ Hai, Quốc hội khóa XVI Minh bạch cơ chế lựa chọn nhà đầu tư điện gió ngoài khơi",
-"url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNNVpJaXlSWVp6S3JXSm5YdnVfb0JJRU9ETWphaVpjb1FjVmppTEpJZlJfRHdyaUlLejNLRlJidWcxcWFJVk9SNlViMzBCbGxDZE1OeFlfNlpyTVhCWjZZSVQxMWtSVXVpRkJJbW9kUUN6aVZab0hGWUhGaktsdEFXekxnbTJmbE5TaHNSWElySkxfX2g2VzI5UW9jaDRsQzVDMmpHT3p5TXdoMnFUbnQzVldn?oc=5",
-"source": "Vietnam.vn",
-"summary": "",
-"topics": [
-"ppp"
-],
-"published": "2026-11-03T23:20+07:00",
-"found": "2026-11-05T20:06+07:00",
-"score": 34,
-"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
-"parts": {
-"rel": 24,
-"dyn": 0,
-"rec": 10
-},
-"theme": "ppp:20",
-"cluster": "theme:ppp:20",
-"cluster_label": "Đấu thầu & lựa chọn nhà thầu/nhà đầu tư",
-"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
-"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
 "id": "c7efb4ef1fb5",
@@ -5939,48 +5893,28 @@
 "cluster_label": "Xây dựng"
 },
 {
-"id": "85a28086a992",
-"title": "Truyền thông chính sách dự thảo Thông tư ban hành Quy chuẩn kỹ thuật quốc gia về Công trình dân dụng - Phần 1: Yêu cầu kỹ thuật chung",
-"url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQWXFyenlxOEhTYVF5M3ROVHdGczk2b2l0MzF5cGpaQW5WM0VJblEwMUd5aHQ2Z2hDLTAzbGdXQTg2M0k4RGVGNEtTTDZGSkRzd0hZRmFzRWRpV2VRY2E1VXNEWTJmdTd6dlZ1TkVvWFBuZklsajVnWW5BVUxzTkFlaDZaZU1nWGlUeTd5azRnQ2M4MGRrcWU2bGI4LUM5VE04cEE0ZTdhd3Nxa3JJa01aNVdrbUVUdDR0MURCNXlFSnlLMUlhdXNqLVpXR2ctVDN4VlF5aklScWhmTFItbGNMWmdCUU85V0ZzMjA4ejN6ZVowQmp4QldKQ2tpcjZrQQ?oc=5",
-"source": "Bộ Xây dựng",
+"id": "845c75a96d3d",
+"title": "Quyết định 2436/QĐ-UBND Điện Biên giao kế hoạch đầu tư công trung hạn vốn ngân sách trung ương 2026-2030",
+"url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPN0VvWlZUS1dWOS1vN1RDbGlGc2hhWmdsdEtkdXREeHJGSmloRzhNTk5XQnZJYXJpUEsydV9XM1k5U3pOVXpINXFyWlR0dkpKYU1FMjJSazNnUXd6czRHcUhzOU9CTzh3TElzOUlBRzI0bHJuVmNPU3RkekUzN3JGTER3TDJoeHJKdENhU29DWi02UXljUFF3ZGJuay01MHlMM3NPVlRpcWtHWG1nam5qajhuMlE1VW9xS09QbnZsT1NtYWpndVFaa1NvcWhwUExFWFJlX2NGcDR1V3k3RVZoWHJBNA?oc=5",
+"source": "LuatVietnam",
 "summary": "",
 "topics": [
-"xay-dung"
+"ppp"
 ],
-"published": "2026-11-02T09:50+07:00",
-"found": "2026-11-05T06:33+07:00",
+"published": "2026-10-30T14:06+07:00",
+"found": "2026-10-31T06:27+07:00",
 "score": 34,
-"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua, dự thảo đang lấy ý kiến",
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
 "parts": {
-"rel": 0,
-"dyn": 25,
-"rec": 9
+"rel": 24,
+"dyn": 4,
+"rec": 6
 },
-"theme": "xay-dung:None",
-"cluster": "topic:xay-dung",
-"cluster_label": "Xây dựng"
-},
-{
-"id": "b6d0e7adfdc0",
-"title": "Thông tư Ban hành “Sửa đổi 1:2026 QCVN 72:2025/BGTVT Quy chuẩn kỹ thuật quốc gia về phân cấp và đóng phương tiện thủy nội địa”",
-"url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxORllRMVRkekNrY2wxd05DdVk3ZV9RMlRDZ3FjeTBTSkFGQ0pxMVB2bXVseFYwMXlJZUFJaUJaWC1SbUNjV1UwSF9vdlRFektKT05yRDlYS1pESGhnVmIteVBmOG42RmUwSDZoc3NnT0RMSzZpR3NBcm5lekJhVGdHcHF0YVhPdW5NTmhyV1VpTklvdmRoVmoyUUwzUU1HNmlrNm9xR3dTVkIwQ05jRm8zTjhPNi1BYlRaRjVOMXBMUzBwOG1LRXphbWU1TVpnZUl3Z0VvNFMxd2F5SWRncHpHR00tVE9KQVU5dDZBMXdDTWU4MDFsbDF1ek9UeElqQQ?oc=5",
-"source": "Bộ Xây dựng",
-"summary": "",
-"topics": [
-"xay-dung"
-],
-"published": "2026-11-02T09:09+07:00",
-"found": "2026-11-02T20:22+07:00",
-"score": 34,
-"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua, thay đổi quy định",
-"parts": {
-"rel": 0,
-"dyn": 25,
-"rec": 9
-},
-"theme": "xay-dung:None",
-"cluster": "topic:xay-dung",
-"cluster_label": "Xây dựng"
+"theme": "ppp:19",
+"cluster": "theme:ppp:19",
+"cluster_label": "Đầu tư công, giải ngân & quyết toán",
+"impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
 "id": "21bfdb5d564e",
@@ -6003,6 +5937,30 @@
 "theme": "kd-bds:5",
 "cluster": "law:luat-kinh-doanh-bds",
 "cluster_label": "Luật Kinh doanh BĐS"
+},
+{
+"id": "230fbb0cf526",
+"title": "Hoàn thiện Luật Đấu thầu: Siết chỉ định thầu, minh bạch giá",
+"url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPMFdfMFdDcUtJZWt4eDh6dHpqSnRXdC15VENwN0twYk5RYldSU3M4Wjc3TUlfUE4wakZYRkUxeDVyRnNNWDJ5Tk5ySkt1VF90eVpSTVNEVndVOXNBSUwtQldhRy1mbUtlRFpiUVFCWG5jZFNrUHA5MHlaVVNBT0R2M1JTODVxRFU?oc=5",
+"source": "Vietnam.vn",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-10-24T12:28+07:00",
+"found": "2026-10-26T08:09+07:00",
+"score": 34,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"parts": {
+"rel": 24,
+"dyn": 8,
+"rec": 2
+},
+"theme": "ppp:20",
+"cluster": "law:luat-dau-thau",
+"cluster_label": "Luật Đấu thầu",
+"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
 "id": "1cb2edc58ded",
@@ -6221,6 +6179,51 @@
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
 },
 {
+"id": "968919c45f99",
+"title": "Công văn 1422 chính sách thuế sử dụng đất phi nông nghiệp với hộ gia đình của Thuế CS1 Vĩnh Long ra sao?",
+"url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQVzY1SnZFSWdJYTU0enNoUmZHMDlJdWN1MnVyenNvVjRMaXhVMlplUUo4b3hBbTVZdGVYUU4zalhReHc5dlB3VTBvVlpDOFFQU1dTMGxXR2luMzFTWExKWkd4T1JjUm5nVno4QWJHQzZ1YTUySjcxYzhxRHpxek9pbXBOSUxpdml6UnYza3lzLU5jMGRZS3kya1M0VjZBcjdGNlRmbDY2c2dzUzNmY3B6V1BpcDQ4eGkzcHFSZk5sdXJ3ZTRseHBrMkZTeEV4NldXUFlJVnBEejZMaVJONTZSYjJ1b0ZqVXlhZndhRlVZT1l4dFN5czFId2J0SmdIdm96eHZSSGRBRUU4SWt0OUhBY05yYU9mRl9JVGV6d21uSXA?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"thue"
+],
+"published": "2026-11-17T15:10+07:00",
+"found": "2026-11-17T21:18+07:00",
+"score": 33,
+"why": "Thuế/phí BĐS – tác động cầu & giá bán",
+"parts": {
+"rel": 11,
+"dyn": 4,
+"rec": 18
+},
+"theme": "thue:9",
+"cluster": "theme:thue:9",
+"cluster_label": "Thuế & phí BĐS"
+},
+{
+"id": "c8bb0b2a2cd3",
+"title": "Công văn 8472/CT-QLNT 2026 Hướng dẫn thuế TNCN, lệ phí trước bạ hoạt động chuyển nhượng bất động sản như thế nào?",
+"url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNeWdPTVQySzFfQ0l3VVFrTjdNbXdZSDBHbGZzem8wYjZzZzB6Wm5HVUM4WE9DcHdXWWpEcVNwSjFDN19IMXE4YjFmMXFidTdJQ19uUjBXbjIweC1iY3hDRWxOQ2c3M1BpNXByeS1fNy1Ob0QyaU9UZ19XMVJfSDZqMTVjMkZEdDZQSkl5WFhiY2xlTGFXdWJRWWRraWRfMXQ4SXRpQWgtTFhsNDVCUXJ1M3Q0dzRsd0psYjF2M1d5ZnlaQmpUTllVVlVOVVNfNm9yeWk3S25PTlZ0NTRQZFJLaTJEOEM?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"kd-bds",
+"thue"
+],
+"published": "2026-11-17T10:05+07:00",
+"found": "2026-11-17T21:18+07:00",
+"score": 33,
+"why": "Thuế/phí BĐS – tác động cầu & giá bán",
+"parts": {
+"rel": 11,
+"dyn": 4,
+"rec": 18
+},
+"theme": "kd-bds:9",
+"cluster": "theme:kd-bds:9",
+"cluster_label": "Thuế & phí BĐS · Kinh doanh BĐS"
+},
+{
 "id": "1c522196847f",
 "title": "Quyết định 84/2026/QĐ-UBND sửa đổi Quy định cụ thể một số điều của Luật Đất đai Phú Thọ",
 "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQTjNzWjJuUERoNGVHVDBJYWpEbkVJUUI4Vm41OHZyNXgzcmhqTG5WVWg1aFJGTklJRHJ5M1NLRmIxMUxoNXowZ2lLSzRTV1RWaTduS1BtUGFodUlwaGNYaFE5YkVkbXA1UmN1ak9iNUlRME1WQ3k0cXhZMmdaMUYxeEt0V21aemllMW90SmE5ZWh3blJzaFJuRGdsMFNrN3VUZzQwU0pMQUIwUHdvczV1WExzLVpmSFAyWk02bkoxLXlFUXYtYWtJSzBFNzNrMDdWVjBKZDBJX192bm5wNndramNfV0thNFVS?oc=5",
@@ -6275,28 +6278,6 @@
 ],
 "published": "2026-11-14T21:18+07:00",
 "found": "2026-11-15T07:48+07:00",
-"score": 33,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 4,
-"rec": 17
-},
-"theme": "khoang-san:8",
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
-},
-{
-"id": "325db868948e",
-"title": "Quyết định 3910/QĐ-UBND Phú Thọ 2026 ủy quyền Giám đốc Sở Công Thương nhiệm vụ Điện lực, Địa chất và Khoáng sản",
-"url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQWlFPdHRjZXZtRWxMNEs2a0s1UUtzTE9UdWFJT19WVVZDbjl5cDB2bXpUUlh0YWFrSW1hSnpJNGhQRGgxS1haUHVKanRBT05acXBTcVQzZHFHcU9DWEtwZUxock1YanZmUm5YZ1FFWHpnUkFheVlqSkQ4VmpkRG5tam1UWUFObTNzcUpIdDVHVFVRcVl2LXNybUZMM1c4RHVxV2E1d29aNWkwcHZmMmZYaHI1Y0RpXzh3Z1BKbzFzeUwxamZRSjRXZzY2VXd3ajg5YTlyMUpCYU0tMGQ5elR4SDNEVjczTFM2Q0pDYk9R?oc=5",
-"source": "LuatVietnam",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-11-14T11:39+07:00",
-"found": "2026-11-15T19:41+07:00",
 "score": 33,
 "why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
 "parts": {
@@ -6397,6 +6378,28 @@
 "cluster_label": "Thông tư 41/2026/TT-BXD"
 },
 {
+"id": "72308c7e1d41",
+"title": "Công an phường Sơn Nam tuyên truyền, ký cam kết chấp hành pháp luật đối với các bến thuỷ nội địa, bãi tập kết cát, sỏi, vật liệu xây dựng",
+"url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNaDhDS3Z0RlNfYk9wZ0JnS0E0NzNIWU9aX2EyUW8zZkppTXUybkNhVW9tNWU5WWN2d1RUQ3J0bmRJUkN2ZUxpV1BSNEhfdWNILVhMZXF3Rm1wU2F5T2dCNDUzTGlGbm90aUdWa2swNXNKSU9GSnRHSWcza0dCNnp1RU9CaXE2cUpid3FzNDJ1RUhwUEVLemtRUTE2QU1naUFIR0xLdmJIanBQQUdmRlcyZ2ZlN2F0R1ZJRGFWLUV4NmgzMGxKdzVoUmFPQTFMblp1eHI1UURxZUNadTA?oc=5",
+"source": "Công an Hưng Yên",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-11-09T21:10+07:00",
+"found": "2026-11-10T06:27+07:00",
+"score": 33,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 8,
+"rec": 13
+},
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
+},
+{
 "id": "f6a84b815550",
 "title": "Quyết định thu hồi đất phải xác định cụ thể thửa đất và diện tích thu hồi",
 "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOTnFXWk0zVjEyMEd3R09scWxqSDJSZ2wxMEhNUWxuNmlCbE04NG5mV29hYU1xRnRXZVFLQndwd2kzZ3RueU5TLS1GNlJYUllfbURTamZ2SE1rR201cWd5Sm12Rnp0bjVlUjEzRjNyR0trMEVKZHpJSExtc1ZuckxwRGJFWjhSbTNZX0piTlJ4OHFBa2Jnd3JyRWpFUDhPSV9SOHkyZW1GNk5TMFp2d2JSaTAtRlB2aHRl?oc=5",
@@ -6419,28 +6422,6 @@
 "cluster_label": "Quyền sử dụng đất & giao đất"
 },
 {
-"id": "200764cd9f94",
-"title": "Tội khai thác khoáng sản trái phép theo Điều 227 Bộ luật Hình sự",
-"url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQUnhkbnoxbzhUQm5VMlNZQVozeHlIY3Q3TjVFU09xRHVhWW5ZejFvQjFhSlMzdUZiaDZQSkpVdG1WR3drSXdXY095RURjZ0FiZlMtWVVQWHdJck1NcGtLVFFnVTA2YU5JbURBZndwU2hTUUJYSFl2SFJkVXI4RkJOYThWVkM0bC1FSU52Y3FUUkhEcmM3ZjcwSXhMVEtuakhsZVdaWk53?oc=5",
-"source": "Luật Minh Khuê",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-11-08T15:00+07:00",
-"found": "2026-11-13T10:25+07:00",
-"score": 33,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 8,
-"rec": 13
-},
-"theme": "khoang-san:8",
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
-},
-{
 "id": "e6b5d30d851d",
 "title": "Đề xuất điều chỉnh bảng giá đất 3 năm một lần: Khắc phục những bất cập",
 "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOaVppd1g5RlUta3Z1MTRaQlhvWDBlc0tSb204ZjFpMnRULU1qQU1ZSjlQdEtuNllWbU8xQXFpRzBkOUR5VEFoMmdfMmhhLUxzak1fQi1kN0Jack9zYWZRSEplS1MycmRLX0hYWFlLZFdZbGlhVW50eW1PLTVnM2phU3RxY25XSEdHbGZuMjd0NHFUYm1YX0xtWElhRE5NSF9aVTdMX0FLZEU4a19ELVM2aWs3c3hNUQ?oc=5",
@@ -6461,6 +6442,96 @@
 "theme": "dat-dai:2",
 "cluster": "theme:dat-dai:2",
 "cluster_label": "Giá đất & tiền sử dụng đất"
+},
+{
+"id": "a277bf1f91b4",
+"title": "Kiến nghị luật hóa Nghị quyết 171 để tháo gỡ vướng mắc cho dự án nhà ở thương mại - Tạp chí Kinh tế",
+"url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPY25YZXdzTEJxUUdXZ0xybXRfdlc1MWVxeUVPYVE4SmxRV2k0NFJoZnRhcE43bEpSckczOGdpYjV4Q1Q3RVg5bTV6UnlDV2pwVDZzY0Z4dmdjV1ZOdS1RQ1FURnBIbWgzX0cyT3BtbVREdVN0bHZicGpUVFNtTEoyNDc4ZHhUcjNBVEROQ3FyUVJwZW9NLUVvMWF1QjhsN0tBOGM5a1pVLVhBN1ZCNms4SnpNbmp3THFvSUtxYTRnYUllUWs?oc=5",
+"source": "Tạp chí Kinh tế - Tài chính Online",
+"summary": "",
+"topics": [
+"nha-o"
+],
+"published": "2026-11-05T15:00+07:00",
+"found": "2026-11-15T07:48+07:00",
+"score": 33,
+"why": "Liên quan chung cư / nhà ở thương mại – sản phẩm chính",
+"parts": {
+"rel": 15,
+"dyn": 8,
+"rec": 10
+},
+"theme": "nha-o:4",
+"cluster": "theme:nha-o:4",
+"cluster_label": "Chung cư & nhà ở thương mại"
+},
+{
+"id": "48e0030e9c4d",
+"title": "Kỳ họp thứ Hai, Quốc hội khóa XVI Minh bạch cơ chế lựa chọn nhà đầu tư điện gió ngoài khơi",
+"url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNNVpJaXlSWVp6S3JXSm5YdnVfb0JJRU9ETWphaVpjb1FjVmppTEpJZlJfRHdyaUlLejNLRlJidWcxcWFJVk9SNlViMzBCbGxDZE1OeFlfNlpyTVhCWjZZSVQxMWtSVXVpRkJJbW9kUUN6aVZab0hGWUhGaktsdEFXekxnbTJmbE5TaHNSWElySkxfX2g2VzI5UW9jaDRsQzVDMmpHT3p5TXdoMnFUbnQzVldn?oc=5",
+"source": "Vietnam.vn",
+"summary": "",
+"topics": [
+"ppp"
+],
+"published": "2026-11-03T23:20+07:00",
+"found": "2026-11-05T20:06+07:00",
+"score": 33,
+"why": "BT/PPP/đầu tư công/đấu thầu – ảnh hưởng điều kiện hợp đồng dự án, thanh toán & hồ sơ dự thầu",
+"parts": {
+"rel": 24,
+"dyn": 0,
+"rec": 9
+},
+"theme": "ppp:20",
+"cluster": "theme:ppp:20",
+"cluster_label": "Đấu thầu & lựa chọn nhà thầu/nhà đầu tư",
+"impact": "cập nhật căn cứ pháp lý, hình thức/quy trình lựa chọn nhà thầu – nhà đầu tư và điều khoản chuyển tiếp trong hồ sơ dự thầu, hợp đồng.",
+"impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu"
+},
+{
+"id": "85a28086a992",
+"title": "Truyền thông chính sách dự thảo Thông tư ban hành Quy chuẩn kỹ thuật quốc gia về Công trình dân dụng - Phần 1: Yêu cầu kỹ thuật chung",
+"url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQWXFyenlxOEhTYVF5M3ROVHdGczk2b2l0MzF5cGpaQW5WM0VJblEwMUd5aHQ2Z2hDLTAzbGdXQTg2M0k4RGVGNEtTTDZGSkRzd0hZRmFzRWRpV2VRY2E1VXNEWTJmdTd6dlZ1TkVvWFBuZklsajVnWW5BVUxzTkFlaDZaZU1nWGlUeTd5azRnQ2M4MGRrcWU2bGI4LUM5VE04cEE0ZTdhd3Nxa3JJa01aNVdrbUVUdDR0MURCNXlFSnlLMUlhdXNqLVpXR2ctVDN4VlF5aklScWhmTFItbGNMWmdCUU85V0ZzMjA4ejN6ZVowQmp4QldKQ2tpcjZrQQ?oc=5",
+"source": "Bộ Xây dựng",
+"summary": "",
+"topics": [
+"xay-dung"
+],
+"published": "2026-11-02T09:50+07:00",
+"found": "2026-11-05T06:33+07:00",
+"score": 33,
+"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua, dự thảo đang lấy ý kiến",
+"parts": {
+"rel": 0,
+"dyn": 25,
+"rec": 8
+},
+"theme": "xay-dung:None",
+"cluster": "topic:xay-dung",
+"cluster_label": "Xây dựng"
+},
+{
+"id": "b6d0e7adfdc0",
+"title": "Thông tư Ban hành “Sửa đổi 1:2026 QCVN 72:2025/BGTVT Quy chuẩn kỹ thuật quốc gia về phân cấp và đóng phương tiện thủy nội địa”",
+"url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxORllRMVRkekNrY2wxd05DdVk3ZV9RMlRDZ3FjeTBTSkFGQ0pxMVB2bXVseFYwMXlJZUFJaUJaWC1SbUNjV1UwSF9vdlRFektKT05yRDlYS1pESGhnVmIteVBmOG42RmUwSDZoc3NnT0RMSzZpR3NBcm5lekJhVGdHcHF0YVhPdW5NTmhyV1VpTklvdmRoVmoyUUwzUU1HNmlrNm9xR3dTVkIwQ05jRm8zTjhPNi1BYlRaRjVOMXBMUzBwOG1LRXphbWU1TVpnZUl3Z0VvNFMxd2F5SWRncHpHR00tVE9KQVU5dDZBMXdDTWU4MDFsbDF1ek9UeElqQQ?oc=5",
+"source": "Bộ Xây dựng",
+"summary": "",
+"topics": [
+"xay-dung"
+],
+"published": "2026-11-02T09:09+07:00",
+"found": "2026-11-02T20:22+07:00",
+"score": 33,
+"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua, thay đổi quy định",
+"parts": {
+"rel": 0,
+"dyn": 25,
+"rec": 8
+},
+"theme": "xay-dung:None",
+"cluster": "topic:xay-dung",
+"cluster_label": "Xây dựng"
 },
 {
 "id": "f7940f8db6ed",
@@ -6647,6 +6718,28 @@
 "cluster_label": "Thuế & phí BĐS · Kinh doanh BĐS"
 },
 {
+"id": "325db868948e",
+"title": "Quyết định 3910/QĐ-UBND Phú Thọ 2026 ủy quyền Giám đốc Sở Công Thương nhiệm vụ Điện lực, Địa chất và Khoáng sản",
+"url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQWlFPdHRjZXZtRWxMNEs2a0s1UUtzTE9UdWFJT19WVVZDbjl5cDB2bXpUUlh0YWFrSW1hSnpJNGhQRGgxS1haUHVKanRBT05acXBTcVQzZHFHcU9DWEtwZUxock1YanZmUm5YZ1FFWHpnUkFheVlqSkQ4VmpkRG5tam1UWUFObTNzcUpIdDVHVFVRcVl2LXNybUZMM1c4RHVxV2E1d29aNWkwcHZmMmZYaHI1Y0RpXzh3Z1BKbzFzeUwxamZRSjRXZzY2VXd3ajg5YTlyMUpCYU0tMGQ5elR4SDNEVjczTFM2Q0pDYk9R?oc=5",
+"source": "LuatVietnam",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-11-14T11:39+07:00",
+"found": "2026-11-15T19:41+07:00",
+"score": 32,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 4,
+"rec": 16
+},
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
+},
+{
 "id": "0724c370725b",
 "title": "An Giang lấy ý kiến điều chỉnh quy hoạch khu vực 30.700ha trên 9 phường xã nào?",
 "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOTjN5QTc3UlBHeFc2UlZla0ZTUGY0RlRKWTg0VUJpM2VwM1J4WVNaVGNZUHdQbEZJMVdyZ1VDb3dKMHpZNW12bkdFMW5jYnlGeWtRZ09LVWNEOW52ZG0tOTJ1OEh0VGlNRW5Nc3Y4SnZRX0JnWkNTamM3UHdjRVVENkVjaTdJRzRQZm5RV2RqVURNelZUcHBGYm53dVdHNVF4V3FkbGJaYjhya2VRaUhUMWFsSFNFSHBid3VF?oc=5",
@@ -6755,6 +6848,28 @@
 "theme": "dat-dai:None",
 "cluster": "law:luat-dat-dai",
 "cluster_label": "Luật Đất đai"
+},
+{
+"id": "200764cd9f94",
+"title": "Tội khai thác khoáng sản trái phép theo Điều 227 Bộ luật Hình sự",
+"url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQUnhkbnoxbzhUQm5VMlNZQVozeHlIY3Q3TjVFU09xRHVhWW5ZejFvQjFhSlMzdUZiaDZQSkpVdG1WR3drSXdXY095RURjZ0FiZlMtWVVQWHdJck1NcGtLVFFnVTA2YU5JbURBZndwU2hTUUJYSFl2SFJkVXI4RkJOYThWVkM0bC1FSU52Y3FUUkhEcmM3ZjcwSXhMVEtuakhsZVdaWk53?oc=5",
+"source": "Luật Minh Khuê",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-11-08T15:00+07:00",
+"found": "2026-11-13T10:25+07:00",
+"score": 32,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 8,
+"rec": 12
+},
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
 },
 {
 "id": "96672a34fcd1",
@@ -6933,28 +7048,6 @@
 "cluster_label": "Quyền sử dụng đất & giao đất"
 },
 {
-"id": "32d66c48d0c7",
-"title": "An Giang ban hành cơ chế hỗ trợ các dự án nhà ở xã hội",
-"url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQSF9KMjFqNVpzaVNWc290Qi1ydkpLc2tqVFpUZ3YxbGV4d3pwVTdHMi1iYjdCQjQ4SkdiOW9LdGxnVU13WENsRTVqYUlBeEJESWN0ckFHMUhEM0dHTVdrUU54NlpqMmtjWDc3RENWa00xWHBRVTZhSEZkWHI2NXY0VzRTbkp4QlFsUVF3NklGYjlVeTRUNkRkSFZMVjJDMHJacGJneVJFV0R5YkQzTmVN?oc=5",
-"source": "batdongsan.baoxaydung.vn",
-"summary": "",
-"topics": [
-"nha-o"
-],
-"published": "2026-11-02T10:28+07:00",
-"found": "2026-11-02T20:22+07:00",
-"score": 32,
-"why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư · văn bản mới ban hành/thông qua",
-"parts": {
-"rel": 11,
-"dyn": 12,
-"rec": 9
-},
-"theme": "nha-o:10",
-"cluster": "theme:nha-o:10",
-"cluster_label": "Nhà ở xã hội"
-},
-{
 "id": "b293ae8ca9a4",
 "title": "Hồ sơ khớp nối, bổ sung và điều chỉnh và ban hành Quy định quản lý Quy hoạch phân khu (tỷ lệ 1/2.000 ) các giai đoạn I, II, III tại Đô thị mới Điện Nam - Điện Ngọc, thị xã Điện Bàn",
 "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPZ2hqeGRsNlhQVnFTby1ITnN5WGdHNG1GUkJmVU14M1JmWDNLMlE3OUhiUHZVT2N0OVo5SUxPOHlBcEl6SU5fTko2bV94dUtBcG1oMjI4NkVLSkNtRTlHX0FuUW9MSWtXZkd2eVJaX0FNZFY0QnVDZEJKQkVTd2MzUUt4TzRWVzV6UVR4dTJR?oc=5",
@@ -6997,28 +7090,6 @@
 "theme": "xay-dung:None",
 "cluster": "topic:xay-dung",
 "cluster_label": "Xây dựng"
-},
-{
-"id": "c683fd942281",
-"title": "Nghị quyết 345/NQ-CP về công chứng chứng thực và luật hóa Nghị quyết 171/2024/QH15 tại Dự thảo Luật Đất đai (sửa đổi) ra sao?",
-"url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQb3lhcEdUYW12NW1fLWoyS1VwU3RycUhJcktvTmhKRzViMkxKbGNzakVfSjh1Y24wZVN0X3hLdXdqd3ZvM1Fwa3h1RHZwU3J1amVnY2FMcjlWbkVDekhhaTdUNFhRRXg3MkJ0ZWhYRVFrLUNkOUx0ZkQ4cndQbTNzeG84cnBBVF8taVF6WDV2T211QzJYX2pneF95dy1iRFVIblBLMGNUTzZzekRZQkhyRFhGRXNuU1ZNY0VQOGdPNGI1TDhNbTdJUTlDSi11Q25tTEJ0a1prdDlUZDBGRUhfOXI4MmpONDJvMDZOQWVnSWxPNHZkZmZjeA?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-10-30T14:16+07:00",
-"found": "2026-10-30T16:26+07:00",
-"score": 32,
-"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến, thay đổi quy định",
-"parts": {
-"rel": 0,
-"dyn": 25,
-"rec": 7
-},
-"theme": "dat-dai:None",
-"cluster": "law:luat-dat-dai",
-"cluster_label": "Luật Đất đai"
 },
 {
 "id": "63b17321b7b3",
@@ -7154,28 +7225,6 @@
 "cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
-"id": "ab8100ab41d4",
-"title": "Đề xuất bỏ giá đất cụ thể, thay đổi cách tính tiền sử dụng đất trong Luật Đất đai",
-"url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQeURjQjE0RW95Nk4tVUQ4Tk43TXdEbEl0SnJjVGUxaTBYVzItU09JRks1VnBPVmRhdVk4a25FUDV3c0dtZDcwbFRCMWpsaW5La3ZsMDFDX21KX09JZnhLLU1mYmI4YXltY0RqLWk1dFUtZ0pubTJKb3F0RmhwQXU3S3ZsaUlzeDN5SVpGa3JOMmQ1X1dzaXNMMjdteUQta3FYdFB1bm5ySWdWMTFWWnBwaXZGcjJFaUtUem54SQ?oc=5",
-"source": "CafeLand",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-10-22T21:54+07:00",
-"found": "2026-10-26T08:09+07:00",
-"score": 32,
-"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
-"parts": {
-"rel": 22,
-"dyn": 8,
-"rec": 2
-},
-"theme": "dat-dai:2",
-"cluster": "law:luat-dat-dai",
-"cluster_label": "Luật Đất đai"
-},
-{
 "id": "aafe7e1456b1",
 "title": "Giấy chứng nhận quyền sử dụng đất được cấp cho ai và chỉ được cấp khi nào theo quy định của Luật Đất đai mới nhất?",
 "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNY2lINkROYllrUUVEelZDYWNaR3ZBV2ZRNWViNUZvRU9OYUNUclk4WTI2V3lnOG9TYUFnQ1ZPc2pfOGMtQUFneXRSRlBXOUstUE9oNmZaeV9iVm9ENHpxRFFlc1lsNEVaNlVHQWR4dWVuYURFMS0yaDZiVGdZR2h2bXI1TjdwLTZ3S3NxSE1HWDczYTNyWWhWOUNIeTh3RVRhS0NpdnB5SktWR2s3VW54Wm5ma3ZPWlVsV3BRMWg5OG1mMFg1YVYzam5rYUdMSXZBcUxMQnBwLWJBSmREdlJfS2RPTEFuOEFkVVBB?oc=5",
@@ -7220,6 +7269,34 @@
 "cluster_label": "Luật Đất đai"
 },
 {
+"id": "c3e1d22dd1f7",
+"title": "Ngăn chặn trục lợi chính sách nhà ở xã hội",
+"url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPdHYwWDlUSVNqOExDdm1zVENONDhRdmxrclBpRE4wN2djMjdPaXVSaUdpbUhJc09Jd2tpNWU5Nk96elpTenlkR0hzY1otR2lHQl9QS2xRUlg1OExXRHFDOU9EUXAyRWFZTmJTeDM0S0FtM3d0ZXhEc1l6aGZwSDFlZ3NUUEQ0c2c?oc=5",
+"source": "Báo Cần Thơ",
+"summary": "",
+"topics": [
+"nha-o"
+],
+"published": "2026-11-19T14:07+07:00",
+"found": "2026-11-19T21:18+07:00",
+"score": 31,
+"why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư",
+"parts": {
+"rel": 11,
+"dyn": 0,
+"rec": 20
+},
+"also": [
+{
+"source": "Vietnam.vn",
+"url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPOFAtekx0YV9NLUtmVmJnNFpLUDBIYnc2QTZxek5SUG1QY0lZQ3Y3bkNNNk43RDVqOGViS295RzVyRld5Z0owci1iV21yT1NxMVJyTUVLQ0JEU3VrclNiMjZ0WlE1R0F4aXJBaFpxcUdlNXJuVXVONTlKLUUwcW0tNVYzVkFHMkpyN1A2akVDX2Q?oc=5"
+}
+],
+"theme": "nha-o:10",
+"cluster": "theme:nha-o:10",
+"cluster_label": "Nhà ở xã hội"
+},
+{
 "id": "3a2f54b26bf6",
 "title": "Quyết định 4114/QĐ-UBND Cà Mau 2026 công bố thủ tục hành chính sửa đổi bổ sung lĩnh vực đất đai",
 "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNdlIyeHdnU2tncG9UcndiUjM5M29vbXEzSVZJbGE3QXZrWWlweGJUYlpHLUtjcTdlU2RMSW1kSTV4eDh5MWtaa25PNm00emNrV2JJa3NHZmFBclFBYzJWWW5mOXZxZkpyRWtuNmtqZk83X3N1WF9wM3lqbzdrR0JYRF9MQ3lPQWtsQlozbzE0a25kQ2N4M0J2UWJva0RHWGwxMGpCN1lzVWxLd1VBLWVZN2tSdnV2UTktNElCRWNjaWotQWtaSThKQVUzYkU2V1RJejQwT1IxQUE?oc=5",
@@ -7237,15 +7314,15 @@
 "dyn": 11,
 "rec": 20
 },
+"theme": "dat-dai:None",
+"cluster": "topic:dat-dai",
+"cluster_label": "Đất đai",
 "also": [
 {
 "source": "LuatVietnam",
 "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQbTJZTi1GcHFJWDhFMG96S2I4WmlWN000dEs1Z19sUWUtZEtkczVLWkdYZExqcDJmVFpFQWU3ZjVVcEY0R3dQUmxkdjhDZ0xjZlBNRkVCRnI4LWd5ZEhIZkhqTjRjQ3RSV1VkdXZEcF9KeDlqVDJGeXRUQTNxUHRlaVZNSXNyMDZtOFAwUFd4ZUdsQ2llUEVNX1BVNDlYNFVhWXJtRlpDSTFXTEZ0SnNmMG1BNEhFc2NnY3BWZGtDWV8yeXU3YmJJ?oc=5"
 }
-],
-"theme": "dat-dai:None",
-"cluster": "topic:dat-dai",
-"cluster_label": "Đất đai"
+]
 },
 {
 "id": "86817293e0b8",
@@ -7337,56 +7414,6 @@
 "cluster_label": "Kinh doanh BĐS"
 },
 {
-"id": "b70fc27538c6",
-"title": "Quyết định công bố thủ tục hành chính nội bộ lĩnh vực địa chất và khoáng sản",
-"url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPXzZKOTNuRk9STExkTmFZSlMxQk9mVy0xWHBKMzkyZE5sdFNVOC1RUFlTN1MzT3ctTXo5X2RIN2piaTJ2MTFLYjB1N3Z6VG44NEZCSXNibWVBRTVLNTNtS3RWaVVzZmh3RzZFNE85ZUVyeV9WaFRlOElqRXE2SW82cUlESGR6RVE4enNXZkhLRXdDMnVWNHdWSTc0ZjVhUVVsTS1vdjZzcUpTRzdFTzhRa1lpSDBPLTNUbmU5Z0JfMFdiU3NNcHpzQTQ4ZUJldU41VWkwdEdBZHM0R21jb19UaThBM1BObzF6?oc=5",
-"source": "dongnai.gov.vn",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-11-11T15:13+07:00",
-"found": "2026-11-11T19:38+07:00",
-"score": 31,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 4,
-"rec": 15
-},
-"theme": "khoang-san:8",
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)",
-"also": [
-{
-"source": "LuatVietnam",
-"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNclVIeUtlRG9zUEwtZ0FvM2FRUVY1cW1ITWFPMGkyb01IemduLUZIYXIyV0RCSWRIeG9MeDFiY09wUW1UMUI0VXRsc0pDckhnVmpXMXliMFYtSDF2QlZvUVlsNHlya3ZOeHp5MEV6ajVVbVVIWWI2Vko3R1o2Yk4zeWw1OHh3NmFsallPLVoyLWhNMkl2X3hxVXAxdE1XWEdQT19LQmJneVlMdFZ2UzlQSlZ5TmNxWEhNVjE0eWNidVFRc0xvNU8wM1JnTzZaTXBha3dkVGlfUkp4dUNtTVF1VldaRXJyZw?oc=5"
-}
-]
-},
-{
-"id": "00502f832727",
-"title": "Quy định cấp sổ đỏ với đất nông nghiệp lấn chiếm nằm trong khu dân cư",
-"url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVUsyU25FVGE1VGV1Uk9lNzdHVFUxQ2JILTI2aUxhRDNtbU9SMlV1a0JrTTM1Mkx2OEFQRDJ5ZmVsU0NwM3B1YTRwUkVuclB2aDQ1RmJLMzNZWWNjaEpMdDFUNkVSTHV4cjhUUDNXWUU1QVItUVVlTzdWeHpuaElQQmNvOHAweFItaHB3RjhWMHNxQ3lrU1lQdDdIUFUxOVlNZTJnSzNZNTdVZnBjU1YxVG9LOA?oc=5",
-"source": "Laodong.vn",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-11T10:42+07:00",
-"found": "2026-11-11T19:38+07:00",
-"score": 31,
-"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
-"parts": {
-"rel": 16,
-"dyn": 0,
-"rec": 15
-},
-"theme": "dat-dai:3",
-"cluster": "theme:dat-dai:3",
-"cluster_label": "Quyền sử dụng đất & giao đất"
-},
-{
 "id": "b8aa0c85119b",
 "title": "Dự thảo Luật Đất đai cập nhật ngày 05/11/2026 có nội dung gì?",
 "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPLTJtRVl2UWh2VVo5NUJwMTh3eTVSSHlGMkJna3p4eDdUYUNGYkEyejVGZ2luYXhMWVhUU0Z0MG5sX1UwY3RuZVlNMXpOcG9OSkZlNHlWSFZuUWlhT2pxTG9XNEhJN3gxNGdoRFBoLVJGdHVmRTh1aUlLeDNCbS0xRmxOMzBNZHBZaGU3cl9QUjhjQ1l4cHpQU3lxbGFRRE83NGJGVlZNWml5QjljT3pSVER6T2oyR1Q1VXc?oc=5",
@@ -7429,28 +7456,6 @@
 "theme": "khoang-san:8",
 "cluster": "theme:khoang-san:8",
 "cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
-},
-{
-"id": "c81ee373f812",
-"title": "Hướng dẫn ủy quyền xin cấp sổ đỏ lần đầu theo Công văn 2828/STP-BTTP Lâm Đồng ra sao? Cách ủy quyền xin cấp sổ đỏ lần đầu?",
-"url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPNncyVHpEbEdaSEJaT21BNF9Ia2FIeUp2UXM4Ump6NTNYeTZBOC1SZThmZExFT2RISlF3N3BVZVQwMXgxcEcyTlRLZjQ0TWNOM1Z1UmkzT3JWNmhXU19TTGlpYTFZeXBVSWNGakVkd05PSFdSOFNNMnZZSWt3eThPT2NwLU5yX0dKNEV4bDJsNUx1dkRhUHRZNUVHaEZJanUwUWNpTmlBdmhfS0F4WFBlQWRtdVF5UHFpWlZYTEVSbWZNLXFuOWwwMTZqc3l4b0hkcFp2ZzdsajBYQjFPS2tmZTRCMW1zME05dFU5bVVOeWZPRU1nem5icQ?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-05T11:35+07:00",
-"found": "2026-11-05T20:06+07:00",
-"score": 31,
-"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
-"parts": {
-"rel": 16,
-"dyn": 4,
-"rec": 11
-},
-"theme": "dat-dai:3",
-"cluster": "theme:dat-dai:3",
-"cluster_label": "Quyền sử dụng đất & giao đất"
 },
 {
 "id": "07eb5202b018",
@@ -7497,26 +7502,48 @@
 "cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
-"id": "5e4ae593d109",
-"title": "Trường hợp thu hồi đất trên địa bàn khu kinh tế đặc biệt từ 1/10/2026 gồm những gì theo Luật Phát triển đô thị?",
-"url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNdEpINWc2YUNSSDgxdTFWeGJqZ1VGdWxYVVRCQnc4blFJbUZsSUU2V2NWeXhvZGRLSmVRT2tRZmlPeXFTMDBJWnp3LWN1LTFJNnZRYjNvY1FpWGRPUTEyV01zQmF6QW56NFVPblY5c0R4bVRqOGo1VVZQbFRRaml6emNqY3lybjZFMVpLX21idWxTVkZsVTVwQ0JTakF1bnRiVHJVQlZuSGxoTVExZnlicmJfb0dOMmZYT2dwWEgxQWd4RnAxVmNqalVvYU5NTndGQjF4X09KZThOT0t1T2J2VTd3?oc=5",
+"id": "32d66c48d0c7",
+"title": "An Giang ban hành cơ chế hỗ trợ các dự án nhà ở xã hội",
+"url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQSF9KMjFqNVpzaVNWc290Qi1ydkpLc2tqVFpUZ3YxbGV4d3pwVTdHMi1iYjdCQjQ4SkdiOW9LdGxnVU13WENsRTVqYUlBeEJESWN0ckFHMUhEM0dHTVdrUU54NlpqMmtjWDc3RENWa00xWHBRVTZhSEZkWHI2NXY0VzRTbkp4QlFsUVF3NklGYjlVeTRUNkRkSFZMVjJDMHJacGJneVJFV0R5YkQzTmVN?oc=5",
+"source": "batdongsan.baoxaydung.vn",
+"summary": "",
+"topics": [
+"nha-o"
+],
+"published": "2026-11-02T10:28+07:00",
+"found": "2026-11-02T20:22+07:00",
+"score": 31,
+"why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư · văn bản mới ban hành/thông qua",
+"parts": {
+"rel": 11,
+"dyn": 12,
+"rec": 8
+},
+"theme": "nha-o:10",
+"cluster": "theme:nha-o:10",
+"cluster_label": "Nhà ở xã hội"
+},
+{
+"id": "c683fd942281",
+"title": "Nghị quyết 345/NQ-CP về công chứng chứng thực và luật hóa Nghị quyết 171/2024/QH15 tại Dự thảo Luật Đất đai (sửa đổi) ra sao?",
+"url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxQb3lhcEdUYW12NW1fLWoyS1VwU3RycUhJcktvTmhKRzViMkxKbGNzakVfSjh1Y24wZVN0X3hLdXdqd3ZvM1Fwa3h1RHZwU3J1amVnY2FMcjlWbkVDekhhaTdUNFhRRXg3MkJ0ZWhYRVFrLUNkOUx0ZkQ4cndQbTNzeG84cnBBVF8taVF6WDV2T211QzJYX2pneF95dy1iRFVIblBLMGNUTzZzekRZQkhyRFhGRXNuU1ZNY0VQOGdPNGI1TDhNbTdJUTlDSi11Q25tTEJ0a1prdDlUZDBGRUhfOXI4MmpONDJvMDZOQWVnSWxPNHZkZmZjeA?oc=5",
 "source": "Thư Viện Pháp Luật",
 "summary": "",
 "topics": [
 "dat-dai"
 ],
-"published": "2026-10-30T13:52+07:00",
+"published": "2026-10-30T14:16+07:00",
 "found": "2026-10-30T16:26+07:00",
 "score": 31,
-"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
+"why": "Chính sách ngành BĐS/xây dựng · dự thảo đang lấy ý kiến, thay đổi quy định",
 "parts": {
-"rel": 16,
-"dyn": 8,
-"rec": 7
+"rel": 0,
+"dyn": 25,
+"rec": 6
 },
-"theme": "dat-dai:3",
-"cluster": "theme:dat-dai:3",
-"cluster_label": "Quyền sử dụng đất & giao đất"
+"theme": "dat-dai:None",
+"cluster": "law:luat-dat-dai",
+"cluster_label": "Luật Đất đai"
 },
 {
 "id": "68ce19bcaf91",
@@ -7627,28 +7654,6 @@
 "theme": "nha-o:4",
 "cluster": "theme:nha-o:4",
 "cluster_label": "Chung cư & nhà ở thương mại"
-},
-{
-"id": "65f4628d1148",
-"title": "Hoàn thiện quy định về kinh doanh công cụ hỗ trợ, nghiệm thu phòng cháy, chữa cháy và bảo vệ công trình quan trọng liên quan đến an ninh quốc gia",
-"url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPMjFJLVNic0tuTE1oempmQUNrc0M2NDlQM2hLQk1oYnZmbDZDZFVWdzZ0XzlkWWp5dndGZW9PczlmOXhjdFhwV3l5TUFueDhsWFpjTWhiMUtCYkkyd2p3TGw5UU13dWRxNGtqMU04Qk9TZm9uVnRfY1JCVmsyTDZjMzBUSmJEZlEzT1lYdldUcGpBUXdMVEl2X0w2Mm1RWmFqcG92MVI1NTZxRmFybHlCOEk5d0NPOGd6Y0dQbWNnZnAxNzlJWF9Id25SWWZEelpBZFE0amtGV1o2MWhPbE10ZERDZWd3VHZB?oc=5",
-"source": "Cổng thông tin điện tử tỉnh Tây Ninh",
-"summary": "",
-"topics": [
-"pccc"
-],
-"published": "2026-10-27T12:23+07:00",
-"found": "2026-10-31T17:53+07:00",
-"score": 31,
-"why": "Cấp phép / thẩm định xây dựng – tiến độ dự án; PCCC – điều kiện nghiệm thu, vận hành chung cư",
-"parts": {
-"rel": 26,
-"dyn": 0,
-"rec": 5
-},
-"theme": "pccc:7",
-"cluster": "theme:pccc:7",
-"cluster_label": "Phòng cháy chữa cháy"
 },
 {
 "id": "1ddf8494e02d",
@@ -7785,6 +7790,28 @@
 "cluster_label": "Luật Kinh doanh BĐS"
 },
 {
+"id": "ab8100ab41d4",
+"title": "Đề xuất bỏ giá đất cụ thể, thay đổi cách tính tiền sử dụng đất trong Luật Đất đai",
+"url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQeURjQjE0RW95Nk4tVUQ4Tk43TXdEbEl0SnJjVGUxaTBYVzItU09JRks1VnBPVmRhdVk4a25FUDV3c0dtZDcwbFRCMWpsaW5La3ZsMDFDX21KX09JZnhLLU1mYmI4YXltY0RqLWk1dFUtZ0pubTJKb3F0RmhwQXU3S3ZsaUlzeDN5SVpGa3JOMmQ1X1dzaXNMMjdteUQta3FYdFB1bm5ySWdWMTFWWnBwaXZGcjJFaUtUem54SQ?oc=5",
+"source": "CafeLand",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-10-22T21:54+07:00",
+"found": "2026-10-26T08:09+07:00",
+"score": 31,
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
+"parts": {
+"rel": 22,
+"dyn": 8,
+"rec": 1
+},
+"theme": "dat-dai:2",
+"cluster": "law:luat-dat-dai",
+"cluster_label": "Luật Đất đai"
+},
+{
 "id": "8e1369c8d9bd",
 "title": "Sửa Luật Đất đai: Bảng giá đất không thể ‘đóng băng’ 3 năm, cẩn trọng với dữ liệu giao dịch ảo",
 "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOMjJzS3pHWDBDMlZnWmtTZHUtb0MxWFJvbHEtWmRnTzFvX2FZMlRYc1ozYW1KSkUxWGY5OWQzVG9LVHl4TXF3alNCb3FJN2xKZF9HUkNIS1c4Z0Rmc3VBSFo4U2R1VndXNDAzTEctbV9tbGF3aC13SGktOFlkY1JQWVNYanA0eU9ZSi1kYUI2ZUdTSllBcFZDdkFuQmoxY0FmNzhOaGRqVWN5aU95UE9XOFFUNA?oc=5",
@@ -7899,28 +7926,6 @@
 "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQOXBORjdYS2lWaWZvcFl2TnJXb2J1eUctM1JsQVItMGlNWVhBVFN1SnVSVzZRNU8xVk5LN3VnME5SNFlrZlc2c2d1UlpoVW53N3V4NVlESGxuYklsZEtaVW00djhMQl95NGtSaG1XUURTQzZtdVhPOHhnNWpnd0RoejZTSU5WTVdsU0FGWWNVMkc0MzhLUXgzZ2NUaEVzVEZFRVl3WlhiS3pBZDlrQ0FMY3ltcGtZTURK?oc=5"
 }
 ]
-},
-{
-"id": "4b5b3c2098de",
-"title": "Siết chuyển nhượng nhà ở xã hội, ngăn nguy cơ trục lợi chính sách",
-"url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPOFAtekx0YV9NLUtmVmJnNFpLUDBIYnc2QTZxek5SUG1QY0lZQ3Y3bkNNNk43RDVqOGViS295RzVyRld5Z0owci1iV21yT1NxMVJyTUVLQ0JEU3VrclNiMjZ0WlE1R0F4aXJBaFpxcUdlNXJuVXVONTlKLUUwcW0tNVYzVkFHMkpyN1A2akVDX2Q?oc=5",
-"source": "Vietnam.vn",
-"summary": "",
-"topics": [
-"nha-o"
-],
-"published": "2026-11-18T19:49+07:00",
-"found": "2026-11-18T20:50+07:00",
-"score": 30,
-"why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư",
-"parts": {
-"rel": 11,
-"dyn": 0,
-"rec": 19
-},
-"theme": "nha-o:10",
-"cluster": "theme:nha-o:10",
-"cluster_label": "Nhà ở xã hội"
 },
 {
 "id": "67c44bb09e6f",
@@ -8083,6 +8088,56 @@
 "cluster_label": "Thuế & phí BĐS"
 },
 {
+"id": "b70fc27538c6",
+"title": "Quyết định công bố thủ tục hành chính nội bộ lĩnh vực địa chất và khoáng sản",
+"url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPXzZKOTNuRk9STExkTmFZSlMxQk9mVy0xWHBKMzkyZE5sdFNVOC1RUFlTN1MzT3ctTXo5X2RIN2piaTJ2MTFLYjB1N3Z6VG44NEZCSXNibWVBRTVLNTNtS3RWaVVzZmh3RzZFNE85ZUVyeV9WaFRlOElqRXE2SW82cUlESGR6RVE4enNXZkhLRXdDMnVWNHdWSTc0ZjVhUVVsTS1vdjZzcUpTRzdFTzhRa1lpSDBPLTNUbmU5Z0JfMFdiU3NNcHpzQTQ4ZUJldU41VWkwdEdBZHM0R21jb19UaThBM1BObzF6?oc=5",
+"source": "dongnai.gov.vn",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-11-11T15:13+07:00",
+"found": "2026-11-11T19:38+07:00",
+"score": 30,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 4,
+"rec": 14
+},
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)",
+"also": [
+{
+"source": "LuatVietnam",
+"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNclVIeUtlRG9zUEwtZ0FvM2FRUVY1cW1ITWFPMGkyb01IemduLUZIYXIyV0RCSWRIeG9MeDFiY09wUW1UMUI0VXRsc0pDckhnVmpXMXliMFYtSDF2QlZvUVlsNHlya3ZOeHp5MEV6ajVVbVVIWWI2Vko3R1o2Yk4zeWw1OHh3NmFsallPLVoyLWhNMkl2X3hxVXAxdE1XWEdQT19LQmJneVlMdFZ2UzlQSlZ5TmNxWEhNVjE0eWNidVFRc0xvNU8wM1JnTzZaTXBha3dkVGlfUkp4dUNtTVF1VldaRXJyZw?oc=5"
+}
+]
+},
+{
+"id": "00502f832727",
+"title": "Quy định cấp sổ đỏ với đất nông nghiệp lấn chiếm nằm trong khu dân cư",
+"url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVUsyU25FVGE1VGV1Uk9lNzdHVFUxQ2JILTI2aUxhRDNtbU9SMlV1a0JrTTM1Mkx2OEFQRDJ5ZmVsU0NwM3B1YTRwUkVuclB2aDQ1RmJLMzNZWWNjaEpMdDFUNkVSTHV4cjhUUDNXWUU1QVItUVVlTzdWeHpuaElQQmNvOHAweFItaHB3RjhWMHNxQ3lrU1lQdDdIUFUxOVlNZTJnSzNZNTdVZnBjU1YxVG9LOA?oc=5",
+"source": "Laodong.vn",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-11T10:42+07:00",
+"found": "2026-11-11T19:38+07:00",
+"score": 30,
+"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
+"parts": {
+"rel": 16,
+"dyn": 0,
+"rec": 14
+},
+"theme": "dat-dai:3",
+"cluster": "theme:dat-dai:3",
+"cluster_label": "Quyền sử dụng đất & giao đất"
+},
+{
 "id": "42c16c9d4b70",
 "title": "Tổng hợp văn bản hướng dẫn tranh chấp về quyền sử dụng đất của TANDTC và VKSTC năm 2026 chi tiết ra sao?",
 "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNcmx1alYwb241WGhRRFR0UU9VZjQtZUpDclVNbjBmellpMTI1ZlQwRTVVWjEzM3Z2ekYxRDdUWFQwUlYyc3NBMXZ2a0Y2c3Rob2RWNm5ZLUpEWWhYYW9wX3Y1ZVFCNnkxbU1fXzB5aGJiMmNjUHZqTGNHVU54S0tsVUs2ZTl5Y1BxbmNwSXNSNEJvdnR6WWlHajZ0T1pLcU9UU2l6X3lpSlpabS1TU2c1N2hNd3p0eHJDRExBTHVpN3RpSmVTOGtjekRMZUpIZnFHWjJ5NlU4UnBtV0o3QTJ0dDUyVHN6OE5hWkQtZzIwODBWY3kzcUtuUWZVeDExeE1o?oc=5",
@@ -8147,6 +8202,28 @@
 "theme": "nha-o:4",
 "cluster": "theme:nha-o:4",
 "cluster_label": "Chung cư & nhà ở thương mại"
+},
+{
+"id": "c81ee373f812",
+"title": "Hướng dẫn ủy quyền xin cấp sổ đỏ lần đầu theo Công văn 2828/STP-BTTP Lâm Đồng ra sao? Cách ủy quyền xin cấp sổ đỏ lần đầu?",
+"url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPNncyVHpEbEdaSEJaT21BNF9Ia2FIeUp2UXM4Ump6NTNYeTZBOC1SZThmZExFT2RISlF3N3BVZVQwMXgxcEcyTlRLZjQ0TWNOM1Z1UmkzT3JWNmhXU19TTGlpYTFZeXBVSWNGakVkd05PSFdSOFNNMnZZSWt3eThPT2NwLU5yX0dKNEV4bDJsNUx1dkRhUHRZNUVHaEZJanUwUWNpTmlBdmhfS0F4WFBlQWRtdVF5UHFpWlZYTEVSbWZNLXFuOWwwMTZqc3l4b0hkcFp2ZzdsajBYQjFPS2tmZTRCMW1zME05dFU5bVVOeWZPRU1nem5icQ?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-11-05T11:35+07:00",
+"found": "2026-11-05T20:06+07:00",
+"score": 30,
+"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
+"parts": {
+"rel": 16,
+"dyn": 4,
+"rec": 10
+},
+"theme": "dat-dai:3",
+"cluster": "theme:dat-dai:3",
+"cluster_label": "Quyền sử dụng đất & giao đất"
 },
 {
 "id": "67fc746b9c67",
@@ -8282,6 +8359,28 @@
 "cluster_label": "Chung cư & nhà ở thương mại"
 },
 {
+"id": "5e4ae593d109",
+"title": "Trường hợp thu hồi đất trên địa bàn khu kinh tế đặc biệt từ 1/10/2026 gồm những gì theo Luật Phát triển đô thị?",
+"url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNdEpINWc2YUNSSDgxdTFWeGJqZ1VGdWxYVVRCQnc4blFJbUZsSUU2V2NWeXhvZGRLSmVRT2tRZmlPeXFTMDBJWnp3LWN1LTFJNnZRYjNvY1FpWGRPUTEyV01zQmF6QW56NFVPblY5c0R4bVRqOGo1VVZQbFRRaml6emNqY3lybjZFMVpLX21idWxTVkZsVTVwQ0JTakF1bnRiVHJVQlZuSGxoTVExZnlicmJfb0dOMmZYT2dwWEgxQWd4RnAxVmNqalVvYU5NTndGQjF4X09KZThOT0t1T2J2VTd3?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-10-30T13:52+07:00",
+"found": "2026-10-30T16:26+07:00",
+"score": 30,
+"why": "Quyền sử dụng đất / giao đất / cấp sổ – pháp lý dự án",
+"parts": {
+"rel": 16,
+"dyn": 8,
+"rec": 6
+},
+"theme": "dat-dai:3",
+"cluster": "theme:dat-dai:3",
+"cluster_label": "Quyền sử dụng đất & giao đất"
+},
+{
 "id": "ae7d93a93b42",
 "title": "Đề nghị quy định ngay trong Luật các giao dịch thực hiện quyền sử dụng đất bắt buộc phải công chứng",
 "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNMG9meXB5Wk1NNEZ4Zkw0d3pGWGxTYkg5LXRiYzkzaEpmZ0lGckw3QWROYXV2Y0JyNnJHQllPblR1MWxUZUdLOHFqM3k0U0tzS055TXFjRGtTNmZZX0kwTjlva0dMeUdZQ05CUzlYMDVzWXVvZUk4Mjl3aWZIbzEzSTlIVm1NU0ZsZ2JIQTk3VG1CUDdiRnN5Vzhfam5EVkxfaG5fMlJyeXQyLWoxeFliMVVYY0oyX0hsR0NhQWVTTEcxNGY5SWhtc3A0SmV2UXhiNWVLTENwcDFVTU1oUVhxcEJ3LVJjdUI0MEZ5UkxJMTlGQWV4aVlR?oc=5",
@@ -8368,6 +8467,28 @@
 "theme": "xay-dung:None",
 "cluster": "topic:xay-dung",
 "cluster_label": "Xây dựng"
+},
+{
+"id": "65f4628d1148",
+"title": "Hoàn thiện quy định về kinh doanh công cụ hỗ trợ, nghiệm thu phòng cháy, chữa cháy và bảo vệ công trình quan trọng liên quan đến an ninh quốc gia",
+"url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPMjFJLVNic0tuTE1oempmQUNrc0M2NDlQM2hLQk1oYnZmbDZDZFVWdzZ0XzlkWWp5dndGZW9PczlmOXhjdFhwV3l5TUFueDhsWFpjTWhiMUtCYkkyd2p3TGw5UU13dWRxNGtqMU04Qk9TZm9uVnRfY1JCVmsyTDZjMzBUSmJEZlEzT1lYdldUcGpBUXdMVEl2X0w2Mm1RWmFqcG92MVI1NTZxRmFybHlCOEk5d0NPOGd6Y0dQbWNnZnAxNzlJWF9Id25SWWZEelpBZFE0amtGV1o2MWhPbE10ZERDZWd3VHZB?oc=5",
+"source": "Cổng thông tin điện tử tỉnh Tây Ninh",
+"summary": "",
+"topics": [
+"pccc"
+],
+"published": "2026-10-27T12:23+07:00",
+"found": "2026-10-31T17:53+07:00",
+"score": 30,
+"why": "Cấp phép / thẩm định xây dựng – tiến độ dự án; PCCC – điều kiện nghiệm thu, vận hành chung cư",
+"parts": {
+"rel": 26,
+"dyn": 0,
+"rec": 4
+},
+"theme": "pccc:7",
+"cluster": "theme:pccc:7",
+"cluster_label": "Phòng cháy chữa cháy"
 },
 {
 "id": "6c4518690cf2",
@@ -8571,50 +8692,6 @@
 "cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
 },
 {
-"id": "21c2b0159549",
-"title": "Bảng giá vật liệu xây dựng Thái Nguyên T10 2026 theo Công bố 10180? Tải Phụ lục giá VLXD tháng 10/2026 tỉnh Thái Nguyên?",
-"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPMmgxXy1rZjNhaWd6SFBPM2x5aWtzUGdFU1k2bEVRRFBMdXg3VTVwYlA0NGdFLWplUnpCSXM0Rk44dnNDaVlzdFJTSVpGb0xKQUpoNmVtc2lHMk15Tm9HOE9jNExMMVJQdFctOVZVODg4ZkFEYy1iaHNhUkx4aEdqcEw2bFV2dkI0eDZGajhOUnNRb0VZaEtzbHJXdGRqSE41N05PcVJOSXFVMzVxMVZ5MFRrUHVEUXhwVTNPWTRoblhJRHZ0WW5sRmlVVmZNUFVKSWU3NFZEdFFZajR2NmZtc1JNUUk0UQ?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-11-14T14:50+07:00",
-"found": "2026-11-14T19:05+07:00",
-"score": 29,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 0,
-"rec": 17
-},
-"theme": "khoang-san:8",
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
-},
-{
-"id": "f10c7c0142b5",
-"title": "Bảng giá vật liệu xây dựng TP Hải Phòng tháng 10/2026 theo Thông báo 761 TB SXD ra sao? Phụ lục giá VLXD TP Hải Phòng T10/2026?",
-"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOWmJrQU14Qmc2SVBXREpBamJGWDZKbGQ2NFZXLWFnTlNqZmJvWUdUVnJsNU4zU21XdTVDR3pwa1gwSFJ0Nmg2QW1pd2lYeThjeXRrcDkzeDVhekRQZHJpWlZ3c25PUnB2Nnk5eTVSbTBJbnh2Ul9FbzdhU3Rscm5CMU9ZOG9idzNkLV9ITTJTM3NQTFoydlJraEZDS0Q1Y09oY29xalRWcElEUEh3THdGYnRfR3VybE5MV0p4Q2lwTHBqUi1oYnJENlRQM2h6MHdZcTJfSHdlNGNiakRzVmpvcW04ZHFhQQ?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"khoang-san"
-],
-"published": "2026-11-14T10:35+07:00",
-"found": "2026-11-14T11:25+07:00",
-"score": 29,
-"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
-"parts": {
-"rel": 12,
-"dyn": 0,
-"rec": 17
-},
-"theme": "khoang-san:8",
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
-},
-{
 "id": "2c6b23e1aec3",
 "title": "Bỏ cấp phép lưu thông phương tiện PCCC: Doanh nghiệp được gì, chất lượng được kiểm soát thế nào?",
 "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxPcXVZbEljVVRHVTVvbkNOXzVZOEliQVRvLUlqV0x5NkNXU00tLVEtVVNvWkJJbC1NVU1Sd1JjTXNIQmx1cTVKeHJBdktkRWtWdHVMQlNGZTZwSlo4VGo2MlQtVHpvNEtnR0lRUEFLbWc3T0JuODFVV1VGN2h3WTNsbFFWUEhBZUZoUURPZ3B4RW1JNmxGOHQwMGJ3X0lXZDZFNGNna2h3ejFQUXgzZFVFNUVOZmZucTJFNFF5aHVSYmdxQW5xTHlVZ3dwaHpfWGlNek16aEI3RUQxci1TQUFlMUx1M1EtQU96dGZKRGN5bEl1aHFkRDBMTXE0emN3c3pOVGc3Q25VUDVINkFm?oc=5",
@@ -8770,50 +8847,6 @@
 "cluster_label": "Giá đất & tiền sử dụng đất"
 },
 {
-"id": "d27253aef75f",
-"title": "Sửa Luật Kinh doanh bất động sản: Bảo vệ người mua nhà, siết chặt trách nhiệm chủ đầu tư và sàn giao dịch",
-"url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQOUlKOGZSNjZSek9kREJjN2czd3cydzhRNDJ5dm1EUlozNXBZUzd4aFhPSFgxczg2bmNkX2UyTnRWVHg2UGZIMFl1elMxQzROc1NEWkFZaF80bkRmUlByS2RBM3BEbXpPVUhvNHk3QXpIRTRMdG5ybXozSS1rRVhTaXFMZXVMZFdIN2xQWTRZNG5vTVJzRThfV2V0dXZxQzl6N3BYRl9MQU5zaEktcGpaT2hMckVUcmk0bnczUVRmckRCMmRyOTZBYTFySHFvYnhaa2ZkT1UtbkJISlk?oc=5",
-"source": "BÁO SÀI GÒN GIẢI PHÓNG",
-"summary": "",
-"topics": [
-"kd-bds"
-],
-"published": "2026-10-30T10:29+07:00",
-"found": "2026-11-04T19:57+07:00",
-"score": 29,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng",
-"parts": {
-"rel": 14,
-"dyn": 8,
-"rec": 7
-},
-"theme": "kd-bds:5",
-"cluster": "law:luat-kinh-doanh-bds",
-"cluster_label": "Luật Kinh doanh BĐS"
-},
-{
-"id": "e6d2c769d272",
-"title": "Đại biểu Quốc hội: Cần cấm 'lướt sóng' hợp đồng mua nhà ở hình thành trong tương lai",
-"url": "https://vnexpress.net/dai-bieu-quoc-hoi-can-cam-luot-song-hop-dong-mua-nha-o-hinh-thanh-trong-tuong-lai-5138623.html",
-"source": "VnExpress – Bất động sản",
-"summary": "Đại biểu Lê Thanh Hoàn đề nghị cấm chuyển nhượng hợp đồng mua nhà ở hình thành trong tương lai (nhà trên giấy) khi sửa luật, để ngăn đầu cơ, lướt sóng.",
-"topics": [
-"kd-bds"
-],
-"published": "2026-10-30T10:23+07:00",
-"found": "2026-10-30T16:26+07:00",
-"score": 29,
-"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng",
-"parts": {
-"rel": 14,
-"dyn": 8,
-"rec": 7
-},
-"theme": "kd-bds:5",
-"cluster": "theme:kd-bds:5",
-"cluster_label": "Kinh doanh BĐS (mở bán, chuyển nhượng)"
-},
-{
 "id": "29eff1d06ec7",
 "title": "Từ chối cấp sổ đỏ trái luật sẽ phải bồi thường: Quy định người sử dụng đất cần biết",
 "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNc3hzcUZPZm9xQlFxX1ZySDVyT3RHYjdrdTNlVmI4OC1NSlJ6M3lrRTNfSHdTV2lvb2NBaWxBclByVmNmd2tqcUIwTVd0b21wM0F6d0thNUx4RU5KeEpCQ1JHTVBSbjJWcGw5MTVhTzNYTW1tTXpLaDBMTzdiOU55V3BMU19DcG4yaWJwUWl2ZE15VF9lTUFRUHpRY3pwN08wNGRNeDlJZmFCWHg5VWFMRy1QcjlBM3dJMEpyaHBnVUwxUQ?oc=5",
@@ -8924,6 +8957,50 @@
 "cluster_label": "Quy hoạch"
 },
 {
+"id": "21c2b0159549",
+"title": "Bảng giá vật liệu xây dựng Thái Nguyên T10 2026 theo Công bố 10180? Tải Phụ lục giá VLXD tháng 10/2026 tỉnh Thái Nguyên?",
+"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPMmgxXy1rZjNhaWd6SFBPM2x5aWtzUGdFU1k2bEVRRFBMdXg3VTVwYlA0NGdFLWplUnpCSXM0Rk44dnNDaVlzdFJTSVpGb0xKQUpoNmVtc2lHMk15Tm9HOE9jNExMMVJQdFctOVZVODg4ZkFEYy1iaHNhUkx4aEdqcEw2bFV2dkI0eDZGajhOUnNRb0VZaEtzbHJXdGRqSE41N05PcVJOSXFVMzVxMVZ5MFRrUHVEUXhwVTNPWTRoblhJRHZ0WW5sRmlVVmZNUFVKSWU3NFZEdFFZajR2NmZtc1JNUUk0UQ?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-11-14T14:50+07:00",
+"found": "2026-11-14T19:05+07:00",
+"score": 28,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 0,
+"rec": 16
+},
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
+},
+{
+"id": "f10c7c0142b5",
+"title": "Bảng giá vật liệu xây dựng TP Hải Phòng tháng 10/2026 theo Thông báo 761 TB SXD ra sao? Phụ lục giá VLXD TP Hải Phòng T10/2026?",
+"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOWmJrQU14Qmc2SVBXREpBamJGWDZKbGQ2NFZXLWFnTlNqZmJvWUdUVnJsNU4zU21XdTVDR3pwa1gwSFJ0Nmg2QW1pd2lYeThjeXRrcDkzeDVhekRQZHJpWlZ3c25PUnB2Nnk5eTVSbTBJbnh2Ul9FbzdhU3Rscm5CMU9ZOG9idzNkLV9ITTJTM3NQTFoydlJraEZDS0Q1Y09oY29xalRWcElEUEh3THdGYnRfR3VybE5MV0p4Q2lwTHBqUi1oYnJENlRQM2h6MHdZcTJfSHdlNGNiakRzVmpvcW04ZHFhQQ?oc=5",
+"source": "Thư Viện Pháp Luật",
+"summary": "",
+"topics": [
+"khoang-san"
+],
+"published": "2026-11-14T10:35+07:00",
+"found": "2026-11-14T11:25+07:00",
+"score": 28,
+"why": "Nguồn cung khoáng sản/VLXD (cát, đá, đất) – giá & tiến độ thi công",
+"parts": {
+"rel": 12,
+"dyn": 0,
+"rec": 16
+},
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
+},
+{
 "id": "08876b67961b",
 "title": "Bắc Ninh cấp phép khai thác hơn 6,2 triệu m3 đất san lấp phục vụ sân bay Gia Bình",
 "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQQTFSNk5BdnJDZXZiX2hOa19adEhCZEdCNk9WbTMyYmJfQ0dfa2tKOVJtamowRlF0R1dRSnhwTzhRQmNjQkN3b3psYVBvYm9MVFhyYndaZlRvNl9pNnl4QXkwR0N0MlUtQWNzblhBUVJKNG94SngwcWJ1NVdyeC1WRkNrX3UyZ1Q3YVhuTGF4WWJGdnoySUhyOEhkOW81VXR6V0tKd21jbWpPT3pBOGxLMTNFT3BhVHpMTmJybVpXSnoyYzdibDZZWUZrSnJnUllENHhNdkVRZjc?oc=5",
@@ -8972,28 +9049,6 @@
 "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPYk5NZ3A5REE3WDZxOGZrVU5kMENqTW1NUEhwdktrRXBWN3YwVW5yYjlZTWFIMzZ3MDJNdldWbE5XQjNzVmNNU2wxUTI1V0ZXaGNGbFRSb2lYc0pqRzVESFA2RXVldHozQ0Y2ejZ2UFJDdnRtSHRRSUdOMEJlTlVBQ29qX2pkUzJpODFBLVdiTnR5X3pXZm9HVXM4T011N0ZRMlE?oc=5"
 }
 ]
-},
-{
-"id": "47e3c913bbe3",
-"title": "Công an tỉnh Đắk Lắk tăng cường tuyên truyền, hướng dẫn kỹ năng phòng cháy, chữa cháy trong trường học",
-"url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNbEp3S1JTTDluT1EwNzQ4LXNvaEpRaTUwNWtDa2FvTG9DNS1OQWNpSnJFZXZUR2VZRmVnNW1nb0g4OEtnRzdZYWpPdzh2aGZGMEc3dzk0U2I2emZXY0cxV3NtSWxXa0p5UmxtLXB6RmM3cDdjUWFHbkVxOGJEOFJfMXZ6Mnl3MGZpZXBOZ2RfVzNVeDZadTJYckhaY0tJVnY1cU5RSDNvOVoyQkNrSEFLRDEwc2JsY0ZCeTdUS2FEamhZZlJuWE1nUTJWdnEtZGJtTkloU25fUDdCbnJyY0s0NUhEdEU?oc=5",
-"source": "Cổng thông tin điện tử tỉnh Đắk Lắk",
-"summary": "",
-"topics": [
-"pccc"
-],
-"published": "2026-11-11T11:17+07:00",
-"found": "2026-11-12T10:48+07:00",
-"score": 28,
-"why": "PCCC – điều kiện nghiệm thu, vận hành chung cư",
-"parts": {
-"rel": 13,
-"dyn": 0,
-"rec": 15
-},
-"theme": "pccc:7",
-"cluster": "theme:pccc:7",
-"cluster_label": "Phòng cháy chữa cháy"
 },
 {
 "id": "dfaca3028173",
@@ -9128,54 +9183,48 @@
 "cluster_label": "Chung cư & nhà ở thương mại"
 },
 {
-"id": "01bc0802a85f",
-"title": "Ban hành Kế hoạch của Bộ Xây dựng thực hiện Nghị quyết số 263/NQ-CP của Chính phủ ban hành Chương trình hành động của Chính phủ thực hiện Nghị quyết số 26-NQ/TW của Bộ Chính trị",
-"url": "https://news.google.com/rss/articles/CBMipAJBVV95cUxOWG5STzBNVDhHbTlMX05UZW9qVVNKdHJRX0lwdXRHR2Y0TmFuanB6SkQ0dmxad0N0enFRLVVPV2k0cGdNdUFJVk85a2JSV2dNbE9TdGwwVHdxeXY0a2c4alV5d1FpWl9RNnJ1Ri10VTBaQldPMHBWTmxacFhiOG9LSld6UXVCdEVhSTUxN3U3dkRyVGdwV19XRXh3UHpndmdnd3ZOelZ6U3dsWUNhSF85ajhXa1VfOTFhY1d1eXZEZ3NweGQ0YmNNRE5iMUJ1ZGM0dUdPOFZoUUxGMS15N010YXZWWkRKVVNPajdTZEwxcWxOZmJtTGZadFNoQ2ZoMnBzQzBHX01uR1hOQU5DZk1wQlpmWUJ1MzkwMGp2dy1WUEI4X0NH?oc=5",
-"source": "Bộ Xây dựng",
+"id": "d27253aef75f",
+"title": "Sửa Luật Kinh doanh bất động sản: Bảo vệ người mua nhà, siết chặt trách nhiệm chủ đầu tư và sàn giao dịch",
+"url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQOUlKOGZSNjZSek9kREJjN2czd3cydzhRNDJ5dm1EUlozNXBZUzd4aFhPSFgxczg2bmNkX2UyTnRWVHg2UGZIMFl1elMxQzROc1NEWkFZaF80bkRmUlByS2RBM3BEbXpPVUhvNHk3QXpIRTRMdG5ybXozSS1rRVhTaXFMZXVMZFdIN2xQWTRZNG5vTVJzRThfV2V0dXZxQzl6N3BYRl9MQU5zaEktcGpaT2hMckVUcmk0bnczUVRmckRCMmRyOTZBYTFySHFvYnhaa2ZkT1UtbkJISlk?oc=5",
+"source": "BÁO SÀI GÒN GIẢI PHÓNG",
 "summary": "",
 "topics": [
-"xay-dung"
+"kd-bds"
 ],
-"published": "2026-11-02T14:57+07:00",
-"found": "2026-11-02T20:22+07:00",
+"published": "2026-10-30T10:29+07:00",
+"found": "2026-11-04T19:57+07:00",
 "score": 28,
-"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua",
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng",
 "parts": {
-"rel": 0,
-"dyn": 19,
-"rec": 9
+"rel": 14,
+"dyn": 8,
+"rec": 6
 },
-"theme": "xay-dung:None",
-"cluster": "topic:xay-dung",
-"cluster_label": "Xây dựng"
+"theme": "kd-bds:5",
+"cluster": "law:luat-kinh-doanh-bds",
+"cluster_label": "Luật Kinh doanh BĐS"
 },
 {
-"id": "e72816ee5eba",
-"title": "Công bố thủ tục hành chính nội bộ được ban hành mới, sửa đổi, bổ sung và bị bãi bỏ lĩnh vực hàng không thuộc phạm vi quản lý của Bộ Xây dựng",
-"url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxNXzM5VU1idjlURGhzQUhrQjNKc2lXMldhUW9XMS1mUDBRVnpvblh1U1VYbFZBZEZobWRXLUpTM0wyYldtekx2bF93ejl2TE9KQUZ5RDFneFBKbWc5bGhPVEhGSTMtUm9GbXZjaVhmN2pJYTdkc29tUVY4QU9YQ1M5VFVqbVVqMy11LTBuSXg4cXRMOUFPUVRIRlA4MzhPV1FPcW1IN09ISjFDbkNxRVBUb0pkOFpXc3ZSLVhYTzRXalJ1dk91ZldMY0l0VG4tdGhGZV9GT0lIZlhVS1FTeTBFbEpYTmlCa25DdFd3UVFiajB5bVIwMkh3WHVVVXNRNVhFSUI5V19Pa2hhQnFtUVc3bU13?oc=5",
-"source": "Bộ Xây dựng",
-"summary": "",
+"id": "e6d2c769d272",
+"title": "Đại biểu Quốc hội: Cần cấm 'lướt sóng' hợp đồng mua nhà ở hình thành trong tương lai",
+"url": "https://vnexpress.net/dai-bieu-quoc-hoi-can-cam-luot-song-hop-dong-mua-nha-o-hinh-thanh-trong-tuong-lai-5138623.html",
+"source": "VnExpress – Bất động sản",
+"summary": "Đại biểu Lê Thanh Hoàn đề nghị cấm chuyển nhượng hợp đồng mua nhà ở hình thành trong tương lai (nhà trên giấy) khi sửa luật, để ngăn đầu cơ, lướt sóng.",
 "topics": [
-"xay-dung"
+"kd-bds"
 ],
-"published": "2026-11-02T11:25+07:00",
-"found": "2026-11-02T20:22+07:00",
+"published": "2026-10-30T10:23+07:00",
+"found": "2026-10-30T16:26+07:00",
 "score": 28,
-"why": "Chính sách ngành BĐS/xây dựng · văn bản mới ban hành/thông qua, thay đổi quy định",
+"why": "Luật Kinh doanh BĐS – điều kiện mở bán, chuyển nhượng",
 "parts": {
-"rel": 0,
-"dyn": 19,
-"rec": 9
+"rel": 14,
+"dyn": 8,
+"rec": 6
 },
-"theme": "xay-dung:None",
-"cluster": "topic:xay-dung",
-"cluster_label": "Xây dựng",
-"also": [
-{
-"source": "Bộ Xây dựng",
-"url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxOSUFWMERxUkFXWTRmbUlxT3JWMU9zYld0N09XZWZQdldsS3R3VHA2RlBqa0RnYjJZWW9QTXRKVjVVV3FZWkQ2WEplZHZBeHVkZUFPOFB2X3doal83T0txN3V6UnBvWGF0bW1vWGxTMGk5N25vSkNxRW16MjFsYmsxUnpQWUJDSkxtT2NfOXE3V2tNVldFUGNROHZTZk5tQjVTOXI3YUJOUGIzQnVSRnc1NVA4TGh2X0s4U0UzOE05X0dkd1FjTkh6Z0NTMWhGckNBZGtfZWZBLXpOdEZJVFJIdFRCdmN0eXNJY1c1Y3ptMUc3d3RfTjl3WjZMSGN6cTJ3b295UHZJT0c?oc=5"
-}
-]
+"theme": "kd-bds:5",
+"cluster": "theme:kd-bds:5",
+"cluster_label": "Kinh doanh BĐS (mở bán, chuyển nhượng)"
 },
 {
 "id": "2e12d627846a",
@@ -9442,50 +9491,6 @@
 "theme": "dat-dai:None",
 "cluster": "topic:dat-dai",
 "cluster_label": "Đất đai"
-},
-{
-"id": "0217a22b6c3f",
-"title": "Nghị định 49/2026/NĐ-CP: Tháo gỡ vướng mắc trong thi hành Luật Đất đai",
-"url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOekN5OTcxUkRZb0l2bk9oUDJPRG55VXo0TU1xSjVpbmVKckdvcUJoZUdTZTM3QTMyRjN6cV9mMFJRbjg4X0dqSmVaMzBBeTR1NmsxRzlPaWpBOXpqT3ZxS3Yyb1doVTV0VEh3YUlMWDYxNHpybXNTeUNWMGduc2FuVDBoV1JILUtNcHNFZTRfd21xeVdGRHdEV2QySnZsUml4WVdr?oc=5",
-"source": "Cổng thông tin điện tử tỉnh Hà Tĩnh",
-"summary": "",
-"topics": [
-"dat-dai"
-],
-"published": "2026-11-17T13:07+07:00",
-"found": "2026-11-18T07:39+07:00",
-"score": 27,
-"why": "Chính sách ngành BĐS/xây dựng",
-"parts": {
-"rel": 0,
-"dyn": 8,
-"rec": 19
-},
-"theme": "dat-dai:None",
-"cluster": "law:luat-dat-dai",
-"cluster_label": "Luật Đất đai"
-},
-{
-"id": "6d545937f224",
-"title": "Hướng dẫn khai Thuế cho thuê nhà ở 2026 giảm 30% thuế TNCN cho Hộ, CNKD trên dichvucong gdt gov vn các bước ra sao?",
-"url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQRFQ2SEJlNUstM3VOMi1VajM0YXAyR3p1S3p4ZzRpdklrdnllSzZYZ0lmMzZoZ2tDZHlpbWJ5cFpiZ3RSRWJtZ3dQcllxSmZCODljTjJ1Mk00X3FmU3BEejdWTDMxLS1OQlBiUE9KYWk3VUZ6YmlPNVZrWVcxTE4tWmotaXBiY29PWkZpOVhVM291WngtNEFVOTlyN1p3S3lWcWZQUTVybkhyekx1Slo5b1BPLUZQSVl4QTZaRGZ6LUR5SS1teUpuVWJIRHN0ZFhsRVJHa3pDdE5NeUNkamJIeVhLNnJodw?oc=5",
-"source": "Thư Viện Pháp Luật",
-"summary": "",
-"topics": [
-"thue"
-],
-"published": "2026-11-13T10:35+07:00",
-"found": "2026-11-13T16:31+07:00",
-"score": 27,
-"why": "Thuế/phí BĐS – tác động cầu & giá bán",
-"parts": {
-"rel": 11,
-"dyn": 0,
-"rec": 16
-},
-"theme": "thue:9",
-"cluster": "theme:thue:9",
-"cluster_label": "Thuế & phí BĐS"
 }
 ]
 }

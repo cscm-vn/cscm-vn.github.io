@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-19T14:29+07:00",
+ "built": "2026-11-19T21:19+07:00",
  "today": "2026-11-19",
  "news_since": "2026-11-18",
  "thresholds": {
@@ -31,7 +31,22 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": -2.09,
+     "date": "2026-11-19",
+     "prev_date": "2026-11-18",
+     "price": 1403.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
     {
      "title": "Giá thép hôm nay 19/11: Quặng sắt ngừng đà giảm nhờ kỳ vọng tích trữ mùa đông",
@@ -55,9 +70,9 @@
      "source": "Tạp chí Doanh nghiệp và Hội nhập"
     }
    ],
-   "n_news": 6,
-   "n_moves": 0,
-   "rank": 1.8,
+   "n_news": 7,
+   "n_moves": 1,
+   "rank": 3.15,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -66,18 +81,46 @@
    "icon": "⚡",
    "prices": [
     {
-     "id": "lme_aluminium",
-     "name": "Nhôm LME",
+     "id": "lme_tin",
+     "name": "Thiếc LME",
      "region": "",
-     "d1": -8.15,
-     "date": "2026-11-17",
-     "prev_date": "2026-11-16",
-     "price": 3060.5,
+     "d1": -9.86,
+     "date": "2026-11-18",
+     "prev_date": "2026-11-17",
+     "price": 42050.0,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_aluminium"
+     "url": "mat-hang.html?id=lme_tin"
+    },
+    {
+     "id": "yf_aluminium",
+     "name": "Nhôm (COMEX Aluminum)",
+     "region": "",
+     "d1": -3.84,
+     "date": "2026-11-19",
+     "prev_date": "2026-11-18",
+     "price": 2807.0,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_aluminium"
+    },
+    {
+     "id": "lme_copper",
+     "name": "Đồng LME",
+     "region": "",
+     "d1": -3.6,
+     "date": "2026-11-18",
+     "prev_date": "2026-11-17",
+     "price": 12750.0,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=lme_copper"
     }
    ],
    "news": [
@@ -104,8 +147,8 @@
     }
    ],
    "n_news": 12,
-   "n_moves": 1,
-   "rank": 7.08,
+   "n_moves": 3,
+   "rank": 11.65,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -183,8 +226,30 @@
    "id": "tt",
    "name": "Vĩ mô & thương mại",
    "icon": "🌏",
-   "prices": [],
+   "prices": [
+    {
+     "id": "lbma_gold",
+     "name": "Vàng London Fixing (LBMA)",
+     "region": "",
+     "d1": -2.18,
+     "date": "2026-11-18",
+     "prev_date": "2026-11-17",
+     "price": 3770.25,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=lbma_gold"
+    }
+   ],
    "news": [
+    {
+     "title": "‘Ông cai’, nhà thầu đau đầu với giá vật liệu xây dựng, giá nhân công xây dựng",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQSDF2Rm85QTc4M0twXzZiaE5qRGtPM3JfUHBxVnJCbjRiSDdDTGRjNUthSGlxVU16ak9jbUdydi1Ob3FFN2pYRHJuRU9BMExLSm9ib0pIU29wVXVpeE5CMDFGMVdtaU9hVTRieWp2NXJIbXh5aVRSbTgtTWVlSmFaVzhOMUVSdzJUejNHdTIzMExDSi10RDdNOXJ4SEpzSlZRZUZUVTN1S2gyeGVJWG5yNGkyek15QQ?oc=5",
+     "date": "2026-11-19",
+     "score": 18.0,
+     "source": "Báo Tuổi Trẻ"
+    },
     {
      "title": "Đảm bảo nguồn cung vật liệu xây dựng trước nhu cầu tăng cao",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPWUtLaXRyS25TcjNaYTVsSXlxdkVvT1d6MlJvVHpYalUyb1NtQnhmNUphOVNfMG5zWVZzVlA1ZFkyOUx2S2kzZjZGOUExVHJ1MmxYMVpqaGZuMVVENU8tV1FjVG8talNMTEYxazhMendkTHFXXzhKNEV5NUdHU3J5ODVNeFV2c3Q2NG5KcFJnUUZWUWZCTm9CcVBnZw?oc=5",
@@ -193,23 +258,16 @@
      "source": "Tạp Chí Điện Tử Thiên Nhiên Và Môi Trường"
     },
     {
-     "title": "Thép Việt Nam bị áp thuế chống bán phá giá 16% tại EU",
-     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOVUUyaWN0TVM2am9yVl9PZlUxckltd2NFM1NzS0hDTWZNbjJURFBoalQ4WW5tU1YzRDJxam5EaGt3YXE4c0c1VDBIbURXblpWNHQ5TUxubTRBbFRXblhfUHJvMEZ5Y00wdWJvRHp5REFuNlEteVoxUG9JN3pHZ0R4YjdSWXFMMVVKRGJSWV84MzQxa0JkaG9KQVNsNGliOVNZ?oc=5",
+     "title": "Ukraine khởi xướng điều tra chống lẩn tránh thuế chống bán phá giá đối với dây thép Việt Nam",
+     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPaXF4aldBX0o1TDZEdHVsYmo4NXlnSlUzczNRbVpDdGo0T1R6Y0V5ZllmdUNaUU5aZWVzajNvdFNWOWo2N3JyYXE2TDVzckdpd1RZbW9uZm5YYnVTWVVyUGpLdVUxaGl6LWJsUEN4VjdHYWRUQ29USUczVkZFRU5BMG9CNUh3YndKZXJTSl9JT0ZtSTVwUFNESWNiMDdkSEp5VUpBUXVOSmNUVHRXWS13N3hFdkN2d3Y3clRRVW82QXdfQW9SQXZ3NDNuRQ?oc=5",
      "date": "2026-11-19",
      "score": 9.0,
-     "source": "Tạp chí Tài chính Doanh nghiệp"
-    },
-    {
-     "title": "Ấn Độ điều tra chống bán phá giá nhôm Việt Nam, những doanh nghiệp nào cần lưu ý?",
-     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOZHBnX3JFd1BQVG5jRlJ1R1J5Yjd2ME83NzZKSWZpZldXYkF0T3hwZE1KNVdBTURTdlBSRENQOHY4S3J2U3cxX3pJSndsYTZ5NzlIMkJSOWxoVk9ycm9uelA5cUVHbkNJakd3YnZ6c3J4aGtJQ0U3LXpiZkFKN04wZ3BrNWFnNTdCNkIxaWp5RG5vcmR2b2ZjTk93QkhmSTNOR3JnX1lobXYxWHNOaDg4ZURTbm1nZw?oc=5",
-     "date": "2026-11-19",
-     "score": 9.0,
-     "source": "nguoiquansat.vn"
+     "source": "Tạp chí Công Thương"
     }
    ],
-   "n_news": 17,
-   "n_moves": 0,
-   "rank": 3.0,
+   "n_news": 19,
+   "n_moves": 1,
+   "rank": 4.09,
    "link": "danh-muc.html?c=tt"
   }
  ]
