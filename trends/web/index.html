@@ -155,15 +155,23 @@
  // Số tin theo chỗ trống: khi 2 cột (box đứng cạnh "Hà Nội vs TP.HCM") hiện thêm tin cho đến khi sát đáy cột bên cạnh (chiều cao hàng không đổi); 1 cột (điện thoại) giữ 8 tin.
  const fitOrg = () => { const ul = document.getElementById("orgl"); if (ul.hidden) return; const sec = ul.closest("section"), row = sec.parentElement, sib = [...row.children].find(z => z !== sec);
   const two = getComputedStyle(row).gridTemplateColumns.trim().split(/\s+/).length > 1; let n = Math.min(orgRows.length, two ? 30 : 8);
+  // đo đáy cột bên cạnh khi danh sách đang rỗng: nếu đo lúc đã chèn 30 tin, hàng bị kéo cao và khối co giãn bên cạnh làm "lim" sai (tràn ~30px)
+  if (two) ul.innerHTML = ""; const lim = two ? Math.max(...[...sib.children].map(c => c.getBoundingClientRect().bottom)) - sec.getBoundingClientRect().top : 0;
   ul.innerHTML = orgRows.slice(0, n).map(orgLi).join("") || '<li class="mute">Chưa có tin.</li>';
-  if (two) { const lim = Math.max(...[...sib.children].map(c => c.getBoundingClientRect().bottom)) - sec.getBoundingClientRect().top; const over = () => ul.getBoundingClientRect().bottom - sec.getBoundingClientRect().top > lim; const n0 = n; while (n > 8 && over()) { ul.lastElementChild.remove(); n--; }
+  if (two) { const over = () => ul.getBoundingClientRect().bottom - sec.getBoundingClientRect().top > lim; const n0 = n; while (n > 8 && over()) { ul.lastElementChild.remove(); n--; }
    // lấp khoảng trống khi tin vừa bị bỏ quá dài: thử thêm các tin kế tiếp (cũ hơn) còn vừa chỗ, tối đa 6 lần thử
    if (n < n0) for (let i = n + 1, t = 0; i < orgRows.length && t < 6; i++, t++) { ul.insertAdjacentHTML("beforeend", orgLi(orgRows[i])); if (over()) ul.lastElementChild.remove(); else n++; } } };
  const orgl = k => { const ed = mk.items.filter(x => x.org_type === k).map(x => ({t: x.title, u: x.sources[0].url, d: x.date, o: x.org, s: x.sources[0].name, ed: 1}));
   const rs = (fd?.items || []).filter(x => x.org_type === k).map(x => ({t: x.title, u: x.url, d: x.date, o: x.org, s: x.source})), seen = new Set();
   orgRows = [...ed, ...rs].sort((a, b) => b.d.localeCompare(a.d) || (b.ed || 0) - (a.ed || 0)).filter(x => !seen.has(x.u) && seen.add(x.u)); fitOrg(); };
  let orgRz; addEventListener("resize", () => { clearTimeout(orgRz); orgRz = setTimeout(fitOrg, 120); });
- if (window.ResizeObserver) new ResizeObserver(() => fitOrg()).observe(document.getElementById("cmp"));
+ // đo lại khi khối nội dung cột bên cạnh đổi chiều cao (dữ liệu nạp muộn, font Lora tải xong) – trước đây chỉ theo dõi #cmp nên danh sách có thể tràn ~30px
+ if (window.ResizeObserver) { const ro = new ResizeObserver(() => fitOrg()), oc = document.getElementById("orgl").closest("section"); ro.observe(document.getElementById("cmp")); [...oc.parentElement.children].filter(z => z !== oc).forEach(z => [...z.children].forEach(c => ro.observe(c))); }
+ document.fonts?.ready.then(fitOrg); addEventListener("load", fitOrg);
+ // nhãn "MỚI" (hub-common.js) gắn vào tin sau khi fitOrg chạy có thể làm tin xuống dòng → cắt bớt tin cuối cho tới khi không vượt đáy cột bên cạnh
+ if (window.ResizeObserver) new ResizeObserver(() => { const ul = document.getElementById("orgl"); if (ul.hidden) return; const sec = ul.closest("section"), row = sec.parentElement, sib = [...row.children].find(z => z !== sec);
+  if (getComputedStyle(row).gridTemplateColumns.trim().split(/\s+/).length < 2) return; const lim = Math.max(...[...sib.children].map(c => c.getBoundingClientRect().bottom)) - sec.getBoundingClientRect().top;
+  while (ul.children.length > 8 && ul.getBoundingClientRect().bottom - sec.getBoundingClientRect().top > lim) ul.lastElementChild.remove(); }).observe(document.getElementById("orgl"));
  // Tab "Tra cứu nhà cung cấp": nạp supplier-lookup.css/.js (cùng logic với nha-thau.html) khi bấm lần đầu, nên trang chủ không tải thêm gì nếu không dùng.
  const nccP = document.getElementById("ncc"), nccLoad = () => nccLoad.p ||= new Promise(ok => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "supplier-lookup.css"; l.onload = l.onerror = ok; document.head.append(l);
   const sc = document.createElement("script"); sc.src = "supplier-lookup.js"; document.body.append(sc); });
