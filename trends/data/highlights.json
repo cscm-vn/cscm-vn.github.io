@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-20T07:21+07:00",
+ "built": "2026-11-20T11:00+07:00",
  "today": "2026-11-20",
  "news_since": "2026-11-19",
  "thresholds": {
@@ -31,33 +31,48 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": -2.23,
+     "date": "2026-11-19",
+     "prev_date": "2026-11-18",
+     "price": 1401.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
    "news": [
+    {
+     "title": "Giá thép hôm nay 20/11: Quặng sắt đảo chiều sau 6 phiên giảm liên tiếp",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOeE1xa3BNR2pBTlpBcTV2azBReDRSWVBmM01fNzZmRUhJOUpxWk1TWTdvcWQwRnJfX1IyMW84THJqRG8zX1FNMkNvSE9DQlNKRHRzeU9NdW1SUnhvTk4tajczaDZTdGt3NkRzRmtpbmlpb3ZjUl9YOU5iQjZ1V1JPWXA0XzNSU3B2S1c2QmlVTmpsOHBsak0tN1F3RkJaS1NnMjFaREJYQTlVaV9mck84?oc=5",
+     "date": "2026-11-20",
+     "score": 10.0,
+     "source": "VietnamBiz"
+    },
+    {
+     "title": "Giá thép hôm nay 2/11: Giảm nhẹ đầu tuần, thị trường phôi thép tấm thế giới trầm lắng",
+     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxORmFhUFV2TDV4RTVLVUxaVGhFZUZ4eHp4RncyRDRnNVg0ZXBfSUMyQ0pGT3ByR0c3N2dkUE1HUHo3b2hxNGI2dW5oWkN1QlRhcDdzNVZPUlJ6VFc3QWNhM1dOMEI5MlhuYmVLOWlJTnFjcjRRa3VQOVVNeU5XTUFhQWx6ZGlWQXpTY21BZUwtY3JWekE1WjdFUTN3MncwZ0IxckpmS1lxR2tQXzB4dWN4bGpXQzdBMzNBaWVJbldVdWY?oc=5",
+     "date": "2026-11-19",
+     "score": 9.7,
+     "source": "VietnamBiz"
+    },
     {
      "title": "Giá thép hôm nay 19/11: Quặng sắt ngừng đà giảm nhờ kỳ vọng tích trữ mùa đông",
      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPc3VXVmVVTHJBRjdGYVhaSXFMcXBqWUgzbFczbzFtMTNhLW0wMlI1eE41N0h6UmcyWF9FRkdvamVJYXJNMEdLU0VRR3Z2Q0xwVWNhVTRYY1RkdmVEOG9DTFVlQjhJZTVaVWZyR01LWWNrSFFfTFJTVk5HX3hjb1FFeTFweFJ4M3hNNWgyem1yeHBNNmI0b29ZMWJ2V1VZVmNWbFhoUWxPWFFtWGptZUNvc2YzakNIekdpUmlz?oc=5",
      "date": "2026-11-19",
      "score": 9.7,
      "source": "VietnamBiz"
-    },
-    {
-     "title": "ResponsibleSteel, CISA, LESS develop low-emission steel calculation tools, China pilots due in 2027: COP31",
-     "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNUDVidTM2RzZCbkU5aDJnejZaN2oyQVRJZEowYmZXVXdwczRYOTRLN1lvOTF6cTI4MjBaU2Nmb3o1NnZDSmFHdmJXYjJGV1kwNFRsZ3FnUUQzUkpXa0dDTEVlSmh5S3Fsd1VRNDhwdDRmd1JFdzdCZDZoZTJiRHBrdFI2WWFydGdJTVl3XzF6dHV6bWNtZUNzTjhrTXIwM09wekQ0VGhfX25jbmpoRWZpWkowSjlCNVJPZTJVR3Z4R2pjVkU?oc=5",
-     "date": "2026-11-19",
-     "score": 8.7,
-     "source": "EUROMETAL"
-    },
-    {
-     "title": "Giá thép hôm nay 19/11/2026: Quặng sắt nhích tăng, HRC Mỹ và châu Âu giữ đà leo dốc",
-     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQajJxRmp0Wk5wV0xBWWRKZFk5Y0JEeUg5X2NWTDg0Qk1NVXpjck9JN01rTTBqR2hwUzhyU2hXZ2JpWjhXdU1IMGROSWRtV09GOGtGSFE3UW5CNlJaTjQ4cDBEVnpYYno3d0N4eHJKUWFsTmdLY0tOdlYtY2R0TnF0QzVBQ0RTazk0QmNvSERIOUJ3R1lYX21wSjFqeks3ZUFwandZb2ItRWtwMEJkeDJ6SG9uMUh2eVJpTDM2TmN3?oc=5",
-     "date": "2026-11-19",
-     "score": 7.7,
-     "source": "Tạp chí Doanh nghiệp và Hội nhập"
     }
    ],
-   "n_news": 3,
-   "n_moves": 0,
-   "rank": 0.9,
+   "n_news": 5,
+   "n_moves": 1,
+   "rank": 2.62,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -83,10 +98,10 @@
      "id": "yf_aluminium",
      "name": "Nhôm (COMEX Aluminum)",
      "region": "",
-     "d1": -4.42,
+     "d1": -4.26,
      "date": "2026-11-19",
      "prev_date": "2026-11-18",
-     "price": 2790.0,
+     "price": 2794.75,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
@@ -94,18 +109,18 @@
      "url": "mat-hang.html?id=yf_aluminium"
     },
     {
-     "id": "te_polyethylene",
-     "name": "Polyethylene (PE, DCE LLDPE)",
+     "id": "lme_copper",
+     "name": "Đồng LME",
      "region": "",
-     "d1": -3.7,
-     "date": "2026-11-19",
-     "prev_date": "2026-11-18",
-     "price": 7917.0,
-     "unit": "CNY/tấn",
+     "d1": -3.6,
+     "date": "2026-11-18",
+     "prev_date": "2026-11-17",
+     "price": 12750.0,
+     "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
-     "tax": "mep.ong-nuoc",
-     "url": "mat-hang.html?id=te_polyethylene"
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=lme_copper"
     }
    ],
    "news": [
@@ -118,7 +133,7 @@
     },
     {
      "title": "LME aluminium hits one-year low on Fed hike bets",
-     "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNd2t6SVBmcFgxNUY2UGdmcVoxc3ZVZG9HeDU4SnFnVlpQeC05dkZFUGtMYm1fNV9udjlwSHNKbU9OWFV5eUwxNkQxVDhwRzhqc1E1NVBMVU1aNk5kczA4WkdkMnJ6eFhrQVFRem9mRWVUT3lfeTc4WGdWZXVnTmNwRUkxS2FjcC16OEExYlQ5Zy02aWZZcmIwZDlGOW9fMnE5SnUtczZVMTV4M01SX0hZZmdIRDJqbzd1WkR1Z0JxREZuRTU4?oc=5",
+     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOc1lZZ1llTy04eV9jUlBKWjRjZ0VETmc5LXB2X2NPYmdNQzAyenBTZ1FTZkRFRFlCXzFiRENQNlEtd1ZvbjNDcGV0d1JNSlozMTZGamIxMkc0WXdDdTNVcndaaElsWTJfcXYtSmp5bU1PM25HS2prUEV5WWIzb0RVeS01RmpHZHZJVlVKV0tVQm1GMXBLTkFtdUstQ3QxRXNDZlRJUWItT2FTelpDbUtMU2Z2STFtbzlzNV92aGlueU4?oc=5",
      "date": "2026-11-20",
      "score": 9.0,
      "source": "Shanghai Metals Market"
@@ -131,9 +146,9 @@
      "source": "The Economic Times"
     }
    ],
-   "n_news": 8,
-   "n_moves": 6,
-   "rank": 11.39,
+   "n_news": 9,
+   "n_moves": 3,
+   "rank": 11.56,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -208,10 +223,10 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": -4.88,
+     "d1": -6.78,
      "date": "2026-11-19",
      "prev_date": "2026-11-18",
-     "price": 42.69499969482422,
+     "price": 41.84000015258789,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
@@ -222,10 +237,10 @@
      "id": "yf_gold",
      "name": "Vàng (COMEX Gold)",
      "region": "",
-     "d1": -2.68,
+     "d1": -4.26,
      "date": "2026-11-19",
      "prev_date": "2026-11-18",
-     "price": 3614.89990234375,
+     "price": 3556.0,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
@@ -270,9 +285,9 @@
      "source": "Tạp chí Công Thương"
     }
    ],
-   "n_news": 11,
+   "n_news": 12,
    "n_moves": 3,
-   "rank": 7.87,
+   "rank": 9.61,
    "link": "danh-muc.html?c=tt"
   }
  ]
