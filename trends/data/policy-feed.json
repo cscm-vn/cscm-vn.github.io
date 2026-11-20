@@ -1,6 +1,6 @@
 {
 "schema_version": 1,
-"updated": "2026-11-21T06:44+07:00",
+"updated": "2026-11-21T06:52+07:00",
 "window_days": 30,
 "topics": {
 "dat-dai": "Đất đai",
@@ -68,7 +68,7 @@
 },
 "law:luat-dat-dai": {
 "label": "Luật Đất đai",
-"n": 44
+"n": 45
 },
 "law:luat-thue": {
 "label": "Luật Thuế",
@@ -96,7 +96,7 @@
 },
 "theme:nha-o:10": {
 "label": "Nhà ở xã hội",
-"n": 13
+"n": 12
 },
 "theme:kd-bds:5": {
 "label": "Kinh doanh BĐS (mở bán, chuyển nhượng)",
@@ -273,7 +273,7 @@
 "Google News: bảng giá đất Hà Nội TP.HCM when:14d": 9,
 "Google News: thông tư Bộ Xây dựng mới when:14d": 5,
 "Google News: Luật Xây dựng 2025 nghị định hướng dẫn when:14d": 5,
-"Google News: Luật Nhà ở chung cư nghị định when:14d": 10,
+"Google News: Luật Nhà ở chung cư nghị định when:14d": 17,
 "Google News: thời hạn sở hữu chung cư when:30d": 7,
 "Google News: Luật Kinh doanh bất động sản nghị định when:14d": 10,
 "Google News: nhà ở xã hội quy định chủ đầu tư when:14d": 3,
@@ -283,24 +283,24 @@
 "Google News: khai thác cát sỏi vật liệu xây dựng quy định when:14d": 4,
 "Google News: mỏ đá mỏ đất san lấp cấp phép when:14d": 6,
 "Google News: thuế chuyển nhượng bất động sản dự thảo when:14d": 12,
-"Google News: dự thảo nghị định bất động sản lấy ý kiến when:14d": 9,
+"Google News: dự thảo nghị định bất động sản lấy ý kiến when:14d": 8,
 "Google News: Masterise Homes when:30d": 0,
 "Google News: thành lập thành phố trực thuộc trung ương nghị quyết Quốc hội when:30d": 0,
 "Google News: sáp nhập đổi tên tỉnh thành phố đơn vị hành chính when:30d": 0,
 "Google News: sắp xếp đơn vị hành chính cấp xã thành lập phường when:30d": 1,
 "Google News: đổi tên địa danh hành chính cập nhật giấy tờ địa chỉ when:30d": 1,
-"Google News: Luật Đầu tư theo phương thức đối tác công tư nghị định hướng dẫn when:30d": 15,
-"Google News: hợp đồng BT thanh toán bằng quỹ đất nghị định when:30d": 5,
-"Google News: nghị định PPP sửa đổi hợp đồng BOT BT when:30d": 8,
+"Google News: Luật Đầu tư theo phương thức đối tác công tư nghị định hướng dẫn when:30d": 8,
+"Google News: hợp đồng BT thanh toán bằng quỹ đất nghị định when:30d": 7,
+"Google News: nghị định PPP sửa đổi hợp đồng BOT BT when:30d": 3,
 "Google News: quyết toán thanh toán dự án BT vướng mắc cơ chế when:30d": 7,
 "Google News: Luật Đầu tư công nghị định hướng dẫn when:30d": 4,
 "Google News: giải ngân vốn đầu tư công Thủ tướng công điện nghị định when:30d": 1,
-"Google News: Luật Đấu thầu nghị định lựa chọn nhà thầu when:30d": 19,
-"Google News: lựa chọn nhà đầu tư PPP đấu thầu qua mạng when:30d": 3,
+"Google News: Luật Đấu thầu nghị định lựa chọn nhà thầu when:30d": 18,
+"Google News: lựa chọn nhà đầu tư PPP đấu thầu qua mạng when:30d": 6,
 "Google News: dự án PPP cao tốc đường sắt cơ chế chính sách mới when:30d": 1,
 "Google News: site:chinhphu.vn bất động sản OR đất đai OR xây dựng when:14d": 4,
-"Google News: site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d": 40,
-"Google News: site:moc.gov.vn when:30d": 9,
+"Google News: site:thuvienphapluat.vn đất đai OR nhà ở OR xây dựng when:14d": 41,
+"Google News: site:moc.gov.vn when:30d": 8,
 "Google News: site:xaydung.gov.vn when:30d": 0,
 "Google News: site:cafeland.vn chính sách when:14d": 6,
 "Google News: site:baochinhphu.vn nhà ở OR đất đai when:14d": 5,
@@ -1225,7 +1225,13 @@
 },
 "theme": "nha-o:4",
 "cluster": "theme:nha-o:4",
-"cluster_label": "Chung cư & nhà ở thương mại"
+"cluster_label": "Chung cư & nhà ở thương mại",
+"also": [
+{
+"source": "CafeLand",
+"url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcUxsSkxLRWVOamx2WU9FREZSVWtqV3U1WThQLTh3UnI3TjBzLUNqbjhTSWZWNDFnVHdQMGxXNmlkbHpreVdxdXd0OUNubjg2WFJSUHdPTVRiWW1vQk5wbEY1YVNRbUwtR1hhZDRsV3NyYmgzdW5mTVV2TWZuVFhhSmxoY2FTVkZMR3NNOVRqWGVFdG1UcGlNYkpDWDZ2TnFBWDVJczJjV21tcEVkcXRhM1dGR0pfRk9NcEE?oc=5"
+}
+]
 },
 {
 "id": "89dbf79762db",
@@ -1671,8 +1677,8 @@
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
 "also": [
 {
-"source": "dangcongsan.vn",
-"url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOVG5wMVNqNjZhMzNGUnN4ZmlkUV9zNGQ3Q2U0LWtqeG5BYk1JY0hPRDhMeC02ZzAxZEs2aEJFQWIyWWlUS1IyNWhNMkZCWmY3Rkw1eW5aSC1PbFN0U3U3N1BXalpzZWNWRk9RaVE4LXdtc0F6dlY5UUF4Z0pOSzVtVS1rY1hDMTlIRWdKOHhIbFAyOGYyTFNqMGd1dXpibDN4NmduSDBnRENmdnJiaHc1b3hB?oc=5"
+"source": "baoninhbinh.org.vn",
+"url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOX3NYRDBkTnZwc0tDdEVmYW43eWpOdDV1Z3BRR25UbmstLUpyTnNpYU5TWmFsRzlLYXF0cmVxWmRacHNNbnpkQzJCMG9oTDRxLW9ZRUQ4Z1JPN2VpX3hFRFlJT19Wb19KQVJzUGdtV2hTLThHVUUxYldMdV9RMnhmNWxfUFQxQTZGNXNuRW9qTlhFdERtdnc1QVJoN2RRY3hOVklVd256X1g?oc=5"
 },
 {
 "source": "baodautu",
@@ -1698,21 +1704,17 @@
 "dyn": 7,
 "rec": 15
 },
+"theme": "ppp:19",
+"cluster": "theme:ppp:19",
+"cluster_label": "Đầu tư công, giải ngân & quyết toán",
 "impact": "kiểm tra nguồn vốn đầu tư công, kế hoạch vốn, điều kiện tạm ứng – thanh toán – quyết toán khi soạn điều khoản thanh toán và hồ sơ dự thầu.",
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
 "also": [
 {
 "source": "LuatVietnam",
-"url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQQVp5NG4tMkhOVXAwS3VkZkZtc3o4VkZQQmE4Rjk0Z2ttRG9jSE5rQ21sVW1Td2Y3NjVQVEVuRlVydWhkVUUzOGk1NW5UMy1abEZydlpUa1pSbGs4SnhUV21EZXVPRXJhQU1Dc3YtN3JlNkFyeG1TWXdjQzdtdHNkcnpBN3B3WE14c1plX2pKYjBqbEZSTDdrLVR6V0Z1cmVqM3ZRT0pYdUFnZ1hWYkNBVWRNekZ1NmxDSmNKSGR4Tjl2bngtM1VV?oc=5"
-},
-{
-"source": "LuatVietnam",
 "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPUC1mODRRNXVHdXZGZC0tb09iclpwR29qSmlxUEl2WnJzeHNTaHZMNTYwWnF1eHdaTjlTUHF4UWZUMlF5WFl5U3Bvd2syeGcydlFZUk9nNTlvS1J5R01JTUc5cEZ2NnFxSE9hSzVCcE1CVENKRWJSbWFKQlJWT1RCampNb2JsR2hoM0daVE9VS0JzczU1QzlnbmRiSzZQcnVhaFV6LU0yMThIVjFZdUlaeW16N3JGOU0yazAzc3NGTklHNUt5dnZYdFpWV3AzVG5abG1WNmVsS3d2QQ?oc=5"
 }
-],
-"theme": "ppp:19",
-"cluster": "theme:ppp:19",
-"cluster_label": "Đầu tư công, giải ngân & quyết toán"
+]
 },
 {
 "id": "dcacede843d3",
@@ -2500,6 +2502,9 @@
 "dyn": 0,
 "rec": 20
 },
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất",
 "also": [
 {
 "source": "Thư Viện Pháp Luật",
@@ -2511,16 +2516,13 @@
 },
 {
 "source": "Thư Viện Pháp Luật",
-"url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQbVlDejBES09HeGk4eTJpZFlid0lLdG5tcnJPUzFSZlZLTU1tb3ZhM2Z1bWpGRmR5SUROalNjeXM4SG9PNS1PTDZULUVkdFhxdnZyeDdZSkdjMHdQRzBmUU8yYzhDaDFrRGNrZ2ZWaHJnSXJkc2JHWC1LMk1FQV9jY1ZPX05vT1NRV05ka0JQNHYxa1JFR3UyN2NpcVV6TXU1SklFc2ZqVTVCT2ZPTW5HcFgwcGhueTVpazY4TVdVQ1p2Uk9iSFU1Zi16azZJQ3BYMG13QjNHYmZpdWs?oc=5"
+"url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPakdTaFdnTW5sN01LaVRhc2NiVE1fNkdDNTZyeWwtdVNQT1A1YjRsNnB6bGFFQ0xNY1VISDBHNDFyTlFqYlFqVXFGLUZMdGhPS0VQc0l6VFJ6T3lWS25KcW1SdVNtUFVJQmIyeDlUQWlGcHI5MVBDRmdua2ExZmtfaTNEcUxuRmFaZENwckU3dUFoYXF0aUVMeXUwRFFaWkdFZVE0aVEwbFA0WjJ0ZXE1a3pXdE95ekhKQnZrX3RqQ0ZWakFOdVl6czIyNkFNdHFoYTJrM21LWVMwblNzQ3dxMQ?oc=5"
 },
 {
 "source": "Thư Viện Pháp Luật",
 "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOXzJKR3JaTTJrekxadXFudXJ5Ni00MFlGSlltTnNndEZTeTF3R3NGMklqSDFBNWtZWEU4U0QwTFVxRnduZzRkQklicXg5dnJ6Y2VCZGxGSnNoeERaTWlCaVNWS0x3ZnFLT19udWZKaWtfM3lNYkJ0cTlyWkJhUlg0Q2hBWVVoS0dSQ19WM09yeXlIOU44MzNPcEhMcTFDM1lWbFVKU0N3eEdQMHhRajdiX2I3Q2VZQVJPUnBweXlxVl9nTjJpSnN0OGtEUXc4MEI2ODhWcWYtOUg4SDJ2UlE?oc=5"
 }
-],
-"theme": "dat-dai:2",
-"cluster": "theme:dat-dai:2",
-"cluster_label": "Giá đất & tiền sử dụng đất"
+]
 },
 {
 "id": "ebb330df2987",
@@ -2540,6 +2542,9 @@
 "dyn": 0,
 "rec": 20
 },
+"theme": "dat-dai:2",
+"cluster": "theme:dat-dai:2",
+"cluster_label": "Giá đất & tiền sử dụng đất",
 "also": [
 {
 "source": "Thư Viện Pháp Luật",
@@ -2553,10 +2558,7 @@
 "source": "Thư Viện Pháp Luật",
 "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPZ08tZmlDRHhaMzZSVEJEY2xnQ0liLWZHelFTQmdnSWN6QXp3d09ySUNiZFhhbC0zX29tYzFJWHZyaGROLWE4dXhEV1FvY0hHdjN6eHhzYWx0WHBUQTNxbjN1QTZ5R1dDSDNQMmtyeTB2SjRvbGRmZkVJa19SVlBfdmg5NGVxb1N3dU8xVVZSN2JIcVJFbEtYWUZ0Wm1fTVkzY0ptU3FFQ2RwbEVuaDZuMmNWZXZaWXcyYmFrbkxNenVERE9QMU1QdGI4S2diRWVUcXZ4NUlfc0RtOW5EUlBxSWxR?oc=5"
 }
-],
-"theme": "dat-dai:2",
-"cluster": "theme:dat-dai:2",
-"cluster_label": "Giá đất & tiền sử dụng đất"
+]
 },
 {
 "id": "dd8df5230797",
@@ -2673,20 +2675,16 @@
 "impact_label": "Ảnh hưởng đến soạn hợp đồng/đấu thầu",
 "also": [
 {
-"source": "Laodong.vn",
-"url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOaTJjUDBFNUdRRjVpNHZRNktQcXRnWEtiSUx4RGtpOENYOXFSUzVTUk9pMmxNVWJOQU9XWXI0MjYxRjhudmkxS3NxN1l6STNCOTR1N3QteEJZUHh5T2NpMWZLUUdWYWxuQkxZdFJ2SzdDdXNnTXNFU3I0VEpqNjd6Nms5Y2l3Y3phbWRra3A1ajU4ajBBc2gydEZSMnVkenQ2RmxRTFJsYWtVZDRJWFhpeGxlYTNHRFRLS0ZXTVhxMl9qb3Y5?oc=5"
-},
-{
 "source": "Báo Bảo vệ pháp luật",
 "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPSk4tcER1TkNqNjFQaU96d2g3dGFRSU14NEJTZ1k2Y1RWSE5fXzVHbzk0ODA3M01sY20wS2FpZjUzeGdaaUFMVC1kczRMajZITVJhY2k5OXBvQmxIVW1oUlVBWTl3TDR4LURQem5DaUpYbWVkbU4yQWxEZnlXbDNiMW82bWFmdjlCX3h1ZFlaT2hycEIxQ284bU1KanVIRm5aTFg2QVdObGVWRHJ2c0RUQXZxRFJMQjc5M2FXcnU0QTdMRmxNYnJucHBaSQ?oc=5"
 },
 {
-"source": "Báo Thanh Niên",
-"url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOcUl6UjRkc01tQ1VldmYwOEEtRGVpVWIwdmJsazRhM2QwNnc3cWZnVG1ySXRBZVg5T3NrbkNhaTFXWnNyRmhlVzNFQTVIZkdxdTF3NjZMd2NzbDdoRnNLSzQzNmEtZUdRYWEzRFNQaGFOZ1dKcVB3NDRBX3JYU0ltNF9EckV5RDlQNVZ1VGdJRG9RYk1MREhpTXQxcjByNHdQanpEa2VJZnJqMjg?oc=5"
+"source": "Laodong.vn",
+"url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOaTJjUDBFNUdRRjVpNHZRNktQcXRnWEtiSUx4RGtpOENYOXFSUzVTUk9pMmxNVWJOQU9XWXI0MjYxRjhudmkxS3NxN1l6STNCOTR1N3QteEJZUHh5T2NpMWZLUUdWYWxuQkxZdFJ2SzdDdXNnTXNFU3I0VEpqNjd6Nms5Y2l3Y3phbWRra3A1ajU4ajBBc2gydEZSMnVkenQ2RmxRTFJsYWtVZDRJWFhpeGxlYTNHRFRLS0ZXTVhxMl9qb3Y5?oc=5"
 },
 {
-"source": "Báo Tuổi Trẻ",
-"url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxONF83bmpMX2tlV0h5R3JQQ0RoNFVrR2thV2dYMFpiUTU1UHhNNEhHcjUwRWdUeU1VNDI3NktHdm5LMTFBS1NfN0pESktOX2VKRThSMnRHTlZnR1B2QnRVOVdCNXZxNEJESFlESWVhQ21QX21DN0FjZFl4emFLYm9JeFcxZXRfX3p0b0pPam5pcEZrb3gzVEdWS2pMNU5ocjEwazJzNzNxSDhpMjJ4a0xKbDlxTm04SXZaSXVYM3ZwNXNWSllu?oc=5"
+"source": "Báo Thanh Niên",
+"url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOcUl6UjRkc01tQ1VldmYwOEEtRGVpVWIwdmJsazRhM2QwNnc3cWZnVG1ySXRBZVg5T3NrbkNhaTFXWnNyRmhlVzNFQTVIZkdxdTF3NjZMd2NzbDdoRnNLSzQzNmEtZUdRYWEzRFNQaGFOZ1dKcVB3NDRBX3JYU0ltNF9EckV5RDlQNVZ1VGdJRG9RYk1MREhpTXQxcjByNHdQanpEa2VJZnJqMjg?oc=5"
 }
 ]
 },
@@ -3648,12 +3646,6 @@
 "dyn": 4,
 "rec": 20
 },
-"also": [
-{
-"source": "Thư Viện Pháp Luật",
-"url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQQmhEREZGOFZDcDBIT0ZqeXBmeDdVYjVYdkZCTnkwYTVNY2d6RXBVVHdNZWJ5M1VkTE9uRUZfSzVvSEdFTjNuMVZ5bzYzVjBpMUd1OTAtNlFXRmR1YjNQVEMyNFMzMnhuVU5tNjFrek1xbzhwSlpVLXdBTkdmZk5nYkRKMXNpdFROMWwzcTBvdTFKaG5TaFFVOU1PRVhkWDNodlFwX2k3SUU5X0hselZOZjFsaENPRDJhUlNvN2dwX0hfMzcyWW1JVl9WRTI3bUdraTgzTkRWdzFwWlRrNkdURUZIYXRNYlVUTGs5NW8yVW14eFd4bGhj?oc=5"
-}
-],
 "theme": "nha-o:4",
 "cluster": "theme:nha-o:4",
 "cluster_label": "Chung cư & nhà ở thương mại"
@@ -3728,6 +3720,10 @@
 {
 "source": "baochinhphu.vn",
 "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNdjY2RlVRVHNhZngzOTJNQjFWTkVLYkxPRERlbDluLTVKMXhfN3N1U2VlSjJwVjlHYVJpcFNRdWJXT0loaFJWbE5BYjVSRmtONHhtcmlhVjNuZVdIbWpyZEhTTmt1ZHJ0OFdsSjN4ZWc4V1BJQm0tVVUyaUQtcVQzVk1wRVlTRl9LaTFGLUprREoyX3VfUjdUSE9Ka1RnYTUtOENuM1BPNllzSGVzQkpNdkZ0RXhWVHh1NUJBX3I1MXpzcFMyMnpCTXR6R0ZoeERHMkRmT3RuRkJIYVJmUTVNU1k2VQ?oc=5"
+},
+{
+"source": "Tạp chí Công Thương",
+"url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPT3NXN2FrRGFmUGY5M1FWMm9NbG9JQ2VZUWRyZmh0NFJLQjc1RUFBUFZ6Z1RiNkp0WlJONjJ5cXRmYW5qdjJBMllRSTZSN1BEU3FfVFBFQ1B1Zm9kZzlFMkRiYkFIdTJFZHhJM2o2WHl3TnNCZi1iU3o1MnZfVVlFeW9BZUtkNWdsd2t4d3pNN0N6VlFBRkVlbThocVU0bnNpeEk1OFNfUm1mSXRJRjFlR0E3TWk1aWVrbDJvZlRfWjVsQldGYkR1Qw?oc=5"
 }
 ]
 },
@@ -8304,6 +8300,34 @@
 "cluster_label": "Luật Nhà ở"
 },
 {
+"id": "cd3ff310f383",
+"title": "Đại biểu Quốc hội: Sửa Luật Đất đai cần gỡ nút thắt định giá đất thanh toán dự án BT",
+"url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNSnVESFFMdHk4VjBGZVdoSlpRMXlxR2lpeHFqcnFnTnRkOFA4eHVweXQxeFpPeklqSDJ4anhoRVZZS1ViamZOaFVZWHM0cVh4ampzNUNiazdfU05ha3FmWjQ4UTVJcEo5OE5XWmYzalJDckdZNjI4MndJNU5XaFh6NG1kb3dQN2hQekNBLTc1SzlmbjA1VkFmT3dybUIyMUY1X2tMdTlzeDktX0d0MWltRUptVHFJVEw5cDlYWmE3elpsQ0U?oc=5",
+"source": "Báo Tuổi Trẻ",
+"summary": "",
+"topics": [
+"dat-dai"
+],
+"published": "2026-10-22T14:00+07:00",
+"found": "2026-11-21T06:52+07:00",
+"score": 30,
+"why": "Giá đất / tiền sử dụng đất – tác động chi phí quỹ đất & giá bán",
+"parts": {
+"rel": 22,
+"dyn": 8,
+"rec": 0
+},
+"also": [
+{
+"source": "Thanh Niên",
+"url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQOXBORjdYS2lWaWZvcFl2TnJXb2J1eUctM1JsQVItMGlNWVhBVFN1SnVSVzZRNU8xVk5LN3VnME5SNFlrZlc2c2d1UlpoVW53N3V4NVlESGxuYklsZEtaVW00djhMQl95NGtSaG1XUURTQzZtdVhPOHhnNWpnd0RoejZTSU5WTVdsU0FGWWNVMkc0MzhLUXgzZ2NUaEVzVEZFRVl3WlhiS3pBZDlrQ0FMY3ltcGtZTURK?oc=5"
+}
+],
+"theme": "dat-dai:2",
+"cluster": "law:luat-dat-dai",
+"cluster_label": "Luật Đất đai"
+},
+{
 "id": "5ad7a6a130a6",
 "title": "Sửa Luật Đất đai: Hướng tới minh bạch giá đất, bảo đảm quyền lợi người dân",
 "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNQmtVNm5uWEFXOTlobmNWbVBzdkhjWi1CbS1jZ0d5WDhlMzBDS2tXUF9QUWd3WWtLcmgxMVZ5VmZqZ3c2ZjlqWkJ1VTRDaWNyamFPRldyY2IwOWk2WTk3T3psRzBUS3lRQmNpTDhEZmExT1NiVmYtVVp1NEo5b0xIQUhJQlJ2aWp4aEQyWVBmYmxDeEN3T0VGZkl4dWtzT19IVnhCTV9ETFVKZjUtYjdYLW5WOXdOY0J6Y2c?oc=5",
@@ -9471,37 +9495,15 @@
 "dyn": 0,
 "rec": 15
 },
+"theme": "khoang-san:8",
+"cluster": "theme:khoang-san:8",
+"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)",
 "also": [
 {
 "source": "Laodong.vn",
 "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPYk5NZ3A5REE3WDZxOGZrVU5kMENqTW1NUEhwdktrRXBWN3YwVW5yYjlZTWFIMzZ3MDJNdldWbE5XQjNzVmNNU2wxUTI1V0ZXaGNGbFRSb2lYc0pqRzVESFA2RXVldHozQ0Y2ejZ2UFJDdnRtSHRRSUdOMEJlTlVBQ29qX2pkUzJpODFBLVdiTnR5X3pXZm9HVXM4T011N0ZRMlE?oc=5"
 }
-],
-"theme": "khoang-san:8",
-"cluster": "theme:khoang-san:8",
-"cluster_label": "Khoáng sản & VLXD (cát, đá, đất)"
-},
-{
-"id": "f4ad74597bd0",
-"title": "Thanh tra Bắc Ninh công bố quyết định thanh tra dự án nhà ở xã hội tại khu đô thị mới Quế Võ",
-"url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxPOURaU1BlRV9ucWc0UV9yMXBfc0V1aURSOFdCdE5lMFl4T1dfd3ZyS1dGa3ZxY1VON3VHYW52RE5janJiWlUydUw5cjhEQVNlc2M2Q2JjNFNKLURBRUt5dTJ4XzRtc3pwVFc1Mi1Mb1NKMzJka0xrcllnNkJMdk9TN1ZhdUc3LVlPYU5abENlcFpmVnlNV1ZTS1d3QjNwem83aDBQRk5pelI2ek8yQnlzTU1XWFItSlJmUURkRU01UXdEWm5mbXdSSnNJTHRtaVdwN1pfU2dfSkVwcEpwTVdJN0dfaWpScHNZMVVVcWN3?oc=5",
-"source": "Báo Thanh tra",
-"summary": "",
-"topics": [
-"nha-o"
-],
-"published": "2026-11-09T18:01+07:00",
-"found": "2026-11-09T20:49+07:00",
-"score": 27,
-"why": "Nghĩa vụ nhà ở xã hội của chủ đầu tư",
-"parts": {
-"rel": 11,
-"dyn": 4,
-"rec": 12
-},
-"theme": "nha-o:10",
-"cluster": "theme:nha-o:10",
-"cluster_label": "Nhà ở xã hội"
+]
 }
 ]
 }

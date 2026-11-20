@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-21T06:45+07:00",
+ "built": "2026-11-21T06:52+07:00",
  "today": "2026-11-21",
  "news_since": "2026-11-20",
  "thresholds": {
@@ -22,8 +22,8 @@
   }
  },
  "top": [
-  "tt",
   "mep",
+  "tt",
   "xd"
  ],
  "groups": [
@@ -31,7 +31,22 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
+   "prices": [
+    {
+     "id": "te_ironore_cny",
+     "name": "Quặng sắt (DCE, CNY)",
+     "region": "",
+     "d1": -2.54,
+     "date": "2026-11-20",
+     "prev_date": "2026-11-13",
+     "price": 652.5,
+     "unit": "CNY/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=te_ironore_cny"
+    }
+   ],
    "news": [
     {
      "title": "Giá thép hôm nay 20/11/2026: Quặng sắt thoát đáy, thép thanh vượt 3.000 NDT/tấn",
@@ -56,8 +71,8 @@
     }
    ],
    "n_news": 3,
-   "n_moves": 0,
-   "rank": 0.9,
+   "n_moves": 1,
+   "rank": 2.17,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -66,18 +81,46 @@
    "icon": "⚡",
    "prices": [
     {
-     "id": "lme_nickel",
-     "name": "Niken LME",
+     "id": "te_copper",
+     "name": "Đồng (TE)",
      "region": "",
-     "d1": -2.37,
+     "d1": -11.23,
+     "date": "2026-11-20",
+     "prev_date": "2026-11-13",
+     "price": 5.46,
+     "unit": "USD/lb",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=te_copper"
+    },
+    {
+     "id": "te_tin",
+     "name": "Thiếc (TE/LME)",
+     "region": "",
+     "d1": -8.14,
      "date": "2026-11-19",
-     "prev_date": "2026-11-18",
-     "price": 15425.0,
+     "prev_date": "2026-11-13",
+     "price": 42855.0,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_nickel"
+     "url": "mat-hang.html?id=te_tin"
+    },
+    {
+     "id": "te_zinc",
+     "name": "Kẽm (TE/LME)",
+     "region": "",
+     "d1": -5.95,
+     "date": "2026-11-20",
+     "prev_date": "2026-11-13",
+     "price": 3480.75,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=te_zinc"
     }
    ],
    "news": [
@@ -97,15 +140,15 @@
     },
     {
      "title": "Metal Stocks Today: Nifty Metal Index Falls as Copper and Aluminium Prices Slide Sharply",
-     "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPUUd4UExSX0FuUlUzT1k3ckZHWWpJZXo3d3NFR2R2Qk56NW93cjZTSTlEUXdYb1BQNlBqUmoxV25iVTY3X0cxSUZuQV8xNEZUQTRjaFptS2ptUE9OUlR4Uk5lTno1STQ3OUtQVXNDU0F5TVZhQ1kxdlRoTVV4dmRPNDN1RzYyOC1adlBFMUZlb1JqS1B2Sjk4?oc=5",
+     "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPQkNFUHlyYjUxQ05Nd09fVW1ibkFhYkVrOVRBVTBxeEU5elgzVkJNaWhuTnVyVnl5Ym9jSzBPWlVHdTI1RlBIajZqZExIWUV4VFVxVHE3aTZ3YkFpdUlXOEgyR1BKSklFd2hJVEtjRGtSRndmNHZwdzBDWTVjMVJ5QVZaNnQ5bTFmTVozMUQycFBuWVBoWjh4Yg?oc=5",
      "date": "2026-11-20",
      "score": 8.7,
      "source": "Kotak Neo"
     }
    ],
    "n_news": 6,
-   "n_moves": 1,
-   "rank": 2.98,
+   "n_moves": 6,
+   "rank": 13.84,
    "link": "danh-muc.html?c=mep"
   },
   {
