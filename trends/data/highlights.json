@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-20T11:00+07:00",
+ "built": "2026-11-20T20:59+07:00",
  "today": "2026-11-20",
  "news_since": "2026-11-19",
  "thresholds": {
@@ -23,8 +23,8 @@
  },
  "top": [
   "mep",
-  "tt",
-  "xd"
+  "xd",
+  "tt"
  ],
  "groups": [
   {
@@ -36,10 +36,10 @@
      "id": "yf_hrc",
      "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
      "region": "",
-     "d1": -2.23,
-     "date": "2026-11-19",
-     "prev_date": "2026-11-18",
-     "price": 1401.0,
+     "d1": -2.14,
+     "date": "2026-11-20",
+     "prev_date": "2026-11-19",
+     "price": 1371.0,
      "unit": "USD/short ton",
      "kind": "world",
      "threshold": 2.0,
@@ -48,6 +48,13 @@
     }
    ],
    "news": [
+    {
+     "title": "Giá thép hôm nay 20/11/2026: Quặng sắt thoát đáy, thép thanh vượt 3.000 NDT/tấn",
+     "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPSVd6VlhhQXVTQWtLSkxVTFh3c05qSGZTRk9wa0RFMXM5N1FIQTVUZmRESmhNbW9JQ1hhZS1odE9NQUVYNnJxWEt1eE9hZVBtTDhXN0ZUSEZDSDdJMk1adlM3WWtMWkk2MjhwS2daSmd0MUk2eC1wWktGQ1JYbUJ0TUptX3dvTGVRTXFKbnZpR1NfTE1MUG1EalkzM3M5eldrY0M1V0FReHVFdWZUeGN0NHhibkJqZw?oc=5",
+     "date": "2026-11-20",
+     "score": 10.0,
+     "source": "Tạp chí Doanh nghiệp và Hội nhập"
+    },
     {
      "title": "Giá thép hôm nay 20/11: Quặng sắt đảo chiều sau 6 phiên giảm liên tiếp",
      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOeE1xa3BNR2pBTlpBcTV2azBReDRSWVBmM01fNzZmRUhJOUpxWk1TWTdvcWQwRnJfX1IyMW84THJqRG8zX1FNMkNvSE9DQlNKRHRzeU9NdW1SUnhvTk4tajczaDZTdGt3NkRzRmtpbmlpb3ZjUl9YOU5iQjZ1V1JPWXA0XzNSU3B2S1c2QmlVTmpsOHBsak0tN1F3RkJaS1NnMjFaREJYQTlVaV9mck84?oc=5",
@@ -61,18 +68,11 @@
      "date": "2026-11-19",
      "score": 9.7,
      "source": "VietnamBiz"
-    },
-    {
-     "title": "Giá thép hôm nay 19/11: Quặng sắt ngừng đà giảm nhờ kỳ vọng tích trữ mùa đông",
-     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPc3VXVmVVTHJBRjdGYVhaSXFMcXBqWUgzbFczbzFtMTNhLW0wMlI1eE41N0h6UmcyWF9FRkdvamVJYXJNMEdLU0VRR3Z2Q0xwVWNhVTRYY1RkdmVEOG9DTFVlQjhJZTVaVWZyR01LWWNrSFFfTFJTVk5HX3hjb1FFeTFweFJ4M3hNNWgyem1yeHBNNmI0b29ZMWJ2V1VZVmNWbFhoUWxPWFFtWGptZUNvc2YzakNIekdpUmlz?oc=5",
-     "date": "2026-11-19",
-     "score": 9.7,
-     "source": "VietnamBiz"
     }
    ],
-   "n_news": 5,
+   "n_news": 7,
    "n_moves": 1,
-   "rank": 2.62,
+   "rank": 3.17,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -81,46 +81,18 @@
    "icon": "⚡",
    "prices": [
     {
-     "id": "lme_tin",
-     "name": "Thiếc LME",
+     "id": "lme_nickel",
+     "name": "Niken LME",
      "region": "",
-     "d1": -9.86,
-     "date": "2026-11-18",
-     "prev_date": "2026-11-17",
-     "price": 42050.0,
-     "unit": "USD/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_tin"
-    },
-    {
-     "id": "yf_aluminium",
-     "name": "Nhôm (COMEX Aluminum)",
-     "region": "",
-     "d1": -4.26,
+     "d1": -2.37,
      "date": "2026-11-19",
      "prev_date": "2026-11-18",
-     "price": 2794.75,
+     "price": 15425.0,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=yf_aluminium"
-    },
-    {
-     "id": "lme_copper",
-     "name": "Đồng LME",
-     "region": "",
-     "d1": -3.6,
-     "date": "2026-11-18",
-     "prev_date": "2026-11-17",
-     "price": 12750.0,
-     "unit": "USD/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_copper"
+     "url": "mat-hang.html?id=lme_nickel"
     }
    ],
    "news": [
@@ -139,16 +111,16 @@
      "source": "Shanghai Metals Market"
     },
     {
-     "title": "Aluminium, copper price crash: Which stocks could be the biggest winners on Dalal Street?",
-     "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQV092dEVxbEM1eDVYZEFqRkRrUFcwekNnX3J3Wl9YcElHZER4UUd2T0tPaWU0UmFMRXJMQ1Rvd3BMTFZtSm0tMUdFUFRTd3Y5S1E4cTZwZEt1MEpQRWVwcjB2TzgtSm9nZzV0MFZJNmpyZWRzbFd0WDZ2R2JoUV9mSkJ3UTZpZ2lzZmFfUG5QQWR1NXZnaURiNk1JZENzUEtPVUZtTTFybnVvTE1QYXlrWFY5UWItZ3hKbjc1NUZLWVNJRGhJWUVadVpLT3NTMDJhTERrU0c5ZnhVaFNpcGgxei1wN1JvMEd5V0ZuUDV5bTVGUdIB9wFBVV95cUxPV2lDZTkwWWxrTWVZSzRhTmRyc1J1cTBvSTFrem55bkJmWHhKS1JVTnpudkFxbENLcTlmZFE1Ny1XYWlQVWJzTUR5WTlwUXc1MEFRTmt2b002QmRjSEpoWTJoa0k2QTZXVHN5aDd5S0N6T1JaaFVzdm5jYXYwcGtxdkR1SlItdEdSUXhqOGxMUjVpX3YxZjBlc1lsTldTUWt1bTBuRWN5endXZWt1SGxVbjhQekNOdk95TVhmM0x2M2p5YUljci1uNVloamVtYUQyczh2VVFhYTdpMWhKcTIxUWlPOHVRLVd4NUVwbHBMa2tac0JGSE9r?oc=5",
+     "title": "Copper and aluminium tumble as a strong dollar, Fed hike bets and AI doubts hit industrial metals",
+     "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9wZkJBclRZMzlKUXJQNDZPTTRKRVlBdWU3OGc1VFRRaG8zUHVUazhMd1h5dHlRc1kyX0ZNaFUtTDZ0UXNrTkpva0cxQktsQmRveTQ3cXhpakVfbk9QRFRFUGFLdWtWOWZWUmtMUVVZOVpfdzlJRExFaVdxNEsxWWM?oc=5",
      "date": "2026-11-19",
      "score": 8.7,
-     "source": "The Economic Times"
+     "source": "CEO경제신문"
     }
    ],
-   "n_news": 9,
-   "n_moves": 3,
-   "rank": 11.56,
+   "n_news": 11,
+   "n_moves": 1,
+   "rank": 4.19,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -218,50 +190,7 @@
    "id": "tt",
    "name": "Vĩ mô & thương mại",
    "icon": "🌏",
-   "prices": [
-    {
-     "id": "yf_silver",
-     "name": "Bạc (COMEX Silver)",
-     "region": "",
-     "d1": -6.78,
-     "date": "2026-11-19",
-     "prev_date": "2026-11-18",
-     "price": 41.84000015258789,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=yf_silver"
-    },
-    {
-     "id": "yf_gold",
-     "name": "Vàng (COMEX Gold)",
-     "region": "",
-     "d1": -4.26,
-     "date": "2026-11-19",
-     "prev_date": "2026-11-18",
-     "price": 3556.0,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=yf_gold"
-    },
-    {
-     "id": "lbma_gold",
-     "name": "Vàng London Fixing (LBMA)",
-     "region": "",
-     "d1": -2.18,
-     "date": "2026-11-18",
-     "prev_date": "2026-11-17",
-     "price": 3770.25,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=lbma_gold"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "‘Ông cai’, nhà thầu đau đầu với giá vật liệu xây dựng, giá nhân công xây dựng",
@@ -285,9 +214,9 @@
      "source": "Tạp chí Công Thương"
     }
    ],
-   "n_news": 12,
-   "n_moves": 3,
-   "rank": 9.61,
+   "n_news": 13,
+   "n_moves": 0,
+   "rank": 3.0,
    "link": "danh-muc.html?c=tt"
   }
  ]
