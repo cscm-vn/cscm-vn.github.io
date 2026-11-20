@@ -12,7 +12,10 @@ def norm_title(t):
     t = unicodedata.normalize("NFD", t.lower()); t = "".join(c for c in t if unicodedata.category(c) != "Mn")
     return re.sub(r"[^a-z0-9]+", " ", t.replace("đ", "d")).strip()
 def norm_url(u):
-    u = re.sub(r"^https?://(www\.)?", "", (u or "").strip()); u = re.sub(r"[?#].*$", "", u) if "news.google" not in u else u
+    u = re.sub(r"^https?://(www\.)?", "", (u or "").strip())
+    # keep the query when it identifies the article (e.g. ShowNews.aspx?id=123, detail.php?id=…); strip tracking params otherwise
+    keep = "news.google" in u or re.search(r"(\.(aspx?|php|jsp|cgi)|/default\.aspx|/detail)\?", u, re.I) or not re.sub(r"^[^/]+/?", "", u.split("?")[0])
+    u = re.sub(r"#.*$", "", u) if keep else re.sub(r"[?#].*$", "", u)
     return u.rstrip("/").lower()
 def score(it):
     s = it.get("scores") or {}
