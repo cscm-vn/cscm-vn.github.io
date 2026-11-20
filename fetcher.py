@@ -140,7 +140,37 @@ TE_MAP = {"Steel": ("te_rebar_shfe", "Thép cây (SHFE Rebar)", "Thép & quặng
           "Aluminum": ("te_aluminium", "Nhôm (TE/LME)", "Kim loại màu"),
           "Zinc": ("te_zinc", "Kẽm (TE/LME)", "Kim loại màu"), "Nickel": ("te_nickel", "Niken (TE/LME)", "Kim loại màu"),
           "Lead": ("te_lead", "Chì (TE/LME)", "Kim loại màu"), "Tin": ("te_tin", "Thiếc (TE/LME)", "Kim loại màu")}
+TE_SLUG = {"Steel": "steel", "HRC Steel": "hrc-steel", "Iron Ore": "iron-ore", "Iron Ore CNY": "iron-ore-cny",
+           "Scrap Steel": "steel-scrap", "Coking Coal": "coking-coal", "Copper": "copper", "Aluminum": "aluminum",
+           "Zinc": "zinc", "Nickel": "nickel", "Lead": "lead", "Tin": "tin"}
+def src_te_pages():
+    """Fallback (TE /commodities trả 403 cho máy chủ từ 13/11/2026): đọc mô tả từng trang /commodity/<slug>."""
+    from forecast.sources import te_desc, parse_te_desc
+    out = []
+    for key, slug in TE_SLUG.items():
+        try:
+            d = te_desc(slug); x = parse_te_desc(d)
+        except Exception as e:
+            print("te page", slug, e, file=sys.stderr); continue
+        if not x: continue
+        id, name, cat = TE_MAP[key]
+        unit = {"T": "tấn", "Lbs": "lb", "t.oz": "oz"}.get(x["unit"], x["unit"])
+        if id == "te_hrc" and x["unit"] == "T": unit, name = "short ton", "Thép HRC (CME US Midwest, tham chiếu TE)"
+        m = re.search(r"(up|down) ([\d.]+)% from the previous day", d)
+        pct = (float(m.group(2)) * (1 if m.group(1) == "up" else -1)) if m else (0.0 if "traded flat" in d else None)
+        out.append(item(id, "world", cat, name, f"{x['cur']}/{unit}", x["cur"], x["price"], "Trading Economics",
+                        f"https://tradingeconomics.com/commodity/{slug}", as_of=x["as_of"], change_pct=pct,
+                        note="Giá tham khảo theo thời gian thực (có thể trễ)"))
+    if len(out) < 4: raise RuntimeError("TE pages parse failed")
+    return out
+
 def src_te():
+    try: return src_te_table()
+    except Exception as e:
+        print("TE table:", e, "-> fallback từng trang", file=sys.stderr)
+        return src_te_pages()
+
+def src_te_table():
     url = "https://tradingeconomics.com/commodities"
     s = BeautifulSoup(get(url).content, "html.parser")
     out = []
