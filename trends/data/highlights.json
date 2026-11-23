@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "built": "2026-11-22T20:18+07:00",
- "today": "2026-11-22",
- "news_since": "2026-11-21",
+ "built": "2026-11-23T08:37+07:00",
+ "today": "2026-11-23",
+ "news_since": "2026-11-22",
  "thresholds": {
   "world": {
    "abs_pct": 2.0,
@@ -31,41 +31,19 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "te_ironore_cny",
-     "name": "Quặng sắt (DCE, CNY)",
-     "region": "",
-     "d1": -2.54,
-     "date": "2026-11-20",
-     "prev_date": "2026-11-13",
-     "price": 652.5,
-     "unit": "CNY/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=te_ironore_cny"
-    }
-   ],
+   "prices": [],
    "news": [
     {
-     "title": "Giá thép hôm nay 21/11: Quặng sắt tăng nhờ kỳ vọng tích trữ cuối năm",
-     "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPRkpvcTJIRGpLY0YyMWtsOTAyR3I1ZnlGWXlNVnBYVy1yRHdfV1lVQjBCUDlFT3plZWhsbDlXVlY0ZUtxbC1JZmU4eC1aOVdtZ1hfX3ZUTHR3dm5TbWEzWDlzaTVPZ0lZYndodF81cDVGelM1anlOZWpVdWYtRUxaR2FqMW9EUC1jQmxTMXVzOE5hUHpnWXNTekNpN29CaktWNGdfU1BKSHgwc3RlYVE?oc=5",
-     "date": "2026-11-21",
-     "score": 9.7,
+     "title": "Giá thép hôm nay 23/11: Quặng sắt chịu áp lực khi tồn kho cảng tăng tuần thứ tư",
+     "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQUm1wQnhYdWVvS1ZocHRpMFE5bEZRa1lMdDNKWV9BZ0I0bTFfMTdYLUQ0WTlTaTRPQVRrS04yNGEybUlYTm9iLWlzNlM3WTJiczN6QmZRRlBDZldYd0I4UXdCYW12R29UREFWSjhYdC1QODdfRGR6Mks4V1lOc3Q5blViM0hIRDltWVpGR3V4MEc0LUh0bWdNVEpsdWplX05VVWFmV29fVmphQjJuc2RzYWYxcUJJUGphemdCZUlR?oc=5",
+     "date": "2026-11-23",
+     "score": 10.0,
      "source": "VietnamBiz"
-    },
-    {
-     "title": "Giá thép ngày 21/11: Giá quặng sắt tăng nhờ kỳ vọng dự trữ",
-     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOQ3dPTUxFRjI0c2ZKUndNcmx0Vzc5VmhINHBPdUJBZ3pRSDIxTzVIR2pGdEtXeXlwR0d4c19vX0NkTmNpMFh6emg4WDV0VU90ajM2bmJKclRFNnFBNVJndUozLVlWVmxnc2ZTT0cycVh1MGREUkZoLTZaYzRDQjRhVEhhWWZmWm1QYTNNUG9aYS1VREVWR1U2VzQ1bzRQMGRQNWtTZ0t4TFR1b1d5SjJfRTVDaw?oc=5",
-     "date": "2026-11-21",
-     "score": 7.7,
-     "source": "Hangthat.vn"
     }
    ],
-   "n_news": 2,
-   "n_moves": 1,
-   "rank": 1.87,
+   "n_news": 1,
+   "n_moves": 0,
+   "rank": 0.3,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -73,34 +51,6 @@
    "name": "MEP",
    "icon": "⚡",
    "prices": [
-    {
-     "id": "te_copper",
-     "name": "Đồng (TE)",
-     "region": "",
-     "d1": -10.74,
-     "date": "2026-11-20",
-     "prev_date": "2026-11-13",
-     "price": 5.49,
-     "unit": "USD/lb",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=te_copper"
-    },
-    {
-     "id": "te_zinc",
-     "name": "Kẽm (TE/LME)",
-     "region": "",
-     "d1": -5.95,
-     "date": "2026-11-20",
-     "prev_date": "2026-11-13",
-     "price": 3480.75,
-     "unit": "USD/tấn",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=te_zinc"
-    },
     {
      "id": "te_aluminium",
      "name": "Nhôm (TE/LME)",
@@ -114,34 +64,40 @@
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
      "url": "mat-hang.html?id=te_aluminium"
-    }
-   ],
-   "news": [
-    {
-     "title": "Gold, copper, aluminium dive to at least 7-month lows",
-     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxObkVrUEE2RHFSV01UUXdzb2ZvM1NxRTl2ajJjcEFSbDMzUmNaVk45M0tYN085UUFGTGU4RkZXVVBxd0g3c2VDUE1LUzdrSnNjZ2ttYUQtX2ZpSVVaUWJpbi1tdFBLZFhCbi1kMF8tVXpvUUNPZ2N0THhLVjhra2ZDVWVtdDJranlWRUhZN05QUjRtQ2NtTVZqSHJKRmdFU2pNNDdaOE9ITU51aTdLejQ00gGvAUFVX3lxTE5uRWtQQTZEcVJXTVRRd3NvZm8zU3FFOXZqMmNwQVJsMzNSY1pWTjkzS1g3TzlRQUZMZThGRldVUHF3SDdzZUNQTUtTN2tKc2Nna21hRC1fZmlJVVpRYmluLW10UEtkWEJuLWQwXy1Vem9RQ09nY3RMeEtWOGtrZkNVZW10MmtqeVZFSFk3TlBSNG1DY21NVmpIckpGZ0VTak00N1o4T0hNTnVpN0t6NDQ?oc=5",
-     "date": "2026-11-21",
-     "score": 8.7,
-     "source": "The Hindu"
     },
     {
-     "title": "Copper price heads for biggest weekly drop in 19 months as AI rout continues",
-     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOQkVRZEdhZHZOajZPV1BvQVlQcVVYcVJSQV9NU3pOeW0yRVdMWEVidlVROFlUMDhUcndZN0VrbU02U3Y4azFWSUZaTW1DeTlrTTVRS1RWUFRQaHBOUVJ1SjV0akxrWl8xbXZnc2tJVklzMjR2UHFXem1nREMtTkxpOV8wMURNRGhHcElLZGRvNG9HRy0xcXBOUE1MLVJJZGhy?oc=5",
-     "date": "2026-11-21",
-     "score": 6.7,
-     "source": "Mining.com.au"
+     "id": "lme_copper",
+     "name": "Đồng LME",
+     "region": "",
+     "d1": -2.7,
+     "date": "2026-11-20",
+     "prev_date": "2026-11-19",
+     "price": 12230.5,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=lme_copper"
     },
     {
-     "title": "Copper Slides to Lowest Since March on AI Slowdown",
-     "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNZm9JVkJQTWRucmUzN3E0dGRHbnF6NjNEbUt6dW5ibmI1SW5ETkp4Ykh3NVYwU0RUNWZiSUU5X0VmZnJTMmJqQmFSbnFKaHBTalp2RXVOeWYxUWRyZ3U3Y3JIaWpjOEVjdUpjNC1majZfeFp5azNLdk4zSnlRNVJfWTZR?oc=5",
-     "date": "2026-11-21",
-     "score": 6.7,
-     "source": "Wisevoter"
+     "id": "lme_tin",
+     "name": "Thiếc LME",
+     "region": "",
+     "d1": -2.46,
+     "date": "2026-11-20",
+     "prev_date": "2026-11-19",
+     "price": 41160.0,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=lme_tin"
     }
    ],
-   "n_news": 4,
-   "n_moves": 6,
-   "rank": 11.97,
+   "news": [],
+   "n_news": 0,
+   "n_moves": 3,
+   "rank": 5.38,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -198,7 +154,7 @@
      "title": "Implementing a green transition, reducing carbon emissions, and paving the way for a green economy.",
      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOMGtKdUY4b3NHU0xqWnUtUF8tNWxOUEF4SkZrRUJIY0RoeFJyU3lmNUliSXVLeWVFXy1kWTEtU3JqR2R0VUdSeVA3WUhJVVlCaHV0MURaUVNJTHEzUVo0NWpzNTZ2eXZsWXU2M2N6SnJqVkRkN1JoWEo3VFFRVTdYTHRIMm1NMVZORWIyZUt1TFFzVnVuX3pqR0hTNA?oc=5",
      "date": "2026-11-22",
-     "score": 4.0,
+     "score": 3.7,
      "source": "Vietnam.vn"
     }
    ],
@@ -225,34 +181,55 @@
      "threshold": 2.0,
      "tax": "tt.ty-gia",
      "url": "mat-hang.html?id=lbma_gold"
+    },
+    {
+     "id": "yf_gold",
+     "name": "Vàng (COMEX Gold)",
+     "region": "",
+     "d1": 2.69,
+     "date": "2026-11-22",
+     "prev_date": "2026-11-20",
+     "price": 3609.89990234375,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=yf_gold"
+    },
+    {
+     "id": "yf_silver",
+     "name": "Bạc (COMEX Silver)",
+     "region": "",
+     "d1": 2.3,
+     "date": "2026-11-22",
+     "prev_date": "2026-11-20",
+     "price": 42.01499938964844,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=yf_silver"
     }
    ],
    "news": [
     {
-     "title": "Nam Phi điều tra tự vệ đối với sản phẩm kính nổi nhập khẩu, doanh nghiệp Việt cần lưu ý",
-     "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNZlhwRXlUVnlzTHdjblhIeHk0aW81dHNjbmF6OGRGTEdBcVd3M2p0NWpSdzdIbDNiczdQSzNSbmNkUHV1a3B2NmJQVkhCek1WVG1QODVRWFlTX1c0WjBITGMyWmxnOFZsZU9vNnlnQ3FwME92R2NuQkV3RUcxYWNZM015Ui0zT3FNRHVDZjJlajhLZmFYcGp6S3cyVm5RWmNiVXptNDMwNXlEeGJDTzVYbGJWQ1hxenE1Z1R6M0pwTTFNaHB1dDI3U3VYaw?oc=5",
-     "date": "2026-11-21",
-     "score": 8,
-     "source": "Tạp chí điện tử Thương Trường"
+     "title": "Trái phiếu chính phủ lần đầu giảm lãi suất trong năm nay",
+     "url": "https://vnexpress.net/trai-phieu-chinh-phu-lan-dau-giam-lai-suat-trong-nam-nay-5147737.html",
+     "date": "2026-11-23",
+     "score": 7.0,
+     "source": "VnExpress Kinh doanh"
     },
     {
      "title": "Vay mua nhà khi lãi suất giảm",
      "url": "https://cafef.vn/vay-mua-nha-khi-lai-suat-giam-188261122080824639.chn",
      "date": "2026-11-22",
-     "score": 6.0,
+     "score": 5.7,
      "source": "CafeF Bất động sản"
-    },
-    {
-     "title": "Khởi động cuộc đua chọn nhà thầu 3 tuyến metro lớn ở TP. HCM: Cơ hội nào cho Đèo Cả, Coteccons, FECON…?",
-     "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPclU2djl1OGVPdzhUZndfQVU3eXRXZF9VNFNIY0VTRWtPbmhaaGtPbmZBMDdpMEgzY0M2N1VuWEJHOWtpV3FZM291dW43LU42ckhzYWhfRFpMSWlLZTAzU1N6aFpldVJ1djZXNFJNN1huOE16S0gtQjI4QWg1LVM2eEQ0VlVUVFhsaUJkS0Q5R19xRV9PWms1OFVmWEZHZ2tNRnZpeTdrN3NiTUlVU1dlU0prSE5hZUEtaVREdHhwc0pXY0JXZEp2UDN4Z0Rjdw?oc=5",
-     "date": "2026-11-21",
-     "score": 3.7,
-     "source": "nguoiquansat.vn"
     }
    ],
-   "n_news": 4,
-   "n_moves": 1,
-   "rank": 3.12,
+   "n_news": 2,
+   "n_moves": 3,
+   "rank": 5.02,
    "link": "danh-muc.html?c=tt"
   }
  ]
