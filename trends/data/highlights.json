@@ -1,8 +1,8 @@
 {
  "schema_version": 1,
- "built": "2026-11-25T12:25+07:00",
- "today": "2026-11-25",
- "news_since": "2026-11-24",
+ "built": "2026-11-26T01:40+07:00",
+ "today": "2026-11-26",
+ "news_since": "2026-11-25",
  "thresholds": {
   "world": {
    "abs_pct": 2.0,
@@ -31,33 +31,48 @@
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [],
-   "news": [
+   "prices": [
     {
-     "title": "Giá thép hôm nay 24/11: Thép thanh giảm nhẹ, chỉ 10% nhà máy thép Trung Quốc có lãi",
-     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNQTJRbDFGLWZLcUpvWTM2NjlLZzVFUy1abzFnZlhUY016and0cVFzUGVIWWlqR0Q5bk5zOXhoRXk5bEJ0RmJsM2dvcEVqNGlFQlg4cHdhZG9NM1JRZHFrSmd2NXoxOE90MlZUMWlHdEJPbG5WQzQ3RmxjbE9yVWd4TjNfREhMRW1FVUg0VjBBTjhYUzhJVFVnT1o2UUFHRGp6RFRQRG1pM1NicERSV3QwcWRxOFlzbTVFQTg1TkNDbTM?oc=5",
-     "date": "2026-11-24",
-     "score": 11.7,
-     "source": "VietnamBiz"
-    },
+     "id": "yf_hrc",
+     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
+     "region": "",
+     "d1": 5.92,
+     "date": "2026-11-25",
+     "prev_date": "2026-11-24",
+     "price": 1432.0,
+     "unit": "USD/short ton",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "xd.thep-ket-cau",
+     "url": "mat-hang.html?id=yf_hrc"
+    }
+   ],
+   "news": [
     {
      "title": "Giá thép hôm nay 25/11: Quặng sắt lên cao nhất một tuần",
      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOdUllTUI0aUhidW5Ob2VDb0VVLTV0cUNQaGNCbEl3VmhVRTgwMHRUYXBDNDFOdm9zQlFTWHNkbGZnOVFPcFZJTjAxUUhRRktuX1ExTGlrTjdaaUtBZ0VlbV9TMkNzTkhyNlI5emhHQ3hYb01sSndRcnFTblNUd09WM09MZ1lSNjM5OEdVeTdadWpISlNBaDZKZHhsQU1Wdw?oc=5",
      "date": "2026-11-25",
-     "score": 10.0,
+     "score": 9.7,
      "source": "VietnamBiz"
+    },
+    {
+     "title": "French low-carbon cement producer to issue EACs via Isometric",
+     "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQ05UbW03Sk81NHNKdTNWdUxtb1poeWRmTFAyUDVldnVieFcxbzNfd2ZjZVQwYXVuWTVoRHNGQkNPa3VvbjNuY0ZWY1ItNHA4SFhVZHB4REZpZ0JtZU05bmNVNG80TjhnRWduckVLQVNsWi1zRVVJZkQwUHE4ZWd4SS1JaWJ3eHgtYmE5dGQ5MjVOakdzalR6b0c5d3pzTVljUmh1d1BHTTFMVmxPdS14cA?oc=5",
+     "date": "2026-11-25",
+     "score": 8.7,
+     "source": "Quantum Commodity Intelligence"
     },
     {
      "title": "Giá thép hôm nay 25/11/2026: Quặng sắt lập đỉnh một tuần nhờ tín hiệu từ Fed",
      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQY3lPZTZWVDlaZ2g0N1ZCQzhkY0didDFXRXdZOFN0YkgxVExTYUN0bFhiN1ZfRXBNbFNPdGVGRVkzb1FaUUxyRVQtR2NCdGxlb2NmNlduYzB5QWtha3hheWtxSEhHMGNNLU5wRlBWNHhLUDJaZjcxOGZxdlRJeXlSNGI3SDh6dk5yY2RuVkZYS3IxTGtfc1d5RFZCcTBBbXhfbmNDbjdZSk9qR29OOEhneE54SW9yQQ?oc=5",
      "date": "2026-11-25",
-     "score": 8.0,
+     "score": 7.7,
      "source": "Tạp chí Doanh nghiệp và Hội nhập"
     }
    ],
    "n_news": 6,
-   "n_moves": 0,
-   "rank": 1.8,
+   "n_moves": 1,
+   "rank": 4.76,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -66,18 +81,32 @@
    "icon": "⚡",
    "prices": [
     {
-     "id": "te_aluminium",
-     "name": "Nhôm (TE/LME)",
+     "id": "te_tin",
+     "name": "Thiếc (TE/LME)",
      "region": "",
-     "d1": -3.19,
+     "d1": -3.4,
      "date": "2026-11-24",
      "prev_date": "2026-11-23",
-     "price": 2775.2,
+     "price": 39539.0,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=te_aluminium"
+     "url": "mat-hang.html?id=te_tin"
+    },
+    {
+     "id": "yf_aluminium",
+     "name": "Nhôm (COMEX Aluminum)",
+     "region": "",
+     "d1": -2.98,
+     "date": "2026-11-25",
+     "prev_date": "2026-11-24",
+     "price": 2787.0,
+     "unit": "USD/tấn",
+     "kind": "world",
+     "threshold": 2.0,
+     "tax": "mep.dong-nhom",
+     "url": "mat-hang.html?id=yf_aluminium"
     }
    ],
    "news": [
@@ -85,27 +114,27 @@
      "title": "SMM AICE2026 Southeast Asia (Vietnam) Aluminium Conference: Navigate Aluminum Landscape, Expand Global Footprint",
      "url": "https://news.google.com/rss/articles/CBMikAJBVV95cUxNY0VlSDRjalI0OHQ5Yjctc3hUdWFpNDBfYTNfZHlxZ3NaSmtjVFh2azI2emZuWUtSWDRXQ1paRkVnVFhpeGlhSEl0dlNtNUczdFZ4OEs4X21GNjNscjRrZmJfeFQwY19hZXo3VTNsRjVObS1vblZpWlQ5b3JlSm9CS3E5RkZRdHJvbFI4WUFnQTlsQVZuZERYWGNacEhyTEFiM2h6OXhFVkxrbFFmem4zMFY3MUJqSzN6MTdXbU0ycERBdjd3THd1eTU2UU9Vb3JtSVNzam5SUVZ0SGxNeTVUYWl6MUhqWlEtTFZtd3BHRXpFRDFvenY1bFJzZTlrYzlkZWdBQUJ5XzJyeWNOOUxaRw?oc=5",
      "date": "2026-11-25",
-     "score": 11.0,
+     "score": 10.7,
      "source": "Shanghai Metals Market"
+    },
+    {
+     "title": "Oil Slips as Supply Recovers, Aluminium Squeeze Eases After LME Intervention, Copper Extends Decline",
+     "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPSUhxRW83dzhycEZsNGd3M01iaVdZbVlUbmJTd2VrbTBsY3hLV2tuSGZTU3JPdEVKNDBZQ0ptN2dVLWI5b1RCTWExcWwyakpHekVYaTQwcVIzOUhIc0dTZl96dUVKVFBOSHEtRmFWdF9BTGZzT0JudFlZcmxRcHhKVXRsQ2VnLWgxbmU3Y3BHV001UUozUWVFc1VZRURtNTdvNWZhTGxqQXFMM1JkOGlUaERaRWJxN1VPc0hGYzB4MEVOVGlGZ0Y0?oc=5",
+     "date": "2026-11-25",
+     "score": 10.7,
+     "source": "IndexBox"
     },
     {
      "title": "LME tightens rules in response to aluminium squeeze",
      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQbG9raWhIZ0tYanZoSU1tU2RNRW5KVHVISzhia1BKUUtpeE41X2xmMlM2bk1HZzk4YXRXTkswOVd2TzFvbGhUT3hZcldMWDVpQ3FZNjlFLVl5bzlfWmpIRlN2TVMwcHpsRVlGT3VaSnhyUVRuZ0VOQm9mbHNuNHhVQks2c1kyUQ?oc=5",
      "date": "2026-11-25",
-     "score": 9.0,
+     "score": 8.7,
      "source": "Mining.com"
-    },
-    {
-     "title": "LME base metals erase Nvidia-driven gains as tin, copper slump",
-     "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQTUhOVERQZ29WRTQ2dkdaRVFyZzJjMUttdl9uNGFEeVZ0R0Fwa010eE50eWFGOTVaWEFEd21CLTBuQjNtQ1VhY1J6QzlFVDFZZEZIc2hkVWFueXVNODZ1Tzl4TXhPLUJtWHdvYzV2RHNtV0tKc0YyYUc4TkdzN0xsY1g3ZHVXTTdNRk45UzhLcDN3SWpwT2w5VlVUZjhvRklU?oc=5",
-     "date": "2026-11-25",
-     "score": 9.0,
-     "source": "Fastmarkets"
     }
    ],
-   "n_news": 11,
-   "n_moves": 1,
-   "rank": 4.59,
+   "n_news": 10,
+   "n_moves": 2,
+   "rank": 6.19,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -157,25 +186,32 @@
    "name": "ESG & công trình xanh",
    "icon": "♻️",
    "prices": [],
-   "news": [
-    {
-     "title": "New canals could reshape South-east Asian trade and test Vietnam’s edge",
-     "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQNDVZS2hUSFJMU2U3V0ZSOUNTc2NHZzRlZlphZXB1Slh2YnhLaUY3NUZTbElUZU8xWHAwUDFnQVNuWmZVcTJMLU1uUDRtQXJxMEc1WWFqdjY4Zzc4akJYQWtSdVptcVo1SXp0WXoyMF9nSTRjTVNSVHFPYnV0S2Rkcm9PSGVOYnJ5T3BGbHQ4RUI1cnFiT28tdlpIaHVSekZFWlcySnlTR3FiV2ZUbm1nTU9LYzNES0JkN3lMNFFqbXo?oc=5",
-     "date": "2026-11-24",
-     "score": 5.7,
-     "source": "The Business Times"
-    }
-   ],
-   "n_news": 1,
+   "news": [],
+   "n_news": 0,
    "n_moves": 0,
-   "rank": 0.3,
+   "rank": 0.0,
    "link": "danh-muc.html?c=esg"
   },
   {
    "id": "tt",
    "name": "Vĩ mô & thương mại",
    "icon": "🌏",
-   "prices": [],
+   "prices": [
+    {
+     "id": "lbma_gold",
+     "name": "Vàng London Fixing (LBMA)",
+     "region": "",
+     "d1": -2.47,
+     "date": "2026-11-25",
+     "prev_date": "2026-11-24",
+     "price": 3533.2,
+     "unit": "USD/oz",
+     "kind": "gold",
+     "threshold": 2.0,
+     "tax": "tt.ty-gia",
+     "url": "mat-hang.html?id=lbma_gold"
+    }
+   ],
    "news": [
     {
      "title": "Chuyên gia: Hàng loạt sản phẩm thép Trung Quốc có thể sắp bị điều tra chống bán phá giá tại Việt Nam",
@@ -185,23 +221,23 @@
      "source": "nguoiquansat.vn"
     },
     {
-     "title": "Năng lực nhóm DN Việt trong liên danh trúng thầu 10.200 tỷ đồng tại đường sắt tốc độ cao Bắc - Nam",
-     "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNR1VHa3RWYzFlMVdRQVYzRWdWNWRORGx0UmNhVXdKQkJEU3pTU2ZkNGNyNXRPajVnclpGQUpyRTBydXFaa29jSXNQYm50dkZITnN4R1RHQl9wYnBORk10bjVNeFg0Nl9UdTJqa1ZtakJZMVNYS3ZlR2poQ1JKNkw5Ny03MmtOZjNCM21EeUZDMHZfandYd0RmV0t1N3F5RFkzQmo4VnBWZnY4NklfdkluaHJxRHZwdmRUOWp1STVrQjh4T25KU2ttdw?oc=5",
-     "date": "2026-11-24",
-     "score": 7.7,
-     "source": "Nghệ An 24h"
+     "title": "Bán hàng trên sàn TMĐT quốc tế, giao hàng hoàn toàn ở nước ngoài có phải nộp thuế GTGT? - Tạp chí Kinh tế",
+     "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQUEVRelhIamdUYzN3Q2hONE96STlEaHhYdk0zM0xlckd4NlJGdkQ3MlZiSU9paTZRTGhqTlVQM2U3VU43QjlqWmZ4dmw4c2d0a3VOdVg0SFRUNWRDU3lmU0lXbVVvdzdmVkpYWVVOWXdVdU0yZ2gwWHBDVU1uZDhfT1k5akQ5WkJsRFdMelI3TVFLNWJkX0UxdmswV0N6UXZBcU1OX19mSUdDa0RZYjV6d3dBRi0tN2ZKaFV2RmpWZmhXdFU4Vi1vcnpYem8wWjBfQ3c0Qkx0YjI?oc=5",
+     "date": "2026-11-25",
+     "score": 5,
+     "source": "Tạp chí Kinh tế - Tài chính Online"
     },
     {
-     "title": "Đơn hàng thương mại điện tử dưới 1 triệu đồng được miễn thuế nhập khẩu",
-     "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdTlISFdZejU2YTE1Z2dpbl9lWnNSUFhJNEJMQlRKQjFpTC1xOVg2MHJzVlNOTllLYU1EeVdNTHJjYkRTLWEzNVAyMkdBdHJWOElKWF9zOV9QbW1ET1Jrb09XVzliNnZBX2YtTVFsVlJmbTd6M2h0cW83QU9oZlV1WUI0bXByb1BkdU1aeEZvZVcwcGlwcWJmbVV3VXpTcW81emNheXZsdjdLYnBx?oc=5",
-     "date": "2026-11-24",
-     "score": 5,
-     "source": "VTV.vn"
+     "title": "Hải Phòng: Phê duyệt kết quả lựa chọn nhà thầu hai gói thầu giao thông hơn 3.309 tỷ đồng",
+     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPQkRpRHZFaWp2ZHJ0aE91RGtHN2RQeGM2eENPVzl3WXI5RHhpSEprNHItV1NjbHQtUjM2VHJ5ZS1vcXNKY2ZnOEVCdHFLbzd5TXc2WG13S3ZfRUthb0RtUi1udWxIdi1PSGNDRGY1U1BCYXZBdlZBc1ZYNmRxQ2lnQlVSdmx6R1I2aUowejl5QXdEYnZvbkN1dGlYSmdIVVBXOUhiU0RCc0hVNDJvNWxj?oc=5",
+     "date": "2026-11-25",
+     "score": 3.7,
+     "source": "Vietnam.vn"
     }
    ],
    "n_news": 3,
-   "n_moves": 0,
-   "rank": 0.9,
+   "n_moves": 1,
+   "rank": 2.13,
    "link": "danh-muc.html?c=tt"
   }
  ]
