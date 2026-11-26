@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-26T14:31+07:00",
+ "built": "2026-11-26T22:00+07:00",
  "today": "2026-11-26",
  "news_since": "2026-11-25",
  "thresholds": {
@@ -23,30 +23,15 @@
  },
  "top": [
   "mep",
-  "xd",
-  "tt"
+  "tt",
+  "xd"
  ],
  "groups": [
   {
    "id": "xd",
    "name": "Xây dựng (phần thô)",
    "icon": "🏗️",
-   "prices": [
-    {
-     "id": "yf_hrc",
-     "name": "Thép cuộn cán nóng HRC (CME US Midwest)",
-     "region": "",
-     "d1": 6.14,
-     "date": "2026-11-25",
-     "prev_date": "2026-11-24",
-     "price": 1435.0,
-     "unit": "USD/short ton",
-     "kind": "world",
-     "threshold": 2.0,
-     "tax": "xd.thep-ket-cau",
-     "url": "mat-hang.html?id=yf_hrc"
-    }
-   ],
+   "prices": [],
    "news": [
     {
      "title": "Thép cây Trung Quốc hồi nhẹ 25/11: giao ngay 3.108 NDT/tấn (+10), RB2701 3.062 NDT/tấn (+1,56%); thép xây dựng VN đứng giá (CB300 D10 13.840–14.890 đ/kg)",
@@ -70,9 +55,9 @@
      "source": "VietnamBiz"
     }
    ],
-   "n_news": 12,
-   "n_moves": 1,
-   "rank": 6.07,
+   "n_news": 13,
+   "n_moves": 0,
+   "rank": 3.0,
    "link": "danh-muc.html?c=xd"
   },
   {
@@ -109,18 +94,18 @@
      "url": "mat-hang.html?id=lme_tin"
     },
     {
-     "id": "lme_zinc",
-     "name": "Kẽm LME",
+     "id": "te_polyethylene",
+     "name": "Polyethylene (PE, DCE LLDPE)",
      "region": "",
-     "d1": -3.94,
-     "date": "2026-11-25",
-     "prev_date": "2026-11-24",
-     "price": 3520.5,
-     "unit": "USD/tấn",
+     "d1": 4.97,
+     "date": "2026-11-26",
+     "prev_date": "2026-11-25",
+     "price": 8169.0,
+     "unit": "CNY/tấn",
      "kind": "world",
      "threshold": 2.0,
-     "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_zinc"
+     "tax": "mep.ong-nuoc",
+     "url": "mat-hang.html?id=te_polyethylene"
     }
    ],
    "news": [
@@ -139,16 +124,16 @@
      "source": "IndexBox"
     },
     {
-     "title": "Copper price sinks to 11-month low as tariff, rate hike fears grip markets",
-     "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE40ZlZmZGZsREVobjVlMk1JVTN1SHJkdkhCenBjUzVjdkROMUx0MjZNZWFOYkUyZnM4WURyTHNSc2F5OTN1Nk9Oc20wUGl1bTRVZ1lDeXUxd1huSnc2UkhMYXEtT0xtRlB6?oc=5",
+     "title": "[SMM Analysis] Indian ADC 12 Prices Fall Up to 2.6% as LME Aluminium Correction Weighs on Market Sentiment",
+     "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNUmFSTEswdjVWZ1A0VTVoYVBxSi10eFdkYU10UWxnWUlyQU1JZ3J6bGNYRkdHRk5FUHFVclZnaGt5NGVTV1o5eldUdVEwdVVVR3pXUjZPNHNGbDhsT3dvVnZBd2FITVZGUmcyT0tOZzZUZzRXS3pHQ3dwQ21fanRETkRucWdUR3UtWjZfTHdrQnpVUmUyNHhmVTJCU3NrS2l2akdFRDY1ay1SeHV5VTROOVBoU1hYd2tUdjg5d2dTQlZMQUVaUFFIZm85RUhFSXdIT3E0S1dYQ2UzcWFwTERYenpEem1OYldESHhPSko5NEMzblFTbjJLSkVPejF4MzZPSnVNOHZjZGY?oc=5",
      "date": "2026-11-26",
      "score": 9.0,
-     "source": "Mining.com.au"
+     "source": "Shanghai Metals Market"
     }
    ],
-   "n_news": 15,
-   "n_moves": 5,
-   "rank": 12.54,
+   "n_news": 20,
+   "n_moves": 8,
+   "rank": 13.05,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -200,10 +185,18 @@
    "name": "ESG & công trình xanh",
    "icon": "♻️",
    "prices": [],
-   "news": [],
-   "n_news": 0,
+   "news": [
+    {
+     "title": "Áp lực carbon thúc đẩy ngành hóa chất, vật liệu xây dựng chuyển đổi xanh",
+     "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPLVF4RGx0ZmNyOGRnZjNWTmN5bXgzcmdoZUg0YV91aVJ1T1ItMGtuTGFhZ0ZtTG83SUhnblNwVzBiRTcxdGdkbllmNERldndYUjV1YTBQOE0wTHp2eTYzQlNFcl9QSjQ4cW0wT3dyZXR5dkx4STd0MGUzQWxOZGt1bGdBb3cyV3FEalRxQUlubWdWdDVMa0ozVG9XT19FTHk2clE?oc=5",
+     "date": "2026-11-26",
+     "score": 8.0,
+     "source": "Bnews.vn"
+    }
+   ],
+   "n_news": 1,
    "n_moves": 0,
-   "rank": 0.0,
+   "rank": 0.3,
    "link": "danh-muc.html?c=esg"
   },
   {
@@ -228,30 +221,30 @@
    ],
    "news": [
     {
-     "title": "Chuyên gia: Hàng loạt sản phẩm thép Trung Quốc có thể sắp bị điều tra chống bán phá giá tại Việt Nam",
-     "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPMS1Tc0l5Zy1VVXg4Y2hGOWQ5NFhrMTdJaDB0aThnWWVmWWdPdnFxcXNXZFMyLTJXUjlvLWhoVmE3VEttZnB4Um5GM1VHYmxldktuSWZ3b3U1QWp4WTY4Y3lmeW9KcGFNakpFTnpkdWpmcjB1T1BETzZqVEZkU1M4SEVNeHlrSE1iamZReHA5NE10cGtkVjdOeUVFQmE2NU1OTXdFYWxuWTJqWHJaZFFSOGhUb3djZVZ0RkQ0V2hRVnpxVlNEMVN5RUktd0llc3VO?oc=5",
-     "date": "2026-11-25",
+     "title": "Mỹ ra kết luận sơ bộ về nghi vấn lẩn tránh thuế với thép Việt Nam qua Indonesia",
+     "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQWnh2ejBQYjV4UlRFcHM1VC1JNVdVbG8taXFVUW0xUWw3UFZORGJteG0waFBUaXRpcWlCb2FKcm8zaW5OZTdaRUFlMXVuQ3N0Q2MzeTU5VzBNX1JqN2EyRGFRVUFOLV8wX1RRMWJzanI0MTdwN3RMSS02WTZBZkFCLUJ3WlZ1d1BMYk4yUmRjZ2RMU3pnM1IzUXp4aEZRM2VCXy0wTGZ6XzdkLUhSUXZiSGRnZDY0RG9TNmkw?oc=5",
+     "date": "2026-11-26",
      "score": 8,
-     "source": "nguoiquansat.vn"
+     "source": "CafeF"
     },
     {
-     "title": "Bán hàng trên sàn TMĐT quốc tế, giao hàng hoàn toàn ở nước ngoài có phải nộp thuế GTGT? - Tạp chí Kinh tế",
-     "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQUEVRelhIamdUYzN3Q2hONE96STlEaHhYdk0zM0xlckd4NlJGdkQ3MlZiSU9paTZRTGhqTlVQM2U3VU43QjlqWmZ4dmw4c2d0a3VOdVg0SFRUNWRDU3lmU0lXbVVvdzdmVkpYWVVOWXdVdU0yZ2gwWHBDVU1uZDhfT1k5akQ5WkJsRFdMelI3TVFLNWJkX0UxdmswV0N6UXZBcU1OX19mSUdDa0RZYjV6d3dBRi0tN2ZKaFV2RmpWZmhXdFU4Vi1vcnpYem8wWjBfQ3c0Qkx0YjI?oc=5",
-     "date": "2026-11-25",
-     "score": 5,
+     "title": "Thép Indonesia dùng nguyên liệu Việt Nam không lẩn tránh thuế - Tạp chí Kinh tế",
+     "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQbWRtSHA2b3p6M2dnVUo2NTNsdS1RalVIUVJpZG5PWUdtbk5Sb0dWbWlLTW53eVQ3QUIzSFBrNlhSOF93QmRlUFNOcmF4NmJuamdfdWd6QXM0VzZTVjVVbzQ2dHNvdnhoZVlHVzFxaXZQR3lOUlp6T2pSci1Dc1hJTUJ3d004Y253S0xpR0lFcXJfQzF2Qm9ueDBoUDJNMld1ZFQ3TTFEaGVsazE4M0pCZlQtNnNjVWoz?oc=5",
+     "date": "2026-11-26",
+     "score": 8,
      "source": "Tạp chí Kinh tế - Tài chính Online"
     },
     {
-     "title": "Hải Phòng: Phê duyệt kết quả lựa chọn nhà thầu hai gói thầu giao thông hơn 3.309 tỷ đồng",
-     "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPQkRpRHZFaWp2ZHJ0aE91RGtHN2RQeGM2eENPVzl3WXI5RHhpSEprNHItV1NjbHQtUjM2VHJ5ZS1vcXNKY2ZnOEVCdHFLbzd5TXc2WG13S3ZfRUthb0RtUi1udWxIdi1PSGNDRGY1U1BCYXZBdlZBc1ZYNmRxQ2lnQlVSdmx6R1I2aUowejl5QXdEYnZvbkN1dGlYSmdIVVBXOUhiU0RCc0hVNDJvNWxj?oc=5",
-     "date": "2026-11-25",
-     "score": 3.7,
-     "source": "Vietnam.vn"
+     "title": "Mỹ xác định chưa có hành vi lẩn tránh thuế với thép Việt Nam gia công tại Indonesia",
+     "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQS1BkYVRZWFhwVENJbzJycDRBTTZTZXJCY2JQLTNBUnNoVThfTGkxRFBtSkp5UC1YZXBncHVsbFF1M1gzNl9VSndLNU9NbEk5QlU3d0hvUVVVdURIZ1BTMjI0MU1hQ1g5WGliODJzMG9fZDhGYlE0YWNIWUxmeUJaUTREZw?oc=5",
+     "date": "2026-11-26",
+     "score": 8,
+     "source": "MoneyF"
     }
    ],
-   "n_news": 3,
+   "n_news": 9,
    "n_moves": 1,
-   "rank": 2.13,
+   "rank": 3.93,
    "link": "danh-muc.html?c=tt"
   }
  ]
