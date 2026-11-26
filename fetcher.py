@@ -141,7 +141,7 @@ TE_MAP = {"Steel": ("te_rebar_shfe", "Thép cây (SHFE Rebar)", "Thép & quặng
           "Zinc": ("te_zinc", "Kẽm (TE/LME)", "Kim loại màu"), "Nickel": ("te_nickel", "Niken (TE/LME)", "Kim loại màu"),
           "Lead": ("te_lead", "Chì (TE/LME)", "Kim loại màu"), "Tin": ("te_tin", "Thiếc (TE/LME)", "Kim loại màu")}
 TE_SLUG = {"Steel": "steel", "HRC Steel": "hrc-steel", "Iron Ore": "iron-ore", "Iron Ore CNY": "iron-ore-cny",
-           "Scrap Steel": "steel-scrap", "Coking Coal": "coking-coal", "Copper": "copper", "Aluminum": "aluminum",
+           "Scrap Steel": "scrap-steel", "Coking Coal": "coking-coal", "Copper": "copper", "Aluminum": "aluminum",
            "Zinc": "zinc", "Nickel": "nickel", "Lead": "lead", "Tin": "tin"}
 def src_te_pages():
     """Fallback (TE /commodities trả 403 cho máy chủ từ 13/11/2026): đọc mô tả từng trang /commodity/<slug>."""
