@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "built": "2026-11-27T11:58+07:00",
+ "built": "2026-11-27T17:55+07:00",
  "today": "2026-11-27",
  "news_since": "2026-11-26",
  "thresholds": {
@@ -69,10 +69,10 @@
      "id": "lme_aluminium",
      "name": "Nhôm LME",
      "region": "",
-     "d1": -8.7,
-     "date": "2026-11-25",
-     "prev_date": "2026-11-24",
-     "price": 2849.0,
+     "d1": 4.6,
+     "date": "2026-11-26",
+     "prev_date": "2026-11-25",
+     "price": 2980.0,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
@@ -80,35 +80,42 @@
      "url": "mat-hang.html?id=lme_aluminium"
     },
     {
-     "id": "lme_tin",
-     "name": "Thiếc LME",
+     "id": "te_copper",
+     "name": "Đồng (TE)",
      "region": "",
-     "d1": -6.43,
-     "date": "2026-11-25",
-     "prev_date": "2026-11-24",
-     "price": 38200.0,
-     "unit": "USD/tấn",
+     "d1": 4.29,
+     "date": "2026-11-27",
+     "prev_date": "2026-11-26",
+     "price": 5.59,
+     "unit": "USD/lb",
      "kind": "world",
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_tin"
+     "url": "mat-hang.html?id=te_copper"
     },
     {
-     "id": "lme_zinc",
-     "name": "Kẽm LME",
+     "id": "lme_nickel",
+     "name": "Niken LME",
      "region": "",
-     "d1": -3.94,
-     "date": "2026-11-25",
-     "prev_date": "2026-11-24",
-     "price": 3520.5,
+     "d1": 4.19,
+     "date": "2026-11-26",
+     "prev_date": "2026-11-25",
+     "price": 15665.0,
      "unit": "USD/tấn",
      "kind": "world",
      "threshold": 2.0,
      "tax": "mep.dong-nhom",
-     "url": "mat-hang.html?id=lme_zinc"
+     "url": "mat-hang.html?id=lme_nickel"
     }
    ],
    "news": [
+    {
+     "title": "LME Approves Indonesian Aluminium from Tsingshan, Huafon to Ease Historic Squeeze",
+     "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOT0NUU3BfbWtMMEdDN3NIbnpLM1BMVXJYN05OaHZhSklpUTRsNWVuOTZuNjhKTG1FMGJhQ2F2ZlFmU2dqSU9iTGE0a0k2V2YyX3lTZHBBeEk1NWhvcnlHOEF6djM3UVkyRXpSaXBuTFlsenFOb1haX0x0cmdEbDdBblMtd1lqMmtXWmNCUExqVlRVYndnOGhJSC0zVXZMeWx5dmdlRFhmb1U4c1Z1T3psbXNBbw?oc=5",
+     "date": "2026-11-26",
+     "score": 10.7,
+     "source": "NAI500"
+    },
     {
      "title": "Metals broadly gained, with LME zinc, LME nickel, and SHFE silver leading the advance, LME copper, aluminum, lead, and tin collectively moving higher, iron ore falling, and crude oil posting a three-day winning streak [Overnight Market].",
      "url": "https://news.google.com/rss/articles/CBMirANBVV95cUxOeVhPaGp3QnBSMDRpWEpqQThMLUNuUzRUWWFSMG05M2FQRTVxVWh3QUY4XzRXQ21EVC1fMlZYVWdTT3JFd0JnV2JMTk8wdVFiQ3FuMl9vTUxXeWxHWmFteTNZaHpOSXl3X2tHeVMxcUlZWW45Z1gtbUVMMzRRcEg4cDJJNUpfRmMyNFpNTlRYSlFndTYxTmFXaFRrREdHS01YSHlQUHVqZVRuQnFqUS1CVjgxWVBkdk11TmhnWnJmZ3FkdVFfN1dIbGtjbW04b2t6LUg5YjRscHNtTllHM2N0ZTNxQ1hwVTBDSlVaakdHeDNrVTJxYUJ4QTFhMFZfQUFGdkRzNjJPS1diNy1MRzgtRkpkajFHYVFhZW1uMWhEcTVDeVphcHNtRk01ODNQZXgyYmNNUWplbzg4V1hBVjdpVEVfZ29uLTl4bUhSRWhGR01nb1BzOXk3TXBtQlRubkZjb3kwYnJXOVk4S0JzODVJR2xNc0hFLWZLelVpSEJOazhXbjhPanBwR01PZ2JtWlFyVm11aVM0Vm1hWHoyUllTbU9oV2pNTlRlcFc0bw?oc=5",
@@ -122,18 +129,11 @@
      "date": "2026-11-26",
      "score": 8.7,
      "source": "Shanghai Metals Market"
-    },
-    {
-     "title": "Copper price sinks to 11-month low as tariff, rate hike fears grip markets",
-     "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE40ZlZmZGZsREVobjVlMk1JVTN1SHJkdkhCenBjUzVjdkROMUx0MjZNZWFOYkUyZnM4WURyTHNSc2F5OTN1Nk9Oc20wUGl1bTRVZ1lDeXUxd1huSnc2UkhMYXEtT0xtRlB6?oc=5",
-     "date": "2026-11-26",
-     "score": 8.7,
-     "source": "Mining.com.au"
     }
    ],
-   "n_news": 12,
-   "n_moves": 4,
-   "rank": 12.54,
+   "n_news": 14,
+   "n_moves": 5,
+   "rank": 9.54,
    "link": "danh-muc.html?c=mep"
   },
   {
@@ -216,29 +216,15 @@
      "id": "yf_silver",
      "name": "Bạc (COMEX Silver)",
      "region": "",
-     "d1": 3.48,
-     "date": "2026-11-26",
-     "prev_date": "2026-11-25",
-     "price": 43.71500015258789,
+     "d1": 2.09,
+     "date": "2026-11-27",
+     "prev_date": "2026-11-26",
+     "price": 44.630001068115234,
      "unit": "USD/oz",
      "kind": "gold",
      "threshold": 2.0,
      "tax": "tt.ty-gia",
      "url": "mat-hang.html?id=yf_silver"
-    },
-    {
-     "id": "lbma_gold",
-     "name": "Vàng London Fixing (LBMA)",
-     "region": "",
-     "d1": -2.47,
-     "date": "2026-11-25",
-     "prev_date": "2026-11-24",
-     "price": 3533.2,
-     "unit": "USD/oz",
-     "kind": "gold",
-     "threshold": 2.0,
-     "tax": "tt.ty-gia",
-     "url": "mat-hang.html?id=lbma_gold"
     }
    ],
    "news": [
@@ -264,9 +250,9 @@
      "source": "VietnamBiz – TP HCM mời Singapore phát triển 3 nhóm hạ tầng chiến lược (26/11/2026)"
     }
    ],
-   "n_news": 10,
-   "n_moves": 2,
-   "rank": 5.97,
+   "n_news": 12,
+   "n_moves": 1,
+   "rank": 4.04,
    "link": "danh-muc.html?c=tt"
   }
  ]
