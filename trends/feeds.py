@@ -39,6 +39,7 @@ def load_orgs():
     R = [o for o in json.load(open(p, encoding="utf-8"))["orgs"] if o.get("query") and o.get("kws")]
     return [(o["name"], o["type"], o["query"], o["kws"]) for o in R], {o["name"]: o["type"] for o in R if o.get("trust_query")}
 ORGS_ZH = [(o["name"], o["type"], o["query_zh"]) for o in json.load(open(os.path.join(D, "orgs.json"), encoding="utf-8"))["orgs"] if o.get("query_zh") and o.get("kws")]  # optional Chinese-language org queries (Google News zh-CN; Baidu-free)
+VIS = re.compile("[ăđơưạảấầẩẫậắằẳẵặẹẻẽếềểễệỉịĩọỏốồổỗộớờởỡợụủũứừửữựỳỵỷỹ]")  # chữ chỉ tiếng Việt có (không trùng tiếng Pháp é/è/à/ê)
 VI = re.compile("[ăâđêôơưĂÂĐÊÔƠƯàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]")
 ORGS, TRUST = load_orgs()  # TRUST: distinctive quoted query => a hit from that org's own query is tagged to it even if the headline omits the name  # (display name, type, Google News query, accent-free headline keywords)
 MSEG = [  # market segment tags (accent-free keywords) – same ids as trends/data/segments.json
@@ -103,6 +104,7 @@ def main():
     for x in new + old:
         key = re.sub(r"\W+", " ", strip(x["title"])).strip()[:80]
         if x["date"] < cutoff or key in seen or x["url"] in seen: continue
+        if x.get("source") == "Vietnam.vn" and not VIS.search(x["title"].lower()) and not re.search(r"[\u4e00-\u9fff]", x["title"]): continue  # vietnam.vn đăng bản dịch máy (EN/FR/PL/ID…) của bài tiếng Việt → trùng tin, lệch ngôn ngữ
         if x.get("kind") in ("contractor", "developer") and not any(k in " " + strip(x["title"]) + " " for _, _, _, kws in ORGS for k in kws) and not (x.get("q_org") in TRUST and VI.search(x["title"])): continue  # org query hit but headline names nobody we track
         seen.update([key, x["url"]]); t = strip(x["title"] + " " + x.get("snippet", ""))
         x["tax"] = [cid for cid, kws in rules if any(k and k in t for k in kws)][:3]
